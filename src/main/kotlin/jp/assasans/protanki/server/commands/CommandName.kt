@@ -45,6 +45,12 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   ExitFromBattleNotify(CommandCategory.Battle, "i_exit_from_battle", CommandSide.Server),
 
+  BattlePlayerJoinDm(CommandCategory.Battle, "user_connect_dm", CommandSide.Client),
+  BattlePlayerLeaveDm(CommandCategory.Battle, "user_disconnect_dm", CommandSide.Client),
+
+  BattlePlayerJoinTeam(CommandCategory.Battle, "user_connect_team", CommandSide.Client),
+  BattlePlayerLeaveTeam(CommandCategory.Battle, "user_disconnect_team", CommandSide.Client),
+
   SubscribeUserUpdate(CommandCategory.Lobby, "subscribe_user_update", CommandSide.Server),
 
   update_rang_progress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
@@ -70,6 +76,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitMineModel(CommandCategory.Battle, "init_mine_model", CommandSide.Client),
   InitEffects(CommandCategory.Battle, "init_effects", CommandSide.Client),
 
+  ChangeFund(CommandCategory.Battle, "change_fund", CommandSide.Client),
+
   InitTank(CommandCategory.Battle, "init_tank", CommandSide.Client),
   GetInitDataLocalTank(CommandCategory.Battle, "get_init_data_local_tank", CommandSide.Server),
 
@@ -80,6 +88,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   InitInventory(CommandCategory.Battle, "init_inventory", CommandSide.Client),
   ActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Server),
+
+  SelfDestruct(CommandCategory.Battle, "suicide", CommandSide.Server),
 
   InitStatisticsModel(CommandCategory.Battle, "init_statistics_model", CommandSide.Client),
   InitDmStatistics(CommandCategory.Battle, "init_dm_statistics", CommandSide.Client),

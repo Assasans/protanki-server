@@ -5,6 +5,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
@@ -43,6 +44,43 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     battle.showInfoFor(socket)
   }
 
+  @CommandHandler(CommandName.Fight)
+  suspend fun fight(socket: UserSocket) {
+    // TODO(Assasans): Shit
+    val resourcesMap1Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-1.json").bufferedReader()
+    val resourcesMap1 = resourcesMap1Reader.use { it.readText() }
+
+    // TODO(Assasans): Shit
+    val resourcesMap2Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-2.json").bufferedReader()
+    val resourcesMap2 = resourcesMap2Reader.use { it.readText() }
+
+    // TODO(Assasans): Shit
+    val resourcesMap3Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-3.json").bufferedReader()
+    val resourcesMap3 = resourcesMap3Reader.use { it.readText() }
+
+    // TODO(Assasans): Shit
+    val shotsDataReader = File("D:/ProTankiServer/src/main/resources/resources/shots-data.json").bufferedReader()
+    val shotsData = shotsDataReader.use { it.readText() }
+
+    val player = BattlePlayer(
+      socket = socket,
+      battle = battleProcessor.battles[0],
+      team = BattleTeam.None
+    )
+    battleProcessor.battles[0].players.add(player)
+
+    socket.initBattleLoad()
+
+    Command(CommandName.InitShotsData, mutableListOf(shotsData)).send(socket)
+
+    socket.awaitDependency(socket.loadDependency(resourcesMap1))
+    socket.awaitDependency(socket.loadDependency(resourcesMap2))
+    socket.awaitDependency(socket.loadDependency(resourcesMap3))
+
+    player.init()
+    player.spawn()
+  }
+
   @CommandHandler(CommandName.JoinAsSpectator)
   suspend fun joinAsSpectator(socket: UserSocket) {
     // TODO(Assasans): Shit
@@ -60,6 +98,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     val player = BattlePlayer(
       socket = socket,
       battle = battleProcessor.battles[0],
+      team = BattleTeam.None,
       isSpectator = true
     )
     battleProcessor.battles[0].players.add(player)
@@ -114,7 +153,9 @@ class LobbyHandler : ICommandHandler, KoinComponent {
             ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
           )
         ).toJson(),
-        InitChatSettings().toJson()
+        InitChatSettings(
+          selfName = socket.user!!.username
+        ).toJson()
       )
     ).send(socket)
 

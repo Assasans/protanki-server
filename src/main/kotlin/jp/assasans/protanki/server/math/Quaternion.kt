@@ -1,9 +1,6 @@
 package jp.assasans.protanki.server.math
 
-import kotlin.math.asin
-import kotlin.math.atan2
-import kotlin.math.pow
-import kotlin.math.sqrt
+import kotlin.math.*
 
 class Quaternion {
   var w: Double
@@ -46,6 +43,33 @@ class Quaternion {
 
     if(-1 < ii && ii < 1) return Vector3(atan2(jj, kk), -asin(ii), atan2(ee, aa))
     return Vector3(0.0, 0.5 * (if(ii <= -1) Math.PI else -Math.PI), atan2(-bb, ff))
+  }
+
+  fun fromEulerAngles(vector: Vector3) {
+    val deg2Rad = PI * 2 / 360.0
+
+    var yaw = vector.x
+    var pitch = vector.y
+    var roll = vector.z
+
+    yaw *= deg2Rad
+    pitch *= deg2Rad
+    roll *= deg2Rad
+
+    val rollOver2 = roll * 0.5f
+    val sinRollOver2 = sin(rollOver2.toDouble())
+    val cosRollOver2 = cos(rollOver2.toDouble())
+    val pitchOver2 = pitch * 0.5f
+    val sinPitchOver2 = sin(pitchOver2.toDouble())
+    val cosPitchOver2 = cos(pitchOver2.toDouble())
+    val yawOver2 = yaw * 0.5f
+    val sinYawOver2 = sin(yawOver2.toDouble())
+    val cosYawOver2 = cos(yawOver2.toDouble())
+
+    w = (cosYawOver2 * cosPitchOver2 * cosRollOver2 + sinYawOver2 * sinPitchOver2 * sinRollOver2).toDouble()
+    x = (cosYawOver2 * sinPitchOver2 * cosRollOver2 + sinYawOver2 * cosPitchOver2 * sinRollOver2).toDouble()
+    y = (sinYawOver2 * cosPitchOver2 * cosRollOver2 - cosYawOver2 * sinPitchOver2 * sinRollOver2).toDouble()
+    z = (cosYawOver2 * cosPitchOver2 * sinRollOver2 - sinYawOver2 * sinPitchOver2 * cosRollOver2).toDouble()
   }
 
   val length: Double

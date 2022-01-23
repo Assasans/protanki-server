@@ -27,6 +27,22 @@ open class MoveData(
   @Json val angularVelocity: Vector3Data
 )
 
+open class MovementControlData(
+  @Json val physTime: Int,
+
+  @Json val control: Int,
+  @Json val specificationID: Int
+)
+
+open class RotateTurretData(
+  @Json val physTime: Int,
+
+  @Json val incarnation: Int,
+
+  @Json val control: Int,
+  @Json val angle: Double
+)
+
 open class FullMoveData(
   physTime: Int,
 
@@ -40,7 +56,7 @@ open class FullMoveData(
   angularVelocity: Vector3Data,
 
   @Json val turretDirection: Double
-)  : MoveData(
+) : MoveData(
   physTime,
   control, specificationID,
   position, linearVelocity,
@@ -65,7 +81,15 @@ class ClientMoveData(
   control, specificationID,
   position, linearVelocity,
   orientation, angularVelocity
-)
+) {
+  constructor(tankId: String, data: MoveData) : this(
+    tankId,
+    data.physTime,
+    data.control, data.specificationID,
+    data.position, data.linearVelocity,
+    data.orientation, data.angularVelocity
+  )
+}
 
 class ClientFullMoveData(
   @Json val tankId: String,
@@ -88,8 +112,68 @@ class ClientFullMoveData(
   position, linearVelocity,
   orientation, angularVelocity,
   turretDirection
-)
+) {
+  constructor(tankId: String, data: FullMoveData) : this(
+    tankId,
+    data.physTime,
+    data.control, data.specificationID,
+    data.position, data.linearVelocity,
+    data.orientation, data.angularVelocity,
+    data.turretDirection
+  )
+}
+
+class ClientMovementControlData(
+  @Json val tankId: String,
+
+  physTime: Int,
+
+  control: Int,
+  specificationID: Int
+) : MovementControlData(
+  physTime,
+  control, specificationID
+) {
+  constructor(tankId: String, data: MovementControlData) : this(
+    tankId,
+    data.physTime,
+    data.control, data.specificationID
+  )
+}
+
+class ClientRotateTurretData(
+  @Json val tankId: String,
+
+  physTime: Int,
+
+  incarnation: Int,
+
+  control: Int,
+  angle: Double
+) : RotateTurretData(
+  physTime,
+  incarnation,
+  control, angle
+) {
+  constructor(tankId: String, data: RotateTurretData) : this(
+    tankId,
+    data.physTime,
+    data.incarnation,
+    data.control, data.angle
+  )
+}
 
 data class UpdateSpectatorsListData(
   @Json val spects: List<String>
+)
+
+data class BattlePlayerJoinDmData(
+  @Json val id: String,
+  @Json val players: List<DmStatisticsUserData>
+)
+
+data class BattlePlayerJoinTeamData(
+  @Json val id: String,
+  @Json val team: String,
+  @Json val players: List<DmStatisticsUserData>
 )

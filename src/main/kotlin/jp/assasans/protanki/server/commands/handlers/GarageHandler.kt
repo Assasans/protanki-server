@@ -54,7 +54,9 @@ class GarageHandler : ICommandHandler, KoinComponent {
             ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
           )
         ).toJson(),
-        InitChatSettings().toJson()
+        InitChatSettings(
+          selfName = socket.user!!.username
+        ).toJson()
       )
     ).send(socket)
 

@@ -30,6 +30,7 @@ import jp.assasans.protanki.server.exceptions.UnknownCommandException
 import jp.assasans.protanki.server.readAvailable
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
+suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
 
 suspend fun UserSocket.sendChat(message: String) = Command(
   CommandName.SendChatMessageClient, listOf(
@@ -85,7 +86,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
     }
   }
 
-  private val dependenciesChannel: Channel<Int> = Channel(16)
+  private val dependenciesChannel: Channel<Int> = Channel(32) // TODO(Assasans)
   private val loadedDependencies: MutableList<Int> = mutableListOf()
   private var lastDependencyId = 1
 
@@ -99,6 +100,10 @@ suspend fun UserSocket.sendChat(message: String) = Command(
     ).send(this)
 
     return lastDependencyId++
+  }
+
+  suspend fun markDependencyLoaded(id: Int) {
+    dependenciesChannel.send(id)
   }
 
   suspend fun awaitDependency(id: Int) {
@@ -128,7 +133,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       val command = Command()
       command.readFrom(decrypted.toByteArray())
 
-      if(command.name != CommandName.Ping) {
+      if(command.name != CommandName.Ping && command.name != CommandName.RotateTurret && command.name != CommandName.Move && command.name != CommandName.FullMove) {
         logger.trace { "Received command ${command.name} ${command.args}" }
       }
 
@@ -180,83 +185,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       }
 
       when(command.name) {
-        CommandName.Auth                 -> TODO("Deprecated")
-
-        CommandName.DependenciesLoaded   -> {
-          val id = command.args[0].toInt()
-
-          logger.debug { "Loaded dependency $id" }
-
-          dependenciesChannel.send(id)
-        }
-
-        CommandName.LoginByHash          -> {
-          send(Command(CommandName.LoginByHashFailed))
-        }
-
-        CommandName.SelectBattle         -> TODO("Deprecated")
-
-        CommandName.Fight                -> {
-          // TODO(Assasans): Shit
-          val resourcesMap1Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-1.json").bufferedReader()
-          val resourcesMap1 = resourcesMap1Reader.use { it.readText() }
-
-          // TODO(Assasans): Shit
-          val resourcesMap2Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-2.json").bufferedReader()
-          val resourcesMap2 = resourcesMap2Reader.use { it.readText() }
-
-          // TODO(Assasans): Shit
-          val resourcesMap3Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-3.json").bufferedReader()
-          val resourcesMap3 = resourcesMap3Reader.use { it.readText() }
-
-          // TODO(Assasans): Shit
-          val shotsDataReader = File("D:/ProTankiServer/src/main/resources/resources/shots-data.json").bufferedReader()
-          val shotsData = shotsDataReader.use { it.readText() }
-
-          val player = BattlePlayer(
-            socket = this,
-            battle = battleProcessor.battles[0]
-          )
-          battleProcessor.battles[0].players.add(player)
-
-          // BattlePlayer(socket, this, null)
-
-          initBattleLoad()
-
-          send(Command(CommandName.InitShotsData, mutableListOf(shotsData)))
-
-          awaitDependency(loadDependency(resourcesMap1))
-          awaitDependency(loadDependency(resourcesMap2))
-          awaitDependency(loadDependency(resourcesMap3))
-
-          player.init()
-          player.spawn()
-        }
-
-        CommandName.GetInitDataLocalTank -> TODO("Deprecated")
-
-        CommandName.SubscribeUserUpdate  -> {
-          if(command.args[0] == "roflanebalo") {
-
-          }
-        }
-
-        CommandName.Ping                 -> {
-          val player = battlePlayer ?: return
-          if(!player.stage2Initialized) {
-            player.stage2Initialized = true
-
-            logger.info { "Init battle..." }
-
-            player.initStage2()
-          }
-
-          Command(CommandName.Pong).send(this)
-        }
-
-        CommandName.Error                -> TODO("Deprecated")
-
-        CommandName.ShowFriendsList      -> {
+        CommandName.ShowFriendsList -> {
           send(
             Command(
               CommandName.ShowFriendsList,
@@ -265,7 +194,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
           )
         }
 
-        else                             -> {}
+        else                        -> {}
       }
     } catch(exception: UnknownCommandCategoryException) {
       logger.warn { "Unknown command category: ${exception.category}" }
@@ -326,7 +255,9 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       Command(
         CommandName.InitPanel,
         mutableListOf(
-          json.adapter(InitPanelData::class.java).toJson(InitPanelData())
+          json.adapter(InitPanelData::class.java).toJson(InitPanelData(
+            name = user!!.username
+          ))
         )
       )
     )
@@ -728,7 +659,7 @@ data class InitChatSettings(
   @Json val minWord: Int = 5,
   @Json val showLinks: Boolean = true,
   @Json val admin: Boolean = false,
-  @Json val selfName: String = "roflanebalo",
+  @Json val selfName: String,
   @Json val chatModeratorLevel: Int = 0,
   @Json val symbolCost: Int = 176,
   @Json val enterCost: Int = 880,
@@ -762,7 +693,7 @@ data class InitPremiumData(
 )
 
 data class InitPanelData(
-  @Json val name: String = "roflanebalo",
+  @Json val name: String,
   @Json val crystall: Int = 32,
   @Json val email: String? = null,
   @Json val tester: Boolean = false,

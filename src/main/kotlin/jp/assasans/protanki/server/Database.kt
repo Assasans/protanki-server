@@ -31,9 +31,9 @@ class Database : IDatabase {
       val users = Users.selectAll()
       logger.info { "Registered users: ${users.count()}" }
 
-      if(users.none { user -> user[Users.username] == "roflanebalo" }) {
+      if(users.none { user -> user[Users.username] == "debug_LOX" }) {
         Users.insert {
-          it[username] = "roflanebalo"
+          it[username] = "debug_LOX"
           it[password] = "test"
           it[score] = 12345
           it[crystals] = 54321

@@ -4,7 +4,10 @@ import mu.KotlinLogging
 import org.jetbrains.exposed.sql.lowerCase
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
-import jp.assasans.protanki.server.client.*
+import jp.assasans.protanki.server.client.AuthData
+import jp.assasans.protanki.server.client.User
+import jp.assasans.protanki.server.client.UserSocket
+import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
@@ -25,16 +28,23 @@ class AuthHandler : ICommandHandler {
       )
     }
 
-    if(false && user.password != data.password) {
-      logger.debug { "User login rejected: incorrect password" }
-
-      socket.send(Command(CommandName.AuthDenied))
-    } else {
+    if(true || user.password == data.password) {
       logger.debug { "User login allowed" }
 
       socket.user = user
       socket.send(Command(CommandName.AuthAccept))
       socket.loadLobby()
+    } else {
+      logger.debug { "User login rejected: incorrect password" }
+
+      socket.send(Command(CommandName.AuthDenied))
     }
+  }
+
+  @CommandHandler(CommandName.LoginByHash)
+  suspend fun loginByHash(socket: UserSocket, hash: String) {
+    logger.debug { "User login by hash: $hash" }
+
+    Command(CommandName.LoginByHashFailed).send(socket)
   }
 }

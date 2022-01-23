@@ -1,9 +1,8 @@
 package jp.assasans.protanki.server.battles
 
-import com.squareup.moshi.Moshi
+import java.util.*
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -38,20 +37,46 @@ class BattleTank(
     get() = player.battle
 
   suspend fun activate() {
+    if(state == TankState.Active) return
+
     state = TankState.Active
-    Command(CommandName.ActivateTank, listOf(id)).send(socket)
+
+    player.battle.players.forEach { player ->
+      val tank = player.tank
+      if(tank != null && tank != this) {
+        Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
+      }
+
+      Command(CommandName.ActivateTank, listOf(id)).send(player)
+    }
+    // Command(CommandName.ActivateTank, listOf(id)).send(socket)
+  }
+}
+
+enum class BattleTeam(val id: Int, val key: String) {
+  Red(0, "RED"),
+  Blue(1, "BLUE"),
+
+  None(2, "NONE");
+
+  companion object {
+    private val map = BattleTeam.values().associateBy(BattleTeam::key)
+
+    fun get(key: String) = map[key]
   }
 }
 
 class BattlePlayer(
   val socket: UserSocket,
   val battle: Battle,
+  var team: BattleTeam,
   var tank: BattleTank? = null,
-  val isSpectator: Boolean = false
+  val isSpectator: Boolean = false,
+  var score: Int = 0,
+  var kills: Int = 0,
+  var deaths: Int = 0
 ) : ITickHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
-
-  private val json by inject<Moshi>()
 
   var incarnation: Int = 0
 
@@ -98,12 +123,12 @@ class BattlePlayer(
       CommandName.InitBattleModel,
       listOf(
         InitBattleModelData(
-          battleId = "493202bf695cc88a",
-          map_id = "map_sandbox",
-          mapId = 663288,
+          battleId = battle.id,
+          map_id = battle.map.name,
+          mapId = battle.map.id,
           spectator = isSpectator,
           skybox = "{\"top\":45572,\"front\":57735,\"back\":268412,\"bottom\":31494,\"left\":927961,\"right\":987391}",
-          map_graphic_data = "{\"mapId\":\"map_sandbox\",\"mapTheme\":\"SUMMER\",\"angleX\":-0.8500000238418579,\"angleZ\":2.5,\"lightColor\":13090219,\"shadowColor\":5530735,\"fogAlpha\":0.25,\"fogColor\":10543615,\"farLimit\":10000,\"nearLimit\":5000,\"gravity\":500,\"skyboxRevolutionSpeed\":0,\"ssaoColor\":2045258,\"dustAlpha\":0.75,\"dustDensity\":0.15000000596046448,\"dustFarDistance\":7000,\"dustNearDistance\":5000,\"dustParticle\":\"summer\",\"dustSize\":200}"
+          map_graphic_data = "{\"mapId\":\"map_sandbox\",\"mapTheme\":\"SUMMER\",\"angleX\":-0.8500000238418579,\"angleZ\":2.5,\"lightColor\":13090219,\"shadowColor\":5530735,\"fogAlpha\":0.25,\"fogColor\":10543615,\"farLimit\":10000,\"nearLimit\":5000,\"gravity\":1000,\"skyboxRevolutionSpeed\":0,\"ssaoColor\":2045258,\"dustAlpha\":0.75,\"dustDensity\":0.15000000596046448,\"dustFarDistance\":7000,\"dustNearDistance\":5000,\"dustParticle\":\"summer\",\"dustSize\":200}"
         ).toJson()
       )
     ).send(socket)
@@ -116,26 +141,73 @@ class BattlePlayer(
     ).send(socket)
   }
 
+  suspend fun initTanks() {
+    battle.players.users().forEach { player ->
+      if(player != this) {
+        Command(
+          CommandName.InitTank,
+          listOf(
+            InitTankData(
+              battleId = battle.id,
+              hull_id = "hunter_m0",
+              turret_id = "railgun_m0",
+              colormap_id = 966681,
+              hullResource = 227169,
+              turretResource = 906685,
+              partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
+              tank_id = (player.tank ?: throw Exception("No Tank")).id,
+              nickname = player.user.username,
+              team_type = player.team.key
+            ).toJson()
+          )
+        ).send(socket)
+      }
+
+      if(!isSpectator) {
+        Command(
+          CommandName.InitTank,
+          listOf(
+            InitTankData(
+              battleId = battle.id,
+              hull_id = "hunter_m0",
+              turret_id = "railgun_m0",
+              colormap_id = 966681,
+              hullResource = 227169,
+              turretResource = 906685,
+              partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
+              tank_id = (tank ?: throw Exception("No Tank")).id,
+              nickname = user.username,
+              team_type = team.key
+            ).toJson()
+          )
+        ).send(player)
+      }
+    }
+  }
+
   suspend fun initLocal() {
     if(!isSpectator) {
-      Command(CommandName.InitSuicideModel, listOf("10000")).send(socket)
-      Command(CommandName.InitStatisticsModel, listOf("For newbies")).send(socket)
+      Command(CommandName.InitSuicideModel, listOf(10000.toString())).send(socket)
+      Command(CommandName.InitStatisticsModel, listOf(battle.title)).send(socket)
     }
 
     Command(
       CommandName.InitGuiModel,
       listOf(
         InitGuiModelData(
-          name = "ProTanki Server",
-          fund = 1337228,
+          name = battle.title,
+          fund = battle.fund,
           scoreLimit = 300,
           timeLimit = 600,
           currTime = 212,
-          team = false,
-          users = listOf(
-            GuiUserData(nickname = "roflanebalo", rank = 4, teamType = "NONE"),
-            GuiUserData(nickname = "Luminate", rank = 16, teamType = "NONE")
-          )
+          team = team != BattleTeam.None,
+          users = battle.players.users().map { player ->
+            GuiUserData(
+              nickname = player.user.username,
+              rank = player.user.rank.value,
+              teamType = player.team.key
+            )
+          }
         ).toJson()
       )
     ).send(socket)
@@ -159,25 +231,37 @@ class BattlePlayer(
       CommandName.InitDmStatistics,
       listOf(
         InitDmStatisticsData(
-          users = listOf(
+          users = battle.players.users().map { player ->
             DmStatisticsUserData(
-              uid = "roflanebalo",
-              rank = 4,
-              score = 666,
-              kills = 1000,
-              deaths = 7
-            ),
-            DmStatisticsUserData(
-              uid = "Luminate",
-              rank = 16,
-              score = 456,
-              kills = 777,
-              deaths = 333
+              uid = player.user.username,
+              rank = player.user.rank.value,
+              score = player.score,
+              kills = player.kills,
+              deaths = player.deaths
             )
-          )
+          }
         ).toJson()
       )
     ).send(socket)
+
+    battle.players.forEach { player ->
+      if(player == this) return@forEach
+
+      Command(CommandName.BattlePlayerJoinDm, listOf(
+        BattlePlayerJoinDmData(
+          id = user.username,
+          players = battle.players.users().map { player ->
+            DmStatisticsUserData(
+              uid = user.username,
+              rank = user.rank.value,
+              score = score,
+              kills = kills,
+              deaths = deaths
+            )
+          }
+        ).toJson()
+      )).send(player)
+    }
 
     // TODO(Assasans)
     if(isSpectator) {
@@ -221,6 +305,13 @@ class BattlePlayer(
                 itemEffectTime = 55,
                 itemRestSec = 20
               ),
+              InventoryItemData(
+                id = "mine",
+                count = 1000,
+                slotId = 5,
+                itemEffectTime = 20,
+                itemRestSec = 20
+              )
             )
           ).toJson()
         )
@@ -235,24 +326,26 @@ class BattlePlayer(
       )
     ).send(socket)
 
+    initTanks()
+
     if(!isSpectator) {
-      Command(
-        CommandName.InitTank,
-        listOf(
-          InitTankData(
-            battleId = "493202bf695cc88a",
-            hull_id = "hunter_m0",
-            turret_id = "railgun_m0",
-            colormap_id = 966681,
-            hullResource = 227169,
-            turretResource = 906685,
-            partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
-            tank_id = "roflanebalo",
-            nickname = "roflanebalo",
-            team_type = "NONE"
-          ).toJson()
-        )
-      ).send(socket)
+      // Command(
+      //   CommandName.InitTank,
+      //   listOf(
+      //     InitTankData(
+      //       battleId = battle.id,
+      //       hull_id = "hunter_m0",
+      //       turret_id = "railgun_m0",
+      //       colormap_id = 966681,
+      //       hullResource = 227169,
+      //       turretResource = 906685,
+      //       partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
+      //       tank_id = (tank ?: throw Exception("No Tank")).id,
+      //       nickname = user.username,
+      //       team_type = team.key
+      //     ).toJson()
+      //   )
+      // ).send(socket)
 
       logger.info { "Load stage 2" }
 
@@ -260,12 +353,12 @@ class BattlePlayer(
         CommandName.UpdatePlayerStatistics,
         listOf(
           UpdatePlayerStatisticsData(
-            id = "roflanebalo",
-            rank = 4,
-            team_type = "NONE",
-            score = 666,
-            kills = 1000,
-            deaths = 777
+            id = (tank ?: throw Exception("No Tank")).id,
+            rank = user.rank.value,
+            team_type = team.key,
+            score = score,
+            kills = kills,
+            deaths = deaths
           ).toJson()
         )
       ).send(socket)
@@ -282,7 +375,7 @@ class BattlePlayer(
       Command(
         CommandName.PrepareToSpawn,
         listOf(
-          "roflanebalo",
+          (tank ?: throw Exception("No Tank")).id,
           "0.0@0.0@1000.0@0.0"
         )
       ).send(socket)
@@ -290,28 +383,83 @@ class BattlePlayer(
       Command(
         CommandName.ChangeHealth,
         listOf(
-          "roflanebalo",
-          "10000"
+          (tank ?: throw Exception("No Tank")).id,
+          10000.toString()
         )
       ).send(socket)
 
-      Command(
-        CommandName.SpawnTank,
-        listOf(
-          SpawnTankData(
-            tank_id = "roflanebalo",
-            health = 10000,
-            incration_id = 2,
-            team_type = "NONE",
-            x = 0.0,
-            y = 0.0,
-            z = 1000.0,
-            rot = 0.0
-          ).toJson()
-        )
-      ).send(socket)
+      // Command(
+      //   CommandName.SpawnTank,
+      //   listOf(
+      //     SpawnTankData(
+      //       tank_id = (tank ?: throw Exception("No Tank")).id,
+      //       health = 10000,
+      //       incration_id = incarnation,
+      //       team_type = team.key,
+      //       x = 0.0,
+      //       y = 0.0,
+      //       z = 1000.0,
+      //       rot = 0.0
+      //     ).toJson()
+      //   )
+      // ).send(socket)
+    }
 
-      tank!!.activate()
+    spawnTanks()
+
+    if(isSpectator) {
+      battle.players.forEach { player ->
+        if(player == this) return@forEach
+
+        val tank = player.tank
+        if(tank != null) {
+          Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
+        }
+      }
+    }
+
+    if(!isSpectator) {
+      (tank ?: throw Exception("No Tank")).activate()
+    }
+  }
+
+  suspend fun spawnTanks() {
+    battle.players.users().forEach { player ->
+      if(player != this) {
+        Command(
+          CommandName.SpawnTank,
+          listOf(
+            SpawnTankData(
+              tank_id = (player.tank ?: throw Exception("No Tank")).id,
+              health = 10000,
+              incration_id = player.incarnation,
+              team_type = player.team.key,
+              x = 0.0,
+              y = 0.0,
+              z = 1000.0,
+              rot = 0.0
+            ).toJson()
+          )
+        ).send(socket)
+      }
+
+      if(!isSpectator) {
+        Command(
+          CommandName.SpawnTank,
+          listOf(
+            SpawnTankData(
+              tank_id = (tank ?: throw Exception("No Tank")).id,
+              health = 10000,
+              incration_id = incarnation,
+              team_type = team.key,
+              x = 0.0,
+              y = 0.0,
+              z = 1000.0,
+              rot = 0.0
+            ).toJson()
+          )
+        ).send(player)
+      }
     }
   }
 
@@ -319,7 +467,7 @@ class BattlePlayer(
     incarnation++
 
     val tank = BattleTank(
-      id = socket.user!!.username,
+      id = user.username,
       player = this,
       incarnation = incarnation,
       state = TankState.Respawn,
@@ -332,9 +480,30 @@ class BattlePlayer(
   }
 }
 
+class BattleMap(
+  val id: Int,
+  val name: String,
+  val preview: Int
+)
+
+enum class SendTarget {
+  Players,
+  Spectators
+}
+
+suspend fun Command.sendTo(
+  battle: Battle,
+  vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators)
+) = battle.sendTo(this, *targets)
+
+fun List<BattlePlayer>.users() = filter { player -> !player.isSpectator }
+fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
+
 class Battle(
   val id: String,
-  val title: String
+  val title: String,
+  var map: BattleMap,
+  var fund: Int = 1337228
 ) : ITickHandler {
   companion object {
     private var lastId: Int = 1
@@ -362,14 +531,14 @@ class Battle(
       CommandName.ShowBattleInfo,
       listOf(
         ShowDmBattleInfoData(
-          itemId = "493202bf695cc88a",
+          itemId = id,
           battleMode = "DM",
           scoreLimit = 300,
           timeLimitInSec = 600,
           timeLeftInSec = 212,
-          preview = 388954,
+          preview = map.preview,
           maxPeopleCount = 8,
-          name = "ProTanki Server",
+          name = title,
           minRank = 0,
           maxRank = 16,
           spectator = true,
@@ -385,9 +554,25 @@ class Battle(
     ).send(socket)
   }
 
+  suspend fun sendTo(
+    command: Command,
+    vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators)
+  ) {
+    if(targets.contains(SendTarget.Players)) {
+      players
+        .users()
+        .forEach { player -> command.send(player) }
+    }
+    if(targets.contains(SendTarget.Spectators)) {
+      players
+        .spectators()
+        .forEach { player -> command.send(player) }
+    }
+  }
+
   override suspend fun tick() {
     players.forEach { player ->
-      logger.trace { "Running tick handler for player ${player.socket.user!!.username}" }
+      logger.trace { "Running tick handler for player ${player.user.username}" }
       player.tick()
     }
   }

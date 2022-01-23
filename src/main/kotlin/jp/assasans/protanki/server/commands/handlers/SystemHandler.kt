@@ -13,4 +13,11 @@ class SystemHandler : ICommandHandler {
   suspend fun error(socket: UserSocket, error: String) {
     logger.warn { "Client-side error occurred: $error" }
   }
+
+  @CommandHandler(CommandName.DependenciesLoaded)
+  suspend fun dependenciesLoaded(socket: UserSocket, id: Int) {
+    logger.debug { "Loaded dependency $id" }
+
+    socket.markDependencyLoaded(id)
+  }
 }

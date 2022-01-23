@@ -108,8 +108,8 @@
       }
     }, {
       "auto_aiming_down": 0.15707963267948966, "auto_aiming_up": 0.10471975511965978, "num_rays_down": 72,
-      "num_rays_up": 48, "reload": 10, "id": "railgun_m0", "has_wwd": false,
-      "special_entity": { "chargingTimeMsec": 0, "weakeningCoeff": 0.3536 }
+      "num_rays_up": 48, "reload": 5846, "id": "railgun_m0", "has_wwd": false,
+      "special_entity": { "chargingTimeMsec": 1160, "weakeningCoeff": 0.3536 }
     }, {
       "auto_aiming_down": 0, "auto_aiming_up": 0, "num_rays_down": 0, "num_rays_up": 0, "reload": 0, "id": "freeze_m2",
       "max_damage_radius": 5, "min_damage_radius": 28.89, "min_damage_percent": 50, "has_wwd": true, "special_entity": {

@@ -20,6 +20,7 @@ class User(
     )
   }
 
+  // TODO(Assasans): Rewrite
   val rank: UserRank
     get() {
       var lastScore = score
@@ -28,7 +29,7 @@ class User(
         if(rank == UserRank.Generalissimo) break
 
         lastScore -= rank.score
-        rank = UserRank.get(rank.value) ?: UserRank.Generalissimo
+        rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
       }
       return rank
     }
