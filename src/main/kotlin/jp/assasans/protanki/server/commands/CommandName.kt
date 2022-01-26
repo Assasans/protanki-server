@@ -65,6 +65,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   PrepareToSpawn(CommandCategory.Battle, "prepare_to_spawn", CommandSide.Client),
   ChangeHealth(CommandCategory.Battle, "change_health", CommandSide.Client),
   SpawnTank(CommandCategory.Battle, "spawn", CommandSide.Client),
+  ActivateTank(CommandCategory.Battle, "activate_tank", CommandSide.Client),
 
   InitStatisticsModel(CommandCategory.Battle, "init_statistics_model", CommandSide.Client),
   InitDmStatistics(CommandCategory.Battle, "init_dm_statistics", CommandSide.Client),
@@ -72,6 +73,13 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   Ping(CommandCategory.Battle, "ping", CommandSide.Server),
   Pong(CommandCategory.Battle, "pong", CommandSide.Client),
+
+  DisablePause(CommandCategory.Battle, "disablePause", CommandSide.Server),
+
+  Move(CommandCategory.Battle, "move", CommandSide.Server),
+  FullMove(CommandCategory.Battle, "fullMove", CommandSide.Server),
+
+  RotateTurret(CommandCategory.Battle, "rotateTurret", CommandSide.Server),
 
   ;
 

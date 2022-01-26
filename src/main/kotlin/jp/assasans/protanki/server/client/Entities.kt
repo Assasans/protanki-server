@@ -128,8 +128,8 @@ data class InitEffectsData(
 )
 
 data class SpawnTankData(
-  @Json val tank_id: String = "roflanebalo",
-  @Json val health: Int = 10000,
+  @Json val tank_id: String,
+  @Json val health: Int,
   @Json val speed: Int = 8,
   @Json val turn_speed: Double = 1.3229597,
   @Json val turret_rotation_speed: Double = 0.9815731713216109,
@@ -139,10 +139,10 @@ data class SpawnTankData(
   @Json val sideAcceleration: Double = 7.74,
   @Json val turnAcceleration: Double = 2.2462387,
   @Json val reverseTurnAcceleration: Double = 3.6576867,
-  @Json val incration_id: Int = 2,
-  @Json val team_type: String = "NONE",
-  @Json val x: Double = 6406.25,
-  @Json val y: Double = -4468.75,
-  @Json val z: Int = 200,
-  @Json val rot: Double = -15.708
+  @Json val incration_id: Int,
+  @Json val team_type: String,
+  @Json val x: Double,
+  @Json val y: Double,
+  @Json val z: Double,
+  @Json val rot: Double
 )

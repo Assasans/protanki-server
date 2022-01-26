@@ -2,6 +2,8 @@ package jp.assasans.protanki.server.commands
 
 import java.io.OutputStream
 import mu.KotlinLogging
+import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
+import jp.assasans.protanki.server.exceptions.UnknownCommandException
 
 class Command {
   private val logger = KotlinLogging.logger { }
@@ -53,8 +55,8 @@ class Command {
     val category = CommandCategory.get(categoryRaw)
     val name = CommandName.get(nameRaw)
 
-    category ?: throw Exception("Unknown command category: $categoryRaw")
-    name ?: throw Exception("Unknown command name: $categoryRaw::$nameRaw")
+    category ?: throw UnknownCommandCategoryException(categoryRaw, "Unknown command category: $categoryRaw")
+    name ?: throw UnknownCommandException(categoryRaw, nameRaw, "Unknown command name: $categoryRaw::$nameRaw")
 
     if(name.category != category) throw Exception("Command category mismatch. Expected: ${name.category}, got: $category")
 
