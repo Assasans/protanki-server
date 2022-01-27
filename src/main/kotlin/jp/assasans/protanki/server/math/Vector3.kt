@@ -18,7 +18,7 @@ class Vector3 {
   val length: Double
     get() = sqrt(x.pow(2) + y.pow(2) + z.pow(2))
 
-  override fun toString(): String = "${Vector3::class.simpleName}($x, $y, $z)"
+  override fun toString(): String = "${this::class.simpleName}($x, $y, $z)"
 }
 
 operator fun Vector3.unaryPlus() = Vector3(x, y, z)

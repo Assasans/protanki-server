@@ -88,4 +88,6 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
     fun get(key: String) = map[key]
   }
+
+  override fun toString(): String = "${category.name}::$name"
 }

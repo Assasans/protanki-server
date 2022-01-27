@@ -2,6 +2,9 @@ package jp.assasans.protanki.server
 
 import java.io.ByteArrayOutputStream
 import java.net.InetSocketAddress
+import java.nio.file.Path
+import java.nio.file.Paths
+import kotlin.io.path.absolute
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
@@ -15,7 +18,10 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.logger.SLF4JLogger
 import jp.assasans.protanki.server.battles.BattleProcessor
+import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.client.UserSocket
+import jp.assasans.protanki.server.commands.CommandRegistry
+import jp.assasans.protanki.server.commands.ICommandRegistry
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
   val data = ByteArrayOutputStream()
@@ -61,16 +67,19 @@ fun main(args: Array<String>) {
   val logger = KotlinLogging.logger { }
 
   logger.info { "Hello, 世界!" }
+  logger.info { "Root path: ${Paths.get("").absolute()}" }
 
-  val helloModule = module {
-    single { SocketServer() }
-    single { BattleProcessor() }
+  val module = module {
+    single { SocketServer() as ISocketServer }
+    single { CommandRegistry() as ICommandRegistry }
+    single { BattleProcessor() as IBattleProcessor }
+    single { Database() as IDatabase }
   }
 
   startKoin {
     logger(SLF4JLogger(Level.ERROR))
 
-    modules(helloModule)
+    modules(module)
   }
 
   val server = Server()

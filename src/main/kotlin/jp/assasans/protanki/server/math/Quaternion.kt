@@ -44,7 +44,7 @@ class Quaternion {
     return Vector3(0.0, 0.5 * (if(ii <= -1) Math.PI else -Math.PI), atan2(-bb, ff))
   }
 
-  override fun toString(): String = "${Quaternion::class.simpleName}($w, $x, $y, $z)"
+  override fun toString(): String = "${this::class.simpleName}($w, $x, $y, $z)"
 }
 
 operator fun Quaternion.unaryPlus() = Quaternion(w, x, y, z)

@@ -1,12 +1,18 @@
 package jp.assasans.protanki.server.client
 
 import java.io.File
+import kotlin.reflect.KParameter
+import kotlin.reflect.full.callSuspendBy
+import kotlin.reflect.full.primaryConstructor
+import kotlin.reflect.javaType
 import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import com.squareup.moshi.adapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.ktor.network.sockets.*
 import io.ktor.util.network.*
+import io.ktor.util.reflect.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
@@ -14,21 +20,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import jp.assasans.protanki.server.EncryptionTransformer
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.commands.Command
-import jp.assasans.protanki.server.commands.CommandName
-import jp.assasans.protanki.server.commands.CommandSide
+import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
 import jp.assasans.protanki.server.readAvailable
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
 
-class UserSocket(val socket: Socket) {
+@OptIn(ExperimentalStdlibApi::class) class UserSocket(val socket: Socket) : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val encryption = EncryptionTransformer()
+  private val commandRegistry by inject<ICommandRegistry>()
 
   private val input: ByteReadChannel = socket.openReadChannel()
   private val output: ByteWriteChannel = socket.openWriteChannel(autoFlush = true)
@@ -44,7 +50,6 @@ class UserSocket(val socket: Socket) {
     get() = socket.remoteAddress
 
   var user: User? = null
-    private set
 
   suspend fun send(command: Command) {
     lock.withPermit {
@@ -52,9 +57,9 @@ class UserSocket(val socket: Socket) {
 
       if(command.name != CommandName.Pong) {
         if(command.name == CommandName.LoadResources) {
-          logger.trace { "Sent command ${command.category}::${command.name} ${command.args.drop(1)}" }
+          logger.trace { "Sent command ${command.name} ${command.args.drop(1)}" }
         } else {
-          logger.trace { "Sent command ${command.category}::${command.name} ${command.args}" }
+          logger.trace { "Sent command ${command.name} ${command.args}" }
         }
       }
     }
@@ -93,10 +98,51 @@ class UserSocket(val socket: Socket) {
       command.readFrom(decrypted.toByteArray())
 
       if(command.name != CommandName.Ping) {
-        logger.trace { "Received command ${command.category}::${command.name} ${command.args}" }
+        logger.trace { "Received command ${command.name} ${command.args}" }
       }
 
       if(command.side != CommandSide.Server) throw Exception("Unsupported command: ${command.category}::${command.name}")
+
+      val handler = commandRegistry.getHandler(command.name)
+      if(handler != null) {
+        val instance = handler.type.primaryConstructor!!.call()
+        val args = mutableMapOf<KParameter, Any>(
+          Pair(
+            handler.function.parameters.find { parameter -> parameter.kind == KParameter.Kind.INSTANCE }!!,
+            instance
+          ),
+          Pair(
+            handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0],
+            this
+          )
+        )
+
+        args.putAll(handler.args.mapIndexed { index, parameter ->
+          val value = command.args[index]
+
+          return@mapIndexed when(parameter.type) {
+            String::class -> Pair(parameter, value)
+            Int::class    -> Pair(parameter, value.toInt())
+            Double::class -> Pair(parameter, value.toDouble())
+
+            else          -> {
+              val type = parameter.type.javaType
+              val adapter = json.adapter<Any>(type)
+
+              Pair(parameter, adapter.fromJson(value)!!)
+              // throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
+            }
+
+            // else          -> throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
+          }
+        })
+
+        logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
+
+        handler.function.callSuspendBy(args)
+
+        return
+      }
 
       when(command.name) {
         CommandName.Auth                 -> {
@@ -540,7 +586,7 @@ class UserSocket(val socket: Socket) {
     }
   }
 
-  private suspend fun loadLobby() {
+  suspend fun loadLobby() {
     // TODO(Assasans): Shit
     val resourcesLobbyReader = File("D:/ProTankiServer/src/main/resources/resources/lobby.json").bufferedReader()
     val resourcesLobby = resourcesLobbyReader.use { it.readText() }
