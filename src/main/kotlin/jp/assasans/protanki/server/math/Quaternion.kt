@@ -19,8 +19,12 @@ class Quaternion {
     this.z = z
   }
 
-  val length: Double
-    get() = sqrt(w.pow(2) + x.pow(2) + y.pow(2) + z.pow(2))
+  fun copyFrom(another: Quaternion) {
+    w = another.w
+    x = another.x
+    y = another.y
+    z = another.z
+  }
 
   fun toEulerAngles(): Vector3 {
     val qi2 = 2 * x * x
@@ -43,6 +47,9 @@ class Quaternion {
     if(-1 < ii && ii < 1) return Vector3(atan2(jj, kk), -asin(ii), atan2(ee, aa))
     return Vector3(0.0, 0.5 * (if(ii <= -1) Math.PI else -Math.PI), atan2(-bb, ff))
   }
+
+  val length: Double
+    get() = sqrt(w.pow(2) + x.pow(2) + y.pow(2) + z.pow(2))
 
   override fun toString(): String = "${this::class.simpleName}($w, $x, $y, $z)"
 }

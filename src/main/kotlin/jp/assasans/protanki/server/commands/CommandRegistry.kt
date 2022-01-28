@@ -17,7 +17,7 @@ class CommandRegistry : ICommandRegistry {
   private val commands: MutableList<CommandHandlerDescription> = mutableListOf()
 
   override fun getHandler(name: CommandName): CommandHandlerDescription? {
-    return commands.find { command -> command.name == name }
+    return commands.singleOrNull { command -> command.name == name }
   }
 
   override fun <T : ICommandHandler> registerHandlers(type: KClass<T>) {

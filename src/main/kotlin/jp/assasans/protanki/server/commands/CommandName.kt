@@ -34,17 +34,29 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   InitMessages(CommandCategory.LobbyChat, "init_messages", CommandSide.Client),
   UnloadChat(CommandCategory.Lobby, "unload_chat", CommandSide.Client),
+  SendChatMessageServer(CommandCategory.Lobby, "chat_message", CommandSide.Server),
+  SendChatMessageClient(CommandCategory.LobbyChat, "__SYNTHETIC__", CommandSide.Client),
 
   ChangeLayout(CommandCategory.Lobby, "change_layout_state", CommandSide.Client),
+  SwitchBattleSelect(CommandCategory.Lobby, "switch_battle_select", CommandSide.Server),
+  SwitchGarage(CommandCategory.Lobby, "switch_garage", CommandSide.Server),
+
+  UnloadBattle(CommandCategory.Battle, "unload_battle", CommandSide.Client),
+
+  ExitFromBattleNotify(CommandCategory.Battle, "i_exit_from_battle", CommandSide.Server),
 
   SubscribeUserUpdate(CommandCategory.Lobby, "subscribe_user_update", CommandSide.Server),
 
   update_rang_progress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
 
-  BattleSelect(CommandCategory.BattleSelect, "select", CommandSide.Server),
+  SelectBattle(CommandCategory.BattleSelect, "select", CommandSide.Server),
   Fight(CommandCategory.BattleSelect, "fight", CommandSide.Server),
   UnloadBattleSelect(CommandCategory.Lobby, "unload_battle_select", CommandSide.Client),
   ShowBattleInfo(CommandCategory.Lobby, "show_battle_info", CommandSide.Client),
+
+  JoinAsSpectator(CommandCategory.BattleSelect, "joinAsSpectator", CommandSide.Server),
+  InitSpectatorUser(CommandCategory.Battle, "spectator_user_init", CommandSide.Server),
+  UpdateSpectatorsList(CommandCategory.Battle, "update_spectator_list", CommandSide.Client),
 
   StartBattle(CommandCategory.Lobby, "start_battle", CommandSide.Client),
 
@@ -55,7 +67,6 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitBattleModel(CommandCategory.Battle, "init_battle_model", CommandSide.Client),
   InitSuicideModel(CommandCategory.Battle, "init_suicide_model", CommandSide.Client),
   InitGuiModel(CommandCategory.Battle, "init_gui_model", CommandSide.Client),
-  InitInventory(CommandCategory.Battle, "init_inventory", CommandSide.Client),
   InitMineModel(CommandCategory.Battle, "init_mine_model", CommandSide.Client),
   InitEffects(CommandCategory.Battle, "init_effects", CommandSide.Client),
 
@@ -66,6 +77,9 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ChangeHealth(CommandCategory.Battle, "change_health", CommandSide.Client),
   SpawnTank(CommandCategory.Battle, "spawn", CommandSide.Client),
   ActivateTank(CommandCategory.Battle, "activate_tank", CommandSide.Client),
+
+  InitInventory(CommandCategory.Battle, "init_inventory", CommandSide.Client),
+  ActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Server),
 
   InitStatisticsModel(CommandCategory.Battle, "init_statistics_model", CommandSide.Client),
   InitDmStatistics(CommandCategory.Battle, "init_dm_statistics", CommandSide.Client),
@@ -78,15 +92,18 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   Move(CommandCategory.Battle, "move", CommandSide.Server),
   FullMove(CommandCategory.Battle, "fullMove", CommandSide.Server),
+  MovementControl(CommandCategory.Battle, "movementControl", CommandSide.Server),
+  ClientMove(CommandCategory.Battle, "move", CommandSide.Client),
+  ClientFullMove(CommandCategory.Battle, "fullMove", CommandSide.Client),
 
   RotateTurret(CommandCategory.Battle, "rotateTurret", CommandSide.Server),
 
   ;
 
   companion object {
-    private val map = CommandName.values().associateBy(CommandName::key)
-
-    fun get(key: String) = map[key]
+    fun get(key: String, side: CommandSide) = CommandName
+      .values()
+      .singleOrNull { command -> command.key == key && command.side == side }
   }
 
   override fun toString(): String = "${category.name}::$name"

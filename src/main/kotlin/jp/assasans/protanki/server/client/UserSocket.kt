@@ -8,11 +8,8 @@ import kotlin.reflect.javaType
 import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import com.squareup.moshi.adapter
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.ktor.network.sockets.*
 import io.ktor.util.network.*
-import io.ktor.util.reflect.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
@@ -22,7 +19,11 @@ import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.koin.java.KoinJavaComponent
 import jp.assasans.protanki.server.EncryptionTransformer
+import jp.assasans.protanki.server.battles.Battle
+import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
@@ -30,11 +31,25 @@ import jp.assasans.protanki.server.readAvailable
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
 
+suspend fun UserSocket.sendChat(message: String) = Command(
+  CommandName.SendChatMessageClient, listOf(
+    ChatMessage(
+      name = "",
+      rang = 0,
+      message = message,
+      system = true,
+      yellow = true
+    ).toJson()
+  )
+).send(this)
+
 @OptIn(ExperimentalStdlibApi::class) class UserSocket(val socket: Socket) : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val encryption = EncryptionTransformer()
   private val commandRegistry by inject<ICommandRegistry>()
+  private val battleProcessor by inject<IBattleProcessor>()
+  private val json by inject<Moshi>()
 
   private val input: ByteReadChannel = socket.openReadChannel()
   private val output: ByteWriteChannel = socket.openWriteChannel(autoFlush = true)
@@ -42,14 +57,19 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
   private val lock: Semaphore = Semaphore(1)
   // private val sendQueue: Queue<Command> = LinkedList()
 
-  private val json: Moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
   val remoteAddress: NetworkAddress
     get() = socket.remoteAddress
 
   var user: User? = null
+  var selectedBattle: Battle? = null
+
+  val battle: Battle?
+    get() = battlePlayer?.battle
+
+  val battlePlayer: BattlePlayer?
+    get() = battleProcessor.battles
+      .flatMap { battle -> battle.players }
+      .singleOrNull { player -> player.socket == this }
 
   suspend fun send(command: Command) {
     lock.withPermit {
@@ -67,10 +87,21 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
 
   private val dependenciesChannel: Channel<Int> = Channel(16)
   private val loadedDependencies: MutableList<Int> = mutableListOf()
+  private var lastDependencyId = 1
 
-  private var battleInit = false
+  suspend fun loadDependency(resources: String): Int {
+    Command(
+      CommandName.LoadResources,
+      listOf(
+        resources,
+        lastDependencyId.toString()
+      )
+    ).send(this)
 
-  private suspend fun awaitDependency(id: Int) {
+    return lastDependencyId++
+  }
+
+  suspend fun awaitDependency(id: Int) {
     if(loadedDependencies.contains(id)) return
 
     while(true) {
@@ -105,57 +136,51 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
 
       val handler = commandRegistry.getHandler(command.name)
       if(handler != null) {
-        val instance = handler.type.primaryConstructor!!.call()
-        val args = mutableMapOf<KParameter, Any>(
-          Pair(
-            handler.function.parameters.find { parameter -> parameter.kind == KParameter.Kind.INSTANCE }!!,
-            instance
-          ),
-          Pair(
-            handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0],
-            this
+        try {
+          val instance = handler.type.primaryConstructor!!.call()
+          val args = mutableMapOf<KParameter, Any>(
+            Pair(
+              handler.function.parameters.single { parameter -> parameter.kind == KParameter.Kind.INSTANCE },
+              instance
+            ),
+            Pair(
+              handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0],
+              this
+            )
           )
-        )
 
-        args.putAll(handler.args.mapIndexed { index, parameter ->
-          val value = command.args[index]
+          args.putAll(handler.args.mapIndexed { index, parameter ->
+            val value = command.args[index]
 
-          return@mapIndexed when(parameter.type) {
-            String::class -> Pair(parameter, value)
-            Int::class    -> Pair(parameter, value.toInt())
-            Double::class -> Pair(parameter, value.toDouble())
+            return@mapIndexed when(parameter.type.javaType) {
+              String::class.java -> Pair(parameter, value)
+              Int::class.java    -> Pair(parameter, value.toInt())
+              Double::class.java -> Pair(parameter, value.toDouble())
 
-            else          -> {
-              val type = parameter.type.javaType
-              val adapter = json.adapter<Any>(type)
+              else               -> {
+                val type = parameter.type.javaType
+                val adapter = json.adapter<Any>(type)
 
-              Pair(parameter, adapter.fromJson(value)!!)
-              // throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
+                Pair(parameter, adapter.fromJson(value)!!)
+                // throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
+              }
+
+              // else          -> throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
             }
+          })
 
-            // else          -> throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
-          }
-        })
+          // logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
 
-        logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
-
-        handler.function.callSuspendBy(args)
+          handler.function.callSuspendBy(args)
+        } catch(exception: Throwable) {
+          logger.error(exception) { "Failed to call ${command.name} handler" }
+        }
 
         return
       }
 
       when(command.name) {
-        CommandName.Auth                 -> {
-          val data = json.adapter(AuthData::class.java).fromJson(command.args[0])!!
-
-          logger.debug { "User login: [ Username = '${data.login}', Password = '${data.password}', Captcha = ${if(data.captcha.isEmpty()) "*none*" else "'${data.captcha}'"} ]" }
-
-          user = User(id = 1, username = data.login, rank = UserRank.Major, score = 1337, crystals = 666666)
-
-          send(Command(CommandName.AuthAccept))
-
-          loadLobby()
-        }
+        CommandName.Auth                 -> TODO("Deprecated")
 
         CommandName.DependenciesLoaded   -> {
           val id = command.args[0].toInt()
@@ -169,38 +194,7 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
           send(Command(CommandName.LoginByHashFailed))
         }
 
-        CommandName.BattleSelect         -> {
-          send(
-            Command(
-              CommandName.ShowBattleInfo,
-              mutableListOf(
-                // "{\"battleMode\":\"DM\",\"itemId\":\"493202bf695cc88a\",\"scoreLimit\":10,\"timeLimitInSec\":0,\"preview\":618467,\"maxPeopleCount\":8,\"name\":\"For newbies\",\"proBattle\":false,\"minRank\":1,\"maxRank\":5,\"roundStarted\":true,\"spectator\":false,\"withoutBonuses\":false,\"withoutCrystals\":false,\"withoutSupplies\":false,\"proBattleEnterPrice\":150,\"timeLeftInSec\":-1643210127,\"userPaidNoSuppliesBattle\":false,\"proBattleTimeLeftInSec\":-1,\"users\":[{\"kills\":10,\"score\":100,\"suspicious\":false,\"user\":\"KoT-MaKc_2004\"},{\"kills\":2,\"score\":20,\"suspicious\":false,\"user\":\"PRESTY\"},{\"kills\":8,\"score\":80,\"suspicious\":false,\"user\":\"SF-SteFan27-BG\"},{\"kills\":7,\"score\":70,\"suspicious\":false,\"user\":\"Miro_18\"}]};;"
-                json.adapter(ShowDmBattleInfoData::class.java).toJson(
-                  ShowDmBattleInfoData(
-                    itemId = "493202bf695cc88a",
-                    battleMode = "DM",
-                    scoreLimit = 300,
-                    timeLimitInSec = 600,
-                    timeLeftInSec = 212,
-                    preview = 388954,
-                    maxPeopleCount = 8,
-                    name = "ProTanki Server",
-                    minRank = 0,
-                    maxRank = 16,
-                    spectator = false,
-                    withoutBonuses = false,
-                    withoutCrystals = false,
-                    withoutSupplies = false,
-                    users = listOf(
-                      BattleUser(user = "Luminate", kills = 666, score = 1337)
-                    ),
-                    score = 123
-                  )
-                )
-              )
-            )
-          )
-        }
+        CommandName.SelectBattle         -> TODO("Deprecated")
 
         CommandName.Fight                -> {
           // TODO(Assasans): Shit
@@ -219,122 +213,27 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
           val shotsDataReader = File("D:/ProTankiServer/src/main/resources/resources/shots-data.json").bufferedReader()
           val shotsData = shotsDataReader.use { it.readText() }
 
+          val player = BattlePlayer(
+            socket = this,
+            battle = battleProcessor.battles[0]
+          )
+          battleProcessor.battles[0].players.add(player)
+
           // BattlePlayer(socket, this, null)
 
-          send(Command(CommandName.ChangeLayout, mutableListOf("BATTLE")))
-          send(Command(CommandName.UnloadBattleSelect))
-          send(Command(CommandName.StartBattle))
-          send(Command(CommandName.UnloadChat))
+          initBattleLoad()
 
           send(Command(CommandName.InitShotsData, mutableListOf(shotsData)))
 
-          send(Command(CommandName.LoadResources, mutableListOf(resourcesMap1, "4")))
-          awaitDependency(4)
+          awaitDependency(loadDependency(resourcesMap1))
+          awaitDependency(loadDependency(resourcesMap2))
+          awaitDependency(loadDependency(resourcesMap3))
 
-          send(Command(CommandName.LoadResources, mutableListOf(resourcesMap2, "5")))
-          awaitDependency(5)
-
-          send(Command(CommandName.LoadResources, mutableListOf(resourcesMap3, "6")))
-          awaitDependency(6)
-
-          send(
-            Command(
-              CommandName.InitBonusesData,
-              mutableListOf(
-                // "{\"bonuses\":[{\"lighting\":{\"attenuationBegin\":100,\"attenuationEnd\":500,\"color\":6250335,\"intensity\":1,\"time\":0},\"id\":\"nitro\",\"resourceId\":170010,\"lifeTime\":30},{\"lighting\":{\"attenuationBegin\":100,\"attenuationEnd\":500,\"color\":9348154,\"intensity\":1,\"time\":0},\"id\":\"damage\",\"resourceId\":170011,\"lifeTime\":30},{\"lighting\":{\"attenuationBegin\":100,\"attenuationEnd\":500,\"color\":7185722,\"intensity\":1,\"time\":0},\"id\":\"armor\",\"resourceId\":170006,\"lifeTime\":30},{\"lighting\":{\"attenuationBegin\":100,\"attenuationEnd\":500,\"color\":14605789,\"intensity\":1,\"time\":0},\"id\":\"health\",\"resourceId\":170009,\"lifeTime\":30},{\"lighting\":{\"attenuationBegin\":100,\"attenuationEnd\":500,\"color\":8756459,\"intensity\":1,\"time\":0},\"id\":\"crystall\",\"resourceId\":170007,\"lifeTime\":900},{\"lighting\":{\"attenuationBegin\":100,\"attenuationEnd\":500,\"color\":15044128,\"intensity\":1,\"time\":0},\"id\":\"gold\",\"resourceId\":170008,\"lifeTime\":30000}],\"cordResource\":1000065,\"parachuteInnerResource\":170005,\"parachuteResource\":170004,\"pickupSoundResource\":269321};;"
-                json.adapter(InitBonusesDataData::class.java).toJson(
-                  InitBonusesDataData(
-                    bonuses = listOf(
-                      BonusData(
-                        lighting = BonusLightingData(color = 6250335),
-                        id = "nitro",
-                        resourceId = 170010
-                      ),
-                      BonusData(
-                        lighting = BonusLightingData(color = 7185722),
-                        id = "armor",
-                        resourceId = 170006
-                      ),
-                      BonusData(
-                        lighting = BonusLightingData(color = 14605789),
-                        id = "health",
-                        resourceId = 170009
-                      ),
-                      BonusData(
-                        lighting = BonusLightingData(color = 8756459),
-                        id = "crystall",
-                        resourceId = 170007
-                      ),
-                      BonusData(
-                        lighting = BonusLightingData(color = 15044128),
-                        id = "gold",
-                        resourceId = 170008
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-
-          send(
-            Command(
-              CommandName.InitBattleModel,
-              mutableListOf(
-                // "{\"kick_period_ms\":125000,\"map_id\":\"map_sandbox\",\"mapId\":663288,\"invisible_time\":3500,\"spectator\":false,\"active\":true,\"dustParticle\":110001,\"battleId\":\"493202bf695cc88a\",\"minRank\":1,\"maxRank\":5,\"skybox\":\"{\\\"top\\\":45572,\\\"front\\\":57735,\\\"back\\\":268412,\\\"bottom\\\":31494,\\\"left\\\":927961,\\\"right\\\":987391}\",\"sound_id\":584396,\"map_graphic_data\":\"{\\\"mapId\\\":\\\"map_sandbox\\\",\\\"mapTheme\\\":\\\"SUMMER\\\",\\\"angleX\\\":-0.8500000238418579,\\\"angleZ\\\":2.5,\\\"lightColor\\\":13090219,\\\"shadowColor\\\":5530735,\\\"fogAlpha\\\":0.25,\\\"fogColor\\\":10543615,\\\"farLimit\\\":10000,\\\"nearLimit\\\":5000,\\\"gravity\\\":1000,\\\"skyboxRevolutionSpeed\\\":0,\\\"ssaoColor\\\":2045258,\\\"dustAlpha\\\":0.75,\\\"dustDensity\\\":0.15000000596046448,\\\"dustFarDistance\\\":7000,\\\"dustNearDistance\\\":5000,\\\"dustParticle\\\":\\\"summer\\\",\\\"dustSize\\\":200}\"}"
-                json.adapter(InitBattleModelData::class.java).toJson(
-                  InitBattleModelData(
-                    map_id = "map_sandbox",
-                    mapId = 663288,
-                    battleId = "493202bf695cc88a",
-                    skybox = "{\"top\":45572,\"front\":57735,\"back\":268412,\"bottom\":31494,\"left\":927961,\"right\":987391}",
-                    map_graphic_data = "{\"mapId\":\"map_sandbox\",\"mapTheme\":\"SUMMER\",\"angleX\":-0.8500000238418579,\"angleZ\":2.5,\"lightColor\":13090219,\"shadowColor\":5530735,\"fogAlpha\":0.25,\"fogColor\":10543615,\"farLimit\":10000,\"nearLimit\":5000,\"gravity\":1000,\"skyboxRevolutionSpeed\":0,\"ssaoColor\":2045258,\"dustAlpha\":0.75,\"dustDensity\":0.15000000596046448,\"dustFarDistance\":7000,\"dustNearDistance\":5000,\"dustParticle\":\"summer\",\"dustSize\":200}"
-                  )
-                )
-              )
-            )
-          )
-
-          send(
-            Command(
-              CommandName.InitBonuses,
-              mutableListOf(
-                // "[]"
-                json.adapter<List<InitBonusesData>>(
-                  Types.newParameterizedType(List::class.java, InitBonusesData::class.java)
-                ).toJson(listOf())
-              )
-            )
-          )
+          player.init()
+          player.spawn()
         }
 
-        CommandName.GetInitDataLocalTank -> {
-          send(Command(CommandName.InitSuicideModel, mutableListOf("10000")))
-          send(Command(CommandName.InitStatisticsModel, mutableListOf("For newbies")))
-
-          send(
-            Command(
-              CommandName.InitGuiModel,
-              mutableListOf(
-                // "{\"name\":\"For newbies\",\"fund\":2.302999948596954,\"scoreLimit\":10,\"timeLimit\":0,\"currTime\":-1643210130,\"score_red\":0,\"score_blue\":0,\"team\":false,\"users\":[{\"nickname\":\"KoT-MaKc_2004\",\"rank\":5,\"teamType\":\"NONE\"},{\"nickname\":\"SF-SteFan27-BG\",\"rank\":4,\"teamType\":\"NONE\"},{\"nickname\":\"roflanebalo\",\"rank\":4,\"teamType\":\"NONE\"},{\"nickname\":\"Miro_18\",\"rank\":2,\"teamType\":\"NONE\"}]}"
-                json.adapter(InitGuiModelData::class.java).toJson(
-                  InitGuiModelData(
-                    name = "ProTanki Server",
-                    fund = 1337228,
-                    scoreLimit = 300,
-                    timeLimit = 600,
-                    currTime = 212,
-                    team = false,
-                    users = listOf(
-                      GuiUserData(nickname = "roflanebalo", rank = 4, teamType = "NONE"),
-                      // GuiUserData(nickname = "Luminate", rank = 16, teamType = "NONE")
-                    )
-                  )
-                )
-              )
-            )
-          )
-        }
+        CommandName.GetInitDataLocalTank -> TODO("Deprecated")
 
         CommandName.SubscribeUserUpdate  -> {
           if(command.args[0] == "roflanebalo") {
@@ -343,203 +242,19 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
         }
 
         CommandName.Ping                 -> {
-          if(!battleInit) {
-            battleInit = true
+          val player = battlePlayer ?: return
+          if(!player.stage2Initialized) {
+            player.stage2Initialized = true
 
             logger.info { "Init battle..." }
 
-            send(
-              Command(
-                CommandName.InitDmStatistics,
-                mutableListOf(
-                  // "{\"users\":[{\"deaths\":0,\"kills\":0,\"score\":0,\"rank\":5,\"uid\":\"KoT-MaKc_2004\",\"chatModeratorLevel\":0},{\"deaths\":0,\"kills\":0,\"score\":0,\"rank\":4,\"uid\":\"SF-SteFan27-BG\",\"chatModeratorLevel\":0},{\"deaths\":0,\"kills\":0,\"score\":0,\"rank\":4,\"uid\":\"roflanebalo\",\"chatModeratorLevel\":0},{\"deaths\":0,\"kills\":0,\"score\":0,\"rank\":2,\"uid\":\"Miro_18\",\"chatModeratorLevel\":0}]}"
-                  json.adapter(InitDmStatisticsData::class.java).toJson(
-                    InitDmStatisticsData(
-                      users = listOf(
-                        DmStatisticsUserData(
-                          uid = "roflanebalo",
-                          rank = 4,
-                          score = 666,
-                          kills = 1000,
-                          deaths = 7
-                        ),
-                        DmStatisticsUserData(
-                          uid = "Luminate",
-                          rank = 16,
-                          score = 456,
-                          kills = 777,
-                          deaths = 333
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.InitInventory,
-                mutableListOf(
-                  // "{\"items\":[{\"id\":\"double_damage\",\"count\":26,\"slotId\":3,\"itemEffectTime\":55,\"itemRestSec\":20},{\"id\":\"armor\",\"count\":25,\"slotId\":2,\"itemEffectTime\":55,\"itemRestSec\":20},{\"id\":\"health\",\"count\":7,\"slotId\":1,\"itemEffectTime\":20,\"itemRestSec\":20},{\"id\":\"n2o\",\"count\":20,\"slotId\":4,\"itemEffectTime\":55,\"itemRestSec\":20}]}"
-                  json.adapter(InitInventoryData::class.java).toJson(
-                    InitInventoryData(
-                      items = listOf(
-                        InventoryItemData(
-                          id = "health",
-                          count = 1000,
-                          slotId = 1,
-                          itemEffectTime = 20,
-                          itemRestSec = 20
-                        ),
-                        InventoryItemData(
-                          id = "armor",
-                          count = 1000,
-                          slotId = 2,
-                          itemEffectTime = 55,
-                          itemRestSec = 20
-                        ),
-                        InventoryItemData(
-                          id = "double_damage",
-                          count = 1000,
-                          slotId = 3,
-                          itemEffectTime = 55,
-                          itemRestSec = 20
-                        ),
-                        InventoryItemData(
-                          id = "n2o",
-                          count = 1000,
-                          slotId = 4,
-                          itemEffectTime = 55,
-                          itemRestSec = 20
-                        ),
-                      )
-                    )
-                  )
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.InitMineModel,
-                mutableListOf(
-                  // "{\"activationTimeMsec\":1000,\"farVisibilityRadius\":10,\"nearVisibilityRadius\":7,\"impactForce\":3,\"minDistanceFromBase\":5,\"radius\":0.5,\"minDamage\":120,\"maxDamage\":240,\"resources\":{\"activateSound\":389057,\"deactivateSound\":965887,\"explosionSound\":175648,\"idleExplosionTexture\":545261,\"mainExplosionTexture\":965737,\"blueMineTexture\":925137,\"redMineTexture\":342637,\"enemyMineTexture\":975465,\"friendlyMineTexture\":523632,\"explosionMarkTexture\":962237,\"model3ds\":895671}}",
-                  // "{\"mines\":[]}"
-                  json.adapter(InitMineModelSettings::class.java).toJson(InitMineModelSettings()),
-                  json.adapter(InitMineModelData::class.java).toJson(InitMineModelData())
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.InitTank,
-                mutableListOf(
-                  // "{\"battleId\":\"493202bf695cc88a\",\"colormap_id\":966681,\"hull_id\":\"hunter_m0\",\"turret_id\":\"railgun_m0\",\"team_type\":\"NONE\",\"partsObject\":\"{\\\"engineIdleSound\\\":386284,\\\"engineStartMovingSound\\\":226985,\\\"engineMovingSound\\\":75329,\\\"turretSound\\\":242699}\",\"hullResource\":227169,\"turretResource\":906685,\"sfxData\":\"{\\\"chargingPart1\\\":114424,\\\"chargingPart2\\\":468379,\\\"chargingPart3\\\":932241,\\\"hitMarkTexture\\\":670581,\\\"powTexture\\\":963502,\\\"ringsTexture\\\":966691,\\\"shotSound\\\":900596,\\\"smokeImage\\\":882103,\\\"sphereTexture\\\":212409,\\\"trailImage\\\":550305,\\\"lighting\\\":[{\\\"name\\\":\\\"charge\\\",\\\"light\\\":[{\\\"attenuationBegin\\\":200,\\\"attenuationEnd\\\":200,\\\"color\\\":5883129,\\\"intensity\\\":0.7,\\\"time\\\":0},{\\\"attenuationBegin\\\":200,\\\"attenuationEnd\\\":800,\\\"color\\\":5883129,\\\"intensity\\\":0.3,\\\"time\\\":600}]},{\\\"name\\\":\\\"shot\\\",\\\"light\\\":[{\\\"attenuationBegin\\\":100,\\\"attenuationEnd\\\":600,\\\"color\\\":5883129,\\\"intensity\\\":0.7,\\\"time\\\":0},{\\\"attenuationBegin\\\":1,\\\"attenuationEnd\\\":2,\\\"color\\\":5883129,\\\"intensity\\\":0,\\\"time\\\":300}]},{\\\"name\\\":\\\"hit\\\",\\\"light\\\":[{\\\"attenuationBegin\\\":200,\\\"attenuationEnd\\\":600,\\\"color\\\":5883129,\\\"intensity\\\":0.7,\\\"time\\\":0},{\\\"attenuationBegin\\\":1,\\\"attenuationEnd\\\":2,\\\"color\\\":5883129,\\\"intensity\\\":0,\\\"time\\\":300}]},{\\\"name\\\":\\\"rail\\\",\\\"light\\\":[{\\\"attenuationBegin\\\":100,\\\"attenuationEnd\\\":500,\\\"color\\\":5883129,\\\"intensity\\\":0.5,\\\"time\\\":0},{\\\"attenuationBegin\\\":1,\\\"attenuationEnd\\\":2,\\\"color\\\":5883129,\\\"intensity\\\":0,\\\"time\\\":1800}]}],\\\"bcsh\\\":[{\\\"brightness\\\":0,\\\"contrast\\\":0,\\\"saturation\\\":0,\\\"hue\\\":0,\\\"key\\\":\\\"trail\\\"},{\\\"brightness\\\":0,\\\"contrast\\\":0,\\\"saturation\\\":0,\\\"hue\\\":0,\\\"key\\\":\\\"charge\\\"}]}\",\"position\":\"0.0@0.0@0.0@0.0\",\"incration\":3268,\"tank_id\":\"roflanebalo\",\"nickname\":\"roflanebalo\",\"state\":\"suicide\",\"maxSpeed\":8,\"maxTurnSpeed\":1.3229597,\"acceleration\":9.09,\"reverseAcceleration\":11.74,\"sideAcceleration\":7.74,\"turnAcceleration\":2.2462387,\"reverseTurnAcceleration\":3.6576867,\"mass\":1761,\"power\":9.09,\"dampingCoeff\":1500,\"turret_turn_speed\":0.9815731713216109,\"health\":10000,\"rank\":4,\"kickback\":2.138,\"turretTurnAcceleration\":1.214225560612455,\"impact_force\":3.6958,\"state_null\":true}"
-                  json.adapter(InitTankData::class.java).toJson(
-                    InitTankData(
-                      battleId = "493202bf695cc88a",
-                      hull_id = "hunter_m0",
-                      turret_id = "railgun_m0",
-                      colormap_id = 966681,
-                      hullResource = 227169,
-                      turretResource = 906685,
-                      partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
-                      tank_id = "roflanebalo",
-                      nickname = "roflanebalo",
-                      team_type = "NONE"
-                    )
-                  )
-                )
-              )
-            )
-
-            logger.info { "Load stage 2" }
-
-            send(
-              Command(
-                CommandName.UpdatePlayerStatistics,
-                mutableListOf(
-                  // "{\"kills\":0,\"deaths\":0,\"id\":\"roflanebalo\",\"rank\":4,\"team_type\":\"NONE\",\"score\":0}"
-                  json.adapter(UpdatePlayerStatisticsData::class.java).toJson(
-                    UpdatePlayerStatisticsData(
-                      id = "roflanebalo",
-                      rank = 4,
-                      team_type = "NONE",
-                      score = 666,
-                      kills = 1000,
-                      deaths = 777
-                    )
-                  )
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.InitEffects,
-                mutableListOf(json.adapter(InitEffectsData::class.java).toJson(InitEffectsData()))
-              )
-            )
-
-            send(
-              Command(
-                CommandName.PrepareToSpawn,
-                mutableListOf(
-                  "roflanebalo",
-                  "0.0@0.0@1000.0@0.0"
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.ChangeHealth,
-                mutableListOf(
-                  "roflanebalo",
-                  "10000"
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.SpawnTank,
-                mutableListOf(
-                  json.adapter(SpawnTankData::class.java).toJson(
-                    SpawnTankData(
-                      tank_id = "roflanebalo",
-                      health = 10000,
-                      incration_id = 2,
-                      team_type = "NONE",
-                      x = 0.0,
-                      y = 0.0,
-                      z = 1000.0,
-                      rot = 0.0
-                    )
-                  )
-                )
-              )
-            )
-
-            send(
-              Command(
-                CommandName.ActivateTank,
-                mutableListOf(
-                  "roflanebalo"
-                )
-              )
-            )
+            player.initStage2()
           }
 
-          send(Command(CommandName.Pong))
+          Command(CommandName.Pong).send(this)
         }
 
-        CommandName.Error                -> {
-          val error = command.args[0]
-          logger.error { "Client-side error occurred: $error" }
-        }
+        CommandName.Error                -> TODO("Deprecated")
 
         CommandName.ShowFriendsList      -> {
           send(
@@ -559,6 +274,13 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
     } catch(exception: Exception) {
       logger.error(exception) { "An exception occurred" }
     }
+  }
+
+  suspend fun initBattleLoad() {
+    Command(CommandName.ChangeLayout, mutableListOf("BATTLE")).send(this)
+    Command(CommandName.UnloadBattleSelect).send(this)
+    Command(CommandName.StartBattle).send(this)
+    Command(CommandName.UnloadChat).send(this)
   }
 
   suspend fun handle() {
@@ -590,10 +312,6 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
     // TODO(Assasans): Shit
     val resourcesLobbyReader = File("D:/ProTankiServer/src/main/resources/resources/lobby.json").bufferedReader()
     val resourcesLobby = resourcesLobbyReader.use { it.readText() }
-
-    // TODO(Assasans): Shit
-    val mapsReader = File("D:/ProTankiServer/src/main/resources/maps.json").bufferedReader()
-    val maps = mapsReader.use { it.readText() }
 
     send(
       Command(
@@ -638,8 +356,7 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
 
     send(Command(CommandName.ChangeLayout, mutableListOf("BATTLESELECT")))
 
-    send(Command(CommandName.LoadResources, mutableListOf(resourcesLobby, "3")))
-    awaitDependency(3)
+    awaitDependency(loadDependency(resourcesLobby))
 
     send(
       Command(
@@ -668,56 +385,7 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
       )
     )
 
-    val mapsParsed = json
-      .adapter<List<Map>>(Types.newParameterizedType(List::class.java, Map::class.java))
-      .fromJson(maps)!!
-
-    send(
-      Command(
-        CommandName.InitBattleCreate,
-        mutableListOf(
-          json.adapter(InitBattleCreateData::class.java).toJson(
-            InitBattleCreateData(
-              battleLimits = listOf(
-                BattleLimit(battleMode = "DM", scoreLimit = 999, timeLimitInSec = 59940),
-                BattleLimit(battleMode = "TDM", scoreLimit = 999, timeLimitInSec = 59940),
-                BattleLimit(battleMode = "CTF", scoreLimit = 999, timeLimitInSec = 59940),
-                BattleLimit(battleMode = "CP", scoreLimit = 999, timeLimitInSec = 59940)
-              ),
-              maps = mapsParsed
-            )
-          )
-        )
-      )
-    )
-
-    send(
-      Command(
-        CommandName.InitBattleSelect,
-        mutableListOf(
-          // "{\"battles\":[{\"battleId\":\"da1a83bf9778a6ca\",\"battleMode\":\"DM\",\"map\":\"map_aleksandrovsk\",\"maxPeople\":24,\"name\":\"Александровск DM\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":4,\"maxRank\":10,\"preview\":388954,\"suspicious\":false,\"users\":[]},{\"battleId\":\"493202bf695cc88a\",\"battleMode\":\"DM\",\"map\":\"map_sandbox\",\"maxPeople\":8,\"name\":\"For newbies\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":1,\"maxRank\":5,\"preview\":618467,\"suspicious\":false,\"users\":[\"121\",\"Floki\",\"MrHensel\"]},{\"battleId\":\"7601c6d6333a8ef7\",\"battleMode\":\"CTF\",\"map\":\"map_serpuhov\",\"maxPeople\":10,\"name\":\"З А Л Е Т А Й ! ! !\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":1,\"maxRank\":7,\"preview\":303326,\"suspicious\":false,\"usersBlue\":[\"IchsCrewers\",\"urpok\",\"amiko\",\"WithoutPanic\",\"XaX\",\"N1RvAnA\",\"Tsulukaa\",\"HTML5\",\"Zed\",\"ASLA\"],\"usersRed\":[\"Votka_piva\",\"OverBro\",\"Tailand\",\"AK48\",\"Rakuzan\",\"Tryp\",\"kaikaci\",\"Don_Wripa\",\"Jife\",\"CHaKvee\"]},{\"battleId\":\"f5f72f6f39ba30a5\",\"battleMode\":\"CP\",\"map\":\"map_highland\",\"maxPeople\":5,\"name\":\"SERG JAN MTI\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":7,\"preview\":411251,\"suspicious\":false,\"usersBlue\":[\"CallMeHiemoBTW\"],\"usersRed\":[\"Anil1999\",\"riki_killer\"]},{\"battleId\":\"11b2c3e93bba26fa\",\"battleMode\":\"DM\",\"map\":\"map_sandbox\",\"maxPeople\":8,\"name\":\"For newbies\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":1,\"maxRank\":5,\"preview\":618467,\"suspicious\":false,\"users\":[\"Pitomec\",\"dimon_master\",\"Playerr\",\"Raillow\",\"Destrui_Z\"]},{\"battleId\":\"cb6795ecf3feb164\",\"battleMode\":\"CTF\",\"map\":\"map_highland\",\"maxPeople\":8,\"name\":\"Плато CTF\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":10,\"preview\":411251,\"suspicious\":false,\"usersBlue\":[\"Gold.Box.vil.de.drop\",\"CrySoul\",\"DIMONCHYC\",\"xachogoat\",\"Bayramov\",\"Naig\",\"vadiksid\",\"priboj22\"],\"usersRed\":[\"Crazy_Tankist725\",\"Shako\",\"dima666d\",\"JuzzerYT\",\"dorflexx9\",\"Borin\",\"Yurkens\",\"TheStrayRabdos\"]},{\"battleId\":\"705079a4b85a5855\",\"battleMode\":\"CTF\",\"map\":\"map_farm\",\"maxPeople\":4,\"name\":\"Фарм Криссталов!! ЗАХОДИ!\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":9,\"preview\":352418,\"suspicious\":false,\"usersBlue\":[\"OTELL\",\"Frone\",\"Damager\",\"KWATRO\"],\"usersRed\":[\"rekzyyll\",\"Dr.tornike\",\"TTuToH\",\"Godmode_XT\"]},{\"battleId\":\"2d32231912177a43\",\"battleMode\":\"CTF\",\"map\":\"map_rio\",\"maxPeople\":10,\"name\":\"Rio CTF\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":9,\"preview\":219191,\"suspicious\":false,\"usersBlue\":[\"temobere\",\"pepsi164\",\"Jopa_Bobra\",\"Ghassan909\",\"Cacique950\",\"MATKA\",\"oRtUdUsA\",\"IMeruliXapachuri\",\"BRADR\",\"Misha_1245\"],\"usersRed\":[\"FREMZ\",\"Monarquista_BR\",\"OGMikey\",\"Bacon\",\"Life_is_a_Dream\",\"Clothes\",\"ne_omlet\",\"izoro\",\"TRYAPOCHKA\",\"Ebrahim123fq\"]},{\"battleId\":\"fe12b5b47286b636\",\"battleMode\":\"TDM\",\"map\":\"map_farm\",\"maxPeople\":1,\"name\":\"Ферма TDM\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":10,\"preview\":352418,\"suspicious\":false,\"usersBlue\":[\"K.a.n.a.t.k.a\"],\"usersRed\":[\"Mr.KoFFe\"]},{\"battleId\":\"26b359588fe650c7\",\"battleMode\":\"CTF\",\"map\":\"map_highland\",\"maxPeople\":8,\"name\":\"Highland CTF\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":10,\"preview\":411251,\"suspicious\":false,\"usersBlue\":[\"Artak\",\"Gabo\",\"f4xxxie\",\"TemkaFRE\",\"dis1dexd\",\"Clownnnnn\",\"Ejyk_off\",\"A.L.I.E.N\"],\"usersRed\":[\"kristasek\",\"vintx\",\"Tribasc\",\"lll_TTo3uTuB_lll\",\"ELEGANT\",\"dtvoid1\",\"NagIBATOR_v_shleme\",\"Ajaxx\"]},{\"battleId\":\"eea9efb805a232b1\",\"battleMode\":\"DM\",\"map\":\"map_sandbox\",\"maxPeople\":8,\"name\":\"For newbies\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":1,\"maxRank\":5,\"preview\":618467,\"suspicious\":false,\"users\":[\"assilthekiller\",\"GiorgiiArabidzee\",\"Lashhaaa\",\"euphoria\"]},{\"battleId\":\"88905f83801d5829\",\"battleMode\":\"CTF\",\"map\":\"map_island\",\"maxPeople\":3,\"name\":\"Хж/Вж +50%\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":9,\"maxRank\":17,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[\"Ultimate\",\"Shelby_Tom\",\"beauty\"],\"usersRed\":[\"SeVeNaPcHuK\",\"Dep3ka9l_MaJlblLLlka\",\"MyJIbTuFpykT\"]},{\"battleId\":\"a8b35f6a7fcf45a7\",\"battleMode\":\"DM\",\"map\":\"map_sandbox\",\"maxPeople\":8,\"name\":\"Песочница DM\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":1,\"maxRank\":6,\"preview\":618467,\"suspicious\":false,\"users\":[\"L.E.G.E.N.D\",\"Markhosias\",\"Zhelezka_Toper\",\"KNOWME\",\"zeidoplay\",\"Solierka\",\"Cheetos\",\"Sosiska_228\"]},{\"battleId\":\"177e5773385851c7\",\"battleMode\":\"TDM\",\"map\":\"map_highland\",\"maxPeople\":8,\"name\":\"Плато TDM\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":3,\"maxRank\":10,\"preview\":411251,\"suspicious\":false,\"usersBlue\":[\"DoYouLikeBagdo\",\"shymsk\",\"Dedasheni\",\"HO4b\",\"Skvap_p\"],\"usersRed\":[\"FlossyX1337\",\"vlad432189\",\"mamashenismtyvneli\",\"fael\",\"28882_Russia\",\"ERMAK\"]},{\"battleId\":\"2e48dfc62de99231\",\"battleMode\":\"CTF\",\"map\":\"map_island\",\"maxPeople\":3,\"name\":\"ХЖ ВЖ 0% ccnem anadekvat.\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":12,\"maxRank\":20,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[\"WidaLoca\",\"DEATHMACHINE\",\"Prosto\"],\"usersRed\":[\"KTO\",\"YT_BoRsHiKBBG\",\"Gor\"]},{\"battleId\":\"5b98340297a4820b\",\"battleMode\":\"CTF\",\"map\":\"map_island\",\"maxPeople\":3,\"name\":\"ХЖ ВЖ\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":13,\"maxRank\":21,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[\"DVD\",\"S.Shadows-Brazil\",\"COJLEBAYA_COJLb\"],\"usersRed\":[\"Hesoyam\",\"Defaint\",\"Hounder\"]},{\"battleId\":\"6455e9bac769f5f3\",\"battleMode\":\"TDM\",\"map\":\"map_island\",\"maxPeople\":1,\"name\":\"Остров TDM\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":9,\"maxRank\":16,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[],\"usersRed\":[]},{\"battleId\":\"494bed06e5654779\",\"battleMode\":\"CTF\",\"map\":\"map_highland\",\"maxPeople\":8,\"name\":\"Плато CTF\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":7,\"maxRank\":15,\"preview\":411251,\"suspicious\":false,\"usersBlue\":[\"Avara\",\"zhurv\",\"am-am\",\"Waqtf\"],\"usersRed\":[\"Remanescente\",\"Fatch\",\"A_JI_K_A_H_A_B_T\",\"Den2017921\"]},{\"battleId\":\"a2cefd1630b6c41f\",\"battleMode\":\"CTF\",\"map\":\"map_boombox\",\"maxPeople\":4,\"name\":\"JOIN IF U  ARE NOT GAY\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":2,\"maxRank\":8,\"preview\":945441,\"suspicious\":false,\"usersBlue\":[\"Jigaro95\",\"xLukax\",\"GeoGamerRuso\",\"squiizzii\"],\"usersRed\":[\"Sleepy\",\"phenomen777\",\"nicky_ko_morry\",\"Luixx\"]},{\"battleId\":\"36bb28d75810f2ad\",\"battleMode\":\"CTF\",\"map\":\"map_skyscrapers\",\"maxPeople\":5,\"name\":\"Park\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":9,\"maxRank\":16,\"preview\":56426,\"suspicious\":false,\"usersBlue\":[\"NoNamePlayer\"],\"usersRed\":[\"cl_l\",\"wthined\"]},{\"battleId\":\"256b84bcf8c7615b\",\"battleMode\":\"DM\",\"map\":\"map_madness_space\",\"maxPeople\":32,\"name\":\"Безумие DM\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":10,\"maxRank\":17,\"preview\":678652,\"suspicious\":false,\"users\":[\"Federator\",\"kl_nazariy\",\"Inflammable_Dragon\",\"TeNFi\"]},{\"battleId\":\"acb21ccaeb23c314\",\"battleMode\":\"CTF\",\"map\":\"map_island\",\"maxPeople\":1,\"name\":\"Island CTF\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":9,\"maxRank\":16,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[\"des9ltkov\"],\"usersRed\":[\"Prior\"]},{\"battleId\":\"59d0b2acf9e8802b\",\"battleMode\":\"CTF\",\"map\":\"map_island\",\"maxPeople\":3,\"name\":\"Остров CTF\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":9,\"maxRank\":15,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[\"aleks2579\",\"Legend_O-N-E\",\"Polyana\"],\"usersRed\":[\"KPUT\",\"TpyAkyJla\",\"Prince_Of_RailGun\"]},{\"battleId\":\"6757d506cf29d29b\",\"battleMode\":\"CTF\",\"map\":\"map_serpuhov\",\"maxPeople\":10,\"name\":\"Серпухов CTF\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":4,\"maxRank\":8,\"preview\":303326,\"suspicious\":false,\"usersBlue\":[\"P_E_T_P_O\"],\"usersRed\":[\"TIcuxaTIaT\"]},{\"battleId\":\"ffcd251fcc756d6e\",\"battleMode\":\"CP\",\"map\":\"map_polygon\",\"maxPeople\":8,\"name\":\"qartvelebo moit \",\"privateBattle\":false,\"proBattle\":false,\"minRank\":5,\"maxRank\":9,\"preview\":891846,\"suspicious\":false,\"usersBlue\":[\"vgvg644\",\"1234raketa\",\"DaDrunk\",\"wassimthekiller\",\"M_O_N_A_S_H_K_A\",\"Mike_Tyson\",\"Marsi_2015\",\"REZZ777\"],\"usersRed\":[\"Sova\",\"0002gabor\",\"Gr1nCH\",\"ZyynSX\",\"mattwolf\",\"leandro\"]},{\"battleId\":\"5480f4d421c4df0e\",\"battleMode\":\"CTF\",\"map\":\"map_platform\",\"maxPeople\":5,\"name\":\"Стрим WebSter и Zzeress\",\"privateBattle\":false,\"proBattle\":false,\"minRank\":5,\"maxRank\":12,\"preview\":431795,\"suspicious\":false,\"usersBlue\":[\"kwnziinho\",\"nkvd\",\"DENR_FX\",\"ado\"],\"usersRed\":[\"zzeress\",\"SOAD\",\"Waifu\",\"Mozantiny\"]},{\"battleId\":\"e85a3b80b4e6bae3\",\"battleMode\":\"CTF\",\"map\":\"map_silence\",\"maxPeople\":10,\"name\":\"Тишина CTF\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":8,\"maxRank\":15,\"preview\":335175,\"suspicious\":false,\"usersBlue\":[],\"usersRed\":[]},{\"battleId\":\"7d1ad7e732b33147\",\"battleMode\":\"CTF\",\"map\":\"map_island\",\"maxPeople\":3,\"name\":\"wasp and fire\",\"privateBattle\":false,\"proBattle\":true,\"minRank\":9,\"maxRank\":16,\"preview\":538875,\"suspicious\":false,\"usersBlue\":[\"S_Y_N_E_R_G_Y\"],\"usersRed\":[\"A_Viuva_Preta_Br\"]}]}"
-          json.adapter(InitBattleSelectData::class.java).toJson(
-            InitBattleSelectData(
-              battles = listOf(
-                BattleData(
-                  battleId = "1",
-                  battleMode = "DM",
-                  map = "map_sandbox",
-                  name = "ProTanki Server",
-                  maxPeople = 8,
-                  minRank = 0,
-                  maxRank = 16,
-                  preview = 618467,
-                  users = listOf(
-                    "Luminate"
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
+    initBattleList()
   }
 
   private suspend fun initClient() {
@@ -745,26 +413,86 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
     )
 
     send(Command(CommandName.InitLocale, mutableListOf(lang)))
-    send(Command(CommandName.LoadResources, mutableListOf(resourcesAuth, "2")))
-    awaitDependency(2)
 
+    awaitDependency(loadDependency(resourcesAuth))
     send(Command(CommandName.MainResourcesLoaded))
+  }
+
+  suspend fun initBattleList() {
+    // TODO(Assasans): Shit
+    val mapsReader = File("D:/ProTankiServer/src/main/resources/maps.json").bufferedReader()
+    val maps = mapsReader.use { it.readText() }
+
+    val mapsParsed = json
+      .adapter<List<Map>>(Types.newParameterizedType(List::class.java, Map::class.java))
+      .fromJson(maps)!!
+
+    Command(
+      CommandName.InitBattleCreate,
+      listOf(
+        InitBattleCreateData(
+          battleLimits = listOf(
+            BattleLimit(battleMode = "DM", scoreLimit = 999, timeLimitInSec = 59940),
+            BattleLimit(battleMode = "TDM", scoreLimit = 999, timeLimitInSec = 59940),
+            BattleLimit(battleMode = "CTF", scoreLimit = 999, timeLimitInSec = 59940),
+            BattleLimit(battleMode = "CP", scoreLimit = 999, timeLimitInSec = 59940)
+          ),
+          maps = mapsParsed
+        ).toJson()
+      )
+    ).send(this)
+
+    Command(
+      CommandName.InitBattleSelect,
+      listOf(
+        InitBattleSelectData(
+          battles = listOf(
+            BattleData(
+              battleId = "493202bf695cc88a",
+              battleMode = "DM",
+              map = "map_sandbox",
+              name = "ProTanki Server",
+              maxPeople = 8,
+              minRank = 0,
+              maxRank = 16,
+              preview = 618467,
+              users = listOf(
+                "Luminate"
+              )
+            )
+          )
+        ).toJson()
+      )
+    ).send(this)
   }
 }
 
 data class InitBonusesData(
-  @Json val init_bonuses: List<Any> = listOf() // TOOD(Assasans)
+  @Json val init_bonuses: List<Any> = listOf() // TODO(Assasans)
 )
 
+inline fun <reified T : Any> T.toJson(json: Moshi): String {
+  return json.adapter(T::class.java).toJson(this)
+}
+
+inline fun <reified T : Any> T.toJson(): String {
+  val json = KoinJavaComponent.inject<Moshi>(Moshi::class.java).value
+  return json.adapter(T::class.java).toJson(this)
+}
+
+fun <T : Any> Moshi.toJson(value: T): String {
+  return adapter<T>(value::class.java).toJson(value)
+}
+
 data class InitBattleModelData(
-  @Json val kick_period_ms: Int = 125000,
+  @Json val battleId: String,
   @Json val map_id: String,
   @Json val mapId: Int,
+  @Json val kick_period_ms: Int = 125000,
   @Json val invisible_time: Int = 3500,
-  @Json val spectator: Boolean = false,
+  @Json val spectator: Boolean = true,
   @Json val active: Boolean = true,
   @Json val dustParticle: Int = 110001,
-  @Json val battleId: String,
   @Json val minRank: Int = 3,
   @Json val maxRank: Int = 9,
   @Json val skybox: String,
@@ -983,6 +711,7 @@ data class ChatMessage(
   @Json val nameTo: String = "",
   @Json val rangTo: Int = 0,
   @Json val system: Boolean = false,
+  @Json val yellow: Boolean = false,
   @Json val sourceUserPremium: Boolean = false,
   @Json val targetUserPremium: Boolean = false
 )

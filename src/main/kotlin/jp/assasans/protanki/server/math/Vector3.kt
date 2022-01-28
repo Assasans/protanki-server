@@ -15,6 +15,12 @@ class Vector3 {
     this.z = z
   }
 
+  fun copyFrom(another: Vector3) {
+    x = another.x
+    y = another.y
+    z = another.z
+  }
+
   val length: Double
     get() = sqrt(x.pow(2) + y.pow(2) + z.pow(2))
 

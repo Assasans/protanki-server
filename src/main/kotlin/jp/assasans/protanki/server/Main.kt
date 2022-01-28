@@ -5,6 +5,9 @@ import java.net.InetSocketAddress
 import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.absolute
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
@@ -16,10 +19,13 @@ import mu.KotlinLogging
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
+import org.koin.java.KoinJavaComponent
 import org.koin.logger.SLF4JLogger
 import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.client.InitBonusesData
 import jp.assasans.protanki.server.client.UserSocket
+import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
 
@@ -48,7 +54,7 @@ class SocketServer : ISocketServer {
   override suspend fun run() {
     server = aSocket(ActorSelectorManager(Dispatchers.IO))
       .tcp()
-      .bind(InetSocketAddress("127.0.0.1", 1337))
+      .bind(InetSocketAddress("0.0.0.0", 1337))
 
     logger.info { "Started TCP server on ${server.localAddress}" }
 
@@ -74,6 +80,11 @@ fun main(args: Array<String>) {
     single { CommandRegistry() as ICommandRegistry }
     single { BattleProcessor() as IBattleProcessor }
     single { Database() as IDatabase }
+    single {
+      Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+    }
   }
 
   startKoin {
@@ -83,6 +94,7 @@ fun main(args: Array<String>) {
   }
 
   val server = Server()
+
 
   runBlocking { server.run() }
 }
