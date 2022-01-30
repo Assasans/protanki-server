@@ -1,10 +1,10 @@
 package jp.assasans.protanki.server.client
 
 import java.io.File
+import java.io.IOException
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.callSuspendBy
 import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.javaType
 import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -33,7 +33,8 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
 
 suspend fun UserSocket.sendChat(message: String) = Command(
-  CommandName.SendChatMessageClient, listOf(
+  CommandName.SendChatMessageClient,
+  listOf(
     ChatMessage(
       name = "",
       rang = 0,
@@ -44,7 +45,9 @@ suspend fun UserSocket.sendChat(message: String) = Command(
   )
 ).send(this)
 
-@OptIn(ExperimentalStdlibApi::class) class UserSocket(val socket: Socket) : KoinComponent {
+@OptIn(ExperimentalStdlibApi::class) class UserSocket(
+  private val socket: Socket
+) : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val encryption = EncryptionTransformer()
@@ -61,6 +64,8 @@ suspend fun UserSocket.sendChat(message: String) = Command(
   val remoteAddress: NetworkAddress
     get() = socket.remoteAddress
 
+  var active: Boolean = false
+
   var user: User? = null
   var selectedBattle: Battle? = null
 
@@ -72,12 +77,38 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       .flatMap { battle -> battle.players }
       .singleOrNull { player -> player.socket == this }
 
+  private fun deactivate() {
+    active = false
+
+    val player = battlePlayer
+    if(player != null) { // Remove player from battle
+      // TODO(Assasans): Send leave command
+      player.battle.players.remove(player)
+    }
+  }
+
   suspend fun send(command: Command) {
     lock.withPermit {
-      output.writeFully(command.serialize().toByteArray())
+      try {
+        output.writeFully(command.serialize().toByteArray())
+      } catch(exception: IOException) {
+        logger.warn(exception) { "${socket.remoteAddress} thrown an exception" }
+        deactivate()
+        return
+      }
 
-      if(command.name != CommandName.Pong) {
-        if(command.name == CommandName.LoadResources) {
+      if(
+        command.name != CommandName.Pong &&
+        command.name != CommandName.ClientMove &&
+        command.name != CommandName.ClientFullMove &&
+        command.name != CommandName.ClientRotateTurret &&
+        command.name != CommandName.ClientMovementControl
+      ) { // Too verbose
+        if(
+          command.name == CommandName.LoadResources ||
+          command.name == CommandName.InitLocale ||
+          command.name == CommandName.InitShotsData
+        ) { // Too long
           logger.trace { "Sent command ${command.name} ${command.args.drop(1)}" }
         } else {
           logger.trace { "Sent command ${command.name} ${command.args}" }
@@ -133,7 +164,13 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       val command = Command()
       command.readFrom(decrypted.toByteArray())
 
-      if(command.name != CommandName.Ping && command.name != CommandName.RotateTurret && command.name != CommandName.Move && command.name != CommandName.FullMove) {
+      if(
+        command.name != CommandName.Ping &&
+        command.name != CommandName.Move &&
+        command.name != CommandName.FullMove &&
+        command.name != CommandName.RotateTurret &&
+        command.name != CommandName.MovementControl
+      ) { // Too verbose
         logger.trace { "Received command ${command.name} ${command.args}" }
       }
 
@@ -143,7 +180,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       if(handler != null) {
         try {
           val instance = handler.type.primaryConstructor!!.call()
-          val args = mutableMapOf<KParameter, Any>(
+          val args = mutableMapOf<KParameter, Any?>(
             Pair(
               handler.function.parameters.single { parameter -> parameter.kind == KParameter.Kind.INSTANCE },
               instance
@@ -154,25 +191,20 @@ suspend fun UserSocket.sendChat(message: String) = Command(
             )
           )
 
-          args.putAll(handler.args.mapIndexed { index, parameter ->
-            val value = command.args[index]
+          when(handler.argsBehaviour) {
+            ArgsBehaviourType.Arguments -> {
+              args.putAll(handler.args.mapIndexed { index, parameter ->
+                val value = command.args[index]
 
-            return@mapIndexed when(parameter.type.javaType) {
-              String::class.java -> Pair(parameter, value)
-              Int::class.java    -> Pair(parameter, value.toInt())
-              Double::class.java -> Pair(parameter, value.toDouble())
-
-              else               -> {
-                val type = parameter.type.javaType
-                val adapter = json.adapter<Any>(type)
-
-                Pair(parameter, adapter.fromJson(value)!!)
-                // throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
-              }
-
-              // else          -> throw Exception("Unsupported parameter: ${parameter.name}: ${parameter.type}")
+                Pair(parameter, CommandArgs.convert(parameter.type, value))
+              })
             }
-          })
+
+            ArgsBehaviourType.Raw       -> {
+              val argsParameter = handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[1]
+              args[argsParameter] = CommandArgs(command.args)
+            }
+          }
 
           // logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
 
@@ -213,12 +245,23 @@ suspend fun UserSocket.sendChat(message: String) = Command(
   }
 
   suspend fun handle() {
+    active = true
+
     // awaitDependency can deadlock execution if suspended
     GlobalScope.launch { initClient() }
 
     try {
       while(!(input.isClosedForRead || input.isClosedForWrite)) {
-        val buffer = input.readAvailable()
+        val buffer: ByteArray;
+        try {
+          buffer = input.readAvailable()
+        } catch(exception: IOException) {
+          logger.warn(exception) { "${socket.remoteAddress} thrown an exception" }
+          deactivate()
+
+          break
+        }
+
         val packets = String(buffer).split(Command.Delimiter)
 
         for(packet in packets) {
@@ -251,13 +294,22 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       )
     )
 
+    val user = user ?: throw Exception("No User")
+
     send(
       Command(
         CommandName.InitPanel,
         mutableListOf(
-          json.adapter(InitPanelData::class.java).toJson(InitPanelData(
-            name = user!!.username
-          ))
+          json.adapter(InitPanelData::class.java).toJson(
+            InitPanelData(
+              name = user.username,
+              crystall = user.crystals,
+              rang = user.rank.value,
+              score = user.score,
+              currentRankScore = user.currentRankScore,
+              next_score = user.nextRankScore
+            )
+          )
         )
       )
     )
@@ -694,15 +746,15 @@ data class InitPremiumData(
 
 data class InitPanelData(
   @Json val name: String,
-  @Json val crystall: Int = 32,
+  @Json val crystall: Int,
   @Json val email: String? = null,
   @Json val tester: Boolean = false,
-  @Json val next_score: Int = 3700,
+  @Json val next_score: Int,
   @Json val place: Int = 0,
-  @Json val rang: Int = 4,
+  @Json val rang: Int,
   @Json val rating: Int = 1,
-  @Json val score: Int = 2307,
-  @Json val currentRankScore: Int = 1500,
+  @Json val score: Int,
+  @Json val currentRankScore: Int,
   @Json val hasDoubleCrystal: Boolean = false,
   @Json val durationCrystalAbonement: Int = -1,
   @Json val userProfileUrl: String = "http://ratings.generaltanks.com/ru/user/"

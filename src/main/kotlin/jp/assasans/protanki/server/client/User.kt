@@ -23,14 +23,45 @@ class User(
   // TODO(Assasans): Rewrite
   val rank: UserRank
     get() {
-      var lastScore = score
-      var rank = UserRank.Recruit
-      while(lastScore >= rank.score) {
-        if(rank == UserRank.Generalissimo) break
+      // var lastScore = score
+      // var rank = UserRank.Recruit
+      // while(lastScore >= rank.score) {
+      //   if(rank == UserRank.Generalissimo) break
+      //
+      //   lastScore -= rank.score
+      //   rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
+      // }
+      //
+      // return rank
 
-        lastScore -= rank.score
+      var rank = UserRank.Recruit
+      while(score >= rank.score) {
+        if(rank == UserRank.Generalissimo) break
         rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
       }
+
       return rank
+    }
+
+  val currentRankScore: Int
+    get() {
+      // var lastScore = score
+      // var rank = UserRank.Recruit
+      // while(lastScore >= rank.score) {
+      //   if(rank == UserRank.Generalissimo) break
+      //
+      //   lastScore -= rank.score
+      //   rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
+      // }
+      // return lastScore
+
+      return score - rank.score
+    }
+
+  val nextRankScore: Int
+    get() {
+      val nextRank = UserRank.get(rank.value + 1)
+      if(nextRank != null) return nextRank.score
+      return 0
     }
 }

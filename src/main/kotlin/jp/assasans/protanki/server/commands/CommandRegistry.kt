@@ -22,15 +22,18 @@ class CommandRegistry : ICommandRegistry {
 
   override fun <T : ICommandHandler> registerHandlers(type: KClass<T>) {
     type.declaredMemberFunctions.forEach { function ->
-      val annotation = function.findAnnotation<CommandHandler>() ?: return@forEach
+      val commandHandler = function.findAnnotation<CommandHandler>() ?: return@forEach
+      val dataBehaviour = function.findAnnotation<ArgsBehaviour>() ?: ArgsBehaviour(ArgsBehaviourType.Arguments)
+
       val args = function.parameters
         .filter { parameter -> parameter.kind == KParameter.Kind.VALUE }
         .drop(1) // UserSocket
-      val description = CommandHandlerDescription(type, function, annotation.name, args)
+
+      val description = CommandHandlerDescription(type, function, commandHandler.name, dataBehaviour.type, args)
 
       commands.add(description)
 
-      logger.debug { "Discovered command handler: ${annotation.name} -> ${type.qualifiedName}::${function.name}" }
+      logger.debug { "Discovered command handler: ${commandHandler.name} -> ${type.qualifiedName}::${function.name}" }
     }
   }
 }

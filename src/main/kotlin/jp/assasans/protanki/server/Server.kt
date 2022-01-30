@@ -7,10 +7,7 @@ import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleMap
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.commands.ICommandRegistry
-import jp.assasans.protanki.server.commands.handlers.AuthHandler
-import jp.assasans.protanki.server.commands.handlers.BattleHandler
-import jp.assasans.protanki.server.commands.handlers.LobbyHandler
-import jp.assasans.protanki.server.commands.handlers.SystemHandler
+import jp.assasans.protanki.server.commands.handlers.*
 
 class Server : KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -41,6 +38,7 @@ class Server : KoinComponent {
     commandRegistry.registerHandlers(AuthHandler::class)
     commandRegistry.registerHandlers(LobbyHandler::class)
     commandRegistry.registerHandlers(BattleHandler::class)
+    commandRegistry.registerHandlers(ShotHandler::class)
 
     database.connect()
     socketServer.run()

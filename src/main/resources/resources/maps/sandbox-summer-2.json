@@ -1,1 +1,10 @@
-{"resources":[{"idhigh":"0","idlow":268412,"versionhigh":"0","versionlow":1,"lazy":false,"alpha":false,"type":10},{"idhigh":"0","idlow":31494,"versionhigh":"0","versionlow":1,"lazy":false,"alpha":false,"type":10},{"idhigh":"0","idlow":57735,"versionhigh":"0","versionlow":1,"lazy":false,"alpha":false,"type":10},{"idhigh":"0","idlow":927961,"versionhigh":"0","versionlow":1,"lazy":false,"alpha":false,"type":10},{"idhigh":"0","idlow":987391,"versionhigh":"0","versionlow":1,"lazy":false,"alpha":false,"type":10},{"idhigh":"0","idlow":45572,"versionhigh":"0","versionlow":1,"lazy":false,"alpha":false,"type":10}]}
+{
+  "resources": [
+    { "idhigh": "0", "idlow": 268412, "versionhigh": "0", "versionlow": 1, "lazy": false, "alpha": false, "type": 10 },
+    { "idhigh": "0", "idlow": 31494, "versionhigh": "0", "versionlow": 1, "lazy": false, "alpha": false, "type": 10 },
+    { "idhigh": "0", "idlow": 57735, "versionhigh": "0", "versionlow": 1, "lazy": false, "alpha": false, "type": 10 },
+    { "idhigh": "0", "idlow": 927961, "versionhigh": "0", "versionlow": 1, "lazy": false, "alpha": false, "type": 10 },
+    { "idhigh": "0", "idlow": 987391, "versionhigh": "0", "versionlow": 1, "lazy": false, "alpha": false, "type": 10 },
+    { "idhigh": "0", "idlow": 45572, "versionhigh": "0", "versionlow": 1, "lazy": false, "alpha": false, "type": 10 }
+  ]
+}

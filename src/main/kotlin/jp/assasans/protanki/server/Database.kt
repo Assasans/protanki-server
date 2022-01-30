@@ -31,14 +31,14 @@ class Database : IDatabase {
       val users = Users.selectAll()
       logger.info { "Registered users: ${users.count()}" }
 
-      if(users.none { user -> user[Users.username] == "debug_LOX" }) {
-        Users.insert {
-          it[username] = "debug_LOX"
-          it[password] = "test"
-          it[score] = 12345
-          it[crystals] = 54321
-        }
-      }
+      // if(users.none { user -> user[Users.username] == "xd" }) {
+      //   Users.insert {
+      //     it[username] = "xd"
+      //     it[password] = "test"
+      //     it[score] = 12345
+      //     it[crystals] = 54321
+      //   }
+      // }
     }
   }
 }

@@ -4,6 +4,8 @@ import java.util.*
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import jp.assasans.protanki.server.client.*
+import jp.assasans.protanki.server.client.railgun.FireTarget
+import jp.assasans.protanki.server.client.railgun.ShotTarget
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.math.Quaternion
@@ -20,13 +22,95 @@ enum class TankState {
   Active
 }
 
+enum class ItemModification(val key: String) {
+  M0("m0"),
+  M1("m1"),
+  M2("m2"),
+  M3("m3");
+
+  companion object {
+    private val map = ItemModification.values().associateBy(ItemModification::key)
+
+    fun get(key: String) = map[key]
+  }
+}
+
+interface IItem {
+  val player: BattlePlayer
+
+  val name: String
+  val resource: Int
+}
+
+interface IItemUpgradeable : IItem {
+  var modification: ItemModification
+
+  val fullName
+    get() = "${name}_${modification.key}"
+}
+
+abstract class TankHull(
+  override val player: BattlePlayer,
+  override val name: String,
+  override val resource: Int,
+  override var modification: ItemModification
+) : IItemUpgradeable {
+}
+
+class HunterHull(
+  player: BattlePlayer,
+  resource: Int,
+  modification: ItemModification
+) : TankHull(player, name = "hunter", resource, modification)
+
+abstract class TankWeapon(
+  override val player: BattlePlayer,
+  override val name: String,
+  override val resource: Int,
+  override var modification: ItemModification
+) : IItemUpgradeable {
+}
+
+class TankColoring(
+  override val player: BattlePlayer,
+  override val name: String,
+  override val resource: Int
+) : IItem {}
+
+class RailgunWeapon(
+  player: BattlePlayer,
+  resource: Int,
+  modification: ItemModification
+) : TankWeapon(player, name = "railgun", resource, modification) {
+  suspend fun fireStart() {
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    Command(CommandName.StartFire, listOf(tank.id)).sendTo(tank.player.battle)
+  }
+
+  suspend fun fireTarget(target: FireTarget) {
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    Command(
+      CommandName.ShotTarget,
+      listOf(
+        tank.id,
+        ShotTarget(target).toJson()
+      )
+    ).sendTo(tank.player.battle)
+  }
+}
+
 class BattleTank(
   val id: String,
   val player: BattlePlayer,
   val incarnation: Int = 1,
   var state: TankState,
   var position: Vector3,
-  var orientation: Quaternion
+  var orientation: Quaternion,
+  val hull: TankHull,
+  val weapon: TankWeapon,
+  val coloring: TankColoring
 ) : ITickHandler {
   private val logger = KotlinLogging.logger { }
 
@@ -41,14 +125,14 @@ class BattleTank(
 
     state = TankState.Active
 
-    player.battle.players.forEach { player ->
+    player.battle.players.users().forEach { player ->
       val tank = player.tank
       if(tank != null && tank != this) {
         Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
       }
-
-      Command(CommandName.ActivateTank, listOf(id)).send(player)
     }
+
+    Command(CommandName.ActivateTank, listOf(id)).sendTo(battle)
     // Command(CommandName.ActivateTank, listOf(id)).send(socket)
   }
 }
@@ -139,50 +223,6 @@ class BattlePlayer(
         listOf<InitBonusesData>().toJson()
       )
     ).send(socket)
-  }
-
-  suspend fun initTanks() {
-    battle.players.users().forEach { player ->
-      if(player != this) {
-        Command(
-          CommandName.InitTank,
-          listOf(
-            InitTankData(
-              battleId = battle.id,
-              hull_id = "hunter_m0",
-              turret_id = "railgun_m0",
-              colormap_id = 966681,
-              hullResource = 227169,
-              turretResource = 906685,
-              partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
-              tank_id = (player.tank ?: throw Exception("No Tank")).id,
-              nickname = player.user.username,
-              team_type = player.team.key
-            ).toJson()
-          )
-        ).send(socket)
-      }
-
-      if(!isSpectator) {
-        Command(
-          CommandName.InitTank,
-          listOf(
-            InitTankData(
-              battleId = battle.id,
-              hull_id = "hunter_m0",
-              turret_id = "railgun_m0",
-              colormap_id = 966681,
-              hullResource = 227169,
-              turretResource = 906685,
-              partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
-              tank_id = (tank ?: throw Exception("No Tank")).id,
-              nickname = user.username,
-              team_type = team.key
-            ).toJson()
-          )
-        ).send(player)
-      }
-    }
   }
 
   suspend fun initLocal() {
@@ -408,7 +448,7 @@ class BattlePlayer(
     spawnTanks()
 
     if(isSpectator) {
-      battle.players.forEach { player ->
+      battle.players.users().forEach { player ->
         if(player == this) return@forEach
 
         val tank = player.tank
@@ -423,9 +463,60 @@ class BattlePlayer(
     }
   }
 
+  suspend fun initTanks() {
+    battle.players.forEach { player ->
+      // Init other players to self
+      if(player != this && !player.isSpectator) {
+        val tank = player.tank ?: throw Exception("No Tank")
+
+        Command(
+          CommandName.InitTank,
+          listOf(
+            InitTankData(
+              battleId = battle.id,
+              hull_id = tank.hull.fullName,
+              turret_id = tank.weapon.fullName,
+              colormap_id = tank.coloring.resource,
+              hullResource = tank.hull.resource,
+              turretResource = tank.weapon.resource,
+              partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
+              tank_id = tank.id,
+              nickname = player.user.username,
+              team_type = player.team.key
+            ).toJson()
+          )
+        ).send(socket)
+      }
+
+      // Init self to others
+      if(!isSpectator) {
+        val tank = tank ?: throw Exception("No Tank")
+
+        Command(
+          CommandName.InitTank,
+          listOf(
+            InitTankData(
+              battleId = battle.id,
+              hull_id = tank.hull.fullName,
+              turret_id = tank.weapon.fullName,
+              colormap_id = tank.coloring.resource,
+              hullResource = tank.hull.resource,
+              turretResource = tank.weapon.resource,
+              partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
+              tank_id = tank.id,
+              nickname = user.username,
+              team_type = team.key
+            ).toJson()
+          )
+        ).send(player)
+      }
+    }
+  }
+
   suspend fun spawnTanks() {
-    battle.players.users().forEach { player ->
-      if(player != this) {
+    battle.players.forEach { player ->
+      // Spawn other players for self
+      if(player != this && !player.isSpectator) {
         Command(
           CommandName.SpawnTank,
           listOf(
@@ -443,6 +534,7 @@ class BattlePlayer(
         ).send(socket)
       }
 
+      // Spawn self for other players
       if(!isSpectator) {
         Command(
           CommandName.SpawnTank,
@@ -472,7 +564,10 @@ class BattlePlayer(
       incarnation = incarnation,
       state = TankState.Respawn,
       position = Vector3(0.0, 0.0, 1000.0),
-      orientation = Quaternion()
+      orientation = Quaternion(),
+      hull = HunterHull(player = this, resource = 227169, modification = ItemModification.M0),
+      weapon = RailgunWeapon(player = this, resource = 906685, modification = ItemModification.M0),
+      coloring = TankColoring(player = this, name = "green", resource = 966681)
     )
 
     this.tank = tank

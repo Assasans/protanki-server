@@ -107,7 +107,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       logger.warn { "Invalid tank state for rotate turret: ${tank.state}" }
     }
 
-    Command(CommandName.RotateTurret, listOf(
+    Command(CommandName.ClientRotateTurret, listOf(
       ClientRotateTurretData(tank.id, data).toJson()
     )).sendTo(player.battle)
 
@@ -123,7 +123,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       logger.warn { "Invalid tank state for movement control: ${tank.state}" }
     }
 
-    Command(CommandName.MovementControl, listOf(
+    Command(CommandName.ClientMovementControl, listOf(
       ClientMovementControlData(tank.id, data).toJson()
     )).sendTo(player.battle)
 
@@ -133,5 +133,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.SelfDestruct)
   suspend fun selfDestruct(socket: UserSocket) {
     logger.debug { "Started self-destruct for ${socket.user!!.username}" }
+
+    // TODO(Assasans): Not implemented
   }
 }

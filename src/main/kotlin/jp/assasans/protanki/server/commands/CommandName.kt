@@ -102,11 +102,27 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   Move(CommandCategory.Battle, "move", CommandSide.Server),
   FullMove(CommandCategory.Battle, "fullMove", CommandSide.Server),
+  RotateTurret(CommandCategory.Battle, "rotateTurret", CommandSide.Server),
   MovementControl(CommandCategory.Battle, "movementControl", CommandSide.Server),
+
   ClientMove(CommandCategory.Battle, "move", CommandSide.Client),
   ClientFullMove(CommandCategory.Battle, "fullMove", CommandSide.Client),
+  ClientRotateTurret(CommandCategory.Battle, "rotateTurret", CommandSide.Client),
+  ClientMovementControl(CommandCategory.Battle, "movementControl", CommandSide.Client),
 
-  RotateTurret(CommandCategory.Battle, "rotateTurret", CommandSide.Server),
+  KillTank(CommandCategory.Battle, "kill_tank", CommandSide.Client),
+
+  StartFire(CommandCategory.Battle, "start_fire", CommandSide.Server),
+  StopFire(CommandCategory.Battle, "stop_fire", CommandSide.Server),
+
+  Fire(CommandCategory.Battle, "fire", CommandSide.Server),
+  FireDummy(CommandCategory.Battle, "fire_dummy", CommandSide.Server),
+  FireStatic(CommandCategory.Battle, "fire_static", CommandSide.Server),
+  FireTarget(CommandCategory.Battle, "fire_target", CommandSide.Server),
+
+  Shot(CommandCategory.Battle, "shot", CommandSide.Client),
+  ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
+  ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),
 
   ;
 

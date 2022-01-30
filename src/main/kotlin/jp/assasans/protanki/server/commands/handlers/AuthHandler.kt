@@ -21,24 +21,32 @@ class AuthHandler : ICommandHandler {
   suspend fun auth(socket: UserSocket, data: AuthData) {
     logger.debug { "User login: [ Username = '${data.login}', Password = '${data.password}', Captcha = ${if(data.captcha.isEmpty()) "*none*" else "'${data.captcha}'"} ]" }
 
-    val user = transaction {
-      User.fromDatabase(Users
-        .select { Users.username.lowerCase() eq data.login.lowercase() }
-        .single()
-      )
-    }
+    // val user = transaction {
+    //   User.fromDatabase(Users
+    //     .select { Users.username.lowerCase() eq data.login.lowercase() }
+    //     .single()
+    //   )
+    // }
 
-    if(true || user.password == data.password) {
-      logger.debug { "User login allowed" }
+    val user = User(
+      id = 0,
+      username = data.login,
+      password = data.password,
+      score = 123456,
+      crystals = 123456
+    )
 
-      socket.user = user
-      socket.send(Command(CommandName.AuthAccept))
-      socket.loadLobby()
-    } else {
-      logger.debug { "User login rejected: incorrect password" }
+    // if(user.password == data.password) {
+    logger.debug { "User login allowed" }
 
-      socket.send(Command(CommandName.AuthDenied))
-    }
+    socket.user = user
+    socket.send(Command(CommandName.AuthAccept))
+    socket.loadLobby()
+    // } else {
+    //   logger.debug { "User login rejected: incorrect password" }
+    //
+    //   socket.send(Command(CommandName.AuthDenied))
+    // }
   }
 
   @CommandHandler(CommandName.LoginByHash)
