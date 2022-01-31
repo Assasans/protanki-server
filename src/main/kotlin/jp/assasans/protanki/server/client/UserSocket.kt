@@ -23,6 +23,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.java.KoinJavaComponent
 import jp.assasans.protanki.server.EncryptionTransformer
+import jp.assasans.protanki.server.PacketProcessor
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.IBattleProcessor
@@ -52,6 +53,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
 ) : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
+  private val packetProcessor = PacketProcessor()
   private val encryption = EncryptionTransformer()
   private val commandRegistry by inject<ICommandRegistry>()
   private val battleProcessor by inject<IBattleProcessor>()
@@ -257,6 +259,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
         val buffer: ByteArray;
         try {
           buffer = input.readAvailable()
+          packetProcessor.write(buffer)
         } catch(exception: IOException) {
           logger.warn(exception) { "${socket.remoteAddress} thrown an exception" }
           deactivate()
@@ -264,9 +267,16 @@ suspend fun UserSocket.sendChat(message: String) = Command(
           break
         }
 
-        val packets = String(buffer).split(Command.Delimiter)
+        // val packets = String(buffer).split(Command.Delimiter)
 
-        for(packet in packets) {
+        // for(packet in packets) {
+        // awaitDependency can deadlock execution if suspended
+        //   GlobalScope.launch { processPacket(packet) }
+        // }
+
+        while(true) {
+          val packet = packetProcessor.tryGetPacket() ?: break
+
           // awaitDependency can deadlock execution if suspended
           GlobalScope.launch { processPacket(packet) }
         }
