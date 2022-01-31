@@ -46,7 +46,22 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
+  kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.ExperimentalStdlibApi"
   kotlinOptions.jvmTarget = "11"
+}
+
+tasks {
+  jar {
+    manifest {
+      attributes["Main-Class"] = application.mainClass
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    configurations.compileClasspath.get().forEach {
+      from(if(it.isDirectory) it else zipTree(it))
+    }
+  }
 }
 
 application {
