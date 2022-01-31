@@ -132,3 +132,8 @@ hs_err_pid*
 /gradlew.bat
 
 /build
+
+### Database
+
+/db.h2.mv.db
+/db.h2
