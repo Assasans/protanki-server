@@ -64,7 +64,7 @@ class SocketServer : ISocketServer {
   }
 }
 
-fun main(args: Array<String>) {
+suspend fun main(args: Array<String>) {
   val logger = KotlinLogging.logger { }
 
   logger.info { "Hello, 世界!" }
@@ -90,5 +90,5 @@ fun main(args: Array<String>) {
 
   val server = Server()
 
-  runBlocking { server.run() }
+  server.run()
 }
