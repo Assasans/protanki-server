@@ -1,6 +1,8 @@
 package jp.assasans.protanki.server.commands.handlers
 
-import java.io.File
+import java.nio.file.Paths
+import kotlin.io.path.absolute
+import kotlin.io.path.bufferedReader
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -47,19 +49,19 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.Fight)
   suspend fun fight(socket: UserSocket) {
     // TODO(Assasans): Shit
-    val resourcesMap1Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-1.json").bufferedReader()
+    val resourcesMap1Reader = Paths.get("src/main/resources/resources/maps/sandbox-summer-1.json").absolute().bufferedReader()
     val resourcesMap1 = resourcesMap1Reader.use { it.readText() }
 
     // TODO(Assasans): Shit
-    val resourcesMap2Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-2.json").bufferedReader()
+    val resourcesMap2Reader = Paths.get("src/main/resources/resources/maps/sandbox-summer-2.json").absolute().bufferedReader()
     val resourcesMap2 = resourcesMap2Reader.use { it.readText() }
 
     // TODO(Assasans): Shit
-    val resourcesMap3Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-3.json").bufferedReader()
+    val resourcesMap3Reader = Paths.get("src/main/resources/resources/maps/sandbox-summer-3.json").absolute().bufferedReader()
     val resourcesMap3 = resourcesMap3Reader.use { it.readText() }
 
     // TODO(Assasans): Shit
-    val shotsDataReader = File("D:/ProTankiServer/src/main/resources/resources/shots-data.json").bufferedReader()
+    val shotsDataReader = Paths.get("src/main/resources/resources/shots-data.json").absolute().bufferedReader()
     val shotsData = shotsDataReader.use { it.readText() }
 
     val player = BattlePlayer(
@@ -84,15 +86,15 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.JoinAsSpectator)
   suspend fun joinAsSpectator(socket: UserSocket) {
     // TODO(Assasans): Shit
-    val resourcesMap1Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-1.json").bufferedReader()
+    val resourcesMap1Reader = Paths.get("src/main/resources/resources/maps/sandbox-summer-1.json").absolute().bufferedReader()
     val resourcesMap1 = resourcesMap1Reader.use { it.readText() }
 
     // TODO(Assasans): Shit
-    val resourcesMap2Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-2.json").bufferedReader()
+    val resourcesMap2Reader = Paths.get("src/main/resources/resources/maps/sandbox-summer-2.json").absolute().bufferedReader()
     val resourcesMap2 = resourcesMap2Reader.use { it.readText() }
 
     // TODO(Assasans): Shit
-    val resourcesMap3Reader = File("D:/ProTankiServer/src/main/resources/resources/maps/sandbox-summer-3.json").bufferedReader()
+    val resourcesMap3Reader = Paths.get("src/main/resources/resources/maps/sandbox-summer-3.json").absolute().bufferedReader()
     val resourcesMap3 = resourcesMap3Reader.use { it.readText() }
 
     val player = BattlePlayer(
@@ -117,7 +119,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.InitSpectatorUser)
   suspend fun initSpectatorUser(socket: UserSocket) {
     // TODO(Assasans): Shit
-    val shotsDataReader = File("D:/ProTankiServer/src/main/resources/resources/shots-data.json").bufferedReader()
+    val shotsDataReader = Paths.get("src/main/resources/resources/shots-data.json").absolute().bufferedReader()
     val shotsData = shotsDataReader.use { it.readText() }
 
     Command(CommandName.InitShotsData, mutableListOf(shotsData)).send(socket) // TODO(Assasans): initBattleLoad?

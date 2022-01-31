@@ -1,7 +1,9 @@
 package jp.assasans.protanki.server.client
 
-import java.io.File
 import java.io.IOException
+import java.nio.file.Paths
+import kotlin.io.path.absolute
+import kotlin.io.path.bufferedReader
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.callSuspendBy
 import kotlin.reflect.full.primaryConstructor
@@ -282,7 +284,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
 
   suspend fun loadLobby() {
     // TODO(Assasans): Shit
-    val resourcesLobbyReader = File("D:/ProTankiServer/src/main/resources/resources/lobby.json").bufferedReader()
+    val resourcesLobbyReader = Paths.get("src/main/resources/resources/lobby.json").absolute().bufferedReader()
     val resourcesLobby = resourcesLobbyReader.use { it.readText() }
 
     send(
@@ -373,11 +375,11 @@ suspend fun UserSocket.sendChat(message: String) = Command(
 
   private suspend fun initClient() {
     // TODO(Assasans): Shit
-    val langReader = File("D:/ProTankiServer/src/main/resources/lang/ru.json").bufferedReader()
+    val langReader = Paths.get("src/main/resources/lang/ru.json").absolute().bufferedReader()
     val lang = langReader.use { it.readText() }
 
     // TODO(Assasans): Shit
-    val resourcesAuthReader = File("D:/ProTankiServer/src/main/resources/resources/auth.json").bufferedReader()
+    val resourcesAuthReader = Paths.get("src/main/resources/resources/auth.json").absolute().bufferedReader()
     val resourcesAuth = resourcesAuthReader.use { it.readText() }
 
     send(Command(CommandName.InitExternalModel, mutableListOf("http://localhost/")))
@@ -403,7 +405,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
 
   suspend fun initBattleList() {
     // TODO(Assasans): Shit
-    val mapsReader = File("D:/ProTankiServer/src/main/resources/maps.json").bufferedReader()
+    val mapsReader = Paths.get("src/main/resources/maps.json").absolute().bufferedReader()
     val maps = mapsReader.use { it.readText() }
 
     val mapsParsed = json
