@@ -10,7 +10,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   MainResourcesLoaded(CommandCategory.System, "main_resources_loaded", CommandSide.Client),
   DependenciesLoaded(CommandCategory.System, "dependencies_loaded", CommandSide.Server),
 
-  Auth(CommandCategory.Auth, "auth", CommandSide.Server),
+  Auth(CommandCategory.Auth, "auth", CommandSide.Server), // Compatibility with older versions
+  Login(CommandCategory.Auth, "login", CommandSide.Server),
   AuthAccept(CommandCategory.Auth, "accept", CommandSide.Client),
   AuthDenied(CommandCategory.Auth, "denied", CommandSide.Client),
   InitExternalModel(CommandCategory.Auth, "init_external_model", CommandSide.Client),
@@ -53,7 +54,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   SubscribeUserUpdate(CommandCategory.Lobby, "subscribe_user_update", CommandSide.Server),
 
-  update_rang_progress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
+  ShowDamageEnabled(CommandCategory.Lobby, "showDamageEnabled", CommandSide.Server),
+  UpdateRankProgress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
 
   SelectBattle(CommandCategory.BattleSelect, "select", CommandSide.Server),
   Fight(CommandCategory.BattleSelect, "fight", CommandSide.Server),

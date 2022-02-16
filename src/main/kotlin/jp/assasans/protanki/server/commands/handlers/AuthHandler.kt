@@ -19,8 +19,24 @@ class AuthHandler : ICommandHandler {
 
   @CommandHandler(CommandName.Auth)
   suspend fun auth(socket: UserSocket, data: AuthData) {
-    logger.debug { "User login: [ Username = '${data.login}', Password = '${data.password}', Captcha = ${if(data.captcha.isEmpty()) "*none*" else "'${data.captcha}'"} ]" }
+    logger.debug { "User login (compatibility mode): [ Username = '${data.login}', Password = '${data.password}', Captcha = ${if(data.captcha.isEmpty()) "*none*" else "'${data.captcha}'"} ]" }
+    loginInternal(socket, data)
+  }
 
+  @CommandHandler(CommandName.Login)
+  suspend fun login(socket: UserSocket, data: AuthData) {
+    logger.debug { "User login: [ Username = '${data.login}', Password = '${data.password}', Captcha = ${if(data.captcha.isEmpty()) "*none*" else "'${data.captcha}'"} ]" }
+    loginInternal(socket, data)
+  }
+
+  @CommandHandler(CommandName.LoginByHash)
+  suspend fun loginByHash(socket: UserSocket, hash: String) {
+    logger.debug { "User login by hash: $hash" }
+
+    Command(CommandName.LoginByHashFailed).send(socket)
+  }
+
+  private suspend fun loginInternal(socket: UserSocket, data: AuthData) {
     // val user = transaction {
     //   User.fromDatabase(Users
     //     .select { Users.username.lowerCase() eq data.login.lowercase() }
@@ -47,12 +63,5 @@ class AuthHandler : ICommandHandler {
     //
     //   socket.send(Command(CommandName.AuthDenied))
     // }
-  }
-
-  @CommandHandler(CommandName.LoginByHash)
-  suspend fun loginByHash(socket: UserSocket, hash: String) {
-    logger.debug { "User login by hash: $hash" }
-
-    Command(CommandName.LoginByHashFailed).send(socket)
   }
 }

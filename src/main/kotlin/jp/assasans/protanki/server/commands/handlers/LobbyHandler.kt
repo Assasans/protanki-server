@@ -46,6 +46,11 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     battle.showInfoFor(socket)
   }
 
+  @CommandHandler(CommandName.ShowDamageEnabled)
+  suspend fun showDamageEnabled(socket: UserSocket, id: String) {
+    // TODO(Assasans)
+  }
+
   @CommandHandler(CommandName.Fight)
   suspend fun fight(socket: UserSocket) {
     // TODO(Assasans): Shit
