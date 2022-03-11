@@ -14,7 +14,9 @@ import io.ktor.network.sockets.*
 import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
@@ -48,7 +50,8 @@ suspend fun UserSocket.sendChat(message: String) = Command(
   )
 ).send(this)
 
-@OptIn(ExperimentalStdlibApi::class) class UserSocket(
+@OptIn(ExperimentalStdlibApi::class)
+class UserSocket(
   private val socket: Socket
 ) : KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -64,6 +67,8 @@ suspend fun UserSocket.sendChat(message: String) = Command(
 
   private val lock: Semaphore = Semaphore(1)
   // private val sendQueue: Queue<Command> = LinkedList()
+
+  private val socketJobs: MutableList<Job> = mutableListOf()
 
   val remoteAddress: NetworkAddress
     get() = socket.remoteAddress
@@ -88,6 +93,11 @@ suspend fun UserSocket.sendChat(message: String) = Command(
     if(player != null) { // Remove player from battle
       // TODO(Assasans): Send leave command
       player.battle.players.remove(player)
+    }
+
+    logger.debug { "Cancelling ${socketJobs.size} jobs..." }
+    socketJobs.forEach { job ->
+      if(job.isActive) job.cancel()
     }
   }
 
@@ -248,6 +258,17 @@ suspend fun UserSocket.sendChat(message: String) = Command(
     Command(CommandName.UnloadChat).send(this)
   }
 
+  suspend fun <R> runConnected(block: suspend UserSocket.() -> R) {
+    coroutineScope {
+      val job = launch {
+        block.invoke(this@UserSocket)
+      }
+
+      socketJobs.add(job)
+      job.invokeOnCompletion { socketJobs.remove(job) }
+    }
+  }
+
   suspend fun handle() {
     active = true
 
@@ -283,6 +304,8 @@ suspend fun UserSocket.sendChat(message: String) = Command(
       }
 
       logger.debug { "${socket.remoteAddress} end of data" }
+
+      deactivate()
     } catch(exception: Throwable) {
       logger.error(exception) { "An exception occurred" }
 
