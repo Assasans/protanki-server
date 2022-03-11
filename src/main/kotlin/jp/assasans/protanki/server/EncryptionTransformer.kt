@@ -20,8 +20,7 @@ class EncryptionTransformer {
     if(key <= 0) key = 1
     lastKey = key
 
-    return plain
-      .drop(1)
+    return key.toString() + plain
       .map { value -> Char(value.code + (key + 1)) }
       .joinToString("")
   }
