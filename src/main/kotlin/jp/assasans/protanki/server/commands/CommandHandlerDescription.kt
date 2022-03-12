@@ -20,6 +20,11 @@ class CommandArgs(var rawArgs: List<String>) {
         String::class.java -> value
         Int::class.java    -> value.toInt()
         Double::class.java -> value.toDouble()
+        Boolean::class.java -> {
+          if(value.equals("false", ignoreCase = true)) return false
+          if(value.equals("true", ignoreCase = true)) return true
+          throw Exception("Invalid Boolean value: $value")
+        }
 
         else               -> {
           val json = KoinJavaComponent.inject<Moshi>(Moshi::class.java).value
