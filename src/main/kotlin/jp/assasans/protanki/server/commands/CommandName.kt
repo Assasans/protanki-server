@@ -5,17 +5,16 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   SetAesData(CommandCategory.System, "set_aes_data", CommandSide.Client),
 
   InitLocale(CommandCategory.System, "init_locale", CommandSide.Client),
+  InitRegistrationModel(CommandCategory.System, "init_registration_model", CommandSide.Client),
 
   LoadResources(CommandCategory.System, "load_resources", CommandSide.Client),
   MainResourcesLoaded(CommandCategory.System, "main_resources_loaded", CommandSide.Client),
   DependenciesLoaded(CommandCategory.System, "dependencies_loaded", CommandSide.Server),
 
-  Auth(CommandCategory.Auth, "auth", CommandSide.Server), // Compatibility with older versions
   Login(CommandCategory.Auth, "login", CommandSide.Server),
   AuthAccept(CommandCategory.Auth, "accept", CommandSide.Client),
   AuthDenied(CommandCategory.Auth, "denied", CommandSide.Client),
   InitExternalModel(CommandCategory.Auth, "init_external_model", CommandSide.Client),
-  InitRegistrationModel(CommandCategory.Auth, "init_registration_model", CommandSide.Client),
 
   LoginByHash(CommandCategory.Auth, "login_by_hash", CommandSide.Server),
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),
