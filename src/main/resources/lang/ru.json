@@ -3,23 +3,26 @@
     {
       "key": "PAYMENT_RBK_DESCRIPTION_TEXT",
       "value": "'Выберите количество кристаллов, нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы используйте платёжную форму для оплаты по выставленному счёту.'"
-    }, { "key": "GARAGE_INFO_PANEL_BUTTON_EQUIP_TEXT", "value": "Установить" },
-    { "key": "HELP_BATTLE_SELECT_CREATE_MAP_HELPER_ARROW_LENGTH", "value": "48" }, {
+    },
+    { "key": "GARAGE_INFO_PANEL_BUTTON_EQUIP_TEXT", "value": "Установить" },
+    { "key": "HELP_BATTLE_SELECT_CREATE_MAP_HELPER_ARROW_LENGTH", "value": "48" },
+    {
       "key": "HELP_FIRST_PURCHASE_HELPER_TEXT",
       "value": "Нажми, чтобы перейти в Гараж\nи сделать свою первую покупку,\nНаграда - 5 кристаллов!"
-    }, { "key": "GAME_BASE_URL", "value": "protanki-online.com" },
+    },
+    { "key": "GAME_BASE_URL", "value": "protanki-online.com" },
     { "key": "SETTINGS_COLORED_FPS", "value": "Цветной индикатор FPS" },
     { "key": "MAP_THEME_NAME_WINTER_DAY", "value": "Зима день" },
     { "key": "REFERAL_STATISTICS_HEADER_CALLSIGN", "value": "Друг" },
-    { "key": "STRING_FRIENDS_CANCEL_BUTTON_TEXT", "value": "Отмена" }, {
-      "key": "ACHIEVEMENT_COMPLETE_FIRST_PURCHASE_TEXT",
-      "value": "Поздравляем с первой покупкой, танкист! 5 кристаллов твои."
-    }, { "key": "REDUCE_DAMAGE_RAILGUN", "value": "Рельсы" },
+    { "key": "STRING_FRIENDS_CANCEL_BUTTON_TEXT", "value": "Отмена" },
+    { "key": "SETTINGS_LINK_EMAIL_BUTTON", "value": "Привязать" },
+    { "key": "ACHIEVEMENT_COMPLETE_FIRST_PURCHASE_TEXT", "value": "Поздравляем с первой покупкой, танкист! 5 кристаллов твои." },
+    { "key": "REDUCE_DAMAGE_RAILGUN", "value": "Рельсы" },
     { "key": "PAYMENT_BUG_REPORT_SMS_TEXT_INPUT_LABEL_TEXT", "value": "Текст SMS:" },
-    { "key": "STRING_SETTINGS_SHADOWS_LABEL_TEXT", "value": "Тень под танком" },
-    { "key": "REGISTER_FORM_CALLSIGN_INPUT_LABEL_TEXT", "value": "Позывной:" }, {
-      "key": "HELP_PANEL_ACHIEVEMENTS_INVITE_FRIEND_TEXT", "value": "Пригласи друга в игру.\nНаграда - 200 кристаллов!"
-    }, { "key": "SETTINGS_CONTROL_HEADER_LABEL_TEXT", "value": "Управление" },
+    { "key": "REGISTER_FORM_CALLSIGN_INPUT_LABEL_TEXT", "value": "Позывной:" },
+    { "key": "SETTINGS_UNLINK_ACCOUNT", "value": "Закрыть доступ к игровому аккаунту для сервиса" },
+    { "key": "HELP_PANEL_ACHIEVEMENTS_INVITE_FRIEND_TEXT", "value": "Пригласи друга в игру.\nНаграда - 200 кристаллов!" },
+    { "key": "SETTINGS_CONTROL_HEADER_LABEL_TEXT", "value": "Управление" },
     { "key": "PAYMENT_YANDEX_MONEY_NUMBER", "value": "№ кошелька:" },
     { "key": "STRING_DONATION_ALERT_DOUBLE_CRYSTAL_CRYSTALS_TEXT", "value": "Карта «Двойной кристалл»:" },
     { "key": "RATING_WINDOW_TEXT", "value": "НЕДЕЛЬНЫЙ РЕЙТИНГ" },
@@ -27,103 +30,134 @@
     { "key": "BUG_REPORT_SUMMARY_LABEL_TEXT", "value": "Суть:" },
     { "key": "RATING_CRYSTALLS_TEXT", "value": "Рейтинг по кристаллам" },
     { "key": "SETTINGS_DAMAGE_CHECKBOX_LABEL_TEXT", "value": "Вылетающий урон" },
-    { "key": "STRING_SETTINGS_FOG_LABEL_TEXT", "value": "Туман" }, {
+    {
       "key": "PAYMENT_WEBCREDS_DESCRIPTION_TEXT",
       "value": "'Выберите количество кристаллов, нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы используйте платёжную форму для оплаты по выставленному счёту.'"
-    }, { "key": "PAYMENT_COUNTRIES_LABEL_TEXT", "value": "Страна:" },
+    },
+    { "key": "PAYMENT_COUNTRIES_LABEL_TEXT", "value": "Страна:" },
     { "key": "ACCOUNT_RECOVERY_FORM_CANCEL", "value": "Отмена" },
     { "key": "SETTINGS_SHOW_SKYBOX_CHECKBOX_LABEL_TEXT", "value": "Показывать небо" },
-    { "key": "PAYMENT_SMSNUMBERS_SMSTEXT_HEADER_LABEL_TEXT", "value": "Текст SMS" }, {
+    { "key": "PAYMENT_SMSNUMBERS_SMSTEXT_HEADER_LABEL_TEXT", "value": "Текст SMS" },
+    {
       "key": "RANK_NAMES",
       "value": "Новобранец,Рядовой,Ефрейтор,Капрал,Мастер-капрал,Сержант,Штаб-сержант,Мастер-сержант,Первый сержант, Сержант-майор,Уорэнт-офицер 1,Уорэнт-офицер 2,Уорэнт-офицер 3,Уорэнт-офицер 4,Уорэнт-офицер 5,Младший лейтенант,Лейтенант,Старший лейтенант,Капитан,Майор,Подполковник,Полковник,Бригадир,Генерал-майор,Генерал-лейтенант,Генерал,Маршал,Фельдмаршал,Командор,Генералиссимус"
-    }, { "key": "TEXT_DOM_WE_CAPTURED_POINT", "value": "Мы захватили точку {point}" },
+    },
+    { "key": "TEXT_DOM_WE_CAPTURED_POINT", "value": "Мы захватили точку {point}" },
     { "key": "PAYMENT_CARD_PHONE_NUMBER", "value": "Номер телефона:" },
     { "key": "BATTLEINFO_PANEL_NONAME_TEXT", "value": "Пусто" },
-    { "key": "PAYMENT_COMMON_SYSTEM", "value": "Система:" }, { "key": "BATTLE_START_ALERT", "value": "Битва началась" },
+    { "key": "PAYMENT_COMMON_SYSTEM", "value": "Система:" },
+    { "key": "BATTLE_START_ALERT", "value": "Битва началась" },
     { "key": "BATTLE_CREATE_PANEL_MAP_TYPE_LABEL", "value": "Карта:" },
     { "key": "BATTLE_CREATE_PANEL_CHECKBOX_BONUS_BATTLE", "value": "Бонусы" },
     { "key": "REFERAL_WINDOW_COUNT_LABEL", "value": "Всего зарегистрировалось:" },
-    { "key": "BTL_ENDS_IN", "value": "Окончание битвы через" }, {
-      "key": "STRING_ALERT_ACCOUNT_UNLINKED",
-      "value": "Доступ к вашему игровому аккаунту для сервиса %1 был успешно закрыт"
-    }, { "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_INSUFFICIENT_RANK_LABEL_TEXT", "value": "Для улучшения нужен ранг:" },
-    { "key": "STRING_MAIN_PANEL_UPDATE_RANK_NOTICE", "value": "Поздравляем\nВы получили зваÐ½ие «%1»" }, {
+    { "key": "BTL_ENDS_IN", "value": "Окончание битвы через" },
+    { "key": "STRING_ALERT_ACCOUNT_UNLINKED", "value": "Доступ к вашему игровому аккаунту для сервиса %1 был успешно закрыт" },
+    { "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_INSUFFICIENT_RANK_LABEL_TEXT", "value": "Для улучшения нужен ранг:" },
+    { "key": "STRING_MAIN_PANEL_UPDATE_RANK_NOTICE", "value": "Поздравляем\nВы получили звание «%1»" },
+    {
       "key": "PAYMENT_SMS_DESCRIPTION_TEXT",
       "value": "Выберите страну и вашего оператора мобильной связи. Выберите желаемое количество кристаллов, и отправьте SMS с указанным текстом на соответствующей номер. В случае отсутствия проблем связи кристаллы зачисляются в течение нескольких секунд.\n\nВнимание! Согласно правилам работы SMS-сервиса у нас действуют антифродовые ограничения. Чтобы избежать потери Ваших платежей, пожалуйста, соблюдайте следующие правила:\n\n1. Не отправляйте SMS на сумму более чем 400 руб/час.\n\n2. Не отправляйте на один ник игрока более 3-х SMS с одного и того же номера в течение часа.\n\nВсе цены приведены без учёта налогов.\n\n<font color='#ff4e00'>Убедитесь в согласии того, кто оплачивает счёт!</font>"
-    }, { "key": "MAIN_PANEL_BUTTON_HALL", "value": "Зал славы" },
+    },
+    { "key": "MAIN_PANEL_BUTTON_HALL", "value": "Зал славы" },
     { "key": "ACCOUNT_RECOVERY_FORM_ERROR", "value": "Произошла ошибка." },
     { "key": "MAP_THEME_NAME_SPACE", "value": "Космос" },
     { "key": "STRING_IS_CONSIDERING_YOUR_INVITE_LABEL", "value": "Уже рассматривает твоё приглашение" },
+    { "key": "SETTINGS_SOFT_PARTICLES_LABEL_TEXT", "value": "Мягкие частицы" },
     { "key": "BATTLE_STAT_CALLSIGN", "value": "Позывной" },
+    { "key": "KEYBOARD_KEY_UP", "value": "Вверх" },
+    { "key": "GAME_ACTION_TURRET_TURN_LEFT", "value": "Повернуть башню влево" },
     { "key": "ALERT_ANSWER_SEND_BUG_REPORT", "value": "Отправить баг-репорт и вернуться в битву" },
-    { "key": "PAYMENT_WMCOMBO_LABEL_TEXT", "value": "Тип:" }, { "key": "REDUCE_DAMAGE_ISIDA", "value": "Изиды" },
-    { "key": "STRING_ALERT_ACCOUNT_LINKING_ERROR", "value": "Ошибка привязки аккаунта, попробуйте позже" }, {
+    { "key": "PAYMENT_WMCOMBO_LABEL_TEXT", "value": "Тип:" },
+    { "key": "REDUCE_DAMAGE_ISIDA", "value": "Изиды" },
+    { "key": "STRING_ALERT_ACCOUNT_LINKING_ERROR", "value": "Ошибка привязки аккаунта, попробуйте позже" },
+    {
       "key": "STRING_REGISTER_FORM_AGREEMENT_NOTE_TEXT",
       "value": "Нажимая «Подтвердить», вы принимаете:\n<a href='event:terms'><font color='#59ff32'><u>Лицензионное соглашение</u></font></a>,\n<a href='event:policy'><font color='#59ff32'><u>Политику конфиденциальности и cookies</u></font></a>,\n<a href='event:rules'><font color='#59ff32'><u>Правила Игры</u></font></a>."
-    }, { "key": "STRING_BATTLE_CANNOT_BE_FOUND_LABEL", "value": "Приглашение не отправлено\nБитва не найдена" }, {
+    },
+    { "key": "STRING_BATTLE_CANNOT_BE_FOUND_LABEL", "value": "Приглашение не отправлено\nБитва не найдена" },
+    {
       "key": "BATTLE_PRO_BATTLE_SUBSCRIBE",
       "value": "Чтобы принять участие в PRO Битве, тебе нужно купить абонемент или заплатить 150 кристаллов за вход в эту битву."
-    }, {
+    },
+    {
       "key": "PAYMENT_YANDEX_MONEY_DESCRIPTION_TEXT",
       "value": "Вы попадёте на страничку с параметрами платежа. Вам нужно будет ввести желаемое количество кристаллов и действовать в соответствии с инструкцией указанной там же."
-    }, { "key": "BATTLE_CREATE_PANEL_LABEL_COST_BATTLE", "value": "Стоимость входа" },
-    { "key": "BATTLE_CREATE_PANEL_STEPPER_FLAG_LIMIT", "value": "Флаги" }, {
+    },
+    { "key": "SHOW_DAMAGE", "value": "Отображать урон" },
+    { "key": "BATTLE_CREATE_PANEL_LABEL_COST_BATTLE", "value": "Стоимость входа" },
+    { "key": "BATTLE_CREATE_PANEL_STEPPER_FLAG_LIMIT", "value": "Флаги" },
+    {
       "key": "REFERAL_WINDOW_MAIL_DESCRIPTION",
       "value": "Отправь письма с приглашениями в игру своим друзьям. За один раз можно указать не более трех e-mail. Рассылать письма можно не чаще одного раза за десять секунд."
-    }, { "key": "PAYMENT_EASYPAY_NAME_TEXT", "value": "EasyPay" },
+    },
+    { "key": "PAYMENT_EASYPAY_NAME_TEXT", "value": "EasyPay" },
     { "key": "HELP_GARAGE_WAREHOUSE_LIST_HELPER_TEXT", "value": "Ваши вещи." },
     { "key": "STATISTICS_HEADER_SCORE", "value": "Очки" },
+    { "key": "PRESENT_INFO_MESSAGE_LABEL", "value": "Текст:" },
     { "key": "REGISTER_FORM_CONFIRM_TEXT", "value": "Вы должны подтвердить адрес e-mail, проверьте Ваш ящик" },
     { "key": "BATTLE_PLAYER_LEFT", "value": "покинул бой" },
     { "key": "STATISTICS_HEADER_ACHIVIMENTS", "value": "Достижения" },
-    { "key": "PAYMENT_BUG_REPORT_MASTERCARD_NAME_TEXT", "value": "MasterCard" }, {
+    { "key": "PAYMENT_BUG_REPORT_MASTERCARD_NAME_TEXT", "value": "MasterCard" },
+    {
       "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_DONATE_TEXT",
       "value": "Нажми, чтобы совершить платёж.\nПри первой покупке - 1000 кристаллов в подарок!"
-    }, { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_BUY_HD", "value": "Купить HD" },
-    { "key": "STRING_FRIENDS_BATTLE", "value": "Битва" }, { "key": "BATTLE_GOLD_TAKEN", "value": "взял золотой ящик" },
+    },
+    { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_BUY_HD", "value": "Купить HD" },
+    { "key": "STRING_FRIENDS_BATTLE", "value": "Битва" },
+    { "key": "BATTLE_GOLD_TAKEN", "value": "взял золотой ящик" },
     {
       "key": "PAYMENT_VISA_DESCRIPTION_TEXT",
       "value": "'Выберите платёжную систему, желаемое количество кристаллов и нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы заполните платёжную форму и нажмите Оплатить.'"
-    }, { "key": "CTF_ENEMY_FLAG_RETURNED", "value": "Вражеский флаг возвращён" },
-    { "key": "MAP_THEME_NAME_SUMMER_DAY", "value": "Лето день" }, {
+    },
+    { "key": "CTF_ENEMY_FLAG_RETURNED", "value": "Вражеский флаг возвращён" },
+    { "key": "MAP_THEME_NAME_SUMMER_DAY", "value": "Лето день" },
+    {
       "key": "STRING_ALERT_ACCOUNT_CANT_BE_UNLINKED",
       "value": "Внимание!\nПрежде чем вы сможете закрыть доступ для сервиса %1, вам\nнеобходимо установить пароль для аккаунта \"ProTanki\" в настройках"
-    }, { "key": "CTF_LOST_FLAG_NEUTRAL", "value": "потерял флаг" },
-    { "key": "GARAGE_CONFIRM_ALERT_CANCEL_BUTTON_TEXT", "value": "Нет" }, {
-      "key": "STRING_ALERT_GOT_TO_BATTLE_IS_UNAVAILABLE_RANK",
-      "value": "Ты собираешься перейти в битву, которая недоступна тебе по званию."
-    }, { "key": "CHAT_PANEL_BUTTON_SEND", "value": "Сказать" }, {
+    },
+    { "key": "CTF_LOST_FLAG_NEUTRAL", "value": "потерял флаг" },
+    { "key": "GARAGE_CONFIRM_ALERT_CANCEL_BUTTON_TEXT", "value": "Нет" },
+    {
+      "key": "STRING_ALERT_GOT_TO_BATTLE_IS_UNAVAILABLE_RANK", "value": "Ты собираешься перейти в битву, которая недоступна тебе по званию."
+    },
+    { "key": "CHAT_PANEL_BUTTON_SEND", "value": "Сказать" },
+    { "key": "SETTINGS_SHADOWS_LABEL_TEXT", "value": "Тень под танком" },
+    {
       "key": "BUG_REPORT_NOT_TESTER_ALERT_TEXT",
       "value": "'Вы не можете отправить баг-репорт. Посылка баг-репорта разрешена\nтолько участникам тестовой группы. Если у вас проблема с платежом,\nто в каждом из подразделов платёжного раздела есть кнопка ' + Text.PAYMENT_BUTTON_SEND_BUG_REPORT_TEXT + '.\nО решении всех остальных проблем вы можете почитать на форуме.'"
-    }, { "key": "BATTLE_FUND", "value": "Фонд битвы" },
+    },
+    { "key": "BATTLE_FUND", "value": "Фонд битвы" },
     { "key": "STRING_TYPING_SPEED_BANNED", "value": "Вам временно запрещено писать в чате" },
     { "key": "INVITATION_HAS_NOT_BEEN_SENT_ALERT_TEXT", "value": "Не удалось отправить приглашение." },
     { "key": "BATTLE_PAUSE_ENABLED", "value": "Включена пауза" },
     { "key": "HELP_PANEL_ACHIEVEMENTS_INVITE_FRIEND_ARROW_LENGTH", "value": "21" },
     { "key": "REDUCE_DAMAGE_SHAFT", "value": "Шафта" },
-    { "key": "STRING_BATTLE_IS_UNAVAILABLE_AT_YOUR_RANK_LABEL", "value": "Битва недоступна по званию" }, {
+    { "key": "STRING_BATTLE_IS_UNAVAILABLE_AT_YOUR_RANK_LABEL", "value": "Битва недоступна по званию" },
+    {
       "key": "STRING_ALERT_INVITE_TO_BATTLE_IS_UNAVAILABLE_RANK",
       "value": "Ты уверен, что хочешь позвать друга в битву, которая недоступна ему по званию?"
-    }, { "key": "BATTLE_CREATE_PANEL_BUTTON_TEAM_DEATHMATCH", "value": "Команда\nна команду" }, {
-      "key": "TEXT_BATTLE_CREATE_PANEL_FLOOD_ALERT_TEXT",
-      "value": "Вы можете создавать не более трех битв в течении 5 минут."
-    }, {
-      "key": "STRING_HELP_PANEL_RANK_HELPER_TEXT",
-      "value": "Это ваш ранг.\nЧем больше уничтожено\nтанков, тем выше ранг."
-    }, { "key": "STRING_PARTNER_HELP_PANEL_BUTTON_BAR_HELPER_TEXT", "value": "Настройки. Звук." },
+    },
+    { "key": "BATTLE_CREATE_PANEL_BUTTON_TEAM_DEATHMATCH", "value": "Команда\nна команду" },
+    { "key": "STRING_HELP_PANEL_RANK_HELPER_TEXT", "value": "Это ваш ранг.\nЧем больше уничтожено\nтанков, тем выше ранг." },
+    { "key": "STRING_PARTNER_HELP_PANEL_BUTTON_BAR_HELPER_TEXT", "value": "Настройки. Звук." },
     { "key": "PAYMENT_TERMINAL_NAME_TEXT", "value": "Платёжные терминалы" },
-    { "key": "BATTLE_CREATE_PANEL_CHECKBOX_PAY_BATTLE", "value": "Без припасов" }, {
-      "key": "STRING_YOUR_FRIEND_IS_ENTERING_THE_GAME_LABEL",
-      "value": "Приглашение не отправлено\nДруг в процессе входа в игру"
-    }, { "key": "STRING_VKONTAKTE_NAME", "value": "ВКонтакте" },
+    { "key": "BATTLE_CREATE_PANEL_CHECKBOX_PAY_BATTLE", "value": "Без припасов" },
+    { "key": "STRING_YOUR_FRIEND_IS_ENTERING_THE_GAME_LABEL", "value": "Приглашение не отправлено\nДруг в процессе входа в игру" },
+    { "key": "STRING_VKONTAKTE_NAME", "value": "ВКонтакте" },
+    { "key": "TIME_LABEL_HOUR", "value": "ч" },
     { "key": "CRYSTALS_PACKAGE_AS_GIFT", "value": "в подарок!" },
     { "key": "STRING_HELP_PANEL_SCORE_HELPER_ARROW_LENGTH", "value": "48" },
+    { "key": "ALREADY_BOUGHT_KIT", "value": "Уже куплено на сумму" },
     { "key": "CTF_LOST_OUR_FLAG", "value": "потерял наш флаг" },
-    { "key": "GARAGE_INFO_PANEL_RATE_OF_FIRE_UNIT_TEXT", "value": "shot/min" }, {
+    { "key": "GARAGE_INFO_PANEL_RATE_OF_FIRE_UNIT_TEXT", "value": "shot/min" },
+    {
       "key": "PAYMENT_QIWI_DESCRIPTION_TEXT",
-      "value": "'Выберите желаемое количество кристаллов, и нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы используйте свой лицевой счёт для оплаты по выставленному счёту.\n\nТеперь возможна покупка кристаллов через терминалы QIWI, для чего нужно помнить лишь игровой ник.\nНикаких идентификаторов и агрегаторов.\n\nВ терминале QIWI выберите раздел Оплата услуг, Другие уÑлуги, Игры, MyTanks Online, введите свой игровой ник (с учётом заглавных и строчных букв), внесите желаемую сумму и нажмите Оплатить.'"
-    }, { "key": "BATTLE_STAT_SCORE", "value": "Счёт" }, { "key": "GARAGE_INFO_PANEL_DISTANCE_UNIT_TEXT", "value": "m" },
+      "value": "'Выберите желаемое количество кристаллов, и нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы используйте свой лицевой счёт для оплаты по выставленному счёту.\n\nТеперь возможна покупка кристаллов через терминалы QIWI, для чего нужно помнить лишь игровой ник.\nНикаких идентификаторов и агрегаторов.\n\nВ терминале QIWI выберите раздел Оплата услуг, Другие услуги, Игры, ProTanki Online, введите свой игровой ник (с учётом заглавных и строчных букв), внесите желаемую сумму и нажмите Оплатить.'"
+    },
+    { "key": "BATTLE_STAT_SCORE", "value": "Счёт" },
+    { "key": "GARAGE_INFO_PANEL_DISTANCE_UNIT_TEXT", "value": "m" },
     { "key": "STRING_ALERT_ACCOUNT_SUCCESS_LINKED", "value": "Аккаунт успешно привязан" },
+    { "key": "DISCOUNTED_AT_KIT", "value": "Со скидкой {0}" },
     { "key": "STRING_FRIENDS_FIND_TO_SEND", "value": "Отправить заявку другу..." },
     { "key": "BATTLE_PAUSE_PRESS_ANY_KEY", "value": "Нажмите любую кнопку чтобы продолжить" },
     { "key": "GARAGE_INFO_PANEL_ANGLE_UNIT_TEXT", "value": "grad" },
@@ -131,18 +165,24 @@
     { "key": "REFERAL_WINDOW_COPY_LINK_LABEL_TEXT", "value": "Скопируйте ссылку и перешлите своим друзьям" },
     { "key": "PAYMENT_BUG_REPORT_COMMENT_INPUT_LABEL_TEXT", "value": "Коммент:" },
     { "key": "REDUCE_DAMAGE_TWINS", "value": "Твинса" },
+    { "key": "SETTINGS_CHANGE_PASSWORD_BUTTON", "value": "Изменить" },
     { "key": "STRING_PARTNER_REGISTARTION_FORM_CONTINUE", "value": "Подтвердить" },
     { "key": "ERROR_CALLSIGN_NOT_UNIQUE", "value": "Такой позывной уже есть" },
-    { "key": "BATTLELIST_PANEL_BUTTON_CREATE", "value": "Создать" }, {
+    { "key": "SETTINGS_LINK_ACCOUNT", "value": "Привязать игровой аккаунт к сервису" },
+    { "key": "BATTLELIST_PANEL_BUTTON_CREATE", "value": "Создать" },
+    {
       "key": "PAYMENT_TERMINAL_DESCRIPTION_TEXT",
-      "value": "Выберите страну и нажмите Далее. Вы попадёте на страничку с параметрами платежа. Вам нужно будет ввести желаемое количество кристаллов и действовать в соответствии с инструкцией указанной там же. + '\n\nТеперь возможна покупка кристаллов через терминалы QIWI, для чего нужно помнить лишь игровой ник.\nНикаких идентификаторов и агрегаторов.\n\nВ терминале QIWI выберите раздел Оплата услуг, Другие услуги, Игры, MyTanks Online, введите свой игровой ник (с учётом заглавных и строчных букв), внесите желаемую сумму и нажмите Оплатить.'"
-    }, { "key": "SETTINGS_MIPMAPPING_LABEL_TEXT", "value": "Использовать мип-маппинг" },
+      "value": "Выберите страну и нажмите Далее. Вы попадёте на страничку с параметрами платежа. Вам нужно будет ввести желаемое количество кристаллов и действовать в соответствии с инструкцией указанной там же. + '\n\nТеперь возможна покупка кристаллов через терминалы QIWI, для чего нужно помнить лишь игровой ник.\nНикаких идентификаторов и агрегаторов.\n\nВ терминале QIWI выберите раздел Оплата услуг, Другие услуги, Игры, ProTanki Online, введите свой игровой ник (с учётом заглавных и строчных букв), внесите желаемую сумму и нажмите Оплатить.'"
+    },
+    { "key": "SETTINGS_MIPMAPPING_LABEL_TEXT", "value": "Использовать мип-маппинг" },
     { "key": "CTF_RED_FLAG_RETURNED", "value": "Красный флаг возвращен" },
     { "key": "REGISTER_FORM_EMAIL_NOTE_TEXT", "value": "Вы можете ввести e-mail для возможности восстановления" },
-    { "key": "REFERAL_STATISTICS_HEADER_INCOME", "value": "Кристаллы" }, {
+    { "key": "REFERAL_STATISTICS_HEADER_INCOME", "value": "Кристаллы" },
+    {
       "key": "STRING_PARTNER_REGISTARTION_FORM_LOGIN_LINK_TEXT",
       "value": "Уже зарегистрированы в игре?\n<a href='event:haveAcc'><font color='#59ff32'><u>Выполните вход</u></font></a>."
-    }, { "key": "BTL_WAITING_PLAYERS_ENDING_SINGLE", "value": "-го игрока" },
+    },
+    { "key": "BTL_WAITING_PLAYERS_ENDING_SINGLE", "value": "-го игрока" },
     { "key": "BATTLE_SUPPLIES_TEXT", "value": "Припасы" },
     { "key": "CTF_CAPTURED_OUR_FLAG", "value": "доставил наш флаг" },
     { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_MOUNT_HD", "value": "Включить HD" },
@@ -151,49 +191,61 @@
     { "key": "SETTINGS_DUST_CHECKBOX_LABEL_TEXT", "value": "Пыль под танками" },
     { "key": "BTL_WAITING_FOR", "value": "Ожидание" },
     { "key": "SETTINGS_INVERSE_TURN_CONTROL_CHECKBOX_LABEL_TEXT", "value": "Инверсное управление при движении назад" },
-    { "key": "MAP_THEME_NAME_SUMMER", "value": "Лето" }, { "key": "PAYMENT_COMMON_COMMENT", "value": "Комментарий:" },
-    { "key": "STRING_SETTINGS_GRAPHICS_AUTO_QUALITY", "value": "Автоматическая настройка качества графики" },
+    { "key": "MAP_THEME_NAME_SUMMER", "value": "Лето" },
+    { "key": "PAYMENT_COMMON_COMMENT", "value": "Комментарий:" },
     { "key": "SETTINGS_PERFORMANCE_HEADER_LABEL_TEXT", "value": "Отображение" },
     { "key": "STRING_DONATION_ALERT_DONATED_CRYSTALS_TEXT", "value": "Куплено кристаллов:" },
     { "key": "GARAGE_BUY_TEXT", "value": "Купить" },
     { "key": "STRING_HELP_PANEL_RANK_HELPER_ARROW_LENGTH", "value": "104" },
-    { "key": "SETTINGS_SEND_NEWS_CHECKBOX_LABEL_TEXT", "value": "Отправлять новости" }, {
+    { "key": "SETTINGS_SEND_NEWS_CHECKBOX_LABEL_TEXT", "value": "Отправлять новости" },
+    {
       "key": "PAYMENT_WEBMONEY_DESCRIPTION_TEXT",
       "value": "Вы попадёте на страничку с параметрами платежа. Вам нужно будет ввести желаемое количество кристаллов, выбрать тип валюты и действовать в соответствии с инструкцией указанной там же."
-    }, { "key": "BUG_REPORT_BUTTON_SEND_TEXT", "value": "Отправить" },
+    },
+    { "key": "BUG_REPORT_BUTTON_SEND_TEXT", "value": "Отправить" },
     { "key": "STRING_CAPTCHA_FORM_TITLE", "value": "Введите символы, изображённые на картинке:" },
     { "key": "STRING_DONATION_ALERT_PACKAGE_BONUS_CRYSTALS_TEXT", "value": "Бонус покупки пакета:" },
     { "key": "CLOSE_LABEL", "value": "Закрыть" },
     { "key": "SERVER_STOP_ALERT_TEXT", "value": "ОБНОВЛЕНИЕ СЕРВЕРА!\n\nСервер будет остановлен через %1 сек." },
+    { "key": "BUTTON_LABEL_RESTORE_DEFAULT_BUTTONS", "value": "Восстановить кнопки по умолчанию" },
     { "key": "SETTINGS_ALTERNATE_CAMERA_LABEL_TEXT", "value": "Альтернативное поведение камеры" },
+    { "key": "GAME_ACTION_USE_MINE", "value": "Использовать мину" },
     { "key": "STRING_ERROR_EMAIL_NOT_UNIQUE", "value": "E-mail не уникален" },
     { "key": "CTF_GOT_FLAG_NEUTRAL", "value": "взял флаг" },
+    { "key": "GAME_ACTION_CAMERA_DOWN", "value": "Опустить камеру" },
     { "key": "STRING_INVITES_YOU_TO_A_BATTLE_LABEL", "value": "Приглашает тебя в битву" },
-    { "key": "BUG_REPORT_NOT_TESTER_ALERT_TO_FORUM_TEXT", "value": "Перейти на форум" }, {
+    { "key": "BUG_REPORT_NOT_TESTER_ALERT_TO_FORUM_TEXT", "value": "Перейти на форум" },
+    {
       "key": "SHOP_CATEGORY_DOUBLE_CRYSTALS",
-      "value": "<font color=\"#ffbe23\" size=\"+5\">У вас есть бонусная карта \"Двойной кристалл\"!\nСколько бы кристаллов вы ни купили, ещё столько же поÐ»учите от нас в подарок!</font>"
-    }, { "key": "GARAGE_INFO_PANEL_SPEED_UNIT_TEXT", "value": "m/sec" }, {
-      "key": "TEXT_GARAGE_NEW_ITEMS_ALERT", "value": "Поздравляем! Теперь вы можете купить следующие предметы в Гараже:"
-    }, { "key": "TEXT_PROFILE", "value": "Профиль" },
+      "value": "<font color=\"#ffbe23\" size=\"+5\">У вас есть бонусная карта \"Двойной кристалл\"!\nСколько бы кристаллов вы ни купили, ещё столько же получите от нас в подарок!</font>"
+    },
+    { "key": "GARAGE_INFO_PANEL_SPEED_UNIT_TEXT", "value": "m/sec" },
+    { "key": "GAME_ACTION_SCREEN_SIZE_INCREASE", "value": "Увеличить размер окна битвы" },
+    { "key": "TEXT_GARAGE_NEW_ITEMS_ALERT", "value": "Поздравляем! Теперь вы можете купить следующие предметы в Гараже:" },
+    { "key": "TEXT_PROFILE", "value": "Профиль" },
     { "key": "STRING_FRIENDS_YOU_ARE_HERE_BATTLE_INDICATOR", "value": "(Ты здесь)" },
     { "key": "STRING_THERE_ARE_PLACES_AVAILABLE_LABEL", "value": "Есть свободные места" },
-    { "key": "PAYMENT_BUG_REPORT_PHONE_NUMBER_INPUT_LABEL_TEXT", "value": "Номер\nтелефона:" }, {
-      "key": "STRING_FRIENDS_ALREADY_HAVE_INCOMING",
-      "value": "Заявка от игрока %USERNAME% уже есть в списке входящих. Принять её?"
-    }, {
-      "key": "STRING_HELP_PANEL_SCORE_HELPER_TEXT",
-      "value": "Ваши    /    Нужно для\nочки          следующего\n                    ранга"
-    }, { "key": "TEXT_SPECTATE_TEXT", "value": "Наблюдать" },
+    { "key": "PAYMENT_BUG_REPORT_PHONE_NUMBER_INPUT_LABEL_TEXT", "value": "Номер\nтелефона:" },
+    { "key": "STRING_FRIENDS_ALREADY_HAVE_INCOMING", "value": "Заявка от игрока %USERNAME% уже есть в списке входящих. Принять её?" },
+    {
+      "key": "STRING_HELP_PANEL_SCORE_HELPER_TEXT", "value": "Ваши    /    Нужно для\nочки          следующего\n                    ранга"
+    },
+    { "key": "TEXT_SPECTATE_TEXT", "value": "Наблюдать" },
     { "key": "TEXT_PREMIUM_BUTTON_EXTEND", "value": "Продлить" },
+    { "key": "SETTINGS_MOUSE_CONTROL_CHECKBOX", "value": "Управление мышью" },
+    { "key": "REARM_BATTLE_EVENT", "value": "изменил вооружение" },
     { "key": "REFERAL_WINDOW_ADDRESS_NOT_VALID_ALERT_TEXT", "value": "Адрес %1 не действителен." },
     { "key": "REFERAL_WINDOW_BUTTON_GET_LINK_TEXT", "value": "Получить\nссылку" },
     { "key": "BATTLE_CREATE_PANEL_MAP_THEME_LABEL", "value": "Тема:" },
     { "key": "CHECK_PASSWORD_FORM_BUTTON_REGISTRATION_TEXT", "value": "Регистрация" },
     { "key": "CONNECTION_CLOSED_MESSAGE", "value": "Соединение с сервером разорвано" },
+    { "key": "GAME_ACTION_DROP_FLAG", "value": "Сбросить флаг" },
     { "key": "REGISTER_FORM_REMEMBER_ME_CHECKBOX_LABEL_TEXT", "value": "Запомнить" },
     { "key": "ACCOUNT_RECOVERY_FORM_SAVE", "value": "Сохранить" },
+    { "key": "REARM_APPLY", "value": "Применяется изменение вооружения" },
     { "key": "TEXT_PREMIUM_ALERT_WELCOM", "value": "Добро пожаловать в ряды Премиум танкистов!" },
-    { "key": "STRING_HELP_PANEL_MONEY_HELPER_ARROW_LENGTH", "value": "61" }, { "key": "BATTLE_EXIT", "value": "Выйти" },
+    { "key": "STRING_HELP_PANEL_MONEY_HELPER_ARROW_LENGTH", "value": "61" },
+    { "key": "BATTLE_EXIT", "value": "Выйти" },
     { "key": "BATTLE_TEAM_BLUE", "value": "синюю" },
     { "key": "PAYMENT_BUG_REPORT_PURSE_NUMBER_INPUT_LABEL_TEXT", "value": "Номер\nкошелька:" },
     { "key": "BATTLE_CREATE_PANEL_STEPPER_TIME_LIMIT", "value": "Время" },
@@ -201,112 +253,145 @@
     { "key": "REFERAL_WINDOW_BUTTON_CLOSE_TEXT", "value": "Закрыть" },
     { "key": "STRING_GARAGE_CATEGORY_BUTTON_TURRETS", "value": "Пушки" },
     { "key": "SETTINGS_DYNAMIC_SHADOWS_CHECKBOX_LABEL_TEXT", "value": "Динамические тени" },
-    { "key": "GARAGE_CONFIRM_ALERT_COST_PREFIX", "value": "за" }, {
+    { "key": "GARAGE_CONFIRM_ALERT_COST_PREFIX", "value": "за" },
+    { "key": "SETTINGS_SHOW_DROP_ZONES_LABEL_TEXT", "value": "Показывать зоны ящиков" },
+    {
       "key": "NEWBIES_BONUSES_WINDOW_MESSAGE_TEXT",
       "value": "Поздравляем! Ты получил свой первый ежедневный подарок - недельный абонемент на повышенный опыт. С ним ты будешь зарабатывать звания быстрее, а значит, быстрее получишь доступ к новым пушкам и корпусам.\n\nИ не забудь зайти в игру завтра - тебя ждёт новый подарок!"
-    }, { "key": "RATING_CLOSE_BUTTON_TEXT", "value": "Закрыть" },
+    },
+    { "key": "RATING_CLOSE_BUTTON_TEXT", "value": "Закрыть" },
     { "key": "BATTLE_CREATE_PANEL_BUTTON_START", "value": "Запустить" },
     { "key": "STRING_FRIENDS_IN_REQUESTS", "value": "Входящие заявки" },
-    { "key": "MAIN_PANEL_BUTTON_DONATE", "value": "Купить" }, {
-      "key": "STRING_BATTLE_CANNOT_BE_FOUND_ALERT",
-      "value": "Ссылка устарела. Битва не найдена в списке, она уже завершилась."
-    }, { "key": "ALERT_GARAGE_AVAILABLE", "value": "Теперь вы можете делать покупки в гараже." },
-    { "key": "STATISTICS_HEADER_RANK", "value": "Ранг" }, { "key": "BATTLE_PLAYER_JOINED", "value": "вступил в бой" },
+    { "key": "MAIN_PANEL_BUTTON_DONATE", "value": "Купить" },
+    { "key": "STRING_BATTLE_CANNOT_BE_FOUND_ALERT", "value": "Ссылка устарела. Битва не найдена в списке, она уже завершилась." },
+    { "key": "ALERT_GARAGE_AVAILABLE", "value": "Теперь вы можете делать покупки в гараже." },
+    { "key": "STATISTICS_HEADER_RANK", "value": "Ранг" },
+    { "key": "SETTINGS_TAB_NAME_CONTROLS", "value": "Управление" },
+    { "key": "BATTLE_PLAYER_JOINED", "value": "вступил в бой" },
     { "key": "SETTINGS_EMAIL_LABEL_TEXT", "value": "E-mail:" },
-    { "key": "STRING_SETTINGS_SHOW_CHAT_CHECKBOX_LABEL_TEXT", "value": "Показывать чат" },
     { "key": "GARAGE_CONFIRM_ALERT_BUY_QEUSTION_TEXT", "value": "Вы подтверждаете покупку?" },
     { "key": "BATTLEINFO_PANEL_COPY_LINK_TEXT", "value": "Скопировать ссылку" },
+    { "key": "BOUGHT_STATUS_KIT", "value": "(куплено)" },
+    { "key": "REARM_TEAM_WIN", "value": "Твоя команда победила!" },
     { "key": "STATISTICS_HEADER_KILLS", "value": "Уничтожил" },
-    { "key": "TEXT_PREMIUM_ALERT_RETURN", "value": "С возвращением в ряды Премиум танкистов!" }, {
-      "key": "STRING_FRIENDS_REQUEST_EXIST_ALERT",
-      "value": "Заявка для игрока %USERNAME% уже есть в списке отправленных."
-    }, { "key": "ACCOUNT_RECOVERY_FORM_WRONG_CODE", "value": "Неверный код подтверждения." },
+    { "key": "GAME_ACTION_USE_DOBLE_DAMAGE", "value": "Использовать двойной урон" },
+    { "key": "ALERT_STAY_IN_BATTLE", "value": "Остаться в битве при переходе в игровой раздел?" },
+    { "key": "FITTING_BUTTON_TEXT", "value": "Примерить" },
+    { "key": "TEXT_PREMIUM_ALERT_RETURN", "value": "С возвращением в ряды Премиум танкистов!" },
+    { "key": "STRING_FRIENDS_REQUEST_EXIST_ALERT", "value": "Заявка для игрока %USERNAME% уже есть в списке отправленных." },
+    { "key": "SETTINGS_SHOW_CHAT_CHECKBOX_LABEL_TEXT", "value": "Показывать чат" },
+    { "key": "ACCOUNT_RECOVERY_FORM_WRONG_CODE", "value": "Неверный код подтверждения." },
     { "key": "PAYMENT_BUG_REPORT_EMAIL_INPUT_LABEL_TEXT", "value": "E-mail:" },
-    { "key": "REDUCE_DAMAGE_FIREBIRD", "value": "Огнемёта" }, {
+    { "key": "REDUCE_DAMAGE_FIREBIRD", "value": "Огнемёта" },
+    {
       "key": "PAYMENT_MAININFO_LABEL_TEXT",
       "value": "Здесь Вы можете купить кристаллы, чтобы использовать их в Гараже для покупки нужных вам вещей. Выберите удобный для вас способ оплаты."
-    }, {
-      "key": "SERVER_IS_RESTARTING_LOGIN_TEXT",
-      "value": "В данный момент происходит рестарт сервера.\nВход на сервер временно закрыт."
-    }, { "key": "GARAGE_CONFIRM_ALERT_UPGRADE_QEUSTION_TEXT", "value": "Вы подтверждаете улучшение?" },
-    { "key": "BATTLE_STAT_KILLS", "value": "Уничтожено" }, { "key": "STATISTICS_HEADER_WEALTH", "value": "Богатство" },
+    },
+    { "key": "SERVER_IS_RESTARTING_LOGIN_TEXT", "value": "В данный момент происходит рестарт сервера.\nВход на сервер временно закрыт." },
+    { "key": "GARAGE_CONFIRM_ALERT_UPGRADE_QEUSTION_TEXT", "value": "Вы подтверждаете улучшение?" },
+    { "key": "BATTLE_STAT_KILLS", "value": "Уничтожено" },
+    { "key": "STATISTICS_HEADER_WEALTH", "value": "Богатство" },
+    { "key": "PAYMENT_BUG_REPORT_INFO", "value": "Если ваш платёж не дошел или возникла проблема — сообщите нам об этом." },
     {
-      "key": "PAYMENT_BUG_REPORT_INFO",
-      "value": "Если ваш платёж не дошел или возникла проблема — сообщите нам об этом."
-    }, {
       "key": "REFERAL_WINDOW_INFO_TEXT",
       "value": "Пригласи в игру друга и получай кристаллы за каждое его звание и 10% от внесённых им реальных денег.\n\nЕсть три варианта приглашений:\n     - вручную ввести E-mail адреса друзей, чтобы мы послали им письма\n       со специальной ссылкой\n     - разослать друзьям специальную ссылку самостоятельно\n     - разместить прикольный баннер на твоём сайте или форуме.\n\n                         <u><a href='%1' target='_blank'>Таблица званий и бонусов.</a></u>"
-    }, { "key": "STRING_HELP_PANEL_MONEY_HELPER_TEXT", "value": "Покупка кристаллов\nза реальные деньги." },
+    },
+    { "key": "GAME_ACTION_SHOOT", "value": "Выстрелить" },
+    { "key": "STRING_HELP_PANEL_MONEY_HELPER_TEXT", "value": "Покупка кристаллов\nза реальные деньги." },
     { "key": "SETTINGS_BUTTON_RESEND_CONFIRMATION_TEXT", "value": "Подтвердить" },
     { "key": "BATTLEINFO_PANEL_PAID_BATTLES_ALERT_ANSWER_ENTER", "value": "Войти" },
-    { "key": "STRING_HELP_PASSWORD_IS_TOO_SIMPLE", "value": "Введенный пароль слишком простой" }, {
-      "key": "ERROR_CALLSIGN_NOT_SINGLE_DEVIDERS",
-      "value": "'Позывной не должен содержать несколько символов . или _ или - подряд'"
-    }, { "key": "BUG_REPORT_NOT_TESTER_ALERT_BUTTON_TO_PAYMENT_TEXT", "value": "Перейти в платёжный раздел" },
+    { "key": "STRING_HELP_PASSWORD_IS_TOO_SIMPLE", "value": "Введенный пароль слишком простой" },
+    { "key": "ERROR_CALLSIGN_NOT_SINGLE_DEVIDERS", "value": "'Позывной не должен содержать несколько символов . или _ или - подряд'" },
+    { "key": "YOU_SAVE_KIT", "value": "Выгода" },
+    { "key": "BUG_REPORT_NOT_TESTER_ALERT_BUTTON_TO_PAYMENT_TEXT", "value": "Перейти в платёжный раздел" },
     { "key": "PAYMENT_SMS_NAME_TEXT", "value": "SMS" },
-    { "key": "PAYMENT_BUG_REPORT_PAYMENT_SYSTEM_COMBO_LABEL_TEXT", "value": "Платежная\nсистема:" }, {
+    { "key": "PAYMENT_BUG_REPORT_PAYMENT_SYSTEM_COMBO_LABEL_TEXT", "value": "Платежная\nсистема:" },
+    {
       "key": "FREE_BONUSES_WINDOW_MESSAGE_TEXT",
       "value": "Вы только что получили ваш ежедневный бонус. Используйте его мудро, и враг будет повержен. А завтра приходите за новым подарком!"
-    }, { "key": "STRING_SETTINGS_DYNAMIC_LIGHTING", "value": "Динамическое освещение" },
+    },
     { "key": "PAYMENT_COMMON_DATE", "value": "Дата:" },
     { "key": "BATTLE_CREATE_PANEL_STEPPER_MAX_PLAYERS", "value": "Max игроков" },
     { "key": "GARAGE_INFO_PANEL_DAMAGE_SPEED_UNIT_TEXT", "value": "hp/sec" },
     { "key": "CTF_LOST_ENEMY_FLAG", "value": "потерял вражеский флаг" },
     { "key": "STRING_FRIENDS_CONFIRM_REQUEST", "value": "Принять заявку" },
+    { "key": "CURRENT_PASSWORD", "value": "Текущий пароль:" },
+    { "key": "TEXT_SEND_PRESENT_BUTTON", "value": "Отправить" },
     { "key": "FREE_BONUSES_WINDOW_RUNET_AWARD_BUTTON_TEXT", "value": "Проголосовать %1 раз" },
-    { "key": "MAIN_PANEL_BUTTON_FRIENDS", "value": "Друзья" }, { "key": "STRING_FRIENDS_NAME", "value": "Имя" }, {
+    { "key": "GAME_ACTION_SCREEN_SIZE_DECREASE", "value": "Уменьшить размер окна битвы" },
+    { "key": "MAIN_PANEL_BUTTON_FRIENDS", "value": "Друзья" },
+    { "key": "STRING_FRIENDS_NAME", "value": "Имя" },
+    {
       "key": "PAYMENT_MONEYMAIL_DESCRIPTION_TEXT",
       "value": "'Выберите количество кристаллов, нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы используйте платёжную форму для оплаты по выставленному счёту.'"
-    }, {
+    },
+    {
       "key": "STRING_HELP_PANEL_RANK_BAR_HELPER_TEXT",
       "value": "Индикатор ранга.\nУничтожая чужие\nтанки, вы заполняете\nего и получаете более\nвысокий ранг."
-    }, { "key": "GARAGE_CONFIRM_ALERT_NOT_ENOUGH_CRYSTALS", "value": "Недостаточно кристаллов." },
+    },
+    { "key": "PRESENT_INFO_FROM_LABEL", "value": "Прислал:" },
+    { "key": "GARAGE_CONFIRM_ALERT_NOT_ENOUGH_CRYSTALS", "value": "Недостаточно кристаллов." },
     { "key": "RATING_GOLDS_TEXT", "value": "Рейтинг по голдам" },
     { "key": "BATTLEINFO_PANEL_PAID_BATTLES_ALERT_ANSWER_DONT_ENTER", "value": "Не входить" },
     { "key": "UNBLOCK_USER_CONTEXT_MENU_LABEL", "value": "Показывать" },
-    { "key": "STRING_FRIENDS_NEW_FRIEND", "value": "Новый!" }, {
-      "key": "STRING_YOUR_FRIEND_IS_ALREADY_IN_THIS_BATTLE_LABEL",
-      "value": "Приглашение не отправлено\nДруг уже в этой битве"
-    }, { "key": "REDUCE_DAMAGE_SMOKY", "value": "Смоки" },
+    { "key": "REARM_TEAM_TIE", "value": "Битва закончилась с равным счётом" },
+    { "key": "STRING_FRIENDS_NEW_FRIEND", "value": "Новый!" },
+    { "key": "STRING_YOUR_FRIEND_IS_ALREADY_IN_THIS_BATTLE_LABEL", "value": "Приглашение не отправлено\nДруг уже в этой битве" },
+    { "key": "REDUCE_DAMAGE_SMOKY", "value": "Смоки" },
+    { "key": "KEYBOARD_KEY_PG_DN", "value": "PgDn" },
     { "key": "BATTLE_CREATE_PANEL_BUTTON_CONTROL_THE_POINT", "value": "Контроль\nточек" },
     { "key": "BATTLE_RESTART", "value": "Битва начнётся через" },
+    { "key": "SETTINGS_DYNAMIC_SHADOWS_LABEL_TEXT", "value": "Динамические тени" },
     { "key": "STRING_HELP_PASSWORDS_DO_NOT_MATCH", "value": "Пароли не совпадают" },
     { "key": "ALERT_ANSWER_CANCEL", "value": "Отмена" },
-    { "key": "STRING_HELP_PANEL_RATING_INDICATOR_HELPER_TEXT", "value": "Индикатор\nизменения\nрейтинга." }, {
+    { "key": "STRING_HELP_PANEL_RATING_INDICATOR_HELPER_TEXT", "value": "Индикатор\nизменения\nрейтинга." },
+    {
       "key": "STRING_ALERT_GO_TO_BATTLE_IS_UNAVAILABLE_RANK_FUND",
-      "value": "Ты собираешься перейти в битву, которая недоступна тебе по званию.\nПокинуть текущую битву? Очки и кристальный фонд будут потеряны."
-    }, { "key": "BATTLE_CREATE_PANEL_CHECKBOX_HR_MODE", "value": "ХР режим" },
-    { "key": "BUG_REPORT_BUTTON_CANCEL_TEXT", "value": "Отмена" }, {
+      "value": "Ты собираешься перейти в битву, которая недоступна тебе по званию.Покинуть текущую битву? Очки и кристальный фонд будут потеряны."
+    },
+    { "key": "BATTLE_CREATE_PANEL_CHECKBOX_HR_MODE", "value": "ХР режим" },
+    { "key": "BUG_REPORT_BUTTON_CANCEL_TEXT", "value": "Отмена" },
+    {
       "key": "STRING_PARTNER_LOGIN_FORM_ENTER_USERNAME_TEXT",
       "value": "Введите ваше Имя и Пароль в «ProTanki» для игры через партнёрскую сеть."
-    }, { "key": "CTF_OUR_FLAG_RETURNED", "value": "Наш флаг возвращён" },
-    { "key": "SPECTATOR_NAME", "value": "Наблюдатель" }, { "key": "STRING_FRIENDS", "value": "Друзья" },
+    },
+    { "key": "CTF_OUR_FLAG_RETURNED", "value": "Наш флаг возвращён" },
+    { "key": "SPECTATOR_NAME", "value": "Наблюдатель" },
+    { "key": "STRING_FRIENDS", "value": "Друзья" },
     { "key": "BATTLE_PAUSE_BATTLE_LEAVE", "value": "Выход из битвы через" },
     { "key": "INVITATION_SENDER_NAME_LABEL_TEXT", "value": "Ваше имя:\n<font size='-2'>(можно изменить)</font>" },
-    { "key": "BUG_REPORT_HAS_BEEN_SENT_ALERT_TEXT", "value": "Сообщение об ошибке успешно отправлено" }, {
+    { "key": "BUG_REPORT_HAS_BEEN_SENT_ALERT_TEXT", "value": "Сообщение об ошибке успешно отправлено" },
+    {
       "key": "REFERAL_WINDOW_LINK_DESCRIPTION",
       "value": "Эту ссылку можно отправить друзьям через ICQ, Skype или другое средство связи. Имейте ввиду, что модераторы форумов обычно чистят подобные ссылки, справедливо считая их реферральными."
-    }, { "key": "CHAT_LABEL_TEAM", "value": "Команде" }, {
+    },
+    { "key": "CHAT_LABEL_TEAM", "value": "Команде" },
+    {
       "key": "HELP_UP_RANK_HELPER_TEXT",
       "value": "Взрывай вражеские танки,чтобы получить\nновое звание. Дорастёшь до Рядового, и награда твоя!"
-    }, { "key": "REGISTER_FORM_BUTTON_LOGIN_TEXT", "value": "Есть аккаунт" },
-    { "key": "STRING_OFFLINE_LABEL", "value": "Не в сети" }, { "key": "PAYMENT_COMMON_LANGUAGE", "value": "Язык:" }, {
+    },
+    { "key": "PRESENT_INFO_DATE_LABEL", "value": "Дата:" },
+    { "key": "REGISTER_FORM_BUTTON_LOGIN_TEXT", "value": "Есть аккаунт" },
+    { "key": "STRING_OFFLINE_LABEL", "value": "Не в сети" },
+    { "key": "PAYMENT_COMMON_LANGUAGE", "value": "Язык:" },
+    {
       "key": "PAYMENT_PAYPAL_DESCRIPTION_TEXT",
       "value": "Комиссия системы составляет 7,5% для платежей больше 15 USD. Комиссия на платежи меньше 15 USD составляет 7,5% + 0.4 USD. Первый платёж может прийти с задержкой до 24 часов."
-    }, { "key": "ERROR_ACCOUNT_BAN", "value": "Аккаунт забанен." },
-    { "key": "STRING_SETTINGS_DYNAMIC_SHADOWS_LABEL_TEXT", "value": "Динамические тени" }, {
-      "key": "SETTINGS_CHANGE_PASSWORD_WRONG_LINK_TEXT",
-      "value": "Ссылка Ð´ля изменения пароля - некорректна. Повторите попытку."
-    }, { "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_COST_LABEL_TEXT", "value": "Улучшить за %1" },
+    },
+    { "key": "ERROR_ACCOUNT_BAN", "value": "Аккаунт забанен." },
+    { "key": "SETTINGS_CHANGE_PASSWORD_WRONG_LINK_TEXT", "value": "Ссылка для изменения пароля - некорректна. Повторите попытку." },
+    { "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_COST_LABEL_TEXT", "value": "Улучшить за %1" },
     { "key": "BATTLE_CRYSTAL_BOX_TEXT", "value": "Ящики с кристаллами" },
+    { "key": "SETTINGS_TAB_NAME_GRAPHICS", "value": "Графика" },
     { "key": "REFERAL_WINDOW_BUTTON_CLOSE", "value": "Закрыть" },
     { "key": "ERROR_CALLSIGN_WRONG_LAST_SYMBOL", "value": "Последний символ позывного должен быть буквой или цифрой" },
     { "key": "SETTINGS_DYNAMIC_LIGHTS_CHECKBOX_LABEL_TEXT", "value": "Освещение" },
     { "key": "BATTLE_TEAM_ALERT", "value": "Вы играете за %1 команду" },
     { "key": "PAYMENT_BUG_REPORT_NAME_AND_LASTNAME_INPUT_LABEL_TEXT", "value": "Имя и\nфамилия:" },
     { "key": "ACCOUNT_RECOVERY_FORM_HELP_LABEL_TEXT", "value": "Введите Ваш действительный e-mail:" },
-    { "key": "STRING_BACK_BUTTON", "value": "Назад" }, { "key": "STRING_FRIENDS_ADD", "value": "Добавить в друзья" },
-    { "key": "CTF_RETURNED_ENEMY_FLAG", "value": "возвратил вражÐµский флаг" },
+    { "key": "STRING_BACK_BUTTON", "value": "Назад" },
+    { "key": "STRING_FRIENDS_ADD", "value": "Добавить в друзья" },
+    { "key": "CTF_RETURNED_ENEMY_FLAG", "value": "возвратил вражеский флаг" },
     { "key": "STRING_GARAGE_CATEGORY_BUTTON_HULLS", "value": "Корпуса" },
     { "key": "PAYMENT_OPERATORS_LABEL_TEXT", "value": "Оператор:" },
     { "key": "PAYMENT_SMSNUMBERS_NUMBER_HEADER_LABEL_TEXT", "value": "Номер" },
@@ -316,33 +401,42 @@
     { "key": "RATING_SEARCH_FIELD_TEXT", "value": "Найти в списке..." },
     { "key": "STRING_ERROR_EMAIL_INVALID", "value": "E-mail неверный" },
     { "key": "GARAGE_INFO_PANEL_HEATING_TIME_UNIT_TEXT", "value": "sec" },
-    { "key": "MAP_THEME_NAME_WINTER", "value": "Зима" }, { "key": "BATTLE_UPGRADES_TEXT", "value": "Улучшения" },
+    { "key": "MAP_THEME_NAME_WINTER", "value": "Зима" },
+    { "key": "SETTINGS_DUST_LABEL_TEXT", "value": "Пыль" },
+    { "key": "BATTLE_UPGRADES_TEXT", "value": "Улучшения" },
     { "key": "SETTINGS_SHOW_BATTLE_CHAT_CHECKBOX_LABEL_TEXT", "value": "Показывать боевой чат" },
-    { "key": "CTF_GOT_OUR_FLAG", "value": "взял наш флаг" }, { "key": "STRING_COMPLETE_BUTTON", "value": "Завершить" },
+    { "key": "CTF_GOT_OUR_FLAG", "value": "взял наш флаг" },
+    { "key": "STRING_COMPLETE_BUTTON", "value": "Завершить" },
     { "key": "BATTLE_BONUS_BOX_TEXT", "value": "Ящики с бонусами" },
+    { "key": "SETTINGS_ANTIALIASING", "value": "Сглаживание" },
     { "key": "GARAGE_INFO_PANEL_RESOURCE_TIME_WEAR_UNIT_TEXT", "value": "rp/min" },
     { "key": "BATTLE_STAT_KDRATIO", "value": "У/П" },
     { "key": "ACHIEVEMENT_COMPLETE_EMAIL_TEXT", "value": "E-mail принят, спасибо! 5 кристаллов твои." },
     { "key": "STRING_ALERT_ACCOUNT_ALREADY_LINKED", "value": "Данный аккаунт %1 уже привязан" },
     { "key": "STRING_SERVER_LABEL", "value": "Сервер" },
-    { "key": "STRING_SETTINGS_SOFT_PARTICLES_LABEL_TEXT", "value": "Мягкие частицы" },
     { "key": "PAYMENT_BUG_REPORT_CARD_TYPE_LABEL_TEXT", "value": "Тип карты:" },
     { "key": "GARAGE_INFO_PANEL_CRITICAL_CHANCE_UNIT_TEXT", "value": "%" },
     { "key": "GARAGE_INFO_PANEL_TURN_SPEED_UNIT_TEXT", "value": "grad/sec" },
+    { "key": "GAME_ACTION_CAMERA_UP", "value": "Поднять камеру" },
     { "key": "PAYMENT_WEBCREDS_NAME_TEXT", "value": "WebCreds" },
     { "key": "FREE_BONUSES_WINDOW_RUNET_AWARD_BUTTON_1ST_TIME_TEXT", "value": "Проголосовать сегодня!" },
-    { "key": "REARM_DM_END_BATTLE", "value": "Битва завершена" }, {
+    { "key": "REARM_DM_END_BATTLE", "value": "Битва завершена" },
+    {
       "key": "STRING_REGISTER_FORM_TO_LOGIN_PAGE_TEXT",
       "value": "Уже зарегистрированы?   <a href='event:rules'><font color='#59ff32'><u>Авторизуйтесь!</u></font></a>"
-    }, { "key": "CAUSES_AND_SOLUTIONS", "value": "Причины и способы устранения" },
+    },
+    { "key": "CAUSES_AND_SOLUTIONS", "value": "Причины и способы устранения" },
     { "key": "REFERAL_WINDOW_EMAIL_LABEL_TEXT", "value": "E-mail друзей:\n<font size='-2'>(через запятую)</font>" },
     { "key": "ERROR_FATAL_DEBUG", "value": "Произошла критическая ошибка" },
     { "key": "PAYMENT_TERMINAL_COUNTRIES_LABEL_TEXT", "value": "Страна:" },
     { "key": "BATTLE_CREATE_PANEL_STEPPER_TEAM_SCORE_LIMIT", "value": "Счет" },
-    { "key": "REGISTER_FORM_AGREEMENT_CHECKBOX_LABEL_TEXT", "value": "Согласен" }, {
+    { "key": "REGISTER_FORM_AGREEMENT_CHECKBOX_LABEL_TEXT", "value": "Согласен" },
+    { "key": "GAME_ACTION_TANK_MOVE_FORWARD", "value": "Двигаться вперёд" },
+    {
       "key": "SERVER_IS_RESTARTING_CREATE_BATTLE_TEXT",
       "value": "В данный момент происходит рестарт сервера.\nСоздание и подключение к битвам временно заблокированно."
-    }, { "key": "CTF_GOT_ENEMY_FLAG", "value": "взял вражеский флаг" },
+    },
+    { "key": "CTF_GOT_ENEMY_FLAG", "value": "взял вражеский флаг" },
     { "key": "CTF_CAPTURED_FLAG_NEUTRAL", "value": "доставил флаг" },
     { "key": "SETTINGS_OLD_TEXTURES_LABEL_TEXT", "value": "Старые текстуры" },
     { "key": "CHECK_PASSWORD_FORM_PLAY_BUTTON", "value": "Играть" },
@@ -350,25 +444,34 @@
     { "key": "STRING_FRIENDS_MENU_ARROW_LENGTH", "value": "24" },
     { "key": "TEXT_DOM_BLUE_LOST_POINT", "value": "Синие потеряли точку {point}" },
     { "key": "TEXT_DOM_RED_LOST_POINT", "value": "Красные потеряли точку {point}" },
-    { "key": "TEXT_PREMIUM_NOTIFICATION_SOON_COMPLETE", "value": "Действие Премиума скоро заканчиваеÑся." }, {
+    { "key": "TEXT_PREMIUM_NOTIFICATION_SOON_COMPLETE", "value": "Действие Премиума скоро заканчивается." },
+    {
       "key": "STRING_HELP_PANEL_BUTTON_BAR_HELPER_TEXT",
       "value": "Пригласить друга,\nСообщить об ошибке ,\nНастройки, Звук,\nПомощь, Выйти."
-    }, { "key": "BATTLE_CREATE_PANEL_BUTTON_DEATHMATCH", "value": "Каждый\nза себя" },
+    },
+    { "key": "BATTLE_CREATE_PANEL_BUTTON_DEATHMATCH", "value": "Каждый\nза себя" },
+    { "key": "REARM_BATTLE_EXIT", "value": "Выйти из битвы" },
     { "key": "PAYMENT_SMS_REQUEST_TEXT", "value": "Текст SMS:" },
     { "key": "STRING_MAIN_PANEL_UPDATE_RANK_NOTICE_GIFT", "value": "Ваш подарок %1" },
     { "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_PURCHASE_BUTTON_ARROW_LENGTH", "value": "30" },
-    { "key": "COUNTRIES_RUSSIA_NAME", "value": "Россия" }, {
+    { "key": "COUNTRIES_RUSSIA_NAME", "value": "Россия" },
+    { "key": "BATTLE_CREATE_PANEL_FLOOD_ALERT_TEXT", "value": "Вы можете создавать не более трех битв в течении 5 минут." },
+    {
       "key": "FREE_BONUSES_WINDOW_RUNET_AWARD_TEXT",
       "value": "'Благодаря вам проект вышел в третий тур голосования, но пока еще не дотягивает до «народной десятки». Голосование продлится до 25 ноября, голосовать за проект нужно ежедневно! Даешь вдисятку!'"
-    }, { "key": "REDUCE_DAMAGE_THUNDER", "value": "Грома" },
-    { "key": "REARM_BATTLE_PRIZE", "value": "Ты получил {crystals}" },
-    { "key": "TEXT_DOM_WE_LOST_POINT", "value": "Мы потеряли точку {point}" }, {
+    },
+    { "key": "REDUCE_DAMAGE_THUNDER", "value": "Грома" },
+    { "key": "REARM_BATTLE_PRIZE", "value": "Ты получил {crystalls}" },
+    { "key": "TEXT_DOM_WE_LOST_POINT", "value": "Мы потеряли точку {point}" },
+    {
       "key": "STRING_YOUR_ARE_PLAING_SAFP_ALERT",
       "value": "Вы играете через Standalone Flash Player.\nПереход между серверами невозможен.\nЧтобы пользоваться приглашениями в битву - зайдите в игру через браузер."
-    }, { "key": "BUG_REPORT_DESCRIPTION_LABEL_TEXT", "value": "Описание:" },
+    },
+    { "key": "BUG_REPORT_DESCRIPTION_LABEL_TEXT", "value": "Описание:" },
     { "key": "ACCOUNT_RECOVERY_FORM_NEW_PASSWORD", "value": "Новый пароль:" },
     { "key": "HELP_SET_EMAIL_HELPER_TEXT", "value": "Введи свой e-mail\nи получи 500 кристаллов!" },
     { "key": "STRING_PARTNER_HELP_PANEL_BUTTON_BAR_HELPER_ARROW_LENGTH", "value": "63" },
+    { "key": "SETTINGS_MOUSE_INVERSION_CHECKBOX_LABEL", "value": "Инверсия мыши по вертикали" },
     { "key": "PAYMENT_BUG_REPORT_DATE_INPUT_LABEL_TEXT", "value": "Дата платежа:" },
     { "key": "GARAGE_INFO_PANEL_RENEWAL_BUTTON_CURRENCY_LABEL", "value": "¤" },
     { "key": "STRING_FRIENDS_MENU", "value": "Меню друзей" },
@@ -378,287 +481,371 @@
     { "key": "PAYMENT_PAYPAL_NAME_TEXT", "value": "PayPal" },
     { "key": "BTL_WAITING_OPPONENTS_ENDING_MULTY", "value": "-х противников" },
     { "key": "STRING_PARTNER_REGISTARTION_FORM_CHOOSE_NAME_TEXT", "value": "Выберите себе имя в игре:" },
-    { "key": "STRING_FRIENDS_SENT_REQUESTS", "value": "Отправленные заявки" }, {
+    { "key": "STRING_FRIENDS_SENT_REQUESTS", "value": "Отправленные заявки" },
+    {
       "key": "CHECK_PASSWORD_FORM_RESTORE_LINK_TEXT",
       "value": "<a href='event:lost'><font color='#59ff32'><u>Забыли имя или пароль?</u></font></a>"
-    }, { "key": "HELP_BATTLE_SELECT_LOCKED_MAP_HELPER_ARROW_LENGTH", "value": "48" },
+    },
+    { "key": "HELP_BATTLE_SELECT_LOCKED_MAP_HELPER_ARROW_LENGTH", "value": "48" },
     { "key": "COUNTRIES_ARMENIA_NAME", "value": "Армения" },
-    { "key": "SETTINGS_FOG_CHECKBOX_LABEL_TEXT", "value": "Туман" }, { "key": "PAYMENT_RBK_NAME_TEXT", "value": "RBK" },
-    {
-      "key": "STRING_REFUSED_TO_JOIN_THE_BATTLE_AT_YOUR_INVITATION_LABEL",
-      "value": "Не переходит в битву по твоему приглашению\n"
-    }, { "key": "STRING_HELP_SYMBOL_IS_NOT_ALLOWED", "value": "Имя должно состоять из A-Z, 0-9" },
+    { "key": "TEXT_PRESENT_RECIPIENT_NAME", "value": "Имя получателя..." },
+    { "key": "SETTINGS_FOG_LABEL_TEXT", "value": "Туман" },
+    { "key": "SETTINGS_FOG_CHECKBOX_LABEL_TEXT", "value": "Туман" },
+    { "key": "PAYMENT_RBK_NAME_TEXT", "value": "RBK" },
+    { "key": "STRING_REFUSED_TO_JOIN_THE_BATTLE_AT_YOUR_INVITATION_LABEL", "value": "Не переходит в битву по твоему приглашению\n" },
+    { "key": "STRING_HELP_SYMBOL_IS_NOT_ALLOWED", "value": "Имя должно состоять из A-Z, 0-9" },
     { "key": "STATISTICS_SEARCH_LABEL_TEXT", "value": "Поиск:" },
+    { "key": "SETTINGS_SSAO", "value": "Глубокие тени" },
     { "key": "STRING_HELP_PANEL_RANK_BAR_HELPER_ARROW_LENGTH", "value": "24" },
     { "key": "SETTINGS_SHOW_FPS_CHECKBOX_LABEL_TEXT", "value": "Показывать FPS" },
-    { "key": "PAYMENT_CARD_NAME", "value": "Имя и Фамилия:" }, { "key": "BATTLE_STAT_DEATHS", "value": "Подбит" },
+    { "key": "PAYMENT_CARD_NAME", "value": "Имя и Фамилия:" },
+    { "key": "BATTLE_STAT_DEATHS", "value": "Подбит" },
+    { "key": "OPEN_GARAGE", "value": "Открыть гараж" },
     { "key": "TEXT_DOM_RED_CAPTURED_POINT", "value": "Красные захватили точку {point}" },
-    { "key": "ERROR_PASSWORD_CHANGE", "value": "Невозможно сменить пароль" }, {
-      "key": "PAYMENT_NOT_AVAILABLE_ALERT_TEXT",
-      "value": "Извините, раздел платежей сейчас недоступен. Пожалуйста, попробуйте зайти позже."
-    }, { "key": "PAYMENT_SMSTEXT_HEADER_LABEL_TEXT", "value": "Текст:" },
+    { "key": "TEXT_TYPE_MESSAGE_WITH_PRESENT", "value": "Введи текст к подарку..." },
+    { "key": "GAME_ACTION_TANK_MOVE_BACKWARD", "value": "Двигаться назад" },
+    { "key": "ERROR_PASSWORD_CHANGE", "value": "Невозможно сменить пароль" },
+    {
+      "key": "PAYMENT_NOT_AVAILABLE_ALERT_TEXT", "value": "Извините, раздел платежей сейчас недоступен. Пожалуйста, попробуйте зайти позже."
+    },
+    { "key": "PAYMENT_SMSTEXT_HEADER_LABEL_TEXT", "value": "Текст:" },
     { "key": "STRING_HELP_PANEL_BUTTON_BAR_HELPER_ARROW_LENGTH", "value": "36" },
     { "key": "REGISTER_FORM_PASSWORD_INPUT_LABEL_TEXT", "value": "Пароль:" },
-    { "key": "STRING_FRIENDS_PLAYER_ALREADY_IN_LIST_ALERT", "value": "Игрок %USERNAME% уже в списке друзей." }, {
+    { "key": "STRING_FRIENDS_PLAYER_ALREADY_IN_LIST_ALERT", "value": "Игрок %USERNAME% уже в списке друзей." },
+    {
       "key": "BATTLE_CREATE_PANEL_LABEL_NO_SUBSCRIBE_BATTLE",
       "value": "Чтобы принять участие в битве без припасов, необходимо купить абонемент на месяц или внести разовый платёж за одну игру в размере 5 кристаллов."
-    }, { "key": "HELP_SET_EMAIL_HELPER_ARROW_LENGTH", "value": "30" },
+    },
+    { "key": "HELP_SET_EMAIL_HELPER_ARROW_LENGTH", "value": "30" },
     { "key": "CONTINUE_BATTLE_TEXT", "value": "Продолжить" },
-    { "key": "STRING_SETTINGS_DUST_LABEL_TEXT", "value": "Пыль" },
+    { "key": "TOTAL_PRICE_KIT", "value": "Итого:" },
+    { "key": "REARM_BATTLE_RETURN", "value": "Вернуться в битву" },
     { "key": "STRING_DECLINE_LABEL", "value": "Отказаться" },
     { "key": "BATTLE_PLAYER_SUICIDED", "value": "самоуничтожился" },
-    { "key": "REFERAL_WINDOW_BUTTON_INVITE_BY_EMAIL_TEXT", "value": "Разослать\nписьма" }, {
-      "key": "SETTINGS_CHANGE_PASSWORD_CONFIRMATION_SENT_TEXT",
-      "value": "Письмо с инструкциями отправлено на ваш почтовый ящик"
-    }, { "key": "GARAGE_INFO_PANEL_POWER_UNIT_TEXT", "value": "ep" }, {
+    { "key": "REFERAL_WINDOW_BUTTON_INVITE_BY_EMAIL_TEXT", "value": "Разослать\nписьма" },
+    { "key": "SETTINGS_CHANGE_PASSWORD_CONFIRMATION_SENT_TEXT", "value": "Письмо с инструкциями отправлено на ваш почтовый ящик" },
+    { "key": "GARAGE_INFO_PANEL_POWER_UNIT_TEXT", "value": "ep" },
+    {
       "key": "ALERT_CHAT_PROCEED_EXTERNAL_LINK",
-      "value": "Вы собираетесь перейти по ссылке, не связанной с игрой «MyTanks».\nАдминистрация проекта не несёт ответственности за содержимое сторонних сайтов\nи настоятельно рекомендует не указывать на них какие-либо данные,\nотносящиеся к вашей учетной записи в игре - e-mail, логин, пароль и прочие.\nКроме того, посторонний ресурс может оказаться источником вирусов и вредоносных программ,\nугрожающих конфиденциальности ваших данных и безопасности аккаунта в «Танках Онлайн».\nЕсли вы передумали переходить по ссылке, нажмите «Отмена»."
-    }, { "key": "COUNTRIES_UKRAINE_NAME", "value": "Украина" }, {
-      "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_PURCHASE_BUTON_TEXT",
-      "value": "Нажми и сделай свою первую покупку.\nНаграда - 200 кристаллов!"
-    }, { "key": "SETTINGS_ACCOUNT_HEADER_LABEL_TEXT", "value": "Аккаунт" },
-    { "key": "STRING_SETTINGS_MOUSE_CONTROL_CHECKBOX", "value": "Управление мышью" }, {
+      "value": "Вы собираетесь перейти по ссылке, не связанной с игрой «ProTanki».\nАдминистрация проекта не несёт ответственности за содержимое сторонних сайтов\nи настоятельно рекомендует не указывать на них какие-либо данные,\nотносящиеся к вашей учетной записи в игре - e-mail, логин, пароль и прочие.\nКроме того, посторонний ресурс может оказаться источником вирусов и вредоносных программ,\nугрожающих конфиденциальности ваших данных и безопасности аккаунта в «Танках Онлайн».\nЕсли вы передумали переходить по ссылке, нажмите «Отмена»."
+    },
+    { "key": "COUNTRIES_UKRAINE_NAME", "value": "Украина" },
+    {
+      "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_PURCHASE_BUTON_TEXT", "value": "Нажми и сделай свою первую покупку.\nНаграда - 200 кристаллов!"
+    },
+    { "key": "SETTINGS_ACCOUNT_HEADER_LABEL_TEXT", "value": "Аккаунт" },
+    {
       "key": "STRING_LINK_EXTERNAL_LOGIN_FORM_ADVICE",
       "value": "Введите данные вашего аккаунта в \"ProTanki\", чтобы\nпривязать его к сервису %1"
-    }, { "key": "ACCOUNT_RECOVERY_FORM_ENTER_CODE", "value": "Введите код, который пришёл на Ваш e-mail:" },
+    },
+    { "key": "ACCOUNT_RECOVERY_FORM_ENTER_CODE", "value": "Введите код, который пришёл на Ваш e-mail:" },
     { "key": "ALERT_ANSWER_RETURN_TO_BATTLE", "value": "Вернуться в битву" },
     { "key": "ALERT_ANSWER_NO", "value": "Нет" },
     { "key": "BATTLE_FINISH_IN", "value": "Битва автоматически завершится через" },
     { "key": "CHECK_PASSWORD_FORM_PASSWORD", "value": "Пароль:" },
+    { "key": "KEYBOARD_KEY_DOWN", "value": "Вниз" },
     { "key": "GARAGE_INFO_PANEL_BUTTON_UPGRADE_TEXT", "value": "Улучшить" },
     { "key": "FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT", "value": "Закрыть" },
-    { "key": "STRING_HELP_PANEL_RATING_INDICATOR_HELPER_ARROW_LENGTH", "value": "48" }, {
+    { "key": "STRING_HELP_PANEL_RATING_INDICATOR_HELPER_ARROW_LENGTH", "value": "48" },
+    {
       "key": "TEXT_CREATE_FAILED_YOU_ARE_BANNED",
       "value": "Уважаемый пользователь, в настоящее время вы забанены в чате \n и поэтому не можете создавать битвы. Но вы по-прежнему можете \n участвовать в битвах, созданных другими игроками."
-    }, { "key": "STRING_FRIENDS_COPY_NAME", "value": "Скопировать имя" },
+    },
+    { "key": "STRING_FRIENDS_COPY_NAME", "value": "Скопировать имя" },
     { "key": "ACCOUNT_RECOVERY_FORM_PASSWORD_CHANGED", "value": "Ваш пароль изменён." },
-    { "key": "ALERT_ANSWER_OK", "value": "ОК" }, {
-      "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_INSUFFICIENT_CRYSTALS_LABEL_TEXT",
-      "value": "Для улучшения нужны кристаллы: %1"
-    }, { "key": "CAPTCHA_INCORRECT", "value": "Контрольные символы введены неверно" },
+    { "key": "ALERT_ANSWER_OK", "value": "ОК" },
+    { "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_INSUFFICIENT_CRYSTALS_LABEL_TEXT", "value": "Для улучшения нужны кристаллы: %1" },
+    { "key": "CAPTCHA_INCORRECT", "value": "Контрольные символы введены неверно" },
     { "key": "SETTINGS_TANK_SHADOWS_CHECKBOX_LABEL_TEXT", "value": "Тени под танком" },
     { "key": "MAIN_PANEL_BUTTON_GARAGE", "value": "Гараж" },
     { "key": "ERROR_FATAL", "value": "Произошла критическая ошибка" },
-    { "key": "REFERAL_WINDOW_URLSTRING_LABEL", "value": "Ссылка:" }, {
+    { "key": "SETTINGS_MESSAGE_ONLY_FROM_FRIENDS", "value": "ЛС только от друзей" },
+    { "key": "REFERAL_WINDOW_URLSTRING_LABEL", "value": "Ссылка:" },
+    {
       "key": "ALERT_RECOVERY_LINK_SENDED",
       "value": "'Что дальше? На ваш почтовый ящик отправлено письмо со ссылкой.\nНажав её, вы попадёте в игру без ввода пароля.'"
-    }, { "key": "ALERT_ANSWER_PROCEED", "value": "Перейти" },
+    },
+    { "key": "ALERT_ANSWER_PROCEED", "value": "Перейти" },
     { "key": "BUG_REPORT_SEND_SCREEN_SHOT_CHECKBOX_LABEL_TEXT", "value": "Отправить скриншот" },
-    { "key": "COUNTRIES_KAZAKHSTAN_NAME", "value": "Казахстан" }, { "key": "BATTLE_TEAM_RED", "value": "красную" },
+    { "key": "TIME_LABEL_SECOND", "value": "с" },
+    { "key": "REARM_SELFDISTRUCTION", "value": "Самоуничтожение через {time}" },
+    { "key": "COUNTRIES_KAZAKHSTAN_NAME", "value": "Казахстан" },
+    { "key": "BATTLE_TEAM_RED", "value": "красную" },
     { "key": "STRING_FRIENDS_DECLINE_ALL_REQUESTS_ALERT", "value": "Отклонить все входящие заявки?" },
     { "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_BATTLE_ARROW_LENGTH", "value": "30" },
     { "key": "PAYMENT_COMMON_NAME", "value": "Имя:" },
     { "key": "STRING_GARAGE_CATEGORY_BUTTON_SPECIAL", "value": "Особое" },
     { "key": "REGISTER_FORM_EMAIL_LABEL_TEXT", "value": "E-mail:" },
     { "key": "HELP_UP_RANK_HELPER_ARROW_LENGTH", "value": "25" },
-    { "key": "CHAT_LABEL_SPECTATORS", "value": "Наблюдателям" }, {
+    { "key": "CHAT_LABEL_SPECTATORS", "value": "Наблюдателям" },
+    {
       "key": "FREE_BONUSES_WINDOW_MESSAGE_NOSUPPLIES_TEXT",
-      "value": "<b><font size='20'>Вам достался суточный абонемент «Битвы без припасов».</font></b>\nОн дает право в течение одного дня участвовать в битвах, где запрещено использование припасов. Никаких заранее заготовленных мин, аптечек и ускорений — рассчиÑывать можно лишь на себя! Да будет жесть!"
-    }, { "key": "SETTINGS_BACKGROUND_SOUND_CHECKBOX_LABEL_TEXT", "value": "Фоновый звук" },
+      "value": "<b><font size='20'>Вам достался суточный абонемент «Битвы без припасов».</font></b>\nОн дает право в течение одного дня участвовать в битвах, где запрещено использование припасов. Никаких заранее заготовленных мин, аптечек и ускорений — рассчитывать можно лишь на себя! Да будет жесть!"
+    },
+    { "key": "SETTINGS_BACKGROUND_SOUND_CHECKBOX_LABEL_TEXT", "value": "Фоновый звук" },
     { "key": "CHECK_PASSWORD_FORM_CALLSIGN", "value": "Имя или email:" },
     { "key": "SETTINGS_ENABLE_ADAPTIVE_FPS_CHECKBOX_LABEL_TEXT", "value": "Адаптивный FPS" },
     { "key": "INVITATION_HAS_BEEN_SENT_ALERT_TEXT", "value": "Приглашение успешно отправлено." },
     { "key": "PAYMENT_PREPAID_NAME_TEXT", "value": "Карты предоплаты" },
     { "key": "GARAGE_INFO_PANEL_RESOURCE_SHOT_WEAR_UNIT_TEXT", "value": "rp/shot" },
+    { "key": "GAME_ACTION_TANK_TURN_LEFT", "value": "Повернуть танк влево" },
     { "key": "HelpBattleSelectCreateMapHelperText", "value": "Вы можете создать\nсвою собственную битву." },
+    { "key": "GAME_ACTION_USE_NITRO", "value": "Использовать ускорение" },
     { "key": "STRING_HELP_PANEL_MAIN_MENU_HELPER_TEXT", "value": "Главное меню" },
-    { "key": "STRING_NO_PLACES_AVAILABLE_LABEL", "value": "Нет свободных мест" }, {
+    { "key": "STRING_NO_PLACES_AVAILABLE_LABEL", "value": "Нет свободных мест" },
+    { "key": "SETTINGS_SHOW_FPS_CHECKBOX", "value": "Показывать FPS и ping" },
+    {
       "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_PURCHASE_TEXT",
       "value": "Нажми, чтобы перейти в Гараж\nи сделать свою первую покупку.\nНаграда - 200 кристаллов!"
-    }, { "key": "ALERT_CONFIRM_REMOVE_FRIEND", "value": "Удалить игрока из списка?" },
+    },
+    { "key": "ALERT_CONFIRM_REMOVE_FRIEND", "value": "Удалить игрока из списка?" },
     { "key": "SETTINGS_NEW_PASSWORD_LABEL_TEXT", "value": "Новый пароль:" },
-    { "key": "STRING_FRIENDS_NEW", "value": "Новая" }, { "key": "REENTER_TO_GAME", "value": "Перезайти в игру" },
+    { "key": "STRING_FRIENDS_NEW", "value": "Новая" },
+    { "key": "TIME_LABEL_MINUTE", "value": "м" },
+    { "key": "REENTER_TO_GAME", "value": "Перезайти в игру" },
     { "key": "REARM_BATTLE_PLACE", "value": "Твоё место: {your_place} из {places}" },
     { "key": "STATISTICS_HEADER_DEATHS", "value": "Подбит" },
     { "key": "STRING_GARAGE_CATEGORY_BUTTON_SUPPLIES", "value": "Припасы" },
     { "key": "STRING_DISABLED_CHAT_LABEL_TEXT", "value": "Чат отключен. Его можно включить в «Настройках»." },
     { "key": "SETTINGS_SOUND_VOLUME_LABEL_TEXT", "value": "Громкость:" },
-    { "key": "STRING_SETTINGS_LINK_ACCOUNT", "value": "Привязать игровой аккаунт к сервису" },
     { "key": "GARAGE_INFO_PANEL_BUTTON_BUY_TEXT", "value": "Купить" },
     { "key": "REGISTER_FORM_REPEAT_PASSWORD_INPUT_LABEL_TEXT", "value": "Повтор:" },
-    { "key": "STRING_SETTINGS_SSAO", "value": "Глубокие тени" },
     { "key": "STRING_YOUR_FRIEND_IS_OFFLINE_LABEL", "value": "Приглашение не отправлено\nДруг не в сети" },
+    { "key": "KEYBOARD_KEY_LEFT", "value": "Влево" },
+    { "key": "SETTINGS_MOUSE_SHAFT_SCOPE_VERTICAL_INVERSION", "value": "Инверсия мыши по вертикали в снайперском режиме Шафта" },
     { "key": "BATTLE_GOLD", "value": "Скоро будет сброшен золотой ящик" },
-    { "key": "INVITATION_SUBJECT_TEXT", "value": "Приглашение в MyTanks" },
+    { "key": "INVITATION_SUBJECT_TEXT", "value": "Приглашение в ProTanki" },
     { "key": "STRING_FRIENDS_SEND_REQUEST_BUTTON", "value": "Отправить" },
-    { "key": "STRING_GARAGE_CATEGORY_BUTTON_RESISTANCE_MODULES", "value": "Защита" }, {
+    { "key": "STRING_GARAGE_CATEGORY_BUTTON_RESISTANCE_MODULES", "value": "Защита" },
+    {
       "key": "SHOP_WINDOW_HEADER_DESCRIPTION",
       "value": "Здесь вы можете купить различные предметы, которые помогут вам разнообразить игру и могут быть полезными в битвах. Вы соглашаетесь с тем, что купленные предметы будут зачислены на ваш аккаунт после завершения оплаты. Купленные предметы, которые были зачислены на ваш аккаунт, не подлежат возврату."
-    }, { "key": "ERROR_PASSWORD_LENGTH", "value": "Пароль должен содержать больше одного символа" }, {
+    },
+    { "key": "ERROR_PASSWORD_LENGTH", "value": "Пароль должен содержать больше одного символа" },
+    {
       "key": "STRING_PARTNER_USERNAME_ALREDY_USED_ERROR",
       "value": "Имя, которое вы ввели, уже привязано к другому профилю этой партнёрской сети."
-    }, { "key": "RATING_COUNT_TEXT", "value": "Количество" },
+    },
+    { "key": "RATING_COUNT_TEXT", "value": "Количество" },
     { "key": "STATISTICS_HEADER_COLUMN_WIDTH", "value": "0,45,190,345,50,100,150,190,265" },
-    { "key": "PAYMENT_CARD_TYPE", "value": "Тип карты:" }, { "key": "ALERT_ANSWER_YES", "value": "Да" },
+    { "key": "PAYMENT_CARD_TYPE", "value": "Тип карты:" },
+    { "key": "ALERT_ANSWER_YES", "value": "Да" },
     { "key": "TEXT_DOM_ENEMIES_CAPTURED_POINT", "value": "Враги захватили точку {point}" },
-    { "key": "SETTINGS_BUTTON_SAVE_TEXT", "value": "Сохранить" }, {
+    { "key": "SETTINGS_BUTTON_SAVE_TEXT", "value": "Сохранить" },
+    {
       "key": "FREE_BONUSES_WINDOW_MESSAGE_DOUBLECRYSTALLS_TEXT",
       "value": "Поздравляем, вам досталась бонусная карта +'Двойной кристалл'+.C ней вам начисляется вдвое больше кристаллов, чем обычно, при покупке их за реальные деньги. Сколько бы кристаллов вы ни купили, получите в подарок ещё столько же Карта действует только 24 часа. Успевайте делать выгодные покупки!"
-    }, { "key": "GARAGE_EQUIPPED_TEXT", "value": "Установлено" },
+    },
+    { "key": "GARAGE_EQUIPPED_TEXT", "value": "Установлено" },
     { "key": "REFERAL_WINDOW_BUTTON_COPY_LINK_TEXT", "value": "Скопировать ссылку в буфер обмена" },
+    { "key": "REARM_PAUSE_ALERT", "value": "Пауза заканчивается. Автовыход из битвы через {time}\nВернуться в бой?" },
     { "key": "HELP_GARAGE_STORE_LIST_HELPER_ARROW_LENGTH", "value": "48" },
+    { "key": "FRIENDS_EXIT_FROM_BATTLE_ALERT", "value": "Покинуть битву? Очки и кристальный фонд будут потеряны." },
     { "key": "CHAT_PANEL_COMMAND_UNBLOCK", "value": "Игрок %1 исключен из игнора" },
-    { "key": "STRING_FRIENDS_WRITE", "value": "Написать" }, { "key": "STATISTICS_HEADER_RATIO", "value": "У/П" },
+    { "key": "STRING_FRIENDS_WRITE", "value": "Написать" },
+    { "key": "STATISTICS_HEADER_RATIO", "value": "У/П" },
     { "key": "REFERAL_WINDOW_BUTTON_STATISTICS_TEXT", "value": "Статистика по приглашениям" },
     { "key": "STRING_GARAGE_CATEGORY_BUTTON_PAINTS", "value": "Краски" },
+    { "key": "SETTINGS_GRAPHICS_AUTO_QUALITY", "value": "Автоматическая настройка качества графики" },
     { "key": "HELP_GARAGE_WAREHOUSE_LIST_HELPER_ARROW_LENGTH", "value": "48" },
-    { "key": "ALERT_QUIT_TEXT", "value": "Выйти из игры?" }, {
-      "key": "STRING_FRIENDS_EXIT_FROM_BATTLE_ALERT", "value": "Покинуть битву? Очки и кристальный фонд будут потеряны."
-    }, { "key": "PAYMENT_BUG_REPORT_PAYMENT_INPUT_LABEL_TEXT", "value": "Оплачено\nкристаллов://Внесенная сумма:" },
+    { "key": "ALERT_QUIT_TEXT", "value": "Выйти из игры?" },
+    { "key": "STRING_FRIENDS_EXIT_FROM_BATTLE_ALERT", "value": "Покинуть битву? Очки и кристальный фонд будут потеряны." },
+    { "key": "PAYMENT_BUG_REPORT_PAYMENT_INPUT_LABEL_TEXT", "value": "Оплачено\nкристаллов://Внесенная сумма:" },
     { "key": "CHAT_PANEL_COMMAND_UNBLOCK_ALL", "value": "Игнор лист очищен" },
     { "key": "STRING_ERROR_EMAIL_NOT_SENDED", "value": "Письмо не отправлено" },
     { "key": "PAYMENT_YANDEX_MONEY_NAME_TEXT", "value": "Яндекс.Деньги" },
     { "key": "REGISTER_FORM_HEADER_TEXT", "value": "Вам не надо регистрироваться,\nесли у Вас есть аккаунт ProTanki" },
-    { "key": "STRING_DONATION_ALERT_RECEIVED_CRYSTALS_TEXT", "value": "Всего начислено кристаллов:" }, {
+    { "key": "STRING_DONATION_ALERT_RECEIVED_CRYSTALS_TEXT", "value": "Всего начислено кристаллов:" },
+    { "key": "GAME_ACTION_TURRET_CENTER", "value": "Центрировать башню" },
+    {
       "key": "REGISTER_FORM_AGREEMENT_NOTE_TEXT",
       "value": "Я согласен с <a href='event:ru1les'><font color='#59ff32'><u>Правилами</u></font></a> и <a href='event:ter1ms'><font color='#59ff32'><u>Условиями</u></font></a>"
-    }, { "key": "HELP_PANEL_ACHIEVEMENTS_SET_EMAIL_TEXT", "value": "Введи свой e-mail\nи получи 500 кристаллов!" },
+    },
+    { "key": "HELP_PANEL_ACHIEVEMENTS_SET_EMAIL_TEXT", "value": "Введи свой e-mail\nи получи 500 кристаллов!" },
     { "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_PURCHASE_ARROW_LENGTH", "value": "30" },
-    { "key": "CHECK_PASSWORD_FORM_REMEMBER", "value": "Запомнить" }, {
-      "key": "STRING_PARTNER_PARAMETRS_ERROR",
-      "value": "Вы пытаетесь выполнить вход в игру, используя неверные параметры."
-    }, { "key": "REFERAL_WINDOW_BUTTON_GET_BANNER_TEXT", "value": "Получить код\nбаннера" }, {
-      "key": "REFERAL_WINDOW_BANNER_LABEL",
-      "value": "Ты можешь разместить этот баннер на своем сайте чтобы привлечь больше друзей:"
-    }, { "key": "ERROR_CALLSIGN_WRONG_FIRST_SYMBOL", "value": "1-й символ позывного должен быть буквой или цифрой" },
+    { "key": "CHECK_PASSWORD_FORM_REMEMBER", "value": "Запомнить" },
+    { "key": "PRESENT_WILL_BE_REMOVED_ALERT", "value": "Подарок будет удалён навсегда. Продолжить?" },
+    { "key": "STRING_PARTNER_PARAMETRS_ERROR", "value": "Вы пытаетесь выполнить вход в игру, используя неверные параметры." },
+    { "key": "REFERAL_WINDOW_BUTTON_GET_BANNER_TEXT", "value": "Получить код\nбаннера" },
+    { "key": "REFERAL_WINDOW_BANNER_LABEL", "value": "Ты можешь разместить этот баннер на своем сайте чтобы привлечь больше друзей:" },
+    { "key": "ERROR_CALLSIGN_WRONG_FIRST_SYMBOL", "value": "1-й символ позывного должен быть буквой или цифрой" },
     { "key": "TEXT_DOM_ENEMIES_LOST_POINT", "value": "Враги потеряли точку {point}" },
     { "key": "REFERAL_WINDOW_SUMMARY_LABEL", "value": "Суммарный бонус:" },
     { "key": "RATING_SCORES_TEXT", "value": "Рейтинг по опыту" },
     { "key": "PAYMENT_SMSNUMBERS_COST_HEADER_LABEL_TEXT", "value": "Цена" },
     { "key": "CHALLENGES_WINDOW_BUTTON_CHANGE_TEXT", "value": "Сменить" },
-    { "key": "REDUCE_DAMAGE_RICOCHET", "value": "Рикошета" }, { "key": "REARM_OPTION_TEXT", "value": "Переодевание" },
+    { "key": "REDUCE_DAMAGE_RICOCHET", "value": "Рикошета" },
+    { "key": "REARM_OPTION_TEXT", "value": "Переодевание" },
     { "key": "SETTINGS_BUTTON_CANCEL_TEXT", "value": "Отмена" },
     { "key": "REARM_TEAM_LOOSE", "value": "Твоя команда проиграла" },
     { "key": "SETTINGS_TRACKS_CHECKBOX_LABEL_TEXT", "value": "Анимированные гусеницы" },
     { "key": "PAYMENT_BUG_REPORT_OTHER_PAYMENT_SYSTEM_NAME_TEXT", "value": "Другая" },
     { "key": "MAIN_PANEL_RATING_LABEL", "value": "Рейтинг: #" },
     { "key": "SHOW_NOTIFICATIONS_LABEL", "value": "Показывать уведомления" },
+    { "key": "DELETE_PRESENT_BUTTON", "value": "Удалить" },
     { "key": "PAYMENT_COMMON_TRANSACTION", "value": "Платеж:" },
     { "key": "PAYMENT_WEBMONEY_NAME_TEXT", "value": "WebMoney" },
-    { "key": "STRING_HELP_NAME_IS_NOT_UNIQUE", "value": "Имя уже используется" }, {
+    { "key": "GAME_ACTION_USE_FIRST_AID", "value": "Использовать ремкомплект" },
+    { "key": "STRING_HELP_NAME_IS_NOT_UNIQUE", "value": "Имя уже используется" },
+    {
       "key": "BATTLEINFO_PANEL_PAID_BATTLES_ALERT_TEXT",
       "value": "Вы входите в битву, где нельзя активировать\nимеющиеся у вас расходники. Эта битва платная."
-    }, { "key": "GARAGE_INFO_PANEL_RESOURCE_SHOT_TIME_WEAR_UNIT_TEXT", "value": "rp/sec" },
-    { "key": "STATISTICS_HEADER_RATING", "value": "Рейтинг" }, { "key": "GUI_LANG", "value": "ru" },
+    },
+    { "key": "GARAGE_INFO_PANEL_RESOURCE_SHOT_TIME_WEAR_UNIT_TEXT", "value": "rp/sec" },
+    { "key": "STATISTICS_HEADER_RATING", "value": "Рейтинг" },
+    { "key": "DATE_FORMAT", "value": "dd.MM.yyyy" },
+    { "key": "GUI_LANG", "value": "ru" },
     { "key": "STRING_FRIENDS_YOU_ARE_HERE", "value": "(Ты здесь)" },
     { "key": "SETTINGS_SOFT_PARTICLES_CHECKBOX_LABEL_TEXT", "value": "Мягкие частицы" },
+    { "key": "SETTINGS_TAB_NAME_GAME", "value": "Игра" },
     { "key": "CTF_RETURNED_FLAG_NEUTRAL", "value": "возвратил флаг" },
     { "key": "HELP_GARAGE_STORE_LIST_HELPER_TEXT", "value": "Вещи, которые\nкогда-нибудь\nстанут вашими." },
     { "key": "GARAGE_BUY_BUTTON_RANK_LABEL", "value": "Ранг" },
     { "key": "PAYMENT_MONEYMAIL_NAME_TEXT", "value": "Moneymail" },
     { "key": "REGISTER_FORM_SEND_NEWS_TEXT", "value": "Получать игровые новости" },
     { "key": "BATTLE_CREATE_PANEL_STEPPER_KILLS_LIMIT", "value": "Уничтожений" },
-    { "key": "CHAT_LABEL_ALL", "value": "Всем" }, { "key": "CTF_RETURNED_OUR_FLAG", "value": "возвратил наш флаг" },
+    { "key": "CHAT_LABEL_ALL", "value": "Всем" },
+    { "key": "CTF_RETURNED_OUR_FLAG", "value": "возвратил наш флаг" },
+    { "key": "KEYBOARD_KEY_RIGHT", "value": "Вправо" },
     { "key": "HELP_BATTLE_SELECT_CREATE_MAP_HELPER_TEXT", "value": "Вы можете создать\nсвою собственную битву." },
+    { "key": "KEYBOARD_KEY_PG_UP", "value": "PgUp" },
     { "key": "REGISTER_FORM_BUTTON_PLAY_TEXT", "value": "Играть" },
-    { "key": "BATTLEINFO_PANEL_BUTTON_PLAY", "value": "Играть" }, { "key": "LOBBY_NEWS_BUTTON", "value": "Новости" }, {
+    { "key": "BATTLEINFO_PANEL_BUTTON_PLAY", "value": "Играть" },
+    { "key": "LOBBY_NEWS_BUTTON", "value": "Новости" },
+    {
       "key": "BATTLE_PRO_BATTLE_ENTER_ALERT",
       "value": "Ты собираешься войти в битву, в которой могут действовать нестандартные правила игры. Эта битва платная."
-    }, { "key": "STRING_HELP_PANEL_MAIN_MENU_HELPER_ARROW_LENGTH", "value": "73" },
-    { "key": "STRING_FRIENDS_CANCEL_REQUEST", "value": "Отменить заявку" }, {
+    },
+    { "key": "STRING_HELP_PANEL_MAIN_MENU_HELPER_ARROW_LENGTH", "value": "73" },
+    { "key": "STRING_FRIENDS_CANCEL_REQUEST", "value": "Отменить заявку" },
+    {
       "key": "FREE_BONUSES_WINDOW_MESSAGE_CRYSTALS_TEXT",
       "value": "<b><font size='20'>Вам достались кристаллы (%1)!</font></b>\nОтправляйтесь в гараж и ни в чем себе не отказывайте."
-    }, { "key": "REDUCE_DAMAGE_FREEZE", "value": "Фриза" },
+    },
+    { "key": "REDUCE_DAMAGE_FREEZE", "value": "Фриза" },
+    { "key": "SETTINGS_DYNAMIC_LIGHTING", "value": "Динамическое освещение" },
     { "key": "ERROR_CALLSIGN_LENGTH", "value": "Позывной должен содержать больше одного символа" },
     { "key": "FOCUS_WARNIG_TEXT", "value": "Кликни для продолжения" },
     { "key": "STATISTICS_HEADER_NUMBER", "value": "#" },
     { "key": "STRING_CHECK_PASSWORD_FORM_BUTTON_NEW_PLAYER_TEXT", "value": "Новый игрок" },
     { "key": "ALERT_CONFIRM_BATTLE_EXIT", "value": "Выйти из битвы?" },
-    { "key": "REFERAL_WINDOW_BUTTON_URLCOPY", "value": "Копировать" }, {
+    { "key": "REFERAL_WINDOW_BUTTON_URLCOPY", "value": "Копировать" },
+    {
       "key": "REFERAL_WINDOW_LETTER_TEXT",
-      "value": "'Привет!\n\nТвой друг %1 приглашает тебя в игру MyTanks Online.\n %2 \n\nПрими участие в бешенных танковых боях - тренируй реакцию и меткость, круши вражеские танки и помогай своей команде!\nИгра проста и понятна, разобраться в управлении танком может даже первоклассник. Есть несколько режимов: можно сражаться как в одиночку, убивая все, что движется на гусеницах, так и в составе команды, прикрывая друг друга и используя коллективную тактику. Команды так же могут вести битвы за флаги: каждая из команд пытается унести флаг из вражеского тыла на собственную базу.\n\nНа поле боя нет места искусственному интелекту - все игроки реальные люди. Сегодня, они так же как и ты зашли в игру встретиться с друзьями и порвать вражеские команды на куски.\n\nДоступный в игре боевой арсенал приятно тебя удивит. Начав карьеру на рекрутовском дизельном танке с бронебойной пушкой, можно дослужится до маршала, получив возможность использоваÑь в бою такие грозные компоненты как корпуса с активной защитой и новейшие пушки, использующие нанороботов для превращения врага в пыль.\n\nВсе это - первая трехмерная многопользовательская Flash-игра!\nДля того, чтобы начать - нужно просто зайти на сайт! Ничего скачивать и устанавливать не нужно.\n\nНачни прямо сейчас!'"
-    }, { "key": "STRING_GARAGE_CATEGORY_BUTTON_PRESENTS", "value": "Подарки" },
-    { "key": "STRING_FRIENDS_NO", "value": "Нет" }, { "key": "HELP_FIRST_PURCHASE_HELPER_ARROW_LENGTH", "value": "30" },
-    { "key": "PAYMENT_BUG_REPORT_CALLSIGN_INPUT_LABEL_TEXT", "value": "Позывной:" }, {
-      "key": "STRING_ERROR_EMAIL_NOT_FOUND",
-      "value": "Такой email не зарегистрирован.\nВозможно, вы регистрировали другой."
-    }, { "key": "SETTINGS_REENTER_PASSWORD_LABEL_TEXT", "value": "Повтор:" },
+      "value": "'Привет!\n\nТвой друг %1 приглашает тебя в игру ProTanki.\n %2 \n\nПрими участие в бешенных танковых боях - тренируй реакцию и меткость, круши вражеские танки и помогай своей команде!\nИгра проста и понятна, разобраться в управлении танком может даже первоклассник. Есть несколько режимов: можно сражаться как в одиночку, убивая все, что движется на гусеницах, так и в составе команды, прикрывая друг друга и используя коллективную тактику. Команды так же могут вести битвы за флаги: каждая из команд пытается унести флаг из вражеского тыла на собственную базу.\n\nНа поле боя нет места искусственному интелекту - все игроки реальные люди. Сегодня, они так же как и ты зашли в игру встретиться с друзьями и порвать вражеские команды на куски.\n\nДоступный в игре боевой арсенал приятно тебя удивит. Начав карьеру на рекрутовском дизельном танке с бронебойной пушкой, можно дослужится до маршала, получив возможность использовать в бою такие грозные компоненты как корпуса с активной защитой и новейшие пушки, использующие нанороботов для превращения врага в пыль.\n\nВсе это - первая трехмерная многопользовательская Flash-игра!\nДля того, чтобы начать - нужно просто зайти на сайт! Ничего скачивать и устанавливать не нужно.\n\nНачни прямо сейчас!'"
+    },
+    { "key": "STRING_GARAGE_CATEGORY_BUTTON_PRESENTS", "value": "Подарки" },
+    { "key": "STRING_FRIENDS_NO", "value": "Нет" },
+    { "key": "HELP_FIRST_PURCHASE_HELPER_ARROW_LENGTH", "value": "30" },
+    { "key": "PAYMENT_BUG_REPORT_CALLSIGN_INPUT_LABEL_TEXT", "value": "Позывной:" },
+    { "key": "STRING_ERROR_EMAIL_NOT_FOUND", "value": "Такой email не зарегистрирован.\nВозможно, вы регистрировали другой." },
+    { "key": "SETTINGS_TAB_NAME_ACCOUNT", "value": "Аккаунт" },
+    { "key": "TEXT_NEW_PRESENTS_ALERT_ACCEPT_BUTTON", "value": "Посмотреть" },
+    { "key": "SETTINGS_REENTER_PASSWORD_LABEL_TEXT", "value": "Повтор:" },
+    { "key": "GARAGE_PRICE", "value": "Цена в гараже" },
     { "key": "REFERAL_WINDOW_ADDRESSES_NOT_VALID_ALERT_TEXT", "value": "Адреса %1 не действительны." },
     { "key": "HELP_PANEL_ACHIEVEMENTS_SET_EMAIL_ARROW_LENGTH", "value": "65" },
     { "key": "ALERT_ANSWER_GO_TO_GARAGE", "value": "Перейти в гараж" },
+    { "key": "GAME_ACTION_TURRET_TURN_RIGHT", "value": "Повернуть башню вправо" },
     { "key": "PAYMENT_QIWI_NAME_TEXT", "value": "Qiwi" },
     { "key": "ERROR_PASSWORD_INCORRECT", "value": "Пароль неверный" },
     { "key": "TEXT_DOM_BLUE_CAPTURED_POINT", "value": "Синие захватили точку {point}" },
     { "key": "TEXT_TEAM_KICK_COMPLAINT_SENT", "value": "Жалоба на нарушителя успешно отправлена" },
     { "key": "ACCOUNT_RECOVERY_FORM_BUTTON_RECOVER_TEXT", "value": "Восстановить" },
     { "key": "CHAT_PANEL_COMMAND_BLOCK", "value": "Игрок %1 добавлен в игнор" },
+    { "key": "KEYBOARD_KEY_SPACE", "value": "Пробел" },
     { "key": "STRING_FRIENDS_DECLINE_ALL_BUTTON", "value": "Отклонить все" },
-    { "key": "MAIN_PANEL_BUTTON_BATTLES", "value": "Битвы" }, { "key": "PRO_BATTLE", "value": "PRO Битва" },
-    { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_MOUNT_COMMON", "value": "Выключить HD" }, {
-      "key": "STRING_YOUR_FRIEND_DISABLED_INVITES_LABEL",
-      "value": "Друг отключил показ приглашений\nОтправка невозможна"
-    }, { "key": "BATTLE_PLAYER_KILLED", "value": "уничтожил" }, {
+    { "key": "GAME_ACTION_TANK_TURN_RIGHT", "value": "Повернуть танк вправо" },
+    { "key": "MAIN_PANEL_BUTTON_BATTLES", "value": "Битвы" },
+    { "key": "PRO_BATTLE", "value": "PRO Битва" },
+    { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_MOUNT_COMMON", "value": "Выключить HD" },
+    { "key": "STRING_YOUR_FRIEND_DISABLED_INVITES_LABEL", "value": "Друг отключил показ приглашений\nОтправка невозможна" },
+    { "key": "BATTLE_PLAYER_KILLED", "value": "уничтожил" },
+    {
       "key": "HELP_PANEL_ACHIEVEMENTS_FIRST_BATTLE_TEXT",
       "value": "Нажми, чтобы выбрать битву\nи принять в ней участие.\nНаграда - 200 кристаллов!"
-    }, {
+    },
+    {
       "key": "REFERAL_WINDOW_BANNER_DESCRIPTION",
       "value": "Ты можешь разместить этот баннер у себя в блоге, на форуме или в любом другом месте, где полностью поддерживается HTML. Размер баннера - 468 х 120 пикселей, вес - около 100 Кб."
-    }, { "key": "STRING_SETTINGS_UNLINK_ACCOUNT", "value": "Закрыть доступ к игровому аккаунту для сервиса" },
+    },
     { "key": "STRING_FRIENDS_YES", "value": "Да" },
-    { "key": "BATTLE_CREATE_PANEL_CHECKBOX_FRIENDLY_FIRE", "value": "Огонь по своим" }, {
-      "key": "STRING_IS_JOINING_THE_BATTLE_AT_YOUR_INVITATION_LABEL",
-      "value": "Переходит в битву по твоему приглашению\n"
-    }, { "key": "REFERAL_WINDOW_BUTTON_COPY_BANNER_TEXT", "value": "Скопировать код в буфер обмена" },
+    { "key": "ITEMS_IN_KIT", "value": "Состав комплекта" },
+    { "key": "BATTLE_CREATE_PANEL_CHECKBOX_FRIENDLY_FIRE", "value": "Огонь по своим" },
+    { "key": "STRING_IS_JOINING_THE_BATTLE_AT_YOUR_INVITATION_LABEL", "value": "Переходит в битву по твоему приглашению\n" },
+    { "key": "REFERAL_WINDOW_BUTTON_COPY_BANNER_TEXT", "value": "Скопировать код в буфер обмена" },
     { "key": "STRING_HELP_NAME_IS_FORBIDDEN", "value": "Введенное имя недоступно для регистрации" },
     { "key": "SETTINGS_BUTTON_CHANGE_PASSWORD_TEXT", "value": "Изменить пароль и e-mail" },
+    { "key": "GAME_ACTION_USE_DOUBLE_ARMOR", "value": "Использовать двойную защиту" },
     { "key": "LOBBY_CHAT_BUTTON", "value": "Чат" },
     { "key": "PAYMENT_BUG_REPORT_CARD_LAST_FIGURES_INPUT_LABEL_TEXT", "value": "Последние 4\nцифры карты" },
     { "key": "STRING_ONLINE_LABEL", "value": "В сети" },
-    { "key": "STRING_FRIENDS_REMOVE_USER", "value": "Удалить игрока %USERNAME% из списка друзей?" }, {
-      "key": "REDIRECT_ALERT_TEXT",
-      "value": "РЕСТАРТ СЕРВЕРА!\n\nВы будете подключены к одному из работающих серверов через %1 сек."
-    }, {
+    { "key": "STRING_FRIENDS_REMOVE_USER", "value": "Удалить игрока %USERNAME% из списка друзей?" },
+    { "key": "REDIRECT_ALERT_TEXT", "value": "РЕСТАРТ СЕРВЕРА!\n\nВы будете подключены к одному из работающих серверов через %1 сек." },
+    {
       "key": "NEWBIES_BONUSES_NEW_RANK_WINDOW_MESSAGE_TEXT",
       "value": "Новобранец, тебе присмаивается новое звание - Рядовой!\nПринимай поздравления и заслуженную награду - 5 кристаллов."
-    }, { "key": "BLOCK_USER_CONTEXT_MENU_LABEL", "value": "Игнорировать" },
+    },
+    { "key": "BLOCK_USER_CONTEXT_MENU_LABEL", "value": "Игнорировать" },
     { "key": "BATTLE_STAT_BONUS_REWARD", "value": "Бонус" },
     { "key": "PAYMENT_CARD_CODE", "value": "Последние цифры:" },
     { "key": "STRING_REGISTER_FORM_REGISTER_VIA", "value": "Зарегистрироваться в игре через сервис" },
     { "key": "GARAGE_INFO_PANEL_BUTTON_ADD_CRYSTALS_TEXT", "value": "Пополнить" },
-    { "key": "GARAGE_CONFIRM_ALERT_CONFIRM_BUTTON_TEXT", "value": "Да" }, {
+    { "key": "GARAGE_CONFIRM_ALERT_CONFIRM_BUTTON_TEXT", "value": "Да" },
+    {
       "key": "HELP_BATTLE_SELECT_LOCKED_MAP_HELPER_TEXT",
       "value": "Эта битва ещё недоступна вам\nпо рангу. Выберите одну из битв,\nподсвеченных зелёным цветом."
-    }, { "key": "BATTLE_CREATE_PANEL_STEPPER_MAX_TEAM_SIZE", "value": "Max команды" },
+    },
+    { "key": "BATTLE_CREATE_PANEL_STEPPER_MAX_TEAM_SIZE", "value": "Max команды" },
     { "key": "REARM_PAUSE_1", "value": "Танк на паузе" },
     { "key": "REARM_PAUSE_2", "value": "Нажми любую кнопку, чтобы вернуться" },
     { "key": "REARM_PAUSE_3", "value": "Автовыход из битвы через {time}" },
-    { "key": "STRING_FRIENDS_CLOSE", "value": "Закрыть" }, {
+    { "key": "SETTINGS_MOUSE_SENSITIVITY_CHECKBOX_LABEL", "value": "Чувствительность мыши" },
+    { "key": "STRING_FRIENDS_CLOSE", "value": "Закрыть" },
+    {
       "key": "PAYMENT_EASYPAY_DESCRIPTION_TEXT",
       "value": "'Выберите количество кристаллов, нажмите ' + Text.PAYMENT_BUTTON_PROCEED_TEXT + '. На сайте платёжной системы используйте свой лицевой счёт для оплаты по выставленному счёту.'"
-    }, { "key": "STATISTICS_HEADER_CALLSIGN", "value": "Позывной" },
+    },
+    { "key": "STATISTICS_HEADER_CALLSIGN", "value": "Позывной" },
     { "key": "ACCOUNT_RECOVERY_FORM_BUTTON_CANCEL_TEXT", "value": "Отмена" },
     { "key": "GARAGE_RESISTANCE_DESCRIPTION_PREFIX", "value": "Краска защищает от:" },
-    { "key": "STRING_INVITE_TO_BATTLE_LABEL", "value": "Пригласить в битву" }, {
+    { "key": "STRING_INVITE_TO_BATTLE_LABEL", "value": "Пригласить в битву" },
+    {
       "key": "STRING_PARTNER_REGISTARTION_FORM_AGREEMENT_NOTE_TEXT",
       "value": "Нажимая «Подтвердить», вы принимаете:\n<a href='event:terms'><font color='#59ff32'><u>Лицензионное соглашение</u></font></a>,\n<a href='event:policy'><font color='#59ff32'><u>Политику конфиденциальности и cookies</u></font></a>,\n<a href='event:rules'><font color='#59ff32'><u>Правила Игры</u></font></a>."
-    }, { "key": "MAIN_PANEL_BUTTON_RATING", "value": "Рейтинг" },
+    },
+    { "key": "MAIN_PANEL_BUTTON_RATING", "value": "Рейтинг" },
     { "key": "GARAGE_INFO_PANEL_HEALTH_UNIT_TEXT", "value": "hp" },
-    { "key": "HelpBattleSelectCreateMapHelperArrowLength", "value": "48" }, {
-      "key": "REFERAL_WINDOW_COPY_BANNER_LABEL_TEXT",
-      "value": "Скопируйте код баннера и вставьте его на сайт или в блог"
-    }, {
+    { "key": "HelpBattleSelectCreateMapHelperArrowLength", "value": "48" },
+    { "key": "REFERAL_WINDOW_COPY_BANNER_LABEL_TEXT", "value": "Скопируйте код баннера и вставьте его на сайт или в блог" },
+    {
       "key": "PAYMENT_PREPAID_DESCRIPTION_TEXT",
       "value": "Предоплаченная карта - удобный способ быстро пополнить свой счёт. Вам нужно приобрести одну из поддерживаемых игрой предоплаченных карт, зайти в этот раздел, указать тип карты и нажать «Далее». На открывшейся странице необходимо ввести содержащийся на карте код. После этого вы получите кристаллы на сумму, указанную на карте."
-    }, { "key": "SETTINGS_USE_NEW_LOADER_CHECKBOX_LABEL_TEXT", "value": "Использовать новый\nзагрузчик" },
+    },
+    { "key": "SETTINGS_USE_NEW_LOADER_CHECKBOX_LABEL_TEXT", "value": "Использовать новый\nзагрузчик" },
     { "key": "BTL_WAITING_PLAYERS_ENDING_MULTY", "value": "-х игроков" },
+    { "key": "GAME_ACTION_PAUSE", "value": "Пауза в битве" },
     { "key": "STRING_GO_TO_BATTLE_LABEL", "value": "Перейти" },
     { "key": "BATTLE_CREATE_PANEL_MAP_NAME_LABEL", "value": "Имя:" },
     { "key": "PAYMENT_BUTTON_SEND_BUG_REPORT_TEXT", "value": "Сообщить" },
-    { "key": "PAYMENT_VISA_NAME_TEXT", "value": "VISA" }, { "key": "GARAGE_CLOSE_TEXT", "value": "Закрыть" },
+    { "key": "PAYMENT_VISA_NAME_TEXT", "value": "VISA" },
+    { "key": "GARAGE_CLOSE_TEXT", "value": "Закрыть" },
     { "key": "BATTLE_CREATE_PANEL_CHECKBOX_AUTOBALANCE", "value": "Автобаланс" },
     { "key": "BATTLE_STAT_REWARD", "value": "Приз" },
-    { "key": "STRING_GARAGE_CATEGORY_BUTTON_KITS", "value": "Комплекты" },
     { "key": "STRING_CHECK_PASSWORK_FORM_LOGIN_VIA", "value": "Войти в игру через сервис" },
+    { "key": "STRING_GARAGE_CATEGORY_BUTTON_KITS", "value": "Комплекты" },
     { "key": "CTF_BLUE_FLAG_RETURNED", "value": "Синий флаг возвращен" },
     { "key": "CHAT_PANEL_COMMAND_BLOCK_LIST", "value": "Игнор лист:" },
-    { "key": "STRING_SETTINGS_ANTIALIASING", "value": "Сглаживание" },
-    { "key": "MAP_THEME_NAME_SUMMER_NIGHT", "value": "Лето ночь" }, { "key": "RATING_NAME_TEXT", "value": "Имя" },
-    { "key": "TEXT_REARM_SELFDISTRUCTION", "value": "Самоуничтожение через {time}" },
+    { "key": "TIME_LABEL_DAY", "value": "д" },
+    { "key": "MAP_THEME_NAME_SUMMER_NIGHT", "value": "Лето ночь" },
+    { "key": "RATING_NAME_TEXT", "value": "Имя" },
     { "key": "REFERAL_WINDOW_BUTTON_SEND_TEXT", "value": "Отправить" },
     { "key": "CTF_CAPTURED_ENEMY_FLAG", "value": "доставил вражеский флаг" },
-    { "key": "STRING_FREE_UIDS_FORM_HEADER", "value": "Введённое имя занято." }, {
+    { "key": "STRING_FREE_UIDS_FORM_HEADER", "value": "Введённое имя занято." },
+    {
       "key": "STRING_YOU_WERE_KICKED_LOGIN_TEXT",
       "value": "Вы были принудительно отключены от игры.\nПричина: {0}.\nВы можете вернуться в игру через\n{1}."
-    }, { "key": "REFERAL_WINDOW_LETTER_LABEL_TEXT", "value": "Текст письма:\n<font size='-2'>(нельзя изменить)</font>" }
+    },
+    { "key": "REFERAL_WINDOW_LETTER_LABEL_TEXT", "value": "Текст письма:\n<font size='-2'>(нельзя изменить)</font>" }
   ]
 }
