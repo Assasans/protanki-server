@@ -1,25 +1,21 @@
 package jp.assasans.protanki.server.commands.handlers
 
+import kotlin.time.Duration.Companion.days
+import kotlinx.datetime.Clock
 import mu.KotlinLogging
-import org.jetbrains.exposed.sql.lowerCase
-import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.transactions.transaction
-import jp.assasans.protanki.server.client.AuthData
-import jp.assasans.protanki.server.client.User
-import jp.assasans.protanki.server.client.UserSocket
-import jp.assasans.protanki.server.client.send
+import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.commands.ICommandHandler
-import jp.assasans.protanki.server.entities.Users
+import jp.assasans.protanki.server.garage.*
 
 class AuthHandler : ICommandHandler {
   private val logger = KotlinLogging.logger { }
 
   @CommandHandler(CommandName.Login)
-  suspend fun login(socket: UserSocket, data: AuthData) {
-    logger.debug { "User login: [ Username = '${data.login}', Password = '${data.password}', Captcha = ${if(data.captcha.isEmpty()) "*none*" else "'${data.captcha}'"} ]" }
+  suspend fun login(socket: UserSocket, captcha: String, rememberMe: Boolean, username: String, password: String) {
+    logger.debug { "User login: [ Username = '$username', Password = '$password', Captcha = ${if(captcha.isEmpty()) "*none*" else "'${captcha}'"}, Remember = $rememberMe ]" }
 
     // val user = transaction {
     //   User.fromDatabase(Users
@@ -30,8 +26,8 @@ class AuthHandler : ICommandHandler {
 
     val user = User(
       id = 0,
-      username = data.login,
-      password = data.password,
+      username = username,
+      password = password,
       score = 123456,
       crystals = 123456,
 
@@ -54,7 +50,7 @@ class AuthHandler : ICommandHandler {
       )
     )
 
-    // if(user.password == data.password) {
+    // if(user.password == password) {
     logger.debug { "User login allowed" }
 
     socket.user = user
