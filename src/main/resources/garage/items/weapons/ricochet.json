@@ -1,0 +1,136 @@
+{
+  "id": "ricochet",
+  "index": 12,
+
+  "name": "Рикошет",
+  "description": "Плазмомёт «Рикошет» — это новая секретная разработка сибирских ученых. Чтобы поставить её на вооружение, команда из 22 специалистов три года работала в подземном бункере без права выхода на поверхность. В итоге они создали уникальное оружие. Оно выпускает плазменные заряды, окутанные «умным» минус-полем. При попадании в танк заряд взрывается, но от других поверхностей отскакивает и продолжает полёт. Таким образом, из Рикошета можно поразить цель, даже не видя её.",
+
+  "baseItemId": 86316,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 86316,
+      "object3ds": 833050,
+
+      "rank": 6,
+      "price": 1700,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 19 },
+            { "property": "DAMAGE_TO", "value": 23 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 164 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 0.56 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 91.3 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 67.4 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 9428,
+      "object3ds": 544500,
+
+      "rank": 13,
+      "price": 33350,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 24 },
+            { "property": "DAMAGE_TO", "value": 29 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 193 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 0.53 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 110.2 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 72.3 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 67785,
+      "object3ds": 263824,
+
+      "rank": 20,
+      "price": 105900,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 29 },
+            { "property": "DAMAGE_TO", "value": 35 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 223 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 0.49 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 129 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 77.2 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 9711,
+      "object3ds": 482110,
+
+      "rank": 28,
+      "price": 290000,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 32 },
+            { "property": "DAMAGE_TO", "value": 38 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 240 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 0.47 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 139.8 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 80 }
+          ]
+        }
+      ]
+    }
+  }
+}

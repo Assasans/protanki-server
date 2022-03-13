@@ -1,0 +1,26 @@
+{
+  "id": "corsair",
+  "index": 125,
+
+  "name": "Комплект «Корсар»",
+  "description": "",
+
+  "baseItemId": 195900,
+  "previewResourceId": 195900,
+
+  "rank": 14,
+  "price": 90860,
+
+  "kit": {
+    "image": 475042,
+    "discount": 45,
+    "items": [
+      { "id": "viking_m1", "count": 1 },
+      { "id": "twins_m2", "count": 1 },
+      { "id": "urban_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

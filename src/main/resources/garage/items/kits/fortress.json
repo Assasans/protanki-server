@@ -1,0 +1,26 @@
+{
+  "id": "fortress",
+  "index": 140,
+
+  "name": "Комплект «Крепость»",
+  "description": "",
+
+  "baseItemId": 19784,
+  "previewResourceId": 19784,
+
+  "rank": 18,
+  "price": 180990,
+
+  "kit": {
+    "image": 811482,
+    "discount": 40,
+    "items": [
+      { "id": "mammoth_m2", "count": 1 },
+      { "id": "thunder_m2", "count": 1 },
+      { "id": "rustle_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

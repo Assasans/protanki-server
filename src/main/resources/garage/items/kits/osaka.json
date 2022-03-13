@@ -1,0 +1,26 @@
+{
+  "id": "osaka",
+  "index": 130,
+
+  "name": "Комплект «Осака»",
+  "description": "",
+
+  "baseItemId": 962041,
+  "previewResourceId": 962041,
+
+  "rank": 16,
+  "price": 118750,
+
+  "kit": {
+    "image": 531101,
+    "discount": 50,
+    "items": [
+      { "id": "hunter_m2", "count": 1 },
+      { "id": "isida_m2", "count": 1 },
+      { "id": "electra_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

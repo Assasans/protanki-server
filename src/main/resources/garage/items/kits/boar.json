@@ -1,0 +1,26 @@
+{
+  "id": "boar",
+  "index": 139,
+
+  "name": "Комплект «Кабан»",
+  "description": "",
+
+  "baseItemId": 855481,
+  "previewResourceId": 855481,
+
+  "rank": 18,
+  "price": 185670,
+
+  "kit": {
+    "image": 395966,
+    "discount": 40,
+    "items": [
+      { "id": "dictator_m2", "count": 1 },
+      { "id": "ricochet_m2", "count": 1 },
+      { "id": "sandstone_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

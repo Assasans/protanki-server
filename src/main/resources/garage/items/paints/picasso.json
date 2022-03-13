@@ -1,0 +1,22 @@
+{
+  "id": "picasso",
+  "index": 70,
+
+  "name": "Пикассо",
+  "description": "Пикассо был назван в честь Пабло Пикассо, известного художника-кубиста. Тонкие многоугольные фрагменты доспехов образуют поистине уникальный абстрактный узор, отражающий даже самые сильные удары. Эта краска - выбор настоящих искусствоведов!",
+
+  "baseItemId": 337676,
+  "previewResourceId": 337676,
+
+  "rank": 30,
+  "price": 350000,
+
+  "coloring": 906593,
+
+  "properties": [
+    { "property": "FREEZE_RESISTANCE", "value": 30 },
+    { "property": "THUNDER_RESISTANCE", "value": 30 },
+    { "property": "RAILGUN_RESISTANCE", "value": 38 },
+    { "property": "SHAFT_RESISTANCE", "value": 45 }
+  ]
+}

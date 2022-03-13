@@ -1,0 +1,26 @@
+{
+  "id": "northerner",
+  "index": 145,
+
+  "name": "Комплект «Варяг»",
+  "description": "",
+
+  "baseItemId": 739955,
+  "previewResourceId": 739955,
+
+  "rank": 21,
+  "price": 265620,
+
+  "kit": {
+    "image": 15895,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m2", "count": 1 },
+      { "id": "smoky_m3", "count": 1 },
+      { "id": "winter_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

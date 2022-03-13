@@ -1,0 +1,26 @@
+{
+  "id": "sniper",
+  "index": 167,
+
+  "name": "Комплект «Снайпер»",
+  "description": "",
+
+  "baseItemId": 289461,
+  "previewResourceId": 289461,
+
+  "rank": 27,
+  "price": 565500,
+
+  "kit": {
+    "image": 915892,
+    "discount": 35,
+    "items": [
+      { "id": "viking_m3", "count": 1 },
+      { "id": "shaft_m3", "count": 1 },
+      { "id": "clay_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

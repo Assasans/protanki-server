@@ -1,0 +1,26 @@
+{
+  "id": "firewall",
+  "index": 123,
+
+  "name": "«Огненная стена»",
+  "description": "",
+
+  "baseItemId": 525234,
+  "previewResourceId": 525234,
+
+  "rank": 13,
+  "price": 117480,
+
+  "kit": {
+    "image": 643659,
+    "discount": 40,
+    "items": [
+      { "id": "hunter_m2", "count": 1 },
+      { "id": "flamethrower_m2", "count": 1 },
+      { "id": "hohloma_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

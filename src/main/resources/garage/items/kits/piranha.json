@@ -1,0 +1,26 @@
+{
+  "id": "piranha",
+  "index": 118,
+
+  "name": "Комплект «Пиранья»",
+  "description": "",
+
+  "baseItemId": 533887,
+  "previewResourceId": 533887,
+
+  "rank": 11,
+  "price": 42955,
+
+  "kit": {
+    "image": 965911,
+    "discount": 45,
+    "items": [
+      { "id": "hornet_m1", "count": 1 },
+      { "id": "shaft_m1", "count": 1 },
+      { "id": "corrosion_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

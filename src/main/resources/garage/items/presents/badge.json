@@ -1,0 +1,15 @@
+{
+  "id": "badge",
+  "index": 185,
+
+  "name": "Значок",
+  "description": "Фирменный значок — самый простой способ сообщить другу, что он — настоящий танкист.",
+
+  "baseItemId": 186997,
+  "previewResourceId": 186997,
+
+  "rank": 7,
+  "price": 200,
+
+  "properties": [ ]
+}

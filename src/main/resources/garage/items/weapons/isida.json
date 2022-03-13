@@ -1,0 +1,132 @@
+{
+  "id": "isida",
+  "index": 9,
+
+  "name": "Изида",
+  "description": "Уникальная идея этого оружия зародилась ещё во времена холодной войны, но смогла воплотиться только с развитием квантовой физики и нанотехнологий. Сердце этой чудо-машины — генератор нанороботов, способных воспроизвести или разрушить структуру любого материала небиологического происхождения. Импульсный излучатель, которым оборудована пушка, позволяет транспортировать наномассу в магнитном канале на расстояние в пару десятков метров. Молекулярный материал, получаемый при работе нанороботов в режиме разрушения цели, используется для починки собственного шасси. Таким образом, это оружие наносит урон врагам и восстанавливает союзников, что особенно необходимо при командной игре.",
+
+  "baseItemId": 896849,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 896849,
+      "object3ds": 638066,
+
+      "rank": 4,
+      "price": 1250,
+
+      "properties": [
+        {
+          "property": "ISIS_HEALING_PER_SECOND",
+          "properties": [
+            { "property": "ISIS_HEALING_PER_PERIOD", "value": 36 }
+          ]
+        },
+        {
+          "property": "ISIS_DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 36 }
+          ]
+        },
+        { "property": "ISIS_SELF_HEALING_PERCENT", "value": 35.97 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 11.11 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 91.7 }
+      ]
+    },
+    "1": {
+      "previewResourceId": 216993,
+      "object3ds": 332851,
+
+      "rank": 11,
+      "price": 22850,
+
+      "properties": [
+        {
+          "property": "ISIS_HEALING_PER_SECOND",
+          "properties": [
+            { "property": "ISIS_HEALING_PER_PERIOD", "value": 47 }
+          ]
+        },
+        {
+          "property": "ISIS_DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 47 }
+          ]
+        },
+        { "property": "ISIS_SELF_HEALING_PERCENT", "value": 40.88 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 10.37 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 106.7 }
+      ]
+    },
+    "2": {
+      "previewResourceId": 807842,
+      "object3ds": 77397,
+
+      "rank": 18,
+      "price": 88100,
+
+      "properties": [
+        {
+          "property": "ISIS_HEALING_PER_SECOND",
+          "properties": [
+            { "property": "ISIS_HEALING_PER_PERIOD", "value": 57 }
+          ]
+        },
+        {
+          "property": "ISIS_DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 57 }
+          ]
+        },
+        { "property": "ISIS_SELF_HEALING_PERCENT", "value": 45.79 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 9.63 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 121.8 }
+      ]
+    },
+    "3": {
+      "previewResourceId": 677721,
+      "object3ds": 999935,
+
+      "rank": 26,
+      "price": 250000,
+
+      "properties": [
+        {
+          "property": "ISIS_HEALING_PER_SECOND",
+          "properties": [
+            { "property": "ISIS_HEALING_PER_PERIOD", "value": 66 }
+          ]
+        },
+        {
+          "property": "ISIS_DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 66 }
+          ]
+        },
+        { "property": "ISIS_SELF_HEALING_PERCENT", "value": 50.00 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 9.00 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 134.7 }
+      ]
+    }
+  }
+}

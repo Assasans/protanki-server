@@ -1,0 +1,21 @@
+{
+  "id": "savanna",
+  "index": 61,
+
+  "name": "Саванна",
+  "description": "Этот камуфляж скроет вас среди пальм. Пляж тоже подойдёт, но, пожалуйста, не оставляйте гильзы от танковых снарядов на песке, это доставляет неудобства отдыхающим.",
+
+  "baseItemId": 388701,
+  "previewResourceId": 388701,
+
+  "rank": 16,
+  "price": 50000,
+
+  "coloring": 299478,
+
+  "properties": [
+    { "property": "RICOCHET_RESISTANCE", "value": 15 },
+    { "property": "SMOKY_RESISTANCE", "value": 40 },
+    { "property": "RAILGUN_RESISTANCE", "value": 20 }
+  ]
+}

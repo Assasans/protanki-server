@@ -1,0 +1,26 @@
+{
+  "id": "redneck",
+  "index": 161,
+
+  "name": "Комплект «Реднек»",
+  "description": "",
+
+  "baseItemId": 234018,
+  "previewResourceId": 234018,
+
+  "rank": 26,
+  "price": 480000,
+
+  "kit": {
+    "image": 322006,
+    "discount": 40,
+    "items": [
+      { "id": "hunter_m3", "count": 1 },
+      { "id": "ricochet_m3", "count": 1 },
+      { "id": "clay_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

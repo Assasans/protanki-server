@@ -1,0 +1,26 @@
+{
+  "id": "juggler",
+  "index": 143,
+
+  "name": "Комплект «Жонглер»",
+  "description": "",
+
+  "baseItemId": 524803,
+  "previewResourceId": 524803,
+
+  "rank": 21,
+  "price": 225540,
+
+  "kit": {
+    "image": 187107,
+    "discount": 40,
+    "items": [
+      { "id": "hunter_m3", "count": 1 },
+      { "id": "ricochet_m2", "count": 1 },
+      { "id": "digital_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

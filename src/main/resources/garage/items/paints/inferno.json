@@ -1,0 +1,21 @@
+{
+  "id": "inferno",
+  "index": 64,
+
+  "name": "Инферно",
+  "description": "Покрытие «Инферно» контрабандой доставляется на рынок из подпольных стеклодувных мастерских Китая. По словам самих производителей, его дерзкий вид символизирует силу, отвагу, удачу и долголетие. Отличная краска для яростной атаки!",
+
+  "baseItemId": 186119,
+  "previewResourceId": 186119,
+
+  "rank": 28,
+  "price": 290000,
+
+  "coloring": 200304,
+
+  "properties": [
+    { "property": "FIREBIRD_RESISTANCE", "value": 50 },
+    { "property": "FREEZE_RESISTANCE", "value": 50 },
+    { "property": "TWINS_RESISTANCE", "value": 23 }
+  ]
+}

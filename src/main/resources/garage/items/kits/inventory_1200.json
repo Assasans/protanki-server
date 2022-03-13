@@ -1,0 +1,28 @@
+{
+  "id": "inventory_1200",
+  "index": 99,
+
+  "name": "Комплект «Припасы 1200»",
+  "description": "",
+
+  "baseItemId": 566195,
+  "previewResourceId": 566195,
+
+  "rank": 26,
+  "price": 102000,
+
+  "kit": {
+    "image": 100096,
+    "discount": 75,
+    "items": [
+      { "id": "health_m0", "count": 1200 },
+      { "id": "armor_m0", "count": 1200 },
+      { "id": "double_damage_m0", "count": 1200 },
+      { "id": "n2o_m0", "count": 1200 },
+      { "id": "mine_m0", "count": 1200 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

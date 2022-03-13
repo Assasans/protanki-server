@@ -1,0 +1,26 @@
+{
+  "id": "giant",
+  "index": 163,
+
+  "name": "Комплект «Исполин»",
+  "description": "",
+
+  "baseItemId": 749551,
+  "previewResourceId": 749551,
+
+  "rank": 26,
+  "price": 552500,
+
+  "kit": {
+    "image": 136056,
+    "discount": 35,
+    "items": [
+      { "id": "mammoth_m3", "count": 1 },
+      { "id": "ricochet_m3", "count": 1 },
+      { "id": "zeus_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

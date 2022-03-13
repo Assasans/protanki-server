@@ -1,0 +1,26 @@
+{
+  "id": "healer",
+  "index": 158,
+
+  "name": "Комплект «Целитель»",
+  "description": "",
+
+  "baseItemId": 834458,
+  "previewResourceId": 834458,
+
+  "rank": 25,
+  "price": 396000,
+
+  "kit": {
+    "image": 499689,
+    "discount": 40,
+    "items": [
+      { "id": "hornet_m3", "count": 1 },
+      { "id": "isida_m3", "count": 1 },
+      { "id": "irbis_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "touche",
+  "index": 153,
+
+  "name": "Комплект «Туше»",
+  "description": "",
+
+  "baseItemId": 297237,
+  "previewResourceId": 297237,
+
+  "rank": 23,
+  "price": 432249,
+
+  "kit": {
+    "image": 650392,
+    "discount": 35,
+    "items": [
+      { "id": "wasp_m3", "count": 1 },
+      { "id": "railgun_m3", "count": 1 },
+      { "id": "prodigi_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

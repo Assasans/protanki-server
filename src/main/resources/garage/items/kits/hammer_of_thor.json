@@ -1,0 +1,26 @@
+{
+  "id": "hammer_of_thor",
+  "index": 116,
+
+  "name": "Комплект «Молот Тора»",
+  "description": "",
+
+  "baseItemId": 192377,
+  "previewResourceId": 192377,
+
+  "rank": 11,
+  "price": 52650,
+
+  "kit": {
+    "image": 752766,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m1", "count": 1 },
+      { "id": "ricochet_m1", "count": 1 },
+      { "id": "alien_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

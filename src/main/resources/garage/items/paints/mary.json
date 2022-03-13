@@ -1,0 +1,21 @@
+{
+  "id": "mary",
+  "index": 38,
+
+  "name": "Мэри",
+  "description": "Покрытый кроваво-красными пятнами танк должен нагонять жути на противника, вселяя в него первобытный ужас. Хотя умудрённые опытом танкисты знают, что на корпусе вовсе не кровь, а брызги томатного сока. Недаром же краска называется «Мэри».",
+
+  "baseItemId": 564917,
+  "previewResourceId": 564917,
+
+  "rank": 9,
+  "price": 6500,
+
+  "coloring": 523797,
+
+  "properties": [
+    { "property": "FREEZE_RESISTANCE", "value": 20 },
+    { "property": "TWINS_RESISTANCE", "value": 10 },
+    { "property": "SMOKY_RESISTANCE", "value": 10 }
+  ]
+}

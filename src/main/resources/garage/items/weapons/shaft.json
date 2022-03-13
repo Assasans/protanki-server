@@ -1,0 +1,136 @@
+{
+  "id": "shaft",
+  "index": 13,
+
+  "name": "Шафт",
+  "description": "Пушка Шафт была спроектирована учеными, которые наделили её огромным количеством функций. Она может варить кофе, доставлять пиццу, оплачивать счета, но главной её особенностью стал снайперский режим, который позволяет быть на шаг впереди своих противников. Получи уникальную возможность вести бой на дальних и ближних дистанциях, ведь из Шафта также можно стрелять, не используя снайперский прицел.",
+
+  "baseItemId": 507813,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 507813,
+      "object3ds": 740019,
+
+      "rank": 7,
+      "price": 1900,
+
+      "properties": [
+        {
+          "property": "AIMING_MODE_DAMAGE",
+          "properties": [
+            { "property": "SHAFT_AIMING_MODE_MAX_DAMAGE", "value": 174 }
+          ]
+        },
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 41 },
+            { "property": "DAMAGE_TO", "value": 47 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 199 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 3.59 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 71.5 }
+      ]
+    },
+    "1": {
+      "previewResourceId": 581114,
+      "object3ds": 431730,
+
+      "rank": 14,
+      "price": 38600,
+
+      "properties": [
+        {
+          "property": "AIMING_MODE_DAMAGE",
+          "properties": [
+            { "property": "SHAFT_AIMING_MODE_MAX_DAMAGE", "value": 217 }
+          ]
+        },
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 51 },
+            { "property": "DAMAGE_TO", "value": 59 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 253 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 3.35 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 86.8 }
+      ]
+    },
+    "2": {
+      "previewResourceId": 810956,
+      "object3ds": 65798,
+
+      "rank": 21,
+      "price": 114800,
+
+      "properties": [
+        {
+          "property": "AIMING_MODE_DAMAGE",
+          "properties": [
+            { "property": "SHAFT_AIMING_MODE_MAX_DAMAGE", "value": 261 }
+          ]
+        },
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 62 },
+            { "property": "DAMAGE_TO", "value": 71 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 307 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 3.10 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 102.1 }
+      ]
+    },
+    "3": {
+      "previewResourceId": 772221,
+      "object3ds": 933781,
+
+      "rank": 29,
+      "price": 300000,
+
+      "properties": [
+        {
+          "property": "AIMING_MODE_DAMAGE",
+          "properties": [
+            { "property": "SHAFT_AIMING_MODE_MAX_DAMAGE", "value": 280 }
+          ]
+        },
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 66 },
+            { "property": "DAMAGE_TO", "value": 76 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 330 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 3.00 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 108.7 }
+      ]
+    }
+  }
+}

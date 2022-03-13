@@ -1,0 +1,26 @@
+{
+  "id": "maestro",
+  "index": 162,
+
+  "name": "Комплект «Маэстро»",
+  "description": "",
+
+  "baseItemId": 135239,
+  "previewResourceId": 135239,
+
+  "rank": 26,
+  "price": 516000,
+
+  "kit": {
+    "image": 254796,
+    "discount": 40,
+    "items": [
+      { "id": "dictator_m3", "count": 1 },
+      { "id": "ricochet_m3", "count": 1 },
+      { "id": "picasso_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "stinger",
+  "index": 134,
+
+  "name": "Комплект «Стингер»",
+  "description": "",
+
+  "baseItemId": 310874,
+  "previewResourceId": 310874,
+
+  "rank": 17,
+  "price": 143820,
+
+  "kit": {
+    "image": 133241,
+    "discount": 40,
+    "items": [
+      { "id": "hornet_m2", "count": 1 },
+      { "id": "isida_m2", "count": 1 },
+      { "id": "urban_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

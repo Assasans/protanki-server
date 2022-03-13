@@ -1,0 +1,26 @@
+{
+  "id": "hero",
+  "index": 112,
+
+  "name": "Комплект «Герой»",
+  "description": "",
+
+  "baseItemId": 486103,
+  "previewResourceId": 486103,
+
+  "rank": 8,
+  "price": 31590,
+
+  "kit": {
+    "image": 384066,
+    "discount": 40,
+    "items": [
+      { "id": "dictator_m1", "count": 1 },
+      { "id": "railgun_m1", "count": 1 },
+      { "id": "tundra_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "predator",
+  "index": 121,
+
+  "name": "Комплект «Хищник»",
+  "description": "",
+
+  "baseItemId": 841306,
+  "previewResourceId": 841306,
+
+  "rank": 13,
+  "price": 68750,
+
+  "kit": {
+    "image": 480054,
+    "discount": 45,
+    "items": [
+      { "id": "hunter_m2", "count": 1 },
+      { "id": "thunder_m1", "count": 1 },
+      { "id": "jaguar_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

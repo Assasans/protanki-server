@@ -1,0 +1,26 @@
+{
+  "id": "paladin",
+  "index": 171,
+
+  "name": "Комплект «Паладин»",
+  "description": "",
+
+  "baseItemId": 25966,
+  "previewResourceId": 25966,
+
+  "rank": 27,
+  "price": 407000,
+
+  "kit": {
+    "image": 114450,
+    "discount": 45,
+    "items": [
+      { "id": "viking_m3", "count": 1 },
+      { "id": "smoky_m3", "count": 1 },
+      { "id": "inferno_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

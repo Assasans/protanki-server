@@ -1,0 +1,26 @@
+{
+  "id": "destroyer",
+  "index": 165,
+
+  "name": "Комплект «Разрушитель»",
+  "description": "",
+
+  "baseItemId": 490205,
+  "previewResourceId": 490205,
+
+  "rank": 26,
+  "price": 486000,
+
+  "kit": {
+    "image": 215066,
+    "discount": 40,
+    "items": [
+      { "id": "mammoth_m3", "count": 1 },
+      { "id": "twins_m3", "count": 1 },
+      { "id": "jade_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

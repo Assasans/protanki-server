@@ -1,0 +1,21 @@
+{
+  "id": "jaguar",
+  "index": 45,
+
+  "name": "Ягуар",
+  "description": "Вручную подогнанная под ваш танк шкура благородного хищника. Окрас истинного охотника.",
+
+  "baseItemId": 46357,
+  "previewResourceId": 46357,
+
+  "rank": 15,
+  "price": 42500,
+
+  "coloring": 952497,
+
+  "properties": [
+    { "property": "FIREBIRD_RESISTANCE", "value": 13 },
+    { "property": "FREEZE_RESISTANCE", "value": 35 },
+    { "property": "THUNDER_RESISTANCE", "value": 9 }
+  ]
+}

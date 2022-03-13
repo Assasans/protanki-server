@@ -1,0 +1,26 @@
+{
+  "id": "cupid",
+  "index": 117,
+
+  "name": "Комплект «Купидон»",
+  "description": "",
+
+  "baseItemId": 254380,
+  "previewResourceId": 254380,
+
+  "rank": 11,
+  "price": 53100,
+
+  "kit": {
+    "image": 852231,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m1", "count": 1 },
+      { "id": "freeze_m1", "count": 1 },
+      { "id": "in_love_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

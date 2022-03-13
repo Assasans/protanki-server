@@ -1,0 +1,27 @@
+{
+  "id": "savage",
+  "index": 108,
+
+  "name": "Комплект «Дикарь»",
+  "description": "",
+
+  "baseItemId": 431685,
+  "previewResourceId": 431685,
+
+  "rank": 6,
+  "price": 10625,
+
+  "kit": {
+    "image": 66990,
+    "discount": 50,
+    "items": [
+      { "id": "wasp_m1", "count": 1 },
+      { "id": "smoky_m1", "count": 1 },
+      { "id": "carbon_m0", "count": 1 }
+    ],
+    "isTimeless": false,
+    "timeLeft": 499125
+  },
+
+  "properties": [ ]
+}

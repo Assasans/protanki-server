@@ -1,0 +1,26 @@
+{
+  "id": "legend",
+  "index": 157,
+
+  "name": "Комплект «Легенда»",
+  "description": "",
+
+  "baseItemId": 396547,
+  "previewResourceId": 396547,
+
+  "rank": 25,
+  "price": 451750,
+
+  "kit": {
+    "image": 100527,
+    "discount": 35,
+    "items": [
+      { "id": "hornet_m3", "count": 1 },
+      { "id": "railgun_m3", "count": 1 },
+      { "id": "prodigi_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "dictator",
+  "index": 17,
+
+  "name": "Диктатор",
+  "description": "Благодаря усовершенствованной системе активной защиты и применению новейших композитных материалов данный корпус эффективно поглощает энергию взрыва снаряда любого калибра. Обладатель такого корпуса может смело вести товарищей в атаку, принимая основной удар на себя. Будучи одним из самых быстрых и защищённых, этот корпус имеет большие габариты, что делает его лёгкой мишенью для врага.",
+
+  "baseItemId": 904690,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 904690,
+      "object3ds": 931026,
+
+      "rank": 4,
+      "price": 400,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 188 },
+        { "property": "HULL_SPEED", "value": 7.00 },
+        { "property": "HULL_TURN_SPEED", "value": 89 },
+        { "property": "HULL_MASS", "value": 2410 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 10 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 486892,
+      "object3ds": 6338,
+
+      "rank": 11,
+      "price": 16550,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 243 },
+        { "property": "HULL_SPEED", "value": 7.30 },
+        { "property": "HULL_TURN_SPEED", "value": 103.3 },
+        { "property": "HULL_MASS", "value": 2722 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 12 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 55428,
+      "object3ds": 890676,
+
+      "rank": 18,
+      "price": 78550,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 298 },
+        { "property": "HULL_SPEED", "value": 7.70 },
+        { "property": "HULL_TURN_SPEED", "value": 117.7 },
+        { "property": "HULL_MASS", "value": 3033 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 13 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 64819,
+      "object3ds": 802804,
+
+      "rank": 26,
+      "price": 220000,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 345 },
+        { "property": "HULL_SPEED", "value": 8.00 },
+        { "property": "HULL_TURN_SPEED", "value": 130 },
+        { "property": "HULL_MASS", "value": 3300 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 15 }
+          ]
+        }
+      ]
+    }
+  }
+}

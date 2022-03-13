@@ -1,0 +1,15 @@
+{
+  "id": "like",
+  "index": 186,
+
+  "name": "Лайк",
+  "description": "Отправь лайк тому, кто впечатлил тебя в битве.",
+
+  "baseItemId": 524516,
+  "previewResourceId": 524516,
+
+  "rank": 7,
+  "price": 1000,
+
+  "properties": [ ]
+}

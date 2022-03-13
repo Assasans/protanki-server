@@ -1,0 +1,28 @@
+{
+  "id": "inventory_300",
+  "index": 90,
+
+  "name": "Комплект «Припасы 300»",
+  "description": "",
+
+  "baseItemId": 922189,
+  "previewResourceId": 922189,
+
+  "rank": 8,
+  "price": 52500,
+
+  "kit": {
+    "image": 348039,
+    "discount": 50,
+    "items": [
+      { "id": "health_m0", "count": 300 },
+      { "id": "armor_m0", "count": 300 },
+      { "id": "double_damage_m0", "count": 300 },
+      { "id": "n2o_m0", "count": 300 },
+      { "id": "mine_m0", "count": 300 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

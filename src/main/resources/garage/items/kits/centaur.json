@@ -1,0 +1,26 @@
+{
+  "id": "centaur",
+  "index": 166,
+
+  "name": "Комплект «Кентавр»",
+  "description": "",
+
+  "baseItemId": 660966,
+  "previewResourceId": 660966,
+
+  "rank": 27,
+  "price": 420750,
+
+  "kit": {
+    "image": 842400,
+    "discount": 45,
+    "items": [
+      { "id": "hornet_m3", "count": 1 },
+      { "id": "shaft_m3", "count": 1 },
+      { "id": "prodigi_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "rock",
+  "index": 68,
+
+  "name": "Скала",
+  "description": "Броневые пластины для покрытия «Скала» добываются в скальных массивах по древнеегипетской технологии. Сухие колышки вбиваются в скалу, смачиваются водой, разбухают и откалывают ровные каменные блоки. Этот камуфляж — настоящая ручная работа!",
+
+  "baseItemId": 669820,
+  "previewResourceId": 669820,
+
+  "rank": 25,
+  "price": 210000,
+
+  "coloring": 473605,
+
+  "properties": [
+    { "property": "ISIS_RESISTANCE", "value": 50 },
+    { "property": "FREEZE_RESISTANCE", "value": 39 },
+    { "property": "TWINS_RESISTANCE", "value": 50 }
+  ]
+}

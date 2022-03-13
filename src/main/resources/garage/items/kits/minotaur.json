@@ -1,0 +1,26 @@
+{
+  "id": "minotaur",
+  "index": 148,
+
+  "name": "Комплект «Минотавр»",
+  "description": "",
+
+  "baseItemId": 969240,
+  "previewResourceId": 969240,
+
+  "rank": 22,
+  "price": 367620,
+
+  "kit": {
+    "image": 489242,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m2", "count": 1 },
+      { "id": "twins_m3", "count": 1 },
+      { "id": "emerald_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

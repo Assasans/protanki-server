@@ -1,0 +1,92 @@
+{
+  "id": "viking",
+  "index": 18,
+
+  "name": "Викинг",
+  "description": "Этот корпус воплощает в себе все самые современные наработки военной инженерии. Усиленная броня и гусеничная система второго поколения делают его великолепным универсалом. Корпус прекрасно подходит для решения любых боевых задач — от удержания высоты до лобовой атаки.",
+
+  "baseItemId": 730749,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 730749,
+      "object3ds": 513347,
+
+      "rank": 7,
+      "price": 700,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 195 },
+        { "property": "HULL_SPEED", "value": 7.80 },
+        { "property": "HULL_TURN_SPEED", "value": 80.6 },
+        { "property": "HULL_MASS", "value": 2235 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 12 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 500013,
+      "object3ds": 347843,
+
+      "rank": 14,
+      "price": 29900,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 244 },
+        { "property": "HULL_SPEED", "value": 8.30 },
+        { "property": "HULL_TURN_SPEED", "value": 92.7 },
+        { "property": "HULL_MASS", "value": 2550 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 14 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 914016,
+      "object3ds": 153457,
+
+      "rank": 21,
+      "price": 102700,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 294 },
+        { "property": "HULL_SPEED", "value": 8.80 },
+        { "property": "HULL_TURN_SPEED", "value": 104.8 },
+        { "property": "HULL_MASS", "value": 2865 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 16 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 832320,
+      "object3ds": 937522,
+
+      "rank": 29,
+      "price": 250000,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 315 },
+        { "property": "HULL_SPEED", "value": 9.00 },
+        { "property": "HULL_TURN_SPEED", "value": 110 },
+        { "property": "HULL_MASS", "value": 3000 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 17 }
+          ]
+        }
+      ]
+    }
+  }
+}

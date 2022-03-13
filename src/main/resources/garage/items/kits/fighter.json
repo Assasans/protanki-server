@@ -1,0 +1,26 @@
+{
+  "id": "fighter",
+  "index": 114,
+
+  "name": "Комплект «Истребитель»",
+  "description": "",
+
+  "baseItemId": 583003,
+  "previewResourceId": 583003,
+
+  "rank": 9,
+  "price": 38417,
+
+  "kit": {
+    "image": 241164,
+    "discount": 45,
+    "items": [
+      { "id": "hornet_m1", "count": 1 },
+      { "id": "twins_m1", "count": 1 },
+      { "id": "desert_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "freeze",
+  "index": 11,
+
+  "name": "Фриз",
+  "description": "Концепция грозной установки «Фриз» родилась в глухой русской деревне. Из неисправного холодильника «Север» и пылесоса «Буран» местный кулибин собрал «хладомёт». Новинку заметил рыбачивший в тех краях инженер. После доработки в закрытом НИИ им. Жукова «хладомёт» превратился в танковое орудие «Фриз». Заливая противника химическим составом на основе фреона, пушка наносит урон и замораживает объект, замедляя все его движения и процессы. Правда, струя пламени может разморозить жертву.",
+
+  "baseItemId": 262762,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 262762,
+      "object3ds": 791739,
+
+      "rank": 5,
+      "price": 1450,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 48 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 12.20 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 125.1 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 24.8 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 581830,
+      "object3ds": 679592,
+
+      "rank": 12,
+      "price": 28100,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 60 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 11.43 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 151.2 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 26.7 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 926940,
+      "object3ds": 115070,
+
+      "rank": 19,
+      "price": 97000,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 72 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 10.60 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 177.3 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 28.6 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 918917,
+      "object3ds": 388185,
+
+      "rank": 27,
+      "price": 280000,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 80 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 10.00 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 196 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 30 }
+          ]
+        }
+      ]
+    }
+  }
+}

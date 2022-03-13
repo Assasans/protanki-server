@@ -1,0 +1,27 @@
+{
+  "id": "keeper",
+  "index": 110,
+
+  "name": "Комплект «Хранитель»",
+  "description": "",
+
+  "baseItemId": 482387,
+  "previewResourceId": 482387,
+
+  "rank": 7,
+  "price": 12677,
+
+  "kit": {
+    "image": 817161,
+    "discount": 60,
+    "items": [
+      { "id": "titan_m1", "count": 1 },
+      { "id": "smoky_m1", "count": 1 },
+      { "id": "roger_m0", "count": 1 }
+    ],
+    "isTimeless": false,
+    "timeLeft": 514808
+  },
+
+  "properties": [ ]
+}

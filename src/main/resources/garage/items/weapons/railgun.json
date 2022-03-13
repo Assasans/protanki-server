@@ -1,0 +1,116 @@
+{
+  "id": "railgun",
+  "index": 8,
+
+  "name": "Рельса",
+  "description": "Если среднекалиберные пушки уже не утоляют вашу жажду самовыражения, то эта игрушка специально для вас. Крупнокалиберная пушка, обладающая огромной дульной скоростью и снарядами с сердечниками из обеднённого урана. Сверхмощный и сверхточный кинетический снаряд способен пробить танк насквозь, поразив несколько целей, стоящих на одной прямой. Идеальное оружие для позиционного боя на дальней дистанции. Следует помнить, что это оружие довольно долго перезаряжается, чем обязательно воспользуется опытный противник.",
+
+  "baseItemId": 882259,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 882259,
+      "object3ds": 906685,
+
+      "rank": 3,
+      "price": 800,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 68 },
+            { "property": "DAMAGE_TO", "value": 106 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 369 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 5.85 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 56.2 },
+        { "property": "WEAPON_WEAKENING_COEFF", "value": 35.36 }
+      ]
+    },
+    "1": {
+      "previewResourceId": 603365,
+      "object3ds": 369990,
+
+      "rank": 10,
+      "price": 17600,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 90 },
+            { "property": "DAMAGE_TO", "value": 137 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 479 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 5.38 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 70 },
+        { "property": "WEAPON_WEAKENING_COEFF", "value": 56.90 }
+      ]
+    },
+    "2": {
+      "previewResourceId": 762220,
+      "object3ds": 73852,
+
+      "rank": 17,
+      "price": 79200,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 111 },
+            { "property": "DAMAGE_TO", "value": 168 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 589 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 4.91 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 78.5 },
+        { "property": "WEAPON_WEAKENING_COEFF", "value": 78.45 }
+      ]
+    },
+    "3": {
+      "previewResourceId": 387778,
+      "object3ds": 839339,
+
+      "rank": 25,
+      "price": 230000,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 133 },
+            { "property": "DAMAGE_TO", "value": 199 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 700 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 4.44 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 97.4 },
+        { "property": "WEAPON_WEAKENING_COEFF", "value": 100.00 }
+      ]
+    }
+  }
+}

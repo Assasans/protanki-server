@@ -1,0 +1,21 @@
+{
+  "id": "alien",
+  "index": 42,
+
+  "name": "Чужой",
+  "description": "Существует легенда, что этот камуфляж копирует окраску летающей тарелки, в прошлом веке сбитой ПВО сами-знаете-кого сами-знаете-где.",
+
+  "baseItemId": 254675,
+  "previewResourceId": 254675,
+
+  "rank": 12,
+  "price": 24500,
+
+  "coloring": 931624,
+
+  "properties": [
+    { "property": "ISIS_RESISTANCE", "value": 30 },
+    { "property": "FREEZE_RESISTANCE", "value": 10 },
+    { "property": "THUNDER_RESISTANCE", "value": 10 }
+  ]
+}

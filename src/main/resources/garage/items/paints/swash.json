@@ -1,0 +1,22 @@
+{
+  "id": "swash",
+  "index": 44,
+
+  "name": "Прибой",
+  "description": "Формула покрытия «Прибой» была похищена из секретной лаборатории под кодовым названием «Аква», специализирующейся на генетических экспериментах над рыбами. Благодаря особым теплоотражающим свойствам краска придаёт воздуху внутри танка морскую свежесть",
+
+  "baseItemId": 344971,
+  "previewResourceId": 344971,
+
+  "rank": 12,
+  "price": 24500,
+
+  "coloring": 48688,
+
+  "properties": [
+    { "property": "ISIS_RESISTANCE", "value": 11 },
+    { "property": "FIREBIRD_RESISTANCE", "value": 18 },
+    { "property": "TWINS_RESISTANCE", "value": 13 },
+    { "property": "SMOKY_RESISTANCE", "value": 8 }
+  ]
+}

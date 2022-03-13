@@ -1,0 +1,26 @@
+{
+  "id": "nomad",
+  "index": 154,
+
+  "name": "Комплект «Кочевник»",
+  "description": "",
+
+  "baseItemId": 95492,
+  "previewResourceId": 95492,
+
+  "rank": 23,
+  "price": 445249,
+
+  "kit": {
+    "image": 634104,
+    "discount": 35,
+    "items": [
+      { "id": "hunter_m3", "count": 1 },
+      { "id": "railgun_m3", "count": 1 },
+      { "id": "taiga_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

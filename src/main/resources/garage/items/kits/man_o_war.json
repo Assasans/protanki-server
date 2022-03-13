@@ -1,0 +1,26 @@
+{
+  "id": "man_o_war",
+  "index": 156,
+
+  "name": "Комплект «Воин»",
+  "description": "",
+
+  "baseItemId": 855523,
+  "previewResourceId": 855523,
+
+  "rank": 25,
+  "price": 459000,
+
+  "kit": {
+    "image": 796471,
+    "discount": 40,
+    "items": [
+      { "id": "hornet_m3", "count": 1 },
+      { "id": "thunder_m3", "count": 1 },
+      { "id": "taiga_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

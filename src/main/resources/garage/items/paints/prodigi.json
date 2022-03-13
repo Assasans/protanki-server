@@ -1,0 +1,22 @@
+{
+  "id": "prodigi",
+  "index": 67,
+
+  "name": "Продиджи",
+  "description": "Усовершенствованная версия стандартного «Диджитала» выполнена по секретной технологии «Рябь в глазах». Она не только надёжно маскирует танк, но и раздражает противника, заставляя его чаще ошибаться.",
+
+  "baseItemId": 645131,
+  "previewResourceId": 645131,
+
+  "rank": 26,
+  "price": 235000,
+
+  "coloring": 78411,
+
+  "properties": [
+    { "property": "FIREBIRD_RESISTANCE", "value": 10 },
+    { "property": "THUNDER_RESISTANCE", "value": 43 },
+    { "property": "RAILGUN_RESISTANCE", "value": 50 },
+    { "property": "SHAFT_RESISTANCE", "value": 29 }
+  ]
+}

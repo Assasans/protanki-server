@@ -1,0 +1,26 @@
+{
+  "id": "chiropractor",
+  "index": 144,
+
+  "name": "Комплект «Костоправ»",
+  "description": "",
+
+  "baseItemId": 521658,
+  "previewResourceId": 521658,
+
+  "rank": 21,
+  "price": 230618,
+
+  "kit": {
+    "image": 20255,
+    "discount": 35,
+    "items": [
+      { "id": "hunter_m3", "count": 1 },
+      { "id": "shaft_m2", "count": 1 },
+      { "id": "loam_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

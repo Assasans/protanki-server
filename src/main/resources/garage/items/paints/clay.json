@@ -1,0 +1,21 @@
+{
+  "id": "clay",
+  "index": 72,
+
+  "name": "Тина",
+  "description": "Краска под кодовым названием «Тина» разрабатывалась для диверсионных танковых бригад, действующих в болотистой местности. Танки маскировались настолько хорошо, что даже пиявки не замечали их и на полном ходу врезались в бронированный корпус.",
+
+  "baseItemId": 700822,
+  "previewResourceId": 700822,
+
+  "rank": 29,
+  "price": 320000,
+
+  "coloring": 141405,
+
+  "properties": [
+    { "property": "RICOCHET_RESISTANCE", "value": 50 },
+    { "property": "THUNDER_RESISTANCE", "value": 50 },
+    { "property": "RAILGUN_RESISTANCE", "value": 50 }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "sandstone",
+  "index": 53,
+
+  "name": "Песчаник",
+  "description": "Покрытие «Песчаник» сочетает в себе маскирующие свойства песочной раскраски и прочность закалённого ветрами камня. Подарочный комплект «Песчаника» включает в себя купальные плавки или бикини на выбор, солнечные очки и пляжный зонт.",
+
+  "baseItemId": 379571,
+  "previewResourceId": 379571,
+
+  "rank": 21,
+  "price": 125000,
+
+  "coloring": 519187,
+
+  "properties": [
+    { "property": "TWINS_RESISTANCE", "value": 10 },
+    { "property": "THUNDER_RESISTANCE", "value": 25 },
+    { "property": "RAILGUN_RESISTANCE", "value": 35 },
+    { "property": "SHAFT_RESISTANCE", "value": 25 }
+  ]
+}

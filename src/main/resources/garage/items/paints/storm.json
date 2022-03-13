@@ -1,0 +1,20 @@
+{
+  "id": "storm",
+  "index": 39,
+
+  "name": "Буря",
+  "description": "Отличная маскировка для секретных ночных операций. В условиях слабой освещённости эта текстура делает танк совершенно неразличимым в сумраке.",
+
+  "baseItemId": 364130,
+  "previewResourceId": 364130,
+
+  "rank": 9,
+  "price": 6500,
+
+  "coloring": 265602,
+
+  "properties": [
+    { "property": "FIREBIRD_RESISTANCE", "value": 22 },
+    { "property": "FREEZE_RESISTANCE", "value": 8 }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "jam",
+  "index": 132,
+
+  "name": "Комплект «Джем»",
+  "description": "",
+
+  "baseItemId": 141147,
+  "previewResourceId": 141147,
+
+  "rank": 16,
+  "price": 155310,
+
+  "kit": {
+    "image": 275793,
+    "discount": 40,
+    "items": [
+      { "id": "dictator_m2", "count": 1 },
+      { "id": "twins_m2", "count": 1 },
+      { "id": "python_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

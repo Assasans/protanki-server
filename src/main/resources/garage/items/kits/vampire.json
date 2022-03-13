@@ -1,0 +1,26 @@
+{
+  "id": "vampire",
+  "index": 111,
+
+  "name": "Комплект «Вампир»",
+  "description": "",
+
+  "baseItemId": 348673,
+  "previewResourceId": 348673,
+
+  "rank": 8,
+  "price": 18500,
+
+  "kit": {
+    "image": 89108,
+    "discount": 50,
+    "items": [
+      { "id": "wasp_m1", "count": 1 },
+      { "id": "isida_m1", "count": 1 },
+      { "id": "mary_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

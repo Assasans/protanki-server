@@ -1,0 +1,136 @@
+{
+  "id": "thunder",
+  "index": 10,
+
+  "name": "Гром",
+  "description": "Среднекалиберная пушка — это лучший выбор для любителей динамичного боя. Разрывной снаряд Грома (осторожно, можно нанести урон самому себе) позволяет атаковать группу соперников, а быстрая перезарядка поможет получить неоспоримое преимущество перед тяжёлыми танками противника. В сочетании с быстрым корпусом Гром становится грозным оружием в руках умелого танкиста.",
+
+  "baseItemId": 205433,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 205433,
+      "object3ds": 503709,
+
+      "rank": 5,
+      "price": 1450,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 42 },
+            { "property": "DAMAGE_TO", "value": 68 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 169 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 3.15 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 77 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 56.9 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 282433,
+      "object3ds": 15411,
+
+      "rank": 12,
+      "price": 28100,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 55 },
+            { "property": "DAMAGE_TO", "value": 83 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 217 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 2.91 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 94.6 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 61.8 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 770995,
+      "object3ds": 104552,
+
+      "rank": 19,
+      "price": 97000,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 68 },
+            { "property": "DAMAGE_TO", "value": 99 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 265 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 2.67 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 112.3 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 66.6 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 875152,
+      "object3ds": 551825,
+
+      "rank": 27,
+      "price": 270000,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 78 },
+            { "property": "DAMAGE_TO", "value": 110 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 300 },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 2.50 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 124.9 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 70 }
+          ]
+        }
+      ]
+    }
+  }
+}

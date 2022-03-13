@@ -1,0 +1,26 @@
+{
+  "id": "simoom",
+  "index": 136,
+
+  "name": "Комплект «Самум»",
+  "description": "",
+
+  "baseItemId": 353894,
+  "previewResourceId": 353894,
+
+  "rank": 17,
+  "price": 165302,
+
+  "kit": {
+    "image": 686233,
+    "discount": 45,
+    "items": [
+      { "id": "dictator_m2", "count": 1 },
+      { "id": "thunder_m2", "count": 1 },
+      { "id": "sandstone_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

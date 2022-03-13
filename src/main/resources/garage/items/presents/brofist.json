@@ -1,0 +1,15 @@
+{
+  "id": "brofist",
+  "index": 188,
+
+  "name": "Бро!",
+  "description": "Танковая статуэтка, дающая обладателю +1 к крутости!",
+
+  "baseItemId": 45309,
+  "previewResourceId": 45309,
+
+  "rank": 7,
+  "price": 2000,
+
+  "properties": [ ]
+}

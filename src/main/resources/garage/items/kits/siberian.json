@@ -1,0 +1,26 @@
+{
+  "id": "siberian",
+  "index": 122,
+
+  "name": "Комплект «Сибиряк»",
+  "description": "",
+
+  "baseItemId": 846169,
+  "previewResourceId": 846169,
+
+  "rank": 13,
+  "price": 50500,
+
+  "kit": {
+    "image": 660670,
+    "discount": 50,
+    "items": [
+      { "id": "hunter_m2", "count": 1 },
+      { "id": "freeze_m1", "count": 1 },
+      { "id": "tundra_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

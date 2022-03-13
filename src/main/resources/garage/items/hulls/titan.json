@@ -1,0 +1,92 @@
+{
+  "id": "titan",
+  "index": 19,
+
+  "name": "Титан",
+  "description": "Броня из сверхпрочного титанового сплава вкупе с грамотно спроектированной геометрией позволяет данному корпусу отлично противостоять даже крупнокалиберным пушкам. Танк, оборудованный данным корпусом, может без раздумий отправляться в самое пекло. Следует отметить, что из-за низкой скорости этот корпус непригоден для быстрых атак в тыл врага.",
+
+  "baseItemId": 882375,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 882375,
+      "object3ds": 819540,
+
+      "rank": 3,
+      "price": 300,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 224 },
+        { "property": "HULL_SPEED", "value": 5.30 },
+        { "property": "HULL_TURN_SPEED", "value": 55.7 },
+        { "property": "HULL_MASS", "value": 3571 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 11 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 511249,
+      "object3ds": 385322,
+
+      "rank": 10,
+      "price": 12100,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 289 },
+        { "property": "HULL_SPEED", "value": 5.50 },
+        { "property": "HULL_TURN_SPEED", "value": 67.1 },
+        { "property": "HULL_MASS", "value": 4047 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 13 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 372034,
+      "object3ds": 175994,
+
+      "rank": 17,
+      "price": 70500,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 355 },
+        { "property": "HULL_SPEED", "value": 5.80 },
+        { "property": "HULL_TURN_SPEED", "value": 78.6 },
+        { "property": "HULL_MASS", "value": 4524 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 14 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 185908,
+      "object3ds": 142350,
+
+      "rank": 25,
+      "price": 210000,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 420 },
+        { "property": "HULL_SPEED", "value": 6.00 },
+        { "property": "HULL_TURN_SPEED", "value": 90 },
+        { "property": "HULL_MASS", "value": 5000 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 16 }
+          ]
+        }
+      ]
+    }
+  }
+}

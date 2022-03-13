@@ -1,0 +1,26 @@
+{
+  "id": "master_of_the_taiga",
+  "index": 172,
+
+  "name": "Комплект «Хозяин тайги»",
+  "description": "",
+
+  "baseItemId": 80128,
+  "previewResourceId": 80128,
+
+  "rank": 27,
+  "price": 441000,
+
+  "kit": {
+    "image": 156904,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m3", "count": 1 },
+      { "id": "twins_m3", "count": 1 },
+      { "id": "taiga_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

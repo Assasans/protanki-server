@@ -1,0 +1,15 @@
+{
+  "id": "claws",
+  "index": 192,
+
+  "name": "Клешни рака",
+  "description": "Клац-клац!",
+
+  "baseItemId": 749669,
+  "previewResourceId": 749669,
+
+  "rank": 7,
+  "price": 2000,
+
+  "properties": [ ]
+}

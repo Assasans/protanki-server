@@ -1,0 +1,26 @@
+{
+  "id": "ant",
+  "index": 133,
+
+  "name": "Комплект «Муравей»",
+  "description": "",
+
+  "baseItemId": 131017,
+  "previewResourceId": 131017,
+
+  "rank": 16,
+  "price": 126802,
+
+  "kit": {
+    "image": 542199,
+    "discount": 45,
+    "items": [
+      { "id": "wasp_m2", "count": 1 },
+      { "id": "isida_m2", "count": 1 },
+      { "id": "digital_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

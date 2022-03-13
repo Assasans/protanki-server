@@ -1,0 +1,26 @@
+{
+  "id": "boreas",
+  "index": 159,
+
+  "name": "Комплект «Борей»",
+  "description": "",
+
+  "baseItemId": 900943,
+  "previewResourceId": 900943,
+
+  "rank": 25,
+  "price": 447000,
+
+  "kit": {
+    "image": 528275,
+    "discount": 40,
+    "items": [
+      { "id": "wasp_m3", "count": 1 },
+      { "id": "freeze_m3", "count": 1 },
+      { "id": "taiga_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

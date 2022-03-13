@@ -1,0 +1,26 @@
+{
+  "id": "guardian",
+  "index": 152,
+
+  "name": "Комплект «Страж»",
+  "description": "",
+
+  "baseItemId": 583689,
+  "previewResourceId": 583689,
+
+  "rank": 23,
+  "price": 366000,
+
+  "kit": {
+    "image": 150010,
+    "discount": 40,
+    "items": [
+      { "id": "titan_m3", "count": 1 },
+      { "id": "smoky_m3", "count": 1 },
+      { "id": "needle_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

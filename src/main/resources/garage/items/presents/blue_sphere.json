@@ -1,0 +1,15 @@
+{
+  "id": "blue_sphere",
+  "index": 194,
+
+  "name": "Синий шар",
+  "description": "Легендарный синий шар. Да, это он.",
+
+  "baseItemId": 524809,
+  "previewResourceId": 524809,
+
+  "rank": 7,
+  "price": 100500,
+
+  "properties": [ ]
+}

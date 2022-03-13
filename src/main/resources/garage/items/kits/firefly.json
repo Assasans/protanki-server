@@ -1,0 +1,27 @@
+{
+  "id": "firefly",
+  "index": 107,
+
+  "name": "Комплект «Светлячок»",
+  "description": "",
+
+  "baseItemId": 743352,
+  "previewResourceId": 743352,
+
+  "rank": 6,
+  "price": 12750,
+
+  "kit": {
+    "image": 890775,
+    "discount": 40,
+    "items": [
+      { "id": "wasp_m1", "count": 1 },
+      { "id": "flamethrower_m1", "count": 1 },
+      { "id": "carbon_m0", "count": 1 }
+    ],
+    "isTimeless": false,
+    "timeLeft": 501010
+  },
+
+  "properties": [ ]
+}

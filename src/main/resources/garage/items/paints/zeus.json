@@ -1,0 +1,21 @@
+{
+  "id": "zeus",
+  "name": "Зевс",
+
+  "index": 71,
+  "description": "Краска «Зевс» названа так за свою необычную текстуру. Яркие вспышки молний на вашем танке ослабят бдительность вражеских танков и позволят вам выглядеть круто в любой битве. ",
+
+  "baseItemId": 123565,
+  "previewResourceId": 123565,
+
+  "rank": 29,
+  "price": 320000,
+
+  "coloring": 412123,
+
+  "properties": [
+    { "property": "FIREBIRD_RESISTANCE", "value": 50 },
+    { "property": "FREEZE_RESISTANCE", "value": 50 },
+    { "property": "SMOKY_RESISTANCE", "value": 50 }
+  ]
+}

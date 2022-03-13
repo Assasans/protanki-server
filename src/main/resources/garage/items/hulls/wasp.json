@@ -1,0 +1,92 @@
+{
+  "id": "wasp",
+  "index": 14,
+
+  "name": "Васп",
+  "description": "Легкий, экономичный, простой в эксплуатации — идеальный корпус начального уровня. После прокачки позволяет развивать довольно большую скорость, что в сочетании с небольшими габаритами даёт свободу действий на поле боя. Из-за небольшой массы подвержен переворотам от ударов мощного вражеского оружия.",
+
+  "baseItemId": 629496,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 629496,
+      "object3ds": 160287,
+
+      "rank": 2,
+      "price": 200,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 94 },
+        { "property": "HULL_SPEED", "value": 10.80 },
+        { "property": "HULL_TURN_SPEED", "value": 93.9 },
+        { "property": "HULL_MASS", "value": 1376 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 9 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 265425,
+      "object3ds": 557817,
+
+      "rank": 9,
+      "price": 7650,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 121 },
+        { "property": "HULL_SPEED", "value": 11.50 },
+        { "property": "HULL_TURN_SPEED", "value": 111.7 },
+        { "property": "HULL_MASS", "value": 1638 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 10 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 67263,
+      "object3ds": 653204,
+
+      "rank": 16,
+      "price": 62450,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 149 },
+        { "property": "HULL_SPEED", "value": 12.20 },
+        { "property": "HULL_TURN_SPEED", "value": 129.6 },
+        { "property": "HULL_MASS", "value": 1901 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 11 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 923853,
+      "object3ds": 20647,
+
+      "rank": 24,
+      "price": 200000,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 180 },
+        { "property": "HULL_SPEED", "value": 13.00 },
+        { "property": "HULL_TURN_SPEED", "value": 150 },
+        { "property": "HULL_MASS", "value": 2200 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 13 }
+          ]
+        }
+      ]
+    }
+  }
+}

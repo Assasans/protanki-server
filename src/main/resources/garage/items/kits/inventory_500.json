@@ -1,0 +1,28 @@
+{
+  "id": "inventory_500",
+  "index": 92,
+
+  "name": "Комплект «Припасы 500»",
+  "description": "",
+
+  "baseItemId": 922542,
+  "previewResourceId": 922542,
+
+  "rank": 12,
+  "price": 77500,
+
+  "kit": {
+    "image": 227538,
+    "discount": 55,
+    "items": [
+      { "id": "health_m0", "count": 500 },
+      { "id": "armor_m0", "count": 500 },
+      { "id": "double_damage_m0", "count": 500 },
+      { "id": "n2o_m0", "count": 500 },
+      { "id": "mine_m0", "count": 500 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

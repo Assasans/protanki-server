@@ -1,0 +1,26 @@
+{
+  "id": "voltage",
+  "index": 131,
+
+  "name": "Комплект «Вольтаж»",
+  "description": "",
+
+  "baseItemId": 803390,
+  "previewResourceId": 803390,
+
+  "rank": 16,
+  "price": 139012,
+
+  "kit": {
+    "image": 401654,
+    "discount": 45,
+    "items": [
+      { "id": "dictator_m2", "count": 1 },
+      { "id": "railgun_m2", "count": 1 },
+      { "id": "electra_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

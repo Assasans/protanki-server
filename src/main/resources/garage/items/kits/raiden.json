@@ -1,0 +1,26 @@
+{
+  "id": "raiden",
+  "index": 170,
+
+  "name": "Комплект «Райден»",
+  "description": "",
+
+  "baseItemId": 714942,
+  "previewResourceId": 714942,
+
+  "rank": 27,
+  "price": 486000,
+
+  "kit": {
+    "image": 802465,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m3", "count": 1 },
+      { "id": "thunder_m3", "count": 1 },
+      { "id": "emerald_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

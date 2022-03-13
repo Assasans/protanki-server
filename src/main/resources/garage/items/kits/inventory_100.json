@@ -1,0 +1,28 @@
+{
+  "id": "inventory_100",
+  "index": 88,
+
+  "name": "Комплект «Припасы 100»",
+  "description": "",
+
+  "baseItemId": 417664,
+  "previewResourceId": 417664,
+
+  "rank": 6,
+  "price": 17500,
+
+  "kit": {
+    "image": 800215,
+    "discount": 50,
+    "items": [
+      { "id": "health_m0", "count": 100 },
+      { "id": "armor_m0", "count": 100 },
+      { "id": "double_damage_m0", "count": 100 },
+      { "id": "n2o_m0", "count": 100 },
+      { "id": "mine_m0", "count": 100 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

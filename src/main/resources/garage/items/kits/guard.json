@@ -1,0 +1,26 @@
+{
+  "id": "guard",
+  "index": 137,
+
+  "name": "Комплект «Часовой»",
+  "description": "",
+
+  "baseItemId": 175184,
+  "previewResourceId": 175184,
+
+  "rank": 17,
+  "price": 139500,
+
+  "kit": {
+    "image": 353567,
+    "discount": 40,
+    "items": [
+      { "id": "titan_m2", "count": 1 },
+      { "id": "thunder_m2", "count": 1 },
+      { "id": "urban_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

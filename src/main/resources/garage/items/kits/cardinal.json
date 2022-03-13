@@ -1,0 +1,26 @@
+{
+  "id": "cardinal",
+  "index": 151,
+
+  "name": "Комплект «Кардинал»",
+  "description": "",
+
+  "baseItemId": 426788,
+  "previewResourceId": 426788,
+
+  "rank": 23,
+  "price": 468000,
+
+  "kit": {
+    "image": 673110,
+    "discount": 40,
+    "items": [
+      { "id": "titan_m3", "count": 1 },
+      { "id": "twins_m3", "count": 1 },
+      { "id": "picasso_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "aborigine",
+  "index": 124,
+
+  "name": "Комплект «Туземец»",
+  "description": "",
+
+  "baseItemId": 511823,
+  "previewResourceId": 511823,
+
+  "rank": 13,
+  "price": 99480,
+
+  "kit": {
+    "image": 687486,
+    "discount": 40,
+    "items": [
+      { "id": "hunter_m2", "count": 1 },
+      { "id": "smoky_m2", "count": 1 },
+      { "id": "savanna_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

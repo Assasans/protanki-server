@@ -1,0 +1,20 @@
+{
+  "id": "roger",
+  "index": 49,
+
+  "name": "Роджер",
+  "description": "Главный пиратский символ всех времён, теперь впервые и на твоём танке.",
+
+  "baseItemId": 968399,
+  "previewResourceId": 968399,
+
+  "rank": 10,
+  "price": 12500,
+
+  "coloring": 929509,
+
+  "properties": [
+    { "property": "FIREBIRD_RESISTANCE", "value": 12 },
+    { "property": "TWINS_RESISTANCE", "value": 25 }
+  ]
+}

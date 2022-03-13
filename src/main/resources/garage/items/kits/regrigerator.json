@@ -1,0 +1,26 @@
+{
+  "id": "regrigerator",
+  "index": 168,
+
+  "name": "Комплект «Гроза»",
+  "description": "",
+
+  "baseItemId": 243929,
+  "previewResourceId": 243929,
+
+  "rank": 27,
+  "price": 510000,
+
+  "kit": {
+    "image": 226368,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m3", "count": 1 },
+      { "id": "freeze_m3", "count": 1 },
+      { "id": "zeus_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

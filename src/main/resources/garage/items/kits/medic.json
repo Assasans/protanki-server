@@ -1,0 +1,26 @@
+{
+  "id": "medic",
+  "index": 169,
+
+  "name": "Комплект «Санитар»",
+  "description": "",
+
+  "baseItemId": 84693,
+  "previewResourceId": 84693,
+
+  "rank": 27,
+  "price": 510000,
+
+  "kit": {
+    "image": 138495,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m3", "count": 1 },
+      { "id": "isida_m3", "count": 1 },
+      { "id": "picasso_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

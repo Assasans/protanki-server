@@ -1,0 +1,21 @@
+{
+  "id": "corrosion",
+  "index": 47,
+
+  "name": "Ржавчина",
+  "description": "Антипафос, антигламур и вызов моде! Кровавая ржавчина — выбор суровых танкистов, презирающих лоск и блеск. Полученная путём окисления металлической стружки в ванночках с кровью, эта краска говорит о брутальности и твёрдости характера танкиста.",
+
+  "baseItemId": 92554,
+  "previewResourceId": 92554,
+
+  "rank": 11,
+  "price": 18500,
+
+  "coloring": 967180,
+
+  "properties": [
+    { "property": "RAILGUN_RESISTANCE", "value": 13 },
+    { "property": "THUNDER_RESISTANCE", "value": 20 },
+    { "property": "SHAFT_RESISTANCE", "value": 20 }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "vandal",
+  "index": 150,
+
+  "name": "Комплект «Вандал»",
+  "description": "",
+
+  "baseItemId": 393067,
+  "previewResourceId": 393067,
+
+  "rank": 22,
+  "price": 372000,
+
+  "kit": {
+    "image": 997998,
+    "discount": 40,
+    "items": [
+      { "id": "hunter_m3", "count": 1 },
+      { "id": "twins_m3", "count": 1 },
+      { "id": "rock_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

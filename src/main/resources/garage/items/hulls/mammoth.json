@@ -1,0 +1,92 @@
+{
+  "id": "mammoth",
+  "index": 20,
+
+  "name": "Мамонт",
+  "description": "Самоходная крепость на гусеничном ходу. Флагман среди танковых корпусов. Цельнолитой, тяжёлый, упрочнённый супербетоном, имеет низкую скорость, что не мешает ему с успехом противостоять одновременно нескольким вражеским орудиям.",
+
+  "baseItemId": 542698,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 542698,
+      "object3ds": 139472,
+
+      "rank": 6,
+      "price": 600,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 268 },
+        { "property": "HULL_SPEED", "value": 4.40 },
+        { "property": "HULL_TURN_SPEED", "value": 54 },
+        { "property": "HULL_MASS", "value": 4262 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 8 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 906451,
+      "object3ds": 219122,
+
+      "rank": 13,
+      "price": 25450,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 339 },
+        { "property": "HULL_SPEED", "value": 4.60 },
+        { "property": "HULL_TURN_SPEED", "value": 64.1 },
+        { "property": "HULL_MASS", "value": 4743 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 10 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 905090,
+      "object3ds": 550964,
+
+      "rank": 20,
+      "price": 94650,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 409 },
+        { "property": "HULL_SPEED", "value": 4.90 },
+        { "property": "HULL_TURN_SPEED", "value": 74.2 },
+        { "property": "HULL_MASS", "value": 5225 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 11 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 385917,
+      "object3ds": 165165,
+
+      "rank": 28,
+      "price": 240000,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 450 },
+        { "property": "HULL_SPEED", "value": 5.00 },
+        { "property": "HULL_TURN_SPEED", "value": 80 },
+        { "property": "HULL_MASS", "value": 5500 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 12 }
+          ]
+        }
+      ]
+    }
+  }
+}

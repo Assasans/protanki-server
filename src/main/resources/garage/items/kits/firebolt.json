@@ -1,0 +1,26 @@
+{
+  "id": "firebolt",
+  "index": 126,
+
+  "name": "Комплект «Всполох»",
+  "description": "",
+
+  "baseItemId": 765374,
+  "previewResourceId": 765374,
+
+  "rank": 14,
+  "price": 140310,
+
+  "kit": {
+    "image": 360111,
+    "discount": 40,
+    "items": [
+      { "id": "wasp_m2", "count": 1 },
+      { "id": "flamethrower_m2", "count": 1 },
+      { "id": "rustle_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

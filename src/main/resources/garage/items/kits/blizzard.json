@@ -1,0 +1,26 @@
+{
+  "id": "blizzard",
+  "index": 115,
+
+  "name": "Комплект «Буран»",
+  "description": "",
+
+  "baseItemId": 494235,
+  "previewResourceId": 494235,
+
+  "rank": 9,
+  "price": 27800,
+
+  "kit": {
+    "image": 527428,
+    "discount": 50,
+    "items": [
+      { "id": "hornet_m1", "count": 1 },
+      { "id": "freeze_m1", "count": 1 },
+      { "id": "storm_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

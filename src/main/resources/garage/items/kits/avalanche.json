@@ -1,0 +1,26 @@
+{
+  "id": "avalanche",
+  "index": 138,
+
+  "name": "Комплект «Лавина»",
+  "description": "",
+
+  "baseItemId": 977110,
+  "previewResourceId": 977110,
+
+  "rank": 17,
+  "price": 117755,
+
+  "kit": {
+    "image": 195617,
+    "discount": 45,
+    "items": [
+      { "id": "hornet_m2", "count": 1 },
+      { "id": "freeze_m2", "count": 1 },
+      { "id": "cedar_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

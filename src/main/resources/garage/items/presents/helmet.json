@@ -1,0 +1,15 @@
+{
+  "id": "helmet",
+  "index": 189,
+
+  "name": "Танковый шлем",
+  "description": "Танковый шлем — неотъемлемый элемент экипировки опытного бойца.",
+
+  "baseItemId": 122218,
+  "previewResourceId": 122218,
+
+  "rank": 7,
+  "price": 2000,
+
+  "properties": [ ]
+}

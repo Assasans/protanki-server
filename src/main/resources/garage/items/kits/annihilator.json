@@ -1,0 +1,26 @@
+{
+  "id": "annihilator",
+  "index": 142,
+
+  "name": "Комплект «Аннигилятор»",
+  "description": "",
+
+  "baseItemId": 758173,
+  "previewResourceId": 758173,
+
+  "rank": 19,
+  "price": 185820,
+
+  "kit": {
+    "image": 268558,
+    "discount": 40,
+    "items": [
+      { "id": "viking_m2", "count": 1 },
+      { "id": "thunder_m2", "count": 1 },
+      { "id": "rustle_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

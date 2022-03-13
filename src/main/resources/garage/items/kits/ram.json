@@ -1,0 +1,26 @@
+{
+  "id": "ram",
+  "index": 129,
+
+  "name": "Комплект «Таран»",
+  "description": "",
+
+  "baseItemId": 671068,
+  "previewResourceId": 671068,
+
+  "rank": 15,
+  "price": 121440,
+
+  "kit": {
+    "image": 846623,
+    "discount": 45,
+    "items": [
+      { "id": "titan_m2", "count": 1 },
+      { "id": "twins_m2", "count": 1 },
+      { "id": "hohloma_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "bulldozer",
+  "index": 160,
+
+  "name": "Комплект «Бульдозер»",
+  "description": "",
+
+  "baseItemId": 658830,
+  "previewResourceId": 658830,
+
+  "rank": 26,
+  "price": 400000,
+
+  "kit": {
+    "image": 891798,
+    "discount": 50,
+    "items": [
+      { "id": "mammoth_m3", "count": 1 },
+      { "id": "thunder_m3", "count": 1 },
+      { "id": "emerald_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

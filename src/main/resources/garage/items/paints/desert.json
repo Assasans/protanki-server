@@ -1,0 +1,21 @@
+{
+  "id": "desert",
+  "index": 46,
+
+  "name": "Пустыня",
+  "description": "Специальная краска, идеально подходящая для операций в пустыне. Она создается путем распыления кристаллического порошка, извлеченного из зубов песчаного червя. Чтобы сохранить свою уникальную текстуру, эту краску не следует мыть.",
+
+  "baseItemId": 112041,
+  "previewResourceId": 112041,
+
+  "rank": 14,
+  "price": 36500,
+
+  "coloring": 82151,
+
+  "properties": [
+    { "property": "TWINS_RESISTANCE", "value": 7 },
+    { "property": "RICOCHET_RESISTANCE", "value": 35 },
+    { "property": "SMOKY_RESISTANCE", "value": 7 }
+  ]
+}

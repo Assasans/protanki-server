@@ -1,0 +1,22 @@
+{
+  "id": "taiga",
+  "index": 66,
+
+  "name": "Тайга",
+  "description": "Камуфляжное покрытие «Тайга» так хорошо маскирует танк в густой растительности, что на нём даже можно охотиться на лосей. Пугливое животное не замечает угрозу и подходит к боевой машине вплотную. Впрочем, на месте лося может оказаться и другой танкист...",
+
+  "baseItemId": 184733,
+  "previewResourceId": 184733,
+
+  "rank": 27,
+  "price": 265000,
+
+  "coloring": 32379,
+
+  "properties": [
+    { "property": "ISIS_RESISTANCE", "value": 45 },
+    { "property": "FIREBIRD_RESISTANCE", "value": 30 },
+    { "property": "TWINS_RESISTANCE", "value": 23 },
+    { "property": "RICOCHET_RESISTANCE", "value": 30 }
+  ]
+}

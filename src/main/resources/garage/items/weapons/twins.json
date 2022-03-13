@@ -1,0 +1,116 @@
+{
+  "id": "twins",
+  "index": 7,
+
+  "name": "Твинс",
+  "description": "Скорострельный двуствольный плазмомёт вмиг превратит врага в кучу расплавленного железа. Учитывая то, что попадание во вражеский танк сбивает ему прицел, это оружие идеально подходит для динамичного боя на средней дистанции.",
+
+  "baseItemId": 103660,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 103660,
+      "object3ds": 495014,
+
+      "rank": 2,
+      "price": 350,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 8.8 },
+            { "property": "DAMAGE_TO", "value": 10.5 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 97 },
+        { "property": "TURRET_TURN_SPEED", "value": 89.6 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 65 }
+          ]
+        },
+        { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 5.8 }
+      ]
+    },
+    "1": {
+      "previewResourceId": 686147,
+      "object3ds": 132033,
+
+      "rank": 9,
+      "price": 12350,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 11.4 },
+            { "property": "DAMAGE_TO", "value": 13.9 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 117 },
+        { "property": "TURRET_TURN_SPEED", "value": 103.9 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 69.8 }
+          ]
+        },
+        { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 10.3 }
+      ]
+    },
+    "2": {
+      "previewResourceId": 595904,
+      "object3ds": 875465,
+
+      "rank": 16,
+      "price": 70300,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 14 },
+            { "property": "DAMAGE_TO", "value": 17.2 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 137 },
+        { "property": "TURRET_TURN_SPEED", "value": 118.3 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 74.6 }
+          ]
+        },
+        { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 14.8 }
+      ]
+    },
+    "3": {
+      "previewResourceId": 705554,
+      "object3ds": 499715,
+
+      "rank": 24,
+      "price": 220000,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 17 },
+            { "property": "DAMAGE_TO", "value": 21 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 160 },
+        { "property": "TURRET_TURN_SPEED", "value": 134.7 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 80 }
+          ]
+        },
+        { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 20 }
+      ]
+    }
+  }
+}

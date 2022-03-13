@@ -1,0 +1,28 @@
+{
+  "id": "inventory_900",
+  "index": 96,
+
+  "name": "Комплект «Припасы 900»",
+  "description": "",
+
+  "baseItemId": 252605,
+  "previewResourceId": 252605,
+
+  "rank": 20,
+  "price": 108000,
+
+  "kit": {
+    "image": 864803,
+    "discount": 65,
+    "items": [
+      { "id": "health_m0", "count": 900 },
+      { "id": "armor_m0", "count": 900 },
+      { "id": "double_damage_m0", "count": 900 },
+      { "id": "n2o_m0", "count": 900 },
+      { "id": "mine_m0", "count": 900 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

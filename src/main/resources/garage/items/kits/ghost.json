@@ -1,0 +1,26 @@
+{
+  "id": "ghost",
+  "index": 149,
+
+  "name": "Комплект «Призрак»",
+  "description": "",
+
+  "baseItemId": 390649,
+  "previewResourceId": 390649,
+
+  "rank": 22,
+  "price": 360000,
+
+  "kit": {
+    "image": 126433,
+    "discount": 40,
+    "items": [
+      { "id": "wasp_m3", "count": 1 },
+      { "id": "smoky_m3", "count": 1 },
+      { "id": "needle_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "prometheus",
+  "index": 147,
+
+  "name": "Комплект «Дивий»",
+  "description": "",
+
+  "baseItemId": 288940,
+  "previewResourceId": 288940,
+
+  "rank": 21,
+  "price": 360000,
+
+  "kit": {
+    "image": 288506,
+    "discount": 40,
+    "items": [
+      { "id": "hunter_m3", "count": 1 },
+      { "id": "flamethrower_m3", "count": 1 },
+      { "id": "needle_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

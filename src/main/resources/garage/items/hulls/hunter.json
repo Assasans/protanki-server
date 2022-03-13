@@ -1,0 +1,92 @@
+{
+  "id": "hunter",
+  "index": 16,
+
+  "name": "Хантер",
+  "description": "Этот корпус, обшитый бронёй из армированной стали, является наиболее универсальным. Он хорошо подойдет как поклонникам активного, динамичного боя, так и игрокам, предпочитающим позиционный стиль игры. Вы никогда не останетесь без работы, будь то удержание высоты или жестокая битва за квартал разрушенного города.",
+
+  "baseItemId": 826132,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 826132,
+      "object3ds": 227169,
+
+      "rank": 1,
+      "price": 0,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 144 },
+        { "property": "HULL_SPEED", "value": 8.00 },
+        { "property": "HULL_TURN_SPEED", "value": 75.8 },
+        { "property": "HULL_MASS", "value": 1761 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 9 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 289133,
+      "object3ds": 377977,
+
+      "rank": 8,
+      "price": 3200,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 187 },
+        { "property": "HULL_SPEED", "value": 8.60 },
+        { "property": "HULL_TURN_SPEED", "value": 95.3 },
+        { "property": "HULL_MASS", "value": 2047 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 10 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 271579,
+      "object3ds": 271004,
+
+      "rank": 15,
+      "price": 54400,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 230 },
+        { "property": "HULL_SPEED", "value": 9.20 },
+        { "property": "HULL_TURN_SPEED", "value": 114.9 },
+        { "property": "HULL_MASS", "value": 2333 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 11 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 630759,
+      "object3ds": 257012,
+
+      "rank": 23,
+      "price": 190000,
+
+      "properties": [
+        { "property": "HULL_ARMOR", "value": 285 },
+        { "property": "HULL_SPEED", "value": 10.00 },
+        { "property": "HULL_TURN_SPEED", "value": 140 },
+        { "property": "HULL_MASS", "value": 2700 },
+        {
+          "property": "HULL_POWER",
+          "properties": [
+            { "property": "HULL_ACCELERATION", "value": 13 }
+          ]
+        }
+      ]
+    }
+  }
+}

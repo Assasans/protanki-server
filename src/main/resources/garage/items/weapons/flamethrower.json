@@ -1,0 +1,152 @@
+{
+  "id": "flamethrower",
+  "index": 6,
+
+  "name": "Огнемёт",
+  "description": "В тесных городских кварталах, когда картина боя напоминает скорее муравейник, нет лучшего оружия, чем Огнемёт. Огнемёт является этаким оружием массового поражения для ближнего боя. Высокая температура горения смеси позволит быстро поджечь экипаж танка зазевавшегося противника, после чего скрыться за углом, пока враг догорает. Идеальное оружие против медленных танков в условиях ограниченного пространства. Из недостатков можно отметить сравнительно долгое время перезарядки, однако стрелять можно и из частично перезаряженного оружия.",
+
+  "baseItemId": 43761,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 43761,
+      "object3ds": 521900,
+
+      "rank": 1,
+      "price": 150,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 41 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 13.35 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 95.3 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 23.7 }
+          ]
+        },
+        {
+          "property": "FIRE_DAMAGE",
+          "properties": [
+            { "property": "FLAME_TEMPERATURE_LIMIT", "value": 5.9 }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "previewResourceId": 608063,
+      "object3ds": 18283,
+
+      "rank": 8,
+      "price": 7100,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 50 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 12.63 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 116.9 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 25.6 }
+          ]
+        },
+        {
+          "property": "FIRE_DAMAGE",
+          "properties": [
+            { "property": "FLAME_TEMPERATURE_LIMIT", "value": 10.2 }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "previewResourceId": 508353,
+      "object3ds": 456708,
+
+      "rank": 15,
+      "price": 61400,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 60 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 11.92 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 138.4 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 27.5 }
+          ]
+        },
+        {
+          "property": "FIRE_DAMAGE",
+          "properties": [
+            { "property": "FLAME_TEMPERATURE_LIMIT", "value": 14.5 }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "previewResourceId": 553103,
+      "object3ds": 758687,
+
+      "rank": 23,
+      "price": 210000,
+
+      "properties": [
+        {
+          "property": "DAMAGE_PER_SECOND",
+          "properties": [
+            { "property": "DAMAGE_PER_PERIOD", "value": 72 }
+          ]
+        },
+        {
+          "property": "WEAPON_CHARGE_RATE",
+          "properties": [
+            { "property": "WEAPON_RELOAD_TIME", "value": 11.00 }
+          ]
+        },
+        { "property": "TURRET_TURN_SPEED", "value": 166.2 },
+        {
+          "property": "SHOT_RANGE",
+          "properties": [
+            { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 30 }
+          ]
+        },
+        {
+          "property": "FIRE_DAMAGE",
+          "properties": [
+            { "property": "FLAME_TEMPERATURE_LIMIT", "value": 20 }
+          ]
+        }
+      ]
+    }
+  }
+}

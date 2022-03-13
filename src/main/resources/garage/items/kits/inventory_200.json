@@ -1,0 +1,28 @@
+{
+  "id": "inventory_200",
+  "index": 89,
+
+  "name": "Комплект «Припасы 200»",
+  "description": "",
+
+  "baseItemId": 390894,
+  "previewResourceId": 390894,
+
+  "rank": 7,
+  "price": 35000,
+
+  "kit": {
+    "image": 617155,
+    "discount": 50,
+    "items": [
+      { "id": "health_m0", "count": 200 },
+      { "id": "armor_m0", "count": 200 },
+      { "id": "double_damage_m0", "count": 200 },
+      { "id": "n2o_m0", "count": 200 },
+      { "id": "mine_m0", "count": 200 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

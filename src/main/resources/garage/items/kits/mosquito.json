@@ -1,0 +1,26 @@
+{
+  "id": "mosquito",
+  "index": 127,
+
+  "name": "Комплект «Комар»",
+  "description": "",
+
+  "baseItemId": 333579,
+  "previewResourceId": 333579,
+
+  "rank": 15,
+  "price": 114990,
+
+  "kit": {
+    "image": 652351,
+    "discount": 40,
+    "items": [
+      { "id": "wasp_m2", "count": 1 },
+      { "id": "railgun_m2", "count": 1 },
+      { "id": "savanna_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

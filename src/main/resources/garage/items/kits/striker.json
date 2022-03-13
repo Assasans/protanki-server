@@ -1,0 +1,26 @@
+{
+  "id": "striker",
+  "index": 119,
+
+  "name": "Комплект «Страйкер»",
+  "description": "",
+
+  "baseItemId": 677607,
+  "previewResourceId": 677607,
+
+  "rank": 13,
+  "price": 57900,
+
+  "kit": {
+    "image": 478398,
+    "discount": 50,
+    "items": [
+      { "id": "viking_m1", "count": 1 },
+      { "id": "smoky_m2", "count": 1 },
+      { "id": "swash_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "cyclops",
+  "index": 141,
+
+  "name": "Комплект «Циклоп»",
+  "description": "",
+
+  "baseItemId": 807884,
+  "previewResourceId": 807884,
+
+  "rank": 19,
+  "price": 173670,
+
+  "kit": {
+    "image": 208105,
+    "discount": 40,
+    "items": [
+      { "id": "mammoth_m2", "count": 1 },
+      { "id": "shaft_m2", "count": 1 },
+      { "id": "hohloma_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

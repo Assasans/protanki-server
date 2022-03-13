@@ -1,0 +1,96 @@
+{
+  "id": "smoky",
+  "index": 5,
+
+  "name": "Смоки",
+  "description": "Среднекалиберная танковая пушка. В основном, устанавливается на лёгкие истребительные и учебные танки. Получила распространение из-за дешевизны и простоты обслуживания. Установите её на быстрый корпус и, шныряя между ошарашенными врагами, берите тяжёлые неповоротливые танки на измор. Разработанные апгрейды способны существенно увеличить убойную силу этой малышки. Стоит помнить, что урон этой пушки падает на расстоянии.",
+
+  "baseItemId": 651066,
+
+  "modifications": {
+    "0": {
+      "previewResourceId": 651066,
+      "object3ds": 205731,
+
+      "rank": 1,
+      "price": 0,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 22 },
+            { "property": "DAMAGE_TO", "value": 28 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 175 },
+        { "property": "TURRET_TURN_SPEED", "value": 71.5 },
+        { "property": "CRITICAL_HIT_CHANCE", "value": 8 },
+        { "property": "CRITICAL_HIT_DAMAGE", "value": 50 }
+      ]
+    },
+    "1": {
+      "previewResourceId": 825544,
+      "object3ds": 31170,
+
+      "rank": 8,
+      "price": 7100,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 29 },
+            { "property": "DAMAGE_TO", "value": 37 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 222 },
+        { "property": "TURRET_TURN_SPEED", "value": 87.1 },
+        { "property": "CRITICAL_HIT_CHANCE", "value": 12 },
+        { "property": "CRITICAL_HIT_DAMAGE", "value": 65 }
+      ]
+    },
+    "2": {
+      "previewResourceId": 592136,
+      "object3ds": 458970,
+
+      "rank": 15,
+      "price": 61400,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 35 },
+            { "property": "DAMAGE_TO", "value": 45 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 269 },
+        { "property": "TURRET_TURN_SPEED", "value": 102.6 },
+        { "property": "CRITICAL_HIT_CHANCE", "value": 15 },
+        { "property": "CRITICAL_HIT_DAMAGE", "value": 80 }
+      ]
+    },
+    "3": {
+      "previewResourceId": 379077,
+      "object3ds": 768112,
+
+      "rank": 23,
+      "price": 200000,
+
+      "properties": [
+        {
+          "property": "DAMAGE",
+          "properties": [
+            { "property": "DAMAGE_FROM", "value": 44 },
+            { "property": "DAMAGE_TO", "value": 56 }
+          ]
+        },
+        { "property": "IMPACT_FORCE", "value": 330 },
+        { "property": "TURRET_TURN_SPEED", "value": 122.6 },
+        { "property": "CRITICAL_HIT_CHANCE", "value": 20 },
+        { "property": "CRITICAL_HIT_DAMAGE", "value": 100 }
+      ]
+    }
+  }
+}

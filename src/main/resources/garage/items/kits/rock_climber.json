@@ -1,0 +1,26 @@
+{
+  "id": "rock_climber",
+  "index": 164,
+
+  "name": "Комплект «Скалолаз»",
+  "description": "",
+
+  "baseItemId": 405746,
+  "previewResourceId": 405746,
+
+  "rank": 26,
+  "price": 426000,
+
+  "kit": {
+    "image": 171873,
+    "discount": 40,
+    "items": [
+      { "id": "titan_m3", "count": 1 },
+      { "id": "ricochet_m3", "count": 1 },
+      { "id": "rock_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

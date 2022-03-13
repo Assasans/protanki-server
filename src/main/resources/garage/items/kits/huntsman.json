@@ -1,0 +1,26 @@
+{
+  "id": "huntsman",
+  "index": 155,
+
+  "name": "Комплект «Утёс»",
+  "description": "",
+
+  "baseItemId": 884861,
+  "previewResourceId": 884861,
+
+  "rank": 25,
+  "price": 352000,
+
+  "kit": {
+    "image": 408662,
+    "discount": 45,
+    "items": [
+      { "id": "hornet_m3", "count": 1 },
+      { "id": "smoky_m3", "count": 1 },
+      { "id": "rock_m0", "count": 1 }
+    ],
+    "isTimeless": true
+  },
+
+  "properties": [ ]
+}

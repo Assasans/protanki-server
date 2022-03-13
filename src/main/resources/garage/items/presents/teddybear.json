@@ -1,0 +1,15 @@
+{
+  "id": "teddybear",
+  "index": 190,
+
+  "name": "Плюшевый мишка",
+  "description": "Добавь уюта в гараж тому, кто тебе небезразличен.",
+
+  "baseItemId": 868053,
+  "previewResourceId": 868053,
+
+  "rank": 7,
+  "price": 2000,
+
+  "properties": [ ]
+}
