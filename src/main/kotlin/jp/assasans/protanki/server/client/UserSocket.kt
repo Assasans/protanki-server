@@ -74,6 +74,8 @@ class UserSocket(
 
   var active: Boolean = false
 
+  var locale: SocketLocale? = null
+
   var user: User? = null
   var selectedBattle: Battle? = null
   var screen: Screen? = null
