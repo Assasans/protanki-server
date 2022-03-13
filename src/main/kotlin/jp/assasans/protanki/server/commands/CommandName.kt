@@ -128,8 +128,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ;
 
   companion object {
-    fun get(key: String, side: CommandSide) = CommandName
-      .values()
+    fun get(key: String, side: CommandSide) = values()
       .singleOrNull { command -> command.key == key && command.side == side }
   }
 

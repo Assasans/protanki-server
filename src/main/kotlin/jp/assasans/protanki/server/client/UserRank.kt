@@ -33,7 +33,7 @@ enum class UserRank(val value: Int, val score: Int) {
   Generalissimo(30, 1400000);
 
   companion object {
-    private val map = UserRank.values().associateBy(UserRank::value)
+    private val map = values().associateBy(UserRank::value)
 
     fun get(index: Int) = map[index]
   }

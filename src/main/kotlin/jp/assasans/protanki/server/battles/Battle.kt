@@ -29,7 +29,7 @@ enum class ItemModification(val key: String) {
   M3("m3");
 
   companion object {
-    private val map = ItemModification.values().associateBy(ItemModification::key)
+    private val map = values().associateBy(ItemModification::key)
 
     fun get(key: String) = map[key]
   }
@@ -144,7 +144,7 @@ enum class BattleTeam(val id: Int, val key: String) {
   None(2, "NONE");
 
   companion object {
-    private val map = BattleTeam.values().associateBy(BattleTeam::key)
+    private val map = values().associateBy(BattleTeam::key)
 
     fun get(key: String) = map[key]
   }
