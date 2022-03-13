@@ -34,6 +34,8 @@ dependencies {
   implementation("io.insert-koin:koin-core:$koinVersion")
   implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
 
+  implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+
   implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
   implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
   implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
