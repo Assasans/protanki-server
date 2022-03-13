@@ -1,0 +1,221 @@
+package jp.assasans.protanki.server.garage
+
+import kotlin.time.Duration
+import com.squareup.moshi.Json
+import kotlinx.datetime.Instant
+
+open class ServerGarageItem(
+  @Json val id: String,
+  @Json val index: Int,
+  @Json val type: GarageItemType,
+
+  @Json val name: String,
+  @Json val description: String,
+
+  @Json val baseItemId: Int,
+
+  // TODO
+  // @Json val kit: GarageItemKit?
+)
+
+interface IServerGarageItemWithModifications {
+  val modifications: Map<Int, ServerGarageItemModification>
+}
+
+class ServerGarageItemWeapon(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+
+  @Json override val modifications: Map<Int, ServerGarageItemModification>
+) : ServerGarageItem(
+  id, index, GarageItemType.Weapon,
+  name, description,
+  baseItemId
+), IServerGarageItemWithModifications
+
+class ServerGarageItemHull(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+
+  @Json override val modifications: Map<Int, ServerGarageItemModification>
+) : ServerGarageItem(
+  id, index, GarageItemType.Hull,
+  name, description,
+  baseItemId
+), IServerGarageItemWithModifications
+
+class ServerGarageItemPaint(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+  @Json val previewResourceId: Int,
+
+  @Json val rank: Int,
+  @Json val price: Int,
+
+  @Json val coloring: Int,
+
+  @Json val properties: List<ServerGarageItemProperty>
+) : ServerGarageItem(
+  id, index, GarageItemType.Paint,
+  name, description,
+  baseItemId
+)
+
+class ServerGarageItemSupply(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+  @Json val previewResourceId: Int,
+
+  @Json val rank: Int,
+  @Json val price: Int,
+
+  @Json val properties: List<ServerGarageItemProperty>
+) : ServerGarageItem(
+  id, index, GarageItemType.Supply,
+  name, description,
+  baseItemId
+)
+
+class ServerGarageItemKit(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+  @Json val previewResourceId: Int,
+
+  @Json val rank: Int,
+  @Json val price: Int,
+
+  @Json val kit: ServerGarageKit,
+
+  @Json val properties: List<ServerGarageItemProperty>
+) : ServerGarageItem(
+  id, index, GarageItemType.Kit,
+  name, description,
+  baseItemId
+)
+
+class ServerGarageItemPresent(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+  @Json val previewResourceId: Int,
+
+  @Json val rank: Int,
+  @Json val price: Int,
+
+  @Json val properties: List<ServerGarageItemProperty>
+) : ServerGarageItem(
+  id, index, GarageItemType.Present,
+  name, description,
+  baseItemId
+)
+
+class ServerGarageItemSubscription(
+  id: String,
+  index: Int,
+
+  name: String,
+  description: String,
+
+  baseItemId: Int,
+  @Json val previewResourceId: Int,
+
+  @Json val rank: Int,
+  @Json val price: Int,
+
+  @Json val properties: List<ServerGarageItemProperty>
+) : ServerGarageItem(
+  id, index, GarageItemType.Subscription,
+  name, description,
+  baseItemId
+)
+
+data class ServerGarageKit(
+  @Json val image: Int,
+  @Json val discount: Int,
+  @Json val items: List<ServerGarageKitItem>,
+  @Json val isTimeless: Boolean,
+  @Json val timeLeft: Int?
+)
+
+data class ServerGarageKitItem(
+  @Json val count: Int,
+  @Json val id: String
+)
+
+data class ServerGarageItemProperty(
+  @Json val property: String,
+  @Json val value: Any?,
+  @Json val properties: List<ServerGarageItemProperty>?
+)
+
+data class ServerGarageItemModification(
+  @Json val previewResourceId: Int,
+  @Json val object3ds: Int,
+
+  @Json val rank: Int,
+  @Json val price: Int,
+
+  @Json val properties: List<ServerGarageItemProperty>
+)
+
+interface IServerGarageUserItem {
+  val marketItem: ServerGarageItem
+}
+
+interface IServerGarageUserItemWithModification {
+  val modification: Int
+}
+
+class ServerGarageUserItemWeapon(
+  override val marketItem: ServerGarageItemWeapon,
+  override val modification: Int
+) : IServerGarageUserItem, IServerGarageUserItemWithModification
+
+class ServerGarageUserItemHull(
+  override val marketItem: ServerGarageItemHull,
+  override val modification: Int
+) : IServerGarageUserItem, IServerGarageUserItemWithModification
+
+class ServerGarageUserItemPaint(
+  override val marketItem: ServerGarageItemPaint
+) : IServerGarageUserItem
+
+class ServerGarageUserItemSupply(
+  override val marketItem: ServerGarageItemSupply,
+  val count: Int
+) : IServerGarageUserItem
+
+class ServerGarageUserItemSubscription(
+  override val marketItem: ServerGarageItemSubscription,
+  val startTime: Instant,
+  val duration: Duration
+) : IServerGarageUserItem

@@ -1,7 +1,6 @@
 package jp.assasans.protanki.server
 
 import java.io.ByteArrayOutputStream
-import java.net.InetSocketAddress
 import java.nio.file.Paths
 import kotlin.io.path.absolute
 import com.squareup.moshi.Moshi
@@ -12,7 +11,6 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import mu.KotlinLogging
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
@@ -20,9 +18,13 @@ import org.koin.dsl.module
 import org.koin.logger.SLF4JLogger
 import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.garage.GarageItemConverter
+import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
+import jp.assasans.protanki.server.garage.GarageMarketRegistry
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
+import jp.assasans.protanki.server.serialization.SerializeNull
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
   val data = ByteArrayOutputStream()
@@ -75,9 +77,13 @@ suspend fun main(args: Array<String>) {
     single { CommandRegistry() as ICommandRegistry }
     single { BattleProcessor() as IBattleProcessor }
     single { Database() as IDatabase }
+    single { GarageItemConverter() }
+    single { GarageMarketRegistry() }
     single {
       Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
+        .add(GarageItemTypeAdapter())
+        .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }
   }

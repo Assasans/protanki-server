@@ -33,7 +33,25 @@ class AuthHandler : ICommandHandler {
       username = data.login,
       password = data.password,
       score = 123456,
-      crystals = 123456
+      crystals = 123456,
+
+      items = listOf(
+        ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "smoky"), modification = 0),
+        ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "railgun"), modification = 3),
+        ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "hunter"), modification = 0),
+        ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "hornet"), modification = 3),
+        ServerGarageUserItemPaint(socket.marketRegistry.get(GarageItemType.Paint, "green")),
+        ServerGarageUserItemPaint(socket.marketRegistry.get(GarageItemType.Paint, "zeus")),
+        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "health"), count = 100),
+        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "armor"), count = 100),
+        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "double_damage"), count = 100),
+        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "n2o"), count = 100),
+        ServerGarageUserItemSubscription(
+          socket.marketRegistry.get(GarageItemType.Subscription, "premium_effect"),
+          startTime = Clock.System.now(),
+          duration = 10.days
+        )
+      )
     )
 
     // if(user.password == data.password) {

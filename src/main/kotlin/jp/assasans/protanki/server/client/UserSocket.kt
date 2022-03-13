@@ -12,11 +12,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
@@ -31,6 +28,7 @@ import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
+import jp.assasans.protanki.server.garage.*
 import jp.assasans.protanki.server.readAvailable
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
@@ -58,6 +56,8 @@ class UserSocket(
   private val packetProcessor = PacketProcessor()
   private val encryption = EncryptionTransformer()
   private val commandRegistry by inject<ICommandRegistry>()
+  public val marketRegistry by inject<GarageMarketRegistry>() // TODO
+  private val garageItemConverter by inject<GarageItemConverter>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val json by inject<Moshi>()
 
@@ -76,6 +76,7 @@ class UserSocket(
 
   var user: User? = null
   var selectedBattle: Battle? = null
+  var screen: Screen? = null
 
   val battle: Battle?
     get() = battlePlayer?.battle
@@ -120,7 +121,9 @@ class UserSocket(
         if(
           command.name == CommandName.LoadResources ||
           command.name == CommandName.InitLocale ||
-          command.name == CommandName.InitShotsData
+          command.name == CommandName.InitShotsData ||
+          command.name == CommandName.InitGarageItems ||
+          command.name == CommandName.InitGarageMarket
         ) { // Too long
           logger.trace { "Sent command ${command.name} ${command.args.drop(1)}" }
         } else {
@@ -251,7 +254,7 @@ class UserSocket(
   }
 
   suspend fun initBattleLoad() {
-    Command(CommandName.ChangeLayout, mutableListOf("BATTLE")).send(this)
+    Command(CommandName.StartLayoutSwitch, mutableListOf("BATTLE")).send(this)
     Command(CommandName.UnloadBattleSelect).send(this)
     Command(CommandName.StartBattle).send(this)
     Command(CommandName.UnloadChat).send(this)
@@ -314,10 +317,26 @@ class UserSocket(
     }
   }
 
-  suspend fun loadLobby() {
+  suspend fun loadGarageResources() {
+    // TODO(Assasans): Shit
+    val resourcesGarageReader = Paths.get("src/main/resources/resources/garage.json").absolute().bufferedReader()
+    val resourcesGarage = resourcesGarageReader.use { it.readText() }
+
+    awaitDependency(loadDependency(resourcesGarage))
+  }
+
+  suspend fun loadLobbyResources() {
     // TODO(Assasans): Shit
     val resourcesLobbyReader = Paths.get("src/main/resources/resources/lobby.json").absolute().bufferedReader()
     val resourcesLobby = resourcesLobbyReader.use { it.readText() }
+
+    awaitDependency(loadDependency(resourcesLobby))
+  }
+
+  suspend fun loadLobby() {
+    send(Command(CommandName.StartLayoutSwitch, mutableListOf("BATTLE_SELECT")))
+
+    screen = Screen.BattleSelect
 
     send(
       Command(
@@ -348,12 +367,12 @@ class UserSocket(
       )
     )
 
-    send(
-      Command(
-        CommandName.update_rang_progress,
-        mutableListOf("3668")
-      )
-    )
+    // send(
+    //   Command(
+    //     CommandName.UpdateRankProgress,
+    //     mutableListOf("3668")
+    //   )
+    // )
 
     send(
       Command(
@@ -371,9 +390,9 @@ class UserSocket(
       )
     )
 
-    send(Command(CommandName.ChangeLayout, mutableListOf("BATTLESELECT")))
+    loadLobbyResources()
 
-    awaitDependency(loadDependency(resourcesLobby))
+    send(Command(CommandName.EndLayoutSwitch, mutableListOf("BATTLE_SELECT", "BATTLE_SELECT")))
 
     send(
       Command(
@@ -481,6 +500,100 @@ class UserSocket(
         ).toJson()
       )
     ).send(this)
+  }
+
+  suspend fun initGarage() {
+    val user = user ?: throw Exception("No User")
+
+    val itemsParsed = mutableListOf<GarageItem>()
+    val marketParsed = mutableListOf<GarageItem>()
+
+    val marketItems = marketRegistry.items.map { it.value.map { it.value } }.flatten()
+
+    marketItems.forEach { marketItem ->
+      val userItem = user.items.singleOrNull { it.marketItem == marketItem }
+      val clientMarketItems = when(marketItem) {
+        is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem)
+
+        is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem)
+
+        is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem))
+
+        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem))
+
+        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem))
+
+        is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem))
+
+        is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem))
+
+        else                            -> throw NotImplementedError("Not implemented: ${marketItem::class.simpleName}")
+      }
+
+      // if(marketItem is ServerGarageItemSupply) return@forEach
+      // if(marketItem is ServerGarageItemSubscription) return@forEach
+      // if(marketItem is ServerGarageItemKit) return@forEach
+
+      if(userItem != null) {
+        // Add user item
+        if(userItem is ServerGarageUserItemSupply) {
+          clientMarketItems.single().count = userItem.count
+        }
+
+        if(userItem is IServerGarageUserItemWithModification) {
+          clientMarketItems.forEach clientMarketItems@{ clientItem ->
+            // Add current and previous modifications as user items
+            // if(clientItem.modificationID!! <= userItem.modification) itemsParsed.add(clientItem)
+
+            // if(clientItem.modificationID!! < userItem.modification) return@clientMarketItems
+            if(clientItem.modificationID == userItem.modification) itemsParsed.add(clientItem)
+            else marketParsed.add(clientItem)
+          }
+        } else {
+          itemsParsed.addAll(clientMarketItems)
+        }
+      } else {
+        // Add market item
+        marketParsed.addAll(clientMarketItems)
+      }
+    }
+
+    marketParsed
+      .filter { item -> item.type == GarageItemType.Kit }
+      .forEach { item ->
+        if(item.kit == null) throw Exception("Kit is null")
+
+        val ownsAll = item.kit.kitItems.all { kitItem ->
+          val id = kitItem.id.substringBeforeLast("_")
+          val modification = kitItem.id
+            .substringAfterLast("_")
+            .drop(1) // Drop 'm' letter
+            .toInt()
+
+          marketParsed.none { marketItem -> marketItem.id == id && marketItem.modificationID == modification }
+        }
+        if(ownsAll) {
+          marketParsed.remove(item)
+
+          logger.debug { "Removed kit ${item.name} from market: user owns all items" }
+        }
+      }
+
+    Command(CommandName.InitGarageItems, listOf(InitGarageItemsData(items = itemsParsed).toJson())).send(this)
+    Command(CommandName.InitMountedItem, listOf("hornet_m3", "916624")).send(this)
+    Command(CommandName.InitMountedItem, listOf("railgun_m3", "205731")).send(this)
+    Command(CommandName.InitMountedItem, listOf("zeus_m0", "966681")).send(this)
+    Command(CommandName.InitGarageMarket, listOf(InitGarageMarketData(items = marketParsed).toJson())).send(this)
+
+    // logger.debug { "User items:" }
+    // itemsParsed
+    //   .filter { item -> item.type != GarageItemType.Paint }
+    //   .forEach { item -> logger.debug { "  > ${item.name} (m${item.modificationID})" } }
+    //
+    // logger.debug { "Market items:" }
+    // marketParsed
+    //   .filter { item -> item.type != GarageItemType.Paint }
+    //   .forEach { item -> logger.debug { "  > ${item.name} (m${item.modificationID})" } }
   }
 }
 

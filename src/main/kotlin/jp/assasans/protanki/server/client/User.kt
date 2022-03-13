@@ -2,13 +2,16 @@ package jp.assasans.protanki.server.client
 
 import org.jetbrains.exposed.sql.ResultRow
 import jp.assasans.protanki.server.entities.Users
+import jp.assasans.protanki.server.garage.IServerGarageUserItem
 
 class User(
   val id: Int,
   var username: String,
   val password: String,
   var score: Int,
-  var crystals: Int
+  var crystals: Int,
+
+  val items: List<IServerGarageUserItem>
 ) {
   companion object {
     fun fromDatabase(user: ResultRow): User = User(
@@ -16,7 +19,9 @@ class User(
       username = user[Users.username],
       password = user[Users.password],
       score = user[Users.score],
-      crystals = user[Users.crystals]
+      crystals = user[Users.crystals],
+
+      items = mutableListOf()
     )
   }
 

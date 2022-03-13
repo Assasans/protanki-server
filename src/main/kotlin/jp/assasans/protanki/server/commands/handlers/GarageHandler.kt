@@ -2,8 +2,6 @@ package jp.assasans.protanki.server.commands.handlers
 
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
@@ -30,41 +28,8 @@ Switch to garage from battle:
 class GarageHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
-  @CommandHandler(CommandName.SwitchGarage)
-  suspend fun switchGarage(socket: UserSocket) {
-    logger.debug { "Switch to garage" }
-
-    val player = socket.battlePlayer
-    if(player != null) {
-      Command(CommandName.UnloadBattle).send(socket)
-    }
-  }
-
-  @CommandHandler(CommandName.ExitFromBattleNotify)
-  suspend fun exitFromBattleNotify(socket: UserSocket) {
-    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
-    val battle = player.battle
-    battle.players.remove(player)
-
-    Command(
-      CommandName.InitMessages,
-      listOf(
-        InitChatMessagesData(
-          messages = listOf(
-            ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
-          )
-        ).toJson(),
-        InitChatSettings(
-          selfName = socket.user!!.username
-        ).toJson()
-      )
-    ).send(socket)
-
-    socket.initBattleList()
-
-    logger.debug { "Select battle ${battle.id} -> ${battle.title}" }
-
-    battle.selectFor(socket)
-    battle.showInfoFor(socket)
+  @CommandHandler(CommandName.TryMountPreviewItem)
+  suspend fun tryMountPreviewItem(socket: UserSocket, item: String) {
+    Command(CommandName.MountItem, listOf(item, false.toString())).send(socket)
   }
 }

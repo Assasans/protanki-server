@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server
 
+import com.squareup.moshi.Moshi
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -8,6 +9,7 @@ import jp.assasans.protanki.server.battles.BattleMap
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.commands.handlers.*
+import jp.assasans.protanki.server.garage.GarageMarketRegistry
 
 class Server : KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -16,6 +18,7 @@ class Server : KoinComponent {
   private val commandRegistry by inject<ICommandRegistry>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val database by inject<IDatabase>()
+  private val marketRegistry by inject<GarageMarketRegistry>() // TODO
 
   init {
     battleProcessor.battles.add(
@@ -34,11 +37,14 @@ class Server : KoinComponent {
   suspend fun run() {
     logger.info { "Server started" }
 
+    marketRegistry.load()
+
     commandRegistry.registerHandlers(SystemHandler::class)
     commandRegistry.registerHandlers(AuthHandler::class)
     commandRegistry.registerHandlers(LobbyHandler::class)
     commandRegistry.registerHandlers(BattleHandler::class)
     commandRegistry.registerHandlers(ShotHandler::class)
+    commandRegistry.registerHandlers(GarageHandler::class)
 
     database.connect()
     socketServer.run()

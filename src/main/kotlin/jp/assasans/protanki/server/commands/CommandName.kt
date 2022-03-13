@@ -37,13 +37,16 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   SendChatMessageServer(CommandCategory.Lobby, "chat_message", CommandSide.Server),
   SendChatMessageClient(CommandCategory.LobbyChat, "__SYNTHETIC__", CommandSide.Client),
 
-  ChangeLayout(CommandCategory.Lobby, "change_layout_state", CommandSide.Client),
+  StartLayoutSwitch(CommandCategory.Lobby, "change_layout_state", CommandSide.Client),
+  EndLayoutSwitch(CommandCategory.Lobby, "end_layout_switch", CommandSide.Client),
+
   SwitchBattleSelect(CommandCategory.Lobby, "switch_battle_select", CommandSide.Server),
   SwitchGarage(CommandCategory.Lobby, "switch_garage", CommandSide.Server),
+  UnloadGarage(CommandCategory.Lobby, "unload_garage", CommandSide.Client),
 
   UnloadBattle(CommandCategory.Battle, "unload_battle", CommandSide.Client),
 
-  ExitFromBattleNotify(CommandCategory.Battle, "i_exit_from_battle", CommandSide.Server),
+  ExitFromBattle(CommandCategory.Battle, "exitFromBattle", CommandSide.Server),
 
   BattlePlayerJoinDm(CommandCategory.Battle, "user_connect_dm", CommandSide.Client),
   BattlePlayerLeaveDm(CommandCategory.Battle, "user_disconnect_dm", CommandSide.Client),
@@ -124,6 +127,14 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   Shot(CommandCategory.Battle, "shot", CommandSide.Client),
   ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
   ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),
+
+  InitGarageItems(CommandCategory.Garage, "init_garage_items", CommandSide.Client),
+  InitMountedItem(CommandCategory.Garage, "init_mounted_item", CommandSide.Client),
+  InitGarageMarket(CommandCategory.Garage, "init_market", CommandSide.Client),
+  TryBuyItem(CommandCategory.Garage, "try_buy_item", CommandSide.Server),
+  TryMountItem(CommandCategory.Garage, "try_mount_item", CommandSide.Server),
+  TryMountPreviewItem(CommandCategory.Garage, "fit", CommandSide.Server),
+  MountItem(CommandCategory.Garage, "mount_item", CommandSide.Client),
 
   ;
 
