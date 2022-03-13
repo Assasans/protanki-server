@@ -19,6 +19,11 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   LoginByHash(CommandCategory.Auth, "login_by_hash", CommandSide.Server),
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),
 
+  SwitchToRegistration(CommandCategory.Registration, "set_state", CommandSide.Server),
+  RefreshRegistrationCaptcha(CommandCategory.Registration, "refresh_captcha", CommandSide.Server),
+
+  UpdateCaptcha(CommandCategory.Auth, "update_captcha", CommandSide.Client),
+
   Error(CommandCategory.Lobby, "error", CommandSide.Server),
 
   InitPremium(CommandCategory.Lobby, "init_premium", CommandSide.Client),
@@ -85,6 +90,15 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitTank(CommandCategory.Battle, "init_tank", CommandSide.Client),
   GetInitDataLocalTank(CommandCategory.Battle, "get_init_data_local_tank", CommandSide.Server),
 
+  /**
+   * The camera ready to move to the spawn point
+   */
+  ReadyToRespawn(CommandCategory.Battle, "readyToSpawn", CommandSide.Server),
+
+  /**
+   * The camera moved to the spawn point
+   */
+  ReadyToSpawn(CommandCategory.Battle, "readyToPlace", CommandSide.Server),
   PrepareToSpawn(CommandCategory.Battle, "prepare_to_spawn", CommandSide.Client),
   ChangeHealth(CommandCategory.Battle, "change_health", CommandSide.Client),
   SpawnTank(CommandCategory.Battle, "spawn", CommandSide.Client),
