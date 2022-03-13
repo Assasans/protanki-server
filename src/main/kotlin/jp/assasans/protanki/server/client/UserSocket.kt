@@ -11,7 +11,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import io.ktor.network.sockets.*
-import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -70,7 +69,7 @@ class UserSocket(
 
   private val socketJobs: MutableList<Job> = mutableListOf()
 
-  val remoteAddress: NetworkAddress
+  val remoteAddress: SocketAddress
     get() = socket.remoteAddress
 
   var active: Boolean = false

@@ -18,11 +18,11 @@ repositories {
 
 dependencies {
   implementation(kotlin("stdlib"))
-  implementation("io.ktor:ktor-server-core:2.0.0-eap-256")
-  implementation("io.ktor:ktor-network:2.0.0-eap-256")
-  implementation("io.ktor:ktor-server-netty:2.0.0-eap-256")
 
-  val ktorVersion = "1.6.7"
+  implementation("io.ktor:ktor-server-core:2.0.0-beta-1")
+  implementation("io.ktor:ktor-network:2.0.0-beta-1")
+  implementation("io.ktor:ktor-server-netty:2.0.0-beta-1")
+
   val koinVersion = "3.1.5"
   val exposedVersion = "0.37.3"
 
