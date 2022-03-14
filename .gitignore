@@ -127,9 +127,7 @@ hs_err_pid*
 ### Gradle template
 
 /.gradle
-/gradle
-/gradlew
-/gradlew.bat
+!/gradle/wrapper/gradle-wrapper.jar
 
 /build
 
