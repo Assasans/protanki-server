@@ -66,5 +66,5 @@ hs_err_pid*
 
 ### Database
 
-/db.h2.mv.db
-/db.h2
+db.h2.mv.db
+db.h2

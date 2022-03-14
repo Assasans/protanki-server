@@ -52,6 +52,14 @@ tasks.withType<KotlinCompile> {
   kotlinOptions.jvmTarget = "17"
 }
 
+sourceSets {
+  main {
+    resources {
+      exclude("data")
+    }
+  }
+}
+
 tasks {
   wrapper {
     gradleVersion = "7.4.1"
@@ -68,6 +76,14 @@ tasks {
     configurations.compileClasspath.get().forEach {
       from(if(it.isDirectory) it else zipTree(it))
     }
+
+    dependsOn("copyRuntimeResources")
+  }
+
+  register<Sync>("copyRuntimeResources") {
+    // Copy runtime resources to the jar directory
+    from("$projectDir/src/main/resources/data")
+    into(layout.buildDirectory.dir("libs/data"))
   }
 }
 
