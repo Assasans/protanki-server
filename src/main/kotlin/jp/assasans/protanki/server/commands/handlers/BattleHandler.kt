@@ -1,11 +1,13 @@
 package jp.assasans.protanki.server.commands.handlers
 
 import com.squareup.moshi.Moshi
+import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.battles.users
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
@@ -132,8 +134,78 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.SelfDestruct)
   suspend fun selfDestruct(socket: UserSocket) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
     logger.debug { "Started self-destruct for ${socket.user!!.username}" }
 
-    // TODO(Assasans): Not implemented
+    tank.selfDestruct()
+  }
+
+  @CommandHandler(CommandName.ReadyToRespawn)
+  suspend fun readyToRespawn(socket: UserSocket) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    player.respawn()
+  }
+
+  @CommandHandler(CommandName.ReadyToSpawn)
+  suspend fun readyToSpawn(socket: UserSocket) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    tank.spawn()
+    player.spawnTankForAnother()
+
+    delay(1500)
+    tank.activate()
+
+    if(player.isSpectator) {
+      player.battle.players.users().forEach { battlePlayer ->
+        if(battlePlayer == player) return@forEach
+
+        val tank = battlePlayer.tank
+        if(tank != null) {
+          Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
+        }
+      }
+    }
+  }
+
+  @CommandHandler(CommandName.ExitFromBattle)
+  suspend fun exitFromBattleNotify(socket: UserSocket, destinationScreen: String) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val battle = player.battle
+    battle.players.remove(player)
+
+    Command(CommandName.UnloadBattle).send(socket)
+
+    when(destinationScreen) {
+      "BATTLE_SELECT" -> {
+        Command(
+          CommandName.InitMessages,
+          listOf(
+            InitChatMessagesData(
+              messages = listOf(
+                ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
+              )
+            ).toJson(),
+            InitChatSettings(
+              selfName = socket.user!!.username
+            ).toJson()
+          )
+        ).send(socket)
+
+        socket.initBattleList()
+
+        logger.debug { "Select battle ${battle.id} -> ${battle.title}" }
+
+        battle.selectFor(socket)
+        battle.showInfoFor(socket)
+      }
+
+      "GARAGE"        -> {}
+    }
   }
 }

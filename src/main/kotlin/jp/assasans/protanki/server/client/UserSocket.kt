@@ -26,6 +26,7 @@ import jp.assasans.protanki.server.IResourceManager
 import jp.assasans.protanki.server.PacketProcessor
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.BattleTank
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
@@ -35,6 +36,7 @@ import jp.assasans.protanki.server.readAvailable
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
+suspend fun Command.send(tank: BattleTank) = tank.socket.send(this)
 
 suspend fun UserSocket.sendChat(message: String) = Command(
   CommandName.SendChatMessageClient,
@@ -531,7 +533,7 @@ class UserSocket(
             // if(clientItem.modificationID!! <= userItem.modification) itemsParsed.add(clientItem)
 
             // if(clientItem.modificationID!! < userItem.modification) return@clientMarketItems
-            if(clientItem.modificationID == userItem.modification) itemsParsed.add(clientItem)
+            if(clientItem.modificationID == userItem.modificationIndex) itemsParsed.add(clientItem)
             else marketParsed.add(clientItem)
           }
         } else {
@@ -564,20 +566,19 @@ class UserSocket(
         }
       }
 
-    val wasp = user.items.single { item -> item.marketItem.id == "wasp" } as ServerGarageUserItemHull
-    val thunder = user.items.single { item -> item.marketItem.id == "thunder" } as ServerGarageUserItemWeapon
-    val zeus = user.items.single { item -> item.marketItem.id == "zeus" } as ServerGarageUserItemPaint
-
     Command(CommandName.InitGarageItems, listOf(InitGarageItemsData(items = itemsParsed).toJson())).send(this)
     Command(
       CommandName.InitMountedItem,
-      listOf(wasp.mountName, wasp.marketItem.modifications[wasp.modification]!!.object3ds.toString())
+      listOf(user.equipment.hull.mountName, user.equipment.hull.modification.object3ds.toString())
     ).send(this)
     Command(
       CommandName.InitMountedItem,
-      listOf(thunder.mountName, thunder.marketItem.modifications[thunder.modification]!!.object3ds.toString())
+      listOf(user.equipment.weapon.mountName, user.equipment.weapon.modification.object3ds.toString())
     ).send(this)
-    Command(CommandName.InitMountedItem, listOf(zeus.mountName, zeus.marketItem.coloring.toString())).send(this)
+    Command(
+      CommandName.InitMountedItem,
+      listOf(user.equipment.paint.mountName, user.equipment.paint.marketItem.coloring.toString())
+    ).send(this)
     Command(CommandName.InitGarageMarket, listOf(InitGarageMarketData(items = marketParsed).toJson())).send(this)
 
     // logger.debug { "User items:" }
@@ -616,6 +617,7 @@ data class InitBattleModelData(
   @Json val kick_period_ms: Int = 125000,
   @Json val invisible_time: Int = 3500,
   @Json val spectator: Boolean = true,
+  @Json val reArmorEnabled: Boolean,
   @Json val active: Boolean = true,
   @Json val dustParticle: Int = 110001,
   @Json val minRank: Int = 3,

@@ -3,6 +3,15 @@ package jp.assasans.protanki.server.client
 import org.jetbrains.exposed.sql.ResultRow
 import jp.assasans.protanki.server.entities.Users
 import jp.assasans.protanki.server.garage.IServerGarageUserItem
+import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
+import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
+import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
+
+data class UserEquipment(
+  val hull: ServerGarageUserItemHull,
+  val weapon: ServerGarageUserItemWeapon,
+  val paint: ServerGarageUserItemPaint
+)
 
 class User(
   val id: Int,
@@ -11,18 +20,19 @@ class User(
   var score: Int,
   var crystals: Int,
 
-  val items: List<IServerGarageUserItem>
+  val items: List<IServerGarageUserItem>,
+  var equipment: UserEquipment
 ) {
   companion object {
-    fun fromDatabase(user: ResultRow): User = User(
-      id = user[Users.id].value,
-      username = user[Users.username],
-      password = user[Users.password],
-      score = user[Users.score],
-      crystals = user[Users.crystals],
-
-      items = mutableListOf()
-    )
+    // fun fromDatabase(user: ResultRow): User = User(
+    //   id = user[Users.id].value,
+    //   username = user[Users.username],
+    //   password = user[Users.password],
+    //   score = user[Users.score],
+    //   crystals = user[Users.crystals],
+    //
+    //   items = mutableListOf()
+    // )
   }
 
   // TODO(Assasans): Rewrite

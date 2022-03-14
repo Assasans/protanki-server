@@ -192,21 +192,28 @@ interface IServerGarageUserItem {
 }
 
 interface IServerGarageUserItemWithModification : IServerGarageUserItem {
-  val modification: Int
+  val modificationIndex: Int
+  val modification: ServerGarageItemModification
 
   override val mountName: String
-    get() = "${marketItem.id}_m${modification}"
+    get() = "${marketItem.id}_m${modificationIndex}"
 }
 
 class ServerGarageUserItemWeapon(
   override val marketItem: ServerGarageItemWeapon,
-  override val modification: Int
-) : IServerGarageUserItemWithModification
+  override val modificationIndex: Int
+) : IServerGarageUserItemWithModification {
+  override val modification: ServerGarageItemModification
+    get() = marketItem.modifications[modificationIndex]!! // TODO(Assasans)
+}
 
 class ServerGarageUserItemHull(
   override val marketItem: ServerGarageItemHull,
-  override val modification: Int
-) : IServerGarageUserItemWithModification
+  override val modificationIndex: Int
+) : IServerGarageUserItemWithModification {
+  override val modification: ServerGarageItemModification
+    get() = marketItem.modifications[modificationIndex]!! // TODO(Assasans)
+}
 
 class ServerGarageUserItemPaint(
   override val marketItem: ServerGarageItemPaint

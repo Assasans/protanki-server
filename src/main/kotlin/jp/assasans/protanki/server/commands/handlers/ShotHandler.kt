@@ -4,7 +4,7 @@ import com.squareup.moshi.Moshi
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import jp.assasans.protanki.server.battles.RailgunWeapon
+import jp.assasans.protanki.server.battles.RailgunWeaponHandler
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.railgun.FireTarget
 import jp.assasans.protanki.server.commands.*
@@ -22,7 +22,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     logger.info { "StartFire: ${args.get(0)}" }
 
-    if(tank.weapon is RailgunWeapon) {
+    if(tank.weapon is RailgunWeaponHandler) {
       tank.weapon.fireStart()
     }
   }
@@ -35,7 +35,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     logger.info { "FireTarget: ${args.get(0)}" }
 
-    if(tank.weapon is RailgunWeapon) {
+    if(tank.weapon is RailgunWeaponHandler) {
       val data = args.getAs<FireTarget>(0)
 
       tank.weapon.fireTarget(data)

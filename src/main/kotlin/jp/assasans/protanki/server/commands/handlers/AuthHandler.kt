@@ -4,6 +4,7 @@ import kotlin.time.Duration.Companion.days
 import kotlinx.datetime.Clock
 import mu.KotlinLogging
 import jp.assasans.protanki.server.client.User
+import jp.assasans.protanki.server.client.UserEquipment
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.commands.Command
@@ -26,6 +27,26 @@ class AuthHandler : ICommandHandler {
     //   )
     // }
 
+    val items = listOf(
+      ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "smoky"), modificationIndex = 0),
+      ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "railgun"), modificationIndex = 3),
+      ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "thunder"), modificationIndex = 3),
+      ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "hunter"), modificationIndex = 0),
+      ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "hornet"), modificationIndex = 3),
+      ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "wasp"), modificationIndex = 0),
+      ServerGarageUserItemPaint(socket.marketRegistry.get(GarageItemType.Paint, "green")),
+      ServerGarageUserItemPaint(socket.marketRegistry.get(GarageItemType.Paint, "zeus")),
+      ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "health"), count = 100),
+      ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "armor"), count = 100),
+      ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "double_damage"), count = 100),
+      ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "n2o"), count = 100),
+      ServerGarageUserItemSubscription(
+        socket.marketRegistry.get(GarageItemType.Subscription, "premium_effect"),
+        startTime = Clock.System.now(),
+        duration = 10.days
+      )
+    )
+
     val user = User(
       id = 0,
       username = username,
@@ -33,24 +54,11 @@ class AuthHandler : ICommandHandler {
       score = 123456,
       crystals = 123456,
 
-      items = listOf(
-        ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "smoky"), modification = 0),
-        ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "railgun"), modification = 3),
-        ServerGarageUserItemWeapon(socket.marketRegistry.get(GarageItemType.Weapon, "thunder"), modification = 3),
-        ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "hunter"), modification = 0),
-        ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "hornet"), modification = 3),
-        ServerGarageUserItemHull(socket.marketRegistry.get(GarageItemType.Hull, "wasp"), modification = 0),
-        ServerGarageUserItemPaint(socket.marketRegistry.get(GarageItemType.Paint, "green")),
-        ServerGarageUserItemPaint(socket.marketRegistry.get(GarageItemType.Paint, "zeus")),
-        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "health"), count = 100),
-        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "armor"), count = 100),
-        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "double_damage"), count = 100),
-        ServerGarageUserItemSupply(socket.marketRegistry.get(GarageItemType.Supply, "n2o"), count = 100),
-        ServerGarageUserItemSubscription(
-          socket.marketRegistry.get(GarageItemType.Subscription, "premium_effect"),
-          startTime = Clock.System.now(),
-          duration = 10.days
-        )
+      items = items,
+      equipment = UserEquipment(
+        hull = items.single { item -> item.marketItem.id == "wasp" } as ServerGarageUserItemHull,
+        weapon = items.single { item -> item.marketItem.id == "railgun" } as ServerGarageUserItemWeapon,
+        paint = items.single { item -> item.marketItem.id == "zeus" } as ServerGarageUserItemPaint
       )
     )
 

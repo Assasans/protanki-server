@@ -16,7 +16,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   AuthDenied(CommandCategory.Auth, "denied", CommandSide.Client),
   InitExternalModel(CommandCategory.Auth, "init_external_model", CommandSide.Client),
 
-  LoginByHash(CommandCategory.Auth, "login_by_hash", CommandSide.Server),
+  LoginByHash(CommandCategory.Auth, "loginByHash", CommandSide.Server),
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),
 
   SwitchToRegistration(CommandCategory.Registration, "set_state", CommandSide.Server),
@@ -65,6 +65,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   UpdateRankProgress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
 
   SelectBattle(CommandCategory.BattleSelect, "select", CommandSide.Server),
+  ClientSelectBattle(CommandCategory.BattleSelect, "select", CommandSide.Client),
   Fight(CommandCategory.BattleSelect, "fight", CommandSide.Server),
   UnloadBattleSelect(CommandCategory.Lobby, "unload_battle_select", CommandSide.Client),
   ShowBattleInfo(CommandCategory.Lobby, "show_battle_info", CommandSide.Client),
@@ -81,6 +82,10 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitShotsData(CommandCategory.Battle, "init_shots_data", CommandSide.Client),
   InitBattleModel(CommandCategory.Battle, "init_battle_model", CommandSide.Client),
   InitSuicideModel(CommandCategory.Battle, "init_suicide_model", CommandSide.Client),
+  InitDmModel(CommandCategory.Battle, "init_dm_model", CommandSide.Client),
+  InitTdmModel(CommandCategory.Battle, "init_tdm_model", CommandSide.Client),
+  InitCtfModel(CommandCategory.Battle, "init_ctf_model", CommandSide.Client),
+  InitDomModel(CommandCategory.Battle, "init_dom_model", CommandSide.Client),
   InitGuiModel(CommandCategory.Battle, "init_gui_model", CommandSide.Client),
   InitMineModel(CommandCategory.Battle, "init_mine_model", CommandSide.Client),
   InitEffects(CommandCategory.Battle, "init_effects", CommandSide.Client),
@@ -103,9 +108,11 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ChangeHealth(CommandCategory.Battle, "change_health", CommandSide.Client),
   SpawnTank(CommandCategory.Battle, "spawn", CommandSide.Client),
   ActivateTank(CommandCategory.Battle, "activate_tank", CommandSide.Client),
+  ChangeTankSpecification(CommandCategory.Battle, "change_spec_tank", CommandSide.Client),
 
   InitInventory(CommandCategory.Battle, "init_inventory", CommandSide.Client),
   ActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Server),
+  ClientActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Client),
 
   SelfDestruct(CommandCategory.Battle, "suicide", CommandSide.Server),
 
@@ -129,6 +136,14 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ClientMovementControl(CommandCategory.Battle, "movementControl", CommandSide.Client),
 
   KillTank(CommandCategory.Battle, "kill_tank", CommandSide.Client),
+  KillLocalTank(CommandCategory.Battle, "local_user_killed", CommandSide.Client),
+
+  EnableEffect(CommandCategory.Battle, "enable_effect", CommandSide.Client),
+  DisableEffect(CommandCategory.Battle, "disnable_effect", CommandSide.Client),
+
+  AddMine(CommandCategory.Battle, "put_mine", CommandSide.Client),
+  ActivateMine(CommandCategory.Battle, "activate_mine", CommandSide.Client),
+  RemoveMines(CommandCategory.Battle, "remove_mines", CommandSide.Client),
 
   StartFire(CommandCategory.Battle, "start_fire", CommandSide.Server),
   StopFire(CommandCategory.Battle, "stop_fire", CommandSide.Server),

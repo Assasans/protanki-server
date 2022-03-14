@@ -32,4 +32,10 @@ class GarageHandler : ICommandHandler, KoinComponent {
   suspend fun tryMountPreviewItem(socket: UserSocket, item: String) {
     Command(CommandName.MountItem, listOf(item, false.toString())).send(socket)
   }
+
+  @CommandHandler(CommandName.TryMountItem)
+  suspend fun tryMountItem(socket: UserSocket, item: String) {
+    // TODO(Assasans)
+    Command(CommandName.MountItem, listOf(item, true.toString())).send(socket)
+  }
 }

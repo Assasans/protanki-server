@@ -72,7 +72,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-3.json").readText()))
 
     player.init()
-    player.spawn()
+    player.createTank()
   }
 
   @CommandHandler(CommandName.JoinAsSpectator)
