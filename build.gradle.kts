@@ -49,7 +49,7 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
   kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.ExperimentalStdlibApi"
-  kotlinOptions.jvmTarget = "11"
+  kotlinOptions.jvmTarget = "17"
 }
 
 tasks {

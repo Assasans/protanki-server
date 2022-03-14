@@ -1,5 +1,7 @@
 # Building
 
+This project targets JDK 17.
+
 Gradle artifacts are located at `build/libs/`. 
 
 ## Using IntelliJ IDEA
