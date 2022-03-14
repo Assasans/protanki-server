@@ -581,10 +581,20 @@ class UserSocket(
         }
       }
 
+    val wasp = user.items.single { item -> item.marketItem.id == "wasp" } as ServerGarageUserItemHull
+    val thunder = user.items.single { item -> item.marketItem.id == "thunder" } as ServerGarageUserItemWeapon
+    val zeus = user.items.single { item -> item.marketItem.id == "zeus" } as ServerGarageUserItemPaint
+
     Command(CommandName.InitGarageItems, listOf(InitGarageItemsData(items = itemsParsed).toJson())).send(this)
-    Command(CommandName.InitMountedItem, listOf("hornet_m3", "916624")).send(this)
-    Command(CommandName.InitMountedItem, listOf("railgun_m3", "205731")).send(this)
-    Command(CommandName.InitMountedItem, listOf("zeus_m0", "966681")).send(this)
+    Command(
+      CommandName.InitMountedItem,
+      listOf(wasp.mountName, wasp.marketItem.modifications[wasp.modification]!!.object3ds.toString())
+    ).send(this)
+    Command(
+      CommandName.InitMountedItem,
+      listOf(thunder.mountName, thunder.marketItem.modifications[thunder.modification]!!.object3ds.toString())
+    ).send(this)
+    Command(CommandName.InitMountedItem, listOf(zeus.mountName, zeus.marketItem.coloring.toString())).send(this)
     Command(CommandName.InitGarageMarket, listOf(InitGarageMarketData(items = marketParsed).toJson())).send(this)
 
     // logger.debug { "User items:" }

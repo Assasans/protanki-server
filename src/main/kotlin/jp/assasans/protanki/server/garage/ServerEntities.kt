@@ -12,10 +12,7 @@ open class ServerGarageItem(
   @Json val name: String,
   @Json val description: String,
 
-  @Json val baseItemId: Int,
-
-  // TODO
-  // @Json val kit: GarageItemKit?
+  @Json val baseItemId: Int
 )
 
 interface IServerGarageItemWithModifications {
@@ -189,21 +186,27 @@ data class ServerGarageItemModification(
 
 interface IServerGarageUserItem {
   val marketItem: ServerGarageItem
+
+  val mountName: String
+    get() = "${marketItem.id}_m0"
 }
 
-interface IServerGarageUserItemWithModification {
+interface IServerGarageUserItemWithModification : IServerGarageUserItem {
   val modification: Int
+
+  override val mountName: String
+    get() = "${marketItem.id}_m${modification}"
 }
 
 class ServerGarageUserItemWeapon(
   override val marketItem: ServerGarageItemWeapon,
   override val modification: Int
-) : IServerGarageUserItem, IServerGarageUserItemWithModification
+) : IServerGarageUserItemWithModification
 
 class ServerGarageUserItemHull(
   override val marketItem: ServerGarageItemHull,
   override val modification: Int
-) : IServerGarageUserItem, IServerGarageUserItemWithModification
+) : IServerGarageUserItemWithModification
 
 class ServerGarageUserItemPaint(
   override val marketItem: ServerGarageItemPaint
