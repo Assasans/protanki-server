@@ -18,12 +18,12 @@ import org.koin.dsl.module
 import org.koin.logger.SLF4JLogger
 import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.IBattleProcessor
-import jp.assasans.protanki.server.garage.GarageItemConverter
-import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
-import jp.assasans.protanki.server.garage.GarageMarketRegistry
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
+import jp.assasans.protanki.server.garage.GarageItemConverter
+import jp.assasans.protanki.server.garage.GarageMarketRegistry
+import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
 import jp.assasans.protanki.server.serialization.SerializeNull
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
@@ -76,6 +76,7 @@ suspend fun main(args: Array<String>) {
     single { SocketServer() as ISocketServer }
     single { CommandRegistry() as ICommandRegistry }
     single { BattleProcessor() as IBattleProcessor }
+    single { ResourceManager() as IResourceManager }
     single { Database() as IDatabase }
     single { GarageItemConverter() }
     single { GarageMarketRegistry() }

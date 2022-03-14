@@ -1,9 +1,7 @@
 package jp.assasans.protanki.server.client
 
 import java.io.IOException
-import java.nio.file.Paths
-import kotlin.io.path.absolute
-import kotlin.io.path.bufferedReader
+import kotlin.io.path.readText
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.callSuspendBy
 import kotlin.reflect.full.primaryConstructor
@@ -12,8 +10,11 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
@@ -21,6 +22,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.java.KoinJavaComponent
 import jp.assasans.protanki.server.EncryptionTransformer
+import jp.assasans.protanki.server.IResourceManager
 import jp.assasans.protanki.server.PacketProcessor
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattlePlayer
@@ -56,6 +58,7 @@ class UserSocket(
   private val packetProcessor = PacketProcessor()
   private val encryption = EncryptionTransformer()
   private val commandRegistry by inject<ICommandRegistry>()
+  private val resourceManager by inject<IResourceManager>()
   public val marketRegistry by inject<GarageMarketRegistry>() // TODO
   private val garageItemConverter by inject<GarageItemConverter>()
   private val battleProcessor by inject<IBattleProcessor>()
@@ -320,19 +323,11 @@ class UserSocket(
   }
 
   suspend fun loadGarageResources() {
-    // TODO(Assasans): Shit
-    val resourcesGarageReader = Paths.get("src/main/resources/resources/garage.json").absolute().bufferedReader()
-    val resourcesGarage = resourcesGarageReader.use { it.readText() }
-
-    awaitDependency(loadDependency(resourcesGarage))
+    awaitDependency(loadDependency(resourceManager.get("resources/garage.json").readText()))
   }
 
   suspend fun loadLobbyResources() {
-    // TODO(Assasans): Shit
-    val resourcesLobbyReader = Paths.get("src/main/resources/resources/lobby.json").absolute().bufferedReader()
-    val resourcesLobby = resourcesLobbyReader.use { it.readText() }
-
-    awaitDependency(loadDependency(resourcesLobby))
+    awaitDependency(loadDependency(resourceManager.get("resources/lobby.json").readText()))
   }
 
   suspend fun loadLobby() {
@@ -427,14 +422,6 @@ class UserSocket(
   }
 
   private suspend fun initClient() {
-    // TODO(Assasans): Shit
-    val langReader = Paths.get("src/main/resources/lang/ru.json").absolute().bufferedReader()
-    val lang = langReader.use { it.readText() }
-
-    // TODO(Assasans): Shit
-    val resourcesAuthReader = Paths.get("src/main/resources/resources/auth.json").absolute().bufferedReader()
-    val resourcesAuth = resourcesAuthReader.use { it.readText() }
-
     send(Command(CommandName.InitExternalModel, mutableListOf("http://localhost/")))
     send(
       Command(
@@ -450,20 +437,16 @@ class UserSocket(
       )
     )
 
-    send(Command(CommandName.InitLocale, mutableListOf(lang)))
+    send(Command(CommandName.InitLocale, mutableListOf(resourceManager.get("lang/ru.json").readText())))
 
-    awaitDependency(loadDependency(resourcesAuth))
+    awaitDependency(loadDependency(resourceManager.get("resources/auth.json").readText()))
     send(Command(CommandName.MainResourcesLoaded))
   }
 
   suspend fun initBattleList() {
-    // TODO(Assasans): Shit
-    val mapsReader = Paths.get("src/main/resources/maps.json").absolute().bufferedReader()
-    val maps = mapsReader.use { it.readText() }
-
     val mapsParsed = json
       .adapter<List<Map>>(Types.newParameterizedType(List::class.java, Map::class.java))
-      .fromJson(maps)!!
+      .fromJson(resourceManager.get("maps.json").readText())!!
 
     Command(
       CommandName.InitBattleCreate,

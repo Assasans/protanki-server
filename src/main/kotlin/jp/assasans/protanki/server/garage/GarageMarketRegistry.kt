@@ -1,6 +1,5 @@
 package jp.assasans.protanki.server.garage
 
-import java.nio.file.Paths
 import kotlin.io.path.absolute
 import kotlin.io.path.extension
 import kotlin.io.path.forEachDirectoryEntry
@@ -9,11 +8,13 @@ import com.squareup.moshi.Moshi
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import jp.assasans.protanki.server.IResourceManager
 
 class GarageMarketRegistry : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val json by inject<Moshi>()
+  private val resourceManager by inject<IResourceManager>()
 
   val items: MutableMap<GarageItemType, MutableMap<String, ServerGarageItem>> = mutableMapOf()
 
@@ -41,7 +42,7 @@ class GarageMarketRegistry : KoinComponent {
       logger.debug { "Loading garage item group ${type.name}..." }
 
       // TODO(Assasans): Shit
-      Paths.get("src/main/resources/garage/items/$directory").absolute().forEachDirectoryEntry { entry ->
+      resourceManager.get("garage/items/$directory").absolute().forEachDirectoryEntry { entry ->
         if(entry.extension != "json") return@forEachDirectoryEntry
 
         val item = json
