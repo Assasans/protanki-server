@@ -53,6 +53,11 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks {
+  wrapper {
+    gradleVersion = "7.4.1"
+    distributionType = Wrapper.DistributionType.BIN
+  }
+
   jar {
     manifest {
       attributes["Main-Class"] = application.mainClass
