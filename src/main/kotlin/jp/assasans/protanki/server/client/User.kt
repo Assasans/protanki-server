@@ -1,7 +1,5 @@
 package jp.assasans.protanki.server.client
 
-import org.jetbrains.exposed.sql.ResultRow
-import jp.assasans.protanki.server.entities.Users
 import jp.assasans.protanki.server.garage.IServerGarageUserItem
 import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
 import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint

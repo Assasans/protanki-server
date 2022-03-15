@@ -21,9 +21,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.java.KoinJavaComponent
-import jp.assasans.protanki.server.EncryptionTransformer
-import jp.assasans.protanki.server.IResourceManager
-import jp.assasans.protanki.server.PacketProcessor
+import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.BattleTank
@@ -32,7 +30,6 @@ import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
 import jp.assasans.protanki.server.garage.*
-import jp.assasans.protanki.server.readAvailable
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
@@ -61,7 +58,7 @@ class UserSocket(
   private val encryption = EncryptionTransformer()
   private val commandRegistry by inject<ICommandRegistry>()
   private val resourceManager by inject<IResourceManager>()
-  public val marketRegistry by inject<IGarageMarketRegistry>() // TODO
+  private val marketRegistry by inject<IGarageMarketRegistry>()
   private val garageItemConverter by inject<IGarageItemConverter>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val json by inject<Moshi>()

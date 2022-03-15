@@ -24,7 +24,6 @@ dependencies {
   implementation("io.ktor:ktor-server-netty:2.0.0-beta-1")
 
   val koinVersion = "3.1.5"
-  val exposedVersion = "0.37.3"
 
   // implementation("ch.qos.logback:logback-classic:1.2.10")
 
@@ -35,12 +34,6 @@ dependencies {
   implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
 
   implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
-
-  implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-  implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
-  implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-  implementation("org.mariadb.jdbc:mariadb-java-client:3.0.3")
-  implementation("com.h2database:h2:2.1.210")
 
   implementation("org.slf4j:slf4j-log4j12:2.0.0-alpha6")
   implementation("com.jcabi:jcabi-log:0.20.1")

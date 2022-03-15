@@ -46,7 +46,6 @@ class Server : KoinComponent {
     commandRegistry.registerHandlers(ShotHandler::class)
     commandRegistry.registerHandlers(GarageHandler::class)
 
-    database.connect()
     socketServer.run()
   }
 }
