@@ -47,7 +47,7 @@ class AuthHandler : ICommandHandler, KoinComponent {
       )
 
       user = User(
-        id = 0,
+        id = database.users.size + 1,
         username = username,
         password = password,
         score = 123456,
