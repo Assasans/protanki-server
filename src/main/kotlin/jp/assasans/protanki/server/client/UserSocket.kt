@@ -501,17 +501,11 @@ class UserSocket(
       val userItem = user.items.singleOrNull { it.marketItem == marketItem }
       val clientMarketItems = when(marketItem) {
         is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem)
-
         is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem)
-
         is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem))
-
         is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem))
-
         is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem))
-
         is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem))
-
         is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem))
 
         else                            -> throw NotImplementedError("Not implemented: ${marketItem::class.simpleName}")
