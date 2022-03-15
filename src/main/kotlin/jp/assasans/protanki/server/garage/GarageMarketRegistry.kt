@@ -4,6 +4,7 @@ import kotlin.io.path.absolute
 import kotlin.io.path.extension
 import kotlin.io.path.forEachDirectoryEntry
 import kotlin.io.path.readText
+import kotlin.reflect.KClass
 import com.squareup.moshi.Moshi
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
@@ -11,10 +12,16 @@ import org.koin.core.component.inject
 import jp.assasans.protanki.server.IResourceManager
 
 interface IGarageMarketRegistry {
-  val items: MutableMap<GarageItemType, MutableMap<String, ServerGarageItem>>
+  val items: MutableMap<String, ServerGarageItem>
 
   suspend fun load()
 }
+
+class GarageItemGroup(
+  val itemType: GarageItemType,
+  val type: KClass<out ServerGarageItem>,
+  val directory: String
+)
 
 class GarageMarketRegistry : IGarageMarketRegistry, KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -22,35 +29,31 @@ class GarageMarketRegistry : IGarageMarketRegistry, KoinComponent {
   private val json by inject<Moshi>()
   private val resourceManager by inject<IResourceManager>()
 
-  override val items: MutableMap<GarageItemType, MutableMap<String, ServerGarageItem>> = mutableMapOf()
+  private val groups = listOf(
+    GarageItemGroup(GarageItemType.Weapon, ServerGarageItemWeapon::class, "weapons"),
+    GarageItemGroup(GarageItemType.Hull, ServerGarageItemHull::class, "hulls"),
+    GarageItemGroup(GarageItemType.Paint, ServerGarageItemPaint::class, "paints"),
+    GarageItemGroup(GarageItemType.Supply, ServerGarageItemSupply::class, "supplies"),
+    GarageItemGroup(GarageItemType.Subscription, ServerGarageItemSubscription::class, "subscriptions"),
+    GarageItemGroup(GarageItemType.Kit, ServerGarageItemKit::class, "kits"),
+    GarageItemGroup(GarageItemType.Present, ServerGarageItemPresent::class, "presents")
+  )
+
+  override val items: MutableMap<String, ServerGarageItem> = mutableMapOf()
 
   override suspend fun load() {
-    val typeDirectories = mapOf(
-      Pair(GarageItemType.Weapon, Pair("weapons", ServerGarageItemWeapon::class)),
-      Pair(GarageItemType.Hull, Pair("hulls", ServerGarageItemHull::class)),
-      Pair(GarageItemType.Paint, Pair("paints", ServerGarageItemPaint::class)),
-      Pair(GarageItemType.Supply, Pair("supplies", ServerGarageItemSupply::class)),
-      Pair(GarageItemType.Subscription, Pair("subscriptions", ServerGarageItemSubscription::class)),
-      Pair(GarageItemType.Kit, Pair("kits", ServerGarageItemKit::class)),
-      Pair(GarageItemType.Present, Pair("presents", ServerGarageItemPresent::class))
-    )
+    for(group in groups) {
+      logger.debug { "Loading garage item group ${group.itemType.name}..." }
 
-    for((type, pair) in typeDirectories) {
-      val directory = pair.first
-      val itemClass = pair.second
-
-      logger.debug { "Loading garage item group ${type.name}..." }
-
-      // TODO(Assasans): Shit
-      resourceManager.get("garage/items/$directory").absolute().forEachDirectoryEntry { entry ->
+      resourceManager.get("garage/items/${group.directory}").absolute().forEachDirectoryEntry { entry ->
         if(entry.extension != "json") return@forEachDirectoryEntry
 
         val item = json
-          .adapter(itemClass.java)
+          .adapter(group.type.java)
           .failOnUnknown()
           .fromJson(entry.readText())!!
 
-        items.getOrPut(type) { mutableMapOf() }[item.id] = item
+        items[item.id] = item
 
         logger.debug { "  > Loaded garage item ${item.id} -> ${item.name}" }
       }
@@ -58,8 +61,11 @@ class GarageMarketRegistry : IGarageMarketRegistry, KoinComponent {
   }
 }
 
-inline fun <reified T : ServerGarageItem> IGarageMarketRegistry.get(type: GarageItemType, id: String): T {
-  val item = items[type]!![id]!! // TODO(Assasans)
-  if(item is T) return item
-  throw Exception("Incompatible type: expected ${T::class.simpleName}, got ${item::class.simpleName}")
+fun IGarageMarketRegistry.get(id: String): ServerGarageItem {
+  return items[id] ?: throw Exception("Item $id not found")
+}
+
+inline fun <reified T : ServerGarageItem> ServerGarageItem.cast(): T {
+  if(this is T) return this
+  throw Exception("Incompatible type: expected ${T::class.simpleName}, got ${this::class.simpleName}")
 }

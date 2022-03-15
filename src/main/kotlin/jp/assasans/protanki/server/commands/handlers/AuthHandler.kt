@@ -26,35 +26,24 @@ class AuthHandler : ICommandHandler, KoinComponent {
   suspend fun login(socket: UserSocket, captcha: String, rememberMe: Boolean, username: String, password: String) {
     logger.debug { "User login: [ Username = '$username', Password = '$password', Captcha = ${if(captcha.isEmpty()) "*none*" else "'${captcha}'"}, Remember = $rememberMe ]" }
 
-    // val user = transaction {
-    //   User.fromDatabase(Users
-    //     .select { Users.username.lowerCase() eq data.login.lowercase() }
-    //     .single()
-    //   )
-    // }
-
     var user = database.users.singleOrNull { user -> user.username == username }
 
     // TODO(Assasans): Testing only
     if(user == null) {
       val items = listOf(
-        ServerGarageUserItemWeapon(marketRegistry.get(GarageItemType.Weapon, "smoky"), modificationIndex = 0),
-        ServerGarageUserItemWeapon(marketRegistry.get(GarageItemType.Weapon, "railgun"), modificationIndex = 3),
-        ServerGarageUserItemWeapon(marketRegistry.get(GarageItemType.Weapon, "thunder"), modificationIndex = 3),
-        ServerGarageUserItemHull(marketRegistry.get(GarageItemType.Hull, "hunter"), modificationIndex = 0),
-        ServerGarageUserItemHull(marketRegistry.get(GarageItemType.Hull, "hornet"), modificationIndex = 3),
-        ServerGarageUserItemHull(marketRegistry.get(GarageItemType.Hull, "wasp"), modificationIndex = 0),
-        ServerGarageUserItemPaint(marketRegistry.get(GarageItemType.Paint, "green")),
-        ServerGarageUserItemPaint(marketRegistry.get(GarageItemType.Paint, "zeus")),
-        ServerGarageUserItemSupply(marketRegistry.get(GarageItemType.Supply, "health"), count = 100),
-        ServerGarageUserItemSupply(marketRegistry.get(GarageItemType.Supply, "armor"), count = 100),
-        ServerGarageUserItemSupply(marketRegistry.get(GarageItemType.Supply, "double_damage"), count = 100),
-        ServerGarageUserItemSupply(marketRegistry.get(GarageItemType.Supply, "n2o"), count = 100),
-        ServerGarageUserItemSubscription(
-          marketRegistry.get(GarageItemType.Subscription, "premium_effect"),
-          startTime = Clock.System.now(),
-          duration = 10.days
-        )
+        ServerGarageUserItemWeapon(marketRegistry.get("smoky").cast(), modificationIndex = 0),
+        ServerGarageUserItemWeapon(marketRegistry.get("railgun").cast(), modificationIndex = 3),
+        ServerGarageUserItemWeapon(marketRegistry.get("thunder").cast(), modificationIndex = 3),
+        ServerGarageUserItemHull(marketRegistry.get("hunter").cast(), modificationIndex = 0),
+        ServerGarageUserItemHull(marketRegistry.get("hornet").cast(), modificationIndex = 3),
+        ServerGarageUserItemHull(marketRegistry.get("wasp").cast(), modificationIndex = 0),
+        ServerGarageUserItemPaint(marketRegistry.get("green").cast()),
+        ServerGarageUserItemPaint(marketRegistry.get("zeus").cast()),
+        ServerGarageUserItemSupply(marketRegistry.get("health").cast(), count = 100),
+        ServerGarageUserItemSupply(marketRegistry.get("armor").cast(), count = 100),
+        ServerGarageUserItemSupply(marketRegistry.get("double_damage").cast(), count = 100),
+        ServerGarageUserItemSupply(marketRegistry.get("n2o").cast(), count = 100),
+        ServerGarageUserItemSubscription(marketRegistry.get("premium_effect").cast(), startTime = Clock.System.now(), duration = 10.days)
       )
 
       user = User(

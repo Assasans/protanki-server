@@ -492,9 +492,9 @@ class UserSocket(
     val itemsParsed = mutableListOf<GarageItem>()
     val marketParsed = mutableListOf<GarageItem>()
 
-    val marketItems = marketRegistry.items.map { it.value.map { it.value } }.flatten()
+    val marketItems = marketRegistry.items
 
-    marketItems.forEach { marketItem ->
+    marketItems.forEach { (_, marketItem) ->
       val userItem = user.items.singleOrNull { it.marketItem == marketItem }
       val clientMarketItems = when(marketItem) {
         is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem)
