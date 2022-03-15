@@ -23,6 +23,8 @@ import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.garage.GarageItemConverter
 import jp.assasans.protanki.server.garage.GarageMarketRegistry
+import jp.assasans.protanki.server.garage.IGarageItemConverter
+import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
 import jp.assasans.protanki.server.serialization.SerializeNull
 
@@ -73,13 +75,13 @@ suspend fun main(args: Array<String>) {
   logger.info { "Root path: ${Paths.get("").absolute()}" }
 
   val module = module {
-    single { SocketServer() as ISocketServer }
-    single { CommandRegistry() as ICommandRegistry }
-    single { BattleProcessor() as IBattleProcessor }
-    single { ResourceManager() as IResourceManager }
-    single { Database() as IDatabase }
-    single { GarageItemConverter() }
-    single { GarageMarketRegistry() }
+    single<ISocketServer> { SocketServer() }
+    single<ICommandRegistry> { CommandRegistry() }
+    single<IBattleProcessor> { BattleProcessor() }
+    single<IResourceManager> { ResourceManager() }
+    single<IDatabase> { Database() }
+    single<IGarageItemConverter> { GarageItemConverter() }
+    single<IGarageMarketRegistry> { GarageMarketRegistry() }
     single {
       Moshi.Builder()
         .add(KotlinJsonAdapterFactory())

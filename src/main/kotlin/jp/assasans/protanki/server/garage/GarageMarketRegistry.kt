@@ -10,21 +10,21 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.IResourceManager
 
-class GarageMarketRegistry : KoinComponent {
+interface IGarageMarketRegistry {
+  val items: MutableMap<GarageItemType, MutableMap<String, ServerGarageItem>>
+
+  suspend fun load()
+}
+
+class GarageMarketRegistry : IGarageMarketRegistry, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val json by inject<Moshi>()
   private val resourceManager by inject<IResourceManager>()
 
-  val items: MutableMap<GarageItemType, MutableMap<String, ServerGarageItem>> = mutableMapOf()
+  override val items: MutableMap<GarageItemType, MutableMap<String, ServerGarageItem>> = mutableMapOf()
 
-  inline fun <reified T : ServerGarageItem> get(type: GarageItemType, id: String): T {
-    val item = items[type]!![id]!! // TODO(Assasans)
-    if(item is T) return item
-    throw Exception("Incompatible type: expected ${T::class.simpleName}, got ${item::class.simpleName}")
-  }
-
-  suspend fun load() {
+  override suspend fun load() {
     val typeDirectories = mapOf(
       Pair(GarageItemType.Weapon, Pair("weapons", ServerGarageItemWeapon::class)),
       Pair(GarageItemType.Hull, Pair("hulls", ServerGarageItemHull::class)),
@@ -56,4 +56,10 @@ class GarageMarketRegistry : KoinComponent {
       }
     }
   }
+}
+
+inline fun <reified T : ServerGarageItem> IGarageMarketRegistry.get(type: GarageItemType, id: String): T {
+  val item = items[type]!![id]!! // TODO(Assasans)
+  if(item is T) return item
+  throw Exception("Incompatible type: expected ${T::class.simpleName}, got ${item::class.simpleName}")
 }

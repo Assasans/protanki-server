@@ -1,6 +1,16 @@
 package jp.assasans.protanki.server.garage
 
-class GarageItemConverter {
+interface IGarageItemConverter {
+  fun toClientWeapon(item: ServerGarageItemWeapon): List<GarageItem>
+  fun toClientHull(item: ServerGarageItemHull): List<GarageItem>
+  fun toClientPaint(item: ServerGarageItemPaint): GarageItem
+  fun toClientSupply(item: ServerGarageItemSupply): GarageItem
+  fun toClientSubscription(item: ServerGarageItemSubscription): GarageItem
+  fun toClientKit(item: ServerGarageItemKit): GarageItem
+  fun toClientPresent(item: ServerGarageItemPresent): GarageItem
+}
+
+class GarageItemConverter : IGarageItemConverter {
   private fun toClientProperties(properties: List<ServerGarageItemProperty>): List<GarageItemProperty> {
     return properties.map { property ->
       GarageItemProperty(
@@ -11,7 +21,7 @@ class GarageItemConverter {
     }
   }
 
-  fun toClientWeapon(item: ServerGarageItemWeapon): List<GarageItem> {
+  override fun toClientWeapon(item: ServerGarageItemWeapon): List<GarageItem> {
     return item.modifications.map { (index, modification) ->
       val nextModification = item.modifications.getOrDefault(index + 1, null)
 
@@ -55,7 +65,7 @@ class GarageItemConverter {
     }
   }
 
-  fun toClientHull(item: ServerGarageItemHull): List<GarageItem> {
+  override fun toClientHull(item: ServerGarageItemHull): List<GarageItem> {
     return item.modifications.map { (index, modification) ->
       val nextModification = item.modifications.getOrDefault(index + 1, null)
 
@@ -99,7 +109,7 @@ class GarageItemConverter {
     }
   }
 
-  fun toClientPaint(item: ServerGarageItemPaint): GarageItem {
+  override fun toClientPaint(item: ServerGarageItemPaint): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -139,7 +149,7 @@ class GarageItemConverter {
     )
   }
 
-  fun toClientSupply(item: ServerGarageItemSupply): GarageItem {
+  override fun toClientSupply(item: ServerGarageItemSupply): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -179,7 +189,7 @@ class GarageItemConverter {
     )
   }
 
-  fun toClientSubscription(item: ServerGarageItemSubscription): GarageItem {
+  override fun toClientSubscription(item: ServerGarageItemSubscription): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -219,7 +229,7 @@ class GarageItemConverter {
     )
   }
 
-  fun toClientKit(item: ServerGarageItemKit): GarageItem {
+  override fun toClientKit(item: ServerGarageItemKit): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -265,7 +275,7 @@ class GarageItemConverter {
     )
   }
 
-  fun toClientPresent(item: ServerGarageItemPresent): GarageItem {
+  override fun toClientPresent(item: ServerGarageItemPresent): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,

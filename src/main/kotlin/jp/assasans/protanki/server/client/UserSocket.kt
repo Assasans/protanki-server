@@ -61,8 +61,8 @@ class UserSocket(
   private val encryption = EncryptionTransformer()
   private val commandRegistry by inject<ICommandRegistry>()
   private val resourceManager by inject<IResourceManager>()
-  public val marketRegistry by inject<GarageMarketRegistry>() // TODO
-  private val garageItemConverter by inject<GarageItemConverter>()
+  public val marketRegistry by inject<IGarageMarketRegistry>() // TODO
+  private val garageItemConverter by inject<IGarageItemConverter>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val json by inject<Moshi>()
 
