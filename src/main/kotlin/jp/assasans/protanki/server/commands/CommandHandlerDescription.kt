@@ -5,7 +5,7 @@ import com.squareup.moshi.Moshi
 import org.koin.java.KoinJavaComponent
 
 data class CommandHandlerDescription(
-  val type: KClass<*>,
+  val type: KClass<out ICommandHandler>,
   val function: KFunction<*>,
   val name: CommandName,
   var argsBehaviour: ArgsBehaviourType,
