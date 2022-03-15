@@ -51,7 +51,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   UnloadBattle(CommandCategory.Battle, "unload_battle", CommandSide.Client),
 
-  ExitFromBattle(CommandCategory.Battle, "exitFromBattle", CommandSide.Server),
+  ExitFromBattle(CommandCategory.Lobby, "exitFromBattle", CommandSide.Server),
 
   BattlePlayerJoinDm(CommandCategory.Battle, "user_connect_dm", CommandSide.Client),
   BattlePlayerLeaveDm(CommandCategory.Battle, "user_disconnect_dm", CommandSide.Client),

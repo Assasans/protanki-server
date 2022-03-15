@@ -86,15 +86,19 @@ class BattleHandler : ICommandHandler, KoinComponent {
     tank.orientation.fromEulerAngles(data.orientation.toVector())
 
     if(data is FullMoveData) {
-      Command(CommandName.ClientFullMove, listOf(
-        ClientFullMoveData(tank.id, data).toJson()
-      )).sendTo(player.battle)
+      Command(
+        CommandName.ClientFullMove, listOf(
+          ClientFullMoveData(tank.id, data).toJson()
+        )
+      ).sendTo(player.battle)
 
       logger.debug { "Synced full move to ${player.battle.players.size} players" }
     } else {
-      Command(CommandName.ClientMove, listOf(
-        ClientMoveData(tank.id, data).toJson()
-      )).sendTo(player.battle)
+      Command(
+        CommandName.ClientMove, listOf(
+          ClientMoveData(tank.id, data).toJson()
+        )
+      ).sendTo(player.battle)
 
       logger.debug { "Synced move to ${player.battle.players.size} players" }
     }
@@ -109,9 +113,11 @@ class BattleHandler : ICommandHandler, KoinComponent {
       logger.warn { "Invalid tank state for rotate turret: ${tank.state}" }
     }
 
-    Command(CommandName.ClientRotateTurret, listOf(
-      ClientRotateTurretData(tank.id, data).toJson()
-    )).sendTo(player.battle)
+    Command(
+      CommandName.ClientRotateTurret, listOf(
+        ClientRotateTurretData(tank.id, data).toJson()
+      )
+    ).sendTo(player.battle)
 
     logger.debug { "Synced rotate turret to ${player.battle.players.size} players" }
   }
@@ -125,9 +131,11 @@ class BattleHandler : ICommandHandler, KoinComponent {
       logger.warn { "Invalid tank state for movement control: ${tank.state}" }
     }
 
-    Command(CommandName.ClientMovementControl, listOf(
-      ClientMovementControlData(tank.id, data).toJson()
-    )).sendTo(player.battle)
+    Command(
+      CommandName.ClientMovementControl, listOf(
+        ClientMovementControlData(tank.id, data).toJson()
+      )
+    ).sendTo(player.battle)
 
     logger.debug { "Synced movement control to ${player.battle.players.size} players" }
   }
@@ -196,6 +204,10 @@ class BattleHandler : ICommandHandler, KoinComponent {
             ).toJson()
           )
         ).send(socket)
+
+        Command(CommandName.StartLayoutSwitch, listOf("BATTLE_SELECT")).send(socket)
+        socket.loadLobbyResources()
+        Command(CommandName.EndLayoutSwitch, listOf("BATTLE_SELECT", "BATTLE_SELECT")).send(socket)
 
         socket.initBattleList()
 
