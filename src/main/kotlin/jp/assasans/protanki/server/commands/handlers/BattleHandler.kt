@@ -168,17 +168,6 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
     delay(1500)
     tank.activate()
-
-    if(player.isSpectator) {
-      player.battle.players.users().forEach { battlePlayer ->
-        if(battlePlayer == player) return@forEach
-
-        val tank = battlePlayer.tank
-        if(tank != null) {
-          Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
-        }
-      }
-    }
   }
 
   @CommandHandler(CommandName.ExitFromBattle)

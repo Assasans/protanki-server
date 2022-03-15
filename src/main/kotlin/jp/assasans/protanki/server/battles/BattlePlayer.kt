@@ -131,7 +131,7 @@ class BattlePlayer(
             spects = listOf(user.username)
           ).toJson()
         )
-      )
+      ).send(this)
     }
 
     Command(
@@ -339,12 +339,13 @@ class BattlePlayer(
   suspend fun spawnAnotherTanks() {
     battle.players.forEach { player ->
       // Spawn other players for self
-      if(player != this && !player.isSpectator) {
+      val tank = player.tank
+      if(player != this && tank != null && !player.isSpectator) {
         Command(
           CommandName.SpawnTank,
           listOf(
             SpawnTankData(
-              tank_id = (player.tank ?: throw Exception("No Tank")).id,
+              tank_id = tank.id,
               health = 10000,
               incration_id = player.incarnation,
               team_type = player.team.key,
@@ -355,6 +356,19 @@ class BattlePlayer(
             ).toJson()
           )
         ).send(socket)
+
+        if(isSpectator) {
+          when(tank.state) {
+            TankState.Active     -> {
+              Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
+            }
+
+            // TODO(Assasans)
+            TankState.Dead       -> Unit
+            TankState.Respawn    -> Unit
+            TankState.SemiActive -> Unit
+          }
+        }
       }
     }
   }
