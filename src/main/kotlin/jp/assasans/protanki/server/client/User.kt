@@ -6,9 +6,9 @@ import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
 
 data class UserEquipment(
-  val hull: ServerGarageUserItemHull,
-  val weapon: ServerGarageUserItemWeapon,
-  val paint: ServerGarageUserItemPaint
+  var hull: ServerGarageUserItemHull,
+  var weapon: ServerGarageUserItemWeapon,
+  var paint: ServerGarageUserItemPaint
 )
 
 class User(

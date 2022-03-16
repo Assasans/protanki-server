@@ -582,6 +582,12 @@ class UserSocket(
     //   .filter { item -> item.type != GarageItemType.Paint }
     //   .forEach { item -> logger.debug { "  > ${item.name} (m${item.modificationID})" } }
   }
+
+  suspend fun updateCrystals() {
+    val user = user ?: throw Exception("User data is not loaded")
+
+    Command(CommandName.SetCrystals, listOf(user.crystals.toString())).send(this)
+  }
 }
 
 data class InitBonusesData(

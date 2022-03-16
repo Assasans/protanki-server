@@ -157,10 +157,13 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
   ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),
 
+  SetCrystals(CommandCategory.Lobby, "add_crystall", CommandSide.Client),
+
   InitGarageItems(CommandCategory.Garage, "init_garage_items", CommandSide.Client),
   InitMountedItem(CommandCategory.Garage, "init_mounted_item", CommandSide.Client),
   InitGarageMarket(CommandCategory.Garage, "init_market", CommandSide.Client),
   TryBuyItem(CommandCategory.Garage, "try_buy_item", CommandSide.Server),
+  BuyItem(CommandCategory.Garage, "buy_item", CommandSide.Client),
   TryMountItem(CommandCategory.Garage, "try_mount_item", CommandSide.Server),
   TryMountPreviewItem(CommandCategory.Garage, "fit", CommandSide.Server),
   MountItem(CommandCategory.Garage, "mount_item", CommandSide.Client),

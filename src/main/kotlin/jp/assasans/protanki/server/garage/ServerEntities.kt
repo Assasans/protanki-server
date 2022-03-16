@@ -192,7 +192,7 @@ interface IServerGarageUserItem {
 }
 
 interface IServerGarageUserItemWithModification : IServerGarageUserItem {
-  val modificationIndex: Int
+  var modificationIndex: Int
   val modification: ServerGarageItemModification
 
   override val mountName: String
@@ -201,7 +201,7 @@ interface IServerGarageUserItemWithModification : IServerGarageUserItem {
 
 class ServerGarageUserItemWeapon(
   override val marketItem: ServerGarageItemWeapon,
-  override val modificationIndex: Int
+  override var modificationIndex: Int
 ) : IServerGarageUserItemWithModification {
   override val modification: ServerGarageItemModification
     get() = marketItem.modifications[modificationIndex]!! // TODO(Assasans)
@@ -209,7 +209,7 @@ class ServerGarageUserItemWeapon(
 
 class ServerGarageUserItemHull(
   override val marketItem: ServerGarageItemHull,
-  override val modificationIndex: Int
+  override var modificationIndex: Int
 ) : IServerGarageUserItemWithModification {
   override val modification: ServerGarageItemModification
     get() = marketItem.modifications[modificationIndex]!! // TODO(Assasans)
@@ -221,11 +221,11 @@ class ServerGarageUserItemPaint(
 
 class ServerGarageUserItemSupply(
   override val marketItem: ServerGarageItemSupply,
-  val count: Int
+  var count: Int
 ) : IServerGarageUserItem
 
 class ServerGarageUserItemSubscription(
   override val marketItem: ServerGarageItemSubscription,
-  val startTime: Instant,
-  val duration: Duration
+  var startTime: Instant,
+  var duration: Duration
 ) : IServerGarageUserItem
