@@ -74,8 +74,9 @@ enum class SendTarget {
 
 suspend fun Command.sendTo(
   battle: Battle,
-  vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators)
-) = battle.sendTo(this, *targets)
+  vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators),
+  exclude: BattlePlayer? = null
+): Int = battle.sendTo(this, *targets, exclude = exclude)
 
 fun List<BattlePlayer>.users() = filter { player -> !player.isSpectator }
 fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
@@ -139,18 +140,30 @@ class Battle(
 
   suspend fun sendTo(
     command: Command,
-    vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators)
-  ) {
+    vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators),
+    exclude: BattlePlayer? = null
+  ): Int {
+    var count = 0
     if(targets.contains(SendTarget.Players)) {
       players
         .users()
-        .forEach { player -> command.send(player) }
+        .filter { player -> exclude == null || player != exclude }
+        .forEach { player ->
+          command.send(player)
+          count++
+        }
     }
     if(targets.contains(SendTarget.Spectators)) {
       players
         .spectators()
-        .forEach { player -> command.send(player) }
+        .filter { player -> exclude == null || player != exclude }
+        .forEach { player ->
+          command.send(player)
+          count++
+        }
     }
+
+    return count
   }
 
   override suspend fun tick() {

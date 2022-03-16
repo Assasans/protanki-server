@@ -86,21 +86,21 @@ class BattleHandler : ICommandHandler, KoinComponent {
     tank.orientation.fromEulerAngles(data.orientation.toVector())
 
     if(data is FullMoveData) {
-      Command(
+      val count = Command(
         CommandName.ClientFullMove, listOf(
           ClientFullMoveData(tank.id, data).toJson()
         )
-      ).sendTo(player.battle)
+      ).sendTo(player.battle, exclude = player)
 
-      logger.debug { "Synced full move to ${player.battle.players.size} players" }
+      logger.debug { "Synced full move to $count players" }
     } else {
-      Command(
+      val count = Command(
         CommandName.ClientMove, listOf(
           ClientMoveData(tank.id, data).toJson()
         )
-      ).sendTo(player.battle)
+      ).sendTo(player.battle, exclude = player)
 
-      logger.debug { "Synced move to ${player.battle.players.size} players" }
+      logger.debug { "Synced move to $count players" }
     }
   }
 
@@ -113,13 +113,13 @@ class BattleHandler : ICommandHandler, KoinComponent {
       logger.warn { "Invalid tank state for rotate turret: ${tank.state}" }
     }
 
-    Command(
+    val count = Command(
       CommandName.ClientRotateTurret, listOf(
         ClientRotateTurretData(tank.id, data).toJson()
       )
-    ).sendTo(player.battle)
+    ).sendTo(player.battle, exclude = player)
 
-    logger.debug { "Synced rotate turret to ${player.battle.players.size} players" }
+    logger.debug { "Synced rotate turret to $count players" }
   }
 
   @CommandHandler(CommandName.MovementControl)
@@ -131,13 +131,13 @@ class BattleHandler : ICommandHandler, KoinComponent {
       logger.warn { "Invalid tank state for movement control: ${tank.state}" }
     }
 
-    Command(
+    val count = Command(
       CommandName.ClientMovementControl, listOf(
         ClientMovementControlData(tank.id, data).toJson()
       )
-    ).sendTo(player.battle)
+    ).sendTo(player.battle, exclude = player)
 
-    logger.debug { "Synced movement control to ${player.battle.players.size} players" }
+    logger.debug { "Synced movement control to $count players" }
   }
 
   @CommandHandler(CommandName.SelfDestruct)
