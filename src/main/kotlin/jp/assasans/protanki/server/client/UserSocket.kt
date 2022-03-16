@@ -474,7 +474,7 @@ class UserSocket(
               name = "ProTanki Server",
               maxPeople = 8,
               minRank = 0,
-              maxRank = 16,
+              maxRank = 30,
               preview = 618467,
               users = listOf(
                 "Luminate"
@@ -612,7 +612,7 @@ data class InitBattleModelData(
   @Json val active: Boolean = true,
   @Json val dustParticle: Int = 110001,
   @Json val minRank: Int = 3,
-  @Json val maxRank: Int = 9,
+  @Json val maxRank: Int = 30,
   @Json val skybox: String,
   @Json val sound_id: Int = 584396,
   @Json val map_graphic_data: String

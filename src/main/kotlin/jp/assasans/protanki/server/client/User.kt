@@ -18,7 +18,7 @@ class User(
   var score: Int,
   var crystals: Int,
 
-  val items: List<IServerGarageUserItem>,
+  val items: MutableList<IServerGarageUserItem>,
   var equipment: UserEquipment
 ) {
   companion object {

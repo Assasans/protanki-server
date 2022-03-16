@@ -123,7 +123,7 @@ class Battle(
           maxPeopleCount = 8,
           name = title,
           minRank = 0,
-          maxRank = 16,
+          maxRank = 30,
           spectator = true,
           withoutBonuses = false,
           withoutCrystals = false,

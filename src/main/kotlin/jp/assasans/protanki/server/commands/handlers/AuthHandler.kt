@@ -30,7 +30,7 @@ class AuthHandler : ICommandHandler, KoinComponent {
 
     // TODO(Assasans): Testing only
     if(user == null) {
-      val items = listOf(
+      val items = mutableListOf(
         ServerGarageUserItemWeapon(marketRegistry.get("smoky").cast(), modificationIndex = 0),
         ServerGarageUserItemWeapon(marketRegistry.get("railgun").cast(), modificationIndex = 3),
         ServerGarageUserItemWeapon(marketRegistry.get("thunder").cast(), modificationIndex = 3),
@@ -50,8 +50,8 @@ class AuthHandler : ICommandHandler, KoinComponent {
         id = database.users.size + 1,
         username = username,
         password = password,
-        score = 123456,
-        crystals = 7654321,
+        score = 1_000_000,
+        crystals = 10_000_000,
 
         items = items,
         equipment = UserEquipment(
