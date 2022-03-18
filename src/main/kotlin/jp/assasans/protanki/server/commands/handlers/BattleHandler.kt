@@ -197,6 +197,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         socket.loadLobbyResources()
         Command(CommandName.EndLayoutSwitch, listOf("BATTLE_SELECT", "BATTLE_SELECT")).send(socket)
 
+        socket.screen = Screen.BattleSelect
         socket.initBattleList()
 
         logger.debug { "Select battle ${battle.id} -> ${battle.title}" }
@@ -207,6 +208,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
       "GARAGE"        -> {
         Command(CommandName.StartLayoutSwitch, listOf("GARAGE")).send(socket)
+        socket.screen = Screen.Garage
         socket.loadGarageResources()
         socket.initGarage()
         Command(CommandName.EndLayoutSwitch, listOf("GARAGE", "GARAGE")).send(socket)
