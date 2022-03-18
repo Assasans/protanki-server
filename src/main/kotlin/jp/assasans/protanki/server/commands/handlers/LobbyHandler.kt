@@ -83,21 +83,23 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.JoinAsSpectator)
   suspend fun joinAsSpectator(socket: UserSocket) {
+    val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
+
     val player = BattlePlayer(
       socket = socket,
       battle = battleProcessor.battles[0],
       team = BattleTeam.None,
       isSpectator = true
     )
-    battleProcessor.battles[0].players.add(player)
+    battle.players.add(player)
 
     // BattlePlayer(socket, this, null)
 
     socket.initBattleLoad()
 
-    socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-1.json").readText()))
-    socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-2.json").readText()))
-    socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-3.json").readText()))
+    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
+    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
+    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
 
     player.init()
   }
