@@ -20,6 +20,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),
 
   SwitchToRegistration(CommandCategory.Registration, "set_state", CommandSide.Server),
+
+  RefreshLobbyCaptcha(CommandCategory.Lobby, "refresh_captcha", CommandSide.Server),
   RefreshRegistrationCaptcha(CommandCategory.Registration, "refresh_captcha", CommandSide.Server),
 
   UpdateCaptcha(CommandCategory.Auth, "update_captcha", CommandSide.Client),
@@ -33,6 +35,12 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitFriendsList(CommandCategory.Lobby, "init_friends_list", CommandSide.Client),
   ShowFriendsList(CommandCategory.Lobby, "showFriends", CommandSide.Server),
   FriendsModalLoaded(CommandCategory.Lobby, "friends_onUsersLoaded", CommandSide.Client),
+
+  ShowSettings(CommandCategory.Lobby, "showSettings", CommandSide.Server),
+  ClientShowSettings(CommandCategory.Lobby, "showSettings", CommandSide.Client),
+  CheckPasswordIsSet(CommandCategory.Lobby, "checkPasswordIsSet", CommandSide.Server),
+  PasswordIsSet(CommandCategory.Lobby, "notifyPasswordIsSet", CommandSide.Client),
+  PasswordIsNotSet(CommandCategory.Lobby, "notifyPasswordIsNotSet", CommandSide.Client),
 
   InitBattleCreate(CommandCategory.Lobby, "init_battle_create", CommandSide.Client),
   InitBattleSelect(CommandCategory.Lobby, "init_battle_select", CommandSide.Client),

@@ -914,3 +914,15 @@ data class InitFriendsListData(
   @Json val new_incoming_friends: List<FriendEntry> = listOf(),
   @Json val new_accepted_friends: List<FriendEntry> = listOf()
 )
+
+data class ShowSettingsData(
+  @Json val emailNotice: Boolean = false,
+  @Json val email: String? = null,
+  @Json val notificationEnabled: Boolean = true,
+  @Json val showDamageEnabled: Boolean = true,
+  @Json val isConfirmEmail: Boolean = false,
+  @Json val authorizationUrl: String = "http://localhost/",
+  @Json val linkExists: Boolean = false,
+  @Json val snId: String = "vkontakte",
+  @Json val passwordCreated: Boolean = true
+)
