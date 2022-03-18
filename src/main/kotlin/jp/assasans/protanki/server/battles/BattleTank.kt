@@ -111,7 +111,20 @@ class BattleTank(
           x = 0.0,
           y = 0.0,
           z = 1000.0,
-          rot = 0.0
+          rot = 0.0,
+
+          // Hull physics
+          speed = hull.modification.physics.speed,
+          turn_speed = hull.modification.physics.turnSpeed,
+          acceleration = hull.modification.physics.acceleration,
+          reverseAcceleration = hull.modification.physics.reverseAcceleration,
+          sideAcceleration = hull.modification.physics.sideAcceleration,
+          turnAcceleration = hull.modification.physics.turnAcceleration,
+          reverseTurnAcceleration = hull.modification.physics.turnSpeed,
+
+          // Weapon physics
+          turret_rotation_speed = weapon.item.modification.physics.turretRotationSpeed,
+          turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration
         ).toJson()
       )
     ).send(this)

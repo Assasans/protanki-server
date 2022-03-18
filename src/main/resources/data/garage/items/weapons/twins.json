@@ -32,7 +32,44 @@
           ]
         },
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 5.8 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "twins",
+
+        "explosionTexture": 236695,
+        "hitMarkTexture": 828576,
+        "muzzleFlashTexture": 179480,
+        "shotSound": 457612,
+        "shotTexture": 433995,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 500, "color": 65535, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 65535, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 65535, "intensity": 0.5, "time": 0 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 400, "color": 65535, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 65535, "intensity": 0, "time": 300 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 0, "key": "flash" },
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 0, "key": "shot" },
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 0, "key": "expl" }
+        ]
+      }
     },
     "1": {
       "previewResourceId": 686147,
@@ -58,7 +95,44 @@
           ]
         },
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 10.3 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "twins",
+
+        "explosionTexture": 236695,
+        "hitMarkTexture": 828576,
+        "muzzleFlashTexture": 179480,
+        "shotSound": 457612,
+        "shotTexture": 433995,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 500, "color": 6700287, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 6700287, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 6700287, "intensity": 0.5, "time": 0 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 400, "color": 6700287, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 6700287, "intensity": 0, "time": 300 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 46.19, "key": "flash" },
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 46.19, "key": "shot" },
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 46.19, "key": "expl" }
+        ]
+      }
     },
     "2": {
       "previewResourceId": 595904,

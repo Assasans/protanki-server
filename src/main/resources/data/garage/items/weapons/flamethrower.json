@@ -41,7 +41,79 @@
             { "property": "FLAME_TEMPERATURE_LIMIT", "value": 5.9 }
           ]
         }
-      ]
+      ],
+
+      "visual": {
+        "$type": "flamethrower",
+
+        "fireTexture": 731304,
+        "flameSound": 461967,
+        "muzzlePlaneTexture": 810405,
+        "lighting": [
+          {
+            "name": "start",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16746496, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 200 }
+            ]
+          },
+          {
+            "name": "loop",
+            "light": [
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 0 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 100 },
+              { "attenuationBegin": 100, "attenuationEnd": 1500, "color": 16746496, "intensity": 1, "time": 200 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 300 },
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 400 }
+            ]
+          },
+          {
+            "name": "startFire",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16746496, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 200 }
+            ]
+          },
+          {
+            "name": "loopFire",
+            "light": [
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 0 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 100 },
+              { "attenuationBegin": 100, "attenuationEnd": 1500, "color": 16746496, "intensity": 1, "time": 200 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 300 },
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 400 }
+            ]
+          }
+        ],
+        "bcsh": [ ],
+        "colorTransform": [
+          {
+            "redMultiplier": 1, "greenMultiplier": 1, "blueMultiplier": 1, "alphaMultiplier": 1,
+            "redOffset": 100, "greenOffset": 150, "blueOffset": 100, "alphaOffset": 0,
+            "t": 0
+          }, {
+            "redMultiplier": 1, "greenMultiplier": 1, "blueMultiplier": 1, "alphaMultiplier": 1,
+            "redOffset": 50, "greenOffset": 100, "blueOffset": 60, "alphaOffset": 0,
+            "t": 0.05
+          }, {
+            "redMultiplier": 1, "greenMultiplier": 1, "blueMultiplier": 1, "alphaMultiplier": 1,
+            "redOffset": 100, "greenOffset": 100, "blueOffset": 40, "alphaOffset": 0,
+            "t": 0.1
+          }, {
+            "redMultiplier": 0.5, "greenMultiplier": 0.3, "blueMultiplier": 0.3, "alphaMultiplier": 1,
+            "redOffset": 50, "greenOffset": 80, "blueOffset": 50, "alphaOffset": 0,
+            "t": 0.65
+          }, {
+            "redMultiplier": 0, "greenMultiplier": 0, "blueMultiplier": 0, "alphaMultiplier": 1,
+            "redOffset": 50, "greenOffset": 50, "blueOffset": 50, "alphaOffset": 0,
+            "t": 0.75
+          }, {
+            "redMultiplier": 0, "greenMultiplier": 0, "blueMultiplier": 0, "alphaMultiplier": 0,
+            "redOffset": 20, "greenOffset": 20, "blueOffset": 20, "alphaOffset": 0,
+            "t": 1
+          }
+        ]
+      }
     },
     "1": {
       "previewResourceId": 608063,
@@ -76,7 +148,84 @@
             { "property": "FLAME_TEMPERATURE_LIMIT", "value": 10.2 }
           ]
         }
-      ]
+      ],
+
+      "visual": {
+        "$type": "flamethrower",
+
+        "fireTexture": 731304,
+        "flameSound": 461967,
+        "muzzlePlaneTexture": 810406,
+        "lighting": [
+          {
+            "name": "start",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16746496, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 200 }
+            ]
+          },
+          {
+            "name": "loop",
+            "light": [
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 0 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 100 },
+              { "attenuationBegin": 100, "attenuationEnd": 1500, "color": 16746496, "intensity": 1, "time": 200 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 300 },
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 400 }
+            ]
+          },
+          {
+            "name": "startFire",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16746496, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 200 }
+            ]
+          },
+          {
+            "name": "loopFire",
+            "light": [
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 0 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 100 },
+              { "attenuationBegin": 100, "attenuationEnd": 1500, "color": 16746496, "intensity": 1, "time": 200 },
+              { "attenuationBegin": 150, "attenuationEnd": 800, "color": 16746496, "intensity": 1, "time": 300 },
+              { "attenuationBegin": 50, "attenuationEnd": 1000, "color": 16746496, "intensity": 1, "time": 400 }
+            ]
+          }
+        ],
+        "bcsh": [ ],
+        "colorTransform": [
+          {
+            "redMultiplier": 1, "greenMultiplier": 1, "blueMultiplier": 1, "alphaMultiplier": 1,
+            "redOffset": 100, "greenOffset": 150, "blueOffset": 100, "alphaOffset": 0,
+            "t": 0
+          },
+          {
+            "redMultiplier": 1, "greenMultiplier": 1, "blueMultiplier": 1, "alphaMultiplier": 1,
+            "redOffset": 50, "greenOffset": 100, "blueOffset": 60, "alphaOffset": 0,
+            "t": 0.05
+          },
+          {
+            "redMultiplier": 1, "greenMultiplier": 1, "blueMultiplier": 1, "alphaMultiplier": 1,
+            "redOffset": 100, "greenOffset": 100, "blueOffset": 40, "alphaOffset": 0,
+            "t": 0.1
+          },
+          {
+            "redMultiplier": 0.5, "greenMultiplier": 0.3, "blueMultiplier": 0.3, "alphaMultiplier": 1,
+            "redOffset": 180, "greenOffset": 80, "blueOffset": 40, "alphaOffset": 0,
+            "t": 0.65
+          },
+          {
+            "redMultiplier": 0, "greenMultiplier": 0, "blueMultiplier": 0, "alphaMultiplier": 1,
+            "redOffset": 50, "greenOffset": 50, "blueOffset": 50, "alphaOffset": 0,
+            "t": 0.75
+          },
+          {
+            "redMultiplier": 0, "greenMultiplier": 0, "blueMultiplier": 0, "alphaMultiplier": 0,
+            "redOffset": 20, "greenOffset": 20, "blueOffset": 20, "alphaOffset": 0,
+            "t": 1
+          }
+        ]
+      }
     },
     "2": {
       "previewResourceId": 508353,

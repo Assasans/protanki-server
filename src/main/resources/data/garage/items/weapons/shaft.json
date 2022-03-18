@@ -37,7 +37,39 @@
           ]
         },
         { "property": "TURRET_TURN_SPEED", "value": 71.5 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "shaft",
+
+        "explosionSound": 686923,
+        "explosionTexture": 970970,
+        "hitMarkTexture": 870536,
+        "muzzleFlashTexture": 75337,
+        "shotSound": 600555,
+        "targetingSound": 938575,
+        "trailTexture": 500334,
+        "zoomModeSound": 632224,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 600, "color": 15772719, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 15772719, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 700, "color": 15772719, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 15772719, "intensity": 0, "time": 600 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 0, "contrast": 0, "saturation": 0, "hue": 0, "key": "def" }
+        ]
+      }
     },
     "1": {
       "previewResourceId": 581114,

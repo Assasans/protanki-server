@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream
 import java.nio.file.Paths
 import kotlin.io.path.absolute
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
@@ -90,6 +91,18 @@ suspend fun main(args: Array<String>) {
     single<IMapRegistry> { MapRegistry() }
     single {
       Moshi.Builder()
+        .add(
+          PolymorphicJsonAdapterFactory.of(WeaponVisual::class.java, "\$type")
+            .withSubtype(SmokyVisual::class.java, "smoky")
+            .withSubtype(RailgunVisual::class.java, "railgun")
+            .withSubtype(ThunderVisual::class.java, "thunder")
+            .withSubtype(FlamethrowerVisual::class.java, "flamethrower")
+            .withSubtype(FreezeVisual::class.java, "freeze")
+            .withSubtype(IsidaVisual::class.java, "isida")
+            .withSubtype(TwinsVisual::class.java, "twins")
+            .withSubtype(ShaftVisual::class.java, "shaft")
+            .withSubtype(RicochetVisual::class.java, "ricochet")
+        )
         .add(KotlinJsonAdapterFactory())
         .add(GarageItemTypeAdapter())
         .add(ResourceTypeAdapter())

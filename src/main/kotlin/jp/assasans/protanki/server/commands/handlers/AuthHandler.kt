@@ -32,10 +32,10 @@ class AuthHandler : ICommandHandler, KoinComponent {
     if(user == null) {
       val items = mutableListOf(
         ServerGarageUserItemWeapon(marketRegistry.get("smoky").cast(), modificationIndex = 0),
-        ServerGarageUserItemWeapon(marketRegistry.get("railgun").cast(), modificationIndex = 3),
-        ServerGarageUserItemWeapon(marketRegistry.get("thunder").cast(), modificationIndex = 3),
+        ServerGarageUserItemWeapon(marketRegistry.get("railgun").cast(), modificationIndex = 0),
+        ServerGarageUserItemWeapon(marketRegistry.get("thunder").cast(), modificationIndex = 0),
         ServerGarageUserItemHull(marketRegistry.get("hunter").cast(), modificationIndex = 0),
-        ServerGarageUserItemHull(marketRegistry.get("hornet").cast(), modificationIndex = 3),
+        ServerGarageUserItemHull(marketRegistry.get("hornet").cast(), modificationIndex = 0),
         ServerGarageUserItemHull(marketRegistry.get("wasp").cast(), modificationIndex = 0),
         ServerGarageUserItemPaint(marketRegistry.get("green").cast()),
         ServerGarageUserItemPaint(marketRegistry.get("zeus").cast()),

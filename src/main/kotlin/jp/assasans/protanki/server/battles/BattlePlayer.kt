@@ -307,6 +307,20 @@ class BattlePlayer(
               nickname = player.user.username,
               team_type = player.team.key,
 
+              // Hull physics
+              maxSpeed = tank.hull.modification.physics.speed,
+              maxTurnSpeed = tank.hull.modification.physics.turnSpeed,
+              acceleration = tank.hull.modification.physics.acceleration,
+              reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
+              sideAcceleration = tank.hull.modification.physics.sideAcceleration,
+              turnAcceleration = tank.hull.modification.physics.turnAcceleration,
+              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+              dampingCoeff = tank.hull.modification.physics.damping,
+
+              // Weapon physics
+              turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
+              turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
+
               // Weapon visual
               sfxData = (tank.weapon.item.modification.visual
                          ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
@@ -334,6 +348,20 @@ class BattlePlayer(
               nickname = user.username,
               team_type = team.key,
 
+              // Hull physics
+              maxSpeed = tank.hull.modification.physics.speed,
+              maxTurnSpeed = tank.hull.modification.physics.turnSpeed,
+              acceleration = tank.hull.modification.physics.acceleration,
+              reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
+              sideAcceleration = tank.hull.modification.physics.sideAcceleration,
+              turnAcceleration = tank.hull.modification.physics.turnAcceleration,
+              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+              dampingCoeff = tank.hull.modification.physics.damping,
+
+              // Weapon physics
+              turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
+              turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
+
               // Weapon visual
               sfxData = (tank.weapon.item.modification.visual
                          ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
@@ -360,7 +388,20 @@ class BattlePlayer(
               x = 0.0,
               y = 0.0,
               z = 1000.0,
-              rot = 0.0
+              rot = 0.0,
+
+              // Hull physics
+              speed = tank.hull.modification.physics.speed,
+              turn_speed = tank.hull.modification.physics.turnSpeed,
+              acceleration = tank.hull.modification.physics.acceleration,
+              reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
+              sideAcceleration = tank.hull.modification.physics.sideAcceleration,
+              turnAcceleration = tank.hull.modification.physics.turnAcceleration,
+              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+
+              // Weapon physics
+              turret_rotation_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
+              turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration
             ).toJson()
           )
         ).send(socket)
@@ -383,20 +424,35 @@ class BattlePlayer(
 
   suspend fun spawnTankForAnother() {
     battle.players.forEach { player ->
+      val tank = tank ?: throw Exception("No Tank")
+
       // Spawn self for other players
       if(!isSpectator) {
         Command(
           CommandName.SpawnTank,
           listOf(
             SpawnTankData(
-              tank_id = (tank ?: throw Exception("No Tank")).id,
+              tank_id = tank.id,
               health = 10000,
               incration_id = incarnation,
               team_type = team.key,
               x = 0.0,
               y = 0.0,
               z = 1000.0,
-              rot = 0.0
+              rot = 0.0,
+
+              // Hull physics
+              speed = tank.hull.modification.physics.speed,
+              turn_speed = tank.hull.modification.physics.turnSpeed,
+              acceleration = tank.hull.modification.physics.acceleration,
+              reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
+              sideAcceleration = tank.hull.modification.physics.sideAcceleration,
+              turnAcceleration = tank.hull.modification.physics.turnAcceleration,
+              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+
+              // Weapon physics
+              turret_rotation_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
+              turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration
             ).toJson()
           )
         ).send(player)

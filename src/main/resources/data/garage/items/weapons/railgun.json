@@ -32,7 +32,56 @@
         },
         { "property": "TURRET_TURN_SPEED", "value": 56.2 },
         { "property": "WEAPON_WEAKENING_COEFF", "value": 35.36 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "railgun",
+
+        "chargingPart1": 114424,
+        "chargingPart2": 468379,
+        "chargingPart3": 932241,
+        "hitMarkTexture": 670581,
+        "powTexture": 963502,
+        "ringsTexture": 966691,
+        "shotSound": 900596,
+        "smokeImage": 882103,
+        "sphereTexture": 212409,
+        "trailImage": 550305,
+        "lighting": [
+          {
+            "name": "charge",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 200, "color": 5883129, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 200, "attenuationEnd": 800, "color": 5883129, "intensity": 0.3, "time": 600 }
+            ]
+          },
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 5883129, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 5883129, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 600, "color": 5883129, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 5883129, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "rail",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 500, "color": 5883129, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 5883129, "intensity": 0, "time": 1800 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "key": "trail", "brightness": 0, "contrast": 0, "saturation": 0, "hue": 0 },
+          { "key": "charge", "brightness": 0, "contrast": 0, "saturation": 0, "hue": 0 }
+        ]
+      }
     },
     "1": {
       "previewResourceId": 603365,
@@ -58,7 +107,56 @@
         },
         { "property": "TURRET_TURN_SPEED", "value": 70 },
         { "property": "WEAPON_WEAKENING_COEFF", "value": 56.90 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "railgun",
+
+        "chargingPart1": 114424,
+        "chargingPart2": 468379,
+        "chargingPart3": 932241,
+        "hitMarkTexture": 670581,
+        "powTexture": 963502,
+        "ringsTexture": 966691,
+        "shotSound": 900596,
+        "smokeImage": 882103,
+        "sphereTexture": 212409,
+        "trailImage": 550305,
+        "lighting": [
+          {
+            "name": "charge",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 200, "color": 5286399, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 200, "attenuationEnd": 800, "color": 5286399, "intensity": 0.3, "time": 600 }
+            ]
+          },
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 5286399, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 5286399, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 600, "color": 5286399, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 5286399, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "rail",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 500, "color": 5286399, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 5286399, "intensity": 0, "time": 1800 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 10.155, "contrast": -2.655, "saturation": 61.947, "hue": 344.07, "key": "trail" },
+          { "brightness": 10.155, "contrast": -2.655, "saturation": 44.248, "hue": 340.88, "key": "charge" }
+        ]
+      }
     },
     "2": {
       "previewResourceId": 762220,

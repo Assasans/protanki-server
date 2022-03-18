@@ -27,7 +27,37 @@
         { "property": "TURRET_TURN_SPEED", "value": 71.5 },
         { "property": "CRITICAL_HIT_CHANCE", "value": 8 },
         { "property": "CRITICAL_HIT_DAMAGE", "value": 50 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "smoky",
+
+        "criticalHitSize": 375,
+        "criticalHitTexture": 110004,
+        "explosionMarkTexture": 1000077,
+        "explosionSize": 300,
+        "explosionSound": 667431,
+        "explosionTexture": 785656,
+        "shotSound": 223994,
+        "shotTexture": 1000076,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 150, "attenuationEnd": 450, "color": 16571766, "intensity": 0.9, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16571766, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 16760576, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 16760576, "intensity": 0, "time": 400 }
+            ]
+          }
+        ],
+        "bcsh": [ ]
+      }
     },
     "1": {
       "previewResourceId": 825544,
@@ -48,7 +78,37 @@
         { "property": "TURRET_TURN_SPEED", "value": 87.1 },
         { "property": "CRITICAL_HIT_CHANCE", "value": 12 },
         { "property": "CRITICAL_HIT_DAMAGE", "value": 65 }
-      ]
+      ],
+
+      "visual": {
+        "$type": "smoky",
+
+        "criticalHitSize": 375,
+        "criticalHitTexture": 110004,
+        "explosionMarkTexture": 1000077,
+        "explosionSize": 300,
+        "explosionSound": 667431,
+        "explosionTexture": 785657,
+        "shotSound": 223994,
+        "shotTexture": 1000076,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 150, "attenuationEnd": 450, "color": 16571766, "intensity": 0.9, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16571766, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 16760576, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 16760576, "intensity": 0, "time": 400 }
+            ]
+          }
+        ],
+        "bcsh": [ ]
+      }
     },
     "2": {
       "previewResourceId": 592136,

@@ -37,7 +37,41 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 56.9 }
           ]
         }
-      ]
+      ],
+
+      "visual": {
+        "$type": "thunder",
+
+        "explosionMarkTexture": 262233,
+        "explosionSize": 1000,
+        "explosionSound": 373285,
+        "explosionTexture": 435325,
+        "shotSound": 337970,
+        "shotTexture": 215691,
+        "lighting": [
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 800, "color": 16741656, "intensity": 0.8, "time": 0 },
+              { "attenuationBegin": 200, "attenuationEnd": 800, "color": 16741656, "intensity": 0, "time": 700 }
+            ]
+          },
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 500, "color": 16741656, "intensity": 0.9, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16741656, "intensity": 0, "time": 250 }
+            ]
+          },
+          {
+            "name": "shellLightAnimation",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 350, "color": 16741656, "intensity": 0.5, "time": 0 }
+            ]
+          }
+        ],
+        "bcsh": [ ]
+      }
     },
     "1": {
       "previewResourceId": 282433,

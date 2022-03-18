@@ -37,7 +37,54 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 67.4 }
           ]
         }
-      ]
+      ],
+
+      "visual": {
+        "$type": "ricochet",
+
+        "bumpFlashTexture": 110005,
+        "explosionTexture": 110005,
+        "explosionSound": 898926,
+        "ricochetSound": 700620,
+        "shotFlashTexture": 142378,
+        "shotSound": 292255,
+        "shotTexture": 110006,
+        "tailTrailTexutre": 228333,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 500, "color": 16754944, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16754944, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "ricochet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 400, "color": 16754944, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 50, "attenuationEnd": 200, "color": 16754944, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16754944, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16754944, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 350, "color": 16754944, "intensity": 0.5, "time": 0 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 14.668, "contrast": 0, "saturation": -8.85, "hue": 6.37, "key": "shot" },
+          { "brightness": 14.668, "contrast": 0, "saturation": -8.85, "hue": 6.37, "key": "expl" },
+          { "brightness": 14.668, "contrast": 0, "saturation": -8.85, "hue": 6.37, "key": "trail" }
+        ]
+      }
     },
     "1": {
       "previewResourceId": 9428,

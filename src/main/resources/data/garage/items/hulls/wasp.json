@@ -26,7 +26,18 @@
             { "property": "HULL_ACCELERATION", "value": 9 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 10.8,
+        "turnSpeed": 1.6388642,
+        "acceleration": 9.4,
+        "reverseAcceleration": 13.26,
+        "sideAcceleration": 17.27,
+        "turnAcceleration": 2.968107,
+        "reverseTurnAcceleration": 5.0204396,
+        "damping": 900
+      }
     },
     "1": {
       "previewResourceId": 265425,
