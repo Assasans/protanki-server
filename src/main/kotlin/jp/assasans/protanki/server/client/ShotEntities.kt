@@ -1,7 +1,5 @@
 package jp.assasans.protanki.server.client
 
-import com.squareup.moshi.Json
-
 // fire_target
 // -> {"incarnation":8,"hitPoint":{"y":73.29619461332966,"z":72.72237265695335,"x":-49.36979967718842},"physTime":68814,"targetPosition":{"y":-297.0259233690682,"z":79.0416489003912,"x":2966.4105099433746},"targetPositionGlobal":{"y":-342.12333132025424,"z":154.1123709518328,"x":2892.7296899385924},"target":"4eJI_TbI","staticHitPosition":null}
 // -> {"physTime":100693,"targetPositions":null,"incarnations":null,"targets":[],"hitPositions":[],"staticHitPosition":{"y":-773.8880089818483,"z":900,"x":-12586.573603396457}}

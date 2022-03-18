@@ -71,12 +71,12 @@ class AuthHandler : ICommandHandler, KoinComponent {
     logger.debug { "User login allowed" }
 
     socket.user = user
-    socket.send(Command(CommandName.AuthAccept))
+    Command(CommandName.AuthAccept).send(socket)
     socket.loadLobby()
     // } else {
     //   logger.debug { "User login rejected: incorrect password" }
     //
-    //   socket.send(Command(CommandName.AuthDenied))
+    //   Command(CommandName.AuthDenied).send(socket)
     // }
   }
 

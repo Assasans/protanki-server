@@ -71,7 +71,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     socket.screen = Screen.Battle
     socket.initBattleLoad()
 
-    Command(CommandName.InitShotsData, mutableListOf(resourceManager.get("shots-data.json").readText())).send(socket)
+    Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket)
 
     socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
     socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))

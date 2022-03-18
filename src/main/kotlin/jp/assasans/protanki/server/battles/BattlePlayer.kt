@@ -1,6 +1,5 @@
 package jp.assasans.protanki.server.battles
 
-import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import jp.assasans.protanki.server.client.*
