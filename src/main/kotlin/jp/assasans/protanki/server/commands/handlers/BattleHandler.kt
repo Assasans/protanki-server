@@ -7,7 +7,6 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.battles.users
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
@@ -171,29 +170,29 @@ class BattleHandler : ICommandHandler, KoinComponent {
   }
 
   @CommandHandler(CommandName.ExitFromBattle)
-  suspend fun exitFromBattleNotify(socket: UserSocket, destinationScreen: String) {
+  suspend fun exitFromBattle(socket: UserSocket, destinationScreen: String) {
     val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
     val battle = player.battle
     battle.players.remove(player)
 
     Command(CommandName.UnloadBattle).send(socket)
 
+    Command(
+      CommandName.InitMessages,
+      listOf(
+        InitChatMessagesData(
+          messages = listOf(
+            ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
+          )
+        ).toJson(),
+        InitChatSettings(
+          selfName = socket.user!!.username
+        ).toJson()
+      )
+    ).send(socket)
+
     when(destinationScreen) {
       "BATTLE_SELECT" -> {
-        Command(
-          CommandName.InitMessages,
-          listOf(
-            InitChatMessagesData(
-              messages = listOf(
-                ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
-              )
-            ).toJson(),
-            InitChatSettings(
-              selfName = socket.user!!.username
-            ).toJson()
-          )
-        ).send(socket)
-
         Command(CommandName.StartLayoutSwitch, listOf("BATTLE_SELECT")).send(socket)
         socket.loadLobbyResources()
         Command(CommandName.EndLayoutSwitch, listOf("BATTLE_SELECT", "BATTLE_SELECT")).send(socket)
@@ -206,7 +205,12 @@ class BattleHandler : ICommandHandler, KoinComponent {
         battle.showInfoFor(socket)
       }
 
-      "GARAGE"        -> {}
+      "GARAGE"        -> {
+        Command(CommandName.StartLayoutSwitch, listOf("GARAGE")).send(socket)
+        socket.loadGarageResources()
+        socket.initGarage()
+        Command(CommandName.EndLayoutSwitch, listOf("GARAGE", "GARAGE")).send(socket)
+      }
     }
   }
 }
