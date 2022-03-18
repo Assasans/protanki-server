@@ -76,8 +76,8 @@ class BattlePlayer(
           mapId = battle.map.id,
           spectator = isSpectator,
           reArmorEnabled = true,
-          skybox = "{\"top\":45572,\"front\":57735,\"back\":268412,\"bottom\":31494,\"left\":927961,\"right\":987391}",
-          map_graphic_data = "{\"mapId\":\"map_sandbox\",\"mapTheme\":\"SUMMER\",\"angleX\":-0.8500000238418579,\"angleZ\":2.5,\"lightColor\":13090219,\"shadowColor\":5530735,\"fogAlpha\":0.25,\"fogColor\":10543615,\"farLimit\":10000,\"nearLimit\":5000,\"gravity\":1000,\"skyboxRevolutionSpeed\":0,\"ssaoColor\":2045258,\"dustAlpha\":0.75,\"dustDensity\":0.15000000596046448,\"dustFarDistance\":7000,\"dustNearDistance\":5000,\"dustParticle\":\"summer\",\"dustSize\":200}"
+          skybox = battle.map.skybox.toJson(),
+          map_graphic_data = battle.map.visual.toJson()
         ).toJson()
       )
     ).send(socket)
@@ -305,7 +305,11 @@ class BattlePlayer(
               partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
               tank_id = tank.id,
               nickname = player.user.username,
-              team_type = player.team.key
+              team_type = player.team.key,
+
+              // Weapon visual
+              sfxData = (tank.weapon.item.modification.visual
+                         ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
             ).toJson()
           )
         ).send(socket)
@@ -328,7 +332,11 @@ class BattlePlayer(
               partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
               tank_id = tank.id,
               nickname = user.username,
-              team_type = team.key
+              team_type = team.key,
+
+              // Weapon visual
+              sfxData = (tank.weapon.item.modification.visual
+                         ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
             ).toJson()
           )
         ).send(player)

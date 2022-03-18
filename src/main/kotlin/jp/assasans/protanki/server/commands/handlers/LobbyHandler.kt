@@ -4,6 +4,8 @@ import kotlin.io.path.readText
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import jp.assasans.protanki.server.ClientResources
+import jp.assasans.protanki.server.IResourceConverter
 import jp.assasans.protanki.server.IResourceManager
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.BattleTeam
@@ -11,6 +13,7 @@ import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.client.Screen
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
+import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
@@ -37,6 +40,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   private val battleProcessor by inject<IBattleProcessor>()
   private val resourceManager by inject<IResourceManager>()
+  private val resourceConverter by inject<IResourceConverter>()
 
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
@@ -55,21 +59,23 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.Fight)
   suspend fun fight(socket: UserSocket) {
+    val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
+
     val player = BattlePlayer(
       socket = socket,
       battle = battleProcessor.battles[0],
       team = BattleTeam.None
     )
-    battleProcessor.battles[0].players.add(player)
+    battle.players.add(player)
 
     socket.screen = Screen.Battle
     socket.initBattleLoad()
 
     Command(CommandName.InitShotsData, mutableListOf(resourceManager.get("shots-data.json").readText())).send(socket)
 
-    socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-1.json").readText()))
-    socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-2.json").readText()))
-    socket.awaitDependency(socket.loadDependency(resourceManager.get("resources/maps/sandbox-summer-3.json").readText()))
+    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
+    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
+    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
 
     player.init()
     player.createTank()
@@ -98,7 +104,10 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.InitSpectatorUser)
   suspend fun initSpectatorUser(socket: UserSocket) {
-    Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket) // TODO(Assasans): initBattleLoad?
+    Command(
+      CommandName.InitShotsData,
+      listOf(resourceManager.get("shots-data.json").readText())
+    ).send(socket) // TODO(Assasans): initBattleLoad?
 
     val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
     val battle = player.battle

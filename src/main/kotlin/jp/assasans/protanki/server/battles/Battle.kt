@@ -1,6 +1,7 @@
 package jp.assasans.protanki.server.battles
 
 import mu.KotlinLogging
+import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.client.railgun.FireTarget
 import jp.assasans.protanki.server.client.railgun.ShotTarget
@@ -61,12 +62,6 @@ enum class BattleTeam(val id: Int, val key: String) {
   }
 }
 
-class BattleMap(
-  val id: Int,
-  val name: String,
-  val preview: Int
-)
-
 enum class SendTarget {
   Players,
   Spectators
@@ -84,7 +79,7 @@ fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
 class Battle(
   val id: String,
   val title: String,
-  var map: BattleMap,
+  var map: ServerMapInfo,
   var fund: Int = 1337228
 ) : ITickHandler {
   companion object {

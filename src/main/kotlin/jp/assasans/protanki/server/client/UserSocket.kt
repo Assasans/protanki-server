@@ -470,12 +470,12 @@ class UserSocket(
             BattleData(
               battleId = "493202bf695cc88a",
               battleMode = "DM",
-              map = "map_sandbox",
+              map = "map_kungur",
               name = "ProTanki Server",
               maxPeople = 8,
               minRank = 0,
               maxRank = 30,
-              preview = 618467,
+              preview = 476411,
               users = listOf(
                 "Luminate"
               )

@@ -18,7 +18,9 @@ import org.koin.dsl.module
 import org.koin.logger.SLF4JLogger
 import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.IBattleProcessor
-import jp.assasans.protanki.server.client.UserSocket
+import jp.assasans.protanki.server.battles.map.IMapRegistry
+import jp.assasans.protanki.server.battles.map.MapRegistry
+import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.garage.GarageItemConverter
@@ -26,7 +28,9 @@ import jp.assasans.protanki.server.garage.GarageMarketRegistry
 import jp.assasans.protanki.server.garage.IGarageItemConverter
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
+import jp.assasans.protanki.server.serialization.ResourceTypeAdapter
 import jp.assasans.protanki.server.serialization.SerializeNull
+import jp.assasans.protanki.server.serialization.ServerMapThemeAdapter
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
   val data = ByteArrayOutputStream()
@@ -81,11 +85,15 @@ suspend fun main(args: Array<String>) {
     single<IResourceManager> { ResourceManager() }
     single<IDatabase> { Database() }
     single<IGarageItemConverter> { GarageItemConverter() }
+    single<IResourceConverter> { ResourceConverter() }
     single<IGarageMarketRegistry> { GarageMarketRegistry() }
+    single<IMapRegistry> { MapRegistry() }
     single {
       Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .add(GarageItemTypeAdapter())
+        .add(ResourceTypeAdapter())
+        .add(ServerMapThemeAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }
