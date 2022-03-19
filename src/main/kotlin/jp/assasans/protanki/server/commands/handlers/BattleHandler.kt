@@ -175,6 +175,9 @@ class BattleHandler : ICommandHandler, KoinComponent {
     val battle = player.battle
     battle.players.remove(player)
 
+    Command(CommandName.BattlePlayerLeaveDm, listOf(player.user.username)).sendTo(battle, exclude = player)
+    Command(CommandName.BattlePlayerRemove, listOf(player.user.username)).sendTo(battle, exclude = player)
+
     Command(CommandName.UnloadBattle).send(socket)
 
     Command(

@@ -24,10 +24,7 @@ import org.koin.java.KoinJavaComponent
 import jp.assasans.protanki.server.EncryptionTransformer
 import jp.assasans.protanki.server.IResourceManager
 import jp.assasans.protanki.server.PacketProcessor
-import jp.assasans.protanki.server.battles.Battle
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.BattleTank
-import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
@@ -93,12 +90,14 @@ class UserSocket(
       .flatMap { battle -> battle.players }
       .singleOrNull { player -> player.socket == this }
 
-  private fun deactivate() {
+  private suspend fun deactivate() {
     active = false
 
     val player = battlePlayer
     if(player != null) { // Remove player from battle
-      // TODO(Assasans): Send leave command
+      Command(CommandName.BattlePlayerLeaveDm, listOf(player.user.username)).sendTo(player.battle, exclude = player)
+      Command(CommandName.BattlePlayerRemove, listOf(player.user.username)).sendTo(player.battle, exclude = player)
+
       player.battle.players.remove(player)
     }
 
