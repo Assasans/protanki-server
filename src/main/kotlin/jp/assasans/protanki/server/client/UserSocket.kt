@@ -34,6 +34,7 @@ import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
 import jp.assasans.protanki.server.garage.*
+import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
@@ -67,6 +68,7 @@ class UserSocket(
   private val mapRegistry by inject<IMapRegistry>()
   private val garageItemConverter by inject<IGarageItemConverter>()
   private val battleProcessor by inject<IBattleProcessor>()
+  private val lobbyChatManager by inject<ILobbyChatManager>()
   private val json by inject<Moshi>()
 
   private val input: ByteReadChannel = socket.openReadChannel()
@@ -562,7 +564,7 @@ class UserSocket(
       CommandName.InitMessages,
       listOf(
         InitChatMessagesData(
-          messages = listOf(
+          messages = lobbyChatManager.messages + listOf(
             ChatMessage(name = "", system = true, rang = 0, message = "=== ProTanki Server ==="),
             ChatMessage(name = "", system = true, rang = 0, message = "GitHub: https://github.com/Assasans/protanki-server"),
             ChatMessage(name = "", system = true, rang = 0, message = "Loaded maps: ${mapRegistry.maps.size}"),

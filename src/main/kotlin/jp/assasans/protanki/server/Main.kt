@@ -28,6 +28,8 @@ import jp.assasans.protanki.server.garage.GarageItemConverter
 import jp.assasans.protanki.server.garage.GarageMarketRegistry
 import jp.assasans.protanki.server.garage.IGarageItemConverter
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
+import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
+import jp.assasans.protanki.server.lobby.chat.LobbyChatManager
 import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
 import jp.assasans.protanki.server.serialization.ResourceTypeAdapter
 import jp.assasans.protanki.server.serialization.SerializeNull
@@ -94,6 +96,7 @@ suspend fun main(args: Array<String>) {
     single<IResourceConverter> { ResourceConverter() }
     single<IGarageMarketRegistry> { GarageMarketRegistry() }
     single<IMapRegistry> { MapRegistry() }
+    single<ILobbyChatManager> { LobbyChatManager() }
     single {
       Moshi.Builder()
         .add(
