@@ -29,6 +29,7 @@ class Server : KoinComponent {
     commandRegistry.registerHandlers(SystemHandler::class)
     commandRegistry.registerHandlers(AuthHandler::class)
     commandRegistry.registerHandlers(LobbyHandler::class)
+    commandRegistry.registerHandlers(LobbyChatHandler::class)
     commandRegistry.registerHandlers(BattleHandler::class)
     commandRegistry.registerHandlers(ShotHandler::class)
     commandRegistry.registerHandlers(GarageHandler::class)

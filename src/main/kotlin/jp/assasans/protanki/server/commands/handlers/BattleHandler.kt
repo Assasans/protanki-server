@@ -180,19 +180,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
     Command(CommandName.UnloadBattle).send(socket)
 
-    Command(
-      CommandName.InitMessages,
-      listOf(
-        InitChatMessagesData(
-          messages = listOf(
-            ChatMessage(name = "roflanebalo", rang = 4, message = "Ты пидорас")
-          )
-        ).toJson(),
-        InitChatSettings(
-          selfName = socket.user!!.username
-        ).toJson()
-      )
-    ).send(socket)
+    socket.initChatMessages()
 
     when(destinationScreen) {
       "BATTLE_SELECT" -> {
