@@ -81,15 +81,17 @@ data class ServerMapResources(
   @Json val map: List<ServerResource>
 )
 
-enum class ServerMapTheme(val key: String, val visualKey: String) {
-  SummerDay("summer_day", "SUMMER"),
-  SummerNight("summer_night", "SUMMER_NIGHT"),
-  Winter("winter_day", "WINTER");
+enum class ServerMapTheme(val key: String, val clientKey: String, val visualKey: String) {
+  SummerDay("summer_day", clientKey = "SUMMER", visualKey = "SUMMER"),
+  SummerNight("summer_night", clientKey = "SUMMER_NIGHT", visualKey = "SUMMER_NIGHT"),
+  Winter("winter_day", clientKey = "WINTER", visualKey = "WINTER");
 
   companion object {
     private val map = values().associateBy(ServerMapTheme::key)
+    private val mapByClient = values().associateBy(ServerMapTheme::clientKey)
 
     fun get(key: String) = map[key]
+    fun getByClient(key: String) = mapByClient[key]
   }
 }
 

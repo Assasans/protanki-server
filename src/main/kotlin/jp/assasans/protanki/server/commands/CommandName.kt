@@ -73,6 +73,11 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ShowDamageEnabled(CommandCategory.Lobby, "showDamageEnabled", CommandSide.Server),
   UpdateRankProgress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
 
+  AddBattle(CommandCategory.Lobby, "add_battle", CommandSide.Client),
+  CreateBattle(CommandCategory.BattleCreate, "battle_create", CommandSide.Server),
+  CheckBattleName(CommandCategory.BattleCreate, "checkBattleNameForForbiddenWords", CommandSide.Server),
+  SetCreateBattleName(CommandCategory.Lobby, "setFilteredBattleName", CommandSide.Client),
+
   SelectBattle(CommandCategory.BattleSelect, "select", CommandSide.Server),
   ClientSelectBattle(CommandCategory.BattleSelect, "select", CommandSide.Client),
   Fight(CommandCategory.BattleSelect, "fight", CommandSide.Server),

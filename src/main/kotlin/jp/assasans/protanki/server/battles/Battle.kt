@@ -1,5 +1,7 @@
 package jp.assasans.protanki.server.battles
 
+import kotlin.random.Random
+import kotlin.random.nextULong
 import mu.KotlinLogging
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.client.*
@@ -83,29 +85,36 @@ class Battle(
   var fund: Int = 1337228
 ) : ITickHandler {
   companion object {
-    private var lastId: Int = 1
-
-    fun generateId(): String {
-      return "test-${lastId++}"
-    }
+    fun generateId(): String = Random.nextULong().toString(16)
   }
 
   private val logger = KotlinLogging.logger { }
 
   val players: MutableList<BattlePlayer> = mutableListOf()
 
+  fun toBattleData(): BattleData {
+    // TODO(Assasans)
+    return BattleData(
+      battleId = id,
+      battleMode = "DM",
+      map = map.name,
+      name = title,
+      maxPeople = 8,
+      minRank = 0,
+      maxRank = 30,
+      preview = map.preview,
+      users = listOf()
+    )
+  }
+
   suspend fun selectFor(socket: UserSocket) {
     Command(
-      CommandName.SelectBattle,
-      listOf(
-        id
-      )
+      CommandName.ClientSelectBattle,
+      listOf(id)
     ).send(socket)
   }
 
   suspend fun showInfoFor(socket: UserSocket) {
-    Command(CommandName.ClientSelectBattle, listOf(id)).send(socket)
-
     Command(
       CommandName.ShowBattleInfo,
       listOf(

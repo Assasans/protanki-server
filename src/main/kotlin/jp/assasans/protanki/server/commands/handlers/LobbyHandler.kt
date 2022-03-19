@@ -4,16 +4,14 @@ import kotlin.io.path.readText
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import jp.assasans.protanki.server.ClientResources
-import jp.assasans.protanki.server.IResourceConverter
-import jp.assasans.protanki.server.IResourceManager
+import jp.assasans.protanki.server.*
+import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.IBattleProcessor
-import jp.assasans.protanki.server.client.Screen
-import jp.assasans.protanki.server.client.UserSocket
-import jp.assasans.protanki.server.client.send
-import jp.assasans.protanki.server.client.toJson
+import jp.assasans.protanki.server.battles.map.IMapRegistry
+import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
@@ -41,6 +39,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   private val battleProcessor by inject<IBattleProcessor>()
   private val resourceManager by inject<IResourceManager>()
   private val resourceConverter by inject<IResourceConverter>()
+  private val mapRegistry by inject<IMapRegistry>()
+  private val server by inject<ISocketServer>()
 
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
@@ -49,6 +49,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     logger.debug { "Select battle $id -> ${battle.title}" }
 
     socket.selectedBattle = battle
+    battle.selectFor(socket)
     battle.showInfoFor(socket)
   }
 
@@ -59,16 +60,19 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.Fight)
   suspend fun fight(socket: UserSocket) {
+    if(socket.screen == Screen.Battle) return // Client-side bug
+
     val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
+
+    socket.screen = Screen.Battle
 
     val player = BattlePlayer(
       socket = socket,
-      battle = battleProcessor.battles[0],
+      battle = battle,
       team = BattleTeam.None
     )
     battle.players.add(player)
 
-    socket.screen = Screen.Battle
     socket.initBattleLoad()
 
     Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket)
@@ -188,5 +192,34 @@ class LobbyHandler : ICommandHandler, KoinComponent {
         )
       ).send(socket)
     }
+  }
+
+  @CommandHandler(CommandName.CreateBattle)
+  suspend fun createBattle(socket: UserSocket, data: BattleCreateData) {
+    // TODO(Assasans): Advanced map configuration
+    val battle = Battle(
+      id = Battle.generateId(),
+      title = data.name,
+      map = mapRegistry.get(data.mapId, ServerMapTheme.getByClient(data.theme) ?: throw Exception("Unknown theme: ${data.theme}"))
+    )
+
+    battleProcessor.battles.add(battle)
+
+    Command(CommandName.AddBattle, listOf(battle.toBattleData().toJson())).let { command ->
+      server.players
+        .filter { player -> player.screen == Screen.BattleSelect }
+        .forEach { player -> command.send(player) }
+    }
+
+
+    socket.selectedBattle = battle
+    battle.selectFor(socket)
+    battle.showInfoFor(socket)
+  }
+
+  @CommandHandler(CommandName.CheckBattleName)
+  suspend fun checkBattleName(socket: UserSocket, name: String) {
+    // Pass-through
+    Command(CommandName.SetCreateBattleName, listOf(name)).send(socket)
   }
 }

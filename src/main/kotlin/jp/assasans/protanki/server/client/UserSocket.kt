@@ -431,21 +431,7 @@ class UserSocket(
       CommandName.InitBattleSelect,
       listOf(
         InitBattleSelectData(
-          battles = listOf(
-            BattleData(
-              battleId = "493202bf695cc88a",
-              battleMode = "DM",
-              map = "map_kungur",
-              name = "ProTanki Server",
-              maxPeople = 8,
-              minRank = 0,
-              maxRank = 30,
-              preview = 476411,
-              users = listOf(
-                "Luminate"
-              )
-            )
-          )
+          battles = battleProcessor.battles.map { battle -> battle.toBattleData() }
         ).toJson()
       )
     ).send(this)
@@ -916,4 +902,24 @@ data class ShowSettingsData(
   @Json val linkExists: Boolean = false,
   @Json val snId: String = "vkontakte",
   @Json val passwordCreated: Boolean = true
+)
+
+data class BattleCreateData(
+  @Json val withoutCrystals: Boolean,
+  @Json val minRank: Int,
+  @Json val reArmorEnabled: Boolean,
+  @Json val maxPeopleCount: Int,
+  @Json val autoBalance: Boolean,
+  @Json val maxRank: Int,
+  @Json val battleMode: String,
+  @Json val mapId: String,
+  @Json val name: String,
+  @Json val scoreLimit: Int,
+  @Json val friendlyFire: Boolean,
+  @Json val withoutBonuses: Boolean,
+  @Json val timeLimitInSec: Int,
+  @Json val proBattle: Boolean,
+  @Json val theme: String,
+  @Json val withoutSupplies: Boolean,
+  @Json val privateBattle: Boolean
 )

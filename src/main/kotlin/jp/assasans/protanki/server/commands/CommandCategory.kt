@@ -15,7 +15,8 @@ enum class CommandCategory(val key: String) {
 
   Battle("battle"),
   BattleChat("chat"),
-  BattleSelect("battle_select");
+  BattleSelect("battle_select"),
+  BattleCreate("battle_create");
 
   companion object {
     private val map = values().associateBy(CommandCategory::key)
