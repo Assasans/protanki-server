@@ -133,40 +133,33 @@ class BattlePlayer(
       ).send(this)
     }
 
+    val players = battle.players.users().map { player ->
+      DmStatisticsUserData(
+        uid = player.user.username,
+        rank = player.user.rank.value,
+        score = player.score,
+        kills = player.kills,
+        deaths = player.deaths
+      )
+    }
+
     Command(
       CommandName.InitDmStatistics,
-      listOf(
-        InitDmStatisticsData(
-          users = battle.players.users().map { player ->
-            DmStatisticsUserData(
-              uid = player.user.username,
-              rank = player.user.rank.value,
-              score = player.score,
-              kills = player.kills,
-              deaths = player.deaths
-            )
-          }
-        ).toJson()
-      )
+      listOf(InitDmStatisticsData(users = players).toJson())
     ).send(socket)
 
     battle.players.forEach { player ->
       if(player == this) return@forEach
 
-      Command(CommandName.BattlePlayerJoinDm, listOf(
-        BattlePlayerJoinDmData(
-          id = user.username,
-          players = battle.players.users().map { player ->
-            DmStatisticsUserData(
-              uid = user.username,
-              rank = user.rank.value,
-              score = score,
-              kills = kills,
-              deaths = deaths
-            )
-          }
-        ).toJson()
-      )).send(player)
+      Command(
+        CommandName.BattlePlayerJoinDm,
+        listOf(
+          BattlePlayerJoinDmData(
+            id = user.username,
+            players = players
+          ).toJson()
+        )
+      ).send(player)
     }
 
     // TODO(Assasans)
