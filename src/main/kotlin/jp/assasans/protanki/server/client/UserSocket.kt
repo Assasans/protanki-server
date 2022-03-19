@@ -21,9 +21,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.java.KoinJavaComponent
-import jp.assasans.protanki.server.EncryptionTransformer
-import jp.assasans.protanki.server.IResourceManager
-import jp.assasans.protanki.server.PacketProcessor
+import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
@@ -56,6 +54,7 @@ class UserSocket(
 
   private val packetProcessor = PacketProcessor()
   private val encryption = EncryptionTransformer()
+  private val server by inject<ISocketServer>()
   private val commandRegistry by inject<ICommandRegistry>()
   private val resourceManager by inject<IResourceManager>()
   private val marketRegistry by inject<IGarageMarketRegistry>()
@@ -105,6 +104,8 @@ class UserSocket(
     socketJobs.forEach { job ->
       if(job.isActive) job.cancel()
     }
+
+    server.players.remove(this)
   }
 
   suspend fun send(command: Command) {

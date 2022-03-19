@@ -47,11 +47,15 @@ suspend fun ByteReadChannel.readAvailable(): ByteArray {
 }
 
 interface ISocketServer {
+  val players: MutableList<UserSocket>
+
   suspend fun run()
 }
 
 class SocketServer : ISocketServer {
   private val logger = KotlinLogging.logger { }
+
+  override val players: MutableList<UserSocket> = mutableListOf()
 
   private lateinit var server: ServerSocket
 
@@ -65,6 +69,7 @@ class SocketServer : ISocketServer {
     while(true) {
       val tcpSocket = server.accept()
       val socket = UserSocket(tcpSocket)
+      players.add(socket)
 
       println("Socket accepted: ${socket.remoteAddress}")
 
