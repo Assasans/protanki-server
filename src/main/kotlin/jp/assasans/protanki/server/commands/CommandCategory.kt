@@ -5,7 +5,7 @@ enum class CommandCategory(val key: String) {
   Ping("ping"),
 
   Auth("auth"),
-  @Suppress("SpellCheckingInspection") Registration("registration"),
+  Registration("registration"),
   PasswordRestore("restore"),
 
   Lobby("lobby"),
