@@ -57,31 +57,27 @@ class BattleTank(
   suspend fun killBy(killer: BattleTank) {
     killSelf()
 
-    socket.runConnected {
-      Command(
-        CommandName.KillTank,
-        listOf(
-          id,
-          TankKillType.ByPlayer.key,
-          killer.id
-        )
-      ).send(socket)
-    }
+    Command(
+      CommandName.KillTank,
+      listOf(
+        id,
+        TankKillType.ByPlayer.key,
+        killer.id
+      )
+    ).sendTo(battle)
   }
 
   suspend fun selfDestruct() {
     killSelf()
 
-    socket.runConnected {
-      Command(
-        CommandName.KillTank,
-        listOf(
-          id,
-          TankKillType.SelfDestruct.key,
-          id
-        )
-      ).send(socket)
-    }
+    Command(
+      CommandName.KillTank,
+      listOf(
+        id,
+        TankKillType.SelfDestruct.key,
+        id
+      )
+    ).sendTo(battle)
   }
 
   suspend fun prepareToSpawn() {
