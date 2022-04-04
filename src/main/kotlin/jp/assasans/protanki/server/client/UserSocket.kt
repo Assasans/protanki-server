@@ -422,7 +422,7 @@ class UserSocket(
             BattleLimit(battleMode = "CTF", scoreLimit = 999, timeLimitInSec = 59940),
             BattleLimit(battleMode = "CP", scoreLimit = 999, timeLimitInSec = 59940)
           ),
-          maps = mapsParsed
+          maps = mapsParsed.filter { userMap -> mapRegistry.maps.any { map -> map.name == userMap.mapId && map.theme.clientKey == userMap.theme } }
         ).toJson()
       )
     ).send(this)
