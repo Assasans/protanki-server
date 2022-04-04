@@ -49,7 +49,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
     logger.debug { "Trying to mount ${marketItem.id}..." }
 
     if(currentItem == null) {
-      logger.debug { "Player ${user.username} (${user.id}}) tried to mount not owned item: ${marketItem.id}" }
+      logger.debug { "Player ${user.username} (${user.id}) tried to mount not owned item: ${marketItem.id}" }
       return
     }
 
@@ -59,7 +59,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
       is ServerGarageUserItemPaint  -> user.equipment.paint = currentItem
 
       else                          -> {
-        logger.debug { "Player ${user.username} (${user.id}}) tried to mount invalid item: ${marketItem.id} (${currentItem::class.simpleName})" }
+        logger.debug { "Player ${user.username} (${user.id}) tried to mount invalid item: ${marketItem.id} (${currentItem::class.simpleName})" }
         return
       }
     }
@@ -73,7 +73,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
     val user = socket.user ?: throw Exception("No User")
 
     if(count < 1) {
-      logger.debug { "Player ${user.username} (${user.id}}) tried to buy invalid count of items: $count" }
+      logger.debug { "Player ${user.username} (${user.id}) tried to buy invalid count of items: $count" }
       return
     }
 
@@ -92,7 +92,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
           val price = currentItem.modification.price
           if(user.crystals < price) {
-            logger.debug { "Player ${user.username} (${user.id}}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+            logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
             return
           }
           user.crystals -= price
@@ -109,7 +109,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
           val price = currentItem.modification.price
           if(user.crystals < price) {
-            logger.debug { "Player ${user.username} (${user.id}}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+            logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
             return
           }
           user.crystals -= price
@@ -126,7 +126,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
           val price = currentItem.marketItem.price
           if(user.crystals < price) {
-            logger.debug { "Player ${user.username} (${user.id}}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+            logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
             return
           }
           user.crystals -= price
@@ -147,7 +147,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
         val price = currentItem.marketItem.price * count
         if(user.crystals < price) {
-          logger.debug { "Player ${user.username} (${user.id}}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+          logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
           return
         }
         user.crystals -= price
@@ -167,7 +167,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
         val price = currentItem.modification.price
         if(user.crystals < price) {
-          logger.debug { "Player ${user.username} (${user.id}}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+          logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
           return
         }
         user.crystals -= price
