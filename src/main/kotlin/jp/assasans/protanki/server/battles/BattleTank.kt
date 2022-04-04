@@ -101,6 +101,8 @@ class BattleTank(
   }
 
   suspend fun spawn() {
+    state = TankState.SemiActive
+
     Command(
       CommandName.ChangeHealth,
       listOf(
