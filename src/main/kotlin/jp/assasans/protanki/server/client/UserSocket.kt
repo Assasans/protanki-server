@@ -817,6 +817,16 @@ data class ChatMessage(
   @Json val targetUserPremium: Boolean = false
 )
 
+data class BattleChatMessage(
+  @Json val nickname: String,
+  @Json val rank: Int,
+  @Json val chat_level: Int = 0,
+  @Json val message: String,
+  @Json val team_type: BattleTeam,
+  @Json val system: Boolean = false,
+  @Json val team: Boolean
+)
+
 data class InitChatMessagesData(
   @Json val messages: List<ChatMessage>
 )

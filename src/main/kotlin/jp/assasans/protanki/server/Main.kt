@@ -30,10 +30,7 @@ import jp.assasans.protanki.server.garage.IGarageItemConverter
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 import jp.assasans.protanki.server.lobby.chat.LobbyChatManager
-import jp.assasans.protanki.server.serialization.GarageItemTypeAdapter
-import jp.assasans.protanki.server.serialization.ResourceTypeAdapter
-import jp.assasans.protanki.server.serialization.SerializeNull
-import jp.assasans.protanki.server.serialization.ServerMapThemeAdapter
+import jp.assasans.protanki.server.serialization.*
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
   val data = ByteArrayOutputStream()
@@ -115,6 +112,7 @@ suspend fun main(args: Array<String>) {
         .add(GarageItemTypeAdapter())
         .add(ResourceTypeAdapter())
         .add(ServerMapThemeAdapter())
+        .add(BattleTeamAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }
