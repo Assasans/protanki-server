@@ -113,6 +113,7 @@ suspend fun main(args: Array<String>) {
         .add(ResourceTypeAdapter())
         .add(ServerMapThemeAdapter())
         .add(BattleTeamAdapter())
+        .add(BattleModeAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }

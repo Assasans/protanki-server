@@ -64,6 +64,19 @@ enum class BattleTeam(val id: Int, val key: String) {
   }
 }
 
+enum class BattleMode(val key: String) {
+  Deathmatch("DM"),
+  TeamDeathmatch("TDM"),
+  CaptureTheFlag("CTF"),
+  ControlPoints("CP");
+
+  companion object {
+    private val map = values().associateBy(BattleMode::key)
+
+    fun get(key: String) = map[key]
+  }
+}
+
 enum class SendTarget {
   Players,
   Spectators

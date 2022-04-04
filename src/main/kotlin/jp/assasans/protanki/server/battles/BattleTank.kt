@@ -11,6 +11,7 @@ import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
 import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
+import jp.assasans.protanki.server.toVector
 
 class BattleTank(
   val id: String,
@@ -80,12 +81,21 @@ class BattleTank(
     ).sendTo(battle)
   }
 
+  fun updateSpawnPosition() {
+    val point = battle.map.spawnPoints.random()
+    position = point.position.toVector()
+    position.z += 200
+    orientation.fromEulerAngles(point.position.toVector())
+
+    logger.debug { "Spawn point: $position, $orientation" }
+  }
+
   suspend fun prepareToSpawn() {
     Command(
       CommandName.PrepareToSpawn,
       listOf(
         id,
-        "0.0@0.0@1000.0@0.0"
+        "${position.x}@${position.y}@${position.z}@${orientation.toEulerAngles().z}"
       )
     ).send(this)
   }
@@ -107,10 +117,10 @@ class BattleTank(
           health = 10000,
           incration_id = player.incarnation,
           team_type = player.team.key,
-          x = 0.0,
-          y = 0.0,
-          z = 1000.0,
-          rot = 0.0,
+          x = position.x,
+          y = position.y,
+          z = position.z,
+          rot = orientation.toEulerAngles().z,
 
           // Hull physics
           speed = hull.modification.physics.speed,

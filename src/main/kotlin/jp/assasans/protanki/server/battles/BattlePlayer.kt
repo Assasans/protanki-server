@@ -272,6 +272,7 @@ class BattlePlayer(
 
     val tank = tank
     if(!isSpectator && tank != null) {
+      tank.updateSpawnPosition()
       tank.prepareToSpawn()
     }
 
@@ -385,10 +386,10 @@ class BattlePlayer(
               health = 10000,
               incration_id = player.incarnation,
               team_type = player.team.key,
-              x = 0.0,
-              y = 0.0,
-              z = 1000.0,
-              rot = 0.0,
+              x = tank.position.x,
+              y = tank.position.y,
+              z = tank.position.z,
+              rot = tank.orientation.toEulerAngles().z,
 
               // Hull physics
               speed = tank.hull.modification.physics.speed,
@@ -436,10 +437,10 @@ class BattlePlayer(
               health = 10000,
               incration_id = incarnation,
               team_type = team.key,
-              x = 0.0,
-              y = 0.0,
-              z = 1000.0,
-              rot = 0.0,
+              x = tank.position.x,
+              y = tank.position.y,
+              z = tank.position.z,
+              rot = tank.orientation.toEulerAngles().z,
 
               // Hull physics
               speed = tank.hull.modification.physics.speed,
@@ -481,6 +482,7 @@ class BattlePlayer(
 
   suspend fun respawn(): BattleTank {
     val tank = createTank()
+    tank.updateSpawnPosition()
     tank.prepareToSpawn()
 
     return tank

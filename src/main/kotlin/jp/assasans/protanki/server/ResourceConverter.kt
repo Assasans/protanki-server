@@ -2,6 +2,9 @@ package jp.assasans.protanki.server
 
 import com.squareup.moshi.Json
 import io.ktor.utils.io.bits.*
+import jp.assasans.protanki.server.battles.BattleMode
+import jp.assasans.protanki.server.battles.BattleTeam
+import jp.assasans.protanki.server.math.Vector3
 
 interface IResourceConverter {
   fun toClientResource(resource: ServerResource): ClientResource
@@ -38,7 +41,26 @@ data class ServerMapInfo(
 
   @Json val visual: ServerMapVisual,
   @Json val skybox: ServerMapSkybox,
-  @Json val resources: ServerMapResources
+  @Json val resources: ServerMapResources,
+
+  @Json val spawnPoints: List<ServerMapSpawnPoint>
+)
+
+fun ServerVector3.toVector() = Vector3(x, y, z)
+fun Vector3.toServerVector() = ServerVector3(x, y, z)
+
+data class ServerVector3(
+  val x: Double,
+  val y: Double,
+  val z: Double
+)
+
+data class ServerMapSpawnPoint(
+  @Json val mode: BattleMode?,
+  @Json val team: BattleTeam?,
+  @Json val point: String?, // CP point name
+  @Json val position: ServerVector3,
+  @Json val rotation: ServerVector3
 )
 
 data class ServerMapSkybox(
