@@ -179,7 +179,9 @@ interface IPhysics {}
 
 class WeaponPhysics(
   @Json val turretRotationSpeed: Double,
-  @Json val turretTurnAcceleration: Double
+  @Json val turretTurnAcceleration: Double,
+  @Json val impactForce: Double,
+  @Json val kickback: Double
 ) : IPhysics
 
 class HullPhysics(
@@ -190,7 +192,9 @@ class HullPhysics(
   @Json val sideAcceleration: Double,
   @Json val turnAcceleration: Double,
   @Json val reverseTurnAcceleration: Double,
-  @Json val damping: Int
+  @Json val damping: Int,
+  @Json val mass: Int,
+  @Json val power: Double
 ) : IPhysics
 
 abstract class ServerGarageItemModification(
@@ -214,7 +218,9 @@ class ServerGarageItemWeaponModification(
 
   override val physics: WeaponPhysics = WeaponPhysics( // TODO(Assasans)
     turretRotationSpeed = 1.2473868164003472,
-    turretTurnAcceleration = 1.3264502315156905
+    turretTurnAcceleration = 1.3264502315156905,
+    impactForce = 1.75,
+    kickback = 1.4043
   ),
 
   @Json val visual: WeaponVisual?
@@ -235,7 +241,9 @@ class ServerGarageItemHullModification(
     sideAcceleration = 17.27,
     turnAcceleration = 2.968107,
     reverseTurnAcceleration = 5.0204396,
-    damping = 900
+    damping = 900,
+    mass = 1376,
+    power = 9.4
   )
 ) : ServerGarageItemModification(previewResourceId, object3ds, rank, price, properties, physics)
 

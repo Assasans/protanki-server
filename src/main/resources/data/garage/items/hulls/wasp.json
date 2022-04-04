@@ -36,7 +36,9 @@
         "sideAcceleration": 17.27,
         "turnAcceleration": 2.968107,
         "reverseTurnAcceleration": 5.0204396,
-        "damping": 900
+        "damping": 900,
+        "mass": 1376,
+        "power": 9.4
       }
     },
     "1": {

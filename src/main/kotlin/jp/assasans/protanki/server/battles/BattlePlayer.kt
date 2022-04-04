@@ -308,10 +308,14 @@ class BattlePlayer(
               turnAcceleration = tank.hull.modification.physics.turnAcceleration,
               reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
               dampingCoeff = tank.hull.modification.physics.damping,
+              mass = tank.hull.modification.physics.mass,
+              power = tank.hull.modification.physics.power,
 
               // Weapon physics
               turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
               turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
+              kickback = tank.weapon.item.modification.physics.kickback,
+              impact_force = tank.weapon.item.modification.physics.impactForce,
 
               // Weapon visual
               sfxData = (tank.weapon.item.modification.visual
@@ -349,10 +353,14 @@ class BattlePlayer(
               turnAcceleration = tank.hull.modification.physics.turnAcceleration,
               reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
               dampingCoeff = tank.hull.modification.physics.damping,
+              mass = tank.hull.modification.physics.mass,
+              power = tank.hull.modification.physics.power,
 
               // Weapon physics
               turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
               turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
+              kickback = tank.weapon.item.modification.physics.kickback,
+              impact_force = tank.weapon.item.modification.physics.impactForce,
 
               // Weapon visual
               sfxData = (tank.weapon.item.modification.visual

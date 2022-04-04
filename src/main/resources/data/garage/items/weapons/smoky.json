@@ -29,6 +29,13 @@
         { "property": "CRITICAL_HIT_DAMAGE", "value": 50 }
       ],
 
+      "physics": {
+        "turretRotationSpeed": 1.2479104151759457,
+        "turretTurnAcceleration": 2.3216369710028575,
+        "impactForce": 1.75,
+        "kickback": 1.4043
+      },
+
       "visual": {
         "$type": "smoky",
 

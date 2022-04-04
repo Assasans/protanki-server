@@ -100,15 +100,15 @@ data class InitTankData(
   @Json val sideAcceleration: Double,
   @Json val turnAcceleration: Double,
   @Json val reverseTurnAcceleration: Double,
-  @Json val mass: Int = 1761,
-  @Json val power: Double = 9.09,
+  @Json val mass: Int,
+  @Json val power: Double,
   @Json val dampingCoeff: Int,
   @Json val turret_turn_speed: Double,
   @Json val health: Int = 10000,
   @Json val rank: Int = 4,
-  @Json val kickback: Double = 2.138,
+  @Json val kickback: Double,
   @Json val turretTurnAcceleration: Double,
-  @Json val impact_force: Double = 3.6958,
+  @Json val impact_force: Double,
   @Json val state_null: Boolean = true
 )
 
