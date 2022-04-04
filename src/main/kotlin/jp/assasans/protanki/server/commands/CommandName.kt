@@ -156,7 +156,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   KillLocalTank(CommandCategory.Battle, "local_user_killed", CommandSide.Client),
 
   EnableEffect(CommandCategory.Battle, "enable_effect", CommandSide.Client),
-  DisableEffect(CommandCategory.Battle, "disnable_effect", CommandSide.Client),
+  DisableEffect(CommandCategory.Battle, "disable_effect", CommandSide.Client),
 
   AddMine(CommandCategory.Battle, "put_mine", CommandSide.Client),
   ActivateMine(CommandCategory.Battle, "activate_mine", CommandSide.Client),
