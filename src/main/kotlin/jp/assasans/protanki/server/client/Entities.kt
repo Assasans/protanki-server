@@ -145,3 +145,10 @@ data class SpawnTankData(
   @Json val z: Double,
   @Json val rot: Double
 )
+
+data class TankSoundsData(
+  @Json val engineIdleSound: Int = 386284,
+  @Json val engineStartMovingSound: Int = 226985,
+  @Json val engineMovingSound: Int = 75329,
+  @Json val turretSound: Int = 242699
+)
