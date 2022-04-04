@@ -36,6 +36,8 @@ dependencies {
 
   implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
 
+  implementation("org.reflections:reflections:0.10.2")
+
   implementation("org.slf4j:slf4j-log4j12:2.0.0-alpha6")
   implementation("com.jcabi:jcabi-log:0.20.1")
   implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")

@@ -1,14 +1,18 @@
 package jp.assasans.protanki.server
 
+import kotlin.reflect.KClass
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.reflections.Reflections
+import org.reflections.scanners.Scanners
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
-import jp.assasans.protanki.server.commands.handlers.*
+import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 
 class Server : KoinComponent {
@@ -26,14 +30,14 @@ class Server : KoinComponent {
     mapRegistry.load()
     marketRegistry.load()
 
-    commandRegistry.registerHandlers(SystemHandler::class)
-    commandRegistry.registerHandlers(AuthHandler::class)
-    commandRegistry.registerHandlers(LobbyHandler::class)
-    commandRegistry.registerHandlers(LobbyChatHandler::class)
-    commandRegistry.registerHandlers(BattleHandler::class)
-    commandRegistry.registerHandlers(ShotHandler::class)
-    commandRegistry.registerHandlers(GarageHandler::class)
-    commandRegistry.registerHandlers(SettingsHandler::class)
+    val reflections = Reflections("jp.assasans.protanki.server")
+
+    reflections.get(Scanners.SubTypes.of(ICommandHandler::class.java).asClass<ICommandHandler>()).forEach { type ->
+      val handlerType = type.kotlin.cast<KClass<ICommandHandler>>()
+
+      commandRegistry.registerHandlers(handlerType)
+      logger.debug { "Registered command handler: ${handlerType.simpleName}" }
+    }
 
     battleProcessor.battles.add(
       Battle(
