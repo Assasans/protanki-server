@@ -1,6 +1,7 @@
 package jp.assasans.protanki.server.client
 
 import com.squareup.moshi.Json
+import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.math.Vector3
 
 fun Vector3Data.toVector() = Vector3(x, y, z)
@@ -174,6 +175,6 @@ data class BattlePlayerJoinDmData(
 
 data class BattlePlayerJoinTeamData(
   @Json val id: String,
-  @Json val team: String,
+  @Json val team: BattleTeam,
   @Json val players: List<DmStatisticsUserData>
 )

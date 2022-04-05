@@ -1,13 +1,14 @@
 package jp.assasans.protanki.server.client
 
 import com.squareup.moshi.Json
+import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.garage.HullPhysics
 import jp.assasans.protanki.server.garage.WeaponPhysics
 
 data class GuiUserData(
   @Json val nickname: String,
   @Json val rank: Int,
-  @Json val teamType: String
+  @Json val teamType: BattleTeam
 )
 
 data class InitGuiModelData(
@@ -93,7 +94,7 @@ data class InitTankData(
   @Json val incration: Int = 2,
   @Json val tank_id: String,
   @Json val nickname: String,
-  @Json val team_type: String,
+  @Json val team_type: BattleTeam,
   @Json val state: String = "active",
   @Json val maxSpeed: Double,
   @Json val maxTurnSpeed: Double,
@@ -117,7 +118,7 @@ data class InitTankData(
 data class UpdatePlayerStatisticsData(
   @Json val id: String,
   @Json val rank: Int,
-  @Json val team_type: String,
+  @Json val team_type: BattleTeam,
 
   @Json val score: Int,
   @Json val kills: Int,
@@ -141,7 +142,7 @@ data class SpawnTankData(
   @Json val turnAcceleration: Double,
   @Json val reverseTurnAcceleration: Double,
   @Json val incration_id: Int,
-  @Json val team_type: String,
+  @Json val team_type: BattleTeam,
   @Json val x: Double,
   @Json val y: Double,
   @Json val z: Double,

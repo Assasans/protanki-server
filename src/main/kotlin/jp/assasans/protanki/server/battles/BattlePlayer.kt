@@ -126,7 +126,7 @@ class BattlePlayer(
             GuiUserData(
               nickname = player.user.username,
               rank = player.user.rank.value,
-              teamType = player.team.key
+              teamType = player.team
             )
           }
         ).toJson()
@@ -269,7 +269,7 @@ class BattlePlayer(
           UpdatePlayerStatisticsData(
             id = (tank ?: throw Exception("No Tank")).id,
             rank = user.rank.value,
-            team_type = team.key,
+            team_type = team,
             score = score,
             kills = kills,
             deaths = deaths
@@ -313,7 +313,7 @@ class BattlePlayer(
               partsObject = TankSoundsData().toJson(),
               tank_id = tank.id,
               nickname = player.user.username,
-              team_type = player.team.key,
+              team_type = player.team,
 
               // Hull physics
               maxSpeed = tank.hull.modification.physics.speed,
@@ -358,7 +358,7 @@ class BattlePlayer(
               partsObject = TankSoundsData().toJson(),
               tank_id = tank.id,
               nickname = user.username,
-              team_type = team.key,
+              team_type = team,
 
               // Hull physics
               maxSpeed = tank.hull.modification.physics.speed,
@@ -400,7 +400,7 @@ class BattlePlayer(
               tank_id = tank.id,
               health = 10000,
               incration_id = player.incarnation,
-              team_type = player.team.key,
+              team_type = player.team,
               x = tank.position.x,
               y = tank.position.y,
               z = tank.position.z,
@@ -453,7 +453,7 @@ class BattlePlayer(
               tank_id = tank.id,
               health = 10000,
               incration_id = incarnation,
-              team_type = team.key,
+              team_type = team,
               x = tank.position.x,
               y = tank.position.y,
               z = tank.position.z,

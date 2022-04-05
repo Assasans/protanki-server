@@ -136,7 +136,7 @@ class BattleTank(
           tank_id = id,
           health = 10000,
           incration_id = player.incarnation,
-          team_type = player.team.key,
+          team_type = player.team,
           x = position.x,
           y = position.y,
           z = position.z,

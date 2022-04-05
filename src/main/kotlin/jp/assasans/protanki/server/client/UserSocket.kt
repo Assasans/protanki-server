@@ -919,7 +919,7 @@ data class BattleCreateData(
   @Json val maxPeopleCount: Int,
   @Json val autoBalance: Boolean,
   @Json val maxRank: Int,
-  @Json val battleMode: String,
+  @Json val battleMode: BattleMode,
   @Json val mapId: String,
   @Json val name: String,
   @Json val scoreLimit: Int,
