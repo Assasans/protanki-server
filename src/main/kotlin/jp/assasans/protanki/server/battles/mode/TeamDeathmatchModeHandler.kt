@@ -13,7 +13,7 @@ class TeamDeathmatchModeHandler(battle: Battle) : BattleModeHandler(battle) {
   override val mode: BattleMode get() = BattleMode.TeamDeathmatch
 
   override suspend fun playerJoin(player: BattlePlayer) {
-    val players = battle.players.users().toStatisticsUsers()
+    val players = battle.players.users().filter { battlePlayer -> battlePlayer.team == player.team }.toStatisticsUsers()
     val redPlayers = battle.players.users().filter { battlePlayer -> battlePlayer.team == BattleTeam.Red }.toStatisticsUsers()
     val bluePlayers = battle.players.users().filter { battlePlayer -> battlePlayer.team == BattleTeam.Blue }.toStatisticsUsers()
 
