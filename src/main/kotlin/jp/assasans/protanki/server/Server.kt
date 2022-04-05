@@ -10,6 +10,7 @@ import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
@@ -43,7 +44,8 @@ class Server : KoinComponent {
       Battle(
         id = "493202bf695cc88a",
         title = "ProTanki Server",
-        map = mapRegistry.get("map_kungur", ServerMapTheme.SummerDay)
+        map = mapRegistry.get("map_kungur", ServerMapTheme.SummerDay),
+        modeHandlerBuilder = DeathmatchModeHandler.builder()
       )
     )
 

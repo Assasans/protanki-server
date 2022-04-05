@@ -170,11 +170,11 @@ data class UpdateSpectatorsListData(
 
 data class BattlePlayerJoinDmData(
   @Json val id: String,
-  @Json val players: List<DmStatisticsUserData>
+  @Json val players: List<StatisticsUserData>
 )
 
 data class BattlePlayerJoinTeamData(
   @Json val id: String,
   @Json val team: BattleTeam,
-  @Json val players: List<DmStatisticsUserData>
+  @Json val players: List<StatisticsUserData>
 )

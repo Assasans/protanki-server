@@ -36,7 +36,7 @@ class BattlePlayer(
     tank?.deactivate()
     coroutineScope.cancel()
 
-    Command(CommandName.BattlePlayerLeaveDm, listOf(user.username)).sendTo(battle, exclude = this)
+    battle.modeHandler.playerLeave(this)
     Command(CommandName.BattlePlayerRemove, listOf(user.username)).sendTo(battle, exclude = this)
   }
 
@@ -110,7 +110,7 @@ class BattlePlayer(
       Command(CommandName.InitStatisticsModel, listOf(battle.title)).send(socket)
     }
 
-    Command(CommandName.InitDmModel).send(socket)
+    battle.modeHandler.initModeModel(this)
 
     Command(
       CommandName.InitGuiModel,
@@ -148,34 +148,7 @@ class BattlePlayer(
       ).send(this)
     }
 
-    val players = battle.players.users().map { player ->
-      DmStatisticsUserData(
-        uid = player.user.username,
-        rank = player.user.rank.value,
-        score = player.score,
-        kills = player.kills,
-        deaths = player.deaths
-      )
-    }
-
-    Command(
-      CommandName.InitDmStatistics,
-      listOf(InitDmStatisticsData(users = players).toJson())
-    ).send(socket)
-
-    battle.players.forEach { player ->
-      if(player == this) return@forEach
-
-      Command(
-        CommandName.BattlePlayerJoinDm,
-        listOf(
-          BattlePlayerJoinDmData(
-            id = user.username,
-            players = players
-          ).toJson()
-        )
-      ).send(player)
-    }
+    battle.modeHandler.playerJoin(this)
 
     // TODO(Assasans)
     if(isSpectator) {

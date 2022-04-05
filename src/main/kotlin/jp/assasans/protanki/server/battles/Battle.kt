@@ -4,6 +4,8 @@ import kotlin.random.Random
 import kotlin.random.nextULong
 import mu.KotlinLogging
 import jp.assasans.protanki.server.ServerMapInfo
+import jp.assasans.protanki.server.battles.mode.BattleModeHandler
+import jp.assasans.protanki.server.battles.mode.BattleModeHandlerBuilder
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.client.railgun.FireTarget
 import jp.assasans.protanki.server.client.railgun.ShotTarget
@@ -95,7 +97,8 @@ class Battle(
   val id: String,
   val title: String,
   var map: ServerMapInfo,
-  var fund: Int = 1337228
+  var fund: Int = 1337228,
+  modeHandlerBuilder: BattleModeHandlerBuilder
 ) : ITickHandler {
   companion object {
     fun generateId(): String = Random.nextULong().toString(16)
@@ -103,13 +106,14 @@ class Battle(
 
   private val logger = KotlinLogging.logger { }
 
+  val modeHandler: BattleModeHandler = modeHandlerBuilder(this)
   val players: MutableList<BattlePlayer> = mutableListOf()
 
   fun toBattleData(): BattleData {
     // TODO(Assasans)
     return BattleData(
       battleId = id,
-      battleMode = "DM",
+      battleMode = modeHandler.mode,
       map = map.name,
       name = title,
       maxPeople = 8,
@@ -133,7 +137,7 @@ class Battle(
       listOf(
         ShowDmBattleInfoData(
           itemId = id,
-          battleMode = "DM",
+          battleMode = modeHandler.mode,
           scoreLimit = 300,
           timeLimitInSec = 600,
           timeLeftInSec = 212,

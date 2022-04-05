@@ -415,10 +415,10 @@ class UserSocket(
       listOf(
         InitBattleCreateData(
           battleLimits = listOf(
-            BattleLimit(battleMode = "DM", scoreLimit = 999, timeLimitInSec = 59940),
-            BattleLimit(battleMode = "TDM", scoreLimit = 999, timeLimitInSec = 59940),
-            BattleLimit(battleMode = "CTF", scoreLimit = 999, timeLimitInSec = 59940),
-            BattleLimit(battleMode = "CP", scoreLimit = 999, timeLimitInSec = 59940)
+            BattleLimit(battleMode = BattleMode.Deathmatch, scoreLimit = 999, timeLimitInSec = 59940),
+            BattleLimit(battleMode = BattleMode.TeamDeathmatch, scoreLimit = 999, timeLimitInSec = 59940),
+            BattleLimit(battleMode = BattleMode.CaptureTheFlag, scoreLimit = 999, timeLimitInSec = 59940),
+            BattleLimit(battleMode = BattleMode.ControlPoints, scoreLimit = 999, timeLimitInSec = 59940)
           ),
           maps = mapsParsed.filter { userMap -> mapRegistry.maps.any { map -> map.name == userMap.mapId && map.theme.clientKey == userMap.theme } }
         ).toJson()
@@ -636,7 +636,7 @@ data class BattleUser(
 
 abstract class ShowBattleInfoData(
   @Json val itemId: String,
-  @Json val battleMode: String,
+  @Json val battleMode: BattleMode,
   @Json val scoreLimit: Int,
   @Json val timeLimitInSec: Int,
   @Json val preview: Int,
@@ -658,7 +658,7 @@ abstract class ShowBattleInfoData(
 
 class ShowTeamBattleInfoData(
   itemId: String,
-  battleMode: String,
+  battleMode: BattleMode,
   scoreLimit: Int,
   timeLimitInSec: Int,
   preview: Int,
@@ -709,7 +709,7 @@ class ShowTeamBattleInfoData(
 
 class ShowDmBattleInfoData(
   itemId: String,
-  battleMode: String,
+  battleMode: BattleMode,
   scoreLimit: Int,
   timeLimitInSec: Int,
   preview: Int,
@@ -754,7 +754,7 @@ class ShowDmBattleInfoData(
 
 data class BattleData(
   @Json val battleId: String,
-  @Json val battleMode: String,
+  @Json val battleMode: BattleMode,
   @Json val map: String,
   @Json val maxPeople: Int,
   @Json val name: String,
@@ -772,7 +772,7 @@ data class InitBattleSelectData(
 )
 
 data class BattleLimit(
-  @Json val battleMode: String,
+  @Json val battleMode: BattleMode,
   @Json val scoreLimit: Int,
   @Json val timeLimitInSec: Int,
 )

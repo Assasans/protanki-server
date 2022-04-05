@@ -6,17 +6,12 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.*
-import jp.assasans.protanki.server.battles.Battle
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.BattleTeam
-import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.client.*
-import jp.assasans.protanki.server.commands.Command
-import jp.assasans.protanki.server.commands.CommandHandler
-import jp.assasans.protanki.server.commands.CommandName
-import jp.assasans.protanki.server.commands.ICommandHandler
+import jp.assasans.protanki.server.commands.*
 
 /*
 Battle exit:
@@ -60,10 +55,16 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   }
 
   @CommandHandler(CommandName.Fight)
-  suspend fun fight(socket: UserSocket) {
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun fight(socket: UserSocket, args: CommandArgs) {
     if(socket.screen == Screen.Battle) return // Client-side bug
 
     val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
+
+    val team = if(args.size == 1) {
+      val rawTeam = args.get(0)
+      BattleTeam.get(rawTeam) ?: throw Exception("Unknown team: $rawTeam")
+    } else BattleTeam.None
 
     socket.screen = Screen.Battle
 
@@ -71,7 +72,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       coroutineContext = coroutineContext,
       socket = socket,
       battle = battle,
-      team = BattleTeam.None
+      team = team
     )
     battle.players.add(player)
 
@@ -199,11 +200,19 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.CreateBattle)
   suspend fun createBattle(socket: UserSocket, data: BattleCreateData) {
+    val handler = when(data.battleMode) {
+      BattleMode.Deathmatch     -> DeathmatchModeHandler.builder()
+      BattleMode.TeamDeathmatch -> TODO()
+      BattleMode.CaptureTheFlag -> TODO()
+      BattleMode.ControlPoints  -> TODO()
+    }
+
     // TODO(Assasans): Advanced map configuration
     val battle = Battle(
       id = Battle.generateId(),
       title = data.name,
-      map = mapRegistry.get(data.mapId, ServerMapTheme.getByClient(data.theme) ?: throw Exception("Unknown theme: ${data.theme}"))
+      map = mapRegistry.get(data.mapId, ServerMapTheme.getByClient(data.theme) ?: throw Exception("Unknown theme: ${data.theme}")),
+      modeHandlerBuilder = handler
     )
 
     battleProcessor.battles.add(battle)

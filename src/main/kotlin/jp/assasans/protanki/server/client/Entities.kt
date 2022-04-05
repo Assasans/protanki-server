@@ -1,6 +1,7 @@
 package jp.assasans.protanki.server.client
 
 import com.squareup.moshi.Json
+import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.garage.HullPhysics
 import jp.assasans.protanki.server.garage.WeaponPhysics
@@ -23,7 +24,19 @@ data class InitGuiModelData(
   @Json val users: List<GuiUserData>
 )
 
-data class DmStatisticsUserData(
+fun List<BattlePlayer>.toStatisticsUsers(): List<StatisticsUserData> {
+  return map { player ->
+    StatisticsUserData(
+      uid = player.user.username,
+      rank = player.user.rank.value,
+      score = player.score,
+      kills = player.kills,
+      deaths = player.deaths
+    )
+  }
+}
+
+data class StatisticsUserData(
   @Json val uid: String,
   @Json val rank: Int,
 
@@ -35,7 +48,7 @@ data class DmStatisticsUserData(
 )
 
 data class InitDmStatisticsData(
-  @Json val users: List<DmStatisticsUserData>
+  @Json val users: List<StatisticsUserData>
 )
 
 data class InventoryItemData(

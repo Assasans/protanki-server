@@ -40,6 +40,8 @@ class CommandArgs(var rawArgs: List<String>) {
     inline fun <reified T> convert(value: String): T = convert(typeOf<T>(), value) as T
   }
 
+  val size: Int = rawArgs.size
+
   fun get(index: Int): String = rawArgs[index]
 
   inline fun <reified T> getAs(index: Int): T = convert(get(index))

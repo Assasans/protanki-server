@@ -135,6 +135,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   InitStatisticsModel(CommandCategory.Battle, "init_statistics_model", CommandSide.Client),
   InitDmStatistics(CommandCategory.Battle, "init_dm_statistics", CommandSide.Client),
+  InitTeamStatistics(CommandCategory.Battle, "init_team_statistics", CommandSide.Client),
   UpdatePlayerStatistics(CommandCategory.Battle, "update_player_statistic", CommandSide.Client),
 
   Ping(CommandCategory.Battle, "ping", CommandSide.Server),
