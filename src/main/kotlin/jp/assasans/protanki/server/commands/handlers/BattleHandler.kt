@@ -91,7 +91,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         )
       ).sendTo(player.battle, exclude = player)
 
-      logger.debug { "Synced full move to $count players" }
+      logger.trace { "Synced full move to $count players" }
     } else {
       val count = Command(
         CommandName.ClientMove, listOf(
@@ -99,7 +99,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         )
       ).sendTo(player.battle, exclude = player)
 
-      logger.debug { "Synced move to $count players" }
+      logger.trace { "Synced move to $count players" }
     }
   }
 
@@ -118,7 +118,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       )
     ).sendTo(player.battle, exclude = player)
 
-    logger.debug { "Synced rotate turret to $count players" }
+    logger.trace { "Synced rotate turret to $count players" }
   }
 
   @CommandHandler(CommandName.MovementControl)
@@ -136,7 +136,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       )
     ).sendTo(player.battle, exclude = player)
 
-    logger.debug { "Synced movement control to $count players" }
+    logger.trace { "Synced movement control to $count players" }
   }
 
   @CommandHandler(CommandName.SelfDestruct)
