@@ -10,6 +10,7 @@ import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
+import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
 
@@ -202,7 +203,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   suspend fun createBattle(socket: UserSocket, data: BattleCreateData) {
     val handler = when(data.battleMode) {
       BattleMode.Deathmatch     -> DeathmatchModeHandler.builder()
-      BattleMode.TeamDeathmatch -> TODO()
+      BattleMode.TeamDeathmatch -> TeamDeathmatchModeHandler.builder()
       BattleMode.CaptureTheFlag -> TODO()
       BattleMode.ControlPoints  -> TODO()
     }

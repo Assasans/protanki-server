@@ -51,6 +51,14 @@ data class InitDmStatisticsData(
   @Json val users: List<StatisticsUserData>
 )
 
+data class InitTeamStatisticsData(
+  @Json val reds: List<StatisticsUserData>,
+  @Json val blues: List<StatisticsUserData>,
+
+  @Json val blueScore: Int,
+  @Json val redScore: Int
+)
+
 data class InventoryItemData(
   @Json val id: String,
   @Json val count: Int,
