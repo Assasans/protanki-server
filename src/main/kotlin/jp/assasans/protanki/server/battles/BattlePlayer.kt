@@ -248,7 +248,7 @@ class BattlePlayer(
             deaths = deaths
           ).toJson()
         )
-      ).send(socket)
+      ).sendTo(battle)
     }
 
     Command(
