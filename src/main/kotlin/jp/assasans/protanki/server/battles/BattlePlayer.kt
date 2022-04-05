@@ -1,5 +1,9 @@
 package jp.assasans.protanki.server.battles
 
+import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import jp.assasans.protanki.server.client.*
@@ -9,6 +13,7 @@ import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 
 class BattlePlayer(
+  coroutineContext: CoroutineContext,
   val socket: UserSocket,
   val battle: Battle,
   var team: BattleTeam,
@@ -24,6 +29,16 @@ class BattlePlayer(
 
   val user: User
     get() = socket.user ?: throw Exception("Missing User")
+
+  val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
+
+  suspend fun deactivate() {
+    tank?.deactivate()
+    coroutineScope.cancel()
+
+    Command(CommandName.BattlePlayerLeaveDm, listOf(user.username)).sendTo(battle, exclude = this)
+    Command(CommandName.BattlePlayerRemove, listOf(user.username)).sendTo(battle, exclude = this)
+  }
 
   suspend fun init() {
     Command(
@@ -425,6 +440,8 @@ class BattlePlayer(
 
   suspend fun spawnTankForAnother() {
     battle.players.forEach { player ->
+      if(player == this) return@forEach
+
       val tank = tank ?: throw Exception("No Tank")
 
       // Spawn self for other players

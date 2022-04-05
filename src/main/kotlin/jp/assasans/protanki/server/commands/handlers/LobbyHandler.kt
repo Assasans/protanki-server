@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server.commands.handlers
 
+import kotlin.coroutines.coroutineContext
 import kotlin.io.path.readText
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
@@ -67,6 +68,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     socket.screen = Screen.Battle
 
     val player = BattlePlayer(
+      coroutineContext = coroutineContext,
       socket = socket,
       battle = battle,
       team = BattleTeam.None
@@ -90,6 +92,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
 
     val player = BattlePlayer(
+      coroutineContext = coroutineContext,
       socket = socket,
       battle = battleProcessor.battles[0],
       team = BattleTeam.None,

@@ -1,6 +1,10 @@
 package jp.assasans.protanki.server.battles
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import mu.KotlinLogging
+import jp.assasans.protanki.server.battles.effect.TankEffect
 import jp.assasans.protanki.server.client.SpawnTankData
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
@@ -32,6 +36,10 @@ class BattleTank(
   val battle: Battle
     get() = player.battle
 
+  val coroutineScope = CoroutineScope(player.coroutineScope.coroutineContext + SupervisorJob())
+
+  val effects: MutableList<TankEffect> = mutableListOf()
+
   suspend fun activate() {
     if(state == TankState.Active) return
 
@@ -47,7 +55,17 @@ class BattleTank(
     Command(CommandName.ActivateTank, listOf(id)).sendTo(battle)
   }
 
+  suspend fun deactivate() {
+    coroutineScope.cancel()
+
+    effects.forEach { effect ->
+      effect.deactivate()
+    }
+    effects.clear()
+  }
+
   private suspend fun killSelf() {
+    deactivate()
     state = TankState.Dead
 
     socket.runConnected {

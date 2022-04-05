@@ -1,6 +1,8 @@
 package jp.assasans.protanki.server.client
 
 import com.squareup.moshi.Json
+import jp.assasans.protanki.server.garage.HullPhysics
+import jp.assasans.protanki.server.garage.WeaponPhysics
 
 data class GuiUserData(
   @Json val nickname: String,
@@ -152,3 +154,35 @@ data class TankSoundsData(
   @Json val engineMovingSound: Int = 75329,
   @Json val turretSound: Int = 242699
 )
+
+data class ChangeTankSpecificationData(
+  @Json var speed: Double,
+  @Json var turnSpeed: Double,
+  @Json var turretRotationSpeed: Double,
+  @Json var turretTurnAcceleration: Double,
+  @Json var acceleration: Double,
+  @Json var reverseAcceleration: Double,
+  @Json var sideAcceleration: Double,
+  @Json var turnAcceleration: Double,
+  @Json var reverseTurnAcceleration: Double,
+  @Json var dampingCoeff: Int,
+  @Json var immediate: Boolean
+) {
+  companion object {
+    fun fromPhysics(hull: HullPhysics, weapon: WeaponPhysics): ChangeTankSpecificationData {
+      return ChangeTankSpecificationData(
+        speed = hull.speed,
+        turnSpeed = hull.turnSpeed,
+        turretRotationSpeed = weapon.turretRotationSpeed,
+        turretTurnAcceleration = weapon.turretTurnAcceleration,
+        acceleration = hull.acceleration,
+        reverseAcceleration = hull.reverseAcceleration,
+        sideAcceleration = hull.sideAcceleration,
+        turnAcceleration = hull.turnAcceleration,
+        reverseTurnAcceleration = hull.reverseTurnAcceleration,
+        dampingCoeff = hull.damping,
+        immediate = true
+      )
+    }
+  }
+}

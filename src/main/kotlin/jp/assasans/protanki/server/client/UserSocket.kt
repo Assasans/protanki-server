@@ -103,9 +103,7 @@ class UserSocket(
 
     val player = battlePlayer
     if(player != null) { // Remove player from battle
-      Command(CommandName.BattlePlayerLeaveDm, listOf(player.user.username)).sendTo(player.battle, exclude = player)
-      Command(CommandName.BattlePlayerRemove, listOf(player.user.username)).sendTo(player.battle, exclude = player)
-
+      player.deactivate()
       player.battle.players.remove(player)
     }
 
