@@ -93,6 +93,13 @@ data class InitCtfModelData(
 
 typealias InitFlagsData = InitCtfModelData // Same properties
 
+data class FlagDroppedData(
+  @Json val x: Double,
+  @Json val y: Double,
+  @Json val z: Double,
+  @Json val flagTeam: BattleTeam
+)
+
 data class InventoryItemData(
   @Json val id: String,
   @Json val count: Int,

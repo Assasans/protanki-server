@@ -66,6 +66,15 @@ enum class BattleTeam(val id: Int, val key: String) {
   }
 }
 
+val BattleTeam.opposite: BattleTeam
+  get() {
+    return when(this) {
+      BattleTeam.None -> BattleTeam.None
+      BattleTeam.Red  -> BattleTeam.Blue
+      BattleTeam.Blue -> BattleTeam.Red
+    }
+  }
+
 enum class BattleMode(val key: String) {
   Deathmatch("DM"),
   TeamDeathmatch("TDM"),

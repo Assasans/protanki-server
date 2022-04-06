@@ -177,6 +177,15 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
   ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),
 
+  // Used for taking and delivering flags
+  TriggerFlag(CommandCategory.Battle, "attempt_to_take_flag", CommandSide.Server),
+  DropFlag(CommandCategory.Battle, "flag_drop", CommandSide.Server),
+
+  FlagCaptured(CommandCategory.Battle, "flagTaken", CommandSide.Client),
+  FlagDropped(CommandCategory.Battle, "flag_drop", CommandSide.Client),
+  FlagDelivered(CommandCategory.Battle, "deliver_flag", CommandSide.Client),
+  FlagReturned(CommandCategory.Battle, "return_flag", CommandSide.Client),
+
   SetCrystals(CommandCategory.Lobby, "add_crystall", CommandSide.Client),
 
   InitGarageItems(CommandCategory.Garage, "init_garage_items", CommandSide.Client),
