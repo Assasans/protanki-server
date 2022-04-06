@@ -32,6 +32,10 @@ class ResourceConverter : IResourceConverter {
   }
 }
 
+data class ServerMapFlag(
+  @Json val position: ServerVector3
+)
+
 data class ServerMapInfo(
   @Json val name: String,
   @Json val theme: ServerMapTheme,
@@ -43,7 +47,8 @@ data class ServerMapInfo(
   @Json val skybox: ServerMapSkybox,
   @Json val resources: ServerMapResources,
 
-  @Json val spawnPoints: List<ServerMapSpawnPoint>
+  @Json val spawnPoints: List<ServerMapSpawnPoint>,
+  @Json val flags: Map<BattleTeam, ServerMapFlag>
 )
 
 fun ServerVector3.toVector() = Vector3(x, y, z)

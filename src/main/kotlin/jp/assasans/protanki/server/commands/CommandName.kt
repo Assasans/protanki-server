@@ -106,6 +106,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitGuiModel(CommandCategory.Battle, "init_gui_model", CommandSide.Client),
   InitMineModel(CommandCategory.Battle, "init_mine_model", CommandSide.Client),
   InitEffects(CommandCategory.Battle, "init_effects", CommandSide.Client),
+  InitFlags(CommandCategory.Battle, "init_flags", CommandSide.Client),
 
   ChangeFund(CommandCategory.Battle, "change_fund", CommandSide.Client),
 

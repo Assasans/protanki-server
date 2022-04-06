@@ -132,6 +132,8 @@ class BattlePlayer(
         ).toJson()
       )
     ).send(socket)
+
+    battle.modeHandler.initPostGui(this)
   }
 
   var stage2Initialized = false

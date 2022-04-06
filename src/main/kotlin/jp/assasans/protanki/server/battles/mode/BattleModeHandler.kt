@@ -14,4 +14,5 @@ abstract class BattleModeHandler(
   abstract suspend fun playerJoin(player: BattlePlayer)
   abstract suspend fun playerLeave(player: BattlePlayer)
   abstract suspend fun initModeModel(player: BattlePlayer)
+  open suspend fun initPostGui(player: BattlePlayer) {}
 }

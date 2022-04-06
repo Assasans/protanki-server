@@ -5,6 +5,7 @@ import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.garage.HullPhysics
 import jp.assasans.protanki.server.garage.WeaponPhysics
+import jp.assasans.protanki.server.serialization.SerializeNull
 
 data class GuiUserData(
   @Json val nickname: String,
@@ -58,6 +59,39 @@ data class InitTeamStatisticsData(
   @Json val blueScore: Int,
   @Json val redScore: Int
 )
+
+data class CtfModelResources(
+  @Json val blueFlagSprite: Int = 538453,
+  @Json val bluePedestalModel: Int = 236578,
+  @Json val redFlagSprite: Int = 44351,
+  @Json val redPedestalModel: Int = 500060,
+  @Json val flagDropSound: Int = 717912,
+  @Json val flagReturnSound: Int = 694498,
+  @Json val flagTakeSound: Int = 89214,
+  @Json val winSound: Int = 525427
+)
+
+data class CtfModelLighting(
+  @Json val redColor: Int = 16711680,
+  @Json val redColorIntensity: Int = 1,
+  @Json val blueColor: Int = 26367,
+  @Json val blueColorIntensity: Int = 1,
+  @Json val attenuationBegin: Int = 100,
+  @Json val attenuationEnd: Int = 1000
+)
+
+data class InitCtfModelData(
+  @Json val resources: String,
+  @Json val lighting: String,
+  @Json val basePosBlueFlag: Vector3Data,
+  @Json val basePosRedFlag: Vector3Data,
+  @Json val posBlueFlag: Vector3Data?,
+  @Json val posRedFlag: Vector3Data?,
+  @Json @SerializeNull val blueFlagCarrierId: String?,
+  @Json @SerializeNull val redFlagCarrierId: String?
+)
+
+typealias InitFlagsData = InitCtfModelData // Same properties
 
 data class InventoryItemData(
   @Json val id: String,
