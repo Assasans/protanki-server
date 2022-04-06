@@ -109,6 +109,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitFlags(CommandCategory.Battle, "init_flags", CommandSide.Client),
 
   ChangeFund(CommandCategory.Battle, "change_fund", CommandSide.Client),
+  ChangeTeamScore(CommandCategory.Battle, "change_team_scores", CommandSide.Client),
 
   InitTank(CommandCategory.Battle, "init_tank", CommandSide.Client),
   GetInitDataLocalTank(CommandCategory.Battle, "get_init_data_local_tank", CommandSide.Server),

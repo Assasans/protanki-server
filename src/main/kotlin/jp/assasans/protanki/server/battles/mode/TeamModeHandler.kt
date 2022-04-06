@@ -6,8 +6,12 @@ import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 
 abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
-  var redScore: Int = 0
-  var blueScore: Int = 0
+  val teamScores: MutableMap<BattleTeam, Int> = mutableMapOf(
+    BattleTeam.Red to 0,
+    BattleTeam.Blue to 0
+  )
+
+  private val clientTeamScores: MutableMap<BattleTeam, Int> = teamScores.toMutableMap()
 
   override suspend fun playerJoin(player: BattlePlayer) {
     val players = battle.players.users().filter { battlePlayer -> battlePlayer.team == player.team }.toStatisticsUsers()
@@ -44,5 +48,15 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
 
   override suspend fun playerLeave(player: BattlePlayer) {
     Command(CommandName.BattlePlayerLeaveTeam, listOf(player.user.username)).sendTo(battle, exclude = player)
+  }
+
+  suspend fun updateScores() {
+    teamScores
+      .filter { (team, score) -> clientTeamScores[team] != score } // Send only changed scores
+      .forEach { (team, score) ->
+        clientTeamScores[team] = score
+
+        Command(CommandName.ChangeTeamScore, listOf(team.key, score.toString())).sendTo(battle)
+      }
   }
 }
