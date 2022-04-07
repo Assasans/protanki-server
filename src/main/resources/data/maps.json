@@ -1,27 +1,27 @@
 [
   {
     "enabled": true, "mapId": "map_zone", "mapName": "Зона", "maxPeople": 12, "preview": 579345, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_zone", "mapName": "Зона", "maxPeople": 12, "preview": 37897, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_kolhoz", "mapName": "Колхоз", "maxPeople": 24, "preview": 313516, "maxRank": 30,
-    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_kolhoz", "mapName": "Колхоз", "maxPeople": 24, "preview": 648625, "maxRank": 30,
-    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_island", "mapName": "Остров", "maxPeople": 6, "preview": 538875, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_island", "mapName": "Остров", "maxPeople": 6, "preview": 93644, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_stadium", "mapName": "Стадион", "maxPeople": 20, "preview": 331140, "maxRank": 30,
@@ -45,11 +45,11 @@
   },
   {
     "enabled": true, "mapId": "map_gravity", "mapName": "Гравити", "maxPeople": 20, "preview": 125877, "maxRank": 30,
-    "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_gravity", "mapName": "Гравити", "maxPeople": 20, "preview": 8029, "maxRank": 30,
-    "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_sandbox", "mapName": "Песочница", "maxPeople": 8, "preview": 618467, "maxRank": 30,
@@ -65,35 +65,35 @@
   },
   {
     "enabled": true, "mapId": "map_garder", "mapName": "Гардер", "maxPeople": 12, "preview": 595443, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_garder", "mapName": "Гардер", "maxPeople": 12, "preview": 360380, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_skyscrapers", "mapName": "Небоскрёбы", "maxPeople": 20, "preview": 504449,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_skyscrapers", "mapName": "Небоскрёбы", "maxPeople": 20, "preview": 504449, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_skyscrapers", "mapName": "Небоскрёбы", "maxPeople": 20, "preview": 56426,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SPACE"
+    "enabled": true, "mapId": "map_skyscrapers", "mapName": "Небоскрёбы", "maxPeople": 20, "preview": 56426, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SPACE"
   },
   {
-    "enabled": true, "mapId": "map_industrial_zone", "mapName": "Промзона", "maxPeople": 20, "preview": 926799,
-    "maxRank": 30, "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_industrial_zone", "mapName": "Промзона", "maxPeople": 20, "preview": 926799, "maxRank": 30,
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_industrial_zone", "mapName": "Промзона", "maxPeople": 20, "preview": 713825,
-    "maxRank": 30, "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_industrial_zone", "mapName": "Промзона", "maxPeople": 20, "preview": 713825, "maxRank": 30,
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_boombox", "mapName": "Бумбокс", "maxPeople": 8, "preview": 945441, "maxRank": 30,
-    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_boombox", "mapName": "Бумбокс", "maxPeople": 8, "preview": 254357, "maxRank": 30,
-    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_combe", "mapName": "Овраг", "maxPeople": 8, "preview": 664481, "maxRank": 30,
@@ -105,51 +105,51 @@
   },
   {
     "enabled": true, "mapId": "map_novel", "mapName": "Новэл", "maxPeople": 20, "preview": 679815, "maxRank": 30,
-    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_novel", "mapName": "Новэл", "maxPeople": 20, "preview": 226358, "maxRank": 30,
-    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_deathtrack", "mapName": "Трек", "maxPeople": 24, "preview": 72909, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_deathtrack", "mapName": "ТреÐº", "maxPeople": 24, "preview": 72909, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_deathtrack", "mapName": "Трек", "maxPeople": 24, "preview": 218449, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_montecarlo", "mapName": "Монте-Карло", "maxPeople": 20, "preview": 833634,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_montecarlo", "mapName": "Монте-Карло", "maxPeople": 20, "preview": 833634, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_montecarlo", "mapName": "Монте-Карло", "maxPeople": 20, "preview": 600088,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_montecarlo", "mapName": "Монте-Карло", "maxPeople": 20, "preview": 600088, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_magadan", "mapName": "Магадан", "maxPeople": 8, "preview": 305862, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_magadan", "mapName": "Магадан", "maxPeople": 8, "preview": 98285, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_siege", "mapName": "Осада", "maxPeople": 24, "preview": 694234, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_siege", "mapName": "Осада", "maxPeople": 24, "preview": 273155, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_shortbridge", "mapName": "Мостик", "maxPeople": 10, "preview": 582437, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_shortbridge", "mapName": "Мостик", "maxPeople": 10, "preview": 812919, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_sandal", "mapName": "Сандал", "maxPeople": 12, "preview": 276861, "maxRank": 30,
@@ -161,35 +161,35 @@
   },
   {
     "enabled": true, "mapId": "map_farm", "mapName": "Ферма", "maxPeople": 8, "preview": 352418, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_farm", "mapName": "Ферма", "maxPeople": 8, "preview": 192763, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_chornobyl", "mapName": "Чернобыль", "maxPeople": 24, "preview": 170913,
-    "maxRank": 30, "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_chornobyl", "mapName": "Чернобыль", "maxPeople": 24, "preview": 170913, "maxRank": 30,
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_chornobyl", "mapName": "Чернобыль", "maxPeople": 24, "preview": 327695,
-    "maxRank": 30, "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_chornobyl", "mapName": "Чернобыль", "maxPeople": 24, "preview": 327695, "maxRank": 30,
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_camp", "mapName": "Лагерь", "maxPeople": 12, "preview": 483442, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_camp", "mapName": "Лагерь", "maxPeople": 12, "preview": 64597, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_fortknox", "mapName": "Форт Нокс", "maxPeople": 14, "preview": 379819, "maxRank": 30,
-    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_fortknox", "mapName": "Форт Нокс", "maxPeople": 14, "preview": 964405, "maxRank": 30,
-    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_kungur", "mapName": "Кунгур", "maxPeople": 24, "preview": 476411, "maxRank": 30,
@@ -209,19 +209,19 @@
   },
   {
     "enabled": true, "mapId": "map_valley", "mapName": "Долина", "maxPeople": 10, "preview": 312281, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_valley", "mapName": "Долина", "maxPeople": 10, "preview": 476631, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_2042", "mapName": "Год 2042", "maxPeople": 24, "preview": 323196, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_2042", "mapName": "Год 2042", "maxPeople": 24, "preview": 224985, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_arena", "mapName": "Арена", "maxPeople": 8, "preview": 247963, "maxRank": 30,
@@ -241,23 +241,23 @@
   },
   {
     "enabled": true, "mapId": "map_losttemple", "mapName": "Тэмпл", "maxPeople": 32, "preview": 544154, "maxRank": 30,
-    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_losttemple", "mapName": "Тэмпл", "maxPeople": 32, "preview": 947887, "maxRank": 30,
-    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_factory", "mapName": "Фабрика", "maxPeople": 16, "preview": 270999, "maxRank": 30,
     "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_solikamsk", "mapName": "Соликамск", "maxPeople": 24, "preview": 741170,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_solikamsk", "mapName": "Соликамск", "maxPeople": 24, "preview": 741170, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_solikamsk", "mapName": "Соликамск", "maxPeople": 24, "preview": 928438,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_solikamsk", "mapName": "Соликамск", "maxPeople": 24, "preview": 928438, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_iran", "mapName": "Иран", "maxPeople": 20, "preview": 273976, "maxRank": 30,
@@ -269,11 +269,11 @@
   },
   {
     "enabled": true, "mapId": "map_courage", "mapName": "Кураж", "maxPeople": 16, "preview": 997740, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_courage", "mapName": "Кураж", "maxPeople": 16, "preview": 349598, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_pass", "mapName": "Перевал", "maxPeople": 10, "preview": 716334, "maxRank": 30,
@@ -285,59 +285,59 @@
   },
   {
     "enabled": true, "mapId": "map_skylark", "mapName": "Жаворонки", "maxPeople": 24, "preview": 273395, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_skylark", "mapName": "Жаворонки", "maxPeople": 24, "preview": 178911, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_berlin", "mapName": "Берлин", "maxPeople": 36, "preview": 863668, "maxRank": 30,
-    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_berlin", "mapName": "Берлин", "maxPeople": 36, "preview": 189166, "maxRank": 30,
-    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_desert", "mapName": "Пустыня", "maxPeople": 24, "preview": 177037, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_desert", "mapName": "Пустыня", "maxPeople": 24, "preview": 942099, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_desert", "mapName": "Пустыня", "maxPeople": 24, "preview": 503187, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER_NIGHT"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
   },
   {
     "enabled": true, "mapId": "map_tribute", "mapName": "Трибьют", "maxPeople": 20, "preview": 906707, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_tribute", "mapName": "Трибьют", "maxPeople": 20, "preview": 566575, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_opposition", "mapName": "Противостояние", "maxPeople": 20, "preview": 519019,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_opposition", "mapName": "Противостояние", "maxPeople": 20, "preview": 519019, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_opposition", "mapName": "Противостояние", "maxPeople": 20, "preview": 756213,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_opposition", "mapName": "Противостояние", "maxPeople": 20, "preview": 756213, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_wolfenstein", "mapName": "Вольфенштейн", "maxPeople": 24, "preview": 971180,
-    "maxRank": 30, "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_wolfenstein", "mapName": "Вольфенштейн", "maxPeople": 24, "preview": 971180, "maxRank": 30,
+    "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_wolfenstein", "mapName": "Вольфенштейн", "maxPeople": 24, "preview": 285375,
-    "maxRank": 30, "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_wolfenstein", "mapName": "Вольфенштейн", "maxPeople": 24, "preview": 285375, "maxRank": 30,
+    "minRank": 6, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_madness_space", "mapName": "Безумие", "maxPeople": 32, "preview": 678652,
-    "maxRank": 30, "minRank": 10, "supportedModes": [ "DM", "TDM", "CP" ], "theme": "SPACE"
+    "enabled": true, "mapId": "map_madness_space", "mapName": "Безумие", "maxPeople": 32, "preview": 678652, "maxRank": 30,
+    "minRank": 10, "supportedModes": [ "DM", "TDM" ], "theme": "SPACE"
   },
   {
     "enabled": true, "mapId": "map_wave", "mapName": "Волна", "maxPeople": 8, "preview": 975236, "maxRank": 30,
@@ -380,12 +380,12 @@
     "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
   },
   {
-    "enabled": true, "mapId": "map_esplanade", "mapName": "Эспланада", "maxPeople": 24, "preview": 907392,
-    "maxRank": 30, "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_esplanade", "mapName": "Эспланада", "maxPeople": 24, "preview": 907392, "maxRank": 30,
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_esplanade", "mapName": "Эспланада", "maxPeople": 24, "preview": 431630,
-    "maxRank": 30, "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_esplanade", "mapName": "Эспланада", "maxPeople": 24, "preview": 431630, "maxRank": 30,
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_future", "mapName": "Будущее", "maxPeople": 20, "preview": 550839, "maxRank": 30,
@@ -396,24 +396,24 @@
     "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
   },
   {
-    "enabled": true, "mapId": "map_aleksandrovsk", "mapName": "Александровск", "maxPeople": 24, "preview": 388954,
-    "maxRank": 30, "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_aleksandrovsk", "mapName": "Александровск", "maxPeople": 24, "preview": 388954, "maxRank": 30,
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_aleksandrovsk", "mapName": "Александровск", "maxPeople": 24, "preview": 506884,
-    "maxRank": 30, "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_aleksandrovsk", "mapName": "Александровск", "maxPeople": 24, "preview": 506884, "maxRank": 30,
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_aleksandrovsk", "mapName": "Александровск", "maxPeople": 24, "preview": 639103,
-    "maxRank": 30, "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
+    "enabled": true, "mapId": "map_aleksandrovsk", "mapName": "Александровск", "maxPeople": 24, "preview": 639103, "maxRank": 30,
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
   },
   {
     "enabled": true, "mapId": "map_bobruisk", "mapName": "Бобруйск", "maxPeople": 20, "preview": 513062, "maxRank": 30,
-    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_bobruisk", "mapName": "Бобруйск", "maxPeople": 20, "preview": 211243, "maxRank": 30,
-    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_duel", "mapName": "Дуэль", "maxPeople": 2, "preview": 820513, "maxRank": 30,
@@ -425,11 +425,11 @@
   },
   {
     "enabled": true, "mapId": "map_massacre", "mapName": "Бойня", "maxPeople": 20, "preview": 913170, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_massacre", "mapName": "Бойня", "maxPeople": 20, "preview": 216527, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_hill", "mapName": "Холм", "maxPeople": 8, "preview": 374401, "maxRank": 30,
@@ -449,11 +449,11 @@
   },
   {
     "enabled": true, "mapId": "map_edinburgh", "mapName": "Эдинбург", "maxPeople": 16, "preview": 426643, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_edinburgh", "mapName": "Эдинбург", "maxPeople": 16, "preview": 729995, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_abyss", "mapName": "Бездна", "maxPeople": 20, "preview": 75453, "maxRank": 30,
@@ -465,111 +465,111 @@
   },
   {
     "enabled": true, "mapId": "map_forest", "mapName": "Форест", "maxPeople": 20, "preview": 602793, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_forest", "mapName": "Форест", "maxPeople": 20, "preview": 864563, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_cross", "mapName": "Перекрёсток", "maxPeople": 14, "preview": 708934, "maxRank": 30,
-    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_cross", "mapName": "Перекрёсток", "maxPeople": 14, "preview": 376683, "maxRank": 30,
-    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 2, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_dusseldorf", "mapName": "Дюссельдорф", "maxPeople": 40, "preview": 176082,
-    "maxRank": 30, "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_dusseldorf", "mapName": "Дюссельдорф", "maxPeople": 40, "preview": 176082, "maxRank": 30,
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_dusseldorf", "mapName": "Дюссельдорф", "maxPeople": 40, "preview": 7300,
-    "maxRank": 30, "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_dusseldorf", "mapName": "Дюссельдорф", "maxPeople": 40, "preview": 7300, "maxRank": 30,
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_dualiti", "mapName": "Дуалити", "maxPeople": 6, "preview": 503187, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_dualiti", "mapName": "Дуалити", "maxPeople": 6, "preview": 165105, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_highway", "mapName": "Шоссе", "maxPeople": 24, "preview": 984755, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_highway", "mapName": "Шоссе", "maxPeople": 24, "preview": 875201, "maxRank": 30,
-    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_deck9", "mapName": "Палуба-9", "maxPeople": 8, "preview": 627697, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_deck9", "mapName": "Палуба-9", "maxPeople": 8, "preview": 914790, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_parma", "mapName": "Парма", "maxPeople": 20, "preview": 933709, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_parma", "mapName": "Парма", "maxPeople": 20, "preview": 456564, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_subway", "mapName": "Подземка", "maxPeople": 20, "preview": 194943, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_subway", "mapName": "Подземка", "maxPeople": 20, "preview": 744586, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_station", "mapName": "Станция", "maxPeople": 16, "preview": 240560, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_station", "mapName": "Станция", "maxPeople": 16, "preview": 637843, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_bridges", "mapName": "Мосты", "maxPeople": 20, "preview": 527717, "maxRank": 30,
-    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_bridges", "mapName": "Мосты", "maxPeople": 20, "preview": 935293, "maxRank": 30,
-    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_barda", "mapName": "Барда", "maxPeople": 20, "preview": 925895, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_barda", "mapName": "Барда", "maxPeople": 20, "preview": 759080, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_barda", "mapName": "Барда", "maxPeople": 20, "preview": 895614, "maxRank": 30,
-    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER_NIGHT"
+    "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
   },
   {
-    "enabled": true, "mapId": "map_magistral", "mapName": "Магистраль", "maxPeople": 24, "preview": 398352,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "enabled": true, "mapId": "map_magistral", "mapName": "Магистраль", "maxPeople": 24, "preview": 398352, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
-    "enabled": true, "mapId": "map_magistral", "mapName": "Магистраль", "maxPeople": 24, "preview": 318424,
-    "maxRank": 30, "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "enabled": true, "mapId": "map_magistral", "mapName": "Магистраль", "maxPeople": 24, "preview": 318424, "maxRank": 30,
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_redalert", "mapName": "Ред Алерт", "maxPeople": 20, "preview": 262215, "maxRank": 30,
-    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_redalert", "mapName": "Ред Алерт", "maxPeople": 20, "preview": 495607, "maxRank": 30,
-    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_brest", "mapName": "Брест", "maxPeople": 24, "preview": 891611, "maxRank": 30,
@@ -581,11 +581,11 @@
   },
   {
     "enabled": true, "mapId": "map_molotov", "mapName": "Молотов", "maxPeople": 20, "preview": 763886, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_molotov", "mapName": "Молотов", "maxPeople": 20, "preview": 565167, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_highland", "mapName": "Плато", "maxPeople": 16, "preview": 411251, "maxRank": 30,
@@ -601,42 +601,42 @@
   },
   {
     "enabled": true, "mapId": "map_serpuhov", "mapName": "Серпухов", "maxPeople": 20, "preview": 303326, "maxRank": 30,
-    "minRank": 1, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 1, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_serpuhov", "mapName": "Серпухов", "maxPeople": 20, "preview": 270446, "maxRank": 30,
-    "minRank": 1, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 1, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_noise", "mapName": "Шум", "maxPeople": 16, "preview": 952241, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_noise", "mapName": "Шум", "maxPeople": 16, "preview": 983773, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_gubakha", "mapName": "Губаха", "maxPeople": 20, "preview": 590485, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_gubakha", "mapName": "Губаха", "maxPeople": 20, "preview": 383480, "maxRank": 30,
-    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_osa", "mapName": "Оса", "maxPeople": 24, "preview": 283546, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_osa", "mapName": "Оса", "maxPeople": 24, "preview": 87317, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
     "enabled": true, "mapId": "map_scope", "mapName": "Простор", "maxPeople": 20, "preview": 618323, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
     "enabled": true, "mapId": "map_scope", "mapName": "Простор", "maxPeople": 20, "preview": 676240, "maxRank": 30,
-    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+    "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   }
 ]
