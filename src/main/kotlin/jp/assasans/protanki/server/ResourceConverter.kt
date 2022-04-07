@@ -4,6 +4,7 @@ import com.squareup.moshi.Json
 import io.ktor.utils.io.bits.*
 import jp.assasans.protanki.server.battles.BattleMode
 import jp.assasans.protanki.server.battles.BattleTeam
+import jp.assasans.protanki.server.client.Vector3Data
 import jp.assasans.protanki.server.math.Vector3
 
 interface IResourceConverter {
@@ -36,6 +37,13 @@ data class ServerMapFlag(
   @Json val position: ServerVector3
 )
 
+data class ServerMapDominationPoint(
+  @Json val id: String,
+  @Json val distance: Double,
+  @Json val free: Boolean,
+  @Json val position: Vector3Data
+)
+
 data class ServerMapInfo(
   @Json val name: String,
   @Json val theme: ServerMapTheme,
@@ -48,7 +56,8 @@ data class ServerMapInfo(
   @Json val resources: ServerMapResources,
 
   @Json val spawnPoints: List<ServerMapSpawnPoint>,
-  @Json val flags: Map<BattleTeam, ServerMapFlag>
+  @Json val flags: Map<BattleTeam, ServerMapFlag>,
+  @Json val points: List<ServerMapDominationPoint>?
 )
 
 fun ServerVector3.toVector() = Vector3(x, y, z)

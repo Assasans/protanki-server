@@ -402,5 +402,25 @@
     "BLUE": {
       "position": { "x": -20125, "y": -2500, "z": 900 }
     }
-  }
+  },
+  "points": [
+    {
+      "id": "B",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": -14750, "y": 1750, "z": 1500 }
+    },
+    {
+      "id": "C",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": -7500, "y": -7500, "z": 1500 }
+    },
+    {
+      "id": "A",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": -12500, "y": -3500, "z": 900 }
+    }
+  ]
 }

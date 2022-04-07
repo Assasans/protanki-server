@@ -100,6 +100,60 @@ data class FlagDroppedData(
   @Json val flagTeam: BattleTeam
 )
 
+data class DomModelResources(
+  @Json val bigLetters: Int = 150231,
+  @Json val blueCircle: Int = 102373,
+  @Json val bluePedestalTexture: Int = 915688,
+  @Json val blueRay: Int = 560829,
+  @Json val blueRayTip: Int = 546583,
+  @Json val neutralCircle: Int = 982573,
+  @Json val neutralPedestalTexture: Int = 298097,
+  @Json val pedestal: Int = 992320,
+  @Json val redCircle: Int = 474249,
+  @Json val redPedestalTexture: Int = 199168,
+  @Json val redRay: Int = 217165,
+  @Json val redRayTip: Int = 370093,
+  @Json val pointCapturedNegativeSound: Int = 240260,
+  @Json val pointCapturedPositiveSound: Int = 567101,
+  @Json val pointCaptureStartNegativeSound: Int = 832304,
+  @Json val pointCaptureStartPositiveSound: Int = 345377,
+  @Json val pointCaptureStopNegativeSound: Int = 730634,
+  @Json val pointCaptureStopPositiveSound: Int = 930495,
+  @Json val pointNeutralizedNegativeSound: Int = 650249,
+  @Json val pointNeutralizedPositiveSound: Int = 752472,
+  @Json val pointScoreDecreasingSound: Int = 679479,
+  @Json val pointScoreIncreasingSound: Int = 752002
+)
+
+data class DomModelLighting(
+  @Json val redPointColor: Int = 16711680,
+  @Json val redPointIntensity: Int = 1,
+  @Json val bluePointColor: Int = 26367,
+  @Json val bluePointIntensity: Int = 1,
+  @Json val neutralPointColor: Int = 16777215,
+  @Json val neutralPointIntensity: Double = 0.7,
+  @Json val attenuationBegin: Int = 100,
+  @Json val attenuationEnd: Int = 1000
+)
+
+data class DomPoint(
+  @Json val id: String,
+  @Json val radius: Double,
+  @Json val x: Double,
+  @Json val y: Double,
+  @Json val z: Double,
+  @Json val score: Int,
+  @Json val state: String,
+  @Json val occupated_users: List<String>
+)
+
+data class InitDomModelData(
+  @Json val resources: String,
+  @Json val lighting: String,
+  @Json val points: List<DomPoint>,
+  @Json val mine_activation_radius: Int
+)
+
 data class InventoryItemData(
   @Json val id: String,
   @Json val count: Int,

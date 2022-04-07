@@ -477,5 +477,37 @@
     "BLUE": {
       "position": { "x": -2667.398, "y": -8599.405, "z": 0 }
     }
-  }
+  },
+  "points": [
+    {
+      "id": "D",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": 1353.283, "y": -6017.038, "z": 0 }
+    },
+    {
+      "id": "C",
+      "distance": 900,
+      "free": false,
+      "position": { "x": 8196.555, "y": 552.331, "z": 0 }
+    },
+    {
+      "id": "E",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": 10706.443, "y": -6972.938, "z": 900 }
+    },
+    {
+      "id": "A",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": 252.665, "y": 4954.862, "z": 0 }
+    },
+    {
+      "id": "B",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": 8826.245, "y": 7833.678, "z": 600 }
+    }
+  ]
 }

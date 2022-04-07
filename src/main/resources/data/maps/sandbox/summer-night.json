@@ -675,5 +675,13 @@
     "BLUE": {
       "position": { "x": -3750, "y": 2750, "z": 0 }
     }
-  }
+  },
+  "points": [
+    {
+      "id": "A",
+      "distance": 1000,
+      "free": false,
+      "position": { "x": 500, "y": 500, "z": 300 }
+    }
+  ]
 }

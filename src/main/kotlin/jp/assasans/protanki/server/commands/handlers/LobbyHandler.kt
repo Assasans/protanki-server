@@ -10,6 +10,7 @@ import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
+import jp.assasans.protanki.server.battles.mode.ControlPointsModeHandler
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.client.*
@@ -206,7 +207,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       BattleMode.Deathmatch     -> DeathmatchModeHandler.builder()
       BattleMode.TeamDeathmatch -> TeamDeathmatchModeHandler.builder()
       BattleMode.CaptureTheFlag -> CaptureTheFlagModeHandler.builder()
-      BattleMode.ControlPoints  -> TODO()
+      BattleMode.ControlPoints  -> ControlPointsModeHandler.builder()
     }
 
     // TODO(Assasans): Advanced map configuration
