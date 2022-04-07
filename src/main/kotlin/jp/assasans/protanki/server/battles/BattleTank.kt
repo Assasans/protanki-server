@@ -5,6 +5,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import mu.KotlinLogging
 import jp.assasans.protanki.server.battles.effect.TankEffect
+import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
+import jp.assasans.protanki.server.battles.mode.FlagCarryingState
 import jp.assasans.protanki.server.client.SpawnTankData
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
@@ -67,6 +69,13 @@ class BattleTank(
   private suspend fun killSelf() {
     deactivate()
     state = TankState.Dead
+
+    (battle.modeHandler as? CaptureTheFlagModeHandler)?.let { handler ->
+      val flag = handler.flags[player.team.opposite]
+      if(flag is FlagCarryingState && flag.carrier == this) {
+        handler.dropFlag(flag.team, this, position)
+      }
+    }
 
     socket.runConnected {
       Command(CommandName.KillLocalTank).send(socket)
