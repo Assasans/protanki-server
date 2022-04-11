@@ -1,0 +1,159 @@
+{
+  "name": "map_hill",
+  "theme": "winter_day",
+
+  "id": 414183,
+  "preview": 445319,
+
+  "visual": {
+    "angleX": -1,
+    "angleZ": -0.5,
+
+    "lightColor": 8419693,
+    "shadowColor": 5395026,
+
+    "fogAlpha": 0.25,
+    "fogColor": 14545407,
+
+    "farLimit": 10000,
+    "nearLimit": 5000,
+
+    "gravity": 1000,
+    "skyboxRevolutionSpeed": 0,
+    "ssaoColor": 2374217,
+
+    "dustAlpha": 0.8999999761581421,
+    "dustDensity": 0.15000000596046448,
+    "dustFarDistance": 7000,
+    "dustNearDistance": 5000,
+    "dustParticle": "winter",
+    "dustSize": 200
+  },
+  "skybox": {
+    "top": 1929,
+    "front": 274735,
+    "back": 667135,
+    "bottom": 123809,
+    "left": 784146,
+    "right": 804716
+  },
+  "resources": {
+    "props": [
+      { "id": 882130, "version": 1, "lazy": false, "type": 8 },
+      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
+      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
+      { "id": 507274, "version": 1, "lazy": false, "type": 8 }
+    ],
+    "skybox": [
+      { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 123809, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 274735, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 784146, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
+    ],
+    "map": [
+      { "id": 414183, "version": 5, "lazy": false, "type": 7 }
+    ]
+  },
+  "spawnPoints": [
+    {
+      "mode": "DM",
+      "position": { "x": -6126.297, "y": -1047.715, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -6074.329, "y": -35.337, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -6178.563, "y": -322.871, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -6164.76, "y": -2603.605, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1160.076, "y": 825.875, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -6073.158, "y": 608.297, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1197.793, "y": -162.207, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1178.809, "y": -2557.075, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 545.13, "y": -90.662, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1128.307, "y": -1133.657, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -6030.482, "y": -1864.221, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 389.842, "y": 649.625, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -6176.799, "y": 375.703, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -6195.783, "y": -2019.165, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -6031.652, "y": -2507.855, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1180.573, "y": -1858.501, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 606.274, "y": -2626.987, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 711.615, "y": -1721.816, "z": -3000 },
+      "rotation": { "x": 0, "y": 0, "z": -3000 }
+    }
+  ],
+  "flags": {
+    "RED": {
+      "position": { "x": -6022.342, "y": -1004.023, "z": -3000 }
+    },
+    "BLUE": {
+      "position": { "x": 1014.505, "y": -955.041, "z": -3000 }
+    }
+  }
+}
