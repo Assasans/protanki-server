@@ -368,6 +368,10 @@
     "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
   },
   {
+    "enabled": true, "mapId": "map_madness_old", "mapName": "Старое Безумие", "maxPeople": 32, "preview": 678653, "maxRank": 30,
+    "minRank": 10, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SPACE"
+  },
+  {
     "enabled": true, "mapId": "map_polygon", "mapName": "Полигон", "maxPeople": 16, "preview": 891846, "maxRank": 30,
     "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
