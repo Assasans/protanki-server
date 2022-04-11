@@ -100,7 +100,7 @@ data class ServerMapVisual(
   @Json val nearLimit: Int,
 
   @Json val gravity: Int,
-  @Json val skyboxRevolutionSpeed: Int,
+  @Json val skyboxRevolutionSpeed: Double,
   @Json val ssaoColor: Int,
 
   @Json val dustAlpha: Double,
