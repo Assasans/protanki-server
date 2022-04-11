@@ -496,6 +496,10 @@
     "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
+    "enabled": true, "mapId": "map_silence_moon", "mapName": "Лунная Тишина", "maxPeople": 20, "preview": 952789, "maxRank": 30,
+    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SPACE"
+  },
+  {
     "enabled": true, "mapId": "map_highway", "mapName": "Шоссе", "maxPeople": 24, "preview": 984755, "maxRank": 30,
     "minRank": 8, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
