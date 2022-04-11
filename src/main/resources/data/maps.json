@@ -112,7 +112,7 @@
     "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_deathtrack", "mapName": "ТреÐº", "maxPeople": 24, "preview": 72909, "maxRank": 30,
+    "enabled": true, "mapId": "map_deathtrack", "mapName": "Трек", "maxPeople": 24, "preview": 72909, "maxRank": 30,
     "minRank": 9, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
   {
