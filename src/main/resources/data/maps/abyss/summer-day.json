@@ -1,0 +1,207 @@
+{
+  "name": "map_abyss",
+  "theme": "summer_day",
+
+  "id": 726975,
+  "preview": 75453,
+
+  "visual": {
+    "angleX": -1,
+    "angleZ": -0.5,
+
+    "lightColor": 13090219,
+    "shadowColor": 5530735,
+
+    "fogAlpha": 0.25,
+    "fogColor": 14545407,
+
+    "farLimit": 10000,
+    "nearLimit": 5000,
+
+    "gravity": 1000,
+    "skyboxRevolutionSpeed": 0,
+    "ssaoColor": 3025184,
+
+    "dustAlpha": 0.75,
+    "dustDensity": 0.15000000596046448,
+    "dustFarDistance": 7000,
+    "dustNearDistance": 5000,
+    "dustParticle": "summer",
+    "dustSize": 200
+  },
+  "skybox": {
+    "top": 345563,
+    "front": 80445,
+    "back": 266699,
+    "bottom": 590300,
+    "left": 616027,
+    "right": 190313
+  },
+  "resources": {
+    "props": [
+      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
+      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
+      { "id": 962184, "version": 1, "lazy": false, "type": 8 },
+      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
+      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
+      { "id": 39200, "version": 1, "lazy": false, "type": 8 },
+      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
+      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
+      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
+      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
+      { "id": 609946, "version": 1, "lazy": false, "type": 8 },
+      { "id": 205870, "version": 6, "lazy": false, "type": 8 }
+    ],
+    "skybox": [
+      { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 590300, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 80445, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 616027, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
+      { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
+    ],
+    "map": [
+      { "id": 726975, "version": 4, "lazy": false, "type": 7 }
+    ]
+  },
+  "spawnPoints": [
+    {
+      "team": "BLUE",
+      "position": { "x": 3764.621, "y": 6394.442, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -6552.254, "y": 4589.881, "z": 3600 },
+      "rotation": { "x": 0, "y": 0, "z": 3600 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 5750, "y": -3750, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 2912.073, "y": 923.509, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -5151.228, "y": 2092.873, "z": 3600 },
+      "rotation": { "x": 0, "y": 0, "z": 3600 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -532.827, "y": -1486.412, "z": 4500 },
+      "rotation": { "x": 0, "y": 0, "z": 4500 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 59.517, "y": 2478.694, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1880.426, "y": 3483.285, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -3544.881, "y": -3958.388, "z": 3000 },
+      "rotation": { "x": 0, "y": 0, "z": 3000 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 3232.483, "y": -610.493, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -8152.949, "y": -4736.615, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 1250, "y": -6250, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -443.578, "y": -6485.547, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -4239.252, "y": 1974.573, "z": 3600 },
+      "rotation": { "x": 0, "y": 0, "z": 3600 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -3939.344, "y": -6293.85, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": -6250, "y": -6250, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 1058.002, "y": -4756.606, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 6513.989, "y": 106.621, "z": 3300 },
+      "rotation": { "x": 0, "y": 0, "z": 3300 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 2546.243, "y": 5055.268, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 5711.832, "y": -7529.291, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 5750, "y": -4000, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "team": "BLUE",
+      "position": { "x": 3222.696, "y": 1461.275, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 3378.951, "y": 5173.963, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -5677.962, "y": -6466.794, "z": 4200 },
+      "rotation": { "x": 0, "y": 0, "z": 4200 }
+    },
+    {
+      "team": "RED",
+      "position": { "x": -3737.551, "y": -1102.686, "z": 3000 },
+      "rotation": { "x": 0, "y": 0, "z": 3000 }
+    },
+    {
+      "mode": "DM",
+      "position": { "x": 7459.042, "y": -1985.441, "z": 4800 },
+      "rotation": { "x": 0, "y": 0, "z": 4800 }
+    }
+  ],
+  "flags": {
+    "RED": {
+      "position": { "x": -8457.943, "y": -4998.058, "z": 4800 }
+    },
+    "BLUE": {
+      "position": { "x": 7000.17, "y": -1977.427, "z": 4800 }
+    }
+  }
+}
