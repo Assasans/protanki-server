@@ -28,9 +28,6 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
     BattleTeam.Blue to FlagOnPedestalState(BattleTeam.Blue)
   )
 
-  private val redFlag = battle.map.flags[BattleTeam.Red] ?: throw throw IllegalStateException("Map does not have a red flag")
-  private val blueFlag = battle.map.flags[BattleTeam.Blue] ?: throw throw IllegalStateException("Map does not have a blue flag")
-
   private val flagOffsetZ = 80
 
   suspend fun captureFlag(flagTeam: BattleTeam, carrier: BattleTank) {
@@ -90,6 +87,10 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
   }
 
   private fun getCtfModel(): InitCtfModelData {
+    val flags = battle.map.flags ?: throw IllegalStateException("Map has no flags")
+    val redFlag = flags[BattleTeam.Red] ?: throw throw IllegalStateException("Map does not have a red flag")
+    val blueFlag = flags[BattleTeam.Blue] ?: throw throw IllegalStateException("Map does not have a blue flag")
+
     val redFlagPosition = redFlag.position.toVector()
     val blueFlagPosition = blueFlag.position.toVector()
 

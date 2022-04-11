@@ -56,7 +56,7 @@ data class ServerMapInfo(
   @Json val resources: ServerMapResources,
 
   @Json val spawnPoints: List<ServerMapSpawnPoint>,
-  @Json val flags: Map<BattleTeam, ServerMapFlag>,
+  @Json val flags: Map<BattleTeam, ServerMapFlag>?,
   @Json val points: List<ServerMapDominationPoint>?
 )
 
