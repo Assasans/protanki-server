@@ -410,6 +410,12 @@ class UserSocket(
       .adapter<List<Map>>(Types.newParameterizedType(List::class.java, Map::class.java))
       .fromJson(resourceManager.get("maps.json").readText())!!
 
+    mapsParsed.forEach { userMap ->
+      if(!mapRegistry.maps.any { map -> map.name == userMap.mapId && map.theme.clientKey == userMap.theme }) {
+        userMap.enabled = false
+      }
+    }
+
     Command(
       CommandName.InitBattleCreate,
       listOf(
@@ -420,7 +426,7 @@ class UserSocket(
             BattleLimit(battleMode = BattleMode.CaptureTheFlag, scoreLimit = 999, timeLimitInSec = 59940),
             BattleLimit(battleMode = BattleMode.ControlPoints, scoreLimit = 999, timeLimitInSec = 59940)
           ),
-          maps = mapsParsed.filter { userMap -> mapRegistry.maps.any { map -> map.name == userMap.mapId && map.theme.clientKey == userMap.theme } }
+          maps = mapsParsed
         ).toJson()
       )
     ).send(this)
@@ -778,7 +784,7 @@ data class BattleLimit(
 )
 
 data class Map(
-  @Json val enabled: Boolean = true,
+  @Json var enabled: Boolean = true,
   @Json val mapId: String,
   @Json val mapName: String,
   @Json val maxPeople: Int,
