@@ -120,7 +120,8 @@ data class ServerMapResources(
 enum class ServerMapTheme(val key: String, val clientKey: String, val visualKey: String) {
   SummerDay("summer_day", clientKey = "SUMMER", visualKey = "SUMMER"),
   SummerNight("summer_night", clientKey = "SUMMER_NIGHT", visualKey = "SUMMER_NIGHT"),
-  Winter("winter_day", clientKey = "WINTER", visualKey = "WINTER");
+  Winter("winter_day", clientKey = "WINTER", visualKey = "WINTER"),
+  Space("space", clientKey = "SPACE", visualKey = "SPACE");
 
   companion object {
     private val map = values().associateBy(ServerMapTheme::key)
