@@ -413,6 +413,7 @@ class UserSocket(
     mapsParsed.forEach { userMap ->
       if(!mapRegistry.maps.any { map -> map.name == userMap.mapId && map.theme.clientKey == userMap.theme }) {
         userMap.enabled = false
+        logger.warn { "Map ${userMap.mapId}@${userMap.theme} is missing" }
       }
     }
 
