@@ -308,10 +308,6 @@
     "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
-    "enabled": true, "mapId": "map_desert", "mapName": "Пустыня", "maxPeople": 24, "preview": 503187, "maxRank": 30,
-    "minRank": 7, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER_NIGHT"
-  },
-  {
     "enabled": true, "mapId": "map_tribute", "mapName": "Трибьют", "maxPeople": 20, "preview": 906707, "maxRank": 30,
     "minRank": 3, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "SUMMER"
   },
