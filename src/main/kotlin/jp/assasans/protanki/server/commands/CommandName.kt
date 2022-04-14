@@ -193,9 +193,12 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitGarageMarket(CommandCategory.Garage, "init_market", CommandSide.Client),
   TryBuyItem(CommandCategory.Garage, "try_buy_item", CommandSide.Server),
   BuyItem(CommandCategory.Garage, "buy_item", CommandSide.Client),
+  TryBuyKit(CommandCategory.Garage, "kitBought", CommandSide.Server),
   TryMountItem(CommandCategory.Garage, "try_mount_item", CommandSide.Server),
   TryMountPreviewItem(CommandCategory.Garage, "fit", CommandSide.Server),
   MountItem(CommandCategory.Garage, "mount_item", CommandSide.Client),
+  SelectGarageCategory(CommandCategory.Garage, "showCategory", CommandSide.Client),
+  SelectGarageItem(CommandCategory.Garage, "select", CommandSide.Client),
 
   ;
 
