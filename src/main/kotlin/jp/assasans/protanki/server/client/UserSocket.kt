@@ -506,7 +506,14 @@ class UserSocket(
 
           marketParsed.none { marketItem -> marketItem.id == id && marketItem.modificationID == modification }
         }
-        if(ownsAll) {
+
+        val suppliesOnly = item.kit.kitItems.all { kitItem ->
+          val id = kitItem.id.substringBeforeLast("_")
+          val marketItem = marketRegistry.get(id)
+          marketItem is ServerGarageItemSupply
+        }
+
+        if(ownsAll && !suppliesOnly) {
           marketParsed.remove(item)
 
           logger.debug { "Removed kit ${item.name} from market: user owns all items" }

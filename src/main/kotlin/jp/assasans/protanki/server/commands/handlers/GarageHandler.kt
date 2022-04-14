@@ -178,4 +178,34 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
     socket.updateCrystals()
   }
+
+  /*
+  SENT    : garage;kitBought;universal_soldier_m0
+  SENT    : garage;try_mount_item;railgun_m0
+  SENT    : garage;try_mount_item;twins_m0
+  SENT    : garage;try_mount_item;flamethrower_m0
+  SENT    : garage;try_mount_item;hornet_m0
+  RECEIVED: LOBBY;add_crystall;179
+  RECEIVED: GARAGE;showCategory;armor
+  RECEIVED: GARAGE;select;hornet_m0
+  RECEIVED: GARAGE;mount_item;railgun_m0;true
+  RECEIVED: GARAGE;mount_item;twins_m0;true
+  RECEIVED: GARAGE;mount_item;flamethrower_m0;true
+  RECEIVED: GARAGE;mount_item;hornet_m0;true
+  */
+  @CommandHandler(CommandName.TryBuyKit)
+  suspend fun tryBuyKit(socket: UserSocket, rawItem: String) {
+    val user = socket.user ?: throw Exception("No User")
+
+    val item = rawItem.substringBeforeLast("_")
+    val marketItem = marketRegistry.get(item)
+    if(marketItem !is ServerGarageItemKit) return
+
+    logger.debug { "Trying to buy kit ${marketItem.id}..." }
+
+    marketItem.kit.items.forEach { kitItem ->
+      val kitMarketItem = marketRegistry.get(kitItem.id.substringBeforeLast("_"))
+      TODO()
+    }
+  }
 }
