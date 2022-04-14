@@ -39,6 +39,7 @@ class AuthHandler : ICommandHandler, KoinComponent {
         ServerGarageUserItemHull(marketRegistry.get("wasp").cast(), modificationIndex = 0),
         ServerGarageUserItemPaint(marketRegistry.get("green").cast()),
         ServerGarageUserItemPaint(marketRegistry.get("zeus").cast()),
+        ServerGarageUserItemPaint(marketRegistry.get("moonwalker").cast()),
         ServerGarageUserItemSupply(marketRegistry.get("health").cast(), count = 100),
         ServerGarageUserItemSupply(marketRegistry.get("armor").cast(), count = 100),
         ServerGarageUserItemSupply(marketRegistry.get("double_damage").cast(), count = 100),
@@ -57,7 +58,7 @@ class AuthHandler : ICommandHandler, KoinComponent {
         equipment = UserEquipment(
           hull = items.single { item -> item.marketItem.id == "wasp" } as ServerGarageUserItemHull,
           weapon = items.single { item -> item.marketItem.id == "railgun" } as ServerGarageUserItemWeapon,
-          paint = items.single { item -> item.marketItem.id == "zeus" } as ServerGarageUserItemPaint
+          paint = items.single { item -> item.marketItem.id == "moonwalker" } as ServerGarageUserItemPaint
         )
       )
       database.users.add(user)
