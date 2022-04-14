@@ -10,5 +10,12 @@
     <appender-ref ref="STDOUT" />
   </root>
 
+  <logger name="org.hibernate" level="INFO" />
+  <!-- Non-fixable HHH90000021 deprecation warning -->
+  <logger name="org.hibernate.orm.deprecation" level="ERROR" />
+  <logger name="org.jboss" level="INFO" />
+  <logger name="com.zaxxer.hikari" level="INFO" />
+  <logger name="org.mariadb.jdbc" level="INFO" />
+
   <logger name="jp.assasans.protanki.server.commands.handlers.BattleHandler" level="DEBUG" />
 </configuration>

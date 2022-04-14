@@ -2,6 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm") version "1.6.10"
+  kotlin("plugin.jpa") version "1.6.10"
+  kotlin("plugin.allopen") version "1.6.10"
   application
 }
 
@@ -25,7 +27,16 @@ dependencies {
 
   val koinVersion = "3.1.5"
 
-  // implementation("ch.qos.logback:logback-classic:1.2.10")
+  implementation("org.hibernate.orm:hibernate-core:6.0.0.Final")
+  implementation("org.hibernate.validator:hibernate-validator:7.0.4.Final")
+  implementation("org.hibernate.orm:hibernate-hikaricp:6.0.0.Final")
+  implementation("jakarta.el:jakarta.el-api:4.0.0")
+  implementation("org.glassfish:jakarta.el:4.0.2")
+  implementation("com.zaxxer:HikariCP:5.0.1")
+
+  // Database drivers
+  implementation("com.h2database:h2:2.1.210")
+  implementation("org.mariadb.jdbc:mariadb-java-client:3.0.4")
 
   implementation("com.squareup.moshi:moshi:1.13.0")
   implementation("com.squareup.moshi:moshi-kotlin:1.13.0")
@@ -80,6 +91,18 @@ tasks {
     from("$projectDir/src/main/resources/data")
     into(layout.buildDirectory.dir("libs/data"))
   }
+}
+
+noArg {
+  annotation("jakarta.persistence.Embeddable")
+  annotation("jakarta.persistence.Entity")
+  annotation("jakarta.persistence.MappedSuperclass")
+}
+
+allOpen {
+  annotation("jakarta.persistence.Embeddable")
+  annotation("jakarta.persistence.Entity")
+  annotation("jakarta.persistence.MappedSuperclass")
 }
 
 application {

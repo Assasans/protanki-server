@@ -474,7 +474,7 @@ class UserSocket(
           clientMarketItems.single().count = userItem.count
         }
 
-        if(userItem is IServerGarageUserItemWithModification) {
+        if(userItem is ServerGarageUserItemWithModification) {
           clientMarketItems.forEach clientMarketItems@{ clientItem ->
             // Add current and previous modifications as user items
             // if(clientItem.modificationID!! <= userItem.modification) itemsParsed.add(clientItem)

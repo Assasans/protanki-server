@@ -1,8 +1,11 @@
 package jp.assasans.protanki.server.commands.handlers
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import jp.assasans.protanki.server.HibernateUtils
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.commands.Command
@@ -53,6 +56,9 @@ class GarageHandler : ICommandHandler, KoinComponent {
       return
     }
 
+    val entityManager = HibernateUtils.createEntityManager()
+    entityManager.transaction.begin()
+
     when(currentItem) {
       is ServerGarageUserItemWeapon -> user.equipment.weapon = currentItem
       is ServerGarageUserItemHull   -> user.equipment.hull = currentItem
@@ -63,6 +69,16 @@ class GarageHandler : ICommandHandler, KoinComponent {
         return
       }
     }
+
+    withContext(Dispatchers.IO) {
+      entityManager
+        .createQuery("UPDATE User SET equipment = :equipment WHERE id = :id")
+        .setParameter("equipment", user.equipment)
+        .setParameter("id", user.id)
+        .executeUpdate()
+    }
+    entityManager.transaction.commit()
+    entityManager.close()
 
     Command(CommandName.MountItem, listOf(currentItem.mountName, true.toString())).send(socket)
   }
@@ -77,16 +93,20 @@ class GarageHandler : ICommandHandler, KoinComponent {
       return
     }
 
+    val entityManager = HibernateUtils.createEntityManager()
+
     val item = rawItem.substringBeforeLast("_")
     val marketItem = marketRegistry.get(item)
     var currentItem = user.items.singleOrNull { userItem -> userItem.marketItem.id == item }
 
     var isNewItem = false
 
+    entityManager.transaction.begin()
+
     when(marketItem) {
       is ServerGarageItemWeapon -> {
         if(currentItem == null) {
-          currentItem = ServerGarageUserItemWeapon(marketItem, 0)
+          currentItem = ServerGarageUserItemWeapon(user, marketItem.id, 0)
           user.items.add(currentItem)
           isNewItem = true
 
@@ -103,7 +123,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
       is ServerGarageItemHull   -> {
         if(currentItem == null) {
-          currentItem = ServerGarageUserItemHull(marketItem, 0)
+          currentItem = ServerGarageUserItemHull(user, marketItem.id, 0)
           user.items.add(currentItem)
           isNewItem = true
 
@@ -120,7 +140,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
       is ServerGarageItemPaint  -> {
         if(currentItem == null) {
-          currentItem = ServerGarageUserItemPaint(marketItem)
+          currentItem = ServerGarageUserItemPaint(user, marketItem.id)
           user.items.add(currentItem)
           isNewItem = true
 
@@ -137,13 +157,21 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
       is ServerGarageItemSupply -> {
         if(currentItem == null) {
-          currentItem = ServerGarageUserItemSupply(marketItem, count)
+          currentItem = ServerGarageUserItemSupply(user, marketItem.id, count)
           user.items.add(currentItem)
+          isNewItem = true
         } else {
           val supplyItem = currentItem as ServerGarageUserItemSupply
           supplyItem.count += count
+
+          withContext(Dispatchers.IO) {
+            entityManager
+              .createQuery("UPDATE ServerGarageUserItemSupply SET count = :count WHERE id = :id")
+              .setParameter("count", supplyItem.count)
+              .setParameter("id", supplyItem.id)
+              .executeUpdate()
+          }
         }
-        isNewItem = true
 
         val price = currentItem.marketItem.price * count
         if(user.crystals < price) {
@@ -156,14 +184,26 @@ class GarageHandler : ICommandHandler, KoinComponent {
       }
 
       else                      -> {
-        // TODO(Assasans)
+        logger.warn { "Buying item ${marketItem::class.simpleName} is not implemented" }
       }
     }
 
-    if(!isNewItem && currentItem is IServerGarageUserItemWithModification) {
+    if(isNewItem) {
+      entityManager.persist(currentItem)
+    }
+
+    if(!isNewItem && currentItem is ServerGarageUserItemWithModification) {
       if(currentItem.modificationIndex < 3) {
         val oldModification = currentItem.modificationIndex
         currentItem.modificationIndex++
+
+        withContext(Dispatchers.IO) {
+          entityManager
+            .createQuery("UPDATE ServerGarageUserItemWithModification SET modificationIndex = :modificationIndex WHERE id = :id")
+            .setParameter("modificationIndex", currentItem.modificationIndex)
+            .setParameter("id", currentItem.id)
+            .executeUpdate()
+        }
 
         val price = currentItem.modification.price
         if(user.crystals < price) {
@@ -175,6 +215,16 @@ class GarageHandler : ICommandHandler, KoinComponent {
         logger.debug { "Upgraded ${marketItem.id} modification: M${oldModification} -> M${currentItem.modificationIndex} ($price crystals)" }
       }
     }
+
+    withContext(Dispatchers.IO) {
+      entityManager
+        .createQuery("UPDATE User SET crystals = :crystals WHERE id = :id")
+        .setParameter("crystals", user.crystals)
+        .setParameter("id", user.id)
+        .executeUpdate()
+    }
+    entityManager.transaction.commit()
+    entityManager.close()
 
     socket.updateCrystals()
   }

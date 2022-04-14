@@ -1,8 +1,14 @@
 package jp.assasans.protanki.server.garage
 
+import java.io.Serializable
 import kotlin.time.Duration
 import com.squareup.moshi.Json
+import jakarta.persistence.*
 import kotlinx.datetime.Instant
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
+import org.koin.core.component.inject
+import jp.assasans.protanki.server.client.User
 import jp.assasans.protanki.server.client.WeaponVisual
 
 open class ServerGarageItem(
@@ -247,48 +253,145 @@ class ServerGarageItemHullModification(
   )
 ) : ServerGarageItemModification(previewResourceId, object3ds, rank, price, properties, physics)
 
-interface IServerGarageUserItem {
-  val marketItem: ServerGarageItem
+@Embeddable
+class ServerGarageItemId(
+  @ManyToOne
+  val user: User,
+  val itemName: String
+) : Serializable {
+  override fun equals(other: Any?): Boolean {
+    if(this === other) return true
+    if(other !is ServerGarageItemId) return false
 
-  val mountName: String
-    get() = "${marketItem.id}_m0"
+    if(user != other.user) return false
+    if(itemName != other.itemName) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int {
+    var result = user.hashCode()
+    result = 31 * result + itemName.hashCode()
+    return result
+  }
 }
 
-interface IServerGarageUserItemWithModification : IServerGarageUserItem {
-  var modificationIndex: Int
-  val modification: ServerGarageItemModification
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(
+  name = "garage_items",
+  indexes = [
+    // Index(name = "idx_garage_items_type", columnList = "user, marketItem", unique = true),
+  ]
+)
+abstract class ServerGarageUserItem(
+  user: User,
+  id: String,
+) : KoinComponent {
+  @EmbeddedId
+  val id: ServerGarageItemId = ServerGarageItemId(user, id)
+
+  @Transient
+  protected final var marketRegistry: IGarageMarketRegistry = get()
+    private set
+
+  @get:Transient
+  open val marketItem: ServerGarageItem
+    get() = marketRegistry.get(id.itemName)
+
+  open val mountName: String
+    get() = "${marketItem.id}_m0"
+
+  // JPA does not initialize transient fields
+  @PostLoad
+  fun postLoad() {
+    marketRegistry = get()
+  }
+}
+
+@Entity
+abstract class ServerGarageUserItemWithModification(
+  user: User,
+  id: String,
+  var modificationIndex: Int,
+) : ServerGarageUserItem(user, id) {
+  abstract val modification: ServerGarageItemModification
 
   override val mountName: String
     get() = "${marketItem.id}_m${modificationIndex}"
 }
 
+@Entity
+@DiscriminatorValue("weapon")
 class ServerGarageUserItemWeapon(
-  override val marketItem: ServerGarageItemWeapon,
-  override var modificationIndex: Int
-) : IServerGarageUserItemWithModification {
+  user: User,
+  id: String,
+  modificationIndex: Int
+) : ServerGarageUserItemWithModification(user, id, modificationIndex) {
+  @get:Transient
+  override val marketItem: ServerGarageItemWeapon
+    get() = marketRegistry.get(id.itemName).cast()
+
   override val modification: ServerGarageItemWeaponModification
     get() = marketItem.modifications[modificationIndex]!! // TODO(Assasans)
 }
 
+@Entity
+@DiscriminatorValue("hull")
 class ServerGarageUserItemHull(
-  override val marketItem: ServerGarageItemHull,
-  override var modificationIndex: Int
-) : IServerGarageUserItemWithModification {
+  user: User,
+  id: String,
+  modificationIndex: Int
+) : ServerGarageUserItemWithModification(user, id, modificationIndex) {
+  @get:Transient
+  override val marketItem: ServerGarageItemHull
+    get() = marketRegistry.get(id.itemName).cast()
+
   override val modification: ServerGarageItemHullModification
     get() = marketItem.modifications[modificationIndex]!! // TODO(Assasans)
 }
 
+@Entity
+@DiscriminatorValue("paint")
 class ServerGarageUserItemPaint(
+  user: User,
+  id: String,
+) : ServerGarageUserItem(user, id) {
+  @get:Transient
   override val marketItem: ServerGarageItemPaint
-) : IServerGarageUserItem
+    get() {
+      return marketRegistry.get(id.itemName).cast()
+    }
+}
 
+@Entity
+@DiscriminatorValue("supply")
 class ServerGarageUserItemSupply(
-  override val marketItem: ServerGarageItemSupply,
+  user: User,
+  id: String,
   var count: Int
-) : IServerGarageUserItem
+) : ServerGarageUserItem(user, id) {
+  @get:Transient
+  override val marketItem: ServerGarageItemSupply
+    get() = marketRegistry.get(id.itemName).cast()
+}
 
+@Entity
+@DiscriminatorValue("subscription")
 class ServerGarageUserItemSubscription(
-  override val marketItem: ServerGarageItemSubscription,
+  user: User,
+  id: String,
+  @Convert(converter = InstantToLongConverter::class)
   var startTime: Instant,
   var duration: Duration
-) : IServerGarageUserItem
+) : ServerGarageUserItem(user, id) {
+  @get:Transient
+  override val marketItem: ServerGarageItemSubscription
+    get() = marketRegistry.get(id.itemName).cast()
+}
+
+@Converter
+class InstantToLongConverter : AttributeConverter<Instant, Long> {
+  override fun convertToDatabaseColumn(instant: Instant?): Long? = instant?.toEpochMilliseconds()
+  override fun convertToEntityAttribute(milliseconds: Long?): Instant? = milliseconds?.let { Instant.fromEpochMilliseconds(it) }
+}

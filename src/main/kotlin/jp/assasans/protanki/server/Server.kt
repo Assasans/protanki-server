@@ -49,6 +49,8 @@ class Server : KoinComponent {
       )
     )
 
+    HibernateUtils.createEntityManager().close() // Initialize database
+
     socketServer.run()
   }
 }

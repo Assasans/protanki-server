@@ -14,6 +14,7 @@ class ResourceManager : IResourceManager {
   init {
     var directory = Paths.get("data")
     if(!directory.exists()) directory = Paths.get("src/main/resources/data") // Started from IntelliJ IDEA, default working directory
+    if(!directory.exists()) directory = Paths.get("../src/main/resources/data") // Started from IntelliJ IDEA, 'out' working directory
     if(!directory.exists()) throw Exception("Cannot find runtime resources directory")
 
     resourceDirectory = directory

@@ -88,7 +88,6 @@ suspend fun main(args: Array<String>) {
     single<ICommandRegistry> { CommandRegistry() }
     single<IBattleProcessor> { BattleProcessor() }
     single<IResourceManager> { ResourceManager() }
-    single<IDatabase> { Database() }
     single<IGarageItemConverter> { GarageItemConverter() }
     single<IResourceConverter> { ResourceConverter() }
     single<IGarageMarketRegistry> { GarageMarketRegistry() }

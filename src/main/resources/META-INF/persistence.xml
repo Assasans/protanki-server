@@ -1,0 +1,49 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+  <persistence-unit name="jp.assasans.protanki.server">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <class>jp.assasans.protanki.server.client.User</class>
+    <class>jp.assasans.protanki.server.client.UserEquipment</class>
+
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItem</class>
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItemWithModification</class>
+
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon</class>
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItemHull</class>
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItemPaint</class>
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItemSupply</class>
+    <class>jp.assasans.protanki.server.garage.ServerGarageUserItemSubscription</class>
+
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+      <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect" /> -->
+
+      <property name="hibernate.show_sql" value="false" />
+      <property name="hibernate.format_sql" value="false" />
+
+      <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+      <!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+      <!-- <property name="hibernate.hbm2ddl.auto" value="validate" /> -->
+
+      <!-- HikariCP -->
+      <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider" />
+
+      <property name="hibernate.hikari.dataSourceClassName" value="org.h2.jdbcx.JdbcDataSource" />
+      <!-- <property name="hibernate.hikari.dataSourceClassName" value="org.mariadb.jdbc.MariaDbDataSource" /> -->
+
+      <!-- <property name="hibernate.hikari.dataSource.url" value="jdbc:h2:mem:protanki-server" /> -->
+      <property name="hibernate.hikari.dataSource.url" value="jdbc:h2:file:./protanki-server" />
+      <!-- <property name="hibernate.hikari.dataSource.url" value="jdbc:mariadb://localhost:3306/protanki-server" /> -->
+
+      <property name="hibernate.hikari.username" value="protanki-server" />
+      <property name="hibernate.hikari.password" value="protanki-server" />
+
+      <property name="hibernate.hikari.minimumIdle" value="20" />
+      <property name="hibernate.hikari.maximumPoolSize" value="100" />
+      <property name="hibernate.hikari.idleTimeout" value="30000" />
+    </properties>
+  </persistence-unit>
+</persistence>
