@@ -33,6 +33,7 @@ import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
+import jp.assasans.protanki.server.extensions.gitVersion
 import jp.assasans.protanki.server.garage.*
 import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 
@@ -564,6 +565,7 @@ class UserSocket(
         InitChatMessagesData(
           messages = lobbyChatManager.messages + listOf(
             ChatMessage(name = "", system = true, rang = 0, message = "=== ProTanki Server ==="),
+            ChatMessage(name = "", system = true, rang = 0, message = "Version: ${BuildConfig.gitVersion}"),
             ChatMessage(name = "", system = true, rang = 0, message = "GitHub: https://github.com/Assasans/protanki-server"),
             ChatMessage(name = "", system = true, rang = 0, message = "Loaded maps: ${mapRegistry.maps.size}"),
             ChatMessage(name = "", system = true, rang = 0, message = "Loaded garage items: ${marketRegistry.items.size}"),

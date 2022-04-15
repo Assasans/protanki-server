@@ -24,6 +24,7 @@ import jp.assasans.protanki.server.battles.map.MapRegistry
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
+import jp.assasans.protanki.server.extensions.gitVersion
 import jp.assasans.protanki.server.garage.GarageItemConverter
 import jp.assasans.protanki.server.garage.GarageMarketRegistry
 import jp.assasans.protanki.server.garage.IGarageItemConverter
@@ -81,6 +82,7 @@ suspend fun main(args: Array<String>) {
   val logger = KotlinLogging.logger { }
 
   logger.info { "Hello, 世界!" }
+  logger.info { "Version: ${BuildConfig.gitVersion}" }
   logger.info { "Root path: ${Paths.get("").absolute()}" }
 
   val module = module {

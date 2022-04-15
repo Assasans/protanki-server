@@ -1,9 +1,12 @@
+import org.gradle.process.internal.ExecException
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.ByteArrayOutputStream
 
 plugins {
   kotlin("jvm") version "1.6.10"
   kotlin("plugin.jpa") version "1.6.10"
   kotlin("plugin.allopen") version "1.6.10"
+  id("com.github.gmazzo.buildconfig") version "3.0.3"
   application
 }
 
@@ -66,6 +69,17 @@ sourceSets {
   }
 }
 
+buildConfig {
+  useKotlinOutput()
+  packageName("jp.assasans.protanki.server")
+
+  val git = Git()
+  val validTree = git.isInstalled && git.isInsideWorkTree
+  buildConfigField("String", "GIT_BRANCH", if(validTree) "\"${git.branch}\"" else "UNKNOWN")
+  buildConfigField("String", "GIT_COMMIT_HASH", if(validTree) "\"${git.hash}\"" else "\"${project.version}\"")
+  buildConfigField("Boolean", "GIT_IS_DIRTY", if(validTree) "${git.isDirty}" else "false")
+}
+
 tasks {
   wrapper {
     gradleVersion = "7.4.1"
@@ -73,8 +87,14 @@ tasks {
   }
 
   jar {
+    val git = Git()
+    val gitVersion = if(git.isInstalled && git.isInsideWorkTree) git.toString() else "UNKNOWN-${project.version}"
+
+    archiveVersion.set(gitVersion)
+
     manifest {
       attributes["Main-Class"] = application.mainClass
+      attributes["Implementation-Version"] = gitVersion
     }
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -107,4 +127,56 @@ allOpen {
 
 application {
   mainClass.set("jp.assasans.protanki.server.MainKt")
+}
+
+class Git {
+  val isInstalled: Boolean by lazy {
+    val stdout = ByteArrayOutputStream()
+    try {
+      exec {
+        commandLine("git", "--version")
+
+        isIgnoreExitValue = true
+        standardOutput = stdout
+      }.exitValue == 0
+    } catch(exception: ExecException) {
+      false
+    }
+  }
+
+  val isInsideWorkTree: Boolean by lazy {
+    val stdout = ByteArrayOutputStream()
+    exec {
+      commandLine("git", "rev-parse", "--is-inside-work-tree")
+      isIgnoreExitValue = true
+      standardOutput = stdout
+    }.exitValue == 0
+  }
+
+  val branch: String by lazy {
+    val stdout = ByteArrayOutputStream()
+    exec {
+      commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
+      standardOutput = stdout
+    }
+    stdout.toString().trim()
+  }
+
+  val hash: String by lazy {
+    val stdout = ByteArrayOutputStream()
+    exec {
+      commandLine("git", "rev-parse", "HEAD")
+      standardOutput = stdout
+    }
+    stdout.toString().trim()
+  }
+
+  val isDirty: Boolean by lazy {
+    exec {
+      commandLine("git", "diff-index", "--quiet", "HEAD", "--")
+      isIgnoreExitValue = true
+    }.exitValue == 1
+  }
+
+  override fun toString(): String = "$branch+${hash.take(8)}${if(isDirty) "-dirty" else ""}"
 }
