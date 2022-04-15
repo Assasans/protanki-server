@@ -9,7 +9,7 @@ Gradle artifacts are located at `build/libs/`.
 * Open repository in IntelliJ IDEA.
 * Run / Debug project.
 
-To build artifacts, execute Gradle `jar` task.
+To build artifacts, execute Gradle `shadowJar` task.
 
 ## Using command line
 
@@ -19,7 +19,7 @@ To build artifacts, execute Gradle `jar` task.
 # If you need to use custom JDK:
 # $env:JAVA_HOME="C:/path/to/jdk"
 
-./gradlew.bat jar
+./gradlew.bat shadowJar
 ```
 
 ### Unix:
@@ -28,5 +28,5 @@ To build artifacts, execute Gradle `jar` task.
 # export JAVA_HOME="/path/to/jdk"
 
 chmod +x gradlew
-./gradlew jar
+./gradlew shadowJar
 ```

@@ -7,6 +7,7 @@ plugins {
   kotlin("plugin.jpa") version "1.6.10"
   kotlin("plugin.allopen") version "1.6.10"
   id("com.github.gmazzo.buildconfig") version "3.0.3"
+  id("com.github.johnrengelman.shadow") version "7.1.2"
   application
 }
 
@@ -97,10 +98,18 @@ tasks {
       attributes["Implementation-Version"] = gitVersion
     }
 
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    dependsOn("copyRuntimeResources")
+  }
 
-    configurations.compileClasspath.get().forEach {
-      from(if(it.isDirectory) it else zipTree(it))
+  shadowJar {
+    val git = Git()
+    val gitVersion = if(git.isInstalled && git.isInsideWorkTree) git.toString() else "UNKNOWN-${project.version}"
+
+    archiveVersion.set(gitVersion)
+
+    manifest {
+      attributes["Main-Class"] = application.mainClass
+      attributes["Implementation-Version"] = gitVersion
     }
 
     dependsOn("copyRuntimeResources")
