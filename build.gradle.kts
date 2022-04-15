@@ -75,7 +75,7 @@ buildConfig {
 
   val git = Git()
   val validTree = git.isInstalled && git.isInsideWorkTree
-  buildConfigField("String", "GIT_BRANCH", if(validTree) "\"${git.branch}\"" else "UNKNOWN")
+  buildConfigField("String", "GIT_BRANCH", if(validTree) "\"${git.branch}\"" else "\"UNKNOWN\"")
   buildConfigField("String", "GIT_COMMIT_HASH", if(validTree) "\"${git.hash}\"" else "\"${project.version}\"")
   buildConfigField("Boolean", "GIT_IS_DIRTY", if(validTree) "${git.isDirty}" else "false")
 }
