@@ -37,8 +37,8 @@
         "turnAcceleration": 2.968107,
         "reverseTurnAcceleration": 5.0204396,
         "damping": 900,
-        "mass": 1000,
-        "power": 9.4
+        "mass": 1100,
+        "power": 9.47
       }
     },
     "1": {
@@ -62,7 +62,7 @@
       ],
 
       "physics": {
-        "speed": 11.5,
+        "speed": 11.85,
         "turnSpeed": 1.9495327,
         "acceleration": 10.5,
         "reverseAcceleration": 14.45,
@@ -70,7 +70,7 @@
         "turnAcceleration": 3.1344368,
         "reverseTurnAcceleration": 5.477716,
         "damping": 900,
-        "mass": 1376,
+        "mass": 1391,
         "power": 10.55
       }
     },
@@ -92,7 +92,20 @@
             { "property": "HULL_ACCELERATION", "value": 11 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 12.20,
+        "turnSpeed": 2.261947,
+        "acceleration": 11.69,
+        "reverseAcceleration": 15.64,
+        "sideAcceleration": 21.567778,
+        "turnAcceleration": 3.3005922,
+        "reverseTurnAcceleration": 5.935167,
+        "damping": 900,
+        "mass": 1779,
+        "power": 11.87
+      }
     },
     "3": {
       "previewResourceId": 923853,
@@ -112,7 +125,20 @@
             { "property": "HULL_ACCELERATION", "value": 13 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 13.0,
+        "turnSpeed": 2.6179938,
+        "acceleration": 13.0,
+        "reverseAcceleration": 17,
+        "sideAcceleration": 24,
+        "turnAcceleration": 3.4906585,
+        "reverseTurnAcceleration": 6.4577184,
+        "damping": 900,
+        "mass": 1908,
+        "power": 13.0
+      }
     }
   }
 }
