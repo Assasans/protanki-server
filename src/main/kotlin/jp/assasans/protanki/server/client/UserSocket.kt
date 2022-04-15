@@ -1,6 +1,7 @@
 package jp.assasans.protanki.server.client
 
 import java.io.IOException
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.io.path.readText
@@ -12,11 +13,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.datetime.Clock
@@ -454,15 +452,15 @@ class UserSocket(
     marketItems.forEach { (_, marketItem) ->
       val userItem = user.items.singleOrNull { it.marketItem == marketItem }
       val clientMarketItems = when(marketItem) {
-        is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem)
-        is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem)
-        is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem))
-        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem))
+        is ServerGarageItemWeapon -> garageItemConverter.toClientWeapon(marketItem)
+        is ServerGarageItemHull -> garageItemConverter.toClientHull(marketItem)
+        is ServerGarageItemPaint -> listOf(garageItemConverter.toClientPaint(marketItem))
+        is ServerGarageItemSupply -> listOf(garageItemConverter.toClientSupply(marketItem))
         is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem))
-        is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem))
-        is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem))
+        is ServerGarageItemKit -> listOf(garageItemConverter.toClientKit(marketItem))
+        is ServerGarageItemPresent -> listOf(garageItemConverter.toClientPresent(marketItem))
 
-        else                            -> throw NotImplementedError("Not implemented: ${marketItem::class.simpleName}")
+        else -> throw NotImplementedError("Not implemented: ${marketItem::class.simpleName}")
       }
 
       // if(marketItem is ServerGarageItemSupply) return@forEach
@@ -559,6 +557,17 @@ class UserSocket(
     val time = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS", Locale.ROOT)
 
+    val registeredPlayers = withContext(Dispatchers.IO) {
+      val entityManager = HibernateUtils.createEntityManager()
+      try {
+        entityManager
+          .createQuery("SELECT COUNT(*) FROM User")
+          .singleResult as Long
+      } finally {
+        entityManager.close()
+      }
+    }
+
     Command(
       CommandName.InitMessages,
       listOf(
@@ -570,6 +579,7 @@ class UserSocket(
             ChatMessage(name = "", system = true, rang = 0, message = "Loaded maps: ${mapRegistry.maps.size}"),
             ChatMessage(name = "", system = true, rang = 0, message = "Loaded garage items: ${marketRegistry.items.size}"),
             ChatMessage(name = "", system = true, rang = 0, message = "Server time: ${time.toJavaLocalDateTime().format(formatter)}"),
+            ChatMessage(name = "", system = true, rang = 0, message = "Registered players: $registeredPlayers"),
             ChatMessage(name = "", system = true, rang = 0, message = "Online players: ${server.players.size}")
           )
         ).toJson(),
