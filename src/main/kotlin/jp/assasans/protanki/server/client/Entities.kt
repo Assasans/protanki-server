@@ -211,7 +211,7 @@ data class InitTankData(
   @Json val tank_id: String,
   @Json val nickname: String,
   @Json val team_type: BattleTeam,
-  @Json val state: String = "active",
+  @Json val state: String,
   @Json val maxSpeed: Double,
   @Json val maxTurnSpeed: Double,
   @Json val acceleration: Double,

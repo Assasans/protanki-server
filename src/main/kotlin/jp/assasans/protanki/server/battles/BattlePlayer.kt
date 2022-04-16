@@ -289,6 +289,7 @@ class BattlePlayer(
               tank_id = tank.id,
               nickname = player.user.username,
               team_type = player.team,
+              state = tank.state.tankInitKey,
 
               // Hull physics
               maxSpeed = tank.hull.modification.physics.speed,
@@ -334,6 +335,7 @@ class BattlePlayer(
               tank_id = tank.id,
               nickname = user.username,
               team_type = team,
+              state = tank.state.tankInitKey,
 
               // Hull physics
               maxSpeed = tank.hull.modification.physics.speed,

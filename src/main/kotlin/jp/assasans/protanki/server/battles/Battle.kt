@@ -24,6 +24,14 @@ enum class TankState {
   Active
 }
 
+val TankState.tankInitKey: String
+  get() = when(this) {
+    TankState.Dead       -> "suicide"
+    TankState.Respawn    -> "suicide"
+    TankState.SemiActive -> "newcome"
+    TankState.Active     -> "active"
+  }
+
 abstract class WeaponHandler(
   val player: BattlePlayer,
   val item: ServerGarageUserItemWeapon
