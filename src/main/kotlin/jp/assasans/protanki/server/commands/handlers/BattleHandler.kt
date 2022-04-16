@@ -5,7 +5,7 @@ import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
- import jp.assasans.protanki.server.battles.LoadState
+import jp.assasans.protanki.server.battles.LoadState
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.*
