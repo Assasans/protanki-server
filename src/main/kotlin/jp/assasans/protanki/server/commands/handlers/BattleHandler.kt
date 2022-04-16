@@ -171,15 +171,11 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.ExitFromBattle)
   suspend fun exitFromBattle(socket: UserSocket, destinationScreen: String) {
-    val tank = player.tank ?: throw Exception("No Tank")
     val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
     val battle = player.battle
-    
-    tank.deactivate()
-    battle.players.remove(player)
 
-    battle.modeHandler.playerLeave(player)
-    Command(CommandName.BattlePlayerRemove, listOf(player.user.username)).sendTo(battle, exclude = player)
+    player.deactivate()
+    battle.players.remove(player)
 
     Command(CommandName.UnloadBattle).send(socket)
 
