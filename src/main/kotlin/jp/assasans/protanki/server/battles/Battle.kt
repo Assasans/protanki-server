@@ -7,8 +7,6 @@ import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
 import jp.assasans.protanki.server.battles.mode.BattleModeHandlerBuilder
 import jp.assasans.protanki.server.client.*
-import jp.assasans.protanki.server.client.railgun.FireTarget
-import jp.assasans.protanki.server.client.railgun.ShotTarget
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
@@ -36,29 +34,6 @@ abstract class WeaponHandler(
   val player: BattlePlayer,
   val item: ServerGarageUserItemWeapon
 ) {
-}
-
-class RailgunWeaponHandler(
-  player: BattlePlayer,
-  weapon: ServerGarageUserItemWeapon
-) : WeaponHandler(player, weapon) {
-  suspend fun fireStart() {
-    val tank = player.tank ?: throw Exception("No Tank")
-
-    Command(CommandName.StartFire, listOf(tank.id)).sendTo(tank.player.battle)
-  }
-
-  suspend fun fireTarget(target: FireTarget) {
-    val tank = player.tank ?: throw Exception("No Tank")
-
-    Command(
-      CommandName.ShotTarget,
-      listOf(
-        tank.id,
-        ShotTarget(target).toJson()
-      )
-    ).sendTo(tank.player.battle)
-  }
 }
 
 enum class BattleTeam(val id: Int, val key: String) {

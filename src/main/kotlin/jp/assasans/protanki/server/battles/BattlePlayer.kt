@@ -466,7 +466,12 @@ class BattlePlayer(
       position = Vector3(0.0, 0.0, 1000.0),
       orientation = Quaternion(),
       hull = user.equipment.hull,
-      weapon = RailgunWeaponHandler(this, user.equipment.weapon),
+      weapon = when(user.equipment.weapon.id.itemName) {
+        "railgun" -> RailgunWeaponHandler(this, user.equipment.weapon)
+        "thunder" -> ThunderWeaponHandler(this, user.equipment.weapon)
+
+        else      -> NullWeaponHandler(this, user.equipment.weapon)
+      },
       coloring = user.equipment.paint
     )
 
