@@ -12,6 +12,12 @@ import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 
+enum class LoadState {
+  Stage1,
+  Stage2,
+  Stage2Completed
+}
+
 class BattlePlayer(
   coroutineContext: CoroutineContext,
   val socket: UserSocket,
@@ -32,6 +38,7 @@ class BattlePlayer(
 
   val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
 
+  var loadState: LoadState = LoadState.Stage1
   var initSpectatorUserCalled: Boolean = false
 
   suspend fun deactivate() {
@@ -137,8 +144,6 @@ class BattlePlayer(
 
     battle.modeHandler.initPostGui(this)
   }
-
-  var stage2Initialized = false
 
   suspend fun initStage2() {
     if(isSpectator) {
@@ -269,6 +274,8 @@ class BattlePlayer(
     }
 
     spawnAnotherTanks()
+
+    loadState = LoadState.Stage2Completed
   }
 
   suspend fun initTanks() {

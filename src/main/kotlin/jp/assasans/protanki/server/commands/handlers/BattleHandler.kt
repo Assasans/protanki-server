@@ -5,6 +5,7 @@ import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+ import jp.assasans.protanki.server.battles.LoadState
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.*
@@ -21,8 +22,8 @@ class BattleHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.Ping)
   suspend fun ping(socket: UserSocket) {
     val player = socket.battlePlayer ?: return
-    if(!player.stage2Initialized) {
-      player.stage2Initialized = true
+    if(player.loadState == LoadState.Stage1) {
+      player.loadState = LoadState.Stage2
 
       logger.info { "Init battle..." }
 
@@ -89,7 +90,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         CommandName.ClientFullMove, listOf(
           ClientFullMoveData(tank.id, data).toJson()
         )
-      ).sendTo(player.battle, exclude = player)
+      ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
 
       logger.trace { "Synced full move to $count players" }
     } else {
@@ -97,7 +98,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         CommandName.ClientMove, listOf(
           ClientMoveData(tank.id, data).toJson()
         )
-      ).sendTo(player.battle, exclude = player)
+      ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
 
       logger.trace { "Synced move to $count players" }
     }
@@ -116,7 +117,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       CommandName.ClientRotateTurret, listOf(
         ClientRotateTurretData(tank.id, data).toJson()
       )
-    ).sendTo(player.battle, exclude = player)
+    ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
 
     logger.trace { "Synced rotate turret to $count players" }
   }
@@ -134,7 +135,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       CommandName.ClientMovementControl, listOf(
         ClientMovementControlData(tank.id, data).toJson()
       )
-    ).sendTo(player.battle, exclude = player)
+    ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
 
     logger.trace { "Synced movement control to $count players" }
   }
