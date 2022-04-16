@@ -32,6 +32,8 @@ class BattlePlayer(
 
   val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
 
+  var initSpectatorUserCalled: Boolean = false
+
   suspend fun deactivate() {
     tank?.deactivate()
     coroutineScope.cancel()

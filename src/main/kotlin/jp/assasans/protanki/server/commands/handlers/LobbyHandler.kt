@@ -2,6 +2,7 @@ package jp.assasans.protanki.server.commands.handlers
 
 import kotlin.coroutines.coroutineContext
 import kotlin.io.path.readText
+import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -60,72 +61,82 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.Fight)
   @ArgsBehaviour(ArgsBehaviourType.Raw)
   suspend fun fight(socket: UserSocket, args: CommandArgs) {
-    if(socket.screen == Screen.Battle) return // Client-side bug
+    socket.battleJoinLock.withPermit {
+      if(socket.screen == Screen.Battle) return@withPermit // Client-side bug
 
-    val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
+      val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
 
-    val team = if(args.size == 1) {
-      val rawTeam = args.get(0)
-      BattleTeam.get(rawTeam) ?: throw Exception("Unknown team: $rawTeam")
-    } else BattleTeam.None
+      val team = if(args.size == 1) {
+        val rawTeam = args.get(0)
+        BattleTeam.get(rawTeam) ?: throw Exception("Unknown team: $rawTeam")
+      } else BattleTeam.None
 
-    socket.screen = Screen.Battle
+      socket.screen = Screen.Battle
 
-    val player = BattlePlayer(
-      coroutineContext = coroutineContext,
-      socket = socket,
-      battle = battle,
-      team = team
-    )
-    battle.players.add(player)
+      val player = BattlePlayer(
+        coroutineContext = coroutineContext,
+        socket = socket,
+        battle = battle,
+        team = team
+      )
+      battle.players.add(player)
 
-    socket.initBattleLoad()
+      socket.initBattleLoad()
 
-    Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket)
+      Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket)
 
-    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
-    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
-    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
 
-    player.init()
-    player.createTank()
+      player.init()
+      player.createTank()
+    }
   }
 
   @CommandHandler(CommandName.JoinAsSpectator)
   suspend fun joinAsSpectator(socket: UserSocket) {
-    val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
+    socket.battleJoinLock.withPermit {
+      if(socket.screen == Screen.Battle) return@withPermit // Client-side bug
 
-    val player = BattlePlayer(
-      coroutineContext = coroutineContext,
-      socket = socket,
-      battle = battleProcessor.battles[0],
-      team = BattleTeam.None,
-      isSpectator = true
-    )
-    battle.players.add(player)
+      val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
 
-    // BattlePlayer(socket, this, null)
+      socket.screen = Screen.Battle
 
-    socket.initBattleLoad()
+      val player = BattlePlayer(
+        coroutineContext = coroutineContext,
+        socket = socket,
+        battle = battle,
+        team = BattleTeam.None,
+        isSpectator = true
+      )
+      battle.players.add(player)
 
-    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
-    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
-    socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
+      socket.initBattleLoad()
 
-    player.init()
+      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
+
+      player.init()
+    }
   }
 
   @CommandHandler(CommandName.InitSpectatorUser)
   suspend fun initSpectatorUser(socket: UserSocket) {
-    Command(
-      CommandName.InitShotsData,
-      listOf(resourceManager.get("shots-data.json").readText())
-    ).send(socket) // TODO(Assasans): initBattleLoad?
+    socket.battleJoinLock.withPermit {
+      val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
 
-    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
-    val battle = player.battle
+      if(player.initSpectatorUserCalled) return // Client-side bug
+      player.initSpectatorUserCalled = true
 
-    player.initLocal()
+      Command(
+        CommandName.InitShotsData,
+        listOf(resourceManager.get("shots-data.json").readText())
+      ).send(socket) // TODO(Assasans): initBattleLoad?
+
+      player.initLocal()
+    }
   }
 
   @CommandHandler(CommandName.SwitchBattleSelect)

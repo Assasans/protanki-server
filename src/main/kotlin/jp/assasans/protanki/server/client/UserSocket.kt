@@ -74,6 +74,7 @@ class UserSocket(
   private val output: ByteWriteChannel = socket.openWriteChannel(autoFlush = true)
 
   private val lock: Semaphore = Semaphore(1)
+  val battleJoinLock: Semaphore = Semaphore(1)
   // private val sendQueue: Queue<Command> = LinkedList()
 
   private val socketJobs: MutableList<Job> = mutableListOf()
