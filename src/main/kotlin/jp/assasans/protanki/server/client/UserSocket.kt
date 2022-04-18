@@ -104,7 +104,7 @@ class UserSocket(
 
     val player = battlePlayer
     if(player != null) { // Remove player from battle
-      player.deactivate()
+      player.deactivate(terminate = true)
       player.battle.players.remove(player)
     }
 

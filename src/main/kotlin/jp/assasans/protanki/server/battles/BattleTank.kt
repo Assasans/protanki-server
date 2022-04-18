@@ -57,11 +57,13 @@ class BattleTank(
     Command(CommandName.ActivateTank, listOf(id)).sendTo(battle)
   }
 
-  suspend fun deactivate() {
+  suspend fun deactivate(terminate: Boolean = false) {
     coroutineScope.cancel()
 
-    effects.forEach { effect ->
-      effect.deactivate()
+    if(!terminate) {
+      effects.forEach { effect ->
+        effect.deactivate()
+      }
     }
     effects.clear()
   }

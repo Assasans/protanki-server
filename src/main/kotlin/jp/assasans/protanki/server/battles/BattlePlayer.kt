@@ -41,8 +41,8 @@ class BattlePlayer(
   var loadState: LoadState = LoadState.Stage1
   var initSpectatorUserCalled: Boolean = false
 
-  suspend fun deactivate() {
-    tank?.deactivate()
+  suspend fun deactivate(terminate: Boolean = false) {
+    tank?.deactivate(terminate)
     coroutineScope.cancel()
 
     battle.modeHandler.playerLeave(this)

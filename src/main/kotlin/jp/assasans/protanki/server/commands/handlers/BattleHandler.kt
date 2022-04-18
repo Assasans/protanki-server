@@ -175,7 +175,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
     val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
     val battle = player.battle
 
-    player.deactivate()
+    player.deactivate(terminate = true)
     battle.players.remove(player)
 
     Command(CommandName.UnloadBattle).send(socket)
