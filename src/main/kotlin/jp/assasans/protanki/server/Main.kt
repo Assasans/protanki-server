@@ -2,6 +2,7 @@ package jp.assasans.protanki.server
 
 import java.io.ByteArrayOutputStream
 import java.nio.file.Paths
+import kotlin.coroutines.coroutineContext
 import kotlin.io.path.absolute
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
@@ -68,7 +69,7 @@ class SocketServer : ISocketServer {
 
     while(true) {
       val tcpSocket = server.accept()
-      val socket = UserSocket(tcpSocket)
+      val socket = UserSocket(coroutineContext, tcpSocket)
       players.add(socket)
 
       println("Socket accepted: ${socket.remoteAddress}")

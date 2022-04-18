@@ -1,9 +1,9 @@
 package jp.assasans.protanki.server.client
 
 import java.io.IOException
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 import kotlin.io.path.readText
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.callSuspendBy
@@ -54,6 +54,7 @@ suspend fun UserSocket.sendChat(message: String) = Command(
 
 @OptIn(ExperimentalStdlibApi::class)
 class UserSocket(
+  coroutineContext: CoroutineContext,
   private val socket: Socket
 ) : KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -77,7 +78,7 @@ class UserSocket(
   val battleJoinLock: Semaphore = Semaphore(1)
   // private val sendQueue: Queue<Command> = LinkedList()
 
-  private val socketJobs: MutableList<Job> = mutableListOf()
+  val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
 
   val remoteAddress: SocketAddress
     get() = socket.remoteAddress
@@ -107,10 +108,7 @@ class UserSocket(
       player.battle.players.remove(player)
     }
 
-    logger.debug { "Cancelling ${socketJobs.size} jobs..." }
-    socketJobs.forEach { job ->
-      if(job.isActive) job.cancel()
-    }
+    coroutineScope.cancel()
 
     server.players.remove(this)
   }
@@ -270,17 +268,6 @@ class UserSocket(
     Command(CommandName.UnloadBattleSelect).send(this)
     Command(CommandName.StartBattle).send(this)
     Command(CommandName.UnloadChat).send(this)
-  }
-
-  suspend fun <R> runConnected(block: suspend UserSocket.() -> R) {
-    coroutineScope {
-      val job = launch {
-        block.invoke(this@UserSocket)
-      }
-
-      socketJobs.add(job)
-      job.invokeOnCompletion { socketJobs.remove(job) }
-    }
   }
 
   suspend fun handle() {

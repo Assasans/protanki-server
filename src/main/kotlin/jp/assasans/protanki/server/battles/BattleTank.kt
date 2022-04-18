@@ -77,9 +77,7 @@ class BattleTank(
       }
     }
 
-    socket.runConnected {
-      Command(CommandName.KillLocalTank).send(socket)
-    }
+    Command(CommandName.KillLocalTank).send(socket)
   }
 
   suspend fun killBy(killer: BattleTank) {
