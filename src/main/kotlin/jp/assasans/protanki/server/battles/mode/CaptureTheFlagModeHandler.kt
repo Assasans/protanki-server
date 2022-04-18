@@ -8,9 +8,18 @@ import jp.assasans.protanki.server.math.Vector3
 import jp.assasans.protanki.server.toVector
 
 abstract class FlagState(val team: BattleTeam)
-class FlagOnPedestalState(team: BattleTeam) : FlagState(team)
-class FlagDroppedState(team: BattleTeam, val position: Vector3) : FlagState(team)
-class FlagCarryingState(team: BattleTeam, val carrier: BattleTank) : FlagState(team)
+
+class FlagOnPedestalState(team: BattleTeam) : FlagState(team) {
+  override fun toString(): String = "${this::class.simpleName}(team=$team)"
+}
+
+class FlagDroppedState(team: BattleTeam, val position: Vector3) : FlagState(team) {
+  override fun toString(): String = "${this::class.simpleName}(team=$team, position=$position)"
+}
+
+class FlagCarryingState(team: BattleTeam, val carrier: BattleTank) : FlagState(team) {
+  override fun toString(): String = "${this::class.simpleName}(team=$team, carrier=${carrier.player.user.username})"
+}
 
 fun FlagState.asOnPedestal(): FlagOnPedestalState = FlagOnPedestalState(team)
 fun FlagState.asDropped(position: Vector3): FlagDroppedState = FlagDroppedState(team, position)
@@ -107,5 +116,14 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
       redFlagCarrierId = null,
       blueFlagCarrierId = null
     )
+  }
+
+  override suspend fun dump(builder: StringBuilder) {
+    super.dump(builder)
+
+    builder.appendLine("    Flags: ")
+    flags.forEach { (team, flag) ->
+      builder.appendLine("        $team: $flag")
+    }
   }
 }

@@ -7,11 +7,13 @@ import org.koin.core.component.inject
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import jp.assasans.protanki.server.battles.Battle
+import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
+import jp.assasans.protanki.server.client.sendBattleChat
 import jp.assasans.protanki.server.client.sendChat
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
@@ -117,6 +119,61 @@ class Server : KoinComponent {
           player.deactivate()
           if(player != socket) {
             socket.sendChat("User '$username' has been kicked")
+          }
+        }
+      }
+
+      command("dump") {
+        subcommand("battle") {
+          handler {
+            val battle = socket.battle
+            if(battle == null) {
+              socket.sendChat("You are not in a battle")
+              return@handler
+            }
+
+            val builder = StringBuilder()
+
+            builder.appendLine("Battle:")
+            builder.appendLine("    ID: ${battle.id}")
+            builder.appendLine("    Name: ${battle.title}")
+            builder.appendLine("Map:")
+            builder.appendLine("    ID: ${battle.map.id}")
+            builder.appendLine("    Name: ${battle.map.name}")
+            builder.appendLine("    Theme: ${battle.map.theme.name}")
+            builder.appendLine("Players:")
+            battle.players.forEach { player ->
+              builder.append("    - ${player.user.username}")
+
+              val properties = mutableListOf<String>()
+
+              properties.add("load stage: ${player.loadState}")
+
+              if(player.team != BattleTeam.None) {
+                properties.add("team: ${player.team.name}")
+              }
+              properties.add("score: ${player.score}")
+              properties.add("kills: ${player.kills}")
+              properties.add("deaths: ${player.deaths}")
+
+              if(properties.isNotEmpty()) {
+                builder.append(" (${properties.joinToString(", ")})")
+              }
+              builder.append("\n")
+
+              val tank = player.tank
+              if(tank != null) {
+                builder.appendLine("        Tank: ${tank.id}/${tank.incarnation} (${tank.state})")
+                builder.appendLine("            Position: ${tank.position}")
+                builder.appendLine("            Orientation: ${tank.orientation}")
+              }
+            }
+            builder.appendLine("Handler:")
+            builder.appendLine("    Class: ${battle.modeHandler::class.simpleName}")
+            builder.appendLine("    Mode: ${battle.modeHandler.mode.name}")
+            battle.modeHandler.dump(builder)
+
+            socket.sendBattleChat(builder.toString())
           }
         }
       }

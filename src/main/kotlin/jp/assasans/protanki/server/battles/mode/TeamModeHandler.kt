@@ -59,4 +59,11 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
         Command(CommandName.ChangeTeamScore, listOf(team.key, score.toString())).sendTo(battle)
       }
   }
+
+  override suspend fun dump(builder: StringBuilder) {
+    builder.appendLine("    Scores:")
+    teamScores.forEach { (team, score) ->
+      builder.appendLine("        ${team.name}: $score")
+    }
+  }
 }
