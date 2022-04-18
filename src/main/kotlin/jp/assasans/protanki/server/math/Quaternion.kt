@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server.math
 
+import java.math.RoundingMode
 import kotlin.math.*
 
 class Quaternion {
@@ -75,7 +76,20 @@ class Quaternion {
   val length: Double
     get() = sqrt(w.pow(2) + x.pow(2) + y.pow(2) + z.pow(2))
 
-  override fun toString(): String = "${this::class.simpleName}($w, $x, $y, $z)"
+  override fun toString(): String {
+    val builder = StringBuilder()
+    builder.append("${this::class.simpleName}(")
+    builder.append(w.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(", ")
+    builder.append(x.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(", ")
+    builder.append(y.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(", ")
+    builder.append(z.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(")")
+
+    return builder.toString()
+  }
 }
 
 operator fun Quaternion.unaryPlus() = Quaternion(w, x, y, z)

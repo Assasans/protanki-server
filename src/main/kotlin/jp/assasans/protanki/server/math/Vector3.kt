@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server.math
 
+import java.math.RoundingMode
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -24,7 +25,18 @@ class Vector3 {
   val length: Double
     get() = sqrt(x.pow(2) + y.pow(2) + z.pow(2))
 
-  override fun toString(): String = "${this::class.simpleName}($x, $y, $z)"
+  override fun toString(): String {
+    val builder = StringBuilder()
+    builder.append("${this::class.simpleName}(")
+    builder.append(x.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(", ")
+    builder.append(y.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(", ")
+    builder.append(z.toBigDecimal().setScale(3, RoundingMode.HALF_UP).toDouble())
+    builder.append(")")
+
+    return builder.toString()
+  }
 }
 
 operator fun Vector3.unaryPlus() = Vector3(x, y, z)
