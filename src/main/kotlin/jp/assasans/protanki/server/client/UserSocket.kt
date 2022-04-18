@@ -129,6 +129,16 @@ class UserSocket(
     coroutineScope.cancel()
 
     server.players.remove(this)
+
+    withContext(Dispatchers.IO) {
+      if(!socket.isClosed) {
+        try {
+          socket.close()
+        } catch(exception: IOException) {
+          logger.error(exception) { "Failed to close socket" }
+        }
+      }
+    }
   }
 
   suspend fun send(command: Command) {
