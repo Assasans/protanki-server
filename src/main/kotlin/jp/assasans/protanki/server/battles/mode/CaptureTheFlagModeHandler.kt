@@ -106,15 +106,18 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
     redFlagPosition.z += flagOffsetZ
     blueFlagPosition.z += flagOffsetZ
 
+    val redFlagState = this.flags[BattleTeam.Red] ?: throw IllegalStateException("Red flag state is null")
+    val blueFlagState = this.flags[BattleTeam.Blue] ?: throw IllegalStateException("Blue flag state is null")
+
     return InitCtfModelData(
       resources = CtfModelResources().toJson(),
       lighting = CtfModelLighting().toJson(),
       basePosRedFlag = redFlagPosition.toVectorData(),
       basePosBlueFlag = blueFlagPosition.toVectorData(),
-      posRedFlag = null,
-      posBlueFlag = null,
-      redFlagCarrierId = null,
-      blueFlagCarrierId = null
+      posRedFlag = if(redFlagState is FlagDroppedState) redFlagState.position.toVectorData() else null,
+      posBlueFlag = if(blueFlagState is FlagDroppedState) blueFlagState.position.toVectorData() else null,
+      redFlagCarrierId = if(redFlagState is FlagCarryingState) redFlagState.carrier.id else null,
+      blueFlagCarrierId = if(blueFlagState is FlagCarryingState) blueFlagState.carrier.id else null
     )
   }
 
