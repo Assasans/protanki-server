@@ -117,7 +117,7 @@ class UserSocket(
       .flatMap { battle -> battle.players }
       .singleOrNull { player -> player.socket == this }
 
-  private suspend fun deactivate() {
+  suspend fun deactivate() {
     active = false
 
     val player = battlePlayer
