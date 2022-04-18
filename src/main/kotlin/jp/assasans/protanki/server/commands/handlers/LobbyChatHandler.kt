@@ -26,6 +26,6 @@ class LobbyChatHandler : ICommandHandler, KoinComponent {
       addressed = nameTo.isNotEmpty()
     )
 
-    lobbyChatManager.send(message)
+    lobbyChatManager.send(socket, message)
   }
 }

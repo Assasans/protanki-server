@@ -52,6 +52,24 @@ suspend fun UserSocket.sendChat(message: String) = Command(
   )
 ).send(this)
 
+suspend fun UserSocket.sendBattleChat(message: String) {
+  if(battle == null) throw IllegalStateException("Player is not in battle")
+
+  Command(
+    CommandName.SendBattleChatMessageClient,
+    listOf(
+      BattleChatMessage(
+        nickname = "",
+        rank = 0,
+        message = message,
+        team = false,
+        team_type = BattleTeam.None,
+        system = true
+      ).toJson()
+    )
+  ).send(this)
+}
+
 @OptIn(ExperimentalStdlibApi::class)
 class UserSocket(
   coroutineContext: CoroutineContext,

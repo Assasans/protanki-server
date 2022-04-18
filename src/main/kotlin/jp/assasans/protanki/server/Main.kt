@@ -23,6 +23,8 @@ import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.MapRegistry
+import jp.assasans.protanki.server.chat.ChatCommandRegistry
+import jp.assasans.protanki.server.chat.IChatCommandRegistry
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
@@ -99,6 +101,7 @@ suspend fun main(args: Array<String>) {
     single<IGarageMarketRegistry> { GarageMarketRegistry() }
     single<IMapRegistry> { MapRegistry() }
     single<ILobbyChatManager> { LobbyChatManager() }
+    single<IChatCommandRegistry> { ChatCommandRegistry() }
     single {
       Moshi.Builder()
         .add(
