@@ -78,7 +78,7 @@ class UserSocket(
   val battleJoinLock: Semaphore = Semaphore(1)
   // private val sendQueue: Queue<Command> = LinkedList()
 
-  val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
+  val coroutineScope = CoroutineScope(coroutineContext)
 
   val remoteAddress: SocketAddress
     get() = socket.remoteAddress
@@ -274,7 +274,7 @@ class UserSocket(
     active = true
 
     // awaitDependency can deadlock execution if suspended
-    GlobalScope.launch { initClient() }
+    coroutineScope.launch { initClient() }
 
     try {
       while(!(input.isClosedForRead || input.isClosedForWrite)) {
@@ -293,14 +293,14 @@ class UserSocket(
 
         // for(packet in packets) {
         // awaitDependency can deadlock execution if suspended
-        //   GlobalScope.launch { processPacket(packet) }
+        //   coroutineScope.launch { processPacket(packet) }
         // }
 
         while(true) {
           val packet = packetProcessor.tryGetPacket() ?: break
 
           // awaitDependency can deadlock execution if suspended
-          GlobalScope.launch { processPacket(packet) }
+          coroutineScope.launch { processPacket(packet) }
         }
       }
 

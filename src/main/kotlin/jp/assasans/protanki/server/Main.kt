@@ -10,8 +10,9 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import mu.KotlinLogging
 import org.koin.core.context.startKoin
@@ -67,6 +68,8 @@ class SocketServer : ISocketServer {
 
     logger.info { "Started TCP server on ${server.localAddress}" }
 
+    val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
+
     while(true) {
       val tcpSocket = server.accept()
       val socket = UserSocket(coroutineContext, tcpSocket)
@@ -74,7 +77,7 @@ class SocketServer : ISocketServer {
 
       println("Socket accepted: ${socket.remoteAddress}")
 
-      GlobalScope.launch { socket.handle() }
+      coroutineScope.launch { socket.handle() }
     }
   }
 }
