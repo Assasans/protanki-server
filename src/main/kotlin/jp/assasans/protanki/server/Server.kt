@@ -7,6 +7,7 @@ import org.koin.core.component.inject
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import jp.assasans.protanki.server.battles.Battle
+import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.map.IMapRegistry
@@ -172,6 +173,112 @@ class Server : KoinComponent {
             builder.appendLine("    Class: ${battle.modeHandler::class.simpleName}")
             builder.appendLine("    Mode: ${battle.modeHandler.mode.name}")
             battle.modeHandler.dump(builder)
+
+            socket.sendBattleChat(builder.toString())
+          }
+        }
+      }
+
+      command("property") {
+        subcommand("list") {
+          handler {
+            val battle = socket.battle
+            if(battle == null) {
+              socket.sendChat("You are not in a battle")
+              return@handler
+            }
+
+            val builder = StringBuilder()
+            BattleProperty.values().forEach { property ->
+              val value = battle.properties[property]
+
+              builder.append("${property.key}: $value")
+              if(property.defaultValue != null) {
+                builder.append(" (default: ${property.defaultValue})")
+              }
+              builder.append("\n")
+            }
+
+            socket.sendBattleChat(builder.toString())
+          }
+        }
+
+        subcommand("get") {
+          argument("property", String::class) {
+            description("The battle property key to get")
+          }
+
+          handler {
+            val key: String = arguments["property"]
+
+            val battle = socket.battle
+            if(battle == null) {
+              socket.sendChat("You are not in a battle")
+              return@handler
+            }
+
+            val builder = StringBuilder()
+
+            val property = BattleProperty.getOrNull(key)
+            if(property == null) {
+              socket.sendBattleChat("No such property: $key")
+              return@handler
+            }
+
+            val value = battle.properties[property]
+            builder.append("${property.key}: $value")
+            if(property.defaultValue != null) {
+              builder.append(" (default: ${property.defaultValue})")
+            }
+
+            socket.sendBattleChat(builder.toString())
+          }
+        }
+
+        subcommand("set") {
+          argument("property", String::class) {
+            description("The battle property key to set")
+          }
+
+          argument("value", String::class) {
+            description("The value to set the property to")
+          }
+
+          handler {
+            val key: String = arguments["property"]
+            val value: String = arguments["value"]
+
+            val battle = socket.battle
+            if(battle == null) {
+              socket.sendChat("You are not in a battle")
+              return@handler
+            }
+
+            val builder = StringBuilder()
+
+            val property = BattleProperty.getOrNull(key)
+            if(property == null) {
+              socket.sendBattleChat("No such property: $key")
+              return@handler
+            }
+
+            val oldValue = battle.properties[property]
+
+            val typedValue: Any = when(property.type) {
+              String::class  -> value
+              Int::class     -> value.toInt()
+              Double::class  -> value.toDouble()
+              Boolean::class -> when {
+                value.equals("false", ignoreCase = true) -> false
+                value.equals("true", ignoreCase = true)  -> true
+                else                                     -> throw Exception("Invalid Boolean value: $value")
+              }
+
+              else           -> throw Exception("Unsupported property type: ${property.type.qualifiedName}")
+            }
+
+            battle.properties.setValue(property, typedValue)
+            builder.append("Changed $key: $oldValue -> $typedValue")
 
             socket.sendBattleChat(builder.toString())
           }

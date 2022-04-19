@@ -99,6 +99,7 @@ class Battle(
 
   private val logger = KotlinLogging.logger { }
 
+  val properties: BattleProperties = BattleProperties()
   val modeHandler: BattleModeHandler = modeHandlerBuilder(this)
   val players: MutableList<BattlePlayer> = mutableListOf()
 
