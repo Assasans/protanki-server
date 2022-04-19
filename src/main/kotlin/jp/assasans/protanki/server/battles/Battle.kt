@@ -103,6 +103,8 @@ class Battle(
   val modeHandler: BattleModeHandler = modeHandlerBuilder(this)
   val players: MutableList<BattlePlayer> = mutableListOf()
 
+  val damageProcessor = DamageProcessor(this)
+
   fun toBattleData(): BattleData {
     // TODO(Assasans)
     return BattleData(

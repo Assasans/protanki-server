@@ -177,6 +177,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
   ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),
 
+  DamageTank(CommandCategory.Battle, "damage_tank", CommandSide.Client),
+
   // Used for taking and delivering flags
   TriggerFlag(CommandCategory.Battle, "attempt_to_take_flag", CommandSide.Server),
   DropFlag(CommandCategory.Battle, "flag_drop", CommandSide.Server),
