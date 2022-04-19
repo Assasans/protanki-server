@@ -7,6 +7,7 @@ import mu.KotlinLogging
 import jp.assasans.protanki.server.battles.effect.TankEffect
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.FlagCarryingState
+import jp.assasans.protanki.server.battles.mode.TeamModeHandler
 import jp.assasans.protanki.server.client.SpawnTankData
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
@@ -28,7 +29,8 @@ class BattleTank(
   var orientation: Quaternion,
   val hull: ServerGarageUserItemHull,
   val weapon: WeaponHandler,
-  val coloring: ServerGarageUserItemPaint
+  val coloring: ServerGarageUserItemPaint,
+  var health: Double = 10000.0
 ) : ITickHandler {
   private val logger = KotlinLogging.logger { }
 
@@ -130,20 +132,14 @@ class BattleTank(
   suspend fun spawn() {
     state = TankState.SemiActive
 
-    Command(
-      CommandName.ChangeHealth,
-      listOf(
-        id,
-        10000.toString()
-      )
-    ).send(this)
+    updateHealth()
 
     Command(
       CommandName.SpawnTank,
       listOf(
         SpawnTankData(
           tank_id = id,
-          health = 10000,
+          health = health,
           incration_id = player.incarnation,
           team_type = player.team,
           x = position.x,
@@ -166,5 +162,23 @@ class BattleTank(
         ).toJson()
       )
     ).send(this)
+  }
+
+  suspend fun updateHealth() {
+    Command(
+      CommandName.ChangeHealth,
+      listOf(
+        id,
+        health.toString()
+      )
+    ).apply {
+      send(this@BattleTank)
+      sendTo(battle, SendTarget.Spectators)
+      if(battle.modeHandler is TeamModeHandler) {
+        battle.players
+          .filter { player -> player.team == this@BattleTank.player.team }
+          .forEach { player -> send(player.socket) }
+      }
+    }
   }
 }

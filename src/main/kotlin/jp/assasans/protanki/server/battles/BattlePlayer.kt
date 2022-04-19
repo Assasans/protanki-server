@@ -299,6 +299,7 @@ class BattlePlayer(
               nickname = player.user.username,
               team_type = player.team,
               state = tank.state.tankInitKey,
+              health = tank.health,
 
               // Hull physics
               maxSpeed = tank.hull.modification.physics.speed,
@@ -345,6 +346,7 @@ class BattlePlayer(
               nickname = user.username,
               team_type = team,
               state = tank.state.tankInitKey,
+              health = tank.health,
 
               // Hull physics
               maxSpeed = tank.hull.modification.physics.speed,
@@ -384,7 +386,7 @@ class BattlePlayer(
           listOf(
             SpawnTankData(
               tank_id = tank.id,
-              health = 10000,
+              health = tank.health,
               incration_id = player.incarnation,
               team_type = player.team,
               x = tank.position.x,
@@ -437,7 +439,7 @@ class BattlePlayer(
           listOf(
             SpawnTankData(
               tank_id = tank.id,
-              health = 10000,
+              health = tank.health,
               incration_id = incarnation,
               team_type = team,
               x = tank.position.x,
