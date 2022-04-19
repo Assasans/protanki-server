@@ -25,8 +25,15 @@ class ThunderWeaponHandler(
   }
 
   suspend fun fireTarget(target: FireTarget) {
-    val tank = player.tank ?: throw Exception("No Tank")
+    val sourceTank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.ShotTarget, listOf(tank.id, target.toJson())).sendTo(tank.player.battle)
+    val targetTank = battle.players
+      .mapNotNull { player -> player.tank }
+      .single { tank -> tank.id == target.target }
+
+    battle.damageProcessor.dealDamage(sourceTank, targetTank, 100.0, false)
+
+    Command(CommandName.ShotTarget, listOf(sourceTank.id, target.toJson())).sendTo(sourceTank.player.battle)
   }
 }
