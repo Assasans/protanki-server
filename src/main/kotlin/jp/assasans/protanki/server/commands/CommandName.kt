@@ -168,6 +168,9 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   StartFire(CommandCategory.Battle, "start_fire", CommandSide.Server),
   StopFire(CommandCategory.Battle, "stop_fire", CommandSide.Server),
 
+  ClientStartFire(CommandCategory.Battle, "start_fire", CommandSide.Client),
+  ClientStopFire(CommandCategory.Battle, "stop_fire", CommandSide.Client),
+
   Fire(CommandCategory.Battle, "fire", CommandSide.Server),
   FireDummy(CommandCategory.Battle, "fire_dummy", CommandSide.Server),
   FireStatic(CommandCategory.Battle, "fire_static", CommandSide.Server),
@@ -176,6 +179,12 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   Shot(CommandCategory.Battle, "shot", CommandSide.Client),
   ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
   ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),
+
+  SetTarget(CommandCategory.Battle, "set_target", CommandSide.Server),
+  ResetTarget(CommandCategory.Battle, "reset_target", CommandSide.Server),
+
+  ClientSetTarget(CommandCategory.Battle, "set_target", CommandSide.Client),
+  ClientResetTarget(CommandCategory.Battle, "reset_target", CommandSide.Client),
 
   DamageTank(CommandCategory.Battle, "damage_tank", CommandSide.Client),
 

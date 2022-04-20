@@ -26,6 +26,7 @@ import jp.assasans.protanki.server.battles.map.MapRegistry
 import jp.assasans.protanki.server.chat.ChatCommandRegistry
 import jp.assasans.protanki.server.chat.IChatCommandRegistry
 import jp.assasans.protanki.server.client.*
+import jp.assasans.protanki.server.client.isida.IsidaFireMode
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.gitVersion
@@ -122,6 +123,7 @@ suspend fun main(args: Array<String>) {
         .add(ServerMapThemeAdapter())
         .add(BattleTeamAdapter())
         .add(BattleModeAdapter())
+        .add(IsidaFireModeAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }

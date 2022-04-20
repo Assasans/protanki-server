@@ -22,6 +22,10 @@ interface IDamageProcessor {
   val battle: Battle
 
   suspend fun dealDamage(source: BattleTank, target: BattleTank, damage: Double, isCritical: Boolean)
+  suspend fun dealDamage(target: BattleTank, damage: Double, isCritical: Boolean): DamageType
+
+  suspend fun heal(source: BattleTank, target: BattleTank, heal: Double)
+  suspend fun heal(target: BattleTank, heal: Double)
 }
 
 class DamageProcessor(
@@ -33,6 +37,15 @@ class DamageProcessor(
       if(source.player.team == target.player.team && !battle.properties[BattleProperty.FriendlyFireEnabled]) return
     }
 
+    val damageType = dealDamage(target, damage, isCritical)
+    if(damageType == DamageType.Kill) {
+      target.killBy(source)
+    }
+
+    Command(CommandName.DamageTank, listOf(target.id, damage.toString(), damageType.key)).send(source)
+  }
+
+  override suspend fun dealDamage(target: BattleTank, damage: Double, isCritical: Boolean): DamageType {
     var damageType = if(isCritical) DamageType.Critical else DamageType.Normal
     val healthDamage = damage * 30 // TODO(Assasans)
 
@@ -40,9 +53,21 @@ class DamageProcessor(
     target.updateHealth()
     if(target.health <= 0.0) {
       damageType = DamageType.Kill
-      target.killBy(source)
     }
 
-    Command(CommandName.DamageTank, listOf(target.id, damage.toString(), damageType.key)).send(source)
+    return damageType
+  }
+
+  override suspend fun heal(source: BattleTank, target: BattleTank, heal: Double) {
+    heal(target, heal)
+
+    Command(CommandName.DamageTank, listOf(target.id, heal.toString(), DamageType.Heal.key)).send(source)
+  }
+
+  override suspend fun heal(target: BattleTank, heal: Double) {
+    val healthChange = heal * 30 // TODO(Assasans)
+
+    target.health = (target.health + healthChange).coerceAtMost(TankConstants.MAX_HEALTH)
+    target.updateHealth()
   }
 }

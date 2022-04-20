@@ -4,10 +4,10 @@ import com.squareup.moshi.Moshi
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import jp.assasans.protanki.server.battles.IsidaWeaponHandler
 import jp.assasans.protanki.server.battles.RailgunWeaponHandler
 import jp.assasans.protanki.server.battles.ThunderWeaponHandler
 import jp.assasans.protanki.server.client.UserSocket
-import jp.assasans.protanki.server.client.railgun.FireTarget
 import jp.assasans.protanki.server.commands.*
 
 class ShotHandler : ICommandHandler, KoinComponent {
@@ -25,6 +25,20 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     when(tank.weapon) {
       is RailgunWeaponHandler -> tank.weapon.fireStart()
+      is IsidaWeaponHandler -> tank.weapon.fireStart(args.getAs(0))
+    }
+  }
+
+  @CommandHandler(CommandName.StopFire)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun stopFire(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "StopFire: ${args.get(0)}" }
+
+    when(tank.weapon) {
+      is IsidaWeaponHandler -> tank.weapon.fireStop()
     }
   }
 
@@ -65,6 +79,32 @@ class ShotHandler : ICommandHandler, KoinComponent {
     when(tank.weapon) {
       is RailgunWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
       is ThunderWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
+    }
+  }
+
+  @CommandHandler(CommandName.SetTarget)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun setTarget(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "SetTarget: ${args.get(0)}" }
+
+    when(tank.weapon) {
+      is IsidaWeaponHandler -> tank.weapon.setTarget(args.getAs(0))
+    }
+  }
+
+  @CommandHandler(CommandName.ResetTarget)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun resetTarget(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "ResetTarget: ${args.get(0)}" }
+
+    when(tank.weapon) {
+      is IsidaWeaponHandler -> tank.weapon.resetTarget(args.getAs(0))
     }
   }
 }

@@ -20,6 +20,10 @@ import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 import jp.assasans.protanki.server.toVector
 
+object TankConstants {
+  const val MAX_HEALTH: Double = 10000.0
+}
+
 class BattleTank(
   val id: String,
   val player: BattlePlayer,
@@ -30,7 +34,7 @@ class BattleTank(
   val hull: ServerGarageUserItemHull,
   val weapon: WeaponHandler,
   val coloring: ServerGarageUserItemPaint,
-  var health: Double = 10000.0
+  var health: Double = TankConstants.MAX_HEALTH
 ) : ITickHandler {
   private val logger = KotlinLogging.logger { }
 
