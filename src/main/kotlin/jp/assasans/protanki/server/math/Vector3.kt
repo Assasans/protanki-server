@@ -3,6 +3,7 @@ package jp.assasans.protanki.server.math
 import java.math.RoundingMode
 import kotlin.math.pow
 import kotlin.math.sqrt
+import kotlin.random.Random
 
 class Vector3 {
   var x: Double
@@ -46,3 +47,11 @@ operator fun Vector3.plus(another: Vector3) = Vector3(x + another.x, y + another
 operator fun Vector3.minus(another: Vector3) = Vector3(x - another.x, y - another.y, z - another.z)
 operator fun Vector3.times(scale: Double) = Vector3(x * scale, y * scale, z * scale)
 operator fun Vector3.div(scale: Double) = Vector3(x / scale, y / scale, z / scale)
+
+fun Random.nextVector3(from: Vector3, until: Vector3): Vector3 {
+  return Vector3(
+    x = nextDouble(from.x, until.x),
+    y = nextDouble(from.y, until.y),
+    z = nextDouble(from.z, until.z)
+  )
+}
