@@ -223,6 +223,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
     // TODO(Assasans): Advanced map configuration
     val battle = Battle(
+      coroutineContext,
       id = Battle.generateId(),
       title = data.name,
       map = mapRegistry.get(data.mapId, ServerMapTheme.getByClient(data.theme) ?: throw Exception("Unknown theme: ${data.theme}")),

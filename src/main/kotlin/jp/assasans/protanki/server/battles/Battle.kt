@@ -1,7 +1,10 @@
 package jp.assasans.protanki.server.battles
 
+import kotlin.coroutines.CoroutineContext
 import kotlin.random.Random
 import kotlin.random.nextULong
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
@@ -87,6 +90,7 @@ fun List<BattlePlayer>.users() = filter { player -> !player.isSpectator }
 fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
 
 class Battle(
+  coroutineContext: CoroutineContext,
   val id: String,
   val title: String,
   var map: ServerMapInfo,
@@ -98,6 +102,8 @@ class Battle(
   }
 
   private val logger = KotlinLogging.logger { }
+
+  val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
 
   val properties: BattleProperties = BattleProperties()
   val modeHandler: BattleModeHandler = modeHandlerBuilder(this)

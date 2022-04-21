@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server
 
+import kotlin.coroutines.coroutineContext
 import kotlin.reflect.KClass
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
@@ -48,6 +49,7 @@ class Server : KoinComponent {
 
     battleProcessor.battles.add(
       Battle(
+        coroutineContext,
         id = "493202bf695cc88a",
         title = "ProTanki Server",
         map = mapRegistry.get("map_kungur", ServerMapTheme.SummerDay),
