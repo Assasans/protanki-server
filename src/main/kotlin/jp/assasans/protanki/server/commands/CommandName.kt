@@ -188,6 +188,11 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   DamageTank(CommandCategory.Battle, "damage_tank", CommandSide.Client),
 
+  SpawnBonus(CommandCategory.Battle, "spawn_bonus", CommandSide.Client),
+  TryActivateBonus(CommandCategory.Battle, "attempt_to_take_bonus", CommandSide.Server),
+  ActivateBonus(CommandCategory.Battle, "bonus_taken", CommandSide.Client),
+  RemoveBonus(CommandCategory.Battle, "remove_bonus", CommandSide.Client),
+
   // Used for taking and delivering flags
   TriggerFlag(CommandCategory.Battle, "attempt_to_take_flag", CommandSide.Server),
   DropFlag(CommandCategory.Battle, "flag_drop", CommandSide.Server),

@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
 import jp.assasans.protanki.server.ServerMapInfo
+import jp.assasans.protanki.server.battles.bonus.BonusProcessor
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
 import jp.assasans.protanki.server.battles.mode.BattleModeHandlerBuilder
 import jp.assasans.protanki.server.client.*
@@ -110,6 +111,7 @@ class Battle(
   val players: MutableList<BattlePlayer> = mutableListOf()
 
   val damageProcessor = DamageProcessor(this)
+  val bonusProcessor = BonusProcessor(this)
 
   fun toBattleData(): BattleData {
     // TODO(Assasans)

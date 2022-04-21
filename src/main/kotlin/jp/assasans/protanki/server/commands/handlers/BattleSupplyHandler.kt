@@ -50,4 +50,30 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
       )
     ).send(socket)
   }
+
+  @CommandHandler(CommandName.TryActivateBonus)
+  suspend fun tryActivateBonus(socket: UserSocket, key: String) {
+    val user = socket.user ?: throw Exception("No User")
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
+
+    val type = key.substringBeforeLast("_")
+    val id = key.substringAfterLast("_").toInt()
+
+    val bonus = battle.bonusProcessor.bonuses[id]
+    if(bonus == null) {
+      logger.warn { "Attempt to activate missing bonus: $type@$id" }
+      return
+    }
+
+    if(bonus.type.bonusKey != type) {
+      logger.warn { "Attempt to activate bonus ($id) with wrong type. Actual: ${bonus.type}, received $type" }
+    }
+
+    bonus.activate(tank)
+    bonus.cancelRemove()
+
+    Command(CommandName.ActivateBonus, listOf(bonus.key)).send(socket)
+  }
 }

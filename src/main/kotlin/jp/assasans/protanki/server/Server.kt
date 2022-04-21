@@ -1,7 +1,9 @@
 package jp.assasans.protanki.server
 
 import kotlin.coroutines.coroutineContext
+import kotlin.random.Random
 import kotlin.reflect.KClass
+import kotlinx.coroutines.launch
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -21,6 +23,8 @@ import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
+import jp.assasans.protanki.server.math.Quaternion
+import jp.assasans.protanki.server.math.nextVector3
 
 class Server : KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -283,6 +287,53 @@ class Server : KoinComponent {
             builder.append("Changed $key: $oldValue -> $typedValue")
 
             socket.sendBattleChat(builder.toString())
+          }
+        }
+      }
+
+      command("bonus") {
+        description("Manage battle bonuses")
+
+        subcommand("spawn") {
+          description("Spawn a bonus at random point")
+
+          argument("type", String::class) {
+            description("The type of bonus to spawn")
+          }
+
+          handler {
+            val type: String = arguments["type"]
+
+            val battle = socket.battle
+            if(battle == null) {
+              socket.sendChat("You are not in a battle")
+              return@handler
+            }
+
+            val bonusType = BonusType.get(type)
+            if(bonusType == null) {
+              socket.sendBattleChat("No such bonus: $type")
+              return@handler
+            }
+
+            val bonusPoint = battle.map.bonuses
+              .filter { bonus -> bonus.types.contains(bonusType) }
+              .filter { bonus -> bonus.modes.contains(battle.modeHandler.mode) }
+              .random()
+
+            val position = Random.nextVector3(bonusPoint.position.min.toVector(), bonusPoint.position.max.toVector())
+            val rotation = Quaternion()
+            rotation.fromEulerAngles(bonusPoint.rotation.toVector())
+
+            val bonus = when(bonusType) {
+              else            -> throw Exception("Unsupported bonus type: $bonusType")
+            }
+
+            battle.bonusProcessor.incrementId()
+            battle.coroutineScope.launch {
+              battle.bonusProcessor.spawn(bonus)
+              socket.sendBattleChat("Spawned $bonusType at $position, $rotation (with parachute: ${bonusPoint.parachute})")
+            }
           }
         }
       }
