@@ -193,6 +193,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ActivateBonus(CommandCategory.Battle, "bonus_taken", CommandSide.Client),
   RemoveBonus(CommandCategory.Battle, "remove_bonus", CommandSide.Client),
 
+  SpawnGold(CommandCategory.Battle, "gold_spawn", CommandSide.Client),
+
   // Used for taking and delivering flags
   TriggerFlag(CommandCategory.Battle, "attempt_to_take_flag", CommandSide.Server),
   DropFlag(CommandCategory.Battle, "flag_drop", CommandSide.Server),

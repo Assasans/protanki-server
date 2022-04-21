@@ -13,6 +13,7 @@ import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.battles.bonus.BattleGoldBonus
 import jp.assasans.protanki.server.battles.bonus.BattleNitroBonus
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
@@ -328,6 +329,7 @@ class Server : KoinComponent {
 
             val bonus = when(bonusType) {
               BonusType.Nitro -> BattleNitroBonus(battle, battle.bonusProcessor.nextId, position, rotation)
+              BonusType.Gold  -> BattleGoldBonus(battle, battle.bonusProcessor.nextId, position, rotation)
               else            -> throw Exception("Unsupported bonus type: $bonusType")
             }
 
