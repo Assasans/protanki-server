@@ -44,6 +44,41 @@ data class ServerMapDominationPoint(
   @Json val position: Vector3Data
 )
 
+enum class BonusType(val mapKey: String, val bonusKey: String) {
+  Health("health", "health"),
+  DoubleArmor("double_armor", "armor"),
+  DoubleDamage("double_damage", "damage"),
+  Nitro("nitro", "nitro"),
+  Crystal("crystal", "crystall"),
+  Gold("gold", "gold");
+
+  companion object {
+    private val map = values().associateBy(BonusType::mapKey)
+    private val mapByBonus = values().associateBy(BonusType::bonusKey)
+
+    fun get(key: String) = map[key]
+    fun getByBonus(key: String) = mapByBonus[key]
+  }
+}
+
+data class ServerMapBonusPosition(
+  @Json val min: ServerVector3,
+  @Json val max: ServerVector3
+)
+
+data class ServerMapBonusPoint(
+  @Json val name: String,
+  @Json val free: Boolean,
+
+  @Json val types: List<BonusType>,
+  @Json val modes: List<BattleMode>,
+
+  @Json val parachute: Boolean,
+
+  @Json val position: ServerMapBonusPosition,
+  @Json val rotation: ServerVector3
+)
+
 data class ServerMapInfo(
   @Json val name: String,
   @Json val theme: ServerMapTheme,
@@ -57,7 +92,8 @@ data class ServerMapInfo(
 
   @Json val spawnPoints: List<ServerMapSpawnPoint>,
   @Json val flags: Map<BattleTeam, ServerMapFlag>?,
-  @Json val points: List<ServerMapDominationPoint>?
+  @Json val points: List<ServerMapDominationPoint>?,
+  @Json val bonuses: List<ServerMapBonusPoint>
 )
 
 fun ServerVector3.toVector() = Vector3(x, y, z)

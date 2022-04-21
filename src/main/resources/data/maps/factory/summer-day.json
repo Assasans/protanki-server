@@ -360,5 +360,295 @@
       "free": false,
       "position": { "x": -2500, "y": 2000, "z": 900 }
     }
+  ],
+  "bonuses": [
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "crystal" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -2875, "y": -625, "z": 1650 },
+        "max": { "x": -2625, "y": -125, "z": 1950 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -2875, "y": -375, "z": 1650 },
+        "max": { "x": -2625, "y": 125, "z": 1950 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "health" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -1375, "y": 4625, "z": 1050 },
+        "max": { "x": -625, "y": 4875, "z": 1350 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "crystal" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -1375, "y": 875, "z": 1800 },
+        "max": { "x": -1125, "y": 1125, "z": 2100 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "crystal" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -3875, "y": 2875, "z": 1800 },
+        "max": { "x": -3625, "y": 3125, "z": 2100 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "crystal", "gold" ],
+      "modes": [ "TDM", "DM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -5250, "y": 3500, "z": 1350 },
+        "max": { "x": -4500, "y": 4250, "z": 1650 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "double_damage" ],
+      "modes": [ "TDM", "DM", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -3812.5, "y": 1125, "z": 1725 },
+        "max": { "x": -3762.5, "y": 1875, "z": 2025 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "crystal" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -2375, "y": 4125, "z": 1650 },
+        "max": { "x": -2125, "y": 4625, "z": 1950 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "double_damage" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -6625, "y": 2750, "z": 1350 },
+        "max": { "x": -6375, "y": 3000, "z": 1650 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "health" ],
+      "modes": [ "TDM", "DM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -4375, "y": -875, "z": 1050 },
+        "max": { "x": -3625, "y": -625, "z": 1350 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "CP" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": 0, "y": 2375, "z": 2100 },
+        "max": { "x": 500, "y": 2625, "z": 2400 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "crystal", "gold" ],
+      "modes": [ "TDM", "DM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -500, "y": -250, "z": 1350 },
+        "max": { "x": 250, "y": 500, "z": 1650 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "double_armor" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": 2125, "y": 2125, "z": 1500 },
+        "max": { "x": 2875, "y": 2875, "z": 1800 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "double_armor" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -7875, "y": 1125, "z": 1500 },
+        "max": { "x": -7125, "y": 1875, "z": 1800 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "CP" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -5500, "y": 1437.5, "z": 2100 },
+        "max": { "x": -5000, "y": 1687.5, "z": 2400 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "nitro" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": 3000, "y": 4000, "z": 1050 },
+        "max": { "x": 3500, "y": 4500, "z": 1350 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "double_damage" ],
+      "modes": [ "TDM", "DM", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -1250, "y": 2125, "z": 1725 },
+        "max": { "x": -1200, "y": 2875, "z": 2025 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "TDM", "DM", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -1843.75, "y": 2093.75, "z": 1725 },
+        "max": { "x": -1793.75, "y": 2843.75, "z": 2025 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "nitro" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -8500, "y": -500, "z": 1050 },
+        "max": { "x": -8000, "y": 0, "z": 1350 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "TDM", "DM", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -3187.5, "y": 1156.25, "z": 1725 },
+        "max": { "x": -3137.5, "y": 1906.25, "z": 2025 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "double_damage" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": 1375, "y": 1000, "z": 1350 },
+        "max": { "x": 1625, "y": 1250, "z": 1650 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "TDM", "DM", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -2625, "y": 2125, "z": 1800 },
+        "max": { "x": -2125, "y": 2375, "z": 2100 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "TDM", "DM", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -2750, "y": 1500, "z": 1800 },
+        "max": { "x": -2500, "y": 2000, "z": 2100 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    },
+    {
+      "name": "free-bonus",
+      "free": true,
+      "types": [ "gold" ],
+      "modes": [ "DM", "TDM", "CP", "CTF" ],
+      "parachute": true,
+      "position": {
+        "min": { "x": -2375, "y": 3875, "z": 1650 },
+        "max": { "x": -2125, "y": 4375, "z": 1950 }
+      },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    }
   ]
 }
