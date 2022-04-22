@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server.commands.handlers
 
+import kotlinx.coroutines.launch
 import mu.KotlinLogging
 import jp.assasans.protanki.server.client.SocketLocale
 import jp.assasans.protanki.server.client.UserSocket
@@ -14,7 +15,10 @@ class SystemHandler : ICommandHandler {
   suspend fun getAesData(socket: UserSocket, localeId: String) {
     logger.debug { "Initialized client locale: $localeId" }
 
-    socket.locale = SocketLocale.get(localeId);
+    socket.locale = SocketLocale.get(localeId)
+
+    // awaitDependency can deadlock execution if suspended
+    socket.coroutineScope.launch { socket.initClient() }
   }
 
   @CommandHandler(CommandName.Error)

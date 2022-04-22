@@ -301,9 +301,6 @@ class UserSocket(
   suspend fun handle() {
     active = true
 
-    // awaitDependency can deadlock execution if suspended
-    coroutineScope.launch { initClient() }
-
     try {
       while(!(input.isClosedForRead || input.isClosedForWrite)) {
         val buffer: ByteArray;
@@ -402,7 +399,9 @@ class UserSocket(
     initBattleList()
   }
 
-  private suspend fun initClient() {
+  suspend fun initClient() {
+    val locale = locale ?: throw IllegalStateException("Socket locale is null")
+
     Command(CommandName.InitExternalModel, listOf("http://localhost/")).send(this)
     Command(
       CommandName.InitRegistrationModel,
@@ -414,7 +413,7 @@ class UserSocket(
       )
     ).send(this)
 
-    Command(CommandName.InitLocale, listOf(resourceManager.get("lang/ru.json").readText())).send(this)
+    Command(CommandName.InitLocale, listOf(resourceManager.get("lang/${locale.key}.json").readText())).send(this)
 
     awaitDependency(loadDependency(resourceManager.get("resources/auth.json").readText()))
     Command(CommandName.MainResourcesLoaded).send(this)
