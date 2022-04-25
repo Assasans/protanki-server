@@ -2,7 +2,7 @@
   "name": "map_wolfenstein",
   "theme": "winter_day",
 
-  "id": 437149,
+  "id": 333752,
   "preview": 285375,
 
   "visual": {
@@ -38,22 +38,22 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 652904, "version": 1, "lazy": false, "type": 8 },
-      { "id": 893062, "version": 1, "lazy": false, "type": 8 },
-      { "id": 296184, "version": 1, "lazy": false, "type": 8 },
-      { "id": 105954, "version": 1, "lazy": false, "type": 8 },
-      { "id": 463711, "version": 1, "lazy": false, "type": 8 },
-      { "id": 316457, "version": 1, "lazy": false, "type": 8 },
-      { "id": 795676, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 311175, "version": 1, "lazy": false, "type": 8 },
-      { "id": 318484, "version": 1, "lazy": false, "type": 8 },
-      { "id": 886914, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 9, "lazy": false, "type": 8 },
-      { "id": 375368, "version": 1, "lazy": false, "type": 8 },
-      { "id": 934285, "version": 1, "lazy": false, "type": 8 },
-      { "id": 675186, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Bush Winter",
+      "Village Builds Winter",
+      "Cliffs Winter",
+      "Fachwerk House 2 Winter",
+      "NuBu 9 Winter",
+      "Small Bridge Winter",
+      "City Builds Winter",
+      "NuBu 10 Winter",
+      "Concrete Tiles Winter",
+      "Concrete Walls Winter",
+      "Fachwerk House 1 Winter",
+      "Slopes Rises Winter",
+      "Fort Winter",
+      "Grass Tiles Winter",
+      "Promotion Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -63,9 +63,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 437149, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 333752, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -623,3 +621,6 @@
     }
   ]
 }
+
+
+

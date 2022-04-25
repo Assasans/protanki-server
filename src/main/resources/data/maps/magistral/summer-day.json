@@ -2,7 +2,7 @@
   "name": "map_magistral",
   "theme": "summer_day",
 
-  "id": 245392,
+  "id": 556672,
   "preview": 398352,
 
   "visual": {
@@ -38,23 +38,23 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 169171, "version": 1, "lazy": false, "type": 8 },
-      { "id": 842988, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 308916, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 479176, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 3",
+      "NuBu 6",
+      "Grass Tiles",
+      "NuBu 12",
+      "Village Builds",
+      "City Builds",
+      "Concrete Tiles",
+      "Bridge Parts",
+      "Slopes Rises",
+      "Roadblock",
+      "Promotion",
+      "NuBu 4",
+      "Concrete Walls",
+      "Cliffs",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -64,9 +64,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 245392, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 556672, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -803,3 +801,6 @@
     }
   ]
 }
+
+
+

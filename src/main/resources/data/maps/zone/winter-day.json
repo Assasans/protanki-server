@@ -2,7 +2,7 @@
   "name": "map_zone",
   "theme": "winter_day",
 
-  "id": 507361,
+  "id": 916976,
   "preview": 37897,
 
   "visual": {
@@ -38,15 +38,15 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 882130, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
-      { "id": 380083, "version": 1, "lazy": false, "type": 8 },
-      { "id": 444684, "version": 1, "lazy": false, "type": 8 },
-      { "id": 155305, "version": 1, "lazy": false, "type": 8 },
-      { "id": 507274, "version": 1, "lazy": false, "type": 8 },
-      { "id": 762902, "version": 6, "lazy": false, "type": 8 },
-      { "id": 129718, "version": 2, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Waffle Fence Winter",
+      "Land Rocks Winter",
+      "Industrial Bridge Winter",
+      "Industrial Elements Winter",
+      "Promotion Winter",
+      "Land Tiles Winter",
+      "Trees Winter",
+      "Stuffs Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -56,9 +56,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 507361, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 916976, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -431,3 +429,6 @@
     }
   ]
 }
+
+
+

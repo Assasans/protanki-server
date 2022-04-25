@@ -2,7 +2,7 @@
   "name": "map_wave",
   "theme": "summer_day",
 
-  "id": 481227,
+  "id": 537826,
   "preview": 975236,
 
   "visual": {
@@ -38,13 +38,13 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 587350, "version": 1, "lazy": false, "type": 8 },
-      { "id": 849509, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Promotion",
+      "Trees",
+      "Waffle Fence",
+      "Land Tiles",
+      "Land Rocks",
+      "Bush"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -54,9 +54,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 481227, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 537826, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -363,3 +361,6 @@
     }
   ]
 }
+
+
+

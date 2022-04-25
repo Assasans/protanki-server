@@ -2,7 +2,7 @@
   "name": "map_pass",
   "theme": "winter_day",
 
-  "id": 999750,
+  "id": 531044,
   "preview": 808472,
 
   "visual": {
@@ -38,21 +38,21 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 870768, "version": 1, "lazy": false, "type": 8 },
-      { "id": 762902, "version": 6, "lazy": false, "type": 8 },
-      { "id": 863808, "version": 1, "lazy": false, "type": 8 },
-      { "id": 339958, "version": 1, "lazy": false, "type": 8 },
-      { "id": 882130, "version": 1, "lazy": false, "type": 8 },
-      { "id": 507274, "version": 1, "lazy": false, "type": 8 },
-      { "id": 380083, "version": 1, "lazy": false, "type": 8 },
-      { "id": 967254, "version": 1, "lazy": false, "type": 8 },
-      { "id": 886914, "version": 1, "lazy": false, "type": 8 },
-      { "id": 652693, "version": 1, "lazy": false, "type": 8 },
-      { "id": 997080, "version": 1, "lazy": false, "type": 8 },
-      { "id": 129718, "version": 2, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 9, "lazy": false, "type": 8 },
-      { "id": 444684, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Waffle Fence Winter",
+      "Desert Houses Winter",
+      "Industrial Bridge Winter",
+      "Industrial Elements Winter",
+      "Land Tiles Winter",
+      "NuBu 9 Winter",
+      "Outer Walls Winter",
+      "NuBu 12 Winter",
+      "Land Rocks Winter",
+      "NuBu 6 Winter",
+      "Promotion Winter",
+      "NuBu 3 Winter",
+      "Stuffs Winter",
+      "City Buildings Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -62,9 +62,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 999750, "version": 8, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 531044, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -480,3 +478,6 @@
     }
   ]
 }
+
+
+

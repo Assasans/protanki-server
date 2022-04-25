@@ -2,7 +2,7 @@
   "name": "map_shortbridge",
   "theme": "summer_day",
 
-  "id": 220051,
+  "id": 520560,
   "preview": 582437,
 
   "visual": {
@@ -38,15 +38,15 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Slopes Rises",
+      "Promotion",
+      "Grass Tiles",
+      "Village Builds",
+      "Concrete Walls",
+      "Cliffs",
+      "Concrete Tiles",
+      "Bush"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -56,9 +56,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 220051, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 520560, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -325,3 +323,6 @@
     }
   ]
 }
+
+
+

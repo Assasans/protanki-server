@@ -2,7 +2,7 @@
   "name": "map_hill",
   "theme": "winter_day",
 
-  "id": 414183,
+  "id": 921875,
   "preview": 445319,
 
   "visual": {
@@ -38,11 +38,11 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 882130, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 507274, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Land Rocks Winter",
+      "Bush Winter",
+      "Promotion Winter",
+      "Land Tiles Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -52,9 +52,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 414183, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 921875, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -279,3 +277,6 @@
     }
   ]
 }
+
+
+

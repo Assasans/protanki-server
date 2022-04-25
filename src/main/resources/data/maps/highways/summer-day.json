@@ -2,7 +2,7 @@
   "name": "map_highway",
   "theme": "summer_day",
 
-  "id": 828700,
+  "id": 260840,
   "preview": 984755,
 
   "visual": {
@@ -38,18 +38,18 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 842988, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 257170, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 3",
+      "Promotion",
+      "Grass Tiles",
+      "NuBu 2",
+      "Concrete Walls",
+      "City Builds",
+      "Cliffs",
+      "Concrete Tiles",
+      "Bridge Parts",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -59,9 +59,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 828700, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 260840, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -794,3 +792,6 @@
     }
   ]
 }
+
+
+

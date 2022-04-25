@@ -2,7 +2,7 @@
   "name": "map_iran",
   "theme": "summer_day",
 
-  "id": 512721,
+  "id": 708256,
   "preview": 273976,
 
   "visual": {
@@ -38,11 +38,11 @@
     "right": 214316
   },
   "resources": {
-    "props": [
-      { "id": 736437, "version": 2, "lazy": false, "type": 8 },
-      { "id": 137788, "version": 3, "lazy": false, "type": 8 },
-      { "id": 209939, "version": 1, "lazy": false, "type": 8 },
-      { "id": 46914, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "kahgel",
+      "kariz",
+      "yonje",
+      "zamin"
     ],
     "skybox": [
       { "id": 713031, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -52,9 +52,7 @@
       { "id": 214316, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 382517, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 512721, "version": 10, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 708256, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -957,3 +955,6 @@
     }
   ]
 }
+
+
+

@@ -2,7 +2,7 @@
   "name": "map_magadan",
   "theme": "summer_day",
 
-  "id": 206956,
+  "id": 147484,
   "preview": 305862,
 
   "visual": {
@@ -38,14 +38,14 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Slopes Rises",
+      "Promotion",
+      "Grass Tiles",
+      "Concrete Walls",
+      "Cliffs",
+      "Concrete Tiles",
+      "Bush"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -55,9 +55,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 206956, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 147484, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -547,3 +545,6 @@
     }
   ]
 }
+
+
+

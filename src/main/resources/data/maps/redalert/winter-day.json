@@ -2,7 +2,7 @@
   "name": "map_redalert",
   "theme": "winter_day",
 
-  "id": 779334,
+  "id": 157078,
   "preview": 495607,
 
   "visual": {
@@ -38,21 +38,21 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 652904, "version": 1, "lazy": false, "type": 8 },
-      { "id": 863808, "version": 1, "lazy": false, "type": 8 },
-      { "id": 105954, "version": 1, "lazy": false, "type": 8 },
-      { "id": 316457, "version": 1, "lazy": false, "type": 8 },
-      { "id": 795676, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 311175, "version": 1, "lazy": false, "type": 8 },
-      { "id": 663090, "version": 1, "lazy": false, "type": 8 },
-      { "id": 886914, "version": 1, "lazy": false, "type": 8 },
-      { "id": 185320, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 9, "lazy": false, "type": 8 },
-      { "id": 375368, "version": 1, "lazy": false, "type": 8 },
-      { "id": 934285, "version": 1, "lazy": false, "type": 8 },
-      { "id": 675186, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Bush Winter",
+      "Cliffs Winter",
+      "Bridge Parts Winter",
+      "NuBu 9 Winter",
+      "Small Bridge Winter",
+      "City Builds Winter",
+      "NuBu 10 Winter",
+      "Concrete Tiles Winter",
+      "Concrete Walls Winter",
+      "Slopes Rises Winter",
+      "Grass Tiles Winter",
+      "Promotion Winter",
+      "NuBu 3 Winter",
+      "NuBu 8 Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -62,9 +62,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 779334, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 157078, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -796,3 +794,6 @@
     }
   ]
 }
+
+
+

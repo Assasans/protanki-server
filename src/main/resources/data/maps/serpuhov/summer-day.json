@@ -2,7 +2,7 @@
   "name": "map_serpuhov",
   "theme": "summer_day",
 
-  "id": 391794,
+  "id": 739572,
   "preview": 303326,
 
   "visual": {
@@ -38,27 +38,27 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 590422, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 257170, "version": 1, "lazy": false, "type": 8 },
-      { "id": 728154, "version": 1, "lazy": false, "type": 8 },
-      { "id": 762297, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 169171, "version": 1, "lazy": false, "type": 8 },
-      { "id": 842988, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 962184, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 308916, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205210, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 3",
+      "NuBu 6",
+      "NuBu 1",
+      "Grass Tiles",
+      "NuBu 2",
+      "NuBu 8",
+      "NuBu 12",
+      "City Builds",
+      "Concrete Tiles",
+      "NuBu 10",
+      "Bridge Parts",
+      "Slopes Rises",
+      "Promotion",
+      "NuBu 4",
+      "Concrete Walls",
+      "Cliffs",
+      "NuBu 14",
+      "NuBu 5",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -68,9 +68,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 391794, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 739572, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -648,3 +646,6 @@
     }
   ]
 }
+
+
+

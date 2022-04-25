@@ -2,7 +2,7 @@
   "name": "map_brest",
   "theme": "summer_day",
 
-  "id": 848565,
+  "id": 505696,
   "preview": 891611,
 
   "visual": {
@@ -38,17 +38,17 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 947010, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Slopes Rises",
+      "Promotion",
+      "Grass Tiles",
+      "Concrete Walls",
+      "City Builds",
+      "Cliffs",
+      "Concrete Tiles",
+      "Small Bridge",
+      "Bridge Parts",
+      "Bush"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -58,9 +58,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 848565, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 505696, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -767,3 +765,6 @@
     }
   ]
 }
+
+
+

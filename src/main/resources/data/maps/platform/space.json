@@ -2,7 +2,7 @@
   "name": "map_platform",
   "theme": "space",
 
-  "id": 139157,
+  "id": 79400,
   "preview": 431795,
 
   "visual": {
@@ -38,12 +38,12 @@
     "right": 669522
   },
   "resources": {
-    "props": [
-      { "id": 745712, "version": 2, "lazy": false, "type": 8 },
-      { "id": 890995, "version": 1, "lazy": false, "type": 8 },
-      { "id": 347383, "version": 1, "lazy": false, "type": 8 },
-      { "id": 586915, "version": 1, "lazy": false, "type": 8 },
-      { "id": 668540, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Fence",
+      "Exterior",
+      "Terrain",
+      "Passage",
+      "Defense"
     ],
     "skybox": [
       { "id": 255467, "version": 3, "lazy": false, "alpha": false, "type": 10 },
@@ -53,9 +53,7 @@
       { "id": 669522, "version": 3, "lazy": false, "alpha": false, "type": 10 },
       { "id": 120253, "version": 3, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 139157, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 79400, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -652,3 +650,6 @@
     }
   ]
 }
+
+
+

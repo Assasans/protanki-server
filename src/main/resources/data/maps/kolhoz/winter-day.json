@@ -2,7 +2,7 @@
   "name": "map_kolhoz",
   "theme": "winter_day",
 
-  "id": 793165,
+  "id": 499765,
   "preview": 648625,
 
   "visual": {
@@ -38,16 +38,16 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 863808, "version": 1, "lazy": false, "type": 8 },
-      { "id": 316457, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
-      { "id": 934285, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 675186, "version": 1, "lazy": false, "type": 8 },
-      { "id": 105954, "version": 1, "lazy": false, "type": 8 },
-      { "id": 397339, "version": 1, "lazy": false, "type": 8 },
-      { "id": 893062, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Concrete Tiles Winter",
+      "NuBu 2 Winter",
+      "Concrete Walls Winter",
+      "Bush Winter",
+      "Grass Tiles Winter",
+      "Promotion Winter",
+      "Village Builds Winter",
+      "Cliffs Winter",
+      "NuBu 3 Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -57,9 +57,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 793165, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 499765, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -597,3 +595,6 @@
     }
   ]
 }
+
+
+

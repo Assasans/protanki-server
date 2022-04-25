@@ -2,7 +2,7 @@
   "name": "map_sandbox",
   "theme": "summer_night",
 
-  "id": 663288,
+  "id": 336728,
   "preview": 447830,
 
   "visual": {
@@ -38,16 +38,16 @@
     "right": 527828
   },
   "resources": {
-    "props": [
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 7, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Slopes Rises",
+      "Promotion",
+      "Grass Tiles",
+      "Village Builds",
+      "Concrete Walls",
+      "City Builds",
+      "Cliffs",
+      "Concrete Tiles",
+      "Bush"
     ],
     "skybox": [
       { "id": 180702, "version": 2, "lazy": false, "alpha": false, "type": 10 },
@@ -57,9 +57,7 @@
       { "id": 527828, "version": 2, "lazy": false, "alpha": false, "type": 10 },
       { "id": 943466, "version": 2, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 663288, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 336728, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -891,3 +889,6 @@
     }
   ]
 }
+
+
+

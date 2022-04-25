@@ -2,7 +2,7 @@
   "name": "map_brest",
   "theme": "winter_day",
 
-  "id": 833686,
+  "id": 760851,
   "preview": 822084,
 
   "visual": {
@@ -38,17 +38,17 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 105954, "version": 1, "lazy": false, "type": 8 },
-      { "id": 795676, "version": 1, "lazy": false, "type": 8 },
-      { "id": 316457, "version": 1, "lazy": false, "type": 8 },
-      { "id": 311175, "version": 1, "lazy": false, "type": 8 },
-      { "id": 185320, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 9, "lazy": false, "type": 8 },
-      { "id": 375368, "version": 1, "lazy": false, "type": 8 },
-      { "id": 934285, "version": 1, "lazy": false, "type": 8 },
-      { "id": 675186, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Concrete Tiles Winter",
+      "Concrete Walls Winter",
+      "Slopes Rises Winter",
+      "Bush Winter",
+      "Grass Tiles Winter",
+      "Promotion Winter",
+      "Cliffs Winter",
+      "Bridge Parts Winter",
+      "Small Bridge Winter",
+      "City Builds Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -58,9 +58,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 833686, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 760851, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -767,3 +765,6 @@
     }
   ]
 }
+
+
+

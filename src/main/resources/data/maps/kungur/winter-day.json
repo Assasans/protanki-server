@@ -2,7 +2,7 @@
   "name": "map_kungur",
   "theme": "winter_day",
 
-  "id": 488225,
+  "id": 743613,
   "preview": 929260,
 
   "visual": {
@@ -38,28 +38,28 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 652904, "version": 1, "lazy": false, "type": 8 },
-      { "id": 893062, "version": 1, "lazy": false, "type": 8 },
-      { "id": 863808, "version": 1, "lazy": false, "type": 8 },
-      { "id": 397339, "version": 1, "lazy": false, "type": 8 },
-      { "id": 339958, "version": 1, "lazy": false, "type": 8 },
-      { "id": 618528, "version": 1, "lazy": false, "type": 8 },
-      { "id": 105954, "version": 1, "lazy": false, "type": 8 },
-      { "id": 802209, "version": 1, "lazy": false, "type": 8 },
-      { "id": 291244, "version": 1, "lazy": false, "type": 8 },
-      { "id": 316457, "version": 1, "lazy": false, "type": 8 },
-      { "id": 795676, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 311175, "version": 1, "lazy": false, "type": 8 },
-      { "id": 63715, "version": 1, "lazy": false, "type": 8 },
-      { "id": 663090, "version": 1, "lazy": false, "type": 8 },
-      { "id": 886914, "version": 1, "lazy": false, "type": 8 },
-      { "id": 997080, "version": 1, "lazy": false, "type": 8 },
-      { "id": 185320, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 8, "lazy": false, "type": 8 },
-      { "id": 934285, "version": 1, "lazy": false, "type": 8 },
-      { "id": 675186, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 5 Winter",
+      "NuBu 4 Winter",
+      "Bush Winter",
+      "Village Builds Winter",
+      "Cliffs Winter",
+      "Bridge Parts Winter",
+      "NuBu 9 Winter",
+      "City Builds Winter",
+      "NuBu 10 Winter",
+      "NuBu 12 Winter",
+      "Concrete Tiles Winter",
+      "NuBu 2 Winter",
+      "Concrete Walls Winter",
+      "Slopes Rises Winter",
+      "Roadblock Winter",
+      "Grass Tiles Winter",
+      "NuBu 6 Winter",
+      "Promotion Winter",
+      "NuBu 3 Winter",
+      "NuBu 8 Winter",
+      "NuBu 14 Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -69,9 +69,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 488225, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 743613, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -1149,3 +1147,6 @@
     }
   ]
 }
+
+
+

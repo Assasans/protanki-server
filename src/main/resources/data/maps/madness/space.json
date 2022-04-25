@@ -2,7 +2,7 @@
   "name": "map_madness_space",
   "theme": "space",
 
-  "id": 127507,
+  "id": 518628,
   "preview": 678652,
 
   "visual": {
@@ -38,12 +38,12 @@
     "right": 669522
   },
   "resources": {
-    "props": [
-      { "id": 890995, "version": 1, "lazy": false, "type": 8 },
-      { "id": 347383, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 586915, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Promotion",
+      "Exterior",
+      "Passage",
+      "Defense",
+      "Bush"
     ],
     "skybox": [
       { "id": 255467, "version": 3, "lazy": false, "alpha": false, "type": 10 },
@@ -53,9 +53,7 @@
       { "id": 669522, "version": 3, "lazy": false, "alpha": false, "type": 10 },
       { "id": 120253, "version": 3, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 127507, "version": 6, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 518628, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -1411,3 +1409,6 @@
     }
   ]
 }
+
+
+

@@ -2,7 +2,7 @@
   "name": "map_polygon",
   "theme": "summer_day",
 
-  "id": 612245,
+  "id": 870959,
   "preview": 891846,
 
   "visual": {
@@ -38,23 +38,23 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 663653, "version": 1, "lazy": false, "type": 8 },
-      { "id": 169171, "version": 1, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 849509, "version": 1, "lazy": false, "type": 8 },
-      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
-      { "id": 479176, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 },
-      { "id": 842988, "version": 1, "lazy": false, "type": 8 },
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 39200, "version": 1, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 609946, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Industrial Elements",
+      "NuBu 3",
+      "NuBu 6",
+      "Desert Houses",
+      "NuBu 12",
+      "Industrial Bridge",
+      "Roadblock",
+      "City Buildings",
+      "Promotion",
+      "Outer Walls",
+      "Land Tiles",
+      "Waffle Fence",
+      "Land Rocks",
+      "Broken Walls",
+      "Stuffs",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -64,9 +64,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 612245, "version": 8, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 870959, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -711,3 +709,6 @@
     }
   ]
 }
+
+
+

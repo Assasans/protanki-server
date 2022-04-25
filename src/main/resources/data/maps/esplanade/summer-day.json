@@ -2,7 +2,7 @@
   "name": "map_esplanade",
   "theme": "summer_day",
 
-  "id": 791105,
+  "id": 698448,
   "preview": 907392,
 
   "visual": {
@@ -38,16 +38,16 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 663653, "version": 1, "lazy": false, "type": 8 },
-      { "id": 617857, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Industrial Elements",
+      "Promotion",
+      "Broken Roof",
+      "Outer Walls",
+      "Industrial Bridge",
+      "Land Tiles",
+      "Broken Walls",
+      "Bush",
+      "Stuffs"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -57,9 +57,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 791105, "version": 6, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 698448, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -724,3 +722,6 @@
     }
   ]
 }
+
+
+

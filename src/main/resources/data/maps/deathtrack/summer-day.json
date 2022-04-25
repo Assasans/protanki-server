@@ -2,7 +2,7 @@
   "name": "map_deathtrack",
   "theme": "summer_day",
 
-  "id": 321300,
+  "id": 68065,
   "preview": 72909,
 
   "visual": {
@@ -38,20 +38,20 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 257170, "version": 1, "lazy": false, "type": 8 },
-      { "id": 762297, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 1",
+      "Grass Tiles",
+      "NuBu 2",
+      "NuBu 12",
+      "City Builds",
+      "Concrete Tiles",
+      "Bridge Parts",
+      "Slopes Rises",
+      "Promotion",
+      "Concrete Walls",
+      "Cliffs",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -61,9 +61,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 321300, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 68065, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -803,3 +801,6 @@
     }
   ]
 }
+
+
+

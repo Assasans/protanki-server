@@ -2,7 +2,7 @@
   "name": "map_silence_moon",
   "theme": "space",
 
-  "id": 121558,
+  "id": 461468,
   "preview": 952789,
 
   "visual": {
@@ -38,21 +38,21 @@
     "right": 669522
   },
   "resources": {
-    "props": [
-      { "id": 663653, "version": 1, "lazy": false, "type": 8 },
-      { "id": 169171, "version": 1, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 849509, "version": 1, "lazy": false, "type": 8 },
-      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 },
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 39200, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 609946, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Industrial Elements",
+      "NuBu 6",
+      "Desert Houses",
+      "Industrial Bridge",
+      "City Buildings",
+      "Promotion",
+      "Outer Walls",
+      "Land Tiles",
+      "Waffle Fence",
+      "Land Rocks",
+      "Broken Walls",
+      "Bush",
+      "Stuffs",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 255467, "version": 3, "lazy": false, "alpha": false, "type": 10 },
@@ -62,9 +62,7 @@
       { "id": 669522, "version": 3, "lazy": false, "alpha": false, "type": 10 },
       { "id": 120253, "version": 3, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 121558, "version": 6, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 461468, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -386,3 +384,6 @@
     }
   ]
 }
+
+
+

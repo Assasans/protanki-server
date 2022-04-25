@@ -2,7 +2,7 @@
   "name": "map_atra",
   "theme": "summer_day",
 
-  "id": 513940,
+  "id": 290034,
   "preview": 433647,
 
   "visual": {
@@ -38,13 +38,13 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Promotion",
+      "Outer Walls",
+      "Industrial Bridge",
+      "Waffle Fence",
+      "Land Tiles",
+      "Stuffs"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -54,9 +54,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 513940, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 290034, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -487,3 +485,6 @@
     }
   ]
 }
+
+
+

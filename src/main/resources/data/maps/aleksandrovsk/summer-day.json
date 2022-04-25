@@ -2,7 +2,7 @@
   "name": "map_aleksandrovsk",
   "theme": "summer_day",
 
-  "id": 88387,
+  "id": 803428,
   "preview": 388954,
 
   "visual": {
@@ -38,22 +38,22 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 257170, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 587350, "version": 1, "lazy": false, "type": 8 },
-      { "id": 842988, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 479176, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 3",
+      "Grass Tiles",
+      "NuBu 2",
+      "NuBu 12",
+      "Village Builds",
+      "City Builds",
+      "Trees",
+      "Concrete Tiles",
+      "Bridge Parts",
+      "Slopes Rises",
+      "Roadblock",
+      "Concrete Walls",
+      "Cliffs",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -63,9 +63,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 88387, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 803428, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -603,3 +601,6 @@
     }
   ]
 }
+
+
+

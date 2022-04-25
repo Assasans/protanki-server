@@ -2,7 +2,7 @@
   "name": "map_courage",
   "theme": "winter_day",
 
-  "id": 643824,
+  "id": 16176,
   "preview": 349598,
 
   "visual": {
@@ -38,19 +38,19 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 649198, "version": 1, "lazy": false, "type": 8 },
-      { "id": 882130, "version": 1, "lazy": false, "type": 8 },
-      { "id": 870768, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
-      { "id": 380083, "version": 1, "lazy": false, "type": 8 },
-      { "id": 444684, "version": 1, "lazy": false, "type": 8 },
-      { "id": 155305, "version": 1, "lazy": false, "type": 8 },
-      { "id": 967254, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 507274, "version": 1, "lazy": false, "type": 8 },
-      { "id": 762902, "version": 6, "lazy": false, "type": 8 },
-      { "id": 129718, "version": 2, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Outer Walls Winter",
+      "Waffle Fence Winter",
+      "Hangars Winter",
+      "Land Rocks Winter",
+      "Bush Winter",
+      "Desert Houses Winter",
+      "Industrial Bridge Winter",
+      "Industrial Elements Winter",
+      "Promotion Winter",
+      "Land Tiles Winter",
+      "Trees Winter",
+      "Stuffs Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -60,9 +60,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 643824, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 16176, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -473,3 +471,6 @@
     }
   ]
 }
+
+
+

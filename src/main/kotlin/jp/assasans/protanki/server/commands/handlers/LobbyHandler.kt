@@ -10,6 +10,7 @@ import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.battles.map.getProplib
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.ControlPointsModeHandler
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
@@ -85,9 +86,24 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket)
 
-      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(
+        socket.loadDependency(
+          ClientResources(
+            battle.map.resources.proplibs
+              .map(mapRegistry::getProplib)
+              .map(ServerProplib::toServerResource)
+              .map(resourceConverter::toClientResource)
+          ).toJson()
+        )
+      )
       socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
-      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(
+        socket.loadDependency(
+          ClientResources(
+            listOf(battle.map.resources.map.toServerResource().toClientResource(resourceConverter))
+          ).toJson()
+        )
+      )
 
       player.init()
       player.createTank()
@@ -114,9 +130,24 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       socket.initBattleLoad()
 
-      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.props.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(
+        socket.loadDependency(
+          ClientResources(
+            battle.map.resources.proplibs
+              .map(mapRegistry::getProplib)
+              .map(ServerProplib::toServerResource)
+              .map(resourceConverter::toClientResource)
+          ).toJson()
+        )
+      )
       socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
-      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.map.map(resourceConverter::toClientResource)).toJson()))
+      socket.awaitDependency(
+        socket.loadDependency(
+          ClientResources(
+            listOf(battle.map.resources.map.toServerResource().toClientResource(resourceConverter))
+          ).toJson()
+        )
+      )
 
       player.init()
     }

@@ -2,7 +2,7 @@
   "name": "map_stadium",
   "theme": "summer_day",
 
-  "id": 994455,
+  "id": 850881,
   "preview": 331140,
 
   "visual": {
@@ -38,12 +38,12 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Promotion",
+      "Outer Walls",
+      "Industrial Bridge",
+      "Waffle Fence",
+      "Land Tiles"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -53,9 +53,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 994455, "version": 6, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 850881, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -656,3 +654,6 @@
     }
   ]
 }
+
+
+

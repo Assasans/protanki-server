@@ -2,7 +2,7 @@
   "name": "map_highway",
   "theme": "winter_day",
 
-  "id": 227207,
+  "id": 901274,
   "preview": 875201,
 
   "visual": {
@@ -38,18 +38,18 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 185320, "version": 1, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 934285, "version": 1, "lazy": false, "type": 8 },
-      { "id": 675186, "version": 1, "lazy": false, "type": 8 },
-      { "id": 397339, "version": 1, "lazy": false, "type": 8 },
-      { "id": 105954, "version": 1, "lazy": false, "type": 8 },
-      { "id": 863808, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
-      { "id": 316457, "version": 1, "lazy": false, "type": 8 },
-      { "id": 886914, "version": 1, "lazy": false, "type": 8 },
-      { "id": 311175, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Concrete Tiles Winter",
+      "NuBu 2 Winter",
+      "Concrete Walls Winter",
+      "Bush Winter",
+      "Grass Tiles Winter",
+      "Promotion Winter",
+      "Cliffs Winter",
+      "Bridge Parts Winter",
+      "NuBu 3 Winter",
+      "NuBu 9 Winter",
+      "City Builds Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -59,9 +59,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 227207, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 901274, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -794,3 +792,6 @@
     }
   ]
 }
+
+
+

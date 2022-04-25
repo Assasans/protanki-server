@@ -2,7 +2,7 @@
   "name": "map_iran",
   "theme": "winter_day",
 
-  "id": 601253,
+  "id": 826788,
   "preview": 329784,
 
   "visual": {
@@ -38,11 +38,11 @@
     "right": 657818
   },
   "resources": {
-    "props": [
-      { "id": 552422, "version": 1, "lazy": false, "type": 8 },
-      { "id": 213102, "version": 2, "lazy": false, "type": 8 },
-      { "id": 37116, "version": 1, "lazy": false, "type": 8 },
-      { "id": 331907, "version": 3, "lazy": false, "type": 8 }
+    "proplibs": [
+      "zamin Winter",
+      "kahgel Winter",
+      "yonje Winter",
+      "kariz Winter"
     ],
     "skybox": [
       { "id": 475018, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -52,9 +52,7 @@
       { "id": 657818, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 83632, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 601253, "version": 10, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 826788, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -957,3 +955,6 @@
     }
   ]
 }
+
+
+

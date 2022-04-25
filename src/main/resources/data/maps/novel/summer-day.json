@@ -2,7 +2,7 @@
   "name": "map_novel",
   "theme": "summer_day",
 
-  "id": 932565,
+  "id": 660958,
   "preview": 679815,
 
   "visual": {
@@ -38,29 +38,29 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 728154, "version": 1, "lazy": false, "type": 8 },
-      { "id": 617857, "version": 1, "lazy": false, "type": 8 },
-      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 609946, "version": 1, "lazy": false, "type": 8 },
-      { "id": 107420, "version": 1, "lazy": false, "type": 8 },
-      { "id": 39200, "version": 1, "lazy": false, "type": 8 },
-      { "id": 316677, "version": 1, "lazy": false, "type": 8 },
-      { "id": 928231, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 },
-      { "id": 587350, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 663653, "version": 1, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 523067, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 },
-      { "id": 849509, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205210, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Industrial Elements",
+      "Hangars",
+      "Desert Houses",
+      "NuBu 8",
+      "NuBu 12",
+      "Industrial Bridge",
+      "Trees",
+      "Land Hills",
+      "NuBu 10",
+      "City Buildings",
+      "Promotion",
+      "Broken Roof",
+      "Broken Bottom",
+      "Outer Walls",
+      "Land Tiles",
+      "Waffle Fence",
+      "Land Rocks",
+      "Land Rise",
+      "Broken Walls",
+      "Bush",
+      "Stuffs",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -70,9 +70,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 932565, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 660958, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -568,3 +566,6 @@
     }
   ]
 }
+
+
+

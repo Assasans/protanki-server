@@ -2,7 +2,7 @@
   "name": "map_barda",
   "theme": "summer_night",
 
-  "id": 619501,
+  "id": 632578,
   "preview": 895614,
 
   "visual": {
@@ -38,24 +38,24 @@
     "right": 527828
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 590422, "version": 1, "lazy": false, "type": 8 },
-      { "id": 994853, "version": 1, "lazy": false, "type": 8 },
-      { "id": 257170, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 947010, "version": 1, "lazy": false, "type": 8 },
-      { "id": 169171, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 308916, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 668013, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 6",
+      "Grass Tiles",
+      "NuBu 2",
+      "NuBu 12",
+      "Village Builds",
+      "City Builds",
+      "Concrete Tiles",
+      "Small Bridge",
+      "Bridge Parts",
+      "Slopes Rises",
+      "Promotion",
+      "NuBu 4",
+      "Concrete Walls",
+      "Cliffs",
+      "NuBu 14",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 180702, "version": 2, "lazy": false, "alpha": false, "type": 10 },
@@ -65,9 +65,7 @@
       { "id": 527828, "version": 2, "lazy": false, "alpha": false, "type": 10 },
       { "id": 943466, "version": 2, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 619501, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 632578, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -784,3 +782,6 @@
     }
   ]
 }
+
+
+

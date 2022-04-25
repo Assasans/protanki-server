@@ -2,7 +2,7 @@
   "name": "map_rio",
   "theme": "summer_day",
 
-  "id": 98957,
+  "id": 609753,
   "preview": 219191,
 
   "visual": {
@@ -38,23 +38,23 @@
     "right": 772608
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 890995, "version": 1, "lazy": false, "type": 8 },
-      { "id": 745712, "version": 2, "lazy": false, "type": 8 },
-      { "id": 327137, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 },
-      { "id": 586915, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 137788, "version": 3, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 347383, "version": 1, "lazy": false, "type": 8 },
-      { "id": 668540, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Industrial Elements",
+      "Grass Tiles",
+      "Terrain",
+      "Concrete Tiles",
+      "zamin",
+      "Slopes Rises",
+      "Promotion",
+      "Exterior",
+      "Fence",
+      "Passage",
+      "Defense",
+      "Cliffs",
+      "Waffle Fence",
+      "Com Build",
+      "Bush",
+      "Stuffs"
     ],
     "skybox": [
       { "id": 338222, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -64,9 +64,7 @@
       { "id": 772608, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 867283, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 98957, "version": 7, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 609753, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -1055,3 +1053,6 @@
     }
   ]
 }
+
+
+

@@ -2,7 +2,7 @@
   "name": "map_duel",
   "theme": "summer_day",
 
-  "id": 453869,
+  "id": 911052,
   "preview": 820513,
 
   "visual": {
@@ -38,11 +38,11 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Slopes Rises",
+      "Promotion",
+      "Concrete Walls",
+      "Concrete Tiles"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -52,9 +52,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 453869, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 911052, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -147,3 +145,6 @@
     }
   ]
 }
+
+
+

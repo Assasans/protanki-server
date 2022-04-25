@@ -2,7 +2,7 @@
   "name": "map_pingpong",
   "theme": "winter_day",
 
-  "id": 415769,
+  "id": 649315,
   "preview": 575869,
 
   "visual": {
@@ -38,12 +38,12 @@
     "right": 804716
   },
   "resources": {
-    "props": [
-      { "id": 882130, "version": 1, "lazy": false, "type": 8 },
-      { "id": 404625, "version": 10, "lazy": false, "type": 8 },
-      { "id": 597073, "version": 3, "lazy": false, "type": 8 },
-      { "id": 507274, "version": 1, "lazy": false, "type": 8 },
-      { "id": 762902, "version": 6, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Waffle Fence Winter",
+      "Land Rocks Winter",
+      "Bush Winter",
+      "Promotion Winter",
+      "Land Tiles Winter"
     ],
     "skybox": [
       { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -53,9 +53,7 @@
       { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 415769, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 649315, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -250,3 +248,6 @@
     }
   ]
 }
+
+
+

@@ -2,7 +2,7 @@
   "name": "map_factory",
   "theme": "summer_day",
 
-  "id": 634800,
+  "id": 838099,
   "preview": 270999,
 
   "visual": {
@@ -38,14 +38,14 @@
     "right": 796690
   },
   "resources": {
-    "props": [
-      { "id": 347383, "version": 1, "lazy": false, "type": 8 },
-      { "id": 745712, "version": 2, "lazy": false, "type": 8 },
-      { "id": 586915, "version": 1, "lazy": false, "type": 8 },
-      { "id": 890995, "version": 1, "lazy": false, "type": 8 },
-      { "id": 327137, "version": 1, "lazy": false, "type": 8 },
-      { "id": 443222, "version": 2, "lazy": false, "type": 8 },
-      { "id": 668540, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Fence",
+      "Exterior",
+      "Terrain",
+      "Passage",
+      "Defense",
+      "Plants",
+      "Com Build"
     ],
     "skybox": [
       { "id": 604715, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -55,9 +55,7 @@
       { "id": 796690, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 817818, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 634800, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 838099, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -652,3 +650,6 @@
     }
   ]
 }
+
+
+

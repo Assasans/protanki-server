@@ -2,7 +2,7 @@
   "name": "map_kolhoz",
   "theme": "summer_day",
 
-  "id": 999936,
+  "id": 833859,
   "preview": 313516,
 
   "visual": {
@@ -38,16 +38,16 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 257170, "version": 1, "lazy": false, "type": 8 },
-      { "id": 842988, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 894006, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 }
+    "proplibs": [
+      "NuBu 3",
+      "Promotion",
+      "Grass Tiles",
+      "NuBu 2",
+      "Village Builds",
+      "Concrete Walls",
+      "Cliffs",
+      "Concrete Tiles",
+      "Bush"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -57,9 +57,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 999936, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 833859, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -597,3 +595,6 @@
     }
   ]
 }
+
+
+

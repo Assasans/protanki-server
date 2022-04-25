@@ -2,7 +2,7 @@
   "name": "map_abyss",
   "theme": "summer_day",
 
-  "id": 726975,
+  "id": 972888,
   "preview": 75453,
 
   "visual": {
@@ -38,19 +38,19 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 962184, "version": 1, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 },
-      { "id": 39200, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 837890, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 84460, "version": 1, "lazy": false, "type": 8 },
-      { "id": 609946, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Industrial Elements",
+      "City Buildings",
+      "Promotion",
+      "Outer Walls",
+      "Desert Houses",
+      "City Builds",
+      "Industrial Bridge",
+      "Waffle Fence",
+      "Land Tiles",
+      "NuBu 5",
+      "Bush",
+      "NuBu 9"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -60,9 +60,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 726975, "version": 4, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 972888, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -363,3 +361,6 @@
     }
   ]
 }
+
+
+

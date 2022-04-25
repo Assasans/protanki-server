@@ -2,7 +2,7 @@
   "name": "map_rift",
   "theme": "summer_day",
 
-  "id": 609967,
+  "id": 943910,
   "preview": 466737,
 
   "visual": {
@@ -38,17 +38,17 @@
     "right": 190313
   },
   "resources": {
-    "props": [
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 89699, "version": 1, "lazy": false, "type": 8 },
-      { "id": 478937, "version": 1, "lazy": false, "type": 8 },
-      { "id": 593128, "version": 1, "lazy": false, "type": 8 },
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 928231, "version": 1, "lazy": false, "type": 8 },
-      { "id": 205870, "version": 6, "lazy": false, "type": 8 },
-      { "id": 849509, "version": 1, "lazy": false, "type": 8 },
-      { "id": 587350, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Promotion",
+      "Outer Walls",
+      "Industrial Bridge",
+      "Trees",
+      "Waffle Fence",
+      "Land Tiles",
+      "Land Rocks",
+      "Land Rise",
+      "Bush",
+      "Stuffs"
     ],
     "skybox": [
       { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -58,9 +58,7 @@
       { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 609967, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 943910, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -455,3 +453,6 @@
     }
   ]
 }
+
+
+

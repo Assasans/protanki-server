@@ -33,6 +33,10 @@ class ResourceConverter : IResourceConverter {
   }
 }
 
+fun ServerResource.toClientResource(converter: IResourceConverter): ClientResource {
+  return converter.toClientResource(this)
+}
+
 data class ServerMapFlag(
   @Json val position: ServerVector3
 )
@@ -148,10 +152,39 @@ data class ServerMapVisual(
 )
 
 data class ServerMapResources(
-  @Json val props: List<ServerResource>,
+  @Json val proplibs: List<String>,
   @Json val skybox: List<ServerResource>,
-  @Json val map: List<ServerResource>
+  @Json val map: ServerIdResource
 )
+
+data class ServerIdResource(
+  @Json val id: Long,
+  @Json val version: Long
+)
+
+fun ServerIdResource.toServerResource(): ServerResource {
+  return ServerResource(
+    id = id,
+    version = version,
+    lazy = false,
+    type = ResourceType.Map
+  )
+}
+
+data class ServerProplib(
+  @Json val name: String,
+  @Json val id: Long,
+  @Json val version: Long
+)
+
+fun ServerProplib.toServerResource(): ServerResource {
+  return ServerResource(
+    id = id,
+    version = version,
+    lazy = false,
+    type = ResourceType.PropLibrary
+  )
+}
 
 enum class ServerMapTheme(val key: String, val clientKey: String, val visualKey: String) {
   SummerDay("summer_day", clientKey = "SUMMER", visualKey = "SUMMER"),
@@ -195,12 +228,12 @@ data class ServerResource(
   @Json val type: ResourceType,
   @Json val lazy: Boolean,
 
-  @Json val alpha: Boolean?,
+  @Json val alpha: Boolean? = null,
 
-  @Json val width: Int?,
-  @Json val height: Int?,
-  @Json val frames: Int?,
-  @Json val fps: Int?
+  @Json val width: Int? = null,
+  @Json val height: Int? = null,
+  @Json val frames: Int? = null,
+  @Json val fps: Int? = null
 )
 
 /**

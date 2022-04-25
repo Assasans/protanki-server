@@ -2,7 +2,7 @@
   "name": "map_madness_old",
   "theme": "space",
 
-  "id": 127508,
+  "id": 15487,
   "preview": 678653,
 
   "visual": {
@@ -38,9 +38,9 @@
     "right": 669522
   },
   "resources": {
-    "props": [
-      { "id": 245366, "version": 2, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 10, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Promotion",
+      "Industrial Bridge"
     ],
     "skybox": [
       { "id": 255467, "version": 3, "lazy": false, "alpha": false, "type": 10 },
@@ -50,9 +50,7 @@
       { "id": 669522, "version": 3, "lazy": false, "alpha": false, "type": 10 },
       { "id": 120253, "version": 3, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 127508, "version": 5, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 15487, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -965,3 +963,6 @@
     }
   ]
 }
+
+
+

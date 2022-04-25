@@ -2,7 +2,7 @@
   "name": "map_edinburgh",
   "theme": "summer_day",
 
-  "id": 967049,
+  "id": 646610,
   "preview": 426643,
 
   "visual": {
@@ -38,19 +38,19 @@
     "right": 987391
   },
   "resources": {
-    "props": [
-      { "id": 768697, "version": 1, "lazy": false, "type": 8 },
-      { "id": 761948, "version": 1, "lazy": false, "type": 8 },
-      { "id": 426360, "version": 1, "lazy": false, "type": 8 },
-      { "id": 922302, "version": 1, "lazy": false, "type": 8 },
-      { "id": 421539, "version": 1, "lazy": false, "type": 8 },
-      { "id": 286895, "version": 3, "lazy": false, "type": 8 },
-      { "id": 344680, "version": 1, "lazy": false, "type": 8 },
-      { "id": 947010, "version": 1, "lazy": false, "type": 8 },
-      { "id": 575280, "version": 1, "lazy": false, "type": 8 },
-      { "id": 644412, "version": 1, "lazy": false, "type": 8 },
-      { "id": 698047, "version": 9, "lazy": false, "type": 8 },
-      { "id": 31375, "version": 1, "lazy": false, "type": 8 }
+    "proplibs": [
+      "Slopes Rises",
+      "Promotion",
+      "Grass Tiles",
+      "Village Builds",
+      "Fachwerk House 1",
+      "Fort",
+      "City Builds",
+      "Cliffs",
+      "Concrete Tiles",
+      "Small Bridge",
+      "Bush",
+      "Fachwerk House 2"
     ],
     "skybox": [
       { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
@@ -60,9 +60,7 @@
       { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
       { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
-    "map": [
-      { "id": 967049, "version": 3, "lazy": false, "type": 7 }
-    ]
+    "map": { "id": 646610, "version": 1 }
   },
   "spawnPoints": [
     {
@@ -481,3 +479,6 @@
     }
   ]
 }
+
+
+
