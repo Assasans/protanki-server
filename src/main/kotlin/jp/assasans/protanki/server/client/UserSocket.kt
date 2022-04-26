@@ -249,6 +249,7 @@ class UserSocket(
 
           when(handler.argsBehaviour) {
             ArgsBehaviourType.Arguments -> {
+              if(command.args.size < handler.args.size) throw IllegalArgumentException("Command has too few arguments. Packet: ${command.args.size}, handler: ${handler.args.size}")
               args.putAll(handler.args.mapIndexed { index, parameter ->
                 val value = command.args[index]
 
