@@ -233,55 +233,42 @@ class UserSocket(
       if(command.side != CommandSide.Server) throw Exception("Unsupported command: ${command.category}::${command.name}")
 
       val handler = commandRegistry.getHandler(command.name)
-      if(handler != null) {
-        try {
-          val instance = handler.type.primaryConstructor!!.call()
-          val args = mutableMapOf<KParameter, Any?>(
-            Pair(
-              handler.function.parameters.single { parameter -> parameter.kind == KParameter.Kind.INSTANCE },
-              instance
-            ),
-            Pair(
-              handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0],
-              this
-            )
+      if(handler == null) return
+
+      try {
+        val instance = handler.type.primaryConstructor!!.call()
+        val args = mutableMapOf<KParameter, Any?>(
+          Pair(
+            handler.function.parameters.single { parameter -> parameter.kind == KParameter.Kind.INSTANCE },
+            instance
+          ),
+          Pair(
+            handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0],
+            this
           )
+        )
 
-          when(handler.argsBehaviour) {
-            ArgsBehaviourType.Arguments -> {
-              if(command.args.size < handler.args.size) throw IllegalArgumentException("Command has too few arguments. Packet: ${command.args.size}, handler: ${handler.args.size}")
-              args.putAll(handler.args.mapIndexed { index, parameter ->
-                val value = command.args[index]
+        when(handler.argsBehaviour) {
+          ArgsBehaviourType.Arguments -> {
+            if(command.args.size < handler.args.size) throw IllegalArgumentException("Command has too few arguments. Packet: ${command.args.size}, handler: ${handler.args.size}")
+            args.putAll(handler.args.mapIndexed { index, parameter ->
+              val value = command.args[index]
 
-                Pair(parameter, CommandArgs.convert(parameter.type, value))
-              })
-            }
-
-            ArgsBehaviourType.Raw       -> {
-              val argsParameter = handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[1]
-              args[argsParameter] = CommandArgs(command.args)
-            }
+              Pair(parameter, CommandArgs.convert(parameter.type, value))
+            })
           }
 
-          // logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
-
-          handler.function.callSuspendBy(args)
-        } catch(exception: Throwable) {
-          logger.error(exception) { "Failed to call ${command.name} handler" }
+          ArgsBehaviourType.Raw       -> {
+            val argsParameter = handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[1]
+            args[argsParameter] = CommandArgs(command.args)
+          }
         }
 
-        return
-      }
+        // logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
 
-      when(command.name) {
-        CommandName.ShowFriendsList -> {
-          Command(
-            CommandName.ShowFriendsList,
-            listOf(ShowFriendsModalData().toJson())
-          ).send(this)
-        }
-
-        else                        -> {}
+        handler.function.callSuspendBy(args)
+      } catch(exception: Throwable) {
+        logger.error(exception) { "Failed to call ${command.name} handler" }
       }
     } catch(exception: UnknownCommandCategoryException) {
       logger.warn { "Unknown command category: ${exception.category}" }
