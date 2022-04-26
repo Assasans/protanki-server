@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 618407,
-    "front": 901771,
-    "back": 115550,
-    "bottom": 325968,
-    "left": 233133,
-    "right": 719361
-  },
+  "skybox": "Desert",
   "resources": {
     "proplibs": [
       "Industrial Elements",
@@ -51,14 +44,6 @@
       "Bush",
       "Stuffs",
       "NuBu 9"
-    ],
-    "skybox": [
-      { "id": 115550, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 325968, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 901771, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 233133, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 719361, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 618407, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 352046, "version": 1 }
   },

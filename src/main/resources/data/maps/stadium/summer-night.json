@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 31091,
-    "front": 1706,
-    "back": 435821,
-    "bottom": 938264,
-    "left": 800616,
-    "right": 496680
-  },
+  "skybox": "Mountains Night",
   "resources": {
     "proplibs": [
       "Promotion",
@@ -44,14 +37,6 @@
       "Industrial Bridge",
       "Waffle Fence",
       "Land Tiles"
-    ],
-    "skybox": [
-      { "id": 435821, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 938264, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 1706, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 800616, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 496680, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 31091, "version": 2, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 850881, "version": 1 }
   },

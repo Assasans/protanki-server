@@ -6,12 +6,10 @@ import com.squareup.moshi.Types
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import jp.assasans.protanki.server.IResourceManager
-import jp.assasans.protanki.server.ServerMapInfo
-import jp.assasans.protanki.server.ServerMapTheme
-import jp.assasans.protanki.server.ServerProplib
+import jp.assasans.protanki.server.*
 
 interface IMapRegistry {
+  val skyboxes: MutableMap<String, Map<SkyboxSide, ServerIdResource>>
   val proplibs: MutableList<ServerProplib>
   val maps: MutableList<ServerMapInfo>
 
@@ -24,10 +22,34 @@ class MapRegistry : IMapRegistry, KoinComponent {
   private val json by inject<Moshi>()
   private val resourceManager by inject<IResourceManager>()
 
+  override val skyboxes: MutableMap<String, Map<SkyboxSide, ServerIdResource>> = mutableMapOf()
   override val proplibs: MutableList<ServerProplib> = mutableListOf()
   override val maps: MutableList<ServerMapInfo> = mutableListOf()
 
   override suspend fun load() {
+    logger.debug { "Loading skyboxes..." }
+    resourceManager.get("skyboxes.json").let { entry ->
+      val skyboxes = json
+        .adapter<Map<String, Map<SkyboxSide, ServerIdResource>>>(
+          Types.newParameterizedType(
+            Map::class.java,
+            String::class.java,
+            Types.newParameterizedType(
+              Map::class.java,
+              SkyboxSide::class.java,
+              ServerIdResource::class.java
+            )
+          )
+        )
+        .failOnUnknown()
+        .fromJson(entry.readText())!!
+
+      skyboxes.forEach { (name, skybox) ->
+        this.skyboxes[name] = skybox
+        logger.debug { "  > Loaded skybox $name -> $skybox" }
+      }
+    }
+
     logger.debug { "Loading proplibs..." }
     resourceManager.get("proplibs.json").let { entry ->
       val proplibs = json
@@ -68,4 +90,8 @@ fun IMapRegistry.get(name: String, theme: ServerMapTheme): ServerMapInfo {
 
 fun IMapRegistry.getProplib(name: String): ServerProplib {
   return proplibs.single { map -> map.name == name }
+}
+
+fun IMapRegistry.getSkybox(name: String): Map<SkyboxSide, ServerIdResource> {
+  return skyboxes[name] ?: throw IllegalArgumentException("No such skybox: $name")
 }

@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 272756,
-    "front": 429475,
-    "back": 336744,
-    "bottom": 934083,
-    "left": 824898,
-    "right": 521113
-  },
+  "skybox": "Brazil Night",
   "resources": {
     "proplibs": [
       "Industrial Elements",
@@ -55,14 +48,6 @@
       "Com Build",
       "Bush",
       "Stuffs"
-    ],
-    "skybox": [
-      { "id": 336744, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 934083, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 429475, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 824898, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 521113, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 272756, "version": 2, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 609753, "version": 1 }
   },

@@ -29,28 +29,13 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 382517,
-    "front": 154237,
-    "back": 713031,
-    "bottom": 140763,
-    "left": 340282,
-    "right": 214316
-  },
+  "skybox": "Iran",
   "resources": {
     "proplibs": [
       "kahgel",
       "kariz",
       "yonje",
       "zamin"
-    ],
-    "skybox": [
-      { "id": 713031, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 140763, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 154237, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 340282, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 214316, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 382517, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 708256, "version": 1 }
   },

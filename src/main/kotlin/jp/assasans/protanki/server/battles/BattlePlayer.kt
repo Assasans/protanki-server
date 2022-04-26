@@ -6,6 +6,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import jp.assasans.protanki.server.battles.map.IMapRegistry
+import jp.assasans.protanki.server.battles.map.getSkybox
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -30,6 +33,8 @@ class BattlePlayer(
   var deaths: Int = 0
 ) : ITickHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
+
+  private val mapRegistry: IMapRegistry by inject()
 
   var incarnation: Int = 0
 
@@ -99,7 +104,9 @@ class BattlePlayer(
           mapId = battle.map.id,
           spectator = isSpectator,
           reArmorEnabled = true,
-          skybox = battle.map.skybox.toJson(),
+          skybox = mapRegistry.getSkybox(battle.map.skybox)
+            .mapValues { (_, resource) -> resource.id }
+            .toJson(),
           map_graphic_data = battle.map.visual.toJson()
         ).toJson()
       )

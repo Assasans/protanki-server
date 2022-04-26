@@ -11,6 +11,7 @@ import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.map.getProplib
+import jp.assasans.protanki.server.battles.map.getSkybox
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.ControlPointsModeHandler
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
@@ -96,11 +97,19 @@ class LobbyHandler : ICommandHandler, KoinComponent {
           ).toJson()
         )
       )
-      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
       socket.awaitDependency(
         socket.loadDependency(
           ClientResources(
-            listOf(battle.map.resources.map.toServerResource().toClientResource(resourceConverter))
+            mapRegistry.getSkybox(battle.map.skybox)
+              .map { (_, resource) -> resource.toServerResource(ResourceType.Image) }
+              .map(resourceConverter::toClientResource)
+          ).toJson()
+        )
+      )
+      socket.awaitDependency(
+        socket.loadDependency(
+          ClientResources(
+            listOf(battle.map.resources.map.toServerResource(ResourceType.Map).toClientResource(resourceConverter))
           ).toJson()
         )
       )
@@ -140,11 +149,19 @@ class LobbyHandler : ICommandHandler, KoinComponent {
           ).toJson()
         )
       )
-      socket.awaitDependency(socket.loadDependency(ClientResources(battle.map.resources.skybox.map(resourceConverter::toClientResource)).toJson()))
       socket.awaitDependency(
         socket.loadDependency(
           ClientResources(
-            listOf(battle.map.resources.map.toServerResource().toClientResource(resourceConverter))
+            mapRegistry.getSkybox(battle.map.skybox)
+              .map { (_, resource) -> resource.toServerResource(ResourceType.Image) }
+              .map(resourceConverter::toClientResource)
+          ).toJson()
+        )
+      )
+      socket.awaitDependency(
+        socket.loadDependency(
+          ClientResources(
+            listOf(battle.map.resources.map.toServerResource(ResourceType.Map).toClientResource(resourceConverter))
           ).toJson()
         )
       )

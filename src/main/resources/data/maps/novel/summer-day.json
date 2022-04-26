@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 345563,
-    "front": 80445,
-    "back": 266699,
-    "bottom": 590300,
-    "left": 616027,
-    "right": 190313
-  },
+  "skybox": "Mountains",
   "resources": {
     "proplibs": [
       "Industrial Elements",
@@ -61,14 +54,6 @@
       "Bush",
       "Stuffs",
       "NuBu 9"
-    ],
-    "skybox": [
-      { "id": 266699, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 590300, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 80445, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 616027, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 190313, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 345563, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 660958, "version": 1 }
   },

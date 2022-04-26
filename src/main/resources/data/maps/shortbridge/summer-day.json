@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 45572,
-    "front": 57735,
-    "back": 268412,
-    "bottom": 31494,
-    "left": 927961,
-    "right": 987391
-  },
+  "skybox": "Hills",
   "resources": {
     "proplibs": [
       "Slopes Rises",
@@ -47,14 +40,6 @@
       "Cliffs",
       "Concrete Tiles",
       "Bush"
-    ],
-    "skybox": [
-      { "id": 268412, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 31494, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 57735, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 927961, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 987391, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 45572, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 520560, "version": 1 }
   },

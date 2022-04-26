@@ -1,0 +1,106 @@
+{
+  "Mountains": {
+    "top": { "id": 345563, "version": 1 },
+    "front": { "id": 80445, "version": 1 },
+    "back": { "id": 266699, "version": 1 },
+    "bottom": { "id": 590300, "version": 1 },
+    "left": { "id": 616027, "version": 1 },
+    "right": { "id": 190313, "version": 1 }
+  },
+  "Mountains Night": {
+    "top": { "id": 31091, "version": 2 },
+    "front": { "id": 1706, "version": 2 },
+    "back": { "id": 435821, "version": 2 },
+    "bottom": { "id": 938264, "version": 2 },
+    "left": { "id": 800616, "version": 2 },
+    "right": { "id": 496680, "version": 2 }
+  },
+  "Winter": {
+    "top": { "id": 1929, "version": 1 },
+    "front": { "id": 274735, "version": 1 },
+    "back": { "id": 667135, "version": 1 },
+    "bottom": { "id": 123809, "version": 1 },
+    "left": { "id": 784146, "version": 1 },
+    "right": { "id": 804716, "version": 1 }
+  },
+  "Hills": {
+    "top": { "id": 45572, "version": 1 },
+    "front": { "id": 57735, "version": 1 },
+    "back": { "id": 268412, "version": 1 },
+    "bottom": { "id": 31494, "version": 1 },
+    "left": { "id": 927961, "version": 1 },
+    "right": { "id": 987391, "version": 1 }
+  },
+  "Hills Night": {
+    "top": { "id": 943466, "version": 2 },
+    "front": { "id": 728777, "version": 2 },
+    "back": { "id": 180702, "version": 2 },
+    "bottom": { "id": 732324, "version": 2 },
+    "left": { "id": 68020, "version": 2 },
+    "right": { "id": 527828, "version": 2 }
+  },
+  "Desert": {
+    "top": { "id": 618407, "version": 1 },
+    "front": { "id": 901771, "version": 1 },
+    "back": { "id": 115550, "version": 1 },
+    "bottom": { "id": 325968, "version": 1 },
+    "left": { "id": 233133, "version": 1 },
+    "right": { "id": 719361, "version": 1 }
+  },
+  "Urban": {
+    "top": { "id": 817818, "version": 1 },
+    "front": { "id": 458358, "version": 1 },
+    "back": { "id": 604715, "version": 1 },
+    "bottom": { "id": 591165, "version": 1 },
+    "left": { "id": 972735, "version": 1 },
+    "right": { "id": 796690, "version": 1 }
+  },
+  "Urban Night": {
+    "top": { "id": 226765, "version": 8 },
+    "front": { "id": 967825, "version": 8 },
+    "back": { "id": 646439, "version": 8 },
+    "bottom": { "id": 253969, "version": 8 },
+    "left": { "id": 312500, "version": 8 },
+    "right": { "id": 229643, "version": 8 }
+  },
+  "Iran": {
+    "top": { "id": 382517, "version": 1 },
+    "front": { "id": 154237, "version": 1 },
+    "back": { "id": 713031, "version": 1 },
+    "bottom": { "id": 140763, "version": 1 },
+    "left": { "id": 340282, "version": 1 },
+    "right": { "id": 214316, "version": 1 }
+  },
+  "Iran Winter": {
+    "top": { "id": 83632, "version": 1 },
+    "front": { "id": 390708, "version": 1 },
+    "back": { "id": 475018, "version": 1 },
+    "bottom": { "id": 271597, "version": 1 },
+    "left": { "id": 931533, "version": 1 },
+    "right": { "id": 657818, "version": 1 }
+  },
+  "Space": {
+    "top": { "id": 120253, "version": 3 },
+    "front": { "id": 7352, "version": 3 },
+    "back": { "id": 255467, "version": 3 },
+    "bottom": { "id": 329064, "version": 3 },
+    "left": { "id": 86763, "version": 3 },
+    "right": { "id": 669522, "version": 3 }
+  },
+  "Brazil": {
+    "top": { "id": 867283, "version": 1 },
+    "front": { "id": 629457, "version": 1 },
+    "back": { "id": 338222, "version": 1 },
+    "bottom": { "id": 536438, "version": 1 },
+    "left": { "id": 347680, "version": 1 },
+    "right": { "id": 772608, "version": 1 }
+  },
+  "Brazil Night": {
+    "top": { "id": 272756, "version": 2 },
+    "front": { "id": 429475, "version": 2 },
+    "back": { "id": 336744, "version": 2 },
+    "bottom": { "id": 934083, "version": 2 },
+    "left": { "id": 824898, "version": 2 },
+    "right": { "id": 521113, "version": 2 }
+  }
+}

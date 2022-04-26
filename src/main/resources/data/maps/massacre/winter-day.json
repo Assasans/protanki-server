@@ -29,14 +29,7 @@
     "dustParticle": "winter",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 1929,
-    "front": 274735,
-    "back": 667135,
-    "bottom": 123809,
-    "left": 784146,
-    "right": 804716
-  },
+  "skybox": "Winter",
   "resources": {
     "proplibs": [
       "Outer Walls Winter",
@@ -46,14 +39,6 @@
       "Promotion Winter",
       "Land Tiles Winter",
       "Land Rise Winter"
-    ],
-    "skybox": [
-      { "id": 667135, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 123809, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 274735, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 784146, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 804716, "version": 1, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 1929, "version": 1, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 597579, "version": 1 }
   },

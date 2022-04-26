@@ -29,26 +29,11 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 120253,
-    "front": 7352,
-    "back": 255467,
-    "bottom": 329064,
-    "left": 86763,
-    "right": 669522
-  },
+  "skybox": "Space",
   "resources": {
     "proplibs": [
       "Promotion",
       "Industrial Bridge"
-    ],
-    "skybox": [
-      { "id": 255467, "version": 3, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 329064, "version": 3, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 7352, "version": 3, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 86763, "version": 3, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 669522, "version": 3, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 120253, "version": 3, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 15487, "version": 1 }
   },

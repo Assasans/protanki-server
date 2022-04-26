@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 943466,
-    "front": 728777,
-    "back": 180702,
-    "bottom": 732324,
-    "left": 68020,
-    "right": 527828
-  },
+  "skybox": "Hills Night",
   "resources": {
     "proplibs": [
       "Slopes Rises",
@@ -48,14 +41,6 @@
       "Cliffs",
       "Concrete Tiles",
       "Bush"
-    ],
-    "skybox": [
-      { "id": 180702, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 732324, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 728777, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 68020, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 527828, "version": 2, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 943466, "version": 2, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 336728, "version": 1 }
   },

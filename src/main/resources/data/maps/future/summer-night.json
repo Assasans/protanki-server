@@ -29,14 +29,7 @@
     "dustParticle": "summer",
     "dustSize": 200
   },
-  "skybox": {
-    "top": 226765,
-    "front": 967825,
-    "back": 646439,
-    "bottom": 253969,
-    "left": 312500,
-    "right": 229643
-  },
+  "skybox": "Urban Night",
   "resources": {
     "proplibs": [
       "Fence",
@@ -46,14 +39,6 @@
       "Defense",
       "Plants",
       "Com Build"
-    ],
-    "skybox": [
-      { "id": 646439, "version": 8, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 253969, "version": 8, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 967825, "version": 8, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 312500, "version": 8, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 229643, "version": 8, "lazy": false, "alpha": false, "type": 10 },
-      { "id": 226765, "version": 8, "lazy": false, "alpha": false, "type": 10 }
     ],
     "map": { "id": 496663, "version": 1 }
   },

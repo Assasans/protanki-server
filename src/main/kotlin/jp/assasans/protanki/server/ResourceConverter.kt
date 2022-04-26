@@ -91,7 +91,7 @@ data class ServerMapInfo(
   @Json val preview: Int,
 
   @Json val visual: ServerMapVisual,
-  @Json val skybox: ServerMapSkybox,
+  @Json val skybox: String,
   @Json val resources: ServerMapResources,
 
   @Json val spawnPoints: List<ServerMapSpawnPoint>,
@@ -117,14 +117,20 @@ data class ServerMapSpawnPoint(
   @Json val rotation: ServerVector3
 )
 
-data class ServerMapSkybox(
-  @Json val top: Int,
-  @Json val front: Int,
-  @Json val back: Int,
-  @Json val bottom: Int,
-  @Json val left: Int,
-  @Json val right: Int
-)
+enum class SkyboxSide(val key: String) {
+  Top("top"),
+  Front("front"),
+  Back("back"),
+  Bottom("bottom"),
+  Left("left"),
+  Right("right");
+
+  companion object {
+    private val map = values().associateBy(SkyboxSide::key)
+
+    fun get(key: String) = map[key]
+  }
+}
 
 data class ServerMapVisual(
   @Json val angleX: Double,
@@ -153,7 +159,6 @@ data class ServerMapVisual(
 
 data class ServerMapResources(
   @Json val proplibs: List<String>,
-  @Json val skybox: List<ServerResource>,
   @Json val map: ServerIdResource
 )
 
@@ -162,12 +167,12 @@ data class ServerIdResource(
   @Json val version: Long
 )
 
-fun ServerIdResource.toServerResource(): ServerResource {
+fun ServerIdResource.toServerResource(type: ResourceType): ServerResource {
   return ServerResource(
     id = id,
     version = version,
     lazy = false,
-    type = ResourceType.Map
+    type = type
   )
 }
 
