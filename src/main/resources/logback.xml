@@ -16,6 +16,9 @@
   <logger name="org.jboss" level="INFO" />
   <logger name="com.zaxxer.hikari" level="INFO" />
   <logger name="org.mariadb.jdbc" level="INFO" />
+  <logger name="io.netty" level="INFO" />
+  <logger name="ktor.application" level="INFO" />
 
   <logger name="jp.assasans.protanki.server.commands.handlers.BattleHandler" level="DEBUG" />
+  <logger name="jp.assasans.protanki.server.resources.ResourceServer" level="DEBUG" />
 </configuration>

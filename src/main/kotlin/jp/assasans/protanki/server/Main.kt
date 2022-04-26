@@ -26,7 +26,6 @@ import jp.assasans.protanki.server.battles.map.MapRegistry
 import jp.assasans.protanki.server.chat.ChatCommandRegistry
 import jp.assasans.protanki.server.chat.IChatCommandRegistry
 import jp.assasans.protanki.server.client.*
-import jp.assasans.protanki.server.client.isida.IsidaFireMode
 import jp.assasans.protanki.server.commands.CommandRegistry
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.gitVersion
@@ -36,6 +35,8 @@ import jp.assasans.protanki.server.garage.IGarageItemConverter
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 import jp.assasans.protanki.server.lobby.chat.LobbyChatManager
+import jp.assasans.protanki.server.resources.IResourceServer
+import jp.assasans.protanki.server.resources.ResourceServer
 import jp.assasans.protanki.server.serialization.*
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
@@ -94,6 +95,7 @@ suspend fun main(args: Array<String>) {
 
   val module = module {
     single<ISocketServer> { SocketServer() }
+    single<IResourceServer> { ResourceServer() }
     single<ICommandRegistry> { CommandRegistry() }
     single<IBattleProcessor> { BattleProcessor() }
     single<IResourceManager> { ResourceManager() }

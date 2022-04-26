@@ -28,6 +28,8 @@ dependencies {
   implementation("io.ktor:ktor-server-core:2.0.0-beta-1")
   implementation("io.ktor:ktor-network:2.0.0-beta-1")
   implementation("io.ktor:ktor-server-netty:2.0.0-beta-1")
+  implementation("io.ktor:ktor-client-core:2.0.0-beta-1")
+  implementation("io.ktor:ktor-client-cio:2.0.0-beta-1")
 
   val koinVersion = "3.1.5"
 

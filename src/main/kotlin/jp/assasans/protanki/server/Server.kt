@@ -27,11 +27,13 @@ import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
+import jp.assasans.protanki.server.resources.IResourceServer
 
 class Server : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val socketServer by inject<ISocketServer>()
+  private val resourceServer by inject<IResourceServer>()
   private val commandRegistry by inject<ICommandRegistry>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val marketRegistry by inject<IGarageMarketRegistry>()
@@ -345,6 +347,7 @@ class Server : KoinComponent {
 
     HibernateUtils.createEntityManager().close() // Initialize database
 
+    resourceServer.run()
     socketServer.run()
   }
 }

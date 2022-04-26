@@ -68,3 +68,5 @@ hs_err_pid*
 
 db.h2.mv.db
 db.h2
+
+src/main/resources/data/static
