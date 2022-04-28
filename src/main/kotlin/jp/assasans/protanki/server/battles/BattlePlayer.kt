@@ -232,24 +232,6 @@ class BattlePlayer(
     initTanks()
 
     if(!isSpectator) {
-      // Command(
-      //   CommandName.InitTank,
-      //   listOf(
-      //     InitTankData(
-      //       battleId = battle.id,
-      //       hull_id = "hunter_m0",
-      //       turret_id = "railgun_m0",
-      //       colormap_id = 966681,
-      //       hullResource = 227169,
-      //       turretResource = 906685,
-      //       partsObject = "{\"engineIdleSound\":386284,\"engineStartMovingSound\":226985,\"engineMovingSound\":75329,\"turretSound\":242699}",
-      //       tank_id = (tank ?: throw Exception("No Tank")).id,
-      //       nickname = user.username,
-      //       team_type = team.key
-      //     ).toJson()
-      //   )
-      // ).send(socket)
-
       logger.info { "Load stage 2" }
 
       Command(
