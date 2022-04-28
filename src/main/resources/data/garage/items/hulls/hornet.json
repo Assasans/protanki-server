@@ -26,7 +26,20 @@
             { "property": "HULL_ACCELERATION", "value": 10 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 10.0,
+        "turnSpeed": 1.584759,
+        "acceleration": 10.41,
+        "reverseAcceleration": 17.77,
+        "sideAcceleration": 9.39,
+        "turnAcceleration": 2.864609,
+        "reverseTurnAcceleration": 4.216192,
+        "damping": 1250,
+        "mass": 1616,
+        "power": 10.41
+      }
     },
     "1": {
       "previewResourceId": 930953,
@@ -46,7 +59,20 @@
             { "property": "HULL_ACCELERATION", "value": 11 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 10.7,
+        "turnSpeed": 1.8360863,
+        "acceleration": 11.73,
+        "reverseAcceleration": 19.7,
+        "sideAcceleration": 10.35,
+        "turnAcceleration": 2.9024825,
+        "reverseTurnAcceleration": 4.720592,
+        "damping": 1250,
+        "mass": 1905,
+        "power": 11.73
+      }
     },
     "2": {
       "previewResourceId": 725125,
@@ -66,7 +92,20 @@
             { "property": "HULL_ACCELERATION", "value": 13 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 11.5,
+        "turnSpeed": 2.089159,
+        "acceleration": 13.05,
+        "reverseAcceleration": 21.62,
+        "sideAcceleration": 11.31,
+        "turnAcceleration": 2.9401817,
+        "reverseTurnAcceleration": 5.2248173,
+        "damping": 1250,
+        "mass": 2194,
+        "power": 13.05
+      }
     },
     "3": {
       "previewResourceId": 72507,
@@ -86,7 +125,20 @@
             { "property": "HULL_ACCELERATION", "value": 14 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 12.0,
+        "turnSpeed": 2.268928,
+        "acceleration": 14.0,
+        "reverseAcceleration": 23.0,
+        "sideAcceleration": 12.0,
+        "turnAcceleration": 2.9670596,
+        "reverseTurnAcceleration": 5.5850534,
+        "damping": 1250,
+        "mass": 2400,
+        "power": 14.0
+      }
     }
   }
 }
