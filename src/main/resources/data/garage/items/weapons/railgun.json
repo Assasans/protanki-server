@@ -34,6 +34,13 @@
         { "property": "WEAPON_WEAKENING_COEFF", "value": 35.36 }
       ],
 
+      "physics": {
+        "turretRotationSpeed": 0.9815731713216109,
+        "turretTurnAcceleration": 1.214225560612455,
+        "impactForce": 3.6958,
+        "kickback": 2.138
+      },
+
       "visual": {
         "$type": "railgun",
 
@@ -109,6 +116,13 @@
         { "property": "WEAPON_WEAKENING_COEFF", "value": 56.90 }
       ],
 
+      "physics": {
+        "turretRotationSpeed": 1.2217304763960306,
+        "turretTurnAcceleration": 1.3962634015954636,
+        "impactForce": 4.7972,
+        "kickback": 2.4253
+      },
+
       "visual": {
         "$type": "railgun",
 
@@ -182,7 +196,63 @@
         },
         { "property": "TURRET_TURN_SPEED", "value": 78.5 },
         { "property": "WEAPON_WEAKENING_COEFF", "value": 78.45 }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 1.3692107981895516,
+        "turretTurnAcceleration": 1.5781267096532727,
+        "impactForce": 5.8986,
+        "kickback": 2.7127
+      },
+
+      "visual": {
+        "$type": "railgun",
+
+        "chargingPart1": 114424,
+        "chargingPart2": 468379,
+        "chargingPart3": 932241,
+        "hitMarkTexture": 670581,
+        "powTexture": 963502,
+        "ringsTexture": 966691,
+        "shotSound": 900596,
+        "smokeImage": 882103,
+        "sphereTexture": 212409,
+        "trailImage": 550305,
+        "lighting": [
+          {
+            "name": "charge",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 200, "color": 13597945, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 200, "attenuationEnd": 800, "color": 13597945, "intensity": 0.3, "time": 600 }
+            ]
+          },
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 13597945, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 13597945, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 600, "color": 13597945, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 13597945, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "rail",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 500, "color": 13597945, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 13597945, "intensity": 0, "time": 1800 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 7.898, "contrast": -2.655, "saturation": 35.398, "hue": 78.05, "key": "trail" },
+          { "brightness": 7.898, "contrast": -2.655, "saturation": 35.398, "hue": 78.05, "key": "charge" }
+        ]
+      }
     },
     "3": {
       "previewResourceId": 387778,
@@ -208,7 +278,63 @@
         },
         { "property": "TURRET_TURN_SPEED", "value": 97.4 },
         { "property": "WEAPON_WEAKENING_COEFF", "value": 100.00 }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 1.6999506914424771,
+        "turretTurnAcceleration": 1.7599900177110819,
+        "impactForce": 7.0,
+        "kickback": 3.0
+      },
+
+      "visual": {
+        "$type": "railgun",
+
+        "chargingPart1": 114424,
+        "chargingPart2": 468379,
+        "chargingPart3": 932241,
+        "hitMarkTexture": 670581,
+        "powTexture": 963502,
+        "ringsTexture": 966691,
+        "shotSound": 900596,
+        "smokeImage": 882103,
+        "sphereTexture": 212409,
+        "trailImage": 550305,
+        "lighting": [
+          {
+            "name": "charge",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 200, "color": 16765017, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 200, "attenuationEnd": 800, "color": 16765017, "intensity": 0.3, "time": 600 }
+            ]
+          },
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 16765017, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16765017, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 600, "color": 16765017, "intensity": 0.7, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16765017, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "rail",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 500, "color": 16765017, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16765017, "intensity": 0, "time": 1800 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 9.027, "contrast": -3.54, "saturation": 44.248, "hue": 208.67, "key": "trail" },
+          { "brightness": 9.027, "contrast": -3.54, "saturation": 44.248, "hue": 208.67, "key": "charge" }
+        ]
+      }
     }
   }
 }
