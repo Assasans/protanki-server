@@ -101,6 +101,10 @@
     },
     { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_BUY_HD", "value": "Buy HD" },
     { "key": "STRING_FRIENDS_BATTLE", "value": "Battle" },
+    {
+      "key": "BATTLE_ENTER_WARNING_PARKOUR",
+      "value": "Attention! This is a Parkour Battle.\nYou will not receive any experience or crystals in it."
+    },
     { "key": "BATTLE_GOLD_TAKEN", "value": "has taken the gold box" },
     {
       "key": "PAYMENT_VISA_DESCRIPTION_TEXT",
@@ -206,6 +210,7 @@
     { "key": "SETTINGS_ALTERNATE_CAMERA_LABEL_TEXT", "value": "Alternate camera behaviour" },
     { "key": "GAME_ACTION_USE_MINE", "value": "Drop Mine" },
     { "key": "STRING_ERROR_EMAIL_NOT_UNIQUE", "value": "E-mail isn't unique" },
+    { "key": "FORMAT_NAME_NONE", "value": "Without Format" },
     { "key": "CTF_GOT_FLAG_NEUTRAL", "value": "has taken flag" },
     { "key": "GAME_ACTION_CAMERA_DOWN", "value": "Move camera down" },
     { "key": "STRING_INVITES_YOU_TO_A_BATTLE_LABEL", "value": "Invites you to a battle" },
@@ -401,6 +406,7 @@
     { "key": "SETTINGS_DUST_LABEL_TEXT", "value": "Dust" },
     { "key": "BATTLE_UPGRADES_TEXT", "value": "Upgrades" },
     { "key": "SETTINGS_SHOW_BATTLE_CHAT_CHECKBOX_LABEL_TEXT", "value": "Show battle chat" },
+    { "key": "FORMAT_NAME_BR", "value": "BP" },
     { "key": "CTF_GOT_OUR_FLAG", "value": "has taken our flag" },
     { "key": "STRING_COMPLETE_BUTTON", "value": "Complete" },
     { "key": "BATTLE_BONUS_BOX_TEXT", "value": "Bonus boxes" },
@@ -614,6 +620,7 @@
     { "key": "ALERT_ANSWER_YES", "value": "Yes" },
     { "key": "TEXT_DOM_ENEMIES_CAPTURED_POINT", "value": "Enemies have captured the point {point}" },
     { "key": "SETTINGS_BUTTON_SAVE_TEXT", "value": "Save" },
+    { "key": "FORMAT_NAME_XPBR", "value": "XP/BP" },
     {
       "key": "FREE_BONUSES_WINDOW_MESSAGE_DOUBLECRYSTALLS_TEXT",
       "value": "Congratulations, you have received the +'Double Crystal'+ bonus card. With it, you will be credited with twice as many crystals as usual when you buy them for real money. No matter how many crystals you buy, you will receive as many more as a gift. The card is valid only for 24 hours. Have time to make profitable purchases!"
@@ -669,6 +676,7 @@
     { "key": "SHOW_NOTIFICATIONS_LABEL", "value": "Show notifications" },
     { "key": "DELETE_PRESENT_BUTTON", "value": "Delete" },
     { "key": "PAYMENT_COMMON_TRANSACTION", "value": "Payment:" },
+    { "key": "FORMAT_NAME_XP", "value": "XP" },
     { "key": "PAYMENT_WEBMONEY_NAME_TEXT", "value": "WebMoney" },
     { "key": "GAME_ACTION_USE_FIRST_AID", "value": "Use First Aid supply" },
     { "key": "STRING_HELP_NAME_IS_NOT_UNIQUE", "value": "The name is already in use" },
@@ -695,6 +703,7 @@
     { "key": "HELP_BATTLE_SELECT_CREATE_MAP_HELPER_TEXT", "value": "You can create\nyour own battle." },
     { "key": "KEYBOARD_KEY_PG_UP", "value": "PgUp" },
     { "key": "REGISTER_FORM_BUTTON_PLAY_TEXT", "value": "Play" },
+    { "key": "FORMAT_NAME_PARKOUR", "value": "Parkour" },
     { "key": "BATTLEINFO_PANEL_BUTTON_PLAY", "value": "Play" },
     { "key": "LOBBY_NEWS_BUTTON", "value": "News" },
     {
@@ -730,6 +739,10 @@
     { "key": "GARAGE_PRICE", "value": "Garage price" },
     { "key": "REFERAL_WINDOW_ADDRESSES_NOT_VALID_ALERT_TEXT", "value": "Адреса %1 не действительны." },
     { "key": "HELP_PANEL_ACHIEVEMENTS_SET_EMAIL_ARROW_LENGTH", "value": "65" },
+    {
+      "key": "BATTLE_ENTER_ERROR_EQUIPMENT_NOT_MATCH_CONSTRAINTS",
+      "value": "This battle can only be joined using a specific equipment combination. \nYour tank does not meet the requirements of this format. More information  <a href='http://wiki.protanki-online.com/%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8B' target='_blank'><u>here</u></a>."
+    },
     { "key": "ALERT_ANSWER_GO_TO_GARAGE", "value": "Go to garage" },
     { "key": "GAME_ACTION_TURRET_TURN_RIGHT", "value": "Rotate turret right" },
     { "key": "PAYMENT_QIWI_NAME_TEXT", "value": "Qiwi" },
@@ -806,6 +819,7 @@
     },
     { "key": "SETTINGS_USE_NEW_LOADER_CHECKBOX_LABEL_TEXT", "value": "Use new loader" },
     { "key": "BTL_WAITING_PLAYERS_ENDING_MULTY", "value": "-х игроков" },
+    { "key": "BATTLE_ENTER_WARNING_PARKOUR_BUTTON_ENTER", "value": "Join Battle" },
     { "key": "GAME_ACTION_PAUSE", "value": "Pause" },
     { "key": "STRING_GO_TO_BATTLE_LABEL", "value": "Go to battle" },
     { "key": "BATTLE_CREATE_PANEL_MAP_NAME_LABEL", "value": "Name:" },

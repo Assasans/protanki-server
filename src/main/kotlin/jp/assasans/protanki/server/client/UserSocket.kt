@@ -682,7 +682,9 @@ abstract class ShowBattleInfoData(
   @Json val proBattleEnterPrice: Int = 150,
   @Json val timeLeftInSec: Int,
   @Json val userPaidNoSuppliesBattle: Boolean = false,
-  @Json val proBattleTimeLeftInSec: Int = -1
+  @Json val proBattleTimeLeftInSec: Int = -1,
+  @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  @Json val parkourMode: Boolean = false
 )
 
 class ShowTeamBattleInfoData(
@@ -705,6 +707,8 @@ class ShowTeamBattleInfoData(
   timeLeftInSec: Int,
   userPaidNoSuppliesBattle: Boolean = false,
   proBattleTimeLeftInSec: Int = -1,
+  equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  parkourMode: Boolean = false,
 
   @Json val usersRed: List<BattleUser>,
   @Json val usersBlue: List<BattleUser>,
@@ -733,7 +737,9 @@ class ShowTeamBattleInfoData(
   proBattleEnterPrice,
   timeLeftInSec,
   userPaidNoSuppliesBattle,
-  proBattleTimeLeftInSec
+  proBattleTimeLeftInSec,
+  equipmentConstraintsMode,
+  parkourMode
 )
 
 class ShowDmBattleInfoData(
@@ -756,6 +762,8 @@ class ShowDmBattleInfoData(
   timeLeftInSec: Int,
   userPaidNoSuppliesBattle: Boolean = false,
   proBattleTimeLeftInSec: Int = -1,
+  equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  parkourMode: Boolean = false,
 
   @Json val users: List<BattleUser>,
   @Json val score: Int = 0,
@@ -778,7 +786,9 @@ class ShowDmBattleInfoData(
   proBattleEnterPrice,
   timeLeftInSec,
   userPaidNoSuppliesBattle,
-  proBattleTimeLeftInSec
+  proBattleTimeLeftInSec,
+  equipmentConstraintsMode,
+  parkourMode
 )
 
 data class BattleData(
@@ -792,6 +802,8 @@ data class BattleData(
   @Json val minRank: Int,
   @Json val maxRank: Int,
   @Json val preview: Int,
+  @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  @Json val parkourMode: Boolean = false,
   @Json val suspicious: Boolean = false,
   @Json val users: List<String>
 )
@@ -943,6 +955,8 @@ data class ShowSettingsData(
 
 data class BattleCreateData(
   @Json val withoutCrystals: Boolean,
+  @Json val equipmentConstraintsMode: EquipmentConstraintsMode,
+  @Json val parkourMode: Boolean,
   @Json val minRank: Int,
   @Json val reArmorEnabled: Boolean,
   @Json val maxPeopleCount: Int,

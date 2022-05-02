@@ -128,6 +128,7 @@ suspend fun main(args: Array<String>) {
         .add(IsidaFireModeAdapter())
         .add(BonusTypeMapAdapter())
         .add(SkyboxSideAdapter())
+        .add(EquipmentConstraintsModeAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }

@@ -13,6 +13,19 @@ data class GuiUserData(
   @Json val teamType: BattleTeam
 )
 
+enum class EquipmentConstraintsMode(val key: String) {
+  None("NONE"),
+  HornetRailgun("HORNET_RAILGUN"),
+  WaspRailgun("WASP_RAILGUN"),
+  HornetWaspRailgun("HORNET_WASP_RAILGUN");
+
+  companion object {
+    private val map = values().associateBy(EquipmentConstraintsMode::key)
+
+    fun get(key: String) = map[key]
+  }
+}
+
 data class InitGuiModelData(
   @Json val name: String,
   @Json val fund: Int,
@@ -22,6 +35,8 @@ data class InitGuiModelData(
   @Json val score_red: Int = 0,
   @Json val score_blue: Int = 0,
   @Json val team: Boolean, // Is team battle
+  @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  @Json val parkourMode: Boolean = false,
   @Json val users: List<GuiUserData>
 )
 

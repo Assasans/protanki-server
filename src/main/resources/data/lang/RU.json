@@ -104,6 +104,10 @@
     },
     { "key": "GARAGE_INFO_PANEL_SKIN_BUTTON_BUY_HD", "value": "Купить HD" },
     { "key": "STRING_FRIENDS_BATTLE", "value": "Битва" },
+    {
+      "key": "BATTLE_ENTER_WARNING_PARKOUR",
+      "value": "Внимание! Это битва в формате «Паркур».\nВ ней не начисляются опыт и кристальный фонд."
+    },
     { "key": "BATTLE_GOLD_TAKEN", "value": "взял золотой ящик" },
     {
       "key": "PAYMENT_VISA_DESCRIPTION_TEXT",
@@ -211,6 +215,7 @@
     { "key": "SETTINGS_ALTERNATE_CAMERA_LABEL_TEXT", "value": "Альтернативное поведение камеры" },
     { "key": "GAME_ACTION_USE_MINE", "value": "Использовать мину" },
     { "key": "STRING_ERROR_EMAIL_NOT_UNIQUE", "value": "E-mail не уникален" },
+    { "key": "FORMAT_NAME_NONE", "value": "Без формата" },
     { "key": "CTF_GOT_FLAG_NEUTRAL", "value": "взял флаг" },
     { "key": "GAME_ACTION_CAMERA_DOWN", "value": "Опустить камеру" },
     { "key": "STRING_INVITES_YOU_TO_A_BATTLE_LABEL", "value": "Приглашает тебя в битву" },
@@ -405,6 +410,7 @@
     { "key": "SETTINGS_DUST_LABEL_TEXT", "value": "Пыль" },
     { "key": "BATTLE_UPGRADES_TEXT", "value": "Улучшения" },
     { "key": "SETTINGS_SHOW_BATTLE_CHAT_CHECKBOX_LABEL_TEXT", "value": "Показывать боевой чат" },
+    { "key": "FORMAT_NAME_BR", "value": "ВР" },
     { "key": "CTF_GOT_OUR_FLAG", "value": "взял наш флаг" },
     { "key": "STRING_COMPLETE_BUTTON", "value": "Завершить" },
     { "key": "BATTLE_BONUS_BOX_TEXT", "value": "Ящики с бонусами" },
@@ -632,6 +638,7 @@
     { "key": "ALERT_ANSWER_YES", "value": "Да" },
     { "key": "TEXT_DOM_ENEMIES_CAPTURED_POINT", "value": "Враги захватили точку {point}" },
     { "key": "SETTINGS_BUTTON_SAVE_TEXT", "value": "Сохранить" },
+    { "key": "FORMAT_NAME_XPBR", "value": "ХР/ВР" },
     {
       "key": "FREE_BONUSES_WINDOW_MESSAGE_DOUBLECRYSTALLS_TEXT",
       "value": "Поздравляем, вам досталась бонусная карта +'Двойной кристалл'+.C ней вам начисляется вдвое больше кристаллов, чем обычно, при покупке их за реальные деньги. Сколько бы кристаллов вы ни купили, получите в подарок ещё столько же Карта действует только 24 часа. Успевайте делать выгодные покупки!"
@@ -684,6 +691,7 @@
     { "key": "SHOW_NOTIFICATIONS_LABEL", "value": "Показывать уведомления" },
     { "key": "DELETE_PRESENT_BUTTON", "value": "Удалить" },
     { "key": "PAYMENT_COMMON_TRANSACTION", "value": "Платеж:" },
+    { "key": "FORMAT_NAME_XP", "value": "ХР" },
     { "key": "PAYMENT_WEBMONEY_NAME_TEXT", "value": "WebMoney" },
     { "key": "GAME_ACTION_USE_FIRST_AID", "value": "Использовать ремкомплект" },
     { "key": "STRING_HELP_NAME_IS_NOT_UNIQUE", "value": "Имя уже используется" },
@@ -710,6 +718,7 @@
     { "key": "HELP_BATTLE_SELECT_CREATE_MAP_HELPER_TEXT", "value": "Вы можете создать\nсвою собственную битву." },
     { "key": "KEYBOARD_KEY_PG_UP", "value": "PgUp" },
     { "key": "REGISTER_FORM_BUTTON_PLAY_TEXT", "value": "Играть" },
+    { "key": "FORMAT_NAME_PARKOUR", "value": "Паркур" },
     { "key": "BATTLEINFO_PANEL_BUTTON_PLAY", "value": "Играть" },
     { "key": "LOBBY_NEWS_BUTTON", "value": "Новости" },
     {
@@ -745,6 +754,10 @@
     { "key": "GARAGE_PRICE", "value": "Цена в гараже" },
     { "key": "REFERAL_WINDOW_ADDRESSES_NOT_VALID_ALERT_TEXT", "value": "Адреса %1 не действительны." },
     { "key": "HELP_PANEL_ACHIEVEMENTS_SET_EMAIL_ARROW_LENGTH", "value": "65" },
+    {
+      "key": "BATTLE_ENTER_ERROR_EQUIPMENT_NOT_MATCH_CONSTRAINTS",
+      "value": "В эту битву можно войти только с определённым вооружением. \nВаш танк не соответствует правилам формата. <a href='http://wiki.protanki-online.com/%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8B' target='_blank'><u>Подробности</u></a>."
+    },
     { "key": "ALERT_ANSWER_GO_TO_GARAGE", "value": "Перейти в гараж" },
     { "key": "GAME_ACTION_TURRET_TURN_RIGHT", "value": "Повернуть башню вправо" },
     { "key": "PAYMENT_QIWI_NAME_TEXT", "value": "Qiwi" },
@@ -824,6 +837,7 @@
     },
     { "key": "SETTINGS_USE_NEW_LOADER_CHECKBOX_LABEL_TEXT", "value": "Использовать новый\nзагрузчик" },
     { "key": "BTL_WAITING_PLAYERS_ENDING_MULTY", "value": "-х игроков" },
+    { "key": "BATTLE_ENTER_WARNING_PARKOUR_BUTTON_ENTER", "value": "Войти" },
     { "key": "GAME_ACTION_PAUSE", "value": "Пауза в битве" },
     { "key": "STRING_GO_TO_BATTLE_LABEL", "value": "Перейти" },
     { "key": "BATTLE_CREATE_PANEL_MAP_NAME_LABEL", "value": "Имя:" },
