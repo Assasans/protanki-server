@@ -8,6 +8,7 @@ plugins {
   kotlin("plugin.allopen") version "1.6.10"
   id("com.github.gmazzo.buildconfig") version "3.0.3"
   id("com.github.johnrengelman.shadow") version "7.1.2"
+  distribution
   application
 }
 
@@ -83,6 +84,16 @@ buildConfig {
   buildConfigField("Boolean", "GIT_IS_DIRTY", if(validTree) "${git.isDirty}" else "false")
 }
 
+distributions {
+  all {
+    contents {
+      from("src/main/resources/data") {
+        into("data")
+      }
+    }
+  }
+}
+
 tasks {
   wrapper {
     gradleVersion = "7.4.1"
@@ -100,6 +111,7 @@ tasks {
       attributes["Implementation-Version"] = gitVersion
     }
 
+    dependsOn("copyDependencies")
     dependsOn("copyRuntimeResources")
   }
 
@@ -120,7 +132,12 @@ tasks {
   register<Sync>("copyRuntimeResources") {
     // Copy runtime resources to the jar directory
     from("$projectDir/src/main/resources/data")
-    into(layout.buildDirectory.dir("libs/data"))
+    into("$buildDir/data")
+  }
+
+  register<Sync>("copyDependencies") {
+    from(configurations.default)
+    into("$buildDir/dependencies")
   }
 }
 
