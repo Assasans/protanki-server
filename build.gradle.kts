@@ -1,6 +1,4 @@
-import org.gradle.process.internal.ExecException
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.ByteArrayOutputStream
 
 plugins {
   kotlin("jvm") version "1.6.10"
@@ -14,6 +12,9 @@ plugins {
 
 group = "jp.assasans.protanki.server"
 version = "0.1.0"
+
+val gitBranch = ""
+var gitCommitHash = ""
 
 repositories {
   mavenCentral()
@@ -77,11 +78,9 @@ buildConfig {
   useKotlinOutput()
   packageName("jp.assasans.protanki.server")
 
-  val git = Git()
-  val validTree = git.isInstalled && git.isInsideWorkTree
-  buildConfigField("String", "GIT_BRANCH", if(validTree) "\"${git.branch}\"" else "\"UNKNOWN\"")
-  buildConfigField("String", "GIT_COMMIT_HASH", if(validTree) "\"${git.hash}\"" else "\"${project.version}\"")
-  buildConfigField("Boolean", "GIT_IS_DIRTY", if(validTree) "${git.isDirty}" else "false")
+  buildConfigField("String", "VERSION", "\"${project.version}\"")
+  buildConfigField("String", "GIT_BRANCH", "\"$gitBranch\"")
+  buildConfigField("String", "GIT_COMMIT_HASH", "\"$gitCommitHash\"")
 }
 
 distributions {
@@ -101,14 +100,14 @@ tasks {
   }
 
   jar {
-    val git = Git()
-    val gitVersion = if(git.isInstalled && git.isInsideWorkTree) git.toString() else "UNKNOWN-${project.version}"
+    val gitSuffix = if(gitBranch.isNotEmpty() && gitCommitHash.isNotEmpty()) "/$gitBranch+${gitCommitHash.take(8)}" else ""
 
-    archiveVersion.set(gitVersion)
+    archiveBaseName.set("protanki-server")
+    archiveVersion.set("${project.version}")
 
     manifest {
       attributes["Main-Class"] = application.mainClass
-      attributes["Implementation-Version"] = gitVersion
+      attributes["Implementation-Version"] = "${project.version}$gitSuffix"
     }
 
     dependsOn("copyDependencies")
@@ -116,14 +115,14 @@ tasks {
   }
 
   shadowJar {
-    val git = Git()
-    val gitVersion = if(git.isInstalled && git.isInsideWorkTree) git.toString() else "UNKNOWN-${project.version}"
+    val gitSuffix = if(gitBranch.isNotEmpty() && gitCommitHash.isNotEmpty()) "/$gitBranch+${gitCommitHash.take(8)}" else ""
 
-    archiveVersion.set(gitVersion)
+    archiveBaseName.set("protanki-server")
+    archiveVersion.set("${project.version}")
 
     manifest {
       attributes["Main-Class"] = application.mainClass
-      attributes["Implementation-Version"] = gitVersion
+      attributes["Implementation-Version"] = "${project.version}$gitSuffix"
     }
 
     dependsOn("copyRuntimeResources")
@@ -155,56 +154,4 @@ allOpen {
 
 application {
   mainClass.set("jp.assasans.protanki.server.MainKt")
-}
-
-class Git {
-  val isInstalled: Boolean by lazy {
-    val stdout = ByteArrayOutputStream()
-    try {
-      exec {
-        commandLine("git", "--version")
-
-        isIgnoreExitValue = true
-        standardOutput = stdout
-      }.exitValue == 0
-    } catch(exception: ExecException) {
-      false
-    }
-  }
-
-  val isInsideWorkTree: Boolean by lazy {
-    val stdout = ByteArrayOutputStream()
-    exec {
-      commandLine("git", "rev-parse", "--is-inside-work-tree")
-      isIgnoreExitValue = true
-      standardOutput = stdout
-    }.exitValue == 0
-  }
-
-  val branch: String by lazy {
-    val stdout = ByteArrayOutputStream()
-    exec {
-      commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
-      standardOutput = stdout
-    }
-    stdout.toString().trim()
-  }
-
-  val hash: String by lazy {
-    val stdout = ByteArrayOutputStream()
-    exec {
-      commandLine("git", "rev-parse", "HEAD")
-      standardOutput = stdout
-    }
-    stdout.toString().trim()
-  }
-
-  val isDirty: Boolean by lazy {
-    exec {
-      commandLine("git", "diff-index", "--quiet", "HEAD", "--")
-      isIgnoreExitValue = true
-    }.exitValue == 1
-  }
-
-  override fun toString(): String = "$branch+${hash.take(8)}${if(isDirty) "-dirty" else ""}"
 }
