@@ -73,6 +73,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   SendBattleChatMessageServer(CommandCategory.Battle, "chat", CommandSide.Server),
   SendBattleChatMessageClient(CommandCategory.Battle, "chat", CommandSide.Client),
+  SendBattleChatSpectatorMessageClient(CommandCategory.Battle, "spectator_message", CommandSide.Client),
+  SendBattleChatSpectatorTeamMessageClient(CommandCategory.Battle, "spectator_team_message", CommandSide.Client),
 
   StartLayoutSwitch(CommandCategory.Lobby, "change_layout_state", CommandSide.Client),
   EndLayoutSwitch(CommandCategory.Lobby, "end_layout_switch", CommandSide.Client),

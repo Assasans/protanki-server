@@ -4,7 +4,7 @@ import kotlin.reflect.jvm.jvmName
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import jp.assasans.protanki.server.battles.BattleTeam
+import jp.assasans.protanki.server.battles.SendTarget
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.chat.CommandParseResult
 import jp.assasans.protanki.server.chat.IChatCommandRegistry
@@ -86,9 +86,17 @@ class BattleChatHandler : ICommandHandler, KoinComponent {
       rank = user.rank.value,
       message = content,
       team = isTeam,
-      team_type = BattleTeam.None // TODO(Assasans)
+      team_type = player.team
     )
 
-    Command(CommandName.SendBattleChatMessageClient, listOf(message.toJson())).sendTo(battle)
+    if(player.isSpectator) {
+      if(isTeam) {
+        Command(CommandName.SendBattleChatSpectatorTeamMessageClient, listOf("[${user.username}] $content")).sendTo(battle, SendTarget.Spectators)
+      } else {
+        Command(CommandName.SendBattleChatSpectatorMessageClient, listOf(content)).sendTo(battle)
+      }
+    } else {
+      Command(CommandName.SendBattleChatMessageClient, listOf(message.toJson())).sendTo(battle)
+    }
   }
 }
