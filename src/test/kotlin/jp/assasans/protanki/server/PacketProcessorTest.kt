@@ -1,0 +1,37 @@
+package jp.assasans.protanki.server
+
+import kotlin.test.BeforeTest
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import org.junit.jupiter.api.Test
+
+internal class PacketProcessorTest {
+  private lateinit var packetProcessor: PacketProcessor
+
+  @BeforeTest
+  fun setUp() {
+    packetProcessor = PacketProcessor()
+  }
+
+  @Test
+  fun get0Packets() {
+    packetProcessor.tryGetPacket().let { packet ->
+      assertNull(packet)
+    }
+  }
+
+  @Test
+  fun get1Packet() {
+    val content = "system;get_aes_data;RU"
+
+    packetProcessor.write("${content}end~".toByteArray())
+    packetProcessor.tryGetPacket().let { packet ->
+      assertNotNull(packet)
+      assertEquals(content, packet)
+    }
+    packetProcessor.tryGetPacket().let { packet ->
+      assertNull(packet)
+    }
+  }
+}
