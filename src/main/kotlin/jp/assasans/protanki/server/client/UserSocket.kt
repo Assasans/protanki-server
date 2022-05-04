@@ -844,10 +844,10 @@ data class ShowAchievementsData(
 data class ChatMessage(
   @Json val name: String,
   @Json val rang: Int,
-  @Json val chatPermissions: Int = 0,
+  @Json val chatPermissions: ChatModeratorLevel = ChatModeratorLevel.None,
   @Json val message: String,
   @Json val addressed: Boolean = false,
-  @Json val chatPermissionsTo: Int = 0,
+  @Json val chatPermissionsTo: ChatModeratorLevel = ChatModeratorLevel.None,
   @Json val nameTo: String = "",
   @Json val rangTo: Int = 0,
   @Json val system: Boolean = false,
@@ -859,12 +859,26 @@ data class ChatMessage(
 data class BattleChatMessage(
   @Json val nickname: String,
   @Json val rank: Int,
-  @Json val chat_level: Int = 0,
+  @Json val chat_level: ChatModeratorLevel = ChatModeratorLevel.None,
   @Json val message: String,
   @Json val team_type: BattleTeam,
   @Json val system: Boolean = false,
   @Json val team: Boolean
 )
+
+enum class ChatModeratorLevel(val key: Int) {
+  None(0),
+  Candidate(1),
+  Moderator(2),
+  Administrator(3),
+  CommunityManager(4);
+
+  companion object {
+    private val map = values().associateBy(ChatModeratorLevel::key)
+
+    fun get(key: Int) = map[key]
+  }
+}
 
 data class InitChatMessagesData(
   @Json val messages: List<ChatMessage>

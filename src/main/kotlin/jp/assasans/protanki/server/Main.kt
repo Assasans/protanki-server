@@ -129,6 +129,7 @@ suspend fun main(args: Array<String>) {
         .add(BonusTypeMapAdapter())
         .add(SkyboxSideAdapter())
         .add(EquipmentConstraintsModeAdapter())
+        .add(ChatModeratorLevelAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }

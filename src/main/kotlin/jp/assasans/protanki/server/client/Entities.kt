@@ -60,7 +60,7 @@ data class StatisticsUserData(
   @Json val kills: Int,
   @Json val deaths: Int,
 
-  @Json val chatModeratorLevel: Int = 0
+  @Json val chatModeratorLevel: ChatModeratorLevel = ChatModeratorLevel.None
 )
 
 data class InitDmStatisticsData(
