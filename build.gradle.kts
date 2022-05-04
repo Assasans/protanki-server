@@ -59,6 +59,8 @@ dependencies {
 
   implementation("ch.qos.logback:logback-classic:1.2.11")
   implementation("io.github.microutils:kotlin-logging:2.1.21")
+
+  testImplementation(kotlin("test"))
 }
 
 tasks.withType<KotlinCompile> {
@@ -137,6 +139,10 @@ tasks {
   register<Sync>("copyDependencies") {
     from(configurations.default)
     into("$buildDir/dependencies")
+  }
+
+  test {
+    useJUnitPlatform()
   }
 }
 
