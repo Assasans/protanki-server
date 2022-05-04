@@ -37,7 +37,7 @@
         "turnAcceleration": 2.968107,
         "reverseTurnAcceleration": 5.0204396,
         "damping": 900,
-        "mass": 1100,
+        "mass": 1376,
         "power": 9.47
       }
     },
@@ -70,7 +70,7 @@
         "turnAcceleration": 3.1344368,
         "reverseTurnAcceleration": 5.477716,
         "damping": 900,
-        "mass": 1391,
+        "mass": 1638,
         "power": 10.55
       }
     },
@@ -103,7 +103,7 @@
         "turnAcceleration": 3.3005922,
         "reverseTurnAcceleration": 5.935167,
         "damping": 900,
-        "mass": 1779,
+        "mass": 1901,
         "power": 11.87
       }
     },
@@ -136,7 +136,7 @@
         "turnAcceleration": 3.4906585,
         "reverseTurnAcceleration": 6.4577184,
         "damping": 900,
-        "mass": 1908,
+        "mass": 2200,
         "power": 13.0
       }
     }
