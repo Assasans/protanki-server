@@ -39,6 +39,13 @@
         }
       ],
 
+      "physics": {
+        "turretRotationSpeed": 1.5940092058464213,
+        "turretTurnAcceleration": 1.3535028349216025,
+        "impactForce": 1.6425,
+        "kickback": 1.5581
+      },
+
       "visual": {
         "$type": "ricochet",
 
@@ -115,7 +122,61 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 72.3 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 1.9230037698473523,
+        "turretTurnAcceleration": 1.7488199104983182,
+        "impactForce": 1.9371,
+        "kickback": 1.7299
+      },
+
+      "visual": {
+        "$type": "ricochet",
+  
+        "bumpFlashTexture": 110005,
+        "explosionTexture": 110005,
+        "explosionSound": 898926,
+        "ricochetSound": 700620,
+        "shotFlashTexture": 142378,
+        "shotSound": 292255,
+        "shotTexture": 110006,
+        "tailTrailTexutre": 228333,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 500, "color": 16741656, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16741656, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "ricochet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 400, "color": 16741656, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 50, "attenuationEnd": 200, "color": 16741656, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16741656, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16741656, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 350, "color": 16741656, "intensity": 0.5, "time": 0 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 345.66, "key": "shot" },
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 345.66, "key": "expl" },
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 345.66, "key": "trail" }
+        ]
+      }
     },
     "2": {
       "previewResourceId": 67785,
@@ -146,7 +207,61 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 77.2 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.2519983338482836,
+        "turretTurnAcceleration": 2.144311519000233,
+        "impactForce": 2.2317,
+        "kickback": 1.918
+      },
+
+      "visual": {
+        "$type": "ricochet",
+  
+        "bumpFlashTexture": 110005,
+        "explosionTexture": 110005,
+        "explosionSound": 898926,
+        "ricochetSound": 700620,
+        "shotFlashTexture": 142378,
+        "shotSound": 292255,
+        "shotTexture": 110006,
+        "tailTrailTexutre": 228333,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 500, "color": 16750336, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16750336, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "ricochet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 400, "color": 16750336, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 50, "attenuationEnd": 200, "color": 16750336, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16750336, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16750336, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 350, "color": 16750336, "intensity": 0.5, "time": 0 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 1.59, "key": "shot" },
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 1.59, "key": "expl" },
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 1.59, "key": "trail" }
+        ]
+      }
     },
     "3": {
       "previewResourceId": 9711,
@@ -177,7 +292,61 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 80 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.4399702942880728,
+        "turretTurnAcceleration": 2.3701571242083,
+        "impactForce": 2.4,
+        "kickback": 2.0
+      },
+
+      "visual": {
+        "$type": "ricochet",
+  
+        "bumpFlashTexture": 110005,
+        "explosionTexture": 110005,
+        "explosionSound": 898926,
+        "ricochetSound": 700620,
+        "shotFlashTexture": 142378,
+        "shotSound": 292255,
+        "shotTexture": 110006,
+        "tailTrailTexutre": 228333,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 500, "color": 16741656, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16741656, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "ricochet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 400, "color": 16741656, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 50, "attenuationEnd": 200, "color": 16741656, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16741656, "intensity": 0.5, "time": 0 },
+              { "attenuationBegin": 300, "attenuationEnd": 600, "color": 16741656, "intensity": 0, "time": 600 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 350, "color": 16741656, "intensity": 0.5, "time": 0 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 353.63, "key": "shot" },
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 353.63, "key": "expl" },
+          { "brightness": 1.128, "contrast": 0, "saturation": 0, "hue": 353.63, "key": "trail" }
+        ]
+      }
     }
   }
 }
