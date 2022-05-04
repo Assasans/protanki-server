@@ -102,7 +102,14 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 61.8 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 1.6516050711622339,
+        "turretTurnAcceleration": 2.263517506911446,
+        "impactForce": 2.1745,
+        "kickback": 2.1809
+      }
     },
     "2": {
       "previewResourceId": 770995,
@@ -133,7 +140,14 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 66.6 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 1.959830217064432,
+        "turretTurnAcceleration": 2.5764550417940293,
+        "impactForce": 2.656,
+        "kickback": 2.542
+      }
     },
     "3": {
       "previewResourceId": 875152,
@@ -164,7 +178,14 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 70 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.179916235740918,
+        "turretTurnAcceleration": 2.800031718974503,
+        "impactForce": 3.0,
+        "kickback": 2.8043
+      }
     }
   }
 }
