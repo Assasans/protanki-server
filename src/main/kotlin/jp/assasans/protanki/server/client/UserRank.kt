@@ -38,3 +38,9 @@ enum class UserRank(val value: Int, val score: Int) {
     fun get(index: Int) = map[index]
   }
 }
+
+val UserRank.nextRank: UserRank?
+  get() = UserRank.get(value + 1)
+
+val UserRank?.scoreOrZero: Int
+  get() = this?.score ?: 0

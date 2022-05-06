@@ -355,7 +355,7 @@ class UserSocket(
           rang = user.rank.value,
           score = user.score,
           currentRankScore = user.currentRankScore,
-          next_score = user.nextRankScore
+          next_score = user.rank.nextRank.scoreOrZero
         ).toJson()
       )
     ).send(this)

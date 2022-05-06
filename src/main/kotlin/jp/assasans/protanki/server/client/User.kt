@@ -93,48 +93,17 @@ class User(
   @AttributeOverride(name = "paintId", column = Column(name = "equipment_paint_id"))
   @Embedded lateinit var equipment: UserEquipment
 
-  // TODO(Assasans): Rewrite
   val rank: UserRank
     get() {
-      // var lastScore = score
-      // var rank = UserRank.Recruit
-      // while(lastScore >= rank.score) {
-      //   if(rank == UserRank.Generalissimo) break
-      //
-      //   lastScore -= rank.score
-      //   rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
-      // }
-      //
-      // return rank
-
       var rank = UserRank.Recruit
-      while(score >= rank.score) {
-        if(rank == UserRank.Generalissimo) break
-        rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
+      var nextRank: UserRank = rank.nextRank ?: return rank
+      while(score >= nextRank.score) {
+        rank = nextRank
+        nextRank = rank.nextRank ?: return rank
       }
-
       return rank
     }
 
   val currentRankScore: Int
-    get() {
-      // var lastScore = score
-      // var rank = UserRank.Recruit
-      // while(lastScore >= rank.score) {
-      //   if(rank == UserRank.Generalissimo) break
-      //
-      //   lastScore -= rank.score
-      //   rank = UserRank.get(rank.value + 1) ?: UserRank.Generalissimo
-      // }
-      // return lastScore
-
-      return score - rank.score
-    }
-
-  val nextRankScore: Int
-    get() {
-      val nextRank = UserRank.get(rank.value + 1)
-      if(nextRank != null) return nextRank.score
-      return 0
-    }
+    get() = rank.score - score
 }
