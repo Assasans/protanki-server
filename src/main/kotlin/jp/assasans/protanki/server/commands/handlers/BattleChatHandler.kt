@@ -6,6 +6,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.battles.SendTarget
 import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.chat.CommandInvocationSource
 import jp.assasans.protanki.server.chat.CommandParseResult
 import jp.assasans.protanki.server.chat.IChatCommandRegistry
 import jp.assasans.protanki.server.client.BattleChatMessage
@@ -39,7 +40,7 @@ class BattleChatHandler : ICommandHandler, KoinComponent {
           logger.debug { "Parsed command: ${result.parsedCommand.command.name}" }
 
           try {
-            chatCommandRegistry.callCommand(socket, result.parsedCommand)
+            chatCommandRegistry.callCommand(socket, result.parsedCommand, CommandInvocationSource.BattleChat)
           } catch(exception: Exception) {
             logger.error(exception) { "An exception occurred while calling command ${result.parsedCommand.command.name}" }
 

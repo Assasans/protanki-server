@@ -19,8 +19,6 @@ import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
-import jp.assasans.protanki.server.client.sendBattleChat
-import jp.assasans.protanki.server.client.sendChat
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
@@ -77,13 +75,13 @@ class Server : KoinComponent {
         handler {
           val commandName: String? = arguments.getOrNull("command")
           if(commandName == null) {
-            socket.sendChat("Available commands: ${commands.joinToString(", ") { command -> command.name }}")
+            reply("Available commands: ${commands.joinToString(", ") { command -> command.name }}")
             return@handler
           }
 
           val command = commands.singleOrNull { command -> command.name == commandName }
           if(command == null) {
-            socket.sendChat("Unknown command: $commandName")
+            reply("Unknown command: $commandName")
             return@handler
           }
 
@@ -108,7 +106,7 @@ class Server : KoinComponent {
             }
           }
 
-          socket.sendChat(builder.toString())
+          reply(builder.toString())
         }
       }
 
@@ -123,13 +121,13 @@ class Server : KoinComponent {
           val username: String = arguments["user"]
           val player = socketServer.players.singleOrNull { socket -> socket.user?.username == username }
           if(player == null) {
-            socket.sendChat("User '$username' not found")
+            reply("User '$username' not found")
             return@handler
           }
 
           player.deactivate()
           if(player != socket) {
-            socket.sendChat("User '$username' has been kicked")
+            reply("User '$username' has been kicked")
           }
         }
       }
@@ -139,7 +137,7 @@ class Server : KoinComponent {
           handler {
             val battle = socket.battle
             if(battle == null) {
-              socket.sendChat("You are not in a battle")
+              reply("You are not in a battle")
               return@handler
             }
 
@@ -184,7 +182,7 @@ class Server : KoinComponent {
             builder.appendLine("    Mode: ${battle.modeHandler.mode.name}")
             battle.modeHandler.dump(builder)
 
-            socket.sendBattleChat(builder.toString())
+            reply(builder.toString())
           }
         }
       }
@@ -194,7 +192,7 @@ class Server : KoinComponent {
           handler {
             val battle = socket.battle
             if(battle == null) {
-              socket.sendChat("You are not in a battle")
+              reply("You are not in a battle")
               return@handler
             }
 
@@ -209,7 +207,7 @@ class Server : KoinComponent {
               builder.append("\n")
             }
 
-            socket.sendBattleChat(builder.toString())
+            reply(builder.toString())
           }
         }
 
@@ -223,7 +221,7 @@ class Server : KoinComponent {
 
             val battle = socket.battle
             if(battle == null) {
-              socket.sendChat("You are not in a battle")
+              reply("You are not in a battle")
               return@handler
             }
 
@@ -231,7 +229,7 @@ class Server : KoinComponent {
 
             val property = BattleProperty.getOrNull(key)
             if(property == null) {
-              socket.sendBattleChat("No such property: $key")
+              reply("No such property: $key")
               return@handler
             }
 
@@ -241,7 +239,7 @@ class Server : KoinComponent {
               builder.append(" (default: ${property.defaultValue})")
             }
 
-            socket.sendBattleChat(builder.toString())
+            reply(builder.toString())
           }
         }
 
@@ -260,7 +258,7 @@ class Server : KoinComponent {
 
             val battle = socket.battle
             if(battle == null) {
-              socket.sendChat("You are not in a battle")
+              reply("You are not in a battle")
               return@handler
             }
 
@@ -268,7 +266,7 @@ class Server : KoinComponent {
 
             val property = BattleProperty.getOrNull(key)
             if(property == null) {
-              socket.sendBattleChat("No such property: $key")
+              reply("No such property: $key")
               return@handler
             }
 
@@ -290,7 +288,7 @@ class Server : KoinComponent {
             battle.properties.setValue(property, typedValue)
             builder.append("Changed $key: $oldValue -> $typedValue")
 
-            socket.sendBattleChat(builder.toString())
+            reply(builder.toString())
           }
         }
       }
@@ -310,13 +308,13 @@ class Server : KoinComponent {
 
             val battle = socket.battle
             if(battle == null) {
-              socket.sendChat("You are not in a battle")
+              reply("You are not in a battle")
               return@handler
             }
 
             val bonusType = BonusType.get(type)
             if(bonusType == null) {
-              socket.sendBattleChat("No such bonus: $type")
+              reply("No such bonus: $type")
               return@handler
             }
 
@@ -338,7 +336,7 @@ class Server : KoinComponent {
             battle.bonusProcessor.incrementId()
             battle.coroutineScope.launch {
               battle.bonusProcessor.spawn(bonus)
-              socket.sendBattleChat("Spawned $bonusType at $position, $rotation (with parachute: ${bonusPoint.parachute})")
+              reply("Spawned $bonusType at $position, $rotation (with parachute: ${bonusPoint.parachute})")
             }
           }
         }

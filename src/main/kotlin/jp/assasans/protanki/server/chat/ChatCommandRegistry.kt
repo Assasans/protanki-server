@@ -3,13 +3,15 @@ package jp.assasans.protanki.server.chat
 import kotlin.reflect.KClass
 import org.koin.core.component.KoinComponent
 import jp.assasans.protanki.server.client.UserSocket
+import jp.assasans.protanki.server.client.sendBattleChat
+import jp.assasans.protanki.server.client.sendChat
 
 interface IChatCommandRegistry {
   val commands: MutableList<Command>
 
   fun parseArguments(input: String): ParsedArguments
   fun parseCommand(parsedArguments: ParsedArguments): CommandParseResult
-  suspend fun callCommand(socket: UserSocket, parsed: ParsedCommand)
+  suspend fun callCommand(socket: UserSocket, parsed: ParsedCommand, source: CommandInvocationSource)
 }
 
 abstract class CommandParseResult(val inputArguments: ParsedArguments) {
@@ -144,9 +146,9 @@ class ChatCommandRegistry : IChatCommandRegistry, KoinComponent {
     return CommandParseResult.Success(parsedArguments, ParsedCommand(command, ParsedCommandArguments(arguments)))
   }
 
-  override suspend fun callCommand(socket: UserSocket, parsed: ParsedCommand) {
+  override suspend fun callCommand(socket: UserSocket, parsed: ParsedCommand, source: CommandInvocationSource) {
     val handler = parsed.command.handler ?: throw IllegalArgumentException("Command ${parsed.command.name} has no handler")
-    val context = CommandContext(socket, parsed.command, parsed.arguments)
+    val context = CommandContext(socket, parsed.command, parsed.arguments, source)
     context.apply { handler() }
   }
 }
@@ -188,11 +190,24 @@ class ParsedCommand(
   val arguments: ParsedCommandArguments
 )
 
+enum class CommandInvocationSource {
+  LobbyChat,
+  BattleChat
+}
+
 class CommandContext(
   val socket: UserSocket,
   val command: Command,
-  val arguments: ParsedCommandArguments
-)
+  val arguments: ParsedCommandArguments,
+  val source: CommandInvocationSource
+) {
+  suspend fun reply(message: String) {
+    when(source) {
+      CommandInvocationSource.LobbyChat  -> socket.sendChat(message)
+      CommandInvocationSource.BattleChat -> socket.sendBattleChat(message)
+    }
+  }
+}
 
 class Command(val name: String) {
   var description: String? = null

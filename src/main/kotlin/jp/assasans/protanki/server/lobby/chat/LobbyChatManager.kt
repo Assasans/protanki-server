@@ -5,6 +5,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.ISocketServer
+import jp.assasans.protanki.server.chat.CommandInvocationSource
 import jp.assasans.protanki.server.chat.CommandParseResult
 import jp.assasans.protanki.server.chat.IChatCommandRegistry
 import jp.assasans.protanki.server.client.*
@@ -42,7 +43,7 @@ class LobbyChatManager : ILobbyChatManager, KoinComponent {
           logger.debug { "Parsed command: ${result.parsedCommand.command.name}" }
 
           try {
-            chatCommandRegistry.callCommand(socket, result.parsedCommand)
+            chatCommandRegistry.callCommand(socket, result.parsedCommand, CommandInvocationSource.LobbyChat)
           } catch(exception: Exception) {
             logger.error(exception) { "An exception occurred while calling command ${result.parsedCommand.command.name}" }
 
