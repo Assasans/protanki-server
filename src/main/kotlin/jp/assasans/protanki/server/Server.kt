@@ -341,6 +341,37 @@ class Server : KoinComponent {
           }
         }
       }
+
+      command("addxp") {
+        description("Add experience points to a user")
+
+        argument("amount", Int::class) {
+          description("The amount of experience points to add")
+        }
+
+        argument("user", String::class) {
+          description("The user to add experience points")
+          optional()
+        }
+
+        handler {
+          val amount: Int = arguments.get<String>("amount").toInt() // TODO(Assasans)
+          val username: String? = arguments.getOrNull("user")
+
+          val player = if(username != null) socketServer.players.find { it.user?.username == username } else socket
+          if(player == null) {
+            reply("Player not found: $username")
+            return@handler
+          }
+
+          val user = player.user ?: throw Exception("User is null")
+
+          user.score = (user.score + amount).coerceAtLeast(0)
+          player.updateScore()
+
+          reply("Added $amount experience points to ${user.username}")
+        }
+      }
     }
 
     HibernateUtils.createEntityManager().close() // Initialize database
