@@ -228,6 +228,10 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   FlagReturned(CommandCategory.Battle, "return_flag", CommandSide.Client),
 
   SetCrystals(CommandCategory.Lobby, "add_crystall", CommandSide.Client),
+  SetScore(CommandCategory.Lobby, "add_score", CommandSide.Client),
+  SetRank(CommandCategory.Lobby, "update_rang", CommandSide.Client),
+
+  SetBattleRank(CommandCategory.Battle, "update_rang", CommandSide.Client),
 
   InitGarageItems(CommandCategory.Garage, "init_garage_items", CommandSide.Client),
   InitMountedItem(CommandCategory.Garage, "init_mounted_item", CommandSide.Client),

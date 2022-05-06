@@ -117,6 +117,8 @@ class UserSocket(
       .flatMap { battle -> battle.players }
       .singleOrNull { player -> player.socket == this }
 
+  private var clientRank: UserRank? = null
+
   suspend fun deactivate() {
     active = false
 
@@ -346,6 +348,7 @@ class UserSocket(
 
     val user = user ?: throw Exception("No User")
 
+    clientRank = user.rank
     Command(
       CommandName.InitPanel,
       listOf(
@@ -552,6 +555,29 @@ class UserSocket(
     val user = user ?: throw Exception("User data is not loaded")
 
     Command(CommandName.SetCrystals, listOf(user.crystals.toString())).send(this)
+  }
+
+  suspend fun updateScore() {
+    val user = user ?: throw Exception("User data is not loaded")
+
+    Command(CommandName.SetScore, listOf(user.score.toString())).send(this)
+
+    if(user.rank == clientRank) return // No need to update rank
+    clientRank = user.rank
+
+    Command(
+      CommandName.SetRank,
+      listOf(
+        user.rank.value.toString(),
+        user.score.toString(),
+        user.rank.score.toString(),
+        user.rank.nextRank.scoreOrZero.toString(),
+        user.rank.bonusCrystals.toString()
+      )
+    ).send(this)
+    battle?.let { battle ->
+      Command(CommandName.SetBattleRank, listOf(user.username, user.rank.value.toString())).sendTo(battle)
+    }
   }
 
   suspend fun initChatMessages() {
