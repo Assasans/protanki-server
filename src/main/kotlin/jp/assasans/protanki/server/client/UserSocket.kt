@@ -578,6 +578,15 @@ class UserSocket(
     battle?.let { battle ->
       Command(CommandName.SetBattleRank, listOf(user.username, user.rank.value.toString())).sendTo(battle)
     }
+
+    if(screen == Screen.Garage) {
+      // Refresh garage to prevent items from being duplicated (client-side bug)
+      // and update available items
+      Command(CommandName.UnloadGarage).send(this)
+
+      loadGarageResources()
+      initGarage()
+    }
   }
 
   suspend fun initChatMessages() {
