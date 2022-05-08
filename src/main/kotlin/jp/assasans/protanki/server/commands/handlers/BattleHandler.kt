@@ -1,10 +1,12 @@
 package jp.assasans.protanki.server.commands.handlers
 
+import kotlin.time.Duration.Companion.seconds
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.LoadState
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
@@ -13,6 +15,7 @@ import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.commands.ICommandHandler
+import jp.assasans.protanki.server.extensions.launchDelayed
 
 class BattleHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -147,7 +150,13 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
     logger.debug { "Started self-destruct for ${socket.user!!.username}" }
 
-    tank.selfDestruct()
+    if(player.battle.properties[BattleProperty.InstantSelfDestruct]) {
+      tank.selfDestruct()
+    } else {
+      player.coroutineScope.launchDelayed(10.seconds) {
+        tank.selfDestruct()
+      }
+    }
   }
 
   @CommandHandler(CommandName.ReadyToRespawn)

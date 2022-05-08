@@ -9,6 +9,8 @@ class BattleProperty<T : Any> private constructor(val key: String, val type: KCl
     val DamageEnabled = BattleProperty("damage_enabled", Boolean::class, true)
     val FriendlyFireEnabled = BattleProperty("friendly_fire", Boolean::class, false)
 
+    val InstantSelfDestruct = BattleProperty("instant_self_destruct", Boolean::class, false)
+
     fun values() = properties.values.toList()
 
     fun get(key: String) = getOrNull(key) ?: throw IllegalArgumentException("No such property: $key")
