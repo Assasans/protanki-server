@@ -1004,8 +1004,8 @@ data class ShowSettingsData(
 
 data class BattleCreateData(
   @Json val withoutCrystals: Boolean,
-  @Json val equipmentConstraintsMode: EquipmentConstraintsMode,
-  @Json val parkourMode: Boolean,
+  @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  @Json val parkourMode: Boolean = false,
   @Json val minRank: Int,
   @Json val reArmorEnabled: Boolean,
   @Json val maxPeopleCount: Int,
