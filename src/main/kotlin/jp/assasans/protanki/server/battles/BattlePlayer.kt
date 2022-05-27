@@ -315,7 +315,7 @@ class BattlePlayer(
               reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
               sideAcceleration = tank.hull.modification.physics.sideAcceleration,
               turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+              reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
               dampingCoeff = tank.hull.modification.physics.damping,
               mass = tank.hull.modification.physics.mass,
               power = tank.hull.modification.physics.power,
@@ -362,7 +362,7 @@ class BattlePlayer(
               reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
               sideAcceleration = tank.hull.modification.physics.sideAcceleration,
               turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+              reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
               dampingCoeff = tank.hull.modification.physics.damping,
               mass = tank.hull.modification.physics.mass,
               power = tank.hull.modification.physics.power,
@@ -408,7 +408,7 @@ class BattlePlayer(
               reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
               sideAcceleration = tank.hull.modification.physics.sideAcceleration,
               turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+              reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
 
               // Weapon physics
               turret_rotation_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
@@ -461,7 +461,7 @@ class BattlePlayer(
               reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
               sideAcceleration = tank.hull.modification.physics.sideAcceleration,
               turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-              reverseTurnAcceleration = tank.hull.modification.physics.turnSpeed,
+              reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
 
               // Weapon physics
               turret_rotation_speed = tank.weapon.item.modification.physics.turretRotationSpeed,

@@ -158,7 +158,7 @@ class BattleTank(
           reverseAcceleration = hull.modification.physics.reverseAcceleration,
           sideAcceleration = hull.modification.physics.sideAcceleration,
           turnAcceleration = hull.modification.physics.turnAcceleration,
-          reverseTurnAcceleration = hull.modification.physics.turnSpeed,
+          reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
 
           // Weapon physics
           turret_rotation_speed = weapon.item.modification.physics.turretRotationSpeed,
