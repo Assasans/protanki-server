@@ -97,6 +97,13 @@
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 10.3 }
       ],
 
+      "physics": {
+        "turretRotationSpeed": 1.814095224522906,
+        "turretTurnAcceleration": 3.1609658082869303,
+        "impactForce": 1.1761,
+        "kickback": 0.3979
+      },
+
       "visual": {
         "$type": "twins",
 
@@ -158,7 +165,51 @@
           ]
         },
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 14.8 }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.0642009063336935,
+        "turretTurnAcceleration": 3.482629989429485,
+        "impactForce": 1.3739,
+        "kickback": 0.4456
+      },
+
+      "visual": {
+        "$type": "twins",
+
+        "explosionTexture": 236695,
+        "hitMarkTexture": 828576,
+        "muzzleFlashTexture": 179480,
+        "shotSound": 457612,
+        "shotTexture": 433995,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 500, "color": 7694305, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 7694305, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 14742338, "intensity": 0.5, "time": 0 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 400, "color": 14742338, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 14742338, "intensity": 0, "time": 300 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 30.465, "contrast": 2.655, "saturation": -17.699, "hue": 73.27, "key": "flash" },
+          { "brightness": 30.465, "contrast": 2.655, "saturation": -8.85, "hue": 226.19, "key": "shot" },
+          { "brightness": 30.465, "contrast": 2.655, "saturation": -8.85, "hue": 226.19, "key": "expl" }
+        ]
+      }
     },
     "3": {
       "previewResourceId": 705554,
@@ -184,7 +235,51 @@
           ]
         },
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 20 }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.3500858378103646,
+        "turretTurnAcceleration": 3.850021796974292,
+        "impactForce": 1.6,
+        "kickback": 0.5
+      },
+
+      "visual": {
+        "$type": "twins",
+
+        "explosionTexture": 236695,
+        "hitMarkTexture": 828576,
+        "muzzleFlashTexture": 179480,
+        "shotSound": 457612,
+        "shotTexture": 433995,
+        "lighting": [
+          {
+            "name": "shot",
+            "light": [
+              { "attenuationBegin": 300, "attenuationEnd": 500, "color": 7241215, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 7241215, "intensity": 0, "time": 300 }
+            ]
+          },
+          {
+            "name": "bullet",
+            "light": [
+              { "attenuationBegin": 100, "attenuationEnd": 300, "color": 65280, "intensity": 0.5, "time": 0 }
+            ]
+          },
+          {
+            "name": "hit",
+            "light": [
+              { "attenuationBegin": 200, "attenuationEnd": 400, "color": 65280, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 65280, "intensity": 0, "time": 300 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 10.155, "contrast": 1.77, "saturation": -17.699, "hue": 73.27, "key": "flash" },
+          { "brightness": 10.155, "contrast": 1.77, "saturation": -8.85, "hue": 297.88, "key": "shot" },
+          { "brightness": 10.155, "contrast": 1.77, "saturation": -8.85, "hue": 297.88, "key": "expl" }
+        ]
+      }
     }
   }
 }
