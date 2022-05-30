@@ -149,6 +149,13 @@
         { "property": "TURRET_TURN_SPEED", "value": 106.7 }
       ],
 
+      "physics": {
+        "turretRotationSpeed": 1.8622663118779497,
+        "turretTurnAcceleration": 3.2210051345555355,
+        "impactForce": 0,
+        "kickback": 0
+      },
+
       "visual": {
         "$type": "isida",
 
@@ -258,7 +265,95 @@
           ]
         },
         { "property": "TURRET_TURN_SPEED", "value": 121.8 }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.1249383643030963,
+        "turretTurnAcceleration": 3.5533158241352556,
+        "impactForce": 0,
+        "kickback": 0
+      },
+
+      "visual": {
+        "$type": "isida",
+
+        "damagingBall": 95981,
+        "damagingRay": 454272,
+        "damagingSound": 342454,
+        "healingBall": 416395,
+        "healingRay": 294478,
+        "healingSound": 153545,
+        "idleSound": 315290,
+        "lighting": [
+          {
+            "name": "enemyStart",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16758811, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16758811, "intensity": 0.1, "time": 200 }
+            ]
+          },
+          {
+            "name": "enemyLoop",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16758811, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 16758811, "intensity": 0.2, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16758811, "intensity": 0.3, "time": 400 }
+            ]
+          },
+          {
+            "name": "start",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 4308715, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 4308715, "intensity": 0.2, "time": 200 }
+            ]
+          },
+          {
+            "name": "loop",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 4308715, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 4308715, "intensity": 0.2, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 4308715, "intensity": 0.3, "time": 400 }
+            ]
+          },
+          {
+            "name": "friendStart",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 65535, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 65535, "intensity": 0.2, "time": 200 }
+            ]
+          },
+          {
+            "name": "friendLoop",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 8255999, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 8255999, "intensity": 0.2, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 8255999, "intensity": 0.3, "time": 400 }
+            ]
+          },
+          {
+            "name": "enemyBeam",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16763392, "intensity": 0.2, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 16763392, "intensity": 0.15, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16763392, "intensity": 0.2, "time": 400 }
+            ]
+          },
+          {
+            "name": "friendBeam",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 8255999, "intensity": 0.2, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 8255999, "intensity": 0.15, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 8255999, "intensity": 0.2, "time": 400 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 4.513, "contrast": -1.77, "saturation": 8.85, "hue": 299.47, "key": "hss" },
+          { "brightness": 4.513, "contrast": -1.77, "saturation": 8.85, "hue": 299.47, "key": "hs" },
+          { "brightness": 19.181, "contrast": 3.54, "saturation": 0, "hue": 15.93, "key": "dss" },
+          { "brightness": 19.181, "contrast": 3.54, "saturation": 0, "hue": 15.93, "key": "ds" }
+        ]
+      }
     },
     "3": {
       "previewResourceId": 677721,
@@ -288,7 +383,96 @@
           ]
         },
         { "property": "TURRET_TURN_SPEED", "value": 134.7 }
-      ]
+      ],
+
+      "physics": {
+        "turretRotationSpeed": 2.3500858378103646,
+        "turretTurnAcceleration": 3.850021796974292,
+        "impactForce": 0,
+        "kickback": 0
+      },
+
+      "visual": {
+        "$type": "isida",
+
+        "damagingBall": 95981,
+        "damagingRay": 454272,
+        "damagingSound": 342454,
+        "healingBall": 416395,
+        "healingRay": 294478,
+        "healingSound": 153545,
+        "idleSound": 315290,
+        "lighting": [
+          {
+            "name": "enemyStart",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 16733773, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16733773, "intensity": 0.1, "time": 200 }
+            ]
+          },
+          {
+            "name": "enemyLoop",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16733773, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 16733773, "intensity": 0.2, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16733773, "intensity": 0.3, "time": 400 }
+            ]
+          },
+          {
+            "name": "start",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 4308715, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 4308715, "intensity": 0.2, "time": 200 }
+            ]
+          },
+          {
+            "name": "loop",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 4308715, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 4308715, "intensity": 0.2, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 4308715, "intensity": 0.3, "time": 400 }
+            ]
+          },
+          {
+            "name": "friendStart",
+            "light": [
+              { "attenuationBegin": 1, "attenuationEnd": 2, "color": 3338397, "intensity": 0, "time": 0 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 3338397, "intensity": 0.2, "time": 200 }
+            ]
+          },
+          {
+            "name": "friendLoop",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 3338397, "intensity": 0.3, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 3338397, "intensity": 0.2, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 3338397, "intensity": 0.3, "time": 400 }
+            ]
+          },
+          {
+            "name": "enemyBeam",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16735565, "intensity": 0.2, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 16735565, "intensity": 0.15, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 16735565, "intensity": 0.2, "time": 400 }
+            ]
+          },
+          {
+            "name": "friendBeam",
+            "light": [
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 12382365, "intensity": 0.2, "time": 0 },
+              { "attenuationBegin": 100, "attenuationEnd": 600, "color": 12382365, "intensity": 0.15, "time": 200 },
+              { "attenuationBegin": 250, "attenuationEnd": 700, "color": 12382365, "intensity": 0.2, "time": 400 }
+            ]
+          }
+        ],
+        "bcsh": [
+          { "brightness": 2.257, "contrast": 1.77, "saturation": 26.549, "hue": 267.61, "key": "hss" },
+          { "brightness": 2.257, "contrast": 1.77, "saturation": 26.549, "hue": 267.61, "key": "hs" },
+          { "brightness": 20.31, "contrast": -2.655, "saturation": 70.796, "hue": 310.62, "key": "dss" },
+          { "brightness": 20.31, "contrast": -2.655, "saturation": 70.796, "hue": 310.62, "key": "ds" }
+        ]
+      }
     }
   }
 }
+
