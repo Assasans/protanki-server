@@ -6,6 +6,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.battles.IsidaWeaponHandler
 import jp.assasans.protanki.server.battles.RailgunWeaponHandler
+import jp.assasans.protanki.server.battles.SmokyWeaponHandler
 import jp.assasans.protanki.server.battles.ThunderWeaponHandler
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.commands.*
@@ -25,7 +26,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     when(tank.weapon) {
       is RailgunWeaponHandler -> tank.weapon.fireStart()
-      is IsidaWeaponHandler -> tank.weapon.fireStart(args.getAs(0))
+      is IsidaWeaponHandler   -> tank.weapon.fireStart(args.getAs(0))
     }
   }
 
@@ -52,6 +53,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     when(tank.weapon) {
       is ThunderWeaponHandler -> tank.weapon.fire(args.getAs(0))
+      is SmokyWeaponHandler   -> tank.weapon.fire(args.getAs(0))
     }
   }
 
@@ -65,6 +67,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     when(tank.weapon) {
       is ThunderWeaponHandler -> tank.weapon.fireStatic(args.getAs(0))
+      is SmokyWeaponHandler   -> tank.weapon.fireStatic(args.getAs(0))
     }
   }
 
@@ -79,6 +82,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
     when(tank.weapon) {
       is RailgunWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
       is ThunderWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
+      is SmokyWeaponHandler   -> tank.weapon.fireTarget(args.getAs(0))
     }
   }
 

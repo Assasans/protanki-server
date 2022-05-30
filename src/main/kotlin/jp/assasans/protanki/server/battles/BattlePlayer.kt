@@ -488,6 +488,7 @@ class BattlePlayer(
         "railgun" -> RailgunWeaponHandler(this, user.equipment.weapon)
         "thunder" -> ThunderWeaponHandler(this, user.equipment.weapon)
         "isida"   -> IsidaWeaponHandler(this, user.equipment.weapon)
+        "smoky"   -> SmokyWeaponHandler(this, user.equipment.weapon)
 
         else      -> NullWeaponHandler(this, user.equipment.weapon)
       },
