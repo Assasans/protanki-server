@@ -115,7 +115,11 @@ class BattleTank(
   }
 
   fun updateSpawnPosition() {
-    val point = battle.map.spawnPoints.random()
+    // TODO(Assasans): Special handling for CP: https://web.archive.org/web/20160310101712/http://ru.tankiwiki.com/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C_%D1%82%D0%BE%D1%87%D0%B5%D0%BA
+    val point = battle.map.spawnPoints
+      .filter { point -> point.mode == null || point.mode == battle.modeHandler.mode }
+      .filter { point -> point.team == null || point.team == player.team }
+      .random()
     position = point.position.toVector()
     position.z += 200
     orientation.fromEulerAngles(point.position.toVector())
