@@ -1,6 +1,7 @@
 package jp.assasans.protanki.server.client
 
 import com.squareup.moshi.Json
+import jp.assasans.protanki.server.battles.BattleMode
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.garage.HullPhysics
@@ -318,3 +319,23 @@ data class ChangeTankSpecificationData(
     }
   }
 }
+
+data class NotifyPlayerJoinBattleData(
+  @Json val userId: String,
+  @Json val battleId: String,
+  @Json val mapName: String,
+  @Json val mode: BattleMode,
+  @Json val privateBattle: Boolean,
+  @Json val proBattle: Boolean,
+  @Json val minRank: Int,
+  @Json val maxRank: Int
+)
+
+data class AddBattlePlayerData(
+  @Json val battleId: String,
+  @Json val kills: Int,
+  @Json val score: Int,
+  @Json val suspicious: Boolean,
+  @Json val user: String,
+  @Json val type: BattleTeam
+)

@@ -7,8 +7,11 @@ import kotlinx.coroutines.cancel
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import jp.assasans.protanki.server.ISocketServer
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.getSkybox
+import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
+import jp.assasans.protanki.server.battles.mode.TeamModeHandler
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -35,6 +38,7 @@ class BattlePlayer(
   private val logger = KotlinLogging.logger { }
 
   private val mapRegistry: IMapRegistry by inject()
+  private val server: ISocketServer by inject()
 
   var incarnation: Int = 0
 
@@ -52,6 +56,48 @@ class BattlePlayer(
 
     battle.modeHandler.playerLeave(this)
     Command(CommandName.BattlePlayerRemove, listOf(user.username)).sendTo(battle, exclude = this)
+
+    when(battle.modeHandler) {
+      is DeathmatchModeHandler -> Command(CommandName.ReleaseSlotDm, listOf(battle.id, user.username))
+      is TeamModeHandler       -> Command(CommandName.ReleaseSlotTeam, listOf(battle.id, user.username))
+      else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
+    }.let { command ->
+      server.players
+        .filter { player -> player.screen == Screen.BattleSelect }
+        .forEach { player -> command.send(player) }
+    }
+
+    Command(
+      CommandName.NotifyPlayerLeaveBattle,
+      listOf(
+        NotifyPlayerJoinBattleData(
+          userId = user.username,
+          battleId = battle.id,
+          mapName = battle.title,
+          mode = battle.modeHandler.mode,
+          privateBattle = false,
+          proBattle = false,
+          minRank = 0,
+          maxRank = 30
+        ).toJson()
+      )
+    ).let { command ->
+      server.players
+        .filter { player -> player.screen == Screen.BattleSelect }
+        .forEach { player -> command.send(player) }
+    }
+
+    Command(
+      CommandName.RemoveBattlePlayer,
+      listOf(
+        battle.id,
+        user.username
+      )
+    ).let { command ->
+      server.players
+        .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
+        .forEach { player -> command.send(player) }
+    }
   }
 
   suspend fun init() {

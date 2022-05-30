@@ -114,6 +114,20 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitSpectatorUser(CommandCategory.Battle, "spectator_user_init", CommandSide.Server),
   UpdateSpectatorsList(CommandCategory.Battle, "update_spectator_list", CommandSide.Client),
 
+  ReserveSlotDm(CommandCategory.BattleSelect, "reserveSlot", CommandSide.Client),
+  ReserveSlotTeam(CommandCategory.BattleSelect, "reserveSlotTeam", CommandSide.Client),
+  ReleaseSlotDm(CommandCategory.BattleSelect, "releaseSlot", CommandSide.Client),
+  ReleaseSlotTeam(CommandCategory.BattleSelect, "releaseSlotTeam", CommandSide.Client),
+
+  NotifyPlayerJoinBattle(CommandCategory.Lobby, "notify_user_battle", CommandSide.Client),
+  NotifyPlayerLeaveBattle(CommandCategory.Lobby, "notify_user_leave_battle", CommandSide.Client),
+
+  AddBattlePlayerDm(CommandCategory.Lobby, "addUser", CommandSide.Client),
+  AddBattlePlayerTeam(CommandCategory.Lobby, "addUserTeam", CommandSide.Client),
+  RemoveBattlePlayer(CommandCategory.Lobby, "removeUser", CommandSide.Client),
+
+  UpdatePlayerKills(CommandCategory.Lobby, "updateUserKills", CommandSide.Client),
+
   StartBattle(CommandCategory.Lobby, "start_battle", CommandSide.Client),
 
   InitBonusesData(CommandCategory.Battle, "init_bonuses_data", CommandSide.Client),

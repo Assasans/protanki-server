@@ -4,14 +4,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import mu.KotlinLogging
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import jp.assasans.protanki.server.ISocketServer
 import jp.assasans.protanki.server.battles.effect.TankEffect
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.FlagCarryingState
 import jp.assasans.protanki.server.battles.mode.TeamModeHandler
-import jp.assasans.protanki.server.client.SpawnTankData
-import jp.assasans.protanki.server.client.UserSocket
-import jp.assasans.protanki.server.client.send
-import jp.assasans.protanki.server.client.toJson
+import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
@@ -35,8 +35,10 @@ class BattleTank(
   val weapon: WeaponHandler,
   val coloring: ServerGarageUserItemPaint,
   var health: Double = TankConstants.MAX_HEALTH
-) : ITickHandler {
+) : ITickHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
+
+  private val server: ISocketServer by inject()
 
   val socket: UserSocket
     get() = player.socket
@@ -99,6 +101,13 @@ class BattleTank(
         killer.id
       )
     ).sendTo(battle)
+
+    killer.player.kills++
+    Command(CommandName.UpdatePlayerKills, listOf(battle.id, killer.player.user.username, killer.player.kills.toString())).let { command ->
+      server.players
+        .filter { player -> player.screen == Screen.BattleSelect }
+        .forEach { player -> command.send(player) }
+    }
   }
 
   suspend fun selfDestruct() {

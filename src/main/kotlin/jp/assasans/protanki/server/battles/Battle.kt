@@ -10,6 +10,8 @@ import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.bonus.BonusProcessor
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
 import jp.assasans.protanki.server.battles.mode.BattleModeHandlerBuilder
+import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
+import jp.assasans.protanki.server.battles.mode.TeamModeHandler
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -136,30 +138,59 @@ class Battle(
   }
 
   suspend fun showInfoFor(socket: UserSocket) {
+    val info = when(modeHandler) {
+      is DeathmatchModeHandler -> ShowDmBattleInfoData(
+        itemId = id,
+        battleMode = modeHandler.mode,
+        scoreLimit = 300,
+        timeLimitInSec = 600,
+        timeLeftInSec = 212,
+        preview = map.preview,
+        maxPeopleCount = 8,
+        name = title,
+        minRank = 0,
+        maxRank = 30,
+        spectator = true,
+        withoutBonuses = false,
+        withoutCrystals = false,
+        withoutSupplies = false,
+        users = players.users().map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
+        score = 123
+      ).toJson()
+      is TeamModeHandler       -> ShowTeamBattleInfoData(
+        itemId = id,
+        battleMode = modeHandler.mode,
+        scoreLimit = 300,
+        timeLimitInSec = 600,
+        timeLeftInSec = 212,
+        preview = map.preview,
+        maxPeopleCount = 8,
+        name = title,
+        minRank = 0,
+        maxRank = 30,
+        spectator = true,
+        withoutBonuses = false,
+        withoutCrystals = false,
+        withoutSupplies = false,
+        usersRed = players
+          .users()
+          .filter { player -> player.team == BattleTeam.Red }
+          .map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
+        usersBlue = players
+          .users()
+          .filter { player -> player.team == BattleTeam.Blue }
+          .map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
+        scoreRed = modeHandler.teamScores[BattleTeam.Red] ?: 0,
+        scoreBlue = modeHandler.teamScores[BattleTeam.Blue] ?: 0,
+        autoBalance = false,
+        friendlyFire = properties[BattleProperty.FriendlyFireEnabled]
+      ).toJson()
+      else                     -> throw IllegalStateException("Unknown battle mode: ${modeHandler.mode}")
+    }
+
     Command(
       CommandName.ShowBattleInfo,
-      listOf(
-        ShowDmBattleInfoData(
-          itemId = id,
-          battleMode = modeHandler.mode,
-          scoreLimit = 300,
-          timeLimitInSec = 600,
-          timeLeftInSec = 212,
-          preview = map.preview,
-          maxPeopleCount = 8,
-          name = title,
-          minRank = 0,
-          maxRank = 30,
-          spectator = true,
-          withoutBonuses = false,
-          withoutCrystals = false,
-          withoutSupplies = false,
-          users = listOf(
-            BattleUser(user = "Luminate", kills = 666, score = 1337)
-          ),
-          score = 123
-        ).toJson()
-      )
+      listOf(info)
     ).send(socket)
   }
 
