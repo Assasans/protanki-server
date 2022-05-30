@@ -31,6 +31,7 @@ class TwinsWeaponHandler(
     val targetTank = battle.players
       .mapNotNull { player -> player.tank }
       .single { tank -> tank.id == target.target }
+    if(targetTank.state != TankState.Active) return
 
     battle.damageProcessor.dealDamage(sourceTank, targetTank, 25.0, false)
 

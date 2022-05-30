@@ -35,6 +35,7 @@ class IsidaWeaponHandler(
     val targetTank = battle.players
       .mapNotNull { player -> player.tank }
       .single { tank -> tank.id == startFire.target }
+    if(targetTank.state != TankState.Active) return
 
     val fireMode = when(battle.modeHandler) {
       is TeamModeHandler -> if(targetTank.player.team == sourceTank.player.team) IsidaFireMode.Heal else IsidaFireMode.Damage
