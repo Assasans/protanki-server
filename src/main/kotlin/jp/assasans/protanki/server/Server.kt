@@ -18,6 +18,7 @@ import jp.assasans.protanki.server.battles.bonus.BattleNitroBonus
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
+import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
@@ -60,6 +61,16 @@ class Server : KoinComponent {
         title = "ProTanki Server",
         map = mapRegistry.get("map_kungur", ServerMapTheme.SummerDay),
         modeHandlerBuilder = DeathmatchModeHandler.builder()
+      )
+    )
+
+    battleProcessor.battles.add(
+      Battle(
+        coroutineContext,
+        id = "493202bf695cc88b",
+        title = "Damage test",
+        map = mapRegistry.get("map_island", ServerMapTheme.SummerDay),
+        modeHandlerBuilder = TeamDeathmatchModeHandler.builder()
       )
     )
 
