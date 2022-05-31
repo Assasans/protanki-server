@@ -100,7 +100,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
             mode = battle.modeHandler.mode,
             privateBattle = false,
             proBattle = false,
-            minRank = 0,
+            minRank = 1,
             maxRank = 30
           ).toJson()
         )
