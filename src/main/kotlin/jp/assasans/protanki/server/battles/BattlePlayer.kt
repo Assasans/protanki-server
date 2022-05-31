@@ -537,6 +537,7 @@ class BattlePlayer(
         "smoky"        -> SmokyWeaponHandler(this, user.equipment.weapon)
         "twins"        -> TwinsWeaponHandler(this, user.equipment.weapon)
         "flamethrower" -> FlamethrowerWeaponHandler(this, user.equipment.weapon)
+        "freeze"       -> FreezeWeaponHandler(this, user.equipment.weapon)
 
         else           -> NullWeaponHandler(this, user.equipment.weapon)
       },
