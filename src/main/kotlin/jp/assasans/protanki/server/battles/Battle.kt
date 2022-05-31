@@ -8,10 +8,7 @@ import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.bonus.BonusProcessor
-import jp.assasans.protanki.server.battles.mode.BattleModeHandler
-import jp.assasans.protanki.server.battles.mode.BattleModeHandlerBuilder
-import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
-import jp.assasans.protanki.server.battles.mode.TeamModeHandler
+import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -117,17 +114,38 @@ class Battle(
 
   fun toBattleData(): BattleData {
     // TODO(Assasans)
-    return BattleData(
-      battleId = id,
-      battleMode = modeHandler.mode,
-      map = map.name,
-      name = title,
-      maxPeople = 8,
-      minRank = 0,
-      maxRank = 30,
-      preview = map.preview,
-      users = listOf()
-    )
+    return when(modeHandler) {
+      is DeathmatchModeHandler     -> DmBattleData(
+        battleId = id,
+        battleMode = modeHandler.mode,
+        map = map.name,
+        name = title,
+        maxPeople = 8,
+        minRank = 0,
+        maxRank = 30,
+        preview = map.preview,
+        users = players.users().map { player -> player.user.username }
+      )
+      is TeamDeathmatchModeHandler -> TeamBattleData(
+        battleId = id,
+        battleMode = modeHandler.mode,
+        map = map.name,
+        name = title,
+        maxPeople = 8,
+        minRank = 0,
+        maxRank = 30,
+        preview = map.preview,
+        usersRed = players
+          .users()
+          .filter { player -> player.team == BattleTeam.Red }
+          .map { player -> player.user.username },
+        usersBlue = players
+          .users()
+          .filter { player -> player.team == BattleTeam.Blue }
+          .map { player -> player.user.username }
+      )
+      else                         -> throw IllegalStateException("Unknown battle mode: ${modeHandler::class}")
+    }
   }
 
   suspend fun selectFor(socket: UserSocket) {

@@ -826,7 +826,7 @@ class ShowDmBattleInfoData(
   parkourMode
 )
 
-data class BattleData(
+abstract class BattleData(
   @Json val battleId: String,
   @Json val battleMode: BattleMode,
   @Json val map: String,
@@ -839,8 +839,72 @@ data class BattleData(
   @Json val preview: Int,
   @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
   @Json val parkourMode: Boolean = false,
-  @Json val suspicious: Boolean = false,
+  @Json val suspicious: Boolean = false
+)
+
+class DmBattleData(
+  battleId: String,
+  battleMode: BattleMode,
+  map: String,
+  maxPeople: Int,
+  name: String,
+  privateBattle: Boolean = false,
+  proBattle: Boolean = false,
+  minRank: Int,
+  maxRank: Int,
+  preview: Int,
+  equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  parkourMode: Boolean = false,
+  suspicious: Boolean = false,
+
   @Json val users: List<String>
+) : BattleData(
+  battleId,
+  battleMode,
+  map,
+  maxPeople,
+  name,
+  privateBattle,
+  proBattle,
+  minRank,
+  maxRank,
+  preview,
+  equipmentConstraintsMode,
+  parkourMode,
+  suspicious
+)
+
+class TeamBattleData(
+  battleId: String,
+  battleMode: BattleMode,
+  map: String,
+  maxPeople: Int,
+  name: String,
+  privateBattle: Boolean = false,
+  proBattle: Boolean = false,
+  minRank: Int,
+  maxRank: Int,
+  preview: Int,
+  equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
+  parkourMode: Boolean = false,
+  suspicious: Boolean = false,
+
+  @Json val usersRed: List<String>,
+  @Json val usersBlue: List<String>
+) : BattleData(
+  battleId,
+  battleMode,
+  map,
+  maxPeople,
+  name,
+  privateBattle,
+  proBattle,
+  minRank,
+  maxRank,
+  preview,
+  equipmentConstraintsMode,
+  parkourMode,
+  suspicious
 )
 
 data class InitBattleSelectData(

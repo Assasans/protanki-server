@@ -119,6 +119,7 @@ suspend fun main(args: Array<String>) {
             .withSubtype(ShaftVisual::class.java, "shaft")
             .withSubtype(RicochetVisual::class.java, "ricochet")
         )
+        .add(BattleDataJsonAdapterFactory())
         .add(KotlinJsonAdapterFactory())
         .add(GarageItemTypeAdapter())
         .add(ResourceTypeAdapter())
