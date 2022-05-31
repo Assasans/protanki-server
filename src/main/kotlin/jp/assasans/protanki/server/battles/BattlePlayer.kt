@@ -531,13 +531,14 @@ class BattlePlayer(
       orientation = Quaternion(),
       hull = user.equipment.hull,
       weapon = when(user.equipment.weapon.id.itemName) {
-        "railgun" -> RailgunWeaponHandler(this, user.equipment.weapon)
-        "thunder" -> ThunderWeaponHandler(this, user.equipment.weapon)
-        "isida"   -> IsidaWeaponHandler(this, user.equipment.weapon)
-        "smoky"   -> SmokyWeaponHandler(this, user.equipment.weapon)
-        "twins"   -> TwinsWeaponHandler(this, user.equipment.weapon)
+        "railgun"      -> RailgunWeaponHandler(this, user.equipment.weapon)
+        "thunder"      -> ThunderWeaponHandler(this, user.equipment.weapon)
+        "isida"        -> IsidaWeaponHandler(this, user.equipment.weapon)
+        "smoky"        -> SmokyWeaponHandler(this, user.equipment.weapon)
+        "twins"        -> TwinsWeaponHandler(this, user.equipment.weapon)
+        "flamethrower" -> FlamethrowerWeaponHandler(this, user.equipment.weapon)
 
-        else      -> NullWeaponHandler(this, user.equipment.weapon)
+        else           -> NullWeaponHandler(this, user.equipment.weapon)
       },
       coloring = user.equipment.paint
     )

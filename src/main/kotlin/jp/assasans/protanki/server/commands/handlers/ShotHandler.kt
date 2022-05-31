@@ -22,8 +22,9 @@ class ShotHandler : ICommandHandler, KoinComponent {
     logger.info { "StartFire: ${args.get(0)}" }
 
     when(tank.weapon) {
-      is RailgunWeaponHandler -> tank.weapon.fireStart()
-      is IsidaWeaponHandler   -> tank.weapon.fireStart(args.getAs(0))
+      is RailgunWeaponHandler      -> tank.weapon.fireStart()
+      is IsidaWeaponHandler        -> tank.weapon.fireStart(args.getAs(0))
+      is FlamethrowerWeaponHandler -> tank.weapon.fireStart(args.getAs(0))
     }
   }
 
@@ -36,7 +37,8 @@ class ShotHandler : ICommandHandler, KoinComponent {
     logger.info { "StopFire: ${args.get(0)}" }
 
     when(tank.weapon) {
-      is IsidaWeaponHandler -> tank.weapon.fireStop()
+      is IsidaWeaponHandler        -> tank.weapon.fireStop()
+      is FlamethrowerWeaponHandler -> tank.weapon.fireStop(args.getAs(0))
     }
   }
 
@@ -79,10 +81,11 @@ class ShotHandler : ICommandHandler, KoinComponent {
     logger.info { "FireTarget: ${args.get(0)}" }
 
     when(tank.weapon) {
-      is RailgunWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
-      is ThunderWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
-      is SmokyWeaponHandler   -> tank.weapon.fireTarget(args.getAs(0))
-      is TwinsWeaponHandler   -> tank.weapon.fireTarget(args.getAs(0))
+      is RailgunWeaponHandler      -> tank.weapon.fireTarget(args.getAs(0))
+      is ThunderWeaponHandler      -> tank.weapon.fireTarget(args.getAs(0))
+      is SmokyWeaponHandler        -> tank.weapon.fireTarget(args.getAs(0))
+      is TwinsWeaponHandler        -> tank.weapon.fireTarget(args.getAs(0))
+      is FlamethrowerWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
     }
   }
 
