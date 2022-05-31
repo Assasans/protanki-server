@@ -538,6 +538,7 @@ class BattlePlayer(
         "twins"        -> TwinsWeaponHandler(this, user.equipment.weapon)
         "flamethrower" -> FlamethrowerWeaponHandler(this, user.equipment.weapon)
         "freeze"       -> FreezeWeaponHandler(this, user.equipment.weapon)
+        "ricochet"     -> RicochetWeaponHandler(this, user.equipment.weapon)
 
         else           -> NullWeaponHandler(this, user.equipment.weapon)
       },

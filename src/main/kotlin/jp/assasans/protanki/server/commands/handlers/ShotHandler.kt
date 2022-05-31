@@ -53,9 +53,10 @@ class ShotHandler : ICommandHandler, KoinComponent {
     logger.info { "Fire: ${args.get(0)}" }
 
     when(tank.weapon) {
-      is ThunderWeaponHandler -> tank.weapon.fire(args.getAs(0))
-      is SmokyWeaponHandler   -> tank.weapon.fire(args.getAs(0))
-      is TwinsWeaponHandler   -> tank.weapon.fire(args.getAs(0))
+      is ThunderWeaponHandler  -> tank.weapon.fire(args.getAs(0))
+      is SmokyWeaponHandler    -> tank.weapon.fire(args.getAs(0))
+      is TwinsWeaponHandler    -> tank.weapon.fire(args.getAs(0))
+      is RicochetWeaponHandler -> tank.weapon.fire(args.getAs(0))
     }
   }
 
@@ -89,6 +90,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
       is TwinsWeaponHandler        -> tank.weapon.fireTarget(args.getAs(0))
       is FlamethrowerWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
       is FreezeWeaponHandler       -> tank.weapon.fireTarget(args.getAs(0))
+      is RicochetWeaponHandler     -> tank.weapon.fireTarget(args.getAs(0))
     }
   }
 
