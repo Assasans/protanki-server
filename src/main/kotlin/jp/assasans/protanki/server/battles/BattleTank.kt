@@ -200,6 +200,7 @@ class BattleTank(
       if(battle.modeHandler is TeamModeHandler) {
         battle.players
           .filter { player -> player.team == this@BattleTank.player.team }
+          .filter { player -> player != this@BattleTank.player }
           .forEach { player -> send(player.socket) }
       }
     }
