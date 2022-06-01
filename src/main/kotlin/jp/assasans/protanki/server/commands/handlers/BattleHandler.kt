@@ -162,7 +162,6 @@ class BattleHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.ReadyToRespawn)
   suspend fun readyToRespawn(socket: UserSocket) {
     val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
-    val tank = player.tank ?: throw Exception("No Tank")
 
     player.respawn()
   }
@@ -172,11 +171,15 @@ class BattleHandler : ICommandHandler, KoinComponent {
     val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
     val tank = player.tank ?: throw Exception("No Tank")
 
-    tank.spawn()
+    val newTank = player.createTank()
+    newTank.position = tank.position
+    newTank.orientation = tank.orientation
+
+    newTank.spawn()
     player.spawnTankForAnother()
 
     delay(1500)
-    tank.activate()
+    newTank.activate()
   }
 
   @CommandHandler(CommandName.ExitFromBattle)

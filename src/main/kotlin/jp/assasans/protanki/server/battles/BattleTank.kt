@@ -152,6 +152,52 @@ class BattleTank(
     ).send(this)
   }
 
+  suspend fun initSelf() {
+    battle.players.forEach { player ->
+      Command(
+        CommandName.InitTank,
+        listOf(
+          InitTankData(
+            battleId = battle.id,
+            hull_id = hull.mountName,
+            turret_id = weapon.item.mountName,
+            colormap_id = coloring.marketItem.coloring,
+            hullResource = hull.modification.object3ds,
+            turretResource = weapon.item.modification.object3ds,
+            partsObject = TankSoundsData().toJson(),
+            tank_id = id,
+            nickname = this.player.user.username,
+            team_type = this.player.team,
+            state = state.tankInitKey,
+            health = health,
+
+            // Hull physics
+            maxSpeed = hull.modification.physics.speed,
+            maxTurnSpeed = hull.modification.physics.turnSpeed,
+            acceleration = hull.modification.physics.acceleration,
+            reverseAcceleration = hull.modification.physics.reverseAcceleration,
+            sideAcceleration = hull.modification.physics.sideAcceleration,
+            turnAcceleration = hull.modification.physics.turnAcceleration,
+            reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
+            dampingCoeff = hull.modification.physics.damping,
+            mass = hull.modification.physics.mass,
+            power = hull.modification.physics.power,
+
+            // Weapon physics
+            turret_turn_speed = weapon.item.modification.physics.turretRotationSpeed,
+            turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration,
+            kickback = weapon.item.modification.physics.kickback,
+            impact_force = weapon.item.modification.physics.impactForce,
+
+            // Weapon visual
+            sfxData = (weapon.item.modification.visual
+                       ?: weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
+          ).toJson()
+        )
+      ).send(player)
+    }
+  }
+
   suspend fun spawn() {
     state = TankState.SemiActive
 
