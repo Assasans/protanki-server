@@ -87,6 +87,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       }.let { command ->
         server.players
           .filter { player -> player.screen == Screen.BattleSelect }
+          .filter { player -> player.active }
           .forEach { player -> command.send(player) }
       }
 
@@ -107,6 +108,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       ).let { command ->
         server.players
           .filter { player -> player.screen == Screen.BattleSelect }
+          .filter { player -> player.active }
           .forEach { player -> command.send(player) }
       }
 
@@ -129,6 +131,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       ).let { command ->
         server.players
           .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
+          .filter { player -> player.active }
           .forEach { player -> command.send(player) }
       }
 
@@ -332,6 +335,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     Command(CommandName.AddBattle, listOf(battle.toBattleData().toJson())).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }
+        .filter { player -> player.active }
         .forEach { player -> command.send(player) }
     }
 

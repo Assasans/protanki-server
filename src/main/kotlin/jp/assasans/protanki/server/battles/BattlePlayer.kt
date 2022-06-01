@@ -64,6 +64,7 @@ class BattlePlayer(
     }.let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }
+        .filter { player -> player.active }
         .forEach { player -> command.send(player) }
     }
 
@@ -84,6 +85,7 @@ class BattlePlayer(
     ).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }
+        .filter { player -> player.active }
         .forEach { player -> command.send(player) }
     }
 
@@ -96,6 +98,7 @@ class BattlePlayer(
     ).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
+        .filter { player -> player.active }
         .forEach { player -> command.send(player) }
     }
   }

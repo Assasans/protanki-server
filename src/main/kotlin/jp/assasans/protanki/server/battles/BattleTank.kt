@@ -106,6 +106,7 @@ class BattleTank(
     Command(CommandName.UpdatePlayerKills, listOf(battle.id, killer.player.user.username, killer.player.kills.toString())).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }
+        .filter { player -> player.active }
         .forEach { player -> command.send(player) }
     }
   }

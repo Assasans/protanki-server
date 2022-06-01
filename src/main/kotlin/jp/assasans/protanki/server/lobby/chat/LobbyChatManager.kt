@@ -92,6 +92,7 @@ class LobbyChatManager : ILobbyChatManager, KoinComponent {
     Command(CommandName.SendChatMessageClient, listOf(message.toJson())).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect || player.screen == Screen.Garage }
+        .filter { player -> player.active }
         .forEach { player -> command.send(player) }
     }
 
