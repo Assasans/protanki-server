@@ -248,6 +248,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     if(battle != null && socket.screen == Screen.BattleSelect) {
       // Return to battle
 
+      socket.screen = Screen.Battle
       Command(CommandName.StartLayoutSwitch, listOf("BATTLE")).send(socket)
       Command(CommandName.UnloadBattleSelect).send(socket)
       Command(CommandName.EndLayoutSwitch, listOf("BATTLE", "BATTLE")).send(socket)
@@ -289,6 +290,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     if(battle != null && socket.screen == Screen.Garage) {
       // Return to battle
 
+      socket.screen = Screen.Battle
       Command(CommandName.StartLayoutSwitch, listOf("BATTLE")).send(socket)
       Command(CommandName.UnloadGarage).send(socket)
       Command(CommandName.EndLayoutSwitch, listOf("BATTLE", "BATTLE")).send(socket)
