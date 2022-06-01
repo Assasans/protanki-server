@@ -80,6 +80,9 @@ class BattleTank(
     deactivate()
     state = TankState.Dead
 
+    player.deaths++
+    player.updateStats()
+
     (battle.modeHandler as? CaptureTheFlagModeHandler)?.let { handler ->
       val flag = handler.flags[player.team.opposite]
       if(flag is FlagCarryingState && flag.carrier == this) {
@@ -103,6 +106,8 @@ class BattleTank(
     ).sendTo(battle)
 
     killer.player.kills++
+    killer.player.updateStats()
+
     Command(CommandName.UpdatePlayerKills, listOf(battle.id, killer.player.user.username, killer.player.kills.toString())).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }

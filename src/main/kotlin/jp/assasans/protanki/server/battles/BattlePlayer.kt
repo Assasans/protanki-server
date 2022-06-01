@@ -301,19 +301,7 @@ class BattlePlayer(
 
       logger.info { "Load stage 2" }
 
-      Command(
-        CommandName.UpdatePlayerStatistics,
-        listOf(
-          UpdatePlayerStatisticsData(
-            id = (tank ?: throw Exception("No Tank")).id,
-            rank = user.rank.value,
-            team_type = team,
-            score = score,
-            kills = kills,
-            deaths = deaths
-          ).toJson()
-        )
-      ).sendTo(battle)
+      updateStats()
     }
 
     Command(
@@ -520,6 +508,24 @@ class BattlePlayer(
         ).send(player)
       }
     }
+  }
+
+  suspend fun updateStats() {
+    val tank = tank ?: throw Exception("No Tank")
+
+    Command(
+      CommandName.UpdatePlayerStatistics,
+      listOf(
+        UpdatePlayerStatisticsData(
+          id = tank.id,
+          rank = user.rank.value,
+          team_type = team,
+          score = score,
+          kills = kills,
+          deaths = deaths
+        ).toJson()
+      )
+    ).sendTo(battle)
   }
 
   suspend fun createTank(): BattleTank {
