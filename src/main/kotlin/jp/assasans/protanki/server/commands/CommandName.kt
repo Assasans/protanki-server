@@ -213,6 +213,14 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   FireStatic(CommandCategory.Battle, "fire_static", CommandSide.Server),
   FireTarget(CommandCategory.Battle, "fire_target", CommandSide.Server),
 
+  /* Shaft */
+  FireArcade(CommandCategory.Battle, "quick_shot_shaft", CommandSide.Server),
+  StartEnergyDrain(CommandCategory.Battle, "begin_enegry_drain", CommandSide.Server),
+  EnterSnipingMode(CommandCategory.Battle, "activate_manual_targeting", CommandSide.Server),
+  ExitSnipingMode(CommandCategory.Battle, "stop_manual_targeting", CommandSide.Server),
+  ClientEnterSnipingMode(CommandCategory.Battle, "start_manual_targeting", CommandSide.Client),
+  ClientExitSnipingMode(CommandCategory.Battle, "stop_manual_targeting", CommandSide.Client),
+
   Shot(CommandCategory.Battle, "shot", CommandSide.Client),
   ShotStatic(CommandCategory.Battle, "static_shot", CommandSide.Client),
   ShotTarget(CommandCategory.Battle, "target_shot", CommandSide.Client),

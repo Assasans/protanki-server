@@ -91,6 +91,7 @@ class ShotHandler : ICommandHandler, KoinComponent {
       is FlamethrowerWeaponHandler -> tank.weapon.fireTarget(args.getAs(0))
       is FreezeWeaponHandler       -> tank.weapon.fireTarget(args.getAs(0))
       is RicochetWeaponHandler     -> tank.weapon.fireTarget(args.getAs(0))
+      is ShaftWeaponHandler        -> tank.weapon.fireSniping(args.getAs(0))
     }
   }
 
@@ -117,6 +118,58 @@ class ShotHandler : ICommandHandler, KoinComponent {
 
     when(tank.weapon) {
       is IsidaWeaponHandler -> tank.weapon.resetTarget(args.getAs(0))
+    }
+  }
+
+  @CommandHandler(CommandName.StartEnergyDrain)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun startEnergyDrain(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "StartEnergyDrain: ${args.get(0)}" }
+
+    when(tank.weapon) {
+      is ShaftWeaponHandler -> tank.weapon.startEnergyDrain(args.getAs(0))
+    }
+  }
+
+  @CommandHandler(CommandName.EnterSnipingMode)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun enterSnipingMode(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "EnterSnipingMode" }
+
+    when(tank.weapon) {
+      is ShaftWeaponHandler -> tank.weapon.enterSnipingMode()
+    }
+  }
+
+  @CommandHandler(CommandName.ExitSnipingMode)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun exitSnipingMode(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "ExitSnipingMode" }
+
+    when(tank.weapon) {
+      is ShaftWeaponHandler -> tank.weapon.exitSnipingMode()
+    }
+  }
+
+  @CommandHandler(CommandName.FireArcade)
+  @ArgsBehaviour(ArgsBehaviourType.Raw)
+  suspend fun fireArcade(socket: UserSocket, args: CommandArgs) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+
+    logger.info { "FireArcade: ${args.get(0)}" }
+
+    when(tank.weapon) {
+      is ShaftWeaponHandler -> tank.weapon.fireArcade(args.getAs(0))
     }
   }
 }
