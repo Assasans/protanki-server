@@ -50,6 +50,8 @@ class BattlePlayer(
   var loadState: LoadState = LoadState.Stage1
   var initSpectatorUserCalled: Boolean = false
 
+  var equipmentChanged: Boolean = false
+
   suspend fun deactivate(terminate: Boolean = false) {
     tank?.deactivate(terminate)
     coroutineScope.cancel()
@@ -485,6 +487,14 @@ class BattlePlayer(
         ).toJson()
       )
     ).sendTo(battle)
+  }
+
+  suspend fun changeEquipment() {
+    val tank = tank ?: throw Exception("No Tank")
+
+    Command(CommandName.BattlePlayerRemove, listOf(user.username)).sendTo(battle)
+    tank.initSelf()
+    Command(CommandName.EquipmentChanged, listOf(user.username)).sendTo(battle)
   }
 
   suspend fun createTank(): BattleTank {

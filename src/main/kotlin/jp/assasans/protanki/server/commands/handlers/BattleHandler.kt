@@ -153,7 +153,9 @@ class BattleHandler : ICommandHandler, KoinComponent {
     if(player.battle.properties[BattleProperty.InstantSelfDestruct]) {
       tank.selfDestruct()
     } else {
+      tank.selfDestructing = true
       tank.coroutineScope.launchDelayed(10.seconds) {
+        tank.selfDestructing = false
         tank.selfDestruct()
       }
     }

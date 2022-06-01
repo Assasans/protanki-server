@@ -2,6 +2,7 @@ package jp.assasans.protanki.server.commands.handlers
 
 import kotlin.coroutines.coroutineContext
 import kotlin.io.path.readText
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
@@ -15,6 +16,7 @@ import jp.assasans.protanki.server.battles.map.getSkybox
 import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
+import jp.assasans.protanki.server.extensions.launchDelayed
 
 /*
 Battle exit:
@@ -285,15 +287,29 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   suspend fun switchGarage(socket: UserSocket) {
     logger.debug { "Switch to garage" }
 
-    val battle = socket.battle
-
-    if(battle != null && socket.screen == Screen.Garage) {
+    val player = socket.battlePlayer
+    if(player != null && socket.screen == Screen.Garage) {
       // Return to battle
 
       socket.screen = Screen.Battle
       Command(CommandName.StartLayoutSwitch, listOf("BATTLE")).send(socket)
       Command(CommandName.UnloadGarage).send(socket)
       Command(CommandName.EndLayoutSwitch, listOf("BATTLE", "BATTLE")).send(socket)
+
+      val tank = player.tank
+      if(tank != null && (tank.state == TankState.Active || tank.state == TankState.SemiActive)) {
+        if(player.equipmentChanged && !tank.selfDestructing) {
+          val delay = 3.seconds
+
+          Command(CommandName.EquipmentChangedCountdown, listOf(delay.inWholeMilliseconds.toString())).send(socket)
+
+          player.coroutineScope.launchDelayed(delay) {
+            tank.selfDestruct(silent = true)
+          }
+        }
+      } else {
+        player.changeEquipment()
+      }
     } else {
       Command(CommandName.StartLayoutSwitch, listOf("GARAGE")).send(socket)
 
@@ -307,7 +323,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       Command(
         CommandName.EndLayoutSwitch, listOf(
-          if(battle != null) "BATTLE" else "GARAGE",
+          if(player != null) "BATTLE" else "GARAGE",
           "GARAGE"
         )
       ).send(socket)

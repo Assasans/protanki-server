@@ -80,6 +80,11 @@ class GarageHandler : ICommandHandler, KoinComponent {
     entityManager.transaction.commit()
     entityManager.close()
 
+    val player = socket.battlePlayer
+    if(player != null) {
+      player.equipmentChanged = true
+    }
+
     Command(CommandName.MountItem, listOf(currentItem.mountName, true.toString())).send(socket)
   }
 

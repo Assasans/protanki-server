@@ -193,7 +193,20 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ClientMovementControl(CommandCategory.Battle, "movementControl", CommandSide.Client),
 
   KillTank(CommandCategory.Battle, "kill_tank", CommandSide.Client),
+  KillTankSilent(CommandCategory.Battle, "die", CommandSide.Client),
   KillLocalTank(CommandCategory.Battle, "local_user_killed", CommandSide.Client),
+
+  /**
+   * Sent to the player immediately after returning from the garage to the battle (if equipment was changed and the tank is spawned)
+   * @argument {Int} delay - The time in milliseconds to wait before self-destructing to change the equipment
+   */
+  EquipmentChangedCountdown(CommandCategory.Battle, "reloadScheduled", CommandSide.Client),
+
+  /**
+   * Sent to the battle after tank spawn (before activation)
+   * @argument {String} username - The username of the player
+   */
+  EquipmentChanged(CommandCategory.Battle, "onReload", CommandSide.Client),
 
   EnableEffect(CommandCategory.Battle, "enable_effect", CommandSide.Client),
   DisableEffect(CommandCategory.Battle, "disable_effect", CommandSide.Client),

@@ -50,6 +50,8 @@ class BattleTank(
 
   val effects: MutableList<TankEffect> = mutableListOf()
 
+  var selfDestructing: Boolean = false
+
   suspend fun activate() {
     if(state == TankState.Active) return
 
@@ -116,17 +118,21 @@ class BattleTank(
     }
   }
 
-  suspend fun selfDestruct() {
+  suspend fun selfDestruct(silent: Boolean = false) {
     killSelf()
 
-    Command(
-      CommandName.KillTank,
-      listOf(
-        id,
-        TankKillType.SelfDestruct.key,
-        id
-      )
-    ).sendTo(battle)
+    if(silent) {
+      Command(CommandName.KillTankSilent, listOf(id)).sendTo(battle)
+    } else {
+      Command(
+        CommandName.KillTank,
+        listOf(
+          id,
+          TankKillType.SelfDestruct.key,
+          id
+        )
+      ).sendTo(battle)
+    }
   }
 
   fun updateSpawnPosition() {
@@ -200,6 +206,12 @@ class BattleTank(
 
   suspend fun spawn() {
     state = TankState.SemiActive
+
+    // TODO(Assasans): Add spawn event?
+    if(player.equipmentChanged) {
+      player.equipmentChanged = false
+      player.changeEquipment()
+    }
 
     updateHealth()
 
