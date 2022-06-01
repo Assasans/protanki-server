@@ -98,8 +98,7 @@ class UserSocket(
 
   val coroutineScope = CoroutineScope(coroutineContext)
 
-  val remoteAddress: SocketAddress
-    get() = socket.remoteAddress
+  val remoteAddress: SocketAddress = socket.remoteAddress
 
   var active: Boolean = false
 
@@ -148,7 +147,7 @@ class UserSocket(
       try {
         output.writeFully(command.serialize().toByteArray())
       } catch(exception: IOException) {
-        logger.warn(exception) { "${socket.remoteAddress} thrown an exception" }
+        logger.warn(exception) { "$remoteAddress thrown an exception" }
         deactivate()
         return
       }
@@ -298,7 +297,7 @@ class UserSocket(
           buffer = input.readAvailable()
           packetProcessor.write(buffer)
         } catch(exception: IOException) {
-          logger.warn(exception) { "${socket.remoteAddress} thrown an exception" }
+          logger.warn(exception) { "$remoteAddress thrown an exception" }
           deactivate()
 
           break
@@ -319,7 +318,7 @@ class UserSocket(
         }
       }
 
-      logger.debug { "${socket.remoteAddress} end of data" }
+      logger.debug { "$remoteAddress end of data" }
 
       deactivate()
     } catch(exception: Throwable) {
