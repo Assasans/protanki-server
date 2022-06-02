@@ -27,6 +27,7 @@ import org.koin.core.component.inject
 import org.koin.java.KoinJavaComponent
 import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
+import jp.assasans.protanki.server.battles.bonus.BattleBonus
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
@@ -628,8 +629,19 @@ class UserSocket(
   }
 }
 
-data class InitBonusesData(
-  @Json val init_bonuses: List<Any> = listOf() // TODO(Assasans)
+data class InitBonus(
+  @Json val id: String,
+  @Json val position: Vector3Data,
+  @Json val timeFromAppearing: Int, // In milliseconds
+  @Json val timeLife: Int, // In seconds
+  @Json val bonusFallSpeed: Int = 500 // Unused
+)
+
+fun BattleBonus.toInitBonus() = InitBonus(
+  id = key,
+  position = position.toVectorData(),
+  timeFromAppearing = aliveFor.inWholeMilliseconds.toInt(),
+  timeLife = lifetime.inWholeSeconds.toInt()
 )
 
 inline fun <reified T : Any> T.toJson(json: Moshi): String {

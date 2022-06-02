@@ -2,6 +2,8 @@ package jp.assasans.protanki.server.battles.bonus
 
 import kotlin.time.Duration
 import kotlinx.coroutines.Job
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import jp.assasans.protanki.server.BonusType
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleTank
@@ -21,6 +23,15 @@ abstract class BattleBonus(
   val lifetime: Duration
 ) {
   abstract val type: BonusType
+
+  var spawnTime: Instant? = null
+    protected set
+
+  val aliveFor: Duration
+    get() {
+      val spawnTime = spawnTime ?: throw IllegalStateException("Bonus is not spawned")
+      return Clock.System.now() - spawnTime
+    }
 
   var removeJob: Job? = null
     protected set
@@ -47,6 +58,7 @@ abstract class BattleBonus(
       )
     ).sendTo(battle)
 
+    spawnTime = Clock.System.now()
     removeJob = battle.coroutineScope.launchDelayed(lifetime) {
       battle.bonusProcessor.bonuses.remove(id)
 

@@ -8,6 +8,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.ISocketServer
+import jp.assasans.protanki.server.battles.bonus.BattleBonus
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.getSkybox
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
@@ -165,9 +166,7 @@ class BattlePlayer(
 
     Command(
       CommandName.InitBonuses,
-      listOf(
-        listOf<InitBonusesData>().toJson()
-      )
+      listOf(battle.bonusProcessor.bonuses.values.map(BattleBonus::toInitBonus).toJson())
     ).send(socket)
   }
 
