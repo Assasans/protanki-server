@@ -61,6 +61,6 @@ abstract class TankEffect(
     }
   }
 
-  abstract suspend fun activate()
+  open suspend fun activate() {}
   open suspend fun deactivate() {}
 }
