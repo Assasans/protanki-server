@@ -4,6 +4,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import jp.assasans.protanki.server.battles.effect.NitroEffect
+import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.commands.Command
@@ -74,6 +75,6 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
     bonus.activate(tank)
     bonus.cancelRemove()
 
-    Command(CommandName.ActivateBonus, listOf(bonus.key)).send(socket)
+    Command(CommandName.ActivateBonus, listOf(bonus.key)).sendTo(battle)
   }
 }
