@@ -3,6 +3,7 @@ package jp.assasans.protanki.server.commands.handlers
 import kotlin.time.Duration.Companion.milliseconds
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
+import jp.assasans.protanki.server.battles.effect.DoubleDamageEffect
 import jp.assasans.protanki.server.battles.effect.NitroEffect
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.UserSocket
@@ -24,7 +25,7 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
     val effect = when(item) {
       "health"        -> null
       "armor"         -> null
-      "double_damage" -> null
+      "double_damage" -> DoubleDamageEffect(tank)
       "n2o"           -> NitroEffect(tank)
       "mine"          -> null
       else            -> throw Exception("Unknown item: $item")

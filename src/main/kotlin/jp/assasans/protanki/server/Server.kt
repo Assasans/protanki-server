@@ -13,6 +13,7 @@ import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.battles.bonus.BattleDoubleDamageBonus
 import jp.assasans.protanki.server.battles.bonus.BattleGoldBonus
 import jp.assasans.protanki.server.battles.bonus.BattleNitroBonus
 import jp.assasans.protanki.server.battles.map.IMapRegistry
@@ -339,9 +340,10 @@ class Server : KoinComponent {
             rotation.fromEulerAngles(bonusPoint.rotation.toVector())
 
             val bonus = when(bonusType) {
-              BonusType.Nitro -> BattleNitroBonus(battle, battle.bonusProcessor.nextId, position, rotation)
-              BonusType.Gold  -> BattleGoldBonus(battle, battle.bonusProcessor.nextId, position, rotation)
-              else            -> throw Exception("Unsupported bonus type: $bonusType")
+              BonusType.DoubleDamage -> BattleDoubleDamageBonus(battle, battle.bonusProcessor.nextId, position, rotation)
+              BonusType.Nitro        -> BattleNitroBonus(battle, battle.bonusProcessor.nextId, position, rotation)
+              BonusType.Gold         -> BattleGoldBonus(battle, battle.bonusProcessor.nextId, position, rotation)
+              else                   -> throw Exception("Unsupported bonus type: $bonusType")
             }
 
             battle.bonusProcessor.incrementId()
