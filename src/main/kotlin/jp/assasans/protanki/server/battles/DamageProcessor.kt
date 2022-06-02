@@ -1,5 +1,6 @@
 package jp.assasans.protanki.server.battles
 
+import jp.assasans.protanki.server.battles.effect.DoubleArmorEffect
 import jp.assasans.protanki.server.battles.effect.DoubleDamageEffect
 import jp.assasans.protanki.server.battles.effect.TankEffect
 import jp.assasans.protanki.server.battles.mode.TeamModeHandler
@@ -44,6 +45,10 @@ class DamageProcessor(
 
     source.effects.singleOrNullOf<TankEffect, DoubleDamageEffect>()?.let { effect ->
       totalDamage *= effect.multiplier
+    }
+
+    target.effects.singleOrNullOf<TankEffect, DoubleArmorEffect>()?.let { effect ->
+      totalDamage /= effect.multiplier
     }
 
     val damageType = dealDamage(target, totalDamage, isCritical)
