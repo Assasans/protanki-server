@@ -1,6 +1,7 @@
 package jp.assasans.protanki.server.client
 
 import java.io.IOException
+import java.lang.reflect.InvocationTargetException
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.coroutines.CoroutineContext
@@ -237,17 +238,12 @@ class UserSocket(
       val handler = commandRegistry.getHandler(command.name)
       if(handler == null) return
 
+      val args = mutableMapOf<KParameter, Any?>()
       try {
         val instance = handler.type.primaryConstructor!!.call()
-        val args = mutableMapOf<KParameter, Any?>(
-          Pair(
-            handler.function.parameters.single { parameter -> parameter.kind == KParameter.Kind.INSTANCE },
-            instance
-          ),
-          Pair(
-            handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0],
-            this
-          )
+        args += mapOf(
+          Pair(handler.function.parameters.single { parameter -> parameter.kind == KParameter.Kind.INSTANCE }, instance),
+          Pair(handler.function.parameters.filter { parameter -> parameter.kind == KParameter.Kind.VALUE }[0], this)
         )
 
         when(handler.argsBehaviour) {
@@ -267,10 +263,16 @@ class UserSocket(
         }
 
         // logger.debug { "Handler ${handler.name} call arguments: ${args.map { argument -> "${argument.key.type}" }}" }
+      } catch(exception: Throwable) {
+        logger.error(exception) { "Failed to process ${command.name} arguments" }
+        return
+      }
 
+      try {
         handler.function.callSuspendBy(args)
       } catch(exception: Throwable) {
-        logger.error(exception) { "Failed to call ${command.name} handler" }
+        val targetException = if(exception is InvocationTargetException) exception.cause else exception
+        logger.error(targetException) { "Failed to call ${command.name} handler" }
       }
     } catch(exception: UnknownCommandCategoryException) {
       logger.warn { "Unknown command category: ${exception.category}" }
