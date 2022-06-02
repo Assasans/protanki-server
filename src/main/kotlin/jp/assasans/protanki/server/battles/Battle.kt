@@ -8,7 +8,10 @@ import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.bonus.BonusProcessor
-import jp.assasans.protanki.server.battles.mode.*
+import jp.assasans.protanki.server.battles.mode.BattleModeHandler
+import jp.assasans.protanki.server.battles.mode.BattleModeHandlerBuilder
+import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
+import jp.assasans.protanki.server.battles.mode.TeamModeHandler
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -126,7 +129,7 @@ class Battle(
         preview = map.preview,
         users = players.users().map { player -> player.user.username }
       )
-      is TeamDeathmatchModeHandler -> TeamBattleData(
+      is TeamModeHandler -> TeamBattleData(
         battleId = id,
         battleMode = modeHandler.mode,
         map = map.name,
