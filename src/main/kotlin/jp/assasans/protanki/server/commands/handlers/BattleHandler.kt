@@ -220,4 +220,22 @@ class BattleHandler : ICommandHandler, KoinComponent {
       }
     }
   }
+
+  @CommandHandler(CommandName.TriggerMine)
+  suspend fun triggerMine(socket: UserSocket, key: String) {
+    val player = socket.battlePlayer ?: throw Exception("No BattlePlayer")
+    val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
+
+    val username = key.substringBeforeLast("_")
+    val id = key.substringAfterLast("_").toInt()
+
+    val mine = battle.mineProcessor.mines[id]
+    if(mine == null) {
+      logger.warn { "Attempt to activate missing mine: $username@$id" }
+      return
+    }
+
+    mine.trigger(tank)
+  }
 }

@@ -211,9 +211,23 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   EnableEffect(CommandCategory.Battle, "enable_effect", CommandSide.Client),
   DisableEffect(CommandCategory.Battle, "disable_effect", CommandSide.Client),
 
+  /* Mines */
   AddMine(CommandCategory.Battle, "put_mine", CommandSide.Client),
-  ActivateMine(CommandCategory.Battle, "activate_mine", CommandSide.Client),
   RemoveMines(CommandCategory.Battle, "remove_mines", CommandSide.Client),
+  ActivateMine(CommandCategory.Battle, "activate_mine", CommandSide.Client),
+
+  /**
+   * Sent when thy enemy tank triggers a mine
+   * @argument {String} mineId - The ID of the mine
+   */
+  TriggerMine(CommandCategory.Battle, "mine_hit", CommandSide.Server),
+
+  /**
+   * Sent to the battle after mine activation
+   * @argument {String} mineId - The ID of the mine
+   * @argument {String} username - The username of the player who activated the mine. Can be invalid if the mine was activated by the server.
+   */
+  ClientTriggerMine(CommandCategory.Battle, "hit_mine", CommandSide.Client),
 
   StartFire(CommandCategory.Battle, "start_fire", CommandSide.Server),
   StopFire(CommandCategory.Battle, "stop_fire", CommandSide.Server),

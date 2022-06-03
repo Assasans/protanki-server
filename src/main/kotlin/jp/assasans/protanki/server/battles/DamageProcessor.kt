@@ -25,7 +25,7 @@ enum class DamageType(val id: Int, val key: String) {
 interface IDamageProcessor {
   val battle: Battle
 
-  suspend fun dealDamage(source: BattleTank, target: BattleTank, damage: Double, isCritical: Boolean)
+  suspend fun dealDamage(source: BattleTank, target: BattleTank, damage: Double, isCritical: Boolean, ignoreSourceEffects: Boolean = false)
   suspend fun dealDamage(target: BattleTank, damage: Double, isCritical: Boolean): DamageType
 
   suspend fun heal(source: BattleTank, target: BattleTank, heal: Double)
@@ -35,7 +35,13 @@ interface IDamageProcessor {
 class DamageProcessor(
   override val battle: Battle
 ) : IDamageProcessor {
-  override suspend fun dealDamage(source: BattleTank, target: BattleTank, damage: Double, isCritical: Boolean) {
+  override suspend fun dealDamage(
+    source: BattleTank,
+    target: BattleTank,
+    damage: Double,
+    isCritical: Boolean,
+    ignoreSourceEffects: Boolean
+  ) {
     var totalDamage = damage
 
     if(!battle.properties[BattleProperty.DamageEnabled]) return
@@ -43,8 +49,10 @@ class DamageProcessor(
       if(source.player.team == target.player.team && !battle.properties[BattleProperty.FriendlyFireEnabled]) return
     }
 
-    source.effects.singleOrNullOf<TankEffect, DoubleDamageEffect>()?.let { effect ->
-      totalDamage *= effect.multiplier
+    if(!ignoreSourceEffects) {
+      source.effects.singleOrNullOf<TankEffect, DoubleDamageEffect>()?.let { effect ->
+        totalDamage *= effect.multiplier
+      }
     }
 
     target.effects.singleOrNullOf<TankEffect, DoubleArmorEffect>()?.let { effect ->

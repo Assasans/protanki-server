@@ -76,6 +76,10 @@ class BattleTank(
       }
     }
     effects.clear()
+
+    if(terminate || battle.properties[BattleProperty.DeactivateMinesOnDeath]) {
+      battle.mineProcessor.deactivateAll(player)
+    }
   }
 
   private suspend fun killSelf() {

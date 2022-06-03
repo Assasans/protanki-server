@@ -339,3 +339,11 @@ data class AddBattlePlayerData(
   @Json val user: String,
   @Json val type: BattleTeam
 )
+
+data class AddMineData(
+  @Json val mineId: String,
+  @Json val userId: String,
+  @Json val x: Double,
+  @Json val y: Double,
+  @Json val z: Double
+)

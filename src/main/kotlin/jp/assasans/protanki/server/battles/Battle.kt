@@ -114,6 +114,7 @@ class Battle(
 
   val damageProcessor = DamageProcessor(this)
   val bonusProcessor = BonusProcessor(this)
+  val mineProcessor = MineProcessor(this)
 
   fun toBattleData(): BattleData {
     // TODO(Assasans)

@@ -13,6 +13,8 @@ class BattleProperty<T : Any> private constructor(val key: String, val type: KCl
 
     val SuppliesCooldownEnabled = BattleProperty("supplies_cooldown_enabled", Boolean::class, true)
 
+    val DeactivateMinesOnDeath = BattleProperty("deactivate_mines_on_death", Boolean::class, true)
+
     fun values() = properties.values.toList()
 
     fun get(key: String) = getOrNull(key) ?: throw IllegalArgumentException("No such property: $key")
