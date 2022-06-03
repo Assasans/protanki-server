@@ -3,6 +3,7 @@ package jp.assasans.protanki.server.commands.handlers
 import kotlin.time.Duration.Companion.milliseconds
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
+import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.effect.DoubleArmorEffect
 import jp.assasans.protanki.server.battles.effect.DoubleDamageEffect
 import jp.assasans.protanki.server.battles.effect.NitroEffect
@@ -42,7 +43,7 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
 
     var slotBlockTime = 0.milliseconds
     if(effect.duration != null) slotBlockTime += effect.duration
-    if(effect.cooldown != null) slotBlockTime += effect.cooldown
+    if(player.battle.properties[BattleProperty.SuppliesCooldownEnabled] && effect.cooldown != null) slotBlockTime += effect.cooldown
 
     Command(
       CommandName.ClientActivateItem,
