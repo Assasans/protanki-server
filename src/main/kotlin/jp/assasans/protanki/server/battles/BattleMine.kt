@@ -27,18 +27,7 @@ class BattleMine(
   suspend fun spawn() {
     spawnTime = Clock.System.now()
 
-    Command(
-      CommandName.AddMine,
-      listOf(
-        AddMineData(
-          mineId = key,
-          userId = owner.user.username,
-          x = position.x,
-          y = position.y,
-          z = position.z
-        ).toJson()
-      )
-    ).sendTo(battle)
+    Command(CommandName.AddMine, listOf(toAddMine().toJson())).sendTo(battle)
 
     owner.coroutineScope.launchDelayed(1.seconds) {
       Command(CommandName.ActivateMine, listOf(key)).sendTo(battle)
@@ -63,3 +52,11 @@ class BattleMine(
     battle.mineProcessor.mines.remove(id)
   }
 }
+
+fun BattleMine.toAddMine() = AddMineData(
+  mineId = key,
+  userId = owner.user.username,
+  x = position.x,
+  y = position.y,
+  z = position.z
+)

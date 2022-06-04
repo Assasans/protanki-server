@@ -275,7 +275,9 @@ class BattlePlayer(
       CommandName.InitMineModel,
       listOf(
         InitMineModelSettings().toJson(),
-        InitMineModelData().toJson()
+        InitMineModelData(
+          mines = battle.mineProcessor.mines.values.map(BattleMine::toAddMine)
+        ).toJson()
       )
     ).send(socket)
 

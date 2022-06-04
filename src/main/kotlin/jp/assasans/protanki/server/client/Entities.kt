@@ -210,7 +210,7 @@ data class InitMineModelSettings(
 )
 
 data class InitMineModelData(
-  @Json val mines: List<Any> = listOf() // TODO(Assasans)
+  @Json val mines: List<AddMineData>
 )
 
 data class InitTankData(
