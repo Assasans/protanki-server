@@ -15,7 +15,6 @@ import jp.assasans.protanki.server.battles.mode.TeamModeHandler
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
-import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
 
 interface ITickHandler {
   suspend fun tick() {}
@@ -35,12 +34,6 @@ val TankState.tankInitKey: String
     TankState.SemiActive -> "newcome"
     TankState.Active     -> "active"
   }
-
-abstract class WeaponHandler(
-  val player: BattlePlayer,
-  val item: ServerGarageUserItemWeapon
-) {
-}
 
 enum class BattleTeam(val id: Int, val key: String) {
   Red(0, "RED"),

@@ -1,5 +1,6 @@
-package jp.assasans.protanki.server.battles
+package jp.assasans.protanki.server.battles.weapons
 
+import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
 
 class NullWeaponHandler(

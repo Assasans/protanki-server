@@ -4,7 +4,7 @@ import com.squareup.moshi.Moshi
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import jp.assasans.protanki.server.battles.*
+import jp.assasans.protanki.server.battles.weapons.*
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.commands.*
 

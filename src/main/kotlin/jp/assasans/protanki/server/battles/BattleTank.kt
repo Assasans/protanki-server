@@ -11,6 +11,7 @@ import jp.assasans.protanki.server.battles.effect.TankEffect
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.FlagCarryingState
 import jp.assasans.protanki.server.battles.mode.TeamModeHandler
+import jp.assasans.protanki.server.battles.weapons.WeaponHandler
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName

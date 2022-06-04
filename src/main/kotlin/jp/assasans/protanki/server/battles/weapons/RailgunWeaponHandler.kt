@@ -1,6 +1,9 @@
-package jp.assasans.protanki.server.battles
+package jp.assasans.protanki.server.battles.weapons
 
 import kotlin.math.ceil
+import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.TankState
+import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.railgun.FireTarget
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command

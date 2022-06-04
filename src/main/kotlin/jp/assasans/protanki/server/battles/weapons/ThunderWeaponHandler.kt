@@ -1,15 +1,17 @@
-package jp.assasans.protanki.server.battles
+package jp.assasans.protanki.server.battles.weapons
 
-import jp.assasans.protanki.server.client.smoky.Fire
-import jp.assasans.protanki.server.client.smoky.FireStatic
-import jp.assasans.protanki.server.client.smoky.FireTarget
-import jp.assasans.protanki.server.client.smoky.ShotTarget
+import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.TankState
+import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.client.thunder.Fire
+import jp.assasans.protanki.server.client.thunder.FireStatic
+import jp.assasans.protanki.server.client.thunder.FireTarget
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
 
-class SmokyWeaponHandler(
+class ThunderWeaponHandler(
   player: BattlePlayer,
   weapon: ServerGarageUserItemWeapon
 ) : WeaponHandler(player, weapon) {
@@ -32,11 +34,10 @@ class SmokyWeaponHandler(
     val targetTank = battle.players
       .mapNotNull { player -> player.tank }
       .single { tank -> tank.id == target.target }
-    if(targetTank.state != TankState.Active) return
+     if(targetTank.state != TankState.Active) return
 
-    battle.damageProcessor.dealDamage(sourceTank, targetTank, 50.0, false)
+    battle.damageProcessor.dealDamage(sourceTank, targetTank, 100.0, false)
 
-    val shot = ShotTarget(target, 1.0, false)
-    Command(CommandName.ShotTarget, listOf(sourceTank.id, shot.toJson())).sendTo(sourceTank.player.battle)
+    Command(CommandName.ShotTarget, listOf(sourceTank.id, target.toJson())).sendTo(sourceTank.player.battle)
   }
 }

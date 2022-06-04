@@ -1,5 +1,8 @@
-package jp.assasans.protanki.server.battles
+package jp.assasans.protanki.server.battles.weapons
 
+import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.TankState
+import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.flamethrower.FireTarget
 import jp.assasans.protanki.server.client.flamethrower.StartFire
 import jp.assasans.protanki.server.client.flamethrower.StopFire
@@ -7,7 +10,7 @@ import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
 
-class FreezeWeaponHandler(
+class FlamethrowerWeaponHandler(
   player: BattlePlayer,
   weapon: ServerGarageUserItemWeapon
 ) : WeaponHandler(player, weapon) {

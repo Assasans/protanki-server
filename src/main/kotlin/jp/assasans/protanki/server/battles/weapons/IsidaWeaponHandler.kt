@@ -1,6 +1,9 @@
-package jp.assasans.protanki.server.battles
+package jp.assasans.protanki.server.battles.weapons
 
+import jp.assasans.protanki.server.battles.BattlePlayer
+import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.mode.TeamModeHandler
+import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.isida.IsidaFireMode
 import jp.assasans.protanki.server.client.isida.ResetTarget
 import jp.assasans.protanki.server.client.isida.SetTarget
