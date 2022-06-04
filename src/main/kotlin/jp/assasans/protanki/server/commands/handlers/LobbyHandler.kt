@@ -82,59 +82,61 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       )
       battle.players.add(player)
 
-      when(battle.modeHandler) {
-        is DeathmatchModeHandler -> Command(CommandName.ReserveSlotDm, listOf(battle.id, player.user.username))
-        is TeamModeHandler       -> Command(CommandName.ReserveSlotTeam, listOf(battle.id, player.user.username, team.key))
-        else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
-      }.let { command ->
-        server.players
-          .filter { player -> player.screen == Screen.BattleSelect }
-          .filter { player -> player.active }
-          .forEach { player -> command.send(player) }
-      }
-
-      Command(
-        CommandName.NotifyPlayerJoinBattle,
-        listOf(
-          NotifyPlayerJoinBattleData(
-            userId = player.user.username,
-            battleId = battle.id,
-            mapName = battle.title,
-            mode = battle.modeHandler.mode,
-            privateBattle = false,
-            proBattle = false,
-            minRank = 1,
-            maxRank = 30
-          ).toJson()
-        )
-      ).let { command ->
-        server.players
-          .filter { player -> player.screen == Screen.BattleSelect }
-          .filter { player -> player.active }
-          .forEach { player -> command.send(player) }
-      }
-
-      Command(
+      if(!player.isSpectator) {
         when(battle.modeHandler) {
-          is DeathmatchModeHandler -> CommandName.AddBattlePlayerDm
-          is TeamModeHandler       -> CommandName.AddBattlePlayerTeam
+          is DeathmatchModeHandler -> Command(CommandName.ReserveSlotDm, listOf(battle.id, player.user.username))
+          is TeamModeHandler       -> Command(CommandName.ReserveSlotTeam, listOf(battle.id, player.user.username, team.key))
           else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
-        },
-        listOf(
-          AddBattlePlayerData(
-            battleId = battle.id,
-            kills = player.kills,
-            score = player.score,
-            suspicious = false,
-            user = player.user.username,
-            type = player.team
-          ).toJson()
-        )
-      ).let { command ->
-        server.players
-          .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
-          .filter { player -> player.active }
-          .forEach { player -> command.send(player) }
+        }.let { command ->
+          server.players
+            .filter { player -> player.screen == Screen.BattleSelect }
+            .filter { player -> player.active }
+            .forEach { player -> command.send(player) }
+        }
+
+        Command(
+          CommandName.NotifyPlayerJoinBattle,
+          listOf(
+            NotifyPlayerJoinBattleData(
+              userId = player.user.username,
+              battleId = battle.id,
+              mapName = battle.title,
+              mode = battle.modeHandler.mode,
+              privateBattle = false,
+              proBattle = false,
+              minRank = 1,
+              maxRank = 30
+            ).toJson()
+          )
+        ).let { command ->
+          server.players
+            .filter { player -> player.screen == Screen.BattleSelect }
+            .filter { player -> player.active }
+            .forEach { player -> command.send(player) }
+        }
+
+        Command(
+          when(battle.modeHandler) {
+            is DeathmatchModeHandler -> CommandName.AddBattlePlayerDm
+            is TeamModeHandler       -> CommandName.AddBattlePlayerTeam
+            else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
+          },
+          listOf(
+            AddBattlePlayerData(
+              battleId = battle.id,
+              kills = player.kills,
+              score = player.score,
+              suspicious = false,
+              user = player.user.username,
+              type = player.team
+            ).toJson()
+          )
+        ).let { command ->
+          server.players
+            .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
+            .filter { player -> player.active }
+            .forEach { player -> command.send(player) }
+        }
       }
 
       socket.initBattleLoad()

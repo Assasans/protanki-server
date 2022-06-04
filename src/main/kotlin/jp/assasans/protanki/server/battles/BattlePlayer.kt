@@ -58,51 +58,53 @@ class BattlePlayer(
     coroutineScope.cancel()
 
     battle.modeHandler.playerLeave(this)
-    Command(CommandName.BattlePlayerRemove, listOf(user.username)).sendTo(battle, exclude = this)
+    if(!isSpectator) {
+      Command(CommandName.BattlePlayerRemove, listOf(user.username)).sendTo(battle, exclude = this)
 
-    when(battle.modeHandler) {
-      is DeathmatchModeHandler -> Command(CommandName.ReleaseSlotDm, listOf(battle.id, user.username))
-      is TeamModeHandler       -> Command(CommandName.ReleaseSlotTeam, listOf(battle.id, user.username))
-      else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
-    }.let { command ->
-      server.players
-        .filter { player -> player.screen == Screen.BattleSelect }
-        .filter { player -> player.active }
-        .forEach { player -> command.send(player) }
-    }
+      when(battle.modeHandler) {
+        is DeathmatchModeHandler -> Command(CommandName.ReleaseSlotDm, listOf(battle.id, user.username))
+        is TeamModeHandler       -> Command(CommandName.ReleaseSlotTeam, listOf(battle.id, user.username))
+        else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
+      }.let { command ->
+        server.players
+          .filter { player -> player.screen == Screen.BattleSelect }
+          .filter { player -> player.active }
+          .forEach { player -> command.send(player) }
+      }
 
-    Command(
-      CommandName.NotifyPlayerLeaveBattle,
-      listOf(
-        NotifyPlayerJoinBattleData(
-          userId = user.username,
-          battleId = battle.id,
-          mapName = battle.title,
-          mode = battle.modeHandler.mode,
-          privateBattle = false,
-          proBattle = false,
-          minRank = 1,
-          maxRank = 30
-        ).toJson()
-      )
-    ).let { command ->
-      server.players
-        .filter { player -> player.screen == Screen.BattleSelect }
-        .filter { player -> player.active }
-        .forEach { player -> command.send(player) }
-    }
+      Command(
+        CommandName.NotifyPlayerLeaveBattle,
+        listOf(
+          NotifyPlayerJoinBattleData(
+            userId = user.username,
+            battleId = battle.id,
+            mapName = battle.title,
+            mode = battle.modeHandler.mode,
+            privateBattle = false,
+            proBattle = false,
+            minRank = 1,
+            maxRank = 30
+          ).toJson()
+        )
+      ).let { command ->
+        server.players
+          .filter { player -> player.screen == Screen.BattleSelect }
+          .filter { player -> player.active }
+          .forEach { player -> command.send(player) }
+      }
 
-    Command(
-      CommandName.RemoveBattlePlayer,
-      listOf(
-        battle.id,
-        user.username
-      )
-    ).let { command ->
-      server.players
-        .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
-        .filter { player -> player.active }
-        .forEach { player -> command.send(player) }
+      Command(
+        CommandName.RemoveBattlePlayer,
+        listOf(
+          battle.id,
+          user.username
+        )
+      ).let { command ->
+        server.players
+          .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
+          .filter { player -> player.active }
+          .forEach { player -> command.send(player) }
+      }
     }
   }
 

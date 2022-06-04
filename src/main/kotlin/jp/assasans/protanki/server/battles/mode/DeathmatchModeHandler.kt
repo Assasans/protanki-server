@@ -20,6 +20,7 @@ class DeathmatchModeHandler(battle: Battle) : BattleModeHandler(battle) {
       listOf(InitDmStatisticsData(users = players).toJson())
     ).send(player)
 
+    if(player.isSpectator) return
     battle.players.forEach { battlePlayer ->
       if(battlePlayer == player) return@forEach
 
@@ -36,6 +37,7 @@ class DeathmatchModeHandler(battle: Battle) : BattleModeHandler(battle) {
   }
 
   override suspend fun playerLeave(player: BattlePlayer) {
+    if(player.isSpectator) return
     Command(CommandName.BattlePlayerLeaveDm, listOf(player.user.username)).sendTo(battle, exclude = player)
   }
 

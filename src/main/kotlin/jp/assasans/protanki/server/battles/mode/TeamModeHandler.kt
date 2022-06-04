@@ -30,6 +30,7 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
       )
     ).send(player)
 
+    if(player.isSpectator) return
     battle.players.forEach { battlePlayer ->
       if(battlePlayer == player) return@forEach
 
@@ -47,6 +48,7 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
   }
 
   override suspend fun playerLeave(player: BattlePlayer) {
+    if(player.isSpectator) return
     Command(CommandName.BattlePlayerLeaveTeam, listOf(player.user.username)).sendTo(battle, exclude = player)
   }
 
