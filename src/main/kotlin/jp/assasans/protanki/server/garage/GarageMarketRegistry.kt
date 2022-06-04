@@ -10,6 +10,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.IResourceManager
+import jp.assasans.protanki.server.extensions.keyOf
 
 interface IGarageMarketRegistry {
   val items: MutableMap<String, ServerGarageItem>
@@ -58,6 +59,64 @@ class GarageMarketRegistry : IGarageMarketRegistry, KoinComponent {
         logger.debug { "  > Loaded garage item ${item.id} -> ${item.name}" }
       }
     }
+
+    validate()
+  }
+
+  private fun validate() {
+    logger.debug { "Validating garage items..." }
+
+    var invalid = false
+
+    // Client requires all items to have a unique baseItemId
+    items.values
+      .groupBy { item -> item.baseItemId }
+      .filterValues { group -> group.size > 1 }
+      .let { duplicated ->
+        if(duplicated.isEmpty()) return@let
+
+        invalid = true
+        duplicated.forEach { group ->
+          val id = group.key
+          val itemNames = group.value.joinToString(", ") { item ->
+            "${item.name} (${item.id})"
+          }
+
+          logger.error { "  > Duplicate baseItemId ($id) in: $itemNames" }
+        }
+      }
+
+    // Client requires all items to have a unique previewResourceId
+    items.values
+      .filterIsInstance<IServerGarageItemWithModifications>()
+      .flatMap { item ->
+        item.modifications.values.map { modification ->
+          object {
+            val item = item
+            val modification = modification
+          }
+        }
+      }
+      .groupBy { pair -> pair.modification.previewResourceId }
+      .filterValues { group -> group.size > 1 }
+      .let { duplicated ->
+        if(duplicated.isEmpty()) return@let
+
+        invalid = true
+        duplicated.forEach { group ->
+          val id = group.key
+          val itemNames = group.value.joinToString(", ") { pair ->
+            val item = pair.item as ServerGarageItem
+            val modificationIndex = pair.item.modifications.keyOf(pair.modification)
+
+            "${item.name} M${modificationIndex} (${item.id}_m${modificationIndex})"
+          }
+
+          logger.error { "  > Duplicate previewResourceId ($id) in: $itemNames" }
+        }
+      }
+
+    if(invalid) throw IllegalStateException("Garage items are not valid")
   }
 }
 
