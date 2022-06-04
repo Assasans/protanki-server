@@ -6,6 +6,7 @@ import jp.assasans.protanki.server.battles.BattleTeam
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.FlagCarryingState
 import jp.assasans.protanki.server.battles.mode.FlagDroppedState
+import jp.assasans.protanki.server.battles.mode.FlagOnPedestalState
 import jp.assasans.protanki.server.battles.opposite
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.Vector3Data
@@ -36,7 +37,7 @@ class CtfBattleHandler : ICommandHandler, KoinComponent {
       logger.debug { "Captured ${flag.team} flag by ${player.user.username}" }
     } else if(player.team == flag.team) {
       val enemyFlag = handler.flags[flag.team.opposite]!!
-      if(enemyFlag is FlagCarryingState && enemyFlag.carrier == tank) {
+      if(flag is FlagOnPedestalState && enemyFlag is FlagCarryingState && enemyFlag.carrier == tank) {
         handler.deliverFlag(enemyFlag.team, flag.team, tank)
 
         logger.debug { "Delivered ${enemyFlag.team} flag -> ${flag.team} pedestal by ${player.user.username}" }
