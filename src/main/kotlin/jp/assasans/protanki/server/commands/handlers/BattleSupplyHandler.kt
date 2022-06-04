@@ -8,7 +8,6 @@ import jp.assasans.protanki.server.battles.effect.DoubleArmorEffect
 import jp.assasans.protanki.server.battles.effect.DoubleDamageEffect
 import jp.assasans.protanki.server.battles.effect.MineEffect
 import jp.assasans.protanki.server.battles.effect.NitroEffect
-import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.commands.Command
@@ -76,9 +75,6 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
       logger.warn { "Attempt to activate bonus ($id) with wrong type. Actual: ${bonus.type}, received $type" }
     }
 
-    bonus.activate(tank)
-    bonus.cancelRemove()
-
-    Command(CommandName.ActivateBonus, listOf(bonus.key)).sendTo(battle)
+    battle.bonusProcessor.activate(bonus, tank)
   }
 }
