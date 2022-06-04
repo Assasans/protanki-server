@@ -46,9 +46,11 @@ class BattleMine(
   }
 
   suspend fun trigger(tank: BattleTank) {
-    // Theoretically possibly only before the first tank spawn.
+    // Theoretically possible only before the first tank spawn.
     // BattlePlayer.tank is never assigned null after the first spawn.
     val sourceTank = owner.tank ?: throw IllegalStateException("Owner tank is null")
+
+    if(tank.state != TankState.Active) return
 
     battle.damageProcessor.dealDamage(sourceTank, tank, 80.0, false, ignoreSourceEffects = true)
 
