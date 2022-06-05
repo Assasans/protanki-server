@@ -26,7 +26,20 @@
             { "property": "HULL_ACCELERATION", "value": 11 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 5.3,
+        "turnSpeed": 0.9721484,
+        "acceleration": 11.71,
+        "reverseAcceleration": 11.28,
+        "sideAcceleration": 12.85,
+        "turnAcceleration": 1.296256,
+        "reverseTurnAcceleration": 3.1909854,
+        "damping": 2100,
+        "mass": 3571,
+        "power": 11.71
+      }
     },
     "1": {
       "previewResourceId": 511249,
@@ -46,7 +59,20 @@
             { "property": "HULL_ACCELERATION", "value": 13 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 5.5,
+        "turnSpeed": 1.1711159,
+        "acceleration": 13.14,
+        "reverseAcceleration": 13.19,
+        "sideAcceleration": 15.23,
+        "turnAcceleration": 1.5041248,
+        "reverseTurnAcceleration": 3.5236452,
+        "damping": 2100,
+        "mass": 4047,
+        "power": 13.14
+      }
     },
     "2": {
       "previewResourceId": 372034,
@@ -66,7 +92,20 @@
             { "property": "HULL_ACCELERATION", "value": 14 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 5.8,
+        "turnSpeed": 1.3718288,
+        "acceleration": 14.57,
+        "reverseAcceleration": 15.09,
+        "sideAcceleration": 17.62,
+        "turnAcceleration": 1.7119935,
+        "reverseTurnAcceleration": 3.8561306,
+        "damping": 2100,
+        "mass": 4524,
+        "power": 14.57
+      }
     },
     "3": {
       "previewResourceId": 185908,
@@ -86,7 +125,20 @@
             { "property": "HULL_ACCELERATION", "value": 16 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 6,
+        "turnSpeed": 1.5707964,
+        "acceleration": 16,
+        "reverseAcceleration": 17,
+        "sideAcceleration": 20,
+        "turnAcceleration": 1.9198622,
+        "reverseTurnAcceleration": 4.1887903,
+        "damping": 2100,
+        "mass": 5000,
+        "power": 16
+      }
     }
   }
 }
