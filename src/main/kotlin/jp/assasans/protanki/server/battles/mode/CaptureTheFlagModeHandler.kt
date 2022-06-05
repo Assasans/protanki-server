@@ -81,6 +81,14 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
     ).sendTo(battle)
   }
 
+  override suspend fun playerLeave(player: BattlePlayer) {
+    val tank = player.tank ?: return
+    val flag = flags.values.filterIsInstance<FlagCarryingState>().singleOrNull { flag -> flag.carrier == tank } ?: return
+    dropFlag(flag.team, tank, tank.position)
+
+    super.playerLeave(player)
+  }
+
   override suspend fun initModeModel(player: BattlePlayer) {
     Command(
       CommandName.InitCtfModel,

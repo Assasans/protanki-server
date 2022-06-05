@@ -112,7 +112,7 @@ class Battle(
   fun toBattleData(): BattleData {
     // TODO(Assasans)
     return when(modeHandler) {
-      is DeathmatchModeHandler     -> DmBattleData(
+      is DeathmatchModeHandler -> DmBattleData(
         battleId = id,
         battleMode = modeHandler.mode,
         map = map.name,
@@ -123,7 +123,7 @@ class Battle(
         preview = map.preview,
         users = players.users().map { player -> player.user.username }
       )
-      is TeamModeHandler -> TeamBattleData(
+      is TeamModeHandler       -> TeamBattleData(
         battleId = id,
         battleMode = modeHandler.mode,
         map = map.name,
@@ -141,7 +141,7 @@ class Battle(
           .filter { player -> player.team == BattleTeam.Blue }
           .map { player -> player.user.username }
       )
-      else                         -> throw IllegalStateException("Unknown battle mode: ${modeHandler::class}")
+      else                     -> throw IllegalStateException("Unknown battle mode: ${modeHandler::class}")
     }
   }
 
@@ -219,6 +219,7 @@ class Battle(
     if(targets.contains(SendTarget.Players)) {
       players
         .users()
+        .filter { player -> player.socket.active }
         .filter { player -> exclude == null || player != exclude }
         .filter { player -> player.loadState >= minimumLoadState }
         .forEach { player ->
@@ -229,6 +230,7 @@ class Battle(
     if(targets.contains(SendTarget.Spectators)) {
       players
         .spectators()
+        .filter { player -> player.socket.active }
         .filter { player -> exclude == null || player != exclude }
         .filter { player -> player.loadState >= minimumLoadState }
         .forEach { player ->
