@@ -329,53 +329,52 @@ class BattlePlayer(
   }
 
   suspend fun initTanks() {
-    battle.players.forEach { player ->
-      // Init other players to self
-      if(player != this && !player.isSpectator) {
-        val tank = player.tank ?: throw Exception("No Tank")
+    // Init other players to self
+    battle.players.users().forEach { player ->
+      if(player == this) return@forEach
+      val tank = player.tank ?: return@forEach
 
-        Command(
-          CommandName.InitTank,
-          listOf(
-            InitTankData(
-              battleId = battle.id,
-              hull_id = tank.hull.mountName,
-              turret_id = tank.weapon.item.mountName,
-              colormap_id = tank.coloring.marketItem.coloring,
-              hullResource = tank.hull.modification.object3ds,
-              turretResource = tank.weapon.item.modification.object3ds,
-              partsObject = TankSoundsData().toJson(),
-              tank_id = tank.id,
-              nickname = player.user.username,
-              team_type = player.team,
-              state = tank.state.tankInitKey,
-              health = tank.health,
+      Command(
+        CommandName.InitTank,
+        listOf(
+          InitTankData(
+            battleId = battle.id,
+            hull_id = tank.hull.mountName,
+            turret_id = tank.weapon.item.mountName,
+            colormap_id = tank.coloring.marketItem.coloring,
+            hullResource = tank.hull.modification.object3ds,
+            turretResource = tank.weapon.item.modification.object3ds,
+            partsObject = TankSoundsData().toJson(),
+            tank_id = tank.id,
+            nickname = player.user.username,
+            team_type = player.team,
+            state = tank.state.tankInitKey,
+            health = tank.health,
 
-              // Hull physics
-              maxSpeed = tank.hull.modification.physics.speed,
-              maxTurnSpeed = tank.hull.modification.physics.turnSpeed,
-              acceleration = tank.hull.modification.physics.acceleration,
-              reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
-              sideAcceleration = tank.hull.modification.physics.sideAcceleration,
-              turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-              reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
-              dampingCoeff = tank.hull.modification.physics.damping,
-              mass = tank.hull.modification.physics.mass,
-              power = tank.hull.modification.physics.power,
+            // Hull physics
+            maxSpeed = tank.hull.modification.physics.speed,
+            maxTurnSpeed = tank.hull.modification.physics.turnSpeed,
+            acceleration = tank.hull.modification.physics.acceleration,
+            reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
+            sideAcceleration = tank.hull.modification.physics.sideAcceleration,
+            turnAcceleration = tank.hull.modification.physics.turnAcceleration,
+            reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
+            dampingCoeff = tank.hull.modification.physics.damping,
+            mass = tank.hull.modification.physics.mass,
+            power = tank.hull.modification.physics.power,
 
-              // Weapon physics
-              turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
-              turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
-              kickback = tank.weapon.item.modification.physics.kickback,
-              impact_force = tank.weapon.item.modification.physics.impactForce,
+            // Weapon physics
+            turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
+            turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
+            kickback = tank.weapon.item.modification.physics.kickback,
+            impact_force = tank.weapon.item.modification.physics.impactForce,
 
-              // Weapon visual
-              sfxData = (tank.weapon.item.modification.visual
-                         ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
-            ).toJson()
-          )
-        ).send(socket)
-      }
+            // Weapon visual
+            sfxData = (tank.weapon.item.modification.visual
+                       ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
+          ).toJson()
+        )
+      ).send(socket)
     }
 
     // Init self to others
