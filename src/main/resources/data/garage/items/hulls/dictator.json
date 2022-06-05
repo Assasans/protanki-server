@@ -26,7 +26,20 @@
             { "property": "HULL_ACCELERATION", "value": 10 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 7,
+        "turnSpeed": 1.553343,
+        "acceleration": 10.9,
+        "reverseAcceleration": 13.53,
+        "sideAcceleration": 10.53,
+        "turnAcceleration": 1.9107865,
+        "reverseTurnAcceleration": 3.8030725,
+        "damping": 2500,
+        "mass": 2410,
+        "power": 10.9
+      }
     },
     "1": {
       "previewResourceId": 486892,
@@ -46,7 +59,20 @@
             { "property": "HULL_ACCELERATION", "value": 12 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 7.3,
+        "turnSpeed": 1.8029252,
+        "acceleration": 12.33,
+        "reverseAcceleration": 15.44,
+        "sideAcceleration": 12.44,
+        "turnAcceleration": 2.036101,
+        "reverseTurnAcceleration": 4.30468,
+        "damping": 2500,
+        "mass": 2722,
+        "power": 12.33
+      }
     },
     "2": {
       "previewResourceId": 55428,
@@ -66,7 +92,20 @@
             { "property": "HULL_ACCELERATION", "value": 13 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 7.7,
+        "turnSpeed": 2.0542524,
+        "acceleration": 13.77,
+        "reverseAcceleration": 17.36,
+        "sideAcceleration": 14.36,
+        "turnAcceleration": 2.149373,
+        "reverseTurnAcceleration": 4.8061132,
+        "damping": 2500,
+        "mass": 3033,
+        "power": 13.77
+      }
     },
     "3": {
       "previewResourceId": 64819,
@@ -86,7 +125,20 @@
             { "property": "HULL_ACCELERATION", "value": 15 }
           ]
         }
-      ]
+      ],
+
+      "physics": {
+        "speed": 8,
+        "turnSpeed": 2.268928,
+        "acceleration": 15,
+        "reverseAcceleration": 19,
+        "sideAcceleration": 16,
+        "turnAcceleration": 2.268928,
+        "reverseTurnAcceleration": 5.2359877,
+        "damping": 2500,
+        "mass": 3300,
+        "power": 15
+      }
     }
   }
 }
