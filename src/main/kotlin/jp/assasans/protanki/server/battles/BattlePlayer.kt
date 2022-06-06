@@ -20,10 +20,9 @@ import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 
-enum class LoadState {
-  Stage1,
-  Stage2,
-  Stage2Completed
+object BattlePlayerConstants {
+  const val USER_INIT_SEQUENCE: Long = 1
+  const val SPECTATOR_INIT_SEQUENCE: Long = 2
 }
 
 class BattlePlayer(
@@ -42,14 +41,20 @@ class BattlePlayer(
   private val mapRegistry: IMapRegistry by inject()
   private val server: ISocketServer by inject()
 
+  var sequence: Long = 0
   var incarnation: Int = 0
+
+  val ready: Boolean
+    get() {
+      return if(isSpectator) sequence >= BattlePlayerConstants.SPECTATOR_INIT_SEQUENCE
+      else sequence >= BattlePlayerConstants.USER_INIT_SEQUENCE
+    }
 
   val user: User
     get() = socket.user ?: throw Exception("Missing User")
 
   val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
 
-  var loadState: LoadState = LoadState.Stage1
   var initSpectatorUserCalled: Boolean = false
 
   var equipmentChanged: Boolean = false
@@ -205,7 +210,7 @@ class BattlePlayer(
     battle.modeHandler.initPostGui(this)
   }
 
-  suspend fun initStage2() {
+  suspend fun initBattle() {
     if(isSpectator) {
       Command(
         CommandName.UpdateSpectatorsList,
@@ -324,8 +329,6 @@ class BattlePlayer(
     }
 
     spawnAnotherTanks()
-
-    loadState = LoadState.Stage2Completed
   }
 
   suspend fun initTanks() {

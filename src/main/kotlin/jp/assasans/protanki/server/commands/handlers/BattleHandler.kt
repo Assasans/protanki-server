@@ -6,10 +6,7 @@ import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import jp.assasans.protanki.server.battles.BattleProperty
-import jp.assasans.protanki.server.battles.LoadState
-import jp.assasans.protanki.server.battles.TankState
-import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
@@ -25,12 +22,14 @@ class BattleHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.Ping)
   suspend fun ping(socket: UserSocket) {
     val player = socket.battlePlayer ?: return
-    if(player.loadState == LoadState.Stage1) {
-      player.loadState = LoadState.Stage2
 
+    player.sequence++
+
+    val initBattle = if(player.isSpectator) player.sequence == BattlePlayerConstants.SPECTATOR_INIT_SEQUENCE
+    else player.sequence == BattlePlayerConstants.USER_INIT_SEQUENCE
+    if(initBattle) {
       logger.info { "Init battle..." }
-
-      player.initStage2()
+      player.initBattle()
     }
 
     Command(CommandName.Pong).send(socket)
@@ -93,7 +92,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         CommandName.ClientFullMove, listOf(
           ClientFullMoveData(tank.id, data).toJson()
         )
-      ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
+      ).sendTo(player.battle, exclude = player)
 
       logger.trace { "Synced full move to $count players" }
     } else {
@@ -101,7 +100,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
         CommandName.ClientMove, listOf(
           ClientMoveData(tank.id, data).toJson()
         )
-      ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
+      ).sendTo(player.battle, exclude = player)
 
       logger.trace { "Synced move to $count players" }
     }
@@ -120,7 +119,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       CommandName.ClientRotateTurret, listOf(
         ClientRotateTurretData(tank.id, data).toJson()
       )
-    ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
+    ).sendTo(player.battle, exclude = player)
 
     logger.trace { "Synced rotate turret to $count players" }
   }
@@ -138,7 +137,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
       CommandName.ClientMovementControl, listOf(
         ClientMovementControlData(tank.id, data).toJson()
       )
-    ).sendTo(player.battle, exclude = player, minimumLoadState = LoadState.Stage2Completed)
+    ).sendTo(player.battle, exclude = player)
 
     logger.trace { "Synced movement control to $count players" }
   }

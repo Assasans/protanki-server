@@ -78,9 +78,8 @@ enum class SendTarget {
 suspend fun Command.sendTo(
   battle: Battle,
   vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators),
-  exclude: BattlePlayer? = null,
-  minimumLoadState: LoadState = LoadState.Stage1
-): Int = battle.sendTo(this, *targets, exclude = exclude, minimumLoadState = minimumLoadState)
+  exclude: BattlePlayer? = null
+): Int = battle.sendTo(this, *targets, exclude = exclude)
 
 fun List<BattlePlayer>.users() = filter { player -> !player.isSpectator }
 fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
@@ -212,8 +211,7 @@ class Battle(
   suspend fun sendTo(
     command: Command,
     vararg targets: SendTarget = arrayOf(SendTarget.Players, SendTarget.Spectators),
-    exclude: BattlePlayer? = null,
-    minimumLoadState: LoadState = LoadState.Stage1
+    exclude: BattlePlayer? = null
   ): Int {
     var count = 0
     if(targets.contains(SendTarget.Players)) {
@@ -221,7 +219,7 @@ class Battle(
         .users()
         .filter { player -> player.socket.active }
         .filter { player -> exclude == null || player != exclude }
-        .filter { player -> player.loadState >= minimumLoadState }
+        .filter { player -> player.ready }
         .forEach { player ->
           command.send(player)
           count++
@@ -232,7 +230,7 @@ class Battle(
         .spectators()
         .filter { player -> player.socket.active }
         .filter { player -> exclude == null || player != exclude }
-        .filter { player -> player.loadState >= minimumLoadState }
+        .filter { player -> player.ready }
         .forEach { player ->
           command.send(player)
           count++

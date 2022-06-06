@@ -169,7 +169,7 @@ class Server : KoinComponent {
 
               val properties = mutableListOf<String>()
 
-              properties.add("load stage: ${player.loadState}")
+              properties.add("sequence: ${player.sequence}")
 
               if(player.team != BattleTeam.None) {
                 properties.add("team: ${player.team.name}")
