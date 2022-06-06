@@ -5,6 +5,10 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.random.Random
 
+object Vector3Constants {
+  const val TO_METERS = 0.01
+}
+
 class Vector3 {
   var x: Double
   var y: Double
@@ -47,6 +51,8 @@ operator fun Vector3.plus(another: Vector3) = Vector3(x + another.x, y + another
 operator fun Vector3.minus(another: Vector3) = Vector3(x - another.x, y - another.y, z - another.z)
 operator fun Vector3.times(scale: Double) = Vector3(x * scale, y * scale, z * scale)
 operator fun Vector3.div(scale: Double) = Vector3(x / scale, y / scale, z / scale)
+
+fun Vector3.distanceTo(another: Vector3): Double = (this - another).length
 
 fun Random.nextVector3(from: Vector3, until: Vector3): Vector3 {
   return Vector3(

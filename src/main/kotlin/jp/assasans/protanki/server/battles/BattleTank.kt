@@ -19,6 +19,7 @@ import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
 import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
+import jp.assasans.protanki.server.math.distanceTo
 import jp.assasans.protanki.server.toVector
 
 object TankConstants {
@@ -268,4 +269,8 @@ class BattleTank(
       }
     }
   }
+}
+
+fun BattleTank.distanceTo(another: BattleTank): Double {
+  return position.distanceTo(another.position)
 }

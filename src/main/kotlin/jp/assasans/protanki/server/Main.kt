@@ -20,7 +20,9 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import org.koin.logger.SLF4JLogger
 import jp.assasans.protanki.server.battles.BattleProcessor
+import jp.assasans.protanki.server.battles.DamageCalculator
 import jp.assasans.protanki.server.battles.IBattleProcessor
+import jp.assasans.protanki.server.battles.IDamageCalculator
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.MapRegistry
 import jp.assasans.protanki.server.chat.ChatCommandRegistry
@@ -105,6 +107,7 @@ suspend fun main(args: Array<String>) {
     single<IMapRegistry> { MapRegistry() }
     single<ILobbyChatManager> { LobbyChatManager() }
     single<IChatCommandRegistry> { ChatCommandRegistry() }
+    single<IDamageCalculator> { DamageCalculator() }
     single {
       Moshi.Builder()
         .add(

@@ -7,7 +7,6 @@ import jakarta.persistence.*
 import kotlinx.datetime.Instant
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import org.koin.core.component.inject
 import jp.assasans.protanki.server.client.User
 import jp.assasans.protanki.server.client.WeaponVisual
 
@@ -215,12 +214,49 @@ abstract class ServerGarageItemModification(
   @Json open val physics: IPhysics
 )
 
+data class WeaponDamage(
+  // One of the following
+  @Json val discrete: Discrete? = null,
+  @Json val stream: Stream? = null,
+
+  @Json val fixed: Fixed? = null,
+  @Json val range: Range? = null,
+
+  @Json val weakening: Weakening? = null
+) {
+  class Discrete
+
+  data class Stream(
+    @Json val interval: Int
+  )
+
+  data class Fixed(
+    @Json val value: Double
+  )
+
+  data class Range(
+    @Json val from: Double,
+    @Json val to: Double
+  )
+
+  data class Weakening(
+    @Json val from: Double,
+    @Json val to: Double,
+    @Json val minimum: Double
+  )
+}
+
 class ServerGarageItemWeaponModification(
   previewResourceId: Int,
   object3ds: Int,
   rank: Int,
   price: Int,
   properties: List<ServerGarageItemProperty>,
+
+  @Json val damage: WeaponDamage = WeaponDamage( // TODO(Assasans)
+    discrete = WeaponDamage.Discrete(),
+    fixed = WeaponDamage.Fixed(21.12)
+  ),
 
   override val physics: WeaponPhysics = WeaponPhysics( // TODO(Assasans)
     turretRotationSpeed = 1.2473868164003472,
