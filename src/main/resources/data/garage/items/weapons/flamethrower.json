@@ -43,6 +43,12 @@
         }
       ],
 
+      "damage": {
+        "stream": { "interval": 500 },
+        "fixed": { "value": 41 },
+        "weakening": { "from": 5, "to": 23.74, "minimum": 0.5 }
+      },
+
       "visual": {
         "$type": "flamethrower",
 
@@ -149,6 +155,12 @@
           ]
         }
       ],
+
+      "damage": {
+        "stream": { "interval": 500 },
+        "fixed": { "value": 50 },
+        "weakening": { "from": 5, "to": 25.65, "minimum": 0.5 }
+      },
 
       "visual": {
         "$type": "flamethrower",
@@ -260,7 +272,13 @@
             { "property": "FLAME_TEMPERATURE_LIMIT", "value": 14.5 }
           ]
         }
-      ]
+      ],
+
+      "damage": {
+        "stream": { "interval": 500 },
+        "fixed": { "value": 60 },
+        "weakening": { "from": 5, "to": 27.55, "minimum": 0.5 }
+      }
     },
     "3": {
       "previewResourceId": 553103,
@@ -295,7 +313,13 @@
             { "property": "FLAME_TEMPERATURE_LIMIT", "value": 20 }
           ]
         }
-      ]
+      ],
+
+      "damage": {
+        "stream": { "interval": 500 },
+        "fixed": { "value": 72 },
+        "weakening": { "from": 5, "to": 30, "minimum": 0.5 }
+      }
     }
   }
 }

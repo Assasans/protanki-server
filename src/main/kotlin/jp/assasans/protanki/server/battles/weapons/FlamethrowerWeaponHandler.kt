@@ -2,6 +2,7 @@ package jp.assasans.protanki.server.battles.weapons
 
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
+import jp.assasans.protanki.server.battles.calculate
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.flamethrower.FireTarget
 import jp.assasans.protanki.server.client.flamethrower.StartFire
@@ -37,7 +38,8 @@ class FlamethrowerWeaponHandler(
       .filter { tank -> tank.state == TankState.Active }
 
     targetTanks.forEach { targetTank ->
-      battle.damageProcessor.dealDamage(sourceTank, targetTank, 20.0, isCritical = false)
+      val damage = damageCalculator.calculate(sourceTank, targetTank)
+      battle.damageProcessor.dealDamage(sourceTank, targetTank, damage.damage, damage.isCritical)
     }
   }
 
