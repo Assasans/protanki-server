@@ -29,6 +29,12 @@
         { "property": "CRITICAL_HIT_DAMAGE", "value": 50 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 22, "to": 28 },
+        "weakening": { "from": 44.35, "to": 133.04, "minimum": 0.1 }
+      },
+
       "physics": {
         "turretRotationSpeed": 1.2479104151759457,
         "turretTurnAcceleration": 2.3216369710028575,
@@ -86,6 +92,12 @@
         { "property": "CRITICAL_HIT_CHANCE", "value": 12 },
         { "property": "CRITICAL_HIT_DAMAGE", "value": 65 }
       ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 29, "to": 37 },
+        "weakening": { "from": 49.11, "to": 147.33, "minimum": 0.1 }
+      },
 
       "physics": {
         "turretRotationSpeed": 1.5194836467862634,
@@ -145,6 +157,12 @@
         { "property": "CRITICAL_HIT_DAMAGE", "value": 80 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 35, "to": 45 },
+        "weakening": { "from": 53.88, "to": 161.62, "minimum": 0.1 }
+      },
+
       "physics": {
         "turretRotationSpeed": 1.7908823454713816,
         "turretTurnAcceleration": 3.0267499888085663,
@@ -202,6 +220,12 @@
         { "property": "CRITICAL_HIT_CHANCE", "value": 20 },
         { "property": "CRITICAL_HIT_DAMAGE", "value": 100 }
       ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 44, "to": 56 },
+        "weakening": { "from": 60, "to": 180, "minimum": 0.1 }
+      },
 
       "physics": {
         "turretRotationSpeed": 2.1399481958702475,

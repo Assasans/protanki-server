@@ -2,6 +2,7 @@ package jp.assasans.protanki.server.battles.weapons
 
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
+import jp.assasans.protanki.server.battles.calculate
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.client.smoky.Fire
 import jp.assasans.protanki.server.client.smoky.FireStatic
@@ -37,9 +38,10 @@ class SmokyWeaponHandler(
       .single { tank -> tank.id == target.target }
     if(targetTank.state != TankState.Active) return
 
-    battle.damageProcessor.dealDamage(sourceTank, targetTank, 50.0, false)
+    val damage = damageCalculator.calculate(sourceTank, targetTank)
+    battle.damageProcessor.dealDamage(sourceTank, targetTank, damage.damage, damage.isCritical)
 
-    val shot = ShotTarget(target, 1.0, false)
+    val shot = ShotTarget(target, damage.weakening, false)
     Command(CommandName.ShotTarget, listOf(sourceTank.id, shot.toJson())).sendTo(sourceTank.player.battle)
   }
 }
