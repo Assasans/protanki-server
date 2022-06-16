@@ -32,6 +32,15 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitPanel(CommandCategory.Lobby, "init_panel", CommandSide.Client),
   ShowAchievements(CommandCategory.Lobby, "show_achievements", CommandSide.Client),
 
+   /**
+   * TODO: Fully functional Missions
+   */
+  DailyQuestMissions(CommandCategory.Lobby, "daily_quest_missions", CommandSide.Client),
+  OpenQuestWindow(CommandCategory.Lobby, "openQuestWindow", CommandSide.Server),
+  ShowQuestWindow(CommandCategory.Lobby, "showQuestWindow", CommandSide.Client),
+  SkipQuestForFree(CommandCategory.Lobby, "skipQuestForFree", CommandSide.Server),
+  SkipDailyQuest(CommandCategory.Lobby, "skipDailyQuest", CommandSide.Server),
+  
   InitFriendsList(CommandCategory.Lobby, "init_friends_list", CommandSide.Client),
   ShowFriendsList(CommandCategory.Lobby, "showFriends", CommandSide.Server),
   ClientShowFriendsList(CommandCategory.Lobby, "friends_onUsersLoaded", CommandSide.Client),
