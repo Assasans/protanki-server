@@ -56,7 +56,7 @@ class GarageMarketRegistry : IGarageMarketRegistry, KoinComponent {
 
         items[item.id] = item
 
-        logger.debug { "  > Loaded garage item ${item.id} -> ${item.name}" }
+        logger.debug { "  > Loaded garage item ${item.id} -> ${item.name.localized}" }
       }
     }
 

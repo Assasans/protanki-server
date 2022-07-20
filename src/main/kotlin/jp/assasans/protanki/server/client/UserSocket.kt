@@ -451,6 +451,7 @@ class UserSocket(
 
   suspend fun initGarage() {
     val user = user ?: throw Exception("No User")
+    val locale = locale ?: throw IllegalStateException("Socket locale is null")
 
     val itemsParsed = mutableListOf<GarageItem>()
     val marketParsed = mutableListOf<GarageItem>()
@@ -460,13 +461,13 @@ class UserSocket(
     marketItems.forEach { (_, marketItem) ->
       val userItem = user.items.singleOrNull { it.marketItem == marketItem }
       val clientMarketItems = when(marketItem) {
-        is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem)
-        is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem)
-        is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem))
-        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem))
-        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem))
-        is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem))
-        is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem))
+        is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem, locale)
+        is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem, locale)
+        is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem, locale))
+        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem, locale))
+        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem, locale))
+        is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem, locale))
+        is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem, locale))
 
         else                            -> throw NotImplementedError("Not implemented: ${marketItem::class.simpleName}")
       }

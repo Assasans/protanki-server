@@ -7,15 +7,17 @@ import jakarta.persistence.*
 import kotlinx.datetime.Instant
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
+import jp.assasans.protanki.server.client.SocketLocale
 import jp.assasans.protanki.server.client.User
 import jp.assasans.protanki.server.client.WeaponVisual
+import jp.assasans.protanki.server.utils.LocalizedString
 
 open class ServerGarageItem(
   @Json val id: String,
   @Json val index: Int,
   @Json val type: GarageItemType,
 
-  @Json val name: String,
+  @Json val name: LocalizedString,
   @Json val description: String,
 
   @Json val baseItemId: Int
@@ -29,7 +31,7 @@ class ServerGarageItemWeapon(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
@@ -45,7 +47,7 @@ class ServerGarageItemHull(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
@@ -61,7 +63,7 @@ class ServerGarageItemPaint(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
@@ -83,7 +85,7 @@ class ServerGarageItemSupply(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
@@ -103,7 +105,7 @@ class ServerGarageItemKit(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
@@ -125,7 +127,7 @@ class ServerGarageItemPresent(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
@@ -145,7 +147,7 @@ class ServerGarageItemSubscription(
   id: String,
   index: Int,
 
-  name: String,
+  name: LocalizedString,
   description: String,
 
   baseItemId: Int,
