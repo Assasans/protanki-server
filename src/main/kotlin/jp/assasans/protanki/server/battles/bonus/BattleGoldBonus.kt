@@ -25,5 +25,7 @@ class BattleGoldBonus(battle: Battle, id: Int, position: Vector3, rotation: Quat
   override suspend fun activate(tank: BattleTank) {
     tank.player.user.crystals += 1000
     tank.socket.updateCrystals()
+
+    Command(CommandName.TakeGold, tank.id).sendTo(battle)
   }
 }
