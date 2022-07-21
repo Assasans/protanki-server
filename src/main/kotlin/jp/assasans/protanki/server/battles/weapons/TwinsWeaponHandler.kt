@@ -3,9 +3,9 @@ package jp.assasans.protanki.server.battles.weapons
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.twins.Fire
-import jp.assasans.protanki.server.client.twins.FireStatic
-import jp.assasans.protanki.server.client.twins.FireTarget
+import jp.assasans.protanki.server.client.weapons.twins.Fire
+import jp.assasans.protanki.server.client.weapons.twins.FireStatic
+import jp.assasans.protanki.server.client.weapons.twins.FireTarget
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName

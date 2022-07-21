@@ -4,10 +4,10 @@ import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.calculate
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.smoky.Fire
-import jp.assasans.protanki.server.client.smoky.FireStatic
-import jp.assasans.protanki.server.client.smoky.FireTarget
-import jp.assasans.protanki.server.client.smoky.ShotTarget
+import jp.assasans.protanki.server.client.weapons.smoky.Fire
+import jp.assasans.protanki.server.client.weapons.smoky.FireStatic
+import jp.assasans.protanki.server.client.weapons.smoky.FireTarget
+import jp.assasans.protanki.server.client.weapons.smoky.ShotTarget
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName

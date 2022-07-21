@@ -4,9 +4,9 @@ import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.calculate
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.flamethrower.FireTarget
-import jp.assasans.protanki.server.client.flamethrower.StartFire
-import jp.assasans.protanki.server.client.flamethrower.StopFire
+import jp.assasans.protanki.server.client.weapons.flamethrower.FireTarget
+import jp.assasans.protanki.server.client.weapons.flamethrower.StartFire
+import jp.assasans.protanki.server.client.weapons.flamethrower.StopFire
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon

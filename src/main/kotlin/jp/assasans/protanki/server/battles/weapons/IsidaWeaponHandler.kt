@@ -4,10 +4,10 @@ import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.mode.TeamModeHandler
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.isida.IsidaFireMode
-import jp.assasans.protanki.server.client.isida.ResetTarget
-import jp.assasans.protanki.server.client.isida.SetTarget
-import jp.assasans.protanki.server.client.isida.StartFire
+import jp.assasans.protanki.server.client.weapons.isida.IsidaFireMode
+import jp.assasans.protanki.server.client.weapons.isida.ResetTarget
+import jp.assasans.protanki.server.client.weapons.isida.SetTarget
+import jp.assasans.protanki.server.client.weapons.isida.StartFire
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName

@@ -4,7 +4,7 @@ import kotlin.math.ceil
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.railgun.FireTarget
+import jp.assasans.protanki.server.client.weapons.railgun.FireTarget
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
