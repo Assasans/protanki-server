@@ -4,7 +4,7 @@ import kotlin.math.ceil
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.railgun.FireTarget
+import jp.assasans.protanki.server.client.weapons.railgun.FireTarget
 import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
@@ -17,7 +17,7 @@ class RailgunWeaponHandler(
   suspend fun fireStart() {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.StartFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.StartFire, tank.id).sendTo(tank.player.battle)
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -38,6 +38,6 @@ class RailgunWeaponHandler(
       damage = ceil(damage * 0.5)
     }
 
-    Command(CommandName.ShotTarget, listOf(sourceTank.id, target.toJson())).sendTo(player.battle)
+    Command(CommandName.ShotTarget, sourceTank.id, target.toJson()).sendTo(player.battle)
   }
 }

@@ -35,7 +35,7 @@ class BonusProcessor(
   override suspend fun activate(bonus: BattleBonus, tank: BattleTank) {
     bonus.cancelRemove()
     bonus.activate(tank)
-    Command(CommandName.ActivateBonus, listOf(bonus.key)).sendTo(battle)
+    Command(CommandName.ActivateBonus, bonus.key).sendTo(battle)
 
     bonuses.remove(bonus.id)
   }

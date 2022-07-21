@@ -84,8 +84,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       if(!player.isSpectator) {
         when(battle.modeHandler) {
-          is DeathmatchModeHandler -> Command(CommandName.ReserveSlotDm, listOf(battle.id, player.user.username))
-          is TeamModeHandler       -> Command(CommandName.ReserveSlotTeam, listOf(battle.id, player.user.username, team.key))
+          is DeathmatchModeHandler -> Command(CommandName.ReserveSlotDm, battle.id, player.user.username)
+          is TeamModeHandler       -> Command(CommandName.ReserveSlotTeam, battle.id, player.user.username, team.key)
           else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
         }.let { command ->
           server.players
@@ -96,18 +96,16 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
         Command(
           CommandName.NotifyPlayerJoinBattle,
-          listOf(
-            NotifyPlayerJoinBattleData(
-              userId = player.user.username,
-              battleId = battle.id,
-              mapName = battle.title,
-              mode = battle.modeHandler.mode,
-              privateBattle = false,
-              proBattle = false,
-              minRank = 1,
-              maxRank = 30
-            ).toJson()
-          )
+          NotifyPlayerJoinBattleData(
+            userId = player.user.username,
+            battleId = battle.id,
+            mapName = battle.title,
+            mode = battle.modeHandler.mode,
+            privateBattle = false,
+            proBattle = false,
+            minRank = 1,
+            maxRank = 30
+          ).toJson()
         ).let { command ->
           server.players
             .filter { player -> player.screen == Screen.BattleSelect }
@@ -121,16 +119,14 @@ class LobbyHandler : ICommandHandler, KoinComponent {
             is TeamModeHandler       -> CommandName.AddBattlePlayerTeam
             else                     -> throw IllegalStateException("Unknown battle mode: ${battle.modeHandler::class}")
           },
-          listOf(
-            AddBattlePlayerData(
-              battleId = battle.id,
-              kills = player.kills,
-              score = player.score,
-              suspicious = false,
-              user = player.user.username,
-              type = player.team
-            ).toJson()
-          )
+          AddBattlePlayerData(
+            battleId = battle.id,
+            kills = player.kills,
+            score = player.score,
+            suspicious = false,
+            user = player.user.username,
+            type = player.team
+          ).toJson()
         ).let { command ->
           server.players
             .filter { player -> player.screen == Screen.BattleSelect && player.selectedBattle == battle }
@@ -141,7 +137,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       socket.initBattleLoad()
 
-      Command(CommandName.InitShotsData, listOf(resourceManager.get("shots-data.json").readText())).send(socket)
+      Command(CommandName.InitShotsData, resourceManager.get("shots-data.json").readText()).send(socket)
 
       socket.awaitDependency(
         socket.loadDependency(
@@ -236,7 +232,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       Command(
         CommandName.InitShotsData,
-        listOf(resourceManager.get("shots-data.json").readText())
+        resourceManager.get("shots-data.json").readText()
       ).send(socket) // TODO(Assasans): initBattleLoad?
 
       player.initLocal()
@@ -253,11 +249,11 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       // Return to battle
 
       socket.screen = Screen.Battle
-      Command(CommandName.StartLayoutSwitch, listOf("BATTLE")).send(socket)
+      Command(CommandName.StartLayoutSwitch, "BATTLE").send(socket)
       Command(CommandName.UnloadBattleSelect).send(socket)
-      Command(CommandName.EndLayoutSwitch, listOf("BATTLE", "BATTLE")).send(socket)
+      Command(CommandName.EndLayoutSwitch, "BATTLE", "BATTLE").send(socket)
     } else {
-      Command(CommandName.StartLayoutSwitch, listOf("BATTLE_SELECT")).send(socket)
+      Command(CommandName.StartLayoutSwitch, "BATTLE_SELECT").send(socket)
 
       if(socket.screen == Screen.Garage) {
         Command(CommandName.UnloadGarage).send(socket)
@@ -267,10 +263,9 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       socket.loadLobbyResources()
 
       Command(
-        CommandName.EndLayoutSwitch, listOf(
-          if(battle != null) "BATTLE" else "BATTLE_SELECT",
-          "BATTLE_SELECT"
-        )
+        CommandName.EndLayoutSwitch,
+        if(battle != null) "BATTLE" else "BATTLE_SELECT",
+        "BATTLE_SELECT"
       ).send(socket)
 
       socket.initBattleList()
@@ -294,16 +289,16 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       // Return to battle
 
       socket.screen = Screen.Battle
-      Command(CommandName.StartLayoutSwitch, listOf("BATTLE")).send(socket)
+      Command(CommandName.StartLayoutSwitch, "BATTLE").send(socket)
       Command(CommandName.UnloadGarage).send(socket)
-      Command(CommandName.EndLayoutSwitch, listOf("BATTLE", "BATTLE")).send(socket)
+      Command(CommandName.EndLayoutSwitch, "BATTLE", "BATTLE").send(socket)
 
       val tank = player.tank
       if(tank != null && (tank.state == TankState.Active || tank.state == TankState.SemiActive)) {
         if(player.equipmentChanged && !tank.selfDestructing) {
           val delay = 3.seconds
 
-          Command(CommandName.EquipmentChangedCountdown, listOf(delay.inWholeMilliseconds.toString())).send(socket)
+          Command(CommandName.EquipmentChangedCountdown, delay.inWholeMilliseconds.toString()).send(socket)
 
           player.coroutineScope.launchDelayed(delay) {
             tank.selfDestruct(silent = true)
@@ -313,7 +308,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
         player.changeEquipment()
       }
     } else {
-      Command(CommandName.StartLayoutSwitch, listOf("GARAGE")).send(socket)
+      Command(CommandName.StartLayoutSwitch, "GARAGE").send(socket)
 
       if(socket.screen == Screen.BattleSelect) {
         Command(CommandName.UnloadBattleSelect).send(socket)
@@ -324,10 +319,9 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       socket.initGarage()
 
       Command(
-        CommandName.EndLayoutSwitch, listOf(
-          if(player != null) "BATTLE" else "GARAGE",
-          "GARAGE"
-        )
+        CommandName.EndLayoutSwitch,
+        if(player != null) "BATTLE" else "GARAGE",
+        "GARAGE"
       ).send(socket)
     }
   }
@@ -352,7 +346,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
     battleProcessor.battles.add(battle)
 
-    Command(CommandName.AddBattle, listOf(battle.toBattleData().toJson())).let { command ->
+    Command(CommandName.AddBattle, battle.toBattleData().toJson()).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }
         .filter { player -> player.active }
@@ -368,6 +362,6 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.CheckBattleName)
   suspend fun checkBattleName(socket: UserSocket, name: String) {
     // Pass-through
-    Command(CommandName.SetCreateBattleName, listOf(name)).send(socket)
+    Command(CommandName.SetCreateBattleName, name).send(socket)
   }
 }

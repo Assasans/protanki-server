@@ -65,19 +65,17 @@ class BattleHandler : ICommandHandler, KoinComponent {
       /*
       Command(
         CommandName.ClientFullMove,
-        listOf(
-          json.adapter(ClientFullMoveData::class.java).toJson(
-            ClientFullMoveData(
-              tankId = tank.id,
-              physTime = data.physTime + 299,
-              control = 0,
-              specificationID = 0,
-              position = tank.position.toVectorData(),
-              linearVelocity = Vector3Data(),
-              orientation = tank.orientation.toEulerAngles().toVectorData(),
-              angularVelocity = Vector3Data(),
-              turretDirection = 0.0
-            )
+        json.adapter(ClientFullMoveData::class.java).toJson(
+          ClientFullMoveData(
+            tankId = tank.id,
+            physTime = data.physTime + 299,
+            control = 0,
+            specificationID = 0,
+            position = tank.position.toVectorData(),
+            linearVelocity = Vector3Data(),
+            orientation = tank.orientation.toEulerAngles().toVectorData(),
+            angularVelocity = Vector3Data(),
+            turretDirection = 0.0
           )
         )
       ).send(socket)
@@ -89,17 +87,15 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
     if(data is FullMoveData) {
       val count = Command(
-        CommandName.ClientFullMove, listOf(
-          ClientFullMoveData(tank.id, data).toJson()
-        )
+        CommandName.ClientFullMove,
+        ClientFullMoveData(tank.id, data).toJson()
       ).sendTo(player.battle, exclude = player)
 
       logger.trace { "Synced full move to $count players" }
     } else {
       val count = Command(
-        CommandName.ClientMove, listOf(
-          ClientMoveData(tank.id, data).toJson()
-        )
+        CommandName.ClientMove,
+        ClientMoveData(tank.id, data).toJson()
       ).sendTo(player.battle, exclude = player)
 
       logger.trace { "Synced move to $count players" }
@@ -116,9 +112,8 @@ class BattleHandler : ICommandHandler, KoinComponent {
     }
 
     val count = Command(
-      CommandName.ClientRotateTurret, listOf(
-        ClientRotateTurretData(tank.id, data).toJson()
-      )
+      CommandName.ClientRotateTurret,
+      ClientRotateTurretData(tank.id, data).toJson()
     ).sendTo(player.battle, exclude = player)
 
     logger.trace { "Synced rotate turret to $count players" }
@@ -134,9 +129,8 @@ class BattleHandler : ICommandHandler, KoinComponent {
     }
 
     val count = Command(
-      CommandName.ClientMovementControl, listOf(
-        ClientMovementControlData(tank.id, data).toJson()
-      )
+      CommandName.ClientMovementControl,
+      ClientMovementControlData(tank.id, data).toJson()
     ).sendTo(player.battle, exclude = player)
 
     logger.trace { "Synced movement control to $count players" }
@@ -197,9 +191,9 @@ class BattleHandler : ICommandHandler, KoinComponent {
 
     when(destinationScreen) {
       "BATTLE_SELECT" -> {
-        Command(CommandName.StartLayoutSwitch, listOf("BATTLE_SELECT")).send(socket)
+        Command(CommandName.StartLayoutSwitch, "BATTLE_SELECT").send(socket)
         socket.loadLobbyResources()
-        Command(CommandName.EndLayoutSwitch, listOf("BATTLE_SELECT", "BATTLE_SELECT")).send(socket)
+        Command(CommandName.EndLayoutSwitch, "BATTLE_SELECT", "BATTLE_SELECT").send(socket)
 
         socket.screen = Screen.BattleSelect
         socket.initBattleList()
@@ -211,11 +205,11 @@ class BattleHandler : ICommandHandler, KoinComponent {
       }
 
       "GARAGE"        -> {
-        Command(CommandName.StartLayoutSwitch, listOf("GARAGE")).send(socket)
+        Command(CommandName.StartLayoutSwitch, "GARAGE").send(socket)
         socket.screen = Screen.Garage
         socket.loadGarageResources()
         socket.initGarage()
-        Command(CommandName.EndLayoutSwitch, listOf("GARAGE", "GARAGE")).send(socket)
+        Command(CommandName.EndLayoutSwitch, "GARAGE", "GARAGE").send(socket)
       }
     }
   }

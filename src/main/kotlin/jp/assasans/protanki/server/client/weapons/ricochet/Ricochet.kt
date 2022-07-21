@@ -1,4 +1,4 @@
-package jp.assasans.protanki.server.client.ricochet
+package jp.assasans.protanki.server.client.weapons.ricochet
 
 import com.squareup.moshi.Json
 import jp.assasans.protanki.server.client.Vector3Data

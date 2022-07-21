@@ -3,9 +3,9 @@ package jp.assasans.protanki.server.battles.weapons
 import jp.assasans.protanki.server.battles.BattlePlayer
 import jp.assasans.protanki.server.battles.TankState
 import jp.assasans.protanki.server.battles.sendTo
-import jp.assasans.protanki.server.client.flamethrower.FireTarget
-import jp.assasans.protanki.server.client.flamethrower.StartFire
-import jp.assasans.protanki.server.client.flamethrower.StopFire
+import jp.assasans.protanki.server.client.weapons.flamethrower.FireTarget
+import jp.assasans.protanki.server.client.weapons.flamethrower.StartFire
+import jp.assasans.protanki.server.client.weapons.flamethrower.StopFire
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
@@ -21,7 +21,7 @@ class FreezeWeaponHandler(
 
     fireStarted = true
 
-    Command(CommandName.ClientStartFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStartFire, tank.id).sendTo(tank.player.battle)
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -46,6 +46,6 @@ class FreezeWeaponHandler(
 
     fireStarted = false
 
-    Command(CommandName.ClientStopFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStopFire, tank.id).sendTo(tank.player.battle)
   }
 }

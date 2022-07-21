@@ -123,6 +123,7 @@ suspend fun main(args: Array<String>) {
             .withSubtype(RicochetVisual::class.java, "ricochet")
         )
         .add(BattleDataJsonAdapterFactory())
+        .add(LocalizedStringAdapterFactory())
         .add(KotlinJsonAdapterFactory())
         .add(GarageItemTypeAdapter())
         .add(ResourceTypeAdapter())
@@ -134,6 +135,7 @@ suspend fun main(args: Array<String>) {
         .add(SkyboxSideAdapter())
         .add(EquipmentConstraintsModeAdapter())
         .add(ChatModeratorLevelAdapter())
+        .add(SocketLocaleAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }

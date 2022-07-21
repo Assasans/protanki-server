@@ -1,4 +1,4 @@
-package jp.assasans.protanki.server.client.isida
+package jp.assasans.protanki.server.client.weapons.isida
 
 import com.squareup.moshi.Json
 import jp.assasans.protanki.server.client.Vector3Data

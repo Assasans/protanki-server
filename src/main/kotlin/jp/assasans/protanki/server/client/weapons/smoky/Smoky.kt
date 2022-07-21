@@ -1,4 +1,4 @@
-package jp.assasans.protanki.server.client.smoky
+package jp.assasans.protanki.server.client.weapons.smoky
 
 import com.squareup.moshi.Json
 import jp.assasans.protanki.server.client.Vector3Data

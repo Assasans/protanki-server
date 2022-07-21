@@ -92,12 +92,12 @@ class BattleChatHandler : ICommandHandler, KoinComponent {
 
     if(player.isSpectator) {
       if(isTeam) {
-        Command(CommandName.SendBattleChatSpectatorTeamMessageClient, listOf("[${user.username}] $content")).sendTo(battle, SendTarget.Spectators)
+        Command(CommandName.SendBattleChatSpectatorTeamMessageClient, "[${user.username}] $content").sendTo(battle, SendTarget.Spectators)
       } else {
-        Command(CommandName.SendBattleChatSpectatorMessageClient, listOf(content)).sendTo(battle)
+        Command(CommandName.SendBattleChatSpectatorMessageClient, content).sendTo(battle)
       }
     } else {
-      Command(CommandName.SendBattleChatMessageClient, listOf(message.toJson())).sendTo(battle)
+      Command(CommandName.SendBattleChatMessageClient, message.toJson()).sendTo(battle)
     }
   }
 }

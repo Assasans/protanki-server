@@ -17,7 +17,7 @@ class DeathmatchModeHandler(battle: Battle) : BattleModeHandler(battle) {
 
     Command(
       CommandName.InitDmStatistics,
-      listOf(InitDmStatisticsData(users = players).toJson())
+      InitDmStatisticsData(users = players).toJson()
     ).send(player)
 
     if(player.isSpectator) return
@@ -26,19 +26,17 @@ class DeathmatchModeHandler(battle: Battle) : BattleModeHandler(battle) {
 
       Command(
         CommandName.BattlePlayerJoinDm,
-        listOf(
-          BattlePlayerJoinDmData(
-            id = player.user.username,
-            players = players
-          ).toJson()
-        )
+        BattlePlayerJoinDmData(
+          id = player.user.username,
+          players = players
+        ).toJson()
       ).send(battlePlayer)
     }
   }
 
   override suspend fun playerLeave(player: BattlePlayer) {
     if(player.isSpectator) return
-    Command(CommandName.BattlePlayerLeaveDm, listOf(player.user.username)).sendTo(battle, exclude = player)
+    Command(CommandName.BattlePlayerLeaveDm, player.user.username).sendTo(battle, exclude = player)
   }
 
   override suspend fun initModeModel(player: BattlePlayer) {

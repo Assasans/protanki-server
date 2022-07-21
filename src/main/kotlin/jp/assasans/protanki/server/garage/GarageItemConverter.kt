@@ -1,13 +1,15 @@
 package jp.assasans.protanki.server.garage
 
+import jp.assasans.protanki.server.client.SocketLocale
+
 interface IGarageItemConverter {
-  fun toClientWeapon(item: ServerGarageItemWeapon): List<GarageItem>
-  fun toClientHull(item: ServerGarageItemHull): List<GarageItem>
-  fun toClientPaint(item: ServerGarageItemPaint): GarageItem
-  fun toClientSupply(item: ServerGarageItemSupply): GarageItem
-  fun toClientSubscription(item: ServerGarageItemSubscription): GarageItem
-  fun toClientKit(item: ServerGarageItemKit): GarageItem
-  fun toClientPresent(item: ServerGarageItemPresent): GarageItem
+  fun toClientWeapon(item: ServerGarageItemWeapon, locale: SocketLocale): List<GarageItem>
+  fun toClientHull(item: ServerGarageItemHull, locale: SocketLocale): List<GarageItem>
+  fun toClientPaint(item: ServerGarageItemPaint, locale: SocketLocale): GarageItem
+  fun toClientSupply(item: ServerGarageItemSupply, locale: SocketLocale): GarageItem
+  fun toClientSubscription(item: ServerGarageItemSubscription, locale: SocketLocale): GarageItem
+  fun toClientKit(item: ServerGarageItemKit, locale: SocketLocale): GarageItem
+  fun toClientPresent(item: ServerGarageItemPresent, locale: SocketLocale): GarageItem
 }
 
 class GarageItemConverter : IGarageItemConverter {
@@ -21,7 +23,7 @@ class GarageItemConverter : IGarageItemConverter {
     }
   }
 
-  override fun toClientWeapon(item: ServerGarageItemWeapon): List<GarageItem> {
+  override fun toClientWeapon(item: ServerGarageItemWeapon, locale: SocketLocale): List<GarageItem> {
     return item.modifications.map { (index, modification) ->
       val nextModification = item.modifications.getOrDefault(index + 1, null)
 
@@ -32,7 +34,7 @@ class GarageItemConverter : IGarageItemConverter {
         category = item.type.categoryKey,
         isInventory = false,
 
-        name = item.name,
+        name = item.name.get(locale),
         description = item.description,
 
         baseItemId = item.baseItemId,
@@ -65,7 +67,7 @@ class GarageItemConverter : IGarageItemConverter {
     }
   }
 
-  override fun toClientHull(item: ServerGarageItemHull): List<GarageItem> {
+  override fun toClientHull(item: ServerGarageItemHull, locale: SocketLocale): List<GarageItem> {
     return item.modifications.map { (index, modification) ->
       val nextModification = item.modifications.getOrDefault(index + 1, null)
 
@@ -76,7 +78,7 @@ class GarageItemConverter : IGarageItemConverter {
         category = item.type.categoryKey,
         isInventory = false,
 
-        name = item.name,
+        name = item.name.get(locale),
         description = item.description,
 
         baseItemId = item.baseItemId,
@@ -109,7 +111,7 @@ class GarageItemConverter : IGarageItemConverter {
     }
   }
 
-  override fun toClientPaint(item: ServerGarageItemPaint): GarageItem {
+  override fun toClientPaint(item: ServerGarageItemPaint, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -117,7 +119,7 @@ class GarageItemConverter : IGarageItemConverter {
       category = item.type.categoryKey,
       isInventory = false,
 
-      name = item.name,
+      name = item.name.get(locale),
       description = item.description,
 
       baseItemId = item.baseItemId,
@@ -149,7 +151,7 @@ class GarageItemConverter : IGarageItemConverter {
     )
   }
 
-  override fun toClientSupply(item: ServerGarageItemSupply): GarageItem {
+  override fun toClientSupply(item: ServerGarageItemSupply, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -157,7 +159,7 @@ class GarageItemConverter : IGarageItemConverter {
       category = item.type.categoryKey,
       isInventory = true,
 
-      name = item.name,
+      name = item.name.get(locale),
       description = item.description,
 
       baseItemId = item.baseItemId,
@@ -189,7 +191,7 @@ class GarageItemConverter : IGarageItemConverter {
     )
   }
 
-  override fun toClientSubscription(item: ServerGarageItemSubscription): GarageItem {
+  override fun toClientSubscription(item: ServerGarageItemSubscription, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -197,7 +199,7 @@ class GarageItemConverter : IGarageItemConverter {
       category = item.type.categoryKey,
       isInventory = true,
 
-      name = item.name,
+      name = item.name.get(locale),
       description = item.description,
 
       baseItemId = item.baseItemId,
@@ -229,7 +231,7 @@ class GarageItemConverter : IGarageItemConverter {
     )
   }
 
-  override fun toClientKit(item: ServerGarageItemKit): GarageItem {
+  override fun toClientKit(item: ServerGarageItemKit, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -237,7 +239,7 @@ class GarageItemConverter : IGarageItemConverter {
       category = item.type.categoryKey,
       isInventory = true,
 
-      name = item.name,
+      name = item.name.get(locale),
       description = item.description,
 
       baseItemId = item.baseItemId,
@@ -275,7 +277,7 @@ class GarageItemConverter : IGarageItemConverter {
     )
   }
 
-  override fun toClientPresent(item: ServerGarageItemPresent): GarageItem {
+  override fun toClientPresent(item: ServerGarageItemPresent, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -283,7 +285,7 @@ class GarageItemConverter : IGarageItemConverter {
       category = item.type.categoryKey,
       isInventory = false,
 
-      name = item.name,
+      name = item.name.get(locale),
       description = item.description,
 
       baseItemId = item.baseItemId,

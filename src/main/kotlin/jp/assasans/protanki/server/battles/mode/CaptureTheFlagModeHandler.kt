@@ -42,7 +42,7 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
   suspend fun captureFlag(flagTeam: BattleTeam, carrier: BattleTank) {
     flags[flagTeam] = flags[flagTeam]!!.asCarrying(carrier) // TODO(Assasans): Non-null assertion
 
-    Command(CommandName.FlagCaptured, listOf(carrier.id, flagTeam.key)).sendTo(battle)
+    Command(CommandName.FlagCaptured, carrier.id, flagTeam.key).sendTo(battle)
   }
 
   suspend fun dropFlag(flagTeam: BattleTeam, carrier: BattleTank, position: Vector3) {
@@ -50,14 +50,12 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
 
     Command(
       CommandName.FlagDropped,
-      listOf(
-        FlagDroppedData(
-          x = position.x,
-          y = position.y,
-          z = position.z,
-          flagTeam = flagTeam
-        ).toJson()
-      )
+      FlagDroppedData(
+        x = position.x,
+        y = position.y,
+        z = position.z,
+        flagTeam = flagTeam
+      ).toJson()
     ).sendTo(battle)
   }
 
@@ -65,7 +63,7 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
     flags[enemyFlagTeam] = flags[enemyFlagTeam]!!.asOnPedestal() // TODO(Assasans): Non-null assertion
     teamScores.merge(flagTeam, 1, Int::plus)
 
-    Command(CommandName.FlagDelivered, listOf(flagTeam.key, carrier.id)).sendTo(battle)
+    Command(CommandName.FlagDelivered, flagTeam.key, carrier.id).sendTo(battle)
     updateScores()
   }
 
@@ -74,10 +72,8 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
 
     Command(
       CommandName.FlagReturned,
-      listOf(
-        flagTeam.key,
-        carrier?.player?.user?.username ?: null.toString()
-      )
+      flagTeam.key,
+      carrier?.player?.user?.username ?: null.toString()
     ).sendTo(battle)
   }
 
@@ -92,14 +88,14 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
   override suspend fun initModeModel(player: BattlePlayer) {
     Command(
       CommandName.InitCtfModel,
-      listOf(getCtfModel().toJson())
+      getCtfModel().toJson()
     ).send(player)
   }
 
   override suspend fun initPostGui(player: BattlePlayer) {
     Command(
       CommandName.InitFlags,
-      listOf(getCtfModel().toJson())
+      getCtfModel().toJson()
     ).send(player)
   }
 

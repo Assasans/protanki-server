@@ -1,4 +1,4 @@
-package jp.assasans.protanki.server.client.flamethrower
+package jp.assasans.protanki.server.client.weapons.freeze
 
 import com.squareup.moshi.Json
 import jp.assasans.protanki.server.client.Vector3Data

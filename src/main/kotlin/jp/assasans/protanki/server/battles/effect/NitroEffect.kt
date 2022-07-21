@@ -36,6 +36,6 @@ class NitroEffect(
   }
 
   private suspend fun sendSpecificationChange() {
-    Command(CommandName.ChangeTankSpecification, listOf(tank.id, specification.toJson())).sendTo(tank.battle)
+    Command(CommandName.ChangeTankSpecification, tank.id, specification.toJson()).sendTo(tank.battle)
   }
 }

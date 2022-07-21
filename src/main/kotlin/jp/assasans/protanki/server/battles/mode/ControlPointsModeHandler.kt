@@ -42,14 +42,12 @@ class ControlPointsModeHandler(battle: Battle) : TeamModeHandler(battle) {
   override suspend fun initModeModel(player: BattlePlayer) {
     Command(
       CommandName.InitDomModel,
-      listOf(
-        InitDomModelData(
-          resources = DomModelResources().toJson(),
-          lighting = DomModelLighting().toJson(),
-          points = points.map { point -> point.toDomPoint() },
-          mine_activation_radius = 5
-        ).toJson()
-      )
+      InitDomModelData(
+        resources = DomModelResources().toJson(),
+        lighting = DomModelLighting().toJson(),
+        points = points.map { point -> point.toDomPoint() },
+        mine_activation_radius = 5
+      ).toJson()
     ).send(player)
   }
 }

@@ -47,11 +47,9 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
 
     Command(
       CommandName.ClientActivateItem,
-      listOf(
-        effect.info.name,
-        slotBlockTime.inWholeMilliseconds.toString(),
-        true.toString() // Decrement item count in HUD (visual)
-      )
+      effect.info.name,
+      slotBlockTime.inWholeMilliseconds.toString(),
+      true.toString() // Decrement item count in HUD (visual)
     ).send(socket)
   }
 

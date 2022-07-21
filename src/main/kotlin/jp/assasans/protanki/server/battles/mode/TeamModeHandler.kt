@@ -20,14 +20,12 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
 
     Command(
       CommandName.InitTeamStatistics,
-      listOf(
-        InitTeamStatisticsData(
-          reds = redPlayers,
-          blues = bluePlayers,
-          redScore = 0,
-          blueScore = 0
-        ).toJson()
-      )
+      InitTeamStatisticsData(
+        reds = redPlayers,
+        blues = bluePlayers,
+        redScore = 0,
+        blueScore = 0
+      ).toJson()
     ).send(player)
 
     if(player.isSpectator) return
@@ -36,20 +34,18 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
 
       Command(
         CommandName.BattlePlayerJoinTeam,
-        listOf(
-          BattlePlayerJoinTeamData(
-            id = player.user.username,
-            team = player.team,
-            players = players
-          ).toJson()
-        )
+        BattlePlayerJoinTeamData(
+          id = player.user.username,
+          team = player.team,
+          players = players
+        ).toJson()
       ).send(battlePlayer)
     }
   }
 
   override suspend fun playerLeave(player: BattlePlayer) {
     if(player.isSpectator) return
-    Command(CommandName.BattlePlayerLeaveTeam, listOf(player.user.username)).sendTo(battle, exclude = player)
+    Command(CommandName.BattlePlayerLeaveTeam, player.user.username).sendTo(battle, exclude = player)
   }
 
   suspend fun updateScores() {
@@ -58,7 +54,7 @@ abstract class TeamModeHandler(battle: Battle) : BattleModeHandler(battle) {
       .forEach { (team, score) ->
         clientTeamScores[team] = score
 
-        Command(CommandName.ChangeTeamScore, listOf(team.key, score.toString())).sendTo(battle)
+        Command(CommandName.ChangeTeamScore, team.key, score.toString()).sendTo(battle)
       }
   }
 
