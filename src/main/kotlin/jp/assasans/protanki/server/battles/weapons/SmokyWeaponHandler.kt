@@ -20,13 +20,13 @@ class SmokyWeaponHandler(
   suspend fun fire(fire: Fire) {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.Shot, listOf(tank.id, fire.toJson())).sendTo(tank.player.battle)
+    Command(CommandName.Shot, tank.id, fire.toJson()).sendTo(tank.player.battle)
   }
 
   suspend fun fireStatic(static: FireStatic) {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.ShotStatic, listOf(tank.id, static.toJson())).sendTo(tank.player.battle)
+    Command(CommandName.ShotStatic, tank.id, static.toJson()).sendTo(tank.player.battle)
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -42,6 +42,6 @@ class SmokyWeaponHandler(
     battle.damageProcessor.dealDamage(sourceTank, targetTank, damage.damage, damage.isCritical)
 
     val shot = ShotTarget(target, damage.weakening, false)
-    Command(CommandName.ShotTarget, listOf(sourceTank.id, shot.toJson())).sendTo(sourceTank.player.battle)
+    Command(CommandName.ShotTarget, sourceTank.id, shot.toJson()).sendTo(sourceTank.player.battle)
   }
 }

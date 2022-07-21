@@ -38,7 +38,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.TryMountPreviewItem)
   suspend fun tryMountPreviewItem(socket: UserSocket, item: String) {
-    Command(CommandName.MountItem, listOf(item, false.toString())).send(socket)
+    Command(CommandName.MountItem, item, false.toString()).send(socket)
   }
 
   @CommandHandler(CommandName.TryMountItem)
@@ -85,7 +85,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
       player.equipmentChanged = true
     }
 
-    Command(CommandName.MountItem, listOf(currentItem.mountName, true.toString())).send(socket)
+    Command(CommandName.MountItem, currentItem.mountName, true.toString()).send(socket)
   }
 
   // TODO(Assasans): Code repeating

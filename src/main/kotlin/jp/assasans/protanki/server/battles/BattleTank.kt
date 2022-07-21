@@ -62,11 +62,11 @@ class BattleTank(
     player.battle.players.users().forEach { player ->
       val tank = player.tank
       if(tank != null && tank != this) {
-        Command(CommandName.ActivateTank, listOf(tank.id)).send(socket)
+        Command(CommandName.ActivateTank, tank.id).send(socket)
       }
     }
 
-    Command(CommandName.ActivateTank, listOf(id)).sendTo(battle)
+    Command(CommandName.ActivateTank, id).sendTo(battle)
   }
 
   suspend fun deactivate(terminate: Boolean = false) {
@@ -106,17 +106,20 @@ class BattleTank(
 
     Command(
       CommandName.KillTank,
-      listOf(
-        id,
-        TankKillType.ByPlayer.key,
-        killer.id
-      )
+      id,
+      TankKillType.ByPlayer.key,
+      killer.id
     ).sendTo(battle)
 
     killer.player.kills++
     killer.player.updateStats()
 
-    Command(CommandName.UpdatePlayerKills, listOf(battle.id, killer.player.user.username, killer.player.kills.toString())).let { command ->
+    Command(
+      CommandName.UpdatePlayerKills,
+      battle.id,
+      killer.player.user.username,
+      killer.player.kills.toString()
+    ).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect }
         .filter { player -> player.active }
@@ -128,15 +131,13 @@ class BattleTank(
     killSelf()
 
     if(silent) {
-      Command(CommandName.KillTankSilent, listOf(id)).sendTo(battle)
+      Command(CommandName.KillTankSilent, id).sendTo(battle)
     } else {
       Command(
         CommandName.KillTank,
-        listOf(
-          id,
-          TankKillType.SelfDestruct.key,
-          id
-        )
+        id,
+        TankKillType.SelfDestruct.key,
+        id
       ).sendTo(battle)
     }
   }
@@ -157,10 +158,8 @@ class BattleTank(
   suspend fun prepareToSpawn() {
     Command(
       CommandName.PrepareToSpawn,
-      listOf(
-        id,
-        "${position.x}@${position.y}@${position.z}@${orientation.toEulerAngles().z}"
-      )
+      id,
+      "${position.x}@${position.y}@${position.z}@${orientation.toEulerAngles().z}"
     ).send(this)
   }
 
@@ -168,44 +167,42 @@ class BattleTank(
     battle.players.forEach { player ->
       Command(
         CommandName.InitTank,
-        listOf(
-          InitTankData(
-            battleId = battle.id,
-            hull_id = hull.mountName,
-            turret_id = weapon.item.mountName,
-            colormap_id = coloring.marketItem.coloring,
-            hullResource = hull.modification.object3ds,
-            turretResource = weapon.item.modification.object3ds,
-            partsObject = TankSoundsData().toJson(),
-            tank_id = id,
-            nickname = this.player.user.username,
-            team_type = this.player.team,
-            state = state.tankInitKey,
-            health = health,
+        InitTankData(
+          battleId = battle.id,
+          hull_id = hull.mountName,
+          turret_id = weapon.item.mountName,
+          colormap_id = coloring.marketItem.coloring,
+          hullResource = hull.modification.object3ds,
+          turretResource = weapon.item.modification.object3ds,
+          partsObject = TankSoundsData().toJson(),
+          tank_id = id,
+          nickname = this.player.user.username,
+          team_type = this.player.team,
+          state = state.tankInitKey,
+          health = health,
 
-            // Hull physics
-            maxSpeed = hull.modification.physics.speed,
-            maxTurnSpeed = hull.modification.physics.turnSpeed,
-            acceleration = hull.modification.physics.acceleration,
-            reverseAcceleration = hull.modification.physics.reverseAcceleration,
-            sideAcceleration = hull.modification.physics.sideAcceleration,
-            turnAcceleration = hull.modification.physics.turnAcceleration,
-            reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
-            dampingCoeff = hull.modification.physics.damping,
-            mass = hull.modification.physics.mass,
-            power = hull.modification.physics.power,
+          // Hull physics
+          maxSpeed = hull.modification.physics.speed,
+          maxTurnSpeed = hull.modification.physics.turnSpeed,
+          acceleration = hull.modification.physics.acceleration,
+          reverseAcceleration = hull.modification.physics.reverseAcceleration,
+          sideAcceleration = hull.modification.physics.sideAcceleration,
+          turnAcceleration = hull.modification.physics.turnAcceleration,
+          reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
+          dampingCoeff = hull.modification.physics.damping,
+          mass = hull.modification.physics.mass,
+          power = hull.modification.physics.power,
 
-            // Weapon physics
-            turret_turn_speed = weapon.item.modification.physics.turretRotationSpeed,
-            turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration,
-            kickback = weapon.item.modification.physics.kickback,
-            impact_force = weapon.item.modification.physics.impactForce,
+          // Weapon physics
+          turret_turn_speed = weapon.item.modification.physics.turretRotationSpeed,
+          turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration,
+          kickback = weapon.item.modification.physics.kickback,
+          impact_force = weapon.item.modification.physics.impactForce,
 
-            // Weapon visual
-            sfxData = (weapon.item.modification.visual
-                       ?: weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
-          ).toJson()
-        )
+          // Weapon visual
+          sfxData = (weapon.item.modification.visual
+                     ?: weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
+        ).toJson()
       ).send(player)
     }
   }
@@ -223,41 +220,37 @@ class BattleTank(
 
     Command(
       CommandName.SpawnTank,
-      listOf(
-        SpawnTankData(
-          tank_id = id,
-          health = health,
-          incration_id = player.incarnation,
-          team_type = player.team,
-          x = position.x,
-          y = position.y,
-          z = position.z,
-          rot = orientation.toEulerAngles().z,
+      SpawnTankData(
+        tank_id = id,
+        health = health,
+        incration_id = player.incarnation,
+        team_type = player.team,
+        x = position.x,
+        y = position.y,
+        z = position.z,
+        rot = orientation.toEulerAngles().z,
 
-          // Hull physics
-          speed = hull.modification.physics.speed,
-          turn_speed = hull.modification.physics.turnSpeed,
-          acceleration = hull.modification.physics.acceleration,
-          reverseAcceleration = hull.modification.physics.reverseAcceleration,
-          sideAcceleration = hull.modification.physics.sideAcceleration,
-          turnAcceleration = hull.modification.physics.turnAcceleration,
-          reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
+        // Hull physics
+        speed = hull.modification.physics.speed,
+        turn_speed = hull.modification.physics.turnSpeed,
+        acceleration = hull.modification.physics.acceleration,
+        reverseAcceleration = hull.modification.physics.reverseAcceleration,
+        sideAcceleration = hull.modification.physics.sideAcceleration,
+        turnAcceleration = hull.modification.physics.turnAcceleration,
+        reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
 
-          // Weapon physics
-          turret_rotation_speed = weapon.item.modification.physics.turretRotationSpeed,
-          turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration
-        ).toJson()
-      )
+        // Weapon physics
+        turret_rotation_speed = weapon.item.modification.physics.turretRotationSpeed,
+        turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration
+      ).toJson()
     ).send(this)
   }
 
   suspend fun updateHealth() {
     Command(
       CommandName.ChangeHealth,
-      listOf(
-        id,
-        health.toString()
-      )
+      id,
+      health.toString()
     ).apply {
       send(this@BattleTank)
       sendTo(battle, SendTarget.Spectators)

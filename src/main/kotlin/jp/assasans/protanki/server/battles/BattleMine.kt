@@ -27,10 +27,10 @@ class BattleMine(
   suspend fun spawn() {
     spawnTime = Clock.System.now()
 
-    Command(CommandName.AddMine, listOf(toAddMine().toJson())).sendTo(battle)
+    Command(CommandName.AddMine, toAddMine().toJson()).sendTo(battle)
 
     owner.coroutineScope.launchDelayed(1.seconds) {
-      Command(CommandName.ActivateMine, listOf(key)).sendTo(battle)
+      Command(CommandName.ActivateMine, key).sendTo(battle)
     }
   }
 
@@ -43,12 +43,12 @@ class BattleMine(
 
     battle.damageProcessor.dealDamage(sourceTank, tank, 80.0, false, ignoreSourceEffects = true)
 
-    Command(CommandName.ClientTriggerMine, listOf(key, tank.player.user.username)).sendTo(battle)
+    Command(CommandName.ClientTriggerMine, key, tank.player.user.username).sendTo(battle)
     battle.mineProcessor.mines.remove(id)
   }
 
   suspend fun deactivate() {
-    Command(CommandName.ClientTriggerMine, listOf(key, "")).sendTo(battle)
+    Command(CommandName.ClientTriggerMine, key, "").sendTo(battle)
     battle.mineProcessor.mines.remove(id)
   }
 }

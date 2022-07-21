@@ -23,13 +23,13 @@ class ShaftWeaponHandler(
   suspend fun enterSnipingMode() {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.ClientEnterSnipingMode, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientEnterSnipingMode, tank.id).sendTo(tank.player.battle)
   }
 
   suspend fun exitSnipingMode() {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.ClientExitSnipingMode, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientExitSnipingMode, tank.id).sendTo(tank.player.battle)
   }
 
   suspend fun fireArcade(target: FireTarget) {
@@ -46,7 +46,7 @@ class ShaftWeaponHandler(
     }
 
     val shot = ShotTarget(target, 5.0)
-    Command(CommandName.ShotTarget, listOf(sourceTank.id, shot.toJson())).sendTo(sourceTank.player.battle)
+    Command(CommandName.ShotTarget, sourceTank.id, shot.toJson()).sendTo(sourceTank.player.battle)
   }
 
   suspend fun fireSniping(target: FireTarget) {
@@ -63,6 +63,6 @@ class ShaftWeaponHandler(
     }
 
     val shot = ShotTarget(target, 5.0)
-    Command(CommandName.ShotTarget, listOf(sourceTank.id, shot.toJson())).sendTo(sourceTank.player.battle)
+    Command(CommandName.ShotTarget, sourceTank.id, shot.toJson()).sendTo(sourceTank.player.battle)
   }
 }

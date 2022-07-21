@@ -32,7 +32,7 @@ class MineProcessor(
   override suspend fun deactivateAll(player: BattlePlayer, native: Boolean) {
     if(native) {
       if(mines.values.none { mine -> mine.owner == player }) return
-      Command(CommandName.RemoveMines, listOf(player.user.username)).sendTo(battle)
+      Command(CommandName.RemoveMines, player.user.username).sendTo(battle)
       mines.values.removeAll { mine -> mine.owner == player }
     } else {
       mines.values

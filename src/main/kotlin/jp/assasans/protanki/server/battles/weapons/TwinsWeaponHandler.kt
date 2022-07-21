@@ -18,13 +18,13 @@ class TwinsWeaponHandler(
   suspend fun fire(fire: Fire) {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.Shot, listOf(tank.id, fire.toJson())).sendTo(tank.player.battle)
+    Command(CommandName.Shot, tank.id, fire.toJson()).sendTo(tank.player.battle)
   }
 
   suspend fun fireStatic(static: FireStatic) {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.ShotStatic, listOf(tank.id, static.toJson())).sendTo(tank.player.battle)
+    Command(CommandName.ShotStatic, tank.id, static.toJson()).sendTo(tank.player.battle)
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -38,6 +38,6 @@ class TwinsWeaponHandler(
 
     battle.damageProcessor.dealDamage(sourceTank, targetTank, 25.0, false)
 
-    Command(CommandName.FireTarget, listOf(sourceTank.id, target.toJson())).sendTo(sourceTank.player.battle)
+    Command(CommandName.FireTarget, sourceTank.id, target.toJson()).sendTo(sourceTank.player.battle)
   }
 }

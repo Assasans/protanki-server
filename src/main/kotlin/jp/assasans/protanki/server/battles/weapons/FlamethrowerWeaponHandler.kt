@@ -22,7 +22,7 @@ class FlamethrowerWeaponHandler(
 
     fireStarted = true
 
-    Command(CommandName.ClientStartFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStartFire, tank.id).sendTo(tank.player.battle)
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -48,6 +48,6 @@ class FlamethrowerWeaponHandler(
 
     fireStarted = false
 
-    Command(CommandName.ClientStopFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStopFire, tank.id).sendTo(tank.player.battle)
   }
 }

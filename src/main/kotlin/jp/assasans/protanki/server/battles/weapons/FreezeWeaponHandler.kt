@@ -21,7 +21,7 @@ class FreezeWeaponHandler(
 
     fireStarted = true
 
-    Command(CommandName.ClientStartFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStartFire, tank.id).sendTo(tank.player.battle)
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -46,6 +46,6 @@ class FreezeWeaponHandler(
 
     fireStarted = false
 
-    Command(CommandName.ClientStopFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStopFire, tank.id).sendTo(tank.player.battle)
   }
 }

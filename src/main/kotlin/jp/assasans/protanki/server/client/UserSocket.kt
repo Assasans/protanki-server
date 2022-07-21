@@ -43,15 +43,13 @@ suspend fun Command.send(tank: BattleTank) = tank.socket.send(this)
 
 suspend fun UserSocket.sendChat(message: String) = Command(
   CommandName.SendChatMessageClient,
-  listOf(
-    ChatMessage(
-      name = "",
-      rang = 0,
-      message = message,
-      system = true,
-      yellow = true
-    ).toJson()
-  )
+  ChatMessage(
+    name = "",
+    rang = 0,
+    message = message,
+    system = true,
+    yellow = true
+  ).toJson()
 ).send(this)
 
 suspend fun UserSocket.sendBattleChat(message: String) {
@@ -59,16 +57,14 @@ suspend fun UserSocket.sendBattleChat(message: String) {
 
   Command(
     CommandName.SendBattleChatMessageClient,
-    listOf(
-      BattleChatMessage(
-        nickname = "",
-        rank = 0,
-        message = message,
-        team = false,
-        team_type = BattleTeam.None,
-        system = true
-      ).toJson()
-    )
+    BattleChatMessage(
+      nickname = "",
+      rank = 0,
+      message = message,
+      team = false,
+      team_type = BattleTeam.None,
+      system = true
+    ).toJson()
   ).send(this)
 }
 
@@ -183,10 +179,8 @@ class UserSocket(
   suspend fun loadDependency(resources: String): Int {
     Command(
       CommandName.LoadResources,
-      listOf(
-        resources,
-        lastDependencyId.toString()
-      )
+      resources,
+      lastDependencyId.toString()
     ).send(this)
 
     return lastDependencyId++
@@ -284,7 +278,7 @@ class UserSocket(
   }
 
   suspend fun initBattleLoad() {
-    Command(CommandName.StartLayoutSwitch, listOf("BATTLE")).send(this)
+    Command(CommandName.StartLayoutSwitch, "BATTLE").send(this)
     Command(CommandName.UnloadBattleSelect).send(this)
     Command(CommandName.StartBattle).send(this)
     Command(CommandName.UnloadChat).send(this)
@@ -342,50 +336,46 @@ class UserSocket(
   }
 
   suspend fun loadLobby() {
-    Command(CommandName.StartLayoutSwitch, listOf("BATTLE_SELECT")).send(this)
+    Command(CommandName.StartLayoutSwitch, "BATTLE_SELECT").send(this)
 
     screen = Screen.BattleSelect
 
-    Command(CommandName.InitPremium, listOf(InitPremiumData().toJson())).send(this)
+    Command(CommandName.InitPremium, InitPremiumData().toJson()).send(this)
 
     val user = user ?: throw Exception("No User")
 
     clientRank = user.rank
     Command(
       CommandName.InitPanel,
-      listOf(
-        InitPanelData(
-          name = user.username,
-          crystall = user.crystals,
-          rang = user.rank.value,
-          score = user.score,
-          currentRankScore = user.currentRankScore,
-          next_score = user.rank.nextRank.scoreOrZero
-        ).toJson()
-      )
+      InitPanelData(
+        name = user.username,
+        crystall = user.crystals,
+        rang = user.rank.value,
+        score = user.score,
+        currentRankScore = user.currentRankScore,
+        next_score = user.rank.nextRank.scoreOrZero
+      ).toJson()
     ).send(this)
 
-    // Command(CommandName.UpdateRankProgress, listOf("3668")).send(this)
+    // Command(CommandName.UpdateRankProgress, "3668").send(this)
 
     Command(
       CommandName.InitFriendsList,
-      listOf(
-        InitFriendsListData(
-          friends = listOf(
-            // FriendEntry(id = "Luminate", rank = 16, online = false),
-            // FriendEntry(id = "MoscowCity", rank = 18, online = true)
-          )
-        ).toJson()
-      )
+      InitFriendsListData(
+        friends = listOf(
+          // FriendEntry(id = "Luminate", rank = 16, online = false),
+          // FriendEntry(id = "MoscowCity", rank = 18, online = true)
+        )
+      ).toJson()
     ).send(this)
 
     loadLobbyResources()
 
-    Command(CommandName.EndLayoutSwitch, listOf("BATTLE_SELECT", "BATTLE_SELECT")).send(this)
+    Command(CommandName.EndLayoutSwitch, "BATTLE_SELECT", "BATTLE_SELECT").send(this)
 
     Command(
       CommandName.ShowAchievements,
-      listOf(ShowAchievementsData(ids = listOf(1, 3)).toJson())
+      ShowAchievementsData(ids = listOf(1, 3)).toJson()
     ).send(this)
 
     initChatMessages()
@@ -395,18 +385,16 @@ class UserSocket(
   suspend fun initClient() {
     val locale = locale ?: throw IllegalStateException("Socket locale is null")
 
-    Command(CommandName.InitExternalModel, listOf("http://localhost/")).send(this)
+    Command(CommandName.InitExternalModel, "http://localhost/").send(this)
     Command(
       CommandName.InitRegistrationModel,
-      listOf(
-        // "{\"bgResource\": 122842, \"enableRequiredEmail\": false, \"maxPasswordLength\": 100, \"minPasswordLength\": 1}"
-        InitRegistrationModelData(
-          enableRequiredEmail = false
-        ).toJson()
-      )
+      // "{\"bgResource\": 122842, \"enableRequiredEmail\": false, \"maxPasswordLength\": 100, \"minPasswordLength\": 1}"
+      InitRegistrationModelData(
+        enableRequiredEmail = false
+      ).toJson()
     ).send(this)
 
-    Command(CommandName.InitLocale, listOf(resourceManager.get("lang/${locale.key}.json").readText())).send(this)
+    Command(CommandName.InitLocale, resourceManager.get("lang/${locale.key}.json").readText()).send(this)
 
     awaitDependency(loadDependency(resourceManager.get("resources/auth.json").readText()))
     Command(CommandName.MainResourcesLoaded).send(this)
@@ -426,26 +414,22 @@ class UserSocket(
 
     Command(
       CommandName.InitBattleCreate,
-      listOf(
-        InitBattleCreateData(
-          battleLimits = listOf(
-            BattleLimit(battleMode = BattleMode.Deathmatch, scoreLimit = 999, timeLimitInSec = 59940),
-            BattleLimit(battleMode = BattleMode.TeamDeathmatch, scoreLimit = 999, timeLimitInSec = 59940),
-            BattleLimit(battleMode = BattleMode.CaptureTheFlag, scoreLimit = 999, timeLimitInSec = 59940),
-            BattleLimit(battleMode = BattleMode.ControlPoints, scoreLimit = 999, timeLimitInSec = 59940)
-          ),
-          maps = mapsParsed
-        ).toJson()
-      )
+      InitBattleCreateData(
+        battleLimits = listOf(
+          BattleLimit(battleMode = BattleMode.Deathmatch, scoreLimit = 999, timeLimitInSec = 59940),
+          BattleLimit(battleMode = BattleMode.TeamDeathmatch, scoreLimit = 999, timeLimitInSec = 59940),
+          BattleLimit(battleMode = BattleMode.CaptureTheFlag, scoreLimit = 999, timeLimitInSec = 59940),
+          BattleLimit(battleMode = BattleMode.ControlPoints, scoreLimit = 999, timeLimitInSec = 59940)
+        ),
+        maps = mapsParsed
+      ).toJson()
     ).send(this)
 
     Command(
       CommandName.InitBattleSelect,
-      listOf(
-        InitBattleSelectData(
-          battles = battleProcessor.battles.map { battle -> battle.toBattleData() }
-        ).toJson()
-      )
+      InitBattleSelectData(
+        battles = battleProcessor.battles.map { battle -> battle.toBattleData() }
+      ).toJson()
     ).send(this)
   }
 
@@ -528,20 +512,20 @@ class UserSocket(
         }
       }
 
-    Command(CommandName.InitGarageItems, listOf(InitGarageItemsData(items = itemsParsed).toJson())).send(this)
+    Command(CommandName.InitGarageItems, InitGarageItemsData(items = itemsParsed).toJson()).send(this)
     Command(
       CommandName.InitMountedItem,
-      listOf(user.equipment.hull.mountName, user.equipment.hull.modification.object3ds.toString())
+      user.equipment.hull.mountName, user.equipment.hull.modification.object3ds.toString()
     ).send(this)
     Command(
       CommandName.InitMountedItem,
-      listOf(user.equipment.weapon.mountName, user.equipment.weapon.modification.object3ds.toString())
+      user.equipment.weapon.mountName, user.equipment.weapon.modification.object3ds.toString()
     ).send(this)
     Command(
       CommandName.InitMountedItem,
-      listOf(user.equipment.paint.mountName, user.equipment.paint.marketItem.coloring.toString())
+      user.equipment.paint.mountName, user.equipment.paint.marketItem.coloring.toString()
     ).send(this)
-    Command(CommandName.InitGarageMarket, listOf(InitGarageMarketData(items = marketParsed).toJson())).send(this)
+    Command(CommandName.InitGarageMarket, InitGarageMarketData(items = marketParsed).toJson()).send(this)
 
     // logger.debug { "User items:" }
     // itemsParsed
@@ -557,29 +541,27 @@ class UserSocket(
   suspend fun updateCrystals() {
     val user = user ?: throw Exception("User data is not loaded")
 
-    Command(CommandName.SetCrystals, listOf(user.crystals.toString())).send(this)
+    Command(CommandName.SetCrystals, user.crystals.toString()).send(this)
   }
 
   suspend fun updateScore() {
     val user = user ?: throw Exception("User data is not loaded")
 
-    Command(CommandName.SetScore, listOf(user.score.toString())).send(this)
+    Command(CommandName.SetScore, user.score.toString()).send(this)
 
     if(user.rank == clientRank) return // No need to update rank
     clientRank = user.rank
 
     Command(
       CommandName.SetRank,
-      listOf(
-        user.rank.value.toString(),
-        user.score.toString(),
-        user.rank.score.toString(),
-        user.rank.nextRank.scoreOrZero.toString(),
-        user.rank.bonusCrystals.toString()
-      )
+      user.rank.value.toString(),
+      user.score.toString(),
+      user.rank.score.toString(),
+      user.rank.nextRank.scoreOrZero.toString(),
+      user.rank.bonusCrystals.toString()
     ).send(this)
     battle?.let { battle ->
-      Command(CommandName.SetBattleRank, listOf(user.username, user.rank.value.toString())).sendTo(battle)
+      Command(CommandName.SetBattleRank, user.username, user.rank.value.toString()).sendTo(battle)
     }
 
     if(screen == Screen.Garage) {
@@ -611,23 +593,21 @@ class UserSocket(
 
     Command(
       CommandName.InitMessages,
-      listOf(
-        InitChatMessagesData(
-          messages = lobbyChatManager.messages + listOf(
-            ChatMessage(name = "", system = true, rang = 0, message = "=== ProTanki Server ==="),
-            ChatMessage(name = "", system = true, rang = 0, message = "Version: ${BuildConfig.gitVersion}"),
-            ChatMessage(name = "", system = true, rang = 0, message = "GitHub: https://github.com/Assasans/protanki-server"),
-            ChatMessage(name = "", system = true, rang = 0, message = "Loaded maps: ${mapRegistry.maps.size}"),
-            ChatMessage(name = "", system = true, rang = 0, message = "Loaded garage items: ${marketRegistry.items.size}"),
-            ChatMessage(name = "", system = true, rang = 0, message = "Server time: ${time.toJavaLocalDateTime().format(formatter)}"),
-            ChatMessage(name = "", system = true, rang = 0, message = "Registered players: $registeredPlayers"),
-            ChatMessage(name = "", system = true, rang = 0, message = "Online players: ${server.players.size}")
-          )
-        ).toJson(),
-        InitChatSettings(
-          selfName = user.username
-        ).toJson()
-      )
+      InitChatMessagesData(
+        messages = lobbyChatManager.messages + listOf(
+          ChatMessage(name = "", system = true, rang = 0, message = "=== ProTanki Server ==="),
+          ChatMessage(name = "", system = true, rang = 0, message = "Version: ${BuildConfig.gitVersion}"),
+          ChatMessage(name = "", system = true, rang = 0, message = "GitHub: https://github.com/Assasans/protanki-server"),
+          ChatMessage(name = "", system = true, rang = 0, message = "Loaded maps: ${mapRegistry.maps.size}"),
+          ChatMessage(name = "", system = true, rang = 0, message = "Loaded garage items: ${marketRegistry.items.size}"),
+          ChatMessage(name = "", system = true, rang = 0, message = "Server time: ${time.toJavaLocalDateTime().format(formatter)}"),
+          ChatMessage(name = "", system = true, rang = 0, message = "Registered players: $registeredPlayers"),
+          ChatMessage(name = "", system = true, rang = 0, message = "Online players: ${server.players.size}")
+        )
+      ).toJson(),
+      InitChatSettings(
+        selfName = user.username
+      ).toJson()
     ).send(this)
   }
 }

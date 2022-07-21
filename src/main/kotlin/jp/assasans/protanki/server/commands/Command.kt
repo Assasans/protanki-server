@@ -24,9 +24,9 @@ class Command {
     get() = name.side
 
   constructor() {}
-  constructor(name: CommandName, args: List<String>? = null) : this() {
+  constructor(name: CommandName, vararg args: String) : this() {
     this.name = name
-    this.args = args ?: listOf()
+    this.args = args.toList()
   }
 
   fun serialize(): String {

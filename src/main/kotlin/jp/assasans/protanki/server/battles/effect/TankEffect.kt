@@ -29,13 +29,11 @@ abstract class TankEffect(
     activate()
     Command(
       CommandName.EnableEffect,
-      listOf(
-        tank.id,
-        info.id.toString(),
-        (duration?.inWholeMilliseconds ?: 0).toString(),
-        false.toString(), // Active after respawn
-        0.toString() // Effect level
-      )
+      tank.id,
+      info.id.toString(),
+      (duration?.inWholeMilliseconds ?: 0).toString(),
+      false.toString(), // Active after respawn
+      0.toString() // Effect level
     ).sendTo(tank.battle)
 
     logger.debug { "Activated effect ${this::class.simpleName} for tank ${tank.id} (player: ${tank.player.user.username})" }
@@ -45,11 +43,9 @@ abstract class TankEffect(
         deactivate()
         Command(
           CommandName.DisableEffect,
-          listOf(
-            tank.id,
-            info.id.toString(),
-            false.toString() // Active after respawn
-          )
+          tank.id,
+          info.id.toString(),
+          false.toString() // Active after respawn
         ).sendTo(tank.battle)
 
         logger.debug { "Deactivated effect ${this@TankEffect::class.simpleName} for tank ${tank.id} (player: ${tank.player.user.username})" }

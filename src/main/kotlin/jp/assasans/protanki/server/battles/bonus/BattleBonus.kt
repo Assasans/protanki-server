@@ -47,22 +47,20 @@ abstract class BattleBonus(
   open suspend fun spawn() {
     Command(
       CommandName.SpawnBonus,
-      listOf(
-        SpawnBonusDatta(
-          id = key,
-          x = position.x,
-          y = position.y,
-          z = position.z,
-          disappearing_time = lifetime.inWholeSeconds.toInt()
-        ).toJson()
-      )
+      SpawnBonusDatta(
+        id = key,
+        x = position.x,
+        y = position.y,
+        z = position.z,
+        disappearing_time = lifetime.inWholeSeconds.toInt()
+      ).toJson()
     ).sendTo(battle)
 
     spawnTime = Clock.System.now()
     removeJob = battle.coroutineScope.launchDelayed(lifetime) {
       battle.bonusProcessor.bonuses.remove(id)
 
-      Command(CommandName.RemoveBonus, listOf(key)).sendTo(battle)
+      Command(CommandName.RemoveBonus, key).sendTo(battle)
     }
   }
 

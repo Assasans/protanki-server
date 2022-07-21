@@ -145,10 +145,7 @@ class Battle(
   }
 
   suspend fun selectFor(socket: UserSocket) {
-    Command(
-      CommandName.ClientSelectBattle,
-      listOf(id)
-    ).send(socket)
+    Command(CommandName.ClientSelectBattle, id).send(socket)
   }
 
   suspend fun showInfoFor(socket: UserSocket) {
@@ -202,10 +199,7 @@ class Battle(
       else                     -> throw IllegalStateException("Unknown battle mode: ${modeHandler.mode}")
     }
 
-    Command(
-      CommandName.ShowBattleInfo,
-      listOf(info)
-    ).send(socket)
+    Command(CommandName.ShowBattleInfo, info).send(socket)
   }
 
   suspend fun sendTo(

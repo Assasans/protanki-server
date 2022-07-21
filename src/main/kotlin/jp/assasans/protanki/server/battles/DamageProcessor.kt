@@ -64,7 +64,7 @@ class DamageProcessor(
       target.killBy(source)
     }
 
-    Command(CommandName.DamageTank, listOf(target.id, totalDamage.toString(), damageType.key)).send(source)
+    Command(CommandName.DamageTank, target.id, totalDamage.toString(), damageType.key).send(source)
   }
 
   override suspend fun dealDamage(target: BattleTank, damage: Double, isCritical: Boolean): DamageType {
@@ -83,7 +83,7 @@ class DamageProcessor(
   override suspend fun heal(source: BattleTank, target: BattleTank, heal: Double) {
     heal(target, heal)
 
-    Command(CommandName.DamageTank, listOf(target.id, heal.toString(), DamageType.Heal.key)).send(source)
+    Command(CommandName.DamageTank, target.id, heal.toString(), DamageType.Heal.key).send(source)
   }
 
   override suspend fun heal(target: BattleTank, heal: Double) {

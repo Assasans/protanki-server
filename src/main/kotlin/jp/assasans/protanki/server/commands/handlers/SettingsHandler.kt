@@ -15,7 +15,7 @@ class SettingsHandler : ICommandHandler {
 
   @CommandHandler(CommandName.ShowSettings)
   suspend fun showSettings(socket: UserSocket) {
-    Command(CommandName.ClientShowSettings, listOf(ShowSettingsData().toJson())).send(socket)
+    Command(CommandName.ClientShowSettings, ShowSettingsData().toJson()).send(socket)
   }
 
   @CommandHandler(CommandName.CheckPasswordIsSet)

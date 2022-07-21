@@ -22,13 +22,13 @@ class IsidaWeaponHandler(
   suspend fun setTarget(setTarget: SetTarget) {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.ClientSetTarget, listOf(tank.id, setTarget.toJson())).sendTo(tank.player.battle)
+    Command(CommandName.ClientSetTarget, tank.id, setTarget.toJson()).sendTo(tank.player.battle)
   }
 
   suspend fun resetTarget(resetTarget: ResetTarget) {
     val tank = player.tank ?: throw Exception("No Tank")
 
-    Command(CommandName.ClientResetTarget, listOf(tank.id, resetTarget.toJson())).sendTo(tank.player.battle)
+    Command(CommandName.ClientResetTarget, tank.id, resetTarget.toJson()).sendTo(tank.player.battle)
   }
 
   suspend fun fireStart(startFire: StartFire) {
@@ -68,7 +68,7 @@ class IsidaWeaponHandler(
       actionType = fireMode
     )
 
-    Command(CommandName.ClientSetTarget, listOf(sourceTank.id, setTarget.toJson())).sendTo(battle)
+    Command(CommandName.ClientSetTarget, sourceTank.id, setTarget.toJson()).sendTo(battle)
   }
 
   suspend fun fireStop() {
@@ -76,6 +76,6 @@ class IsidaWeaponHandler(
 
     fireStarted = false
 
-    Command(CommandName.ClientStopFire, listOf(tank.id)).sendTo(tank.player.battle)
+    Command(CommandName.ClientStopFire, tank.id).sendTo(tank.player.battle)
   }
 }

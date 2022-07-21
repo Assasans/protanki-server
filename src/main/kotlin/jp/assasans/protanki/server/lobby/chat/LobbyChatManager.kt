@@ -89,7 +89,7 @@ class LobbyChatManager : ILobbyChatManager, KoinComponent {
   }
 
   override suspend fun broadcast(message: ChatMessage) {
-    Command(CommandName.SendChatMessageClient, listOf(message.toJson())).let { command ->
+    Command(CommandName.SendChatMessageClient, message.toJson()).let { command ->
       server.players
         .filter { player -> player.screen == Screen.BattleSelect || player.screen == Screen.Garage }
         .filter { player -> player.active }

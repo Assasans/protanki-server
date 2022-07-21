@@ -13,7 +13,7 @@ class FriendsHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.ShowFriendsList)
   suspend fun showFriendsList(socket: UserSocket) {
-    Command(CommandName.ClientShowFriendsList, listOf(ShowFriendsModalData().toJson())).send(socket)
+    Command(CommandName.ClientShowFriendsList, ShowFriendsModalData().toJson()).send(socket)
   }
 
   @CommandHandler(CommandName.CheckFriendUsername)
@@ -56,12 +56,12 @@ class FriendsHandler : ICommandHandler, KoinComponent {
   @CommandHandler(CommandName.FriendRemoveNewAccepted)
   suspend fun friendRemoveNewAccepted(socket: UserSocket, username: String) {
     // TODO(Assasans): Save in DB?
-    Command(CommandName.ClientFriendRemoveNewAccepted, listOf(username)).send(socket)
+    Command(CommandName.ClientFriendRemoveNewAccepted, username).send(socket)
   }
 
   @CommandHandler(CommandName.FriendRemoveNewIncoming)
   suspend fun friendRemoveNewIncoming(socket: UserSocket, username: String) {
     // TODO(Assasans): Save in DB?
-    Command(CommandName.ClientFriendRemoveNewIncoming, listOf(username)).send(socket)
+    Command(CommandName.ClientFriendRemoveNewIncoming, username).send(socket)
   }
 }
