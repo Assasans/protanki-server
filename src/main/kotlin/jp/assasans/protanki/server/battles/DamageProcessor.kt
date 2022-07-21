@@ -45,9 +45,13 @@ class DamageProcessor(
     var totalDamage = damage
 
     if(!battle.properties[BattleProperty.DamageEnabled]) return
+
+    var dealDamage = true
     if(battle.modeHandler is TeamModeHandler) {
-      if(source.player.team == target.player.team && !battle.properties[BattleProperty.FriendlyFireEnabled]) return
+      if(source.player.team == target.player.team && !battle.properties[BattleProperty.FriendlyFireEnabled]) dealDamage = false
     }
+    if(source == target && battle.properties[BattleProperty.SelfDamageEnabled]) dealDamage = true // TODO(Assasans): Check weapon
+    if(!dealDamage) return
 
     if(!ignoreSourceEffects) {
       source.effects.singleOrNullOf<TankEffect, DoubleDamageEffect>()?.let { effect ->
