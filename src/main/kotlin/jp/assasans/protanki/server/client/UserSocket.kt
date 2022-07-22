@@ -352,7 +352,7 @@ class UserSocket(
         crystall = user.crystals,
         rang = user.rank.value,
         score = user.score,
-        currentRankScore = user.currentRankScore,
+        currentRankScore = user.rank.scoreOrZero,
         next_score = user.rank.nextRank.scoreOrZero
       ).toJson()
     ).send(this)
