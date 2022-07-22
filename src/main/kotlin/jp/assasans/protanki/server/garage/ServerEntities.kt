@@ -18,7 +18,7 @@ open class ServerGarageItem(
   @Json val type: GarageItemType,
 
   @Json val name: LocalizedString,
-  @Json val description: String,
+  @Json val description: LocalizedString,
 
   @Json val baseItemId: Int
 )
@@ -32,7 +32,7 @@ class ServerGarageItemWeapon(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
 
@@ -48,7 +48,7 @@ class ServerGarageItemHull(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
 
@@ -64,7 +64,7 @@ class ServerGarageItemPaint(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
   @Json val previewResourceId: Int,
@@ -86,7 +86,7 @@ class ServerGarageItemSupply(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
   @Json val previewResourceId: Int,
@@ -106,7 +106,7 @@ class ServerGarageItemKit(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
   @Json val previewResourceId: Int,
@@ -128,7 +128,7 @@ class ServerGarageItemPresent(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
   @Json val previewResourceId: Int,
@@ -148,7 +148,7 @@ class ServerGarageItemSubscription(
   index: Int,
 
   name: LocalizedString,
-  description: String,
+  description: LocalizedString,
 
   baseItemId: Int,
   @Json val previewResourceId: Int,

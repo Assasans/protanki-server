@@ -6,7 +6,10 @@
     "en": "Score Multiplier Pass",
     "ru": "Повышенный опыт"
   },
-  "description": "Увеличивает получаемые очки на 30%.\n\nВремя действия — 1 месяц.\n\nВнимание, абонемент не даёт преимущества в командных битвах!",
+  "description": {
+    "en": "Increases XP that you receive by 30%.\n\nLasts 1 month.\n\nAttention, the subscription does not give an advantage in team battles!",
+    "ru": "Увеличивает получаемые очки на 30%.\n\nВремя действия — 1 месяц.\n\nВнимание, абонемент не даёт преимущества в командных битвах!"
+  },
 
   "baseItemId": 272402,
   "previewResourceId": 272402,

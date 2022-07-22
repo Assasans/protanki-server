@@ -6,7 +6,10 @@
     "en": "Thunder",
     "ru": "Гром"
   },
-  "description": "Среднекалиберная пушка — это лучший выбор для любителей динамичного боя. Разрывной снаряд Грома (осторожно, можно нанести урон самому себе) позволяет атаковать группу соперников, а быстрая перезарядка поможет получить неоспоримое преимущество перед тяжёлыми танками противника. В сочетании с быстрым корпусом Гром становится грозным оружием в руках умелого танкиста.",
+  "description": {
+    "en": "This second generation middle-caliber gun is the best choice for dynamic battle. Splash damage (make sure you don’t hit yourself!) allows you to attack a group of enemy vehicles. Quick recharge will give you a distinct advantage over heavy tanks of enemy. Equipped with light armor Thunder is one of the most dangerous weapons on the battlefield.",
+    "ru": "Среднекалиберная пушка — это лучший выбор для любителей динамичного боя. Разрывной снаряд Грома (осторожно, можно нанести урон самому себе) позволяет атаковать группу соперников, а быстрая перезарядка поможет получить неоспоримое преимущество перед тяжёлыми танками противника. В сочетании с быстрым корпусом Гром становится грозным оружием в руках умелого танкиста."
+  },
 
   "baseItemId": 205433,
 

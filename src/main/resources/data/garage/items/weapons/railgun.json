@@ -6,7 +6,10 @@
     "en": "Railgun",
     "ru": "Рельса"
   },
-  "description": "Если среднекалиберные пушки уже не утоляют вашу жажду самовыражения, то эта игрушка специально для вас. Крупнокалиберная пушка, обладающая огромной дульной скоростью и снарядами с сердечниками из обеднённого урана. Сверхмощный и сверхточный кинетический снаряд способен пробить танк насквозь, поразив несколько целей, стоящих на одной прямой. Идеальное оружие для позиционного боя на дальней дистанции. Следует помнить, что это оружие довольно долго перезаряжается, чем обязательно воспользуется опытный противник.",
+  "description": {
+    "en": "If mid-caliber guns are not enough for your self-expression, this weapon is right for you. Large-caliber gun with huge muzzle speed and shells using depleted uranium. Extremely powerful and accurate kinetic projectile can go right through the enemy’s tank or hit several targets standing on the line of fire with a single shot. An ideal choice for long-range trench warfare and sniping. Remember that it takes a lot of time to recharge the gun and make sure your opponents will not take advantage of it.",
+    "ru": "Если среднекалиберные пушки уже не утоляют вашу жажду самовыражения, то эта игрушка специально для вас. Крупнокалиберная пушка, обладающая огромной дульной скоростью и снарядами с сердечниками из обеднённого урана. Сверхмощный и сверхточный кинетический снаряд способен пробить танк насквозь, поразив несколько целей, стоящих на одной прямой. Идеальное оружие для позиционного боя на дальней дистанции. Следует помнить, что это оружие довольно долго перезаряжается, чем обязательно воспользуется опытный противник."
+  },
 
   "baseItemId": 882259,
 

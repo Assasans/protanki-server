@@ -6,7 +6,10 @@
     "en": "Freeze",
     "ru": "Фриз"
   },
-  "description": "Концепция грозной установки «Фриз» родилась в глухой русской деревне. Из неисправного холодильника «Север» и пылесоса «Буран» местный кулибин собрал «хладомёт». Новинку заметил рыбачивший в тех краях инженер. После доработки в закрытом НИИ им. Жукова «хладомёт» превратился в танковое орудие «Фриз». Заливая противника химическим составом на основе фреона, пушка наносит урон и замораживает объект, замедляя все его движения и процессы. Правда, струя пламени может разморозить жертву.",
+  "description": {
+    "en": "The idea of Freeze weapon system was born in a desolate Russian village. Using an old broken refrigerator «Sever» and avacuum cleaner «Buran» local inventor made the «freeze thrower». A professional engineer who had been fishing near the village noticed this invention and brought it to the Zhukov Research Institute. There the clumsy «freeze thrower» became the formidable Freeze gun. It showers enemy with the chemical composition based on freon. Victims take damage and all their movements and processes become slower. Though a flow of fire can unfreeze the target.",
+    "ru": "Концепция грозной установки «Фриз» родилась в глухой русской деревне. Из неисправного холодильника «Север» и пылесоса «Буран» местный кулибин собрал «хладомёт». Новинку заметил рыбачивший в тех краях инженер. После доработки в закрытом НИИ им. Жукова «хладомёт» превратился в танковое орудие «Фриз». Заливая противника химическим составом на основе фреона, пушка наносит урон и замораживает объект, замедляя все его движения и процессы. Правда, струя пламени может разморозить жертву."
+  },
 
   "baseItemId": 262762,
 

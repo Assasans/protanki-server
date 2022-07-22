@@ -6,8 +6,10 @@
     "en": "PRO Battle",
     "ru": "PRO Битва"
   },
-  "description": "Время действия — 1 месяц. Даёт возможность создавать собственные бои и выбирать их настройки, а также участвовать в «Профессиональных битвах» неограниченное количество раз в течение 31 дня с момента покупки.\n\nСтраница абонемента в N.",
-
+  "description": {
+    "en": "The duration is 1 month. Allows you to create your own battles and choose their settings, as well as participate in «Professional Battles» an unlimited number of times within 31 days from the date of purchase.\n\nPage of the subscription in N.",
+    "ru": "Время действия — 1 месяц. Даёт возможность создавать собственные бои и выбирать их настройки, а также участвовать в «Профессиональных битвах» неограниченное количество раз в течение 31 дня с момента покупки.\n\nСтраница абонемента в N."
+  },
   "baseItemId": 906431,
   "previewResourceId": 906431,
 

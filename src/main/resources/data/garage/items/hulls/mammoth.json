@@ -6,7 +6,10 @@
     "en": "Mammoth",
     "ru": "Мамонт"
   },
-  "description": "Самоходная крепость на гусеничном ходу. Флагман среди танковых корпусов. Цельнолитой, тяжёлый, упрочнённый супербетоном, имеет низкую скорость, что не мешает ему с успехом противостоять одновременно нескольким вражеским орудиям.",
+  "description": {
+    "en": "This is not a tank – this is a fortress on tracks. Mammoth is the flagship among other hulls. Extremely heavy, strengthened with super-concrete this hull is slow, which does not prevent Mammoth from successfully fighting against several enemy tanks.",
+    "ru": "Самоходная крепость на гусеничном ходу. Флагман среди танковых корпусов. Цельнолитой, тяжёлый, упрочнённый супербетоном, имеет низкую скорость, что не мешает ему с успехом противостоять одновременно нескольким вражеским орудиям."
+  },
 
   "baseItemId": 542698,
 

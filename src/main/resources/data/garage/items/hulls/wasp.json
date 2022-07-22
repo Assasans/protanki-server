@@ -6,7 +6,10 @@
     "en": "Wasp",
     "ru": "Васп"
   },
-  "description": "Легкий, экономичный, простой в эксплуатации — идеальный корпус начального уровня. После прокачки позволяет развивать довольно большую скорость, что в сочетании с небольшими габаритами даёт свободу действий на поле боя. Из-за небольшой массы подвержен переворотам от ударов мощного вражеского оружия.",
+  "description": {
+    "en": "Lightweight, economical, easy to operate – Wasp is a perfect hull for beginners. Upgraded wasp can reach fairly high speed, which in combination with small size gives the freedom of action on the battlefield. Because of low weight, Wasp can easily be rolled over by an enemy’s gunfire.",
+    "ru": "Легкий, экономичный, простой в эксплуатации — идеальный корпус начального уровня. После прокачки позволяет развивать довольно большую скорость, что в сочетании с небольшими габаритами даёт свободу действий на поле боя. Из-за небольшой массы подвержен переворотам от ударов мощного вражеского оружия."
+  },
 
   "baseItemId": 629496,
 

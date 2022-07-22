@@ -2,8 +2,14 @@
   "id": "brofist",
   "index": 188,
 
-  "name": "Бро!",
-  "description": "Танковая статуэтка, дающая обладателю +1 к крутости!",
+  "name": {
+    "en": "Bro!",
+    "ru": "Бро!"
+  },
+  "description": {
+    "en": "A Tanki statuette granting +1 to coolness.",
+    "ru": "Танковая статуэтка, дающая обладателю +1 к крутости!"
+  },
 
   "baseItemId": 45309,
   "previewResourceId": 45309,
