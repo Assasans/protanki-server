@@ -6,8 +6,11 @@
     "en": "Twins",
     "ru": "Твинс"
   },
-  "description": "Скорострельный двуствольный плазмомёт вмиг превратит врага в кучу расплавленного железа. Учитывая то, что попадание во вражеский танк сбивает ему прицел, это оружие идеально подходит для динамичного боя на средней дистанции.",
-
+  "description": {
+    "en": "This second generation middle-caliber gun is the best choice for dynamic battle. Splash damage (make sure you don’t hit yourself!) allows you to attack a group of enemy vehicles. Quick recharge will give you a distinct advantage over heavy tanks of enemy. Equipped with light armor Thunder is one of the most dangerous weapons on the battlefield.",
+    "ru": "Скорострельный двуствольный плазмомёт вмиг превратит врага в кучу расплавленного железа. Учитывая то, что попадание во вражеский танк сбивает ему прицел, это оружие идеально подходит для динамичного боя на средней дистанции."
+  },
+  
   "baseItemId": 103660,
 
   "modifications": {

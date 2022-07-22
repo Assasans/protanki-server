@@ -6,7 +6,10 @@
     "en": "Ricochet",
     "ru": "Рикошет"
   },
-  "description": "Плазмомёт «Рикошет» — это новая секретная разработка сибирских ученых. Чтобы поставить её на вооружение, команда из 22 специалистов три года работала в подземном бункере без права выхода на поверхность. В итоге они создали уникальное оружие. Оно выпускает плазменные заряды, окутанные «умным» минус-полем. При попадании в танк заряд взрывается, но от других поверхностей отскакивает и продолжает полёт. Таким образом, из Рикошета можно поразить цель, даже не видя её.",
+  "description": {
+    "en": "Ricochet plasma gun is a new secret project of Siberian scientists. To produce this gun team of 22 high-class professionals have been working in the underground bunker more than three years without permission to exit on the surface. And they have created a unique weapon. It throws plasma charges cloaked with clever minus-field. When such charge hits the tank it explodes but it bounces of any other surface. So with Ricochet you can heat targets out of your visibility range. But be careful! Do not stand in the way of a released charge, as you can't do damage to yourself.",
+    "ru": "Плазмомёт «Рикошет» — это новая секретная разработка сибирских ученых. Чтобы поставить её на вооружение, команда из 22 специалистов три года работала в подземном бункере без права выхода на поверхность. В итоге они создали уникальное оружие. Оно выпускает плазменные заряды, окутанные «умным» минус-полем. При попадании в танк заряд взрывается, но от других поверхностей отскакивает и продолжает полёт. Таким образом, из Рикошета можно поразить цель, даже не видя её."
+  },
 
   "baseItemId": 86316,
 

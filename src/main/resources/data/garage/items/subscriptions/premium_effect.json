@@ -6,7 +6,10 @@
     "en": "Premium Account",
     "ru": "Премиум аккаунт"
   },
-  "description": "Возможность создавать PRO-битвы\nВозможность участвовать в PRO-битвах\nБонус к награде за битву: 100%\nБонус к опыту в битве: 50%",
+  "description": {
+    "en": "Ability to create PRO battles\nOpportunity to participate in PRO-battles\nBattle Reward Bonus: 100%\nBattle Experience Bonus: 50%",
+    "ru": "Возможность создавать PRO-битвы\nВозможность участвовать в PRO-битвах\nБонус к награде за битву: 100%\nБонус к опыту в битве: 50%"
+  },
 
   "baseItemId": 580104,
   "previewResourceId": 580104,

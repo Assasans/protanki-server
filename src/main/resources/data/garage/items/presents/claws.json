@@ -2,8 +2,14 @@
   "id": "claws",
   "index": 192,
 
-  "name": "Клешни рака",
-  "description": "Клац-клац!",
+  "name": {
+    "en": "Claws",
+    "ru": "Клешни рака"
+  },
+  "description": {
+    "en": "When someone's hands are simply not meant to be used for playing video games...",
+    "ru": "Клац-клац!"
+  },
 
   "baseItemId": 749669,
   "previewResourceId": 749669,

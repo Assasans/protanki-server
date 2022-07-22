@@ -2,8 +2,14 @@
   "id": "wrench",
   "index": 193,
 
-  "name": "Гаечный ключ",
-  "description": "Золотой гаечный ключ, который не стыдно подарить даже самому искушённому танкисту.",
+  "name": {
+    "en": "Wrench",
+    "ru": "Гаечный ключ"
+  },
+  "description": {
+    "en": "A golden wrench is the perfect gift, even for tankers with the most sophisticated taste.",
+    "ru": "Золотой гаечный ключ, который не стыдно подарить даже самому искушённому танкисту."
+  },
 
   "baseItemId": 978053,
   "previewResourceId": 978053,

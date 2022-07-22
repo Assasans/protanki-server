@@ -35,7 +35,7 @@ class GarageItemConverter : IGarageItemConverter {
         isInventory = false,
 
         name = item.name.get(locale),
-        description = item.description,
+        description = item.description.get(locale),
 
         baseItemId = item.baseItemId,
         previewResourceId = modification.previewResourceId,
@@ -79,7 +79,7 @@ class GarageItemConverter : IGarageItemConverter {
         isInventory = false,
 
         name = item.name.get(locale),
-        description = item.description,
+        description = item.description.get(locale),
 
         baseItemId = item.baseItemId,
         previewResourceId = modification.previewResourceId,
@@ -120,7 +120,7 @@ class GarageItemConverter : IGarageItemConverter {
       isInventory = false,
 
       name = item.name.get(locale),
-      description = item.description,
+      description = item.description.get(locale),
 
       baseItemId = item.baseItemId,
       previewResourceId = item.previewResourceId,
@@ -160,7 +160,7 @@ class GarageItemConverter : IGarageItemConverter {
       isInventory = true,
 
       name = item.name.get(locale),
-      description = item.description,
+      description = item.description.get(locale),
 
       baseItemId = item.baseItemId,
       previewResourceId = item.previewResourceId,
@@ -200,7 +200,7 @@ class GarageItemConverter : IGarageItemConverter {
       isInventory = true,
 
       name = item.name.get(locale),
-      description = item.description,
+      description = item.description.get(locale),
 
       baseItemId = item.baseItemId,
       previewResourceId = item.previewResourceId,
@@ -240,7 +240,7 @@ class GarageItemConverter : IGarageItemConverter {
       isInventory = true,
 
       name = item.name.get(locale),
-      description = item.description,
+      description = item.description.get(locale),
 
       baseItemId = item.baseItemId,
       previewResourceId = item.previewResourceId,
@@ -286,7 +286,7 @@ class GarageItemConverter : IGarageItemConverter {
       isInventory = false,
 
       name = item.name.get(locale),
-      description = item.description,
+      description = item.description.get(locale),
 
       baseItemId = item.baseItemId,
       previewResourceId = item.previewResourceId,

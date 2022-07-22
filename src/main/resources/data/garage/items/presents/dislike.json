@@ -2,8 +2,14 @@
   "id": "dislike",
   "index": 187,
 
-  "name": "Дизлайк",
-  "description": "Дизлайк — универсальный ответ на всё, что тебе не нравится.",
+  "name": {
+    "en": "Dislike",
+    "ru": "Дизлайк"
+  },
+  "description": {
+    "en": "A thumbs down is the perfect answer to anything you don't like.",
+    "ru": "Дизлайк — универсальный ответ на всё, что тебе не нравится."
+  },
 
   "baseItemId": 789404,
   "previewResourceId": 789404,

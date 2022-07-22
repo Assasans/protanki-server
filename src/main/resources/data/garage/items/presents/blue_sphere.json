@@ -2,8 +2,14 @@
   "id": "blue_sphere",
   "index": 194,
 
-  "name": "Синий шар",
-  "description": "Легендарный синий шар. Да, это он.",
+  "name": {
+    "en": "Blue Sphere",
+    "ru": "Синий шар"
+  },
+  "description": {
+    "en": "The legendary blue ball. Yes, that's him.",
+    "ru": "Легендарный синий шар. Да, это он."
+  },
 
   "baseItemId": 524809,
   "previewResourceId": 524809,

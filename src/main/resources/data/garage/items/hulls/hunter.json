@@ -6,7 +6,10 @@
     "en": "Hunter",
     "ru": "Хантер"
   },
-  "description": "Этот корпус, обшитый бронёй из армированной стали, является наиболее универсальным. Он хорошо подойдет как поклонникам активного, динамичного боя, так и игрокам, предпочитающим позиционный стиль игры. Вы никогда не останетесь без работы, будь то удержание высоты или жестокая битва за квартал разрушенного города.",
+  "description": {
+    "en": "Hunter is the most versatile hull in the game. Thanks to balance between reinforced steel armor plates and low energy consumption this armor is an all-purpose one. It is good for everybody, from sprinters to snipers. Being so versatile, you'll never stay without a job on a field of war.",
+    "ru": "Этот корпус, обшитый бронёй из армированной стали, является наиболее универсальным. Он хорошо подойдет как поклонникам активного, динамичного боя, так и игрокам, предпочитающим позиционный стиль игры. Вы никогда не останетесь без работы, будь то удержание высоты или жестокая битва за квартал разрушенного города."
+  },
 
   "baseItemId": 826132,
 

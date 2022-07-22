@@ -6,7 +6,10 @@
     "en": "Smoky",
     "ru": "Смоки"
   },
-  "description": "Среднекалиберная танковая пушка. В основном, устанавливается на лёгкие истребительные и учебные танки. Получила распространение из-за дешевизны и простоты обслуживания. Установите её на быстрый корпус и, шныряя между ошарашенными врагами, берите тяжёлые неповоротливые танки на измор. Разработанные апгрейды способны существенно увеличить убойную силу этой малышки. Стоит помнить, что урон этой пушки падает на расстоянии.",
+  "description": {
+    "en": "Medium-caliber tank gun which is generally used in light and training tanks. The key to its popularity is low price and ease of maintenance. Put it on a light hull and use wearing-out strategy against heavy clumsy tanks of your opponents. Several upgrades can significantly increase the damage dealt by this little baby. Remember that Smoky’s effectiveness decreases with distance.",
+    "ru": "Среднекалиберная танковая пушка. В основном, устанавливается на лёгкие истребительные и учебные танки. Получила распространение из-за дешевизны и простоты обслуживания. Установите её на быстрый корпус и, шныряя между ошарашенными врагами, берите тяжёлые неповоротливые танки на измор. Разработанные апгрейды способны существенно увеличить убойную силу этой малышки. Стоит помнить, что урон этой пушки падает на расстоянии."
+  },
 
   "baseItemId": 651066,
 
