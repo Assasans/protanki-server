@@ -38,6 +38,7 @@ data class InitGuiModelData(
   @Json val team: Boolean, // Is team battle
   @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
   @Json val parkourMode: Boolean = false,
+  @Json val battleType: BattleMode,
   @Json val users: List<GuiUserData>
 )
 

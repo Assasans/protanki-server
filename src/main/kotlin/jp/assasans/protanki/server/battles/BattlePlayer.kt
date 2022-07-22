@@ -187,6 +187,7 @@ class BattlePlayer(
         timeLimit = 600,
         currTime = 212,
         team = team != BattleTeam.None,
+        battleType = battle.modeHandler.mode,
         users = battle.players.users().map { player ->
           GuiUserData(
             nickname = player.user.username,

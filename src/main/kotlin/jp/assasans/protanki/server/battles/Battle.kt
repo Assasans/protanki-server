@@ -165,8 +165,8 @@ class Battle(
         withoutBonuses = false,
         withoutCrystals = false,
         withoutSupplies = false,
+        reArmorEnabled = true,
         users = players.users().map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
-        score = 123
       ).toJson()
       is TeamModeHandler       -> ShowTeamBattleInfoData(
         itemId = id,
@@ -183,6 +183,7 @@ class Battle(
         withoutBonuses = false,
         withoutCrystals = false,
         withoutSupplies = false,
+        reArmorEnabled = true,
         usersRed = players
           .users()
           .filter { player -> player.team == BattleTeam.Red }
