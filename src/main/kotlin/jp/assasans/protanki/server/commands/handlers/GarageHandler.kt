@@ -161,31 +161,49 @@ class GarageHandler : ICommandHandler, KoinComponent {
       }
 
       is ServerGarageItemSupply -> {
-        if(currentItem == null) {
-          currentItem = ServerGarageUserItemSupply(user, marketItem.id, count)
-          user.items.add(currentItem)
-          isNewItem = true
-        } else {
-          val supplyItem = currentItem as ServerGarageUserItemSupply
-          supplyItem.count += count
+        when(marketItem.id) {
+          "1000_scores" -> {
+            user.score += 1000 * count
+            socket.updateScore()
 
-          withContext(Dispatchers.IO) {
-            entityManager
-              .createQuery("UPDATE ServerGarageUserItemSupply SET count = :count WHERE id = :id")
-              .setParameter("count", supplyItem.count)
-              .setParameter("id", supplyItem.id)
-              .executeUpdate()
+            val price = marketItem.price * count
+            if(user.crystals < price) {
+              logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+              return
+            }
+            user.crystals -= price
+
+            logger.debug { "Bought ${marketItem.id} (count: $count, ${count * 1000} XP, $price crystals)" }
+          }
+
+          else          -> {
+            if(currentItem == null) {
+              currentItem = ServerGarageUserItemSupply(user, marketItem.id, count)
+              user.items.add(currentItem)
+              isNewItem = true
+            } else {
+              val supplyItem = currentItem as ServerGarageUserItemSupply
+              supplyItem.count += count
+
+              withContext(Dispatchers.IO) {
+                entityManager
+                  .createQuery("UPDATE ServerGarageUserItemSupply SET count = :count WHERE id = :id")
+                  .setParameter("count", supplyItem.count)
+                  .setParameter("id", supplyItem.id)
+                  .executeUpdate()
+              }
+            }
+
+            val price = currentItem.marketItem.price * count
+            if(user.crystals < price) {
+              logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
+              return
+            }
+            user.crystals -= price
+
+            logger.debug { "Bought supply ${marketItem.id} (count: $count, $price crystals)" }
           }
         }
-
-        val price = currentItem.marketItem.price * count
-        if(user.crystals < price) {
-          logger.debug { "Player ${user.username} (${user.id}) tried to buy item: ${marketItem.id} ($price crystals), but does not has enough crystals (user: ${user.crystals} crystals, delta: ${user.crystals - price} crystals)" }
-          return
-        }
-        user.crystals -= price
-
-        logger.debug { "Bought supply ${marketItem.id} (count: $count, $price crystals)" }
       }
 
       else                      -> {
