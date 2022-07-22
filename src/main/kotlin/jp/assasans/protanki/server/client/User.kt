@@ -105,5 +105,5 @@ class User(
     }
 
   val currentRankScore: Int
-    get() = rank.score - score
+    get() = rank.scoreOrZero
 }
