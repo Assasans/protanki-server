@@ -67,6 +67,7 @@
     { "key": "PAYMENT_WMCOMBO_LABEL_TEXT", "value": "Type:" },
     { "key": "REDUCE_DAMAGE_ISIDA", "value": "Isida" },
     { "key": "STRING_ALERT_ACCOUNT_LINKING_ERROR", "value": "An error occured when linking your account, please try again later" },
+    { "key": "REDUCE_DAMAGE_MINE", "value": "Mine" },
     {
       "key": "STRING_REGISTER_FORM_AGREEMENT_NOTE_TEXT",
       "value": "By clicking «Confirm», you accept:\n<a href='event:terms'><font color='#59ff32'><u>License Agreement</u></font></a>,\n<a href='event:policy'><font color='#59ff32'><u>Privacy Policy and cookies</u></font></a>,\n<a href='event:rules'><font color='#59ff32'><u>Game rules</u></font></a>."
@@ -165,6 +166,10 @@
     { "key": "PAYMENT_BUG_REPORT_COMMENT_INPUT_LABEL_TEXT", "value": "Comment:" },
     { "key": "REDUCE_DAMAGE_TWINS", "value": "Twins" },
     { "key": "SETTINGS_CHANGE_PASSWORD_BUTTON", "value": "Change" },
+    {
+      "key": "DAILY_QUEST_INFORMATION",
+      "value": "<a href='http://ru.protankiwiki.com/%D0%95%D0%B6%D0%B5%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D1%8B%D0%B5_%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F' target='_blank'><font color='#59ff32'><u>Information</u></font></a>"
+    },
     { "key": "STRING_PARTNER_REGISTARTION_FORM_CONTINUE", "value": "Accept" },
     { "key": "ERROR_CALLSIGN_NOT_UNIQUE", "value": "Nickname isn't unique" },
     { "key": "SETTINGS_LINK_ACCOUNT", "value": "Link your game account to the service" },
@@ -298,6 +303,10 @@
       "value": "Пригласи в игру друга и получай кристаллы за каждое его звание и 10% от внесённых им реальных денег.\n\nЕсть три варианта приглашений:\n     - вручную ввести E-mail адреса друзей, чтобы мы послали им письма\n       со специальной ссылкой\n     - разослать друзьям специальную ссылку самостоятельно\n     - разместить прикольный баннер на твоём сайте или форуме.\n\n                         <u><a href='%1' target='_blank'>Таблица званий и бонусов.</a></u>"
     },
     { "key": "GAME_ACTION_SHOOT", "value": "Shoot" },
+    {
+      "key": "DAILY_QUEST_ALL_MISSIONS_COMPLETED",
+      "value": "You have completed all missions for today!\nEnter the game tomorrow to get more."
+    },
     { "key": "STRING_HELP_PANEL_MONEY_HELPER_TEXT", "value": "Purchase of crystals\nfor real money." },
     { "key": "SETTINGS_BUTTON_RESEND_CONFIRMATION_TEXT", "value": "Confirm" },
     { "key": "BATTLEINFO_PANEL_PAID_BATTLES_ALERT_ANSWER_ENTER", "value": "Enter" },
@@ -388,10 +397,12 @@
     { "key": "ERROR_CALLSIGN_WRONG_LAST_SYMBOL", "value": "Last nickname's symbol have to be a letter or a digit" },
     { "key": "SETTINGS_DYNAMIC_LIGHTS_CHECKBOX_LABEL_TEXT", "value": "Lighting" },
     { "key": "BATTLE_TEAM_ALERT", "value": "You are now playing for the %1 team" },
+    { "key": "WEEKLY_QUEST_HINT", "value": "Complete at least one mission every day for 7 days in a row to receive an additional bonus" },
     { "key": "PAYMENT_BUG_REPORT_NAME_AND_LASTNAME_INPUT_LABEL_TEXT", "value": "First and\nSurname:" },
     { "key": "ACCOUNT_RECOVERY_FORM_HELP_LABEL_TEXT", "value": "Enter your valid email address:" },
     { "key": "STRING_BACK_BUTTON", "value": "Back" },
     { "key": "STRING_FRIENDS_ADD", "value": "Add to friends" },
+    { "key": "DAILY_QUEST_GET_PRIZE", "value": "Claim reward" },
     { "key": "CTF_RETURNED_ENEMY_FLAG", "value": "has returned enemy flag" },
     { "key": "STRING_GARAGE_CATEGORY_BUTTON_HULLS", "value": "Hulls" },
     { "key": "PAYMENT_OPERATORS_LABEL_TEXT", "value": "Operator:" },
@@ -468,6 +479,10 @@
     { "key": "STRING_PARTNER_HELP_PANEL_BUTTON_BAR_HELPER_ARROW_LENGTH", "value": "63" },
     { "key": "SETTINGS_MOUSE_INVERSION_CHECKBOX_LABEL", "value": "Mouse look vertical inversion" },
     { "key": "PAYMENT_BUG_REPORT_DATE_INPUT_LABEL_TEXT", "value": "Payment date:" },
+    {
+      "key": "CREATE_FAILED_YOU_ARE_BANNED",
+      "value": "Dear player, you are banned in the chat channel \n so you can't create battles. But you still can \n participate in battles, created by other players."
+    },
     { "key": "GARAGE_INFO_PANEL_RENEWAL_BUTTON_CURRENCY_LABEL", "value": "¤" },
     { "key": "STRING_FRIENDS_MENU", "value": "Friends menu" },
     { "key": "ALERT_EMAIL_CONFIRMED", "value": "Address confirmed" },
@@ -535,12 +550,9 @@
     { "key": "GARAGE_INFO_PANEL_BUTTON_UPGRADE_TEXT", "value": "Upgrade" },
     { "key": "FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT", "value": "Close" },
     { "key": "STRING_HELP_PANEL_RATING_INDICATOR_HELPER_ARROW_LENGTH", "value": "48" },
-    {
-      "key": "TEXT_CREATE_FAILED_YOU_ARE_BANNED",
-      "value": "Dear player, you are banned in the chat channel \n so you can't create battles. But you still can \n participate in battles, created by other players."
-    },
     { "key": "STRING_FRIENDS_COPY_NAME", "value": "Copy name" },
     { "key": "ACCOUNT_RECOVERY_FORM_PASSWORD_CHANGED", "value": "Your password has been changed." },
+    { "key": "DAILY_QUEST_PRIZE", "value": "Reward:" },
     { "key": "ALERT_ANSWER_OK", "value": "OK" },
     { "key": "GARAGE_INFO_PANEL_UPGRADE_BUTTON_INSUFFICIENT_CRYSTALS_LABEL_TEXT", "value": "Crystals are needed to upgrade: %1" },
     { "key": "CAPTCHA_INCORRECT", "value": "Control characters entered incorrectly" },
@@ -619,6 +631,10 @@
     { "key": "PAYMENT_CARD_TYPE", "value": "Card type:" },
     { "key": "ALERT_ANSWER_YES", "value": "Yes" },
     { "key": "TEXT_DOM_ENEMIES_CAPTURED_POINT", "value": "Enemies have captured the point {point}" },
+    {
+      "key": "WEEKLY_QUEST_REWARD_WINDOW_DESCRIPTION",
+      "value": "Tanker! You did a great job completing daily missions for a week in a row. Now, it's time to get your well-deserved reward!\n\nKeep completing a mission every day for another 7 days to receive an even bigger prize!"
+    },
     { "key": "SETTINGS_BUTTON_SAVE_TEXT", "value": "Save" },
     { "key": "FORMAT_NAME_XPBR", "value": "XP/BP" },
     {
@@ -661,6 +677,7 @@
     { "key": "REFERAL_WINDOW_BUTTON_GET_BANNER_TEXT", "value": "Получить код\nбаннера" },
     { "key": "REFERAL_WINDOW_BANNER_LABEL", "value": "You can place this banner on your website to attract more friends.:" },
     { "key": "ERROR_CALLSIGN_WRONG_FIRST_SYMBOL", "value": "1st nickname's symbol have to be a letter or digit" },
+    { "key": "DAILY_QUEST_MISSIONS", "value": "Missions" },
     { "key": "TEXT_DOM_ENEMIES_LOST_POINT", "value": "Enemies have lost their point {point}" },
     { "key": "REFERAL_WINDOW_SUMMARY_LABEL", "value": "Суммарный бонус:" },
     { "key": "RATING_SCORES_TEXT", "value": "Рейтинг по опыту" },
@@ -695,6 +712,7 @@
     { "key": "HELP_GARAGE_STORE_LIST_HELPER_TEXT", "value": "Things that\nwill someday\nbe yours." },
     { "key": "GARAGE_BUY_BUTTON_RANK_LABEL", "value": "Rank" },
     { "key": "PAYMENT_MONEYMAIL_NAME_TEXT", "value": "Moneymail" },
+    { "key": "DAILY_QUEST_GOAL", "value": "Mission:" },
     { "key": "REGISTER_FORM_SEND_NEWS_TEXT", "value": "Receive gaming news" },
     { "key": "BATTLE_CREATE_PANEL_STEPPER_KILLS_LIMIT", "value": "Destroy" },
     { "key": "CHAT_LABEL_ALL", "value": "To all" },
@@ -723,6 +741,7 @@
     { "key": "STATISTICS_HEADER_NUMBER", "value": "#" },
     { "key": "STRING_CHECK_PASSWORD_FORM_BUTTON_NEW_PLAYER_TEXT", "value": "New player" },
     { "key": "ALERT_CONFIRM_BATTLE_EXIT", "value": "Get out of the battle?" },
+    { "key": "DAILY_QUEST_CHANGE", "value": "Change" },
     { "key": "REFERAL_WINDOW_BUTTON_URLCOPY", "value": "Copy" },
     {
       "key": "REFERAL_WINDOW_LETTER_TEXT",
@@ -769,6 +788,7 @@
     { "key": "BATTLE_CREATE_PANEL_CHECKBOX_FRIENDLY_FIRE", "value": "Friendly fire" },
     { "key": "STRING_IS_JOINING_THE_BATTLE_AT_YOUR_INVITATION_LABEL", "value": "Is joining the battle at your invitation\n" },
     { "key": "REFERAL_WINDOW_BUTTON_COPY_BANNER_TEXT", "value": "Скопировать код в буфер обмена" },
+    { "key": "REDUCE_DAMAGE_SHOTGUN", "value": "Hammer" },
     { "key": "STRING_HELP_NAME_IS_FORBIDDEN", "value": "Entered name cannot be used for registration" },
     { "key": "SETTINGS_BUTTON_CHANGE_PASSWORD_TEXT", "value": "Change password and e-mail" },
     { "key": "GAME_ACTION_USE_DOUBLE_ARMOR", "value": "Use Double Armor supply" },
