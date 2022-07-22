@@ -640,6 +640,21 @@ fun <T : Any> Moshi.toJson(value: T): String {
   return adapter<T>(value::class.java).toJson(value)
 }
 
+data class RankNotifierData(
+  @Json val userId: String,
+  @Json val rank: Int
+)
+
+data class OnlineNotifierData(
+  @Json val userId: String,
+  @Json val online: Boolean
+)
+
+data class PremiumNotifierData(
+  @Json val userId: String,
+  @Json val premiumTimeLeftInSeconds: Int = -1
+)
+
 data class InitBattleModelData(
   @Json val battleId: String,
   @Json val map_id: String,

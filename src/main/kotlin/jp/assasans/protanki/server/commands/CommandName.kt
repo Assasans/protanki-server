@@ -96,6 +96,10 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   SubscribeUserUpdate(CommandCategory.Lobby, "subscribe_user_update", CommandSide.Server),
 
+  NotifyUserRank(CommandCategory.Lobby, "notify_user_rank", CommandSide.Server),
+  NotifyUserOnline(CommandCategory.Lobby, "notify_user_online", CommandSide.Server),
+  NotifyUserPremium(CommandCategory.Lobby, "notify_user_premium", CommandSide.Server),
+
   ShowDamageEnabled(CommandCategory.Lobby, "showDamageEnabled", CommandSide.Server),
   UpdateRankProgress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),
 

@@ -43,6 +43,35 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   private val mapRegistry by inject<IMapRegistry>()
   private val server by inject<ISocketServer>()
 
+  @CommandHandler(CommandName.SubscribeUserUpdate)
+  suspend fun subscribeUserUpdate(socket: UserSocket, username: String) {
+    val user: User = socket.user ?: throw Exception("No user")
+
+    Command(
+      CommandName.NotifyUserRank,
+      RankNotifierData(
+        userId = username,
+        rank = user.rank.value
+      ).toJson()
+    ).send(socket)
+
+    Command(
+      CommandName.NotifyUserPremium,
+      PremiumNotifierData(
+        userId = username,
+        premiumTimeLeftInSeconds = -1 //TODO(Longren1337): do a checker for premium effect
+      ).toJson()
+    ).send(socket)
+
+    Command(
+      CommandName.NotifyUserOnline,
+      OnlineNotifierData(
+        userId = username,
+        online = true //TODO(Longren1337): when there will be a list of friends -> make an adequate check for online
+      ).toJson()
+    ).send(socket)
+  }
+
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
     val battle = battleProcessor.getBattle(id) ?: throw Exception("Battle $id not found")
