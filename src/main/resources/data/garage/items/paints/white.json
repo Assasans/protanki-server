@@ -1,9 +1,15 @@
 {
   "id": "white",
-  "index": 27,
+  "index": 29,
 
-  "name": "Белый",
-  "description": "Специальная разработка для проведения наземных операций в странах с холодным климатом. В заснеженной местности такая расцветка способна значительно снизить вероятность обнаружения. Ради увеличения объёмов продаж производитель включил в комплект поставки теплый тулуп и валенки.",
+  "name": {
+    "en": "White",
+    "ru": "Белый"
+  },
+  "description": {
+    "en": "This paint has been developed specifically for ground operations in countries with cold climates. In snowy areas, it can significantly reduce the likelihood of detection. In order to increase the sales, some manufacturers included a warm coat and boots in the package.",
+    "ru": "Специальная разработка для проведения наземных операций в странах с холодным климатом. В заснеженной местности такая расцветка способна значительно снизить вероятность обнаружения. Ради увеличения объёмов продаж производитель включил в комплект поставки теплый тулуп и валенки."
+  },
 
   "baseItemId": 912977,
   "previewResourceId": 912977,

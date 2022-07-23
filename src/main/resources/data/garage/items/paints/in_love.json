@@ -1,9 +1,15 @@
 {
   "id": "in_love",
-  "index": 41,
+  "index": 49,
 
-  "name": "С любовью",
-  "description": "Разработанная для натур утончённых и романтичных, эта расцветка способна не только утолить жажду к прекрасному «искушённого» армейской атрибутикой эстета, но также поможет выиграть пару секунд у ошарашенного врага, зачарованно смотрящего на феерию из красных сердечек в центре поля боя.",
+  "name": {
+    "en": "In love",
+    "ru": "С любовью"
+  },
+  "description": {
+    "en": "Designed for the sophisticated and romantic ones, this paint will satisfy your desire for aesthetically pleasing military attributes. It will also earn you a few valuable seconds by fascinating your enemy with the extravagant looks of your tank, covered in red hearts.",
+    "ru": "Разработанная для натур утончённых и романтичных, эта расцветка способна не только утолить жажду к прекрасному «искушённого» армейской атрибутикой эстета, но также поможет выиграть пару секунд у ошарашенного врага, зачарованно смотрящего на феерию из красных сердечек в центре поля боя."
+  },
 
   "baseItemId": 277983,
   "previewResourceId": 277983,
@@ -14,8 +20,8 @@
   "coloring": 493495,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 15 },
-    { "property": "FREEZE_RESISTANCE", "value": 25 },
-    { "property": "RICOCHET_RESISTANCE", "value": 10 }
+    { "property": "ISIS_RESISTANCE", "value": 12 },
+    { "property": "FREEZE_RESISTANCE", "value": 22 },
+    { "property": "RICOCHET_RESISTANCE", "value": 9 }
   ]
 }

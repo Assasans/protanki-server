@@ -1,21 +1,27 @@
 {
   "id": "zeus",
-  "name": "Зевс",
-
-  "index": 71,
-  "description": "Краска «Зевс» названа так за свою необычную текстуру. Яркие вспышки молний на вашем танке ослабят бдительность вражеских танков и позволят вам выглядеть круто в любой битве. ",
+  "index": 65,
+  
+  "name": {
+    "en": "Zeus",
+    "ru": "Зевс"
+  },
+  "description": {
+    "en": "Fashioned after the Greek god known for his love of thunderbolts, this paint will signal to your enemies that you're a force not to be taken lightly.",
+    "ru": "Краска «Зевс» названа так за свою необычную текстуру. Яркие вспышки молний на вашем танке ослабят бдительность вражеских танков и позволят вам выглядеть круто в любой битве. "
+  },
 
   "baseItemId": 123565,
   "previewResourceId": 123565,
 
-  "rank": 29,
-  "price": 320000,
+  "rank": 24,
+  "price": 180000,
 
   "coloring": 412123,
 
   "properties": [
     { "property": "FIREBIRD_RESISTANCE", "value": 50 },
-    { "property": "FREEZE_RESISTANCE", "value": 50 },
-    { "property": "SMOKY_RESISTANCE", "value": 50 }
+    { "property": "FREEZE_RESISTANCE", "value": 25 },
+    { "property": "SMOKY_RESISTANCE", "value": 25 }
   ]
 }

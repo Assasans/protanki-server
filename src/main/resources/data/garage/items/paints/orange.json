@@ -1,9 +1,15 @@
 {
   "id": "orange",
-  "index": 28,
+  "index": 30,
 
-  "name": "Оранж",
-  "description": "Данную расцветку не планировалось включать в официальный перечень, так как она не представляла особой практической ценности, кроме, быть может, посредственной маскировки в пустынной местности. Но армейские мозгоправы доказали, что оранжевый цвет положительно влияет на психологическое здоровье «пушечного мяса».",
+  "name": {
+    "en": "Orange",
+    "ru": "Оранжевый"
+  },
+  "description": {
+    "en": "Originally, there were no plans to include this color in the official list, as it lacked any practical value, except maybe a decent camouflage in desert areas. However, army psychologists have proved that this particular hue of orange has a positive, therapeutic effect on shell-shocked tanks.",
+    "ru": "Данную расцветку не планировалось включать в официальный перечень, так как она не представляла особой практической ценности, кроме, быть может, посредственной маскировки в пустынной местности. Но армейские мозгоправы доказали, что оранжевый цвет положительно влияет на психологическое здоровье «пушечного мяса»."
+  },
 
   "baseItemId": 456516,
   "previewResourceId": 456516,

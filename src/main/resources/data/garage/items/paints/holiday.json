@@ -1,9 +1,15 @@
 {
   "id": "holiday",
-  "index": 23,
+  "index": 25,
 
-  "name": "Праздник",
-  "description": "Это уникальное «умное» покрытие умеет изменять свой вид в зависимости от конкретного повода. В обычный день это чёрно-белая клетка, но с наступлением праздника разительно преображается.",
+  "name": {
+    "en": "Holiday",
+    "ru": "Праздник"
+  },
+  "description": {
+    "en": "A unique and «smart» paint that can change its appearance depending on the occasion. On a regular day, it is simply a gray and white, checkered texture. But when a holiday kicks in, its appearance changes dramatically.",
+    "ru": "Это уникальное «умное» покрытие умеет изменять свой вид в зависимости от конкретного повода. В обычный день это чёрно-белая клетка, но с наступлением праздника разительно преображается."
+  },
 
   "baseItemId": 971082,
   "previewResourceId": 971083,

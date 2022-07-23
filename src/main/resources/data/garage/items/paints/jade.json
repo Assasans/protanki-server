@@ -1,21 +1,27 @@
 {
   "id": "jade",
-  "index": 65,
+  "index": 73,
 
-  "name": "Нефрит",
-  "description": "Напыление из редкого коричневого нефрита обеспечивает этому покрытию прочность хорошей стали. Но если производство металлсодержащих покрытий загрязняет океаны и приводит к вымиранию низколетающих птиц, то краска «Нефрит» с каменной пудрой экологически чиста, как берёзовый сок!",
+  "name": {
+    "en": "Jade",
+    "ru": "Нефрит"
+  },
+  "description": {
+    "en": "A spray from a rare brown jade. Beautiful, perfect for camouflage, and ecologically friendly.",
+    "ru": "Напыление из редкого коричневого нефрита обеспечивает этому покрытию прочность хорошей стали. Но если производство металлсодержащих покрытий загрязняет океаны и приводит к вымиранию низколетающих птиц, то краска «Нефрит» с каменной пудрой экологически чиста, как берёзовый сок!"
+  },
 
   "baseItemId": 866855,
   "previewResourceId": 866855,
 
   "rank": 30,
-  "price": 350000,
+  "price": 250000,
 
   "coloring": 746058,
 
   "properties": [
-    { "property": "THUNDER_RESISTANCE", "value": 23 },
-    { "property": "SMOKY_RESISTANCE", "value": 50 },
-    { "property": "SHAFT_RESISTANCE", "value": 50 }
+    { "property": "THUNDER_RESISTANCE", "value": 12 },
+    { "property": "SMOKY_RESISTANCE", "value": 26 },
+    { "property": "SHAFT_RESISTANCE", "value": 26 }
   ]
 }

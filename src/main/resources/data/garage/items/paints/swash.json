@@ -1,9 +1,15 @@
 {
   "id": "swash",
-  "index": 44,
+  "index": 47,
 
-  "name": "Прибой",
-  "description": "Формула покрытия «Прибой» была похищена из секретной лаборатории под кодовым названием «Аква», специализирующейся на генетических экспериментах над рыбами. Благодаря особым теплоотражающим свойствам краска придаёт воздуху внутри танка морскую свежесть",
+  "name": {
+    "en": "Swash",
+    "ru": "Прибой"
+  },
+  "description": {
+    "en": "The formula of the «Swash» cover was stolen from a secret laboratory codenamed <Aqua>, specializing in genetic experiments on fish. Thanks to its special heat-reflecting properties, this paint gives the air inside the tank a refreshing seaside freshness.",
+    "ru": "Формула покрытия «Прибой» была похищена из секретной лаборатории под кодовым названием «Аква», специализирующейся на генетических экспериментах над рыбами. Благодаря особым теплоотражающим свойствам краска придаёт воздуху внутри танка морскую свежесть"
+  },
 
   "baseItemId": 344971,
   "previewResourceId": 344971,
@@ -14,9 +20,9 @@
   "coloring": 48688,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 11 },
-    { "property": "FIREBIRD_RESISTANCE", "value": 18 },
-    { "property": "TWINS_RESISTANCE", "value": 13 },
-    { "property": "SMOKY_RESISTANCE", "value": 8 }
+    { "property": "ISIS_RESISTANCE", "value": 9 },
+    { "property": "FIREBIRD_RESISTANCE", "value": 15 },
+    { "property": "TWINS_RESISTANCE", "value": 10 },
+    { "property": "SMOKY_RESISTANCE", "value": 5 }
   ]
 }

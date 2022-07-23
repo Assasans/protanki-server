@@ -1,21 +1,27 @@
 {
   "id": "digital",
-  "index": 55,
+  "index": 56,
 
-  "name": "Диджитал",
-  "description": "Это не просто краска, это настоящий защитный комплекс. В его состав входят покраска особой стойкости, имеющая повышенные камуфлирующие свойства, и специальные наноботы для автоматической самоочистки краски в любых условиях боя.",
+  "name": {
+    "en": "Digital",
+    "ru": "Диджитал"
+  },
+  "description": {
+    "en": "Besides having exceptional camouflage properties, this paint is extremely durable and contains special nanobots for automatic cleaning of the paint while in combat.",
+    "ru": "Это не просто краска, это настоящий защитный комплекс. В его состав входят покраска особой стойкости, имеющая повышенные камуфлирующие свойства, и специальные наноботы для автоматической самоочистки краски в любых условиях боя."
+  },
 
   "baseItemId": 332230,
   "previewResourceId": 332230,
 
   "rank": 18,
-  "price": 80000,
+  "price": 76600,
 
   "coloring": 444408,
 
   "properties": [
-    { "property": "SMOKY_RESISTANCE", "value": 25 },
-    { "property": "RAILGUN_RESISTANCE", "value": 42 },
-    { "property": "SHAFT_RESISTANCE", "value": 15 }
+    { "property": "SMOKY_RESISTANCE", "value": 21 },
+    { "property": "RAILGUN_RESISTANCE", "value": 32 },
+    { "property": "SHAFT_RESISTANCE", "value": 12 }
   ]
 }

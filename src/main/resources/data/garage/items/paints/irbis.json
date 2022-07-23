@@ -1,21 +1,27 @@
 {
   "id": "irbis",
-  "index": 62,
+  "index": 68,
 
-  "name": "Ирбис",
-  "description": "Одно из самых загадочных животных семейства кошачьих — ирбис, он же снежный барс. Исследователи многих стран безуспешно пытаются поймать живого ирбиса для детального изучения, но пока это удалось лишь нашим инженерам-биологам. После серии рискованных экспериментов и пятнадцати несчастных случаев они представили краску «Ирбис». Покрытие содержит ДНК снежного барса, что делает его абсолютно уникальным и в какой-то степени даже экологичным.",
+  "name": {
+    "en": "Irbis",
+    "ru": "Ирбис"
+  },
+  "description": {
+    "en": "One of the most mysterious felines, the Irbis is also known as the «snow leopard». After a series of high-risk expeditions and fifteen accidents, our researchers managed to restrain a snow leopard long enough to copy its coat and create the «Irbis» paint.",
+    "ru": "Одно из самых загадочных животных семейства кошачьих — ирбис, он же снежный барс. Исследователи многих стран безуспешно пытаются поймать живого ирбиса для детального изучения, но пока это удалось лишь нашим инженерам-биологам. После серии рискованных экспериментов и пятнадцати несчастных случаев они представили краску «Ирбис». Покрытие содержит ДНК снежного барса, что делает его абсолютно уникальным и в какой-то степени даже экологичным."
+  },
 
   "baseItemId": 494974,
   "previewResourceId": 494974,
 
-  "rank": 24,
-  "price": 180000,
+  "rank": 27,
+  "price": 216000,
 
   "coloring": 931954,
 
   "properties": [
     { "property": "ISIS_RESISTANCE", "value": 50 },
-    { "property": "FREEZE_RESISTANCE", "value": 37 },
-    { "property": "RICOCHET_RESISTANCE", "value": 30 }
+    { "property": "FREEZE_RESISTANCE", "value": 27 },
+    { "property": "RICOCHET_RESISTANCE", "value": 23 }
   ]
 }

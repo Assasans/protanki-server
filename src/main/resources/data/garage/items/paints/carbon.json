@@ -1,9 +1,15 @@
 {
   "id": "carbon",
-  "index": 40,
+  "index": 42,
 
-  "name": "Карбон",
-  "description": "Сочетание высоких технологий, углеродного волокна и особой краски повышенной стойкости. В комплект поставки входит тонировка на прицельные комплексы, но по закону она запрещена требованиями инспекции танкового движения",
+  "name": {
+    "en": "Carbon",
+    "ru": "Карбон"
+  },
+  "description": {
+    "en": "A combination of high-tech carbon fiber and high-resistance paint. Includes a special substance meant for disrupting enemy sighting systems, even though this is prohibited by the Tank Movement Inspection Directorate.",
+    "ru": "Сочетание высоких технологий, углеродного волокна и особой краски повышенной стойкости. В комплект поставки входит тонировка на прицельные комплексы, но по закону она запрещена требованиями инспекции танкового движения"
+  },
 
   "baseItemId": 865963,
   "previewResourceId": 865963,
@@ -14,8 +20,8 @@
   "coloring": 739386,
 
   "properties": [
-    { "property": "TWINS_RESISTANCE", "value": 7 },
-    { "property": "SMOKY_RESISTANCE", "value": 22 },
-    { "property": "SHAFT_RESISTANCE", "value": 7 }
+    { "property": "TWINS_RESISTANCE", "value": 6 },
+    { "property": "SMOKY_RESISTANCE", "value": 19 },
+    { "property": "SHAFT_RESISTANCE", "value": 6 }
   ]
 }

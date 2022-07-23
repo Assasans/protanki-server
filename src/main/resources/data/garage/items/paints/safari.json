@@ -1,9 +1,15 @@
 {
   "id": "safari",
-  "index": 36,
+  "index": 35,
 
-  "name": "Сафари",
-  "description": "Любители пощекотать себе нервы на сафари придумали весьма эффективный способ привлекать к себе хищников. Маскировка танка под невинную зебру отлично подходит для охоты с противотанковым вооружением как на африканских хищников, так и на не очень умных танкистов.",
+  "name": {
+    "en": "Safari",
+    "ru": "Сафари"
+  },
+  "description": {
+    "en": "Designed by those who love the thrill of the safari, this paint masks the tank as an innocuous zebra, which makes it perfect for hunting African predators, as well as naive tankers.",
+    "ru": "Любители пощекотать себе нервы на сафари придумали весьма эффективный способ привлекать к себе хищников. Маскировка танка под невинную зебру отлично подходит для охоты с противотанковым вооружением как на африканских хищников, так и на не очень умных танкистов."
+  },
 
   "baseItemId": 981027,
   "previewResourceId": 981027,
@@ -14,6 +20,6 @@
   "coloring": 258487,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 16 }
+    { "property": "ISIS_RESISTANCE", "value": 15 }
   ]
 }

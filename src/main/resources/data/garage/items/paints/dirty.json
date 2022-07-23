@@ -1,9 +1,15 @@
 {
   "id": "dirty",
-  "index": 43,
+  "index": 51,
 
-  "name": "Грязь",
-  "description": "Эта краска должна была быть третьей краской, специально разработанной для наземных операций в средних климатических широтах. По решению военных покрытие не было включено в стандартный военный пакет из-за нескольких несчастных случаев на испытаниях, связанных с попыткой отчистить это покрытие от нарисованной грязи.",
+  "name": {
+    "en": "Dirty",
+    "ru": "Грязь"
+  },
+  "description": {
+    "en": "This was originally intended as the third paint designed for ground operations in a mid-latitude climate. However, the military later decided not to include it in the standard package, after repeated attempts by staff cleaners to remove the painted mud texture from the cover.",
+    "ru": "Эта краска должна была быть третьей краской, специально разработанной для наземных операций в средних климатических широтах. По решению военных покрытие не было включено в стандартный военный пакет из-за нескольких несчастных случаев на испытаниях, связанных с попыткой отчистить это покрытие от нарисованной грязи."
+  },
 
   "baseItemId": 201886,
   "previewResourceId": 201886,
@@ -14,7 +20,7 @@
   "coloring": 386784,
 
   "properties": [
-    { "property": "RAILGUN_RESISTANCE", "value": 20 },
-    { "property": "SHAFT_RESISTANCE", "value": 40 }
+    { "property": "RAILGUN_RESISTANCE", "value": 16 },
+    { "property": "SHAFT_RESISTANCE", "value": 36 }
   ]
 }

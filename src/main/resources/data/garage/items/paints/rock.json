@@ -1,21 +1,27 @@
 {
   "id": "rock",
-  "index": 68,
+  "index": 66,
 
-  "name": "Скала",
-  "description": "Броневые пластины для покрытия «Скала» добываются в скальных массивах по древнеегипетской технологии. Сухие колышки вбиваются в скалу, смачиваются водой, разбухают и откалывают ровные каменные блоки. Этот камуфляж — настоящая ручная работа!",
+  "name": {
+    "en": "Rock",
+    "ru": "Скала"
+  },
+  "description": {
+    "en": "The armored plates called «The Rock» are mined from huge rock formations, using an ancient Egyptian technology. Dry pegs are hammered into the rock, then soaked with water till they swell, breaking the rock into smooth blocks of stone. This camouflage is the definition of «hand-made».",
+    "ru": "Броневые пластины для покрытия «Скала» добываются в скальных массивах по древнеегипетской технологии. Сухие колышки вбиваются в скалу, смачиваются водой, разбухают и откалывают ровные каменные блоки. Этот камуфляж — настоящая ручная работа!"
+  },
 
   "baseItemId": 669820,
   "previewResourceId": 669820,
 
   "rank": 25,
-  "price": 210000,
+  "price": 192000,
 
   "coloring": 473605,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 50 },
-    { "property": "FREEZE_RESISTANCE", "value": 39 },
+    { "property": "ISIS_RESISTANCE", "value": 28 },
+    { "property": "FREEZE_RESISTANCE", "value": 12 },
     { "property": "TWINS_RESISTANCE", "value": 50 }
   ]
 }

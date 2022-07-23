@@ -1,9 +1,15 @@
 {
   "id": "desert",
-  "index": 46,
+  "index": 50,
 
-  "name": "Пустыня",
-  "description": "Специальная краска, идеально подходящая для операций в пустыне. Она создается путем распыления кристаллического порошка, извлеченного из зубов песчаного червя. Чтобы сохранить свою уникальную текстуру, эту краску не следует мыть.",
+  "name": {
+    "en": "Desert",
+    "ru": "Пустыня"
+  },
+  "description": {
+    "en": "A special paint ideal for desert operations. It is created by spraying crystalline powder extracted from a sandworm's teeth. To maintain its unique texture, this paint should not be washed.",
+    "ru": "Специальная краска, идеально подходящая для операций в пустыне. Она создается путем распыления кристаллического порошка, извлеченного из зубов песчаного червя. Чтобы сохранить свою уникальную текстуру, эту краску не следует мыть."
+  },
 
   "baseItemId": 112041,
   "previewResourceId": 112041,
@@ -15,7 +21,7 @@
 
   "properties": [
     { "property": "TWINS_RESISTANCE", "value": 7 },
-    { "property": "RICOCHET_RESISTANCE", "value": 35 },
+    { "property": "RICOCHET_RESISTANCE", "value": 24 },
     { "property": "SMOKY_RESISTANCE", "value": 7 }
   ]
 }

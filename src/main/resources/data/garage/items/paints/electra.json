@@ -1,21 +1,27 @@
 {
   "id": "electra",
-  "index": 52,
+  "index": 58,
 
-  "name": "Электра",
-  "description": "Одна из самых красивых красок, разработанная при участии модельных домов Франции. «Электра» имеет хорошие камуфлирующие свойства и эстетичный внешний вид. К сожалению, не все способны по достоинству оценить изящество линий и глубину работы французских мастеров.",
+  "name": {
+    "en": "Electra",
+    "ru": "Электра"
+  },
+  "description": {
+    "en": "A shockingly beautiful paint that captures the elegance of an arc of electricity flying through the air.",
+    "ru": "Одна из самых красивых красок, разработанная при участии модельных домов Франции. «Электра» имеет хорошие камуфлирующие свойства и эстетичный внешний вид. К сожалению, не все способны по достоинству оценить изящество линий и глубину работы французских мастеров."
+  },
 
   "baseItemId": 964904,
   "previewResourceId": 964904,
 
   "rank": 19,
-  "price": 95000,
+  "price": 90000,
 
   "coloring": 858789,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 45 },
-    { "property": "TWINS_RESISTANCE", "value": 18 },
-    { "property": "SMOKY_RESISTANCE", "value": 18 }
+    { "property": "ISIS_RESISTANCE", "value": 40 },
+    { "property": "TWINS_RESISTANCE", "value": 15 },
+    { "property": "SMOKY_RESISTANCE", "value": 15 }
   ]
 }

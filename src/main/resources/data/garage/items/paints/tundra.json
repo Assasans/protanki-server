@@ -1,9 +1,15 @@
 {
   "id": "tundra",
-  "index": 48,
+  "index": 45,
 
-  "name": "Тундра",
-  "description": "Одна из немногих по-настоящему стильных камуфляжных красок. Текстура сурова и по-мужски проста. Делает танк менее заметным на поле боя.",
+  "name": {
+    "en": "Tundra",
+    "ru": "Тундра"
+  },
+  "description": {
+    "en": "Gives your tank an intimidating, battle-hardened look. Nobody will dare mess with you.",
+    "ru": "Одна из немногих по-настоящему стильных камуфляжных красок. Текстура сурова и по-мужски проста. Делает танк менее заметным на поле боя."
+  },
 
   "baseItemId": 985440,
   "previewResourceId": 985440,
@@ -14,7 +20,7 @@
   "coloring": 689436,
 
   "properties": [
-    { "property": "SMOKY_RESISTANCE", "value": 15 },
-    { "property": "RAILGUN_RESISTANCE", "value": 35 }
+    { "property": "SMOKY_RESISTANCE", "value": 10 },
+    { "property": "RAILGUN_RESISTANCE", "value": 25 }
   ]
 }
