@@ -1,9 +1,15 @@
 {
   "id": "cedar",
-  "index": 50,
+  "index": 48,
 
-  "name": "Кедр",
-  "description": "Для создания маскирующего покрытия «Кедр» используется сложный состав на основе толчёных чешуек кедровых шишек. Его неоспоримое достоинство — стопроцентная экологичность производства и два мешка очищенных кедровых орешков в подарок за каждую вторую канистру краски.",
+  "name": {
+    "en": "Cedar",
+    "ru": "Кедр"
+  },
+  "description": {
+    "en": "This paint is composed of pounded pine cone flakes. It is environmentally friendly and comes with two bags of peeled pine nuts with every second canister of paint purchased.",
+    "ru": "Для создания маскирующего покрытия «Кедр» используется сложный состав на основе толчёных чешуек кедровых шишек. Его неоспоримое достоинство — стопроцентная экологичность производства и два мешка очищенных кедровых орешков в подарок за каждую вторую канистру краски."
+  },
 
   "baseItemId": 5343,
   "previewResourceId": 5343,
@@ -14,8 +20,8 @@
   "coloring": 438964,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 7 },
-    { "property": "THUNDER_RESISTANCE", "value": 35 },
-    { "property": "SMOKY_RESISTANCE", "value": 7 }
+    { "property": "ISIS_RESISTANCE", "value": 6 },
+    { "property": "THUNDER_RESISTANCE", "value": 31 },
+    { "property": "SMOKY_RESISTANCE", "value": 6 }
   ]
 }

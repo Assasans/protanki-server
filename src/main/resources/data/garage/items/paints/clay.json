@@ -1,21 +1,27 @@
 {
   "id": "clay",
-  "index": 72,
+  "index": 71,
 
-  "name": "Тина",
-  "description": "Краска под кодовым названием «Тина» разрабатывалась для диверсионных танковых бригад, действующих в болотистой местности. Танки маскировались настолько хорошо, что даже пиявки не замечали их и на полном ходу врезались в бронированный корпус.",
+  "name": {
+    "en": "Clay",
+    "ru": "Тина"
+  },
+  "description": {
+    "en": "This paint was designed for sabotage operations in the marshland. The tanks wearing this paint were camouflaged so well that not even the leeches noticed them.",
+    "ru": "Краска под кодовым названием «Тина» разрабатывалась для диверсионных танковых бригад, действующих в болотистой местности. Танки маскировались настолько хорошо, что даже пиявки не замечали их и на полном ходу врезались в бронированный корпус."
+  },
 
   "baseItemId": 700822,
   "previewResourceId": 700822,
 
   "rank": 29,
-  "price": 320000,
+  "price": 240000,
 
   "coloring": 141405,
 
   "properties": [
     { "property": "RICOCHET_RESISTANCE", "value": 50 },
-    { "property": "THUNDER_RESISTANCE", "value": 50 },
-    { "property": "RAILGUN_RESISTANCE", "value": 50 }
+    { "property": "THUNDER_RESISTANCE", "value": 20 },
+    { "property": "RAILGUN_RESISTANCE", "value": 30 }
   ]
 }

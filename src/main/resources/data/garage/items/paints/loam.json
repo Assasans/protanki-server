@@ -1,22 +1,28 @@
 {
   "id": "loam",
-  "index": 58,
+  "index": 54,
 
-  "name": "Глина",
-  "description": "Лучший способ отвести вражеский взгляд от своего танка — заляпать его грязью. Однако естественная грязь весьма неустойчива — легко смывается водой и даже отваливается пластами в жаркую погоду. Чтобы придать танку нужный «грязный» цвет, было разработано покрытие «Глина». В его состав включены отходы керамического производства лучших китайских гончарных мастерских.",
+  "name": {
+    "en": "Loam",
+    "ru": "Глина"
+  },
+  "description": {
+    "en": "Nobody pays much attention to dirty vehicles. The «Loam» paint uses this psychological element to your tank's advantage by disguising it as a dirty piece of machinery. And once your enemy turns his back on you, that's when you strike!",
+    "ru": "Лучший способ отвести вражеский взгляд от своего танка — заляпать его грязью. Однако естественная грязь весьма неустойчива — легко смывается водой и даже отваливается пластами в жаркую погоду. Чтобы придать танку нужный «грязный» цвет, было разработано покрытие «Глина». В его состав включены отходы керамического производства лучших китайских гончарных мастерских."
+  },
 
   "baseItemId": 600886,
   "previewResourceId": 600886,
 
   "rank": 16,
-  "price": 50000,
+  "price": 50500,
 
   "coloring": 53082,
 
   "properties": [
-    { "property": "FIREBIRD_RESISTANCE", "value": 35 },
-    { "property": "FREEZE_RESISTANCE", "value": 15 },
-    { "property": "RICOCHET_RESISTANCE", "value": 15 },
-    { "property": "THUNDER_RESISTANCE", "value": 15 }
+    { "property": "FIREBIRD_RESISTANCE", "value": 26 },
+    { "property": "FREEZE_RESISTANCE", "value": 10 },
+    { "property": "RICOCHET_RESISTANCE", "value": 10 },
+    { "property": "THUNDER_RESISTANCE", "value": 10 }
   ]
 }

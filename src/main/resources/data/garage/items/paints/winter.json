@@ -1,22 +1,28 @@
 {
   "id": "winter",
-  "index": 59,
+  "index": 63,
 
-  "name": "Метель",
-  "description": "Эта краска разработана специально для боёв на заснеженных картах и в условиях повышенной видимости. Лопата для самооткапывания танка из снега в комплект не входит по экономическим причинам.",
+  "name": {
+    "en": "Winter",
+    "ru": "Метель"
+  },
+  "description": {
+    "en": "This paint was specially developed for battle on snow-covered land. It was originally intended to include a snow shovel, but the finance department didn't approve the extra cost.",
+    "ru": "Эта краска разработана специально для боёв на заснеженных картах и в условиях повышенной видимости. Лопата для самооткапывания танка из снега в комплект не входит по экономическим причинам."
+  },
 
   "baseItemId": 791701,
   "previewResourceId": 791701,
 
   "rank": 22,
-  "price": 140000,
+  "price": 129000,
 
   "coloring": 285466,
 
   "properties": [
-    { "property": "FIREBIRD_RESISTANCE", "value": 15 },
-    { "property": "THUNDER_RESISTANCE", "value": 30 },
-    { "property": "RAILGUN_RESISTANCE", "value": 15 },
-    { "property": "SHAFT_RESISTANCE", "value": 50 }
+    { "property": "FIREBIRD_RESISTANCE", "value": 11 },
+    { "property": "THUNDER_RESISTANCE", "value": 23 },
+    { "property": "RAILGUN_RESISTANCE", "value": 11 },
+    { "property": "SHAFT_RESISTANCE", "value": 40 }
   ]
 }

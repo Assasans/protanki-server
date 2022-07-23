@@ -1,9 +1,15 @@
 {
   "id": "green",
-  "index": 21,
+  "index": 23,
 
-  "name": "Зелёный",
-  "description": "Являясь скорее данью традициям классического танкостроения, этот незамысловатый цвет, так полюбившийся конструкторам всего мира, стал своеобразным стандартом для заводских моделей. К этому легендарному цвету часто возвращаются истинные ценители, перепробовав всё на свете.",
+  "name": {
+    "en": "Green",
+    "ru": "Зелёный"
+  },
+  "description": {
+    "en": "A tribute to the tradition of the classic tank, this simple color, so beloved by designers all over the world, has become a standard paint for factory models. This legendary color has the true connoisseurs returning to it, having tried everything in the world.",
+    "ru": "Являясь скорее данью традициям классического танкостроения, этот незамысловатый цвет, так полюбившийся конструкторам всего мира, стал своеобразным стандартом для заводских моделей. К этому легендарному цвету часто возвращаются истинные ценители, перепробовав всё на свете."
+  },
 
   "baseItemId": 388967,
   "previewResourceId": 388967,

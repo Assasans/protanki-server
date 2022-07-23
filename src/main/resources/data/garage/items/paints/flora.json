@@ -1,9 +1,15 @@
 {
   "id": "flora",
-  "index": 29,
+  "index": 31,
 
-  "name": "Флора",
-  "description": "Одна из двух расцветок, специально разработанных для наземных операций в средних климатических широтах. Судя по отчетам независимой организации «Верный камуфляж», такая комбинация жёлтых, зелёных и коричневых пятен снижает вероятность обнаружения танка в «родной стихии».",
+  "name": {
+    "en": "Flora",
+    "ru": "Флора"
+  },
+  "description": {
+    "en": "This is one of two paints specifically designed for ground operations in a mid latitude climate. According to reports from the independent organization «True Camouflage», a tank wearing this particular combination of yellow, green and brown, is less likely to be detected in such regions.",
+    "ru": "Одна из двух расцветок, специально разработанных для наземных операций в средних климатических широтах. Судя по отчетам независимой организации «Верный камуфляж», такая комбинация жёлтых, зелёных и коричневых пятен снижает вероятность обнаружения танка в «родной стихии»."
+  },
 
   "baseItemId": 95646,
   "previewResourceId": 95646,

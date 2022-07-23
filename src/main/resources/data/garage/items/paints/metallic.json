@@ -1,9 +1,15 @@
 {
   "id": "metallic",
-  "index": 33,
+  "index": 36,
 
-  "name": "Металлик",
-  "description": "Существует ошибочное мнение, что данной расцветкой пользуются в условиях дефицита лакокрасочных материалов. На самом деле — это специальное покрытие, особым образом отражающее свет. Бликовый шум, создаваемый таким покрытием, вносит помехи в работу некоторых систем наведения.",
+  "name": {
+    "en": "Metallic",
+    "ru": "Металлик"
+  },
+  "description": {
+    "en": "There is the misconception that this paint is intended as a replacement for varnishing surfaces. In reality, the reflective nature of this paint is intended to interfere with tracking and radar devices.",
+    "ru": "Существует ошибочное мнение, что данной расцветкой пользуются в условиях дефицита лакокрасочных материалов. На самом деле — это специальное покрытие, особым образом отражающее свет. Бликовый шум, создаваемый таким покрытием, вносит помехи в работу некоторых систем наведения."
+  },
 
   "baseItemId": 246572,
   "previewResourceId": 246572,
@@ -14,6 +20,6 @@
   "coloring": 542023,
 
   "properties": [
-    { "property": "THUNDER_RESISTANCE", "value": 20 }
+    { "property": "THUNDER_RESISTANCE", "value": 18 }
   ]
 }

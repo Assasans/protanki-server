@@ -1,21 +1,27 @@
 {
   "id": "inferno",
-  "index": 64,
+  "index": 70,
 
-  "name": "Инферно",
-  "description": "Покрытие «Инферно» контрабандой доставляется на рынок из подпольных стеклодувных мастерских Китая. По словам самих производителей, его дерзкий вид символизирует силу, отвагу, удачу и долголетие. Отличная краска для яростной атаки!",
+  "name": {
+    "en": "Inferno",
+    "ru": "Инферно"
+  },
+  "description": {
+    "en": "The «Inferno» paint is delivered via shady means to the black market of China's glass-blowing workshops. According to the producers themselves, its defiant appearance symbolizes strength, courage, luck and longevity. An excellent paint for a fierce attacker.",
+    "ru": "Покрытие «Инферно» контрабандой доставляется на рынок из подпольных стеклодувных мастерских Китая. По словам самих производителей, его дерзкий вид символизирует силу, отвагу, удачу и долголетие. Отличная краска для яростной атаки!"
+  },
 
   "baseItemId": 186119,
   "previewResourceId": 186119,
 
   "rank": 28,
-  "price": 290000,
+  "price": 228000,
 
   "coloring": 200304,
 
   "properties": [
-    { "property": "FIREBIRD_RESISTANCE", "value": 50 },
+    { "property": "FIREBIRD_RESISTANCE", "value": 36 },
     { "property": "FREEZE_RESISTANCE", "value": 50 },
-    { "property": "TWINS_RESISTANCE", "value": 23 }
+    { "property": "TWINS_RESISTANCE", "value": 14 }
   ]
 }

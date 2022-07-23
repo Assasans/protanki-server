@@ -1,9 +1,15 @@
 {
   "id": "swamp",
-  "index": 31,
+  "index": 33,
 
-  "name": "Болотный",
-  "description": "Случайно заснувший ведущий танкового батальона завёл своих товарищей в болото, где проводилась тайная операция по подготовке жаб-диверсантов, и около десяти тысяч экземпляров превратились в прототип этой окраски.",
+  "name": {
+    "en": "Swamp",
+    "ru": "Болотный"
+  },
+  "description": {
+    "en": "This paint was created after a tank battalion leader accidentally fell asleep, and drove his comrades into a swamp, where a secret operation for training saboteur frogs was being conducted.",
+    "ru": "Случайно заснувший ведущий танкового батальона завёл своих товарищей в болото, где проводилась тайная операция по подготовке жаб-диверсантов, и около десяти тысяч экземпляров превратились в прототип этой окраски."
+  },
 
   "baseItemId": 300293,
   "previewResourceId": 300293,
@@ -14,6 +20,6 @@
   "coloring": 172172,
 
   "properties": [
-    { "property": "TWINS_RESISTANCE", "value": 12 }
+    { "property": "TWINS_RESISTANCE", "value": 10 }
   ]
 }

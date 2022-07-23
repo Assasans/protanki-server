@@ -1,9 +1,15 @@
 {
   "id": "alien",
-  "index": 42,
+  "index": 46,
 
-  "name": "Чужой",
-  "description": "Существует легенда, что этот камуфляж копирует окраску летающей тарелки, в прошлом веке сбитой ПВО сами-знаете-кого сами-знаете-где.",
+  "name": {
+    "en": "Alien",
+    "ru": "Чужой"
+  },
+  "description": {
+    "en": "Rumor has it that this camouflage is a replica of the cover of an alien ship that was knocked down in the last century by the forces of «WARNING: This information is classified — Further inquiries on the matter will be met with deadly force.»",
+    "ru": "Существует легенда, что этот камуфляж копирует окраску летающей тарелки, в прошлом веке сбитой ПВО сами-знаете-кого сами-знаете-где."
+  },
 
   "baseItemId": 254675,
   "previewResourceId": 254675,
@@ -14,8 +20,8 @@
   "coloring": 931624,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 30 },
-    { "property": "FREEZE_RESISTANCE", "value": 10 },
-    { "property": "THUNDER_RESISTANCE", "value": 10 }
+    { "property": "ISIS_RESISTANCE", "value": 23 },
+    { "property": "FREEZE_RESISTANCE", "value": 8 },
+    { "property": "THUNDER_RESISTANCE", "value": 8 }
   ]
 }

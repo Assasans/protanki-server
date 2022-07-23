@@ -1,21 +1,27 @@
 {
   "id": "emerald",
-  "index": 63,
+  "index": 69,
 
-  "name": "Изумруд",
-  "description": "Лаборатория лакокрасочных материалов «Стиль и гриль» долго работала над покрытием, которое сохранит классические зелёные тона танка и в то же время подчеркнёт высокий статус его владельца. Итогом многолетних трудов стала краска «Изумруд», будто светящаяся изнутри. Подчеркните своё положение!",
+  "name": {
+    "en": "Emerald",
+    "ru": "Изумруд"
+  },
+  "description": {
+    "en": "The researchers at the paint laboratory «Style and Grill» have long worked on a paint that would retain the classic green tone of a tank, while at the same time emphasizing the high status of its owner. The result is the «Emerald» paint, which appears to be illuminated from within.",
+    "ru": "Лаборатория лакокрасочных материалов «Стиль и гриль» долго работала над покрытием, которое сохранит классические зелёные тона танка и в то же время подчеркнёт высокий статус его владельца. Итогом многолетних трудов стала краска «Изумруд», будто светящаяся изнутри. Подчеркните своё положение!"
+  },
 
   "baseItemId": 16227,
   "previewResourceId": 16227,
 
   "rank": 28,
-  "price": 290000,
+  "price": 228000,
 
   "coloring": 448000,
 
   "properties": [
-    { "property": "TWINS_RESISTANCE", "value": 48 },
+    { "property": "TWINS_RESISTANCE", "value": 35 },
     { "property": "THUNDER_RESISTANCE", "value": 50 },
-    { "property": "RAILGUN_RESISTANCE", "value": 19 }
+    { "property": "RAILGUN_RESISTANCE", "value": 15 }
   ]
 }

@@ -1,9 +1,15 @@
 {
   "id": "jaguar",
-  "index": 45,
+  "index": 52,
 
-  "name": "Ягуар",
-  "description": "Вручную подогнанная под ваш танк шкура благородного хищника. Окрас истинного охотника.",
+  "name": {
+    "en": "Jaguar",
+    "ru": "Ягуар"
+  },
+  "description": {
+    "en": "This protection system codenamed «Jaguar» has spotty texture of the noble predator as well as protects your tank from all kinds of weapons.",
+    "ru": "Вручную подогнанная под ваш танк шкура благородного хищника. Окрас истинного охотника."
+  },
 
   "baseItemId": 46357,
   "previewResourceId": 46357,
@@ -15,7 +21,7 @@
 
   "properties": [
     { "property": "FIREBIRD_RESISTANCE", "value": 13 },
-    { "property": "FREEZE_RESISTANCE", "value": 35 },
+    { "property": "FREEZE_RESISTANCE", "value": 30 },
     { "property": "THUNDER_RESISTANCE", "value": 9 }
   ]
 }

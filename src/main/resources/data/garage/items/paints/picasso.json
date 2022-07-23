@@ -1,22 +1,28 @@
 {
   "id": "picasso",
-  "index": 70,
+  "index": 74,
 
-  "name": "Пикассо",
-  "description": "Пикассо был назван в честь Пабло Пикассо, известного художника-кубиста. Тонкие многоугольные фрагменты доспехов образуют поистине уникальный абстрактный узор, отражающий даже самые сильные удары. Эта краска - выбор настоящих искусствоведов!",
+  "name": {
+    "en": "Picasso",
+    "ru": "Пикассо"
+  },
+  "description": {
+    "en": "Picasso was named after Pablo Picasso, the famous cubist artist. Thin polygonal fragments of the armor form a truly unique abstract pattern, which diffuses even the most powerful hits. This paint is the choice of true art critics!",
+    "ru": "Пикассо был назван в честь Пабло Пикассо, известного художника-кубиста. Тонкие многоугольные фрагменты доспехов образуют поистине уникальный абстрактный узор, отражающий даже самые сильные удары. Эта краска - выбор настоящих искусствоведов!"
+  },
 
   "baseItemId": 337676,
   "previewResourceId": 337676,
 
   "rank": 30,
-  "price": 350000,
+  "price": 250000,
 
   "coloring": 906593,
 
   "properties": [
-    { "property": "FREEZE_RESISTANCE", "value": 30 },
-    { "property": "THUNDER_RESISTANCE", "value": 30 },
-    { "property": "RAILGUN_RESISTANCE", "value": 38 },
-    { "property": "SHAFT_RESISTANCE", "value": 45 }
+    { "property": "FREEZE_RESISTANCE", "value": 20 },
+    { "property": "THUNDER_RESISTANCE", "value": 20 },
+    { "property": "RAILGUN_RESISTANCE", "value": 27 },
+    { "property": "SHAFT_RESISTANCE", "value": 33 }
   ]
 }

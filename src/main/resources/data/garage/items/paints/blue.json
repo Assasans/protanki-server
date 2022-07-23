@@ -1,9 +1,15 @@
 {
   "id": "blue",
-  "index": 25,
+  "index": 27,
 
-  "name": "Синий",
-  "description": "Эту расцветку оставили в официальном перечне, как память о провалившемся проекте разработки танка-амфибии «Сом». По задумке конструкторов, он должен был передвигаться по руслам неглубоких рек, и, благодаря синей расцветке, беспрепятственно проникать в глубокий вражеский тыл, оставаясь незамеченным.",
+  "name": {
+    "en": "Blue",
+    "ru": "Синий"
+  },
+  "description": {
+    "en": "This paint was added to the official list in memory of a failed project - the development of an amphibious tank codenamed «Catfish». Designers were planning on giving the <Catfish> the ability to move beneath the waters of shallow rivers, allowing it to take position behind enemy lines. The blue color would have been perfect for camouflage.",
+    "ru": "Эту расцветку оставили в официальном перечне, как память о провалившемся проекте разработки танка-амфибии «Сом». По задумке конструкторов, он должен был передвигаться по руслам неглубоких рек, и, благодаря синей расцветке, беспрепятственно проникать в глубокий вражеский тыл, оставаясь незамеченным."
+  },
 
   "baseItemId": 350240,
   "previewResourceId": 350240,

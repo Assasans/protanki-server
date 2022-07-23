@@ -1,9 +1,15 @@
 {
   "id": "lava",
-  "index": 34,
+  "index": 37,
 
-  "name": "Лава",
-  "description": "Экспериментальный цвет, впервые опробованный во время локальных конфликтов в восточной Африке. По мнению армейских психологов, такая расцветка способна повергнуть в шок представителей некоторых радикальных религиозных организаций, вызвав у них панический страх перед инферно.",
+  "name": {
+    "en": "Lava",
+    "ru": "Лава"
+  },
+  "description": {
+    "en": "An experimental color, first tested during the local conflict in East Africa. According to military psychologists, this specific pattern resembling a divine fire will trigger a sense of panic within enemies.",
+    "ru": "Экспериментальный цвет, впервые опробованный во время локальных конфликтов в восточной Африке. По мнению армейских психологов, такая расцветка способна повергнуть в шок представителей некоторых радикальных религиозных организаций, вызвав у них панический страх перед инферно."
+  },
 
   "baseItemId": 201158,
   "previewResourceId": 201158,
@@ -14,6 +20,6 @@
   "coloring": 498645,
 
   "properties": [
-    { "property": "FREEZE_RESISTANCE", "value": 20 }
+    { "property": "FREEZE_RESISTANCE", "value": 18 }
   ]
 }

@@ -1,9 +1,15 @@
 {
   "id": "forester",
-  "index": 32,
+  "index": 34,
 
-  "name": "Лесник",
-  "description": "Одна из двух расцветок, специально разработанных для наземных операций в средних климатических широтах. По результатам исследования независимой организации «Верный камуфляж», такая комбинация светло- и тёмно-зелёных пятен снижает вероятность обнаружения танка в кустах.",
+  "name": {
+    "en": "Forester",
+    "ru": "Лесник"
+  },
+  "description": {
+    "en": "This is one of two paints specifically designed for ground operations in a mid latitude climate. According to reports from the independent organization «True Camouflage», a tank wearing this particular combination of light and dark green, is less likely to be detected in such regions.",
+    "ru": "Одна из двух расцветок, специально разработанных для наземных операций в средних климатических широтах. По результатам исследования независимой организации «Верный камуфляж», такая комбинация светло- и тёмно-зелёных пятен снижает вероятность обнаружения танка в кустах."
+  },
 
   "baseItemId": 769778,
   "previewResourceId": 769778,
@@ -14,6 +20,6 @@
   "coloring": 554337,
 
   "properties": [
-    { "property": "RAILGUN_RESISTANCE", "value": 14 }
+    { "property": "RAILGUN_RESISTANCE", "value": 12 }
   ]
 }

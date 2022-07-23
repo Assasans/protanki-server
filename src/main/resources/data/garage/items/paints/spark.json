@@ -1,21 +1,27 @@
 {
   "id": "spark",
-  "index": 54,
+  "index": 62,
 
-  "name": "Искра",
-  "description": "Феерия света, каскад огней, музыка сфер — это уникальное покрытие можно описывать разными словами, но ни одно из них не отразит полностью его глубину. «Искру» выбирают танкисты, для которых танк — не просто боевая машина, но средство самовыражения.",
+  "name": {
+    "en": "Spark",
+    "ru": "Искра"
+  },
+  "description": {
+    "en": "Fairy lights, stage lights, music of the spheres - this paint can be described using many words, but none of them can ever fully describe it. The «Spark» paint is chosen by those tankers for whom the tank is not only a battle machine, but also a means of expression.",
+    "ru": "Феерия света, каскад огней, музыка сфер — это уникальное покрытие можно описывать разными словами, но ни одно из них не отразит полностью его глубину. «Искру» выбирают танкисты, для которых танк — не просто боевая машина, но средство самовыражения."
+  },
 
   "baseItemId": 184125,
   "previewResourceId": 184125,
 
   "rank": 21,
-  "price": 125000,
+  "price": 116000,
 
   "coloring": 378667,
 
   "properties": [
     { "property": "FIREBIRD_RESISTANCE", "value": 25 },
     { "property": "TWINS_RESISTANCE", "value": 15 },
-    { "property": "RICOCHET_RESISTANCE", "value": 48 }
+    { "property": "RICOCHET_RESISTANCE", "value": 40 }
   ]
 }

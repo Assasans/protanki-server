@@ -2,8 +2,14 @@
   "id": "moonwalker",
   "index": 73,
 
-  "name": "Луноход",
-  "description": "Редкая краска, которую можно было получить лишь в течении трёх дней во время акции «День космонавтики» – с 11 по 13 апреля 2022 года.\n\nТе, кто поймал 6 лунных ящиков и получил эту краску, она остаётся в гараже навсегда.",
+  "name": {
+    "en": "Moonwalker",
+    "ru": "Луноход"
+  },
+  "description": {
+    "en": "A rare paint that could only be obtained for three days during the «Cosmonautics Day promotion» - from April 11 to April 13, 2022.\\n\\nThose who caught 6 moon boxes and received this paint, it remains in the garage forever.",
+    "ru": "Редкая краска, которую можно было получить лишь в течении трёх дней во время акции «День космонавтики» – с 11 по 13 апреля 2022 года.\n\nТе, кто поймал 6 лунных ящиков и получил эту краску, она остаётся в гараже навсегда."
+  },
 
   "baseItemId": 342553,
   "previewResourceId": 342553,

@@ -2,20 +2,26 @@
   "id": "hohloma",
   "index": 57,
 
-  "name": "Хохлома",
-  "description": "Изначально краска «Хохлома» создавалась исключительно для экспорта. Ею покрывались танки, продававшиеся за рубеж, дабы подчеркнуть исконно русское происхождение боевой техники. Теперь «Хохлому» можно достать и на внутреннем рынке, а в конструкторских бюро, по слухам, уже создаётся проект танка-матрёшки.",
+  "name": {
+    "en": "Hohloma",
+    "ru": "Хохлома"
+  },
+  "description": {
+    "en": "A creation whose beauty recalls the skill of Russian artisans, working in tiny workshops with patience and dedication.",
+    "ru": "Изначально краска «Хохлома» создавалась исключительно для экспорта. Ею покрывались танки, продававшиеся за рубеж, дабы подчеркнуть исконно русское происхождение боевой техники. Теперь «Хохлому» можно достать и на внутреннем рынке, а в конструкторских бюро, по слухам, уже создаётся проект танка-матрёшки."
+  },
 
   "baseItemId": 327089,
   "previewResourceId": 327089,
 
   "rank": 18,
-  "price": 80000,
+  "price": 76600,
 
   "coloring": 140028,
 
   "properties": [
-    { "property": "FREEZE_RESISTANCE", "value": 25 },
-    { "property": "RICOCHET_RESISTANCE", "value": 25 },
-    { "property": "SMOKY_RESISTANCE", "value": 35 }
+    { "property": "FREEZE_RESISTANCE", "value": 20 },
+    { "property": "RICOCHET_RESISTANCE", "value": 20 },
+    { "property": "SMOKY_RESISTANCE", "value": 26 }
   ]
 }

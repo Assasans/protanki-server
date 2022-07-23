@@ -1,21 +1,27 @@
 {
   "id": "rustle",
-  "index": 56,
+  "index": 59,
 
-  "name": "Шелест",
-  "description": "Танки не боятся ни жары, ни мороза, поэтому сражения бушуют круглый год. А значит, танкистам требуется маскировка не только для разной местности, но и для всех сезонов. Этот окрас поможет слиться с палой листвой и подосиновиками в осеннем лесу. При условии, что вам удастся заехать на танке в лес...",
+  "name": {
+    "en": "Rustle",
+    "ru": "Шелест"
+  },
+  "description": {
+    "en": "Autumn leaves may rustle beneath your tank's tracks, but your opponents still won't be able to detect you thanks to this paint's unique blend of hues.",
+    "ru": "Танки не боятся ни жары, ни мороза, поэтому сражения бушуют круглый год. А значит, танкистам требуется маскировка не только для разной местности, но и для всех сезонов. Этот окрас поможет слиться с палой листвой и подосиновиками в осеннем лесу. При условии, что вам удастся заехать на танке в лес..."
+  },
 
   "baseItemId": 49564,
   "previewResourceId": 49564,
 
   "rank": 20,
-  "price": 110000,
+  "price": 103000,
 
   "coloring": 60284,
 
   "properties": [
-    { "property": "ISIS_RESISTANCE", "value": 15 },
-    { "property": "FREEZE_RESISTANCE", "value": 30 },
-    { "property": "THUNDER_RESISTANCE", "value": 45 }
+    { "property": "ISIS_RESISTANCE", "value": 12 },
+    { "property": "FREEZE_RESISTANCE", "value": 26 },
+    { "property": "THUNDER_RESISTANCE", "value": 37 }
   ]
 }
