@@ -1,11 +1,11 @@
 {
   "id": "zeus",
+  "index": 65,
+  
   "name": {
     "en": "Zeus",
     "ru": "Зевс"
   },
-
-  "index": 65,
   "description": {
     "en": "Fashioned after the Greek god known for his love of thunderbolts, this paint will signal to your enemies that you're a force not to be taken lightly.",
     "ru": "Краска «Зевс» названа так за свою необычную текстуру. Яркие вспышки молний на вашем танке ослабят бдительность вражеских танков и позволят вам выглядеть круто в любой битве. "
