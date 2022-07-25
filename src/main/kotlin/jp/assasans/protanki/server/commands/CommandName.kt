@@ -301,6 +301,25 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   SelectGarageCategory(CommandCategory.Garage, "showCategory", CommandSide.Client),
   SelectGarageItem(CommandCategory.Garage, "select", CommandSide.Client),
 
+  OpenStore(CommandCategory.Lobby, "show_payment", CommandSide.Server),
+  ClientOpenStore(CommandCategory.Lobby, "show_payment", CommandSide.Client),
+
+  /**
+   * Open the browser with the payment page
+   * @argument {String} itemId - Item ID
+   * @argument {PaymentMethod::key} paymentMethod - Selected payment method
+   */
+  StoreTryBuyItem(CommandCategory.Lobby, "shop_try_buy_item", CommandSide.Server),
+  StoreOpenUrl(CommandCategory.Lobby, "open_shop_url", CommandSide.Client),
+
+  /**
+   * Show successful payment modal window
+   * @argument {Int} crystals - Base crystals count (StoreItemProperties.crystals)
+   * @argument {Int} bonusCrystals - Bonus crystals (StoreItemProperties.bonusCrystals)
+   * @argument {Int} doubleCrystals - Base crystals if user has "Double crystal" subscription (bonus crystals are not counted)
+   */
+  StorePaymentSuccess(CommandCategory.Lobby, "payment_successful", CommandSide.Client),
+
   ;
 
   companion object {

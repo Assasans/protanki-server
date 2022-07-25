@@ -29,6 +29,7 @@ import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
 import jp.assasans.protanki.server.resources.IResourceServer
+import jp.assasans.protanki.server.store.IStoreRegistry
 
 class Server : KoinComponent {
   private val logger = KotlinLogging.logger { }
@@ -40,12 +41,14 @@ class Server : KoinComponent {
   private val marketRegistry by inject<IGarageMarketRegistry>()
   private val mapRegistry by inject<IMapRegistry>()
   private val chatCommandRegistry by inject<IChatCommandRegistry>()
+  private val storeRegistry by inject<IStoreRegistry>()
 
   suspend fun run() {
     logger.info { "Server started" }
 
     mapRegistry.load()
     marketRegistry.load()
+    storeRegistry.load()
 
     val reflections = Reflections("jp.assasans.protanki.server")
 

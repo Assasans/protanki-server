@@ -40,6 +40,10 @@ import jp.assasans.protanki.server.lobby.chat.LobbyChatManager
 import jp.assasans.protanki.server.resources.IResourceServer
 import jp.assasans.protanki.server.resources.ResourceServer
 import jp.assasans.protanki.server.serialization.*
+import jp.assasans.protanki.server.store.IStoreItemConverter
+import jp.assasans.protanki.server.store.IStoreRegistry
+import jp.assasans.protanki.server.store.StoreItemConverter
+import jp.assasans.protanki.server.store.StoreRegistry
 
 suspend fun ByteReadChannel.readAvailable(): ByteArray {
   val data = ByteArrayOutputStream()
@@ -105,6 +109,8 @@ suspend fun main(args: Array<String>) {
     single<IResourceConverter> { ResourceConverter() }
     single<IGarageMarketRegistry> { GarageMarketRegistry() }
     single<IMapRegistry> { MapRegistry() }
+    single<IStoreRegistry> { StoreRegistry() }
+    single<IStoreItemConverter> { StoreItemConverter() }
     single<ILobbyChatManager> { LobbyChatManager() }
     single<IChatCommandRegistry> { ChatCommandRegistry() }
     single<IDamageCalculator> { DamageCalculator() }
@@ -124,6 +130,7 @@ suspend fun main(args: Array<String>) {
         )
         .add(BattleDataJsonAdapterFactory())
         .add(LocalizedStringAdapterFactory())
+        .add(ClientLocalizedStringAdapterFactory())
         .add(KotlinJsonAdapterFactory())
         .add(GarageItemTypeAdapter())
         .add(ResourceTypeAdapter())
@@ -136,6 +143,7 @@ suspend fun main(args: Array<String>) {
         .add(EquipmentConstraintsModeAdapter())
         .add(ChatModeratorLevelAdapter())
         .add(SocketLocaleAdapter())
+        .add(StoreCurrencyAdapter())
         .add(SerializeNull.JSON_ADAPTER_FACTORY)
         .build()
     }
