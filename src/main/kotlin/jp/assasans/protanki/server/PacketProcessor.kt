@@ -18,7 +18,6 @@ class PacketProcessor {
   }
 
   fun tryGetPacket(): String? {
-    val delimiter = Command.Delimiter.toByteArray()
     var endIndex = 0
 
     val packetOutput = PipedOutputStream()
@@ -35,18 +34,14 @@ class PacketProcessor {
 
       packetOutput.write(read)
 
-      // TODO(Assasans): Rewrite
-      if(endIndex == 0 && value == delimiter[0]) endIndex++
-      else if(endIndex == 1 && value == delimiter[1]) endIndex++
-      else if(endIndex == 2 && value == delimiter[2]) endIndex++
-      else if(endIndex == 3 && value == delimiter[3]) endIndex++
+      if(value == Command.Delimiter[endIndex]) endIndex++
       else endIndex = 0
 
-      if(endIndex == 4) {
+      if(endIndex == Command.Delimiter.size) {
         packetOutput.close()
-        val packet = String(packetInput.readAllBytes()).dropLast(Command.Delimiter.length)
+        val packet = String(packetInput.readAllBytes().dropLast(Command.Delimiter.size).toByteArray())
 
-        // logger.trace { "End of packet: $packet" }
+        logger.trace { "End of packet: $packet" }
 
         return packet
       }

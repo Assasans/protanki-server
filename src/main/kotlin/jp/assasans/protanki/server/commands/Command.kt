@@ -8,7 +8,7 @@ class Command {
   private val logger = KotlinLogging.logger { }
 
   companion object {
-    const val Delimiter = "end~"
+    val Delimiter = "end~".toByteArray()
   }
 
   lateinit var name: CommandName
@@ -45,7 +45,7 @@ class Command {
       }
     }
 
-    builder.append(Delimiter)
+    builder.append(Delimiter.decodeToString())
 
     // println("Write command: $builder")
 
