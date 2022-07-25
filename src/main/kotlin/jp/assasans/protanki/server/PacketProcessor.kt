@@ -41,7 +41,7 @@ class PacketProcessor {
         packetOutput.close()
         val packet = String(packetInput.readAllBytes().dropLast(Command.Delimiter.size).toByteArray())
 
-        logger.trace { "End of packet: $packet" }
+        // logger.trace { "End of packet: $packet" }
 
         return packet
       }
