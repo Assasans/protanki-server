@@ -6,8 +6,10 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.HibernateUtils
+import jp.assasans.protanki.server.client.BuyItemResponseData
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
+import jp.assasans.protanki.server.client.toJson
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
@@ -248,6 +250,14 @@ class GarageHandler : ICommandHandler, KoinComponent {
     }
     entityManager.transaction.commit()
     entityManager.close()
+
+    Command(
+      CommandName.BuyItem,
+      BuyItemResponseData(
+        itemId = marketItem.id,
+        count = if(marketItem is ServerGarageItemSupply) count else 1
+      ).toJson()
+    ).send(socket)
 
     socket.updateCrystals()
   }

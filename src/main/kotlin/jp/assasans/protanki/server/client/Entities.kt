@@ -348,3 +348,9 @@ data class AddMineData(
   @Json val y: Double,
   @Json val z: Double
 )
+
+data class BuyItemResponseData(
+  @Json val itemId: String,
+  @Json val count: Int,
+  @Json val addable: Boolean = true
+)

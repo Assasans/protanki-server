@@ -287,6 +287,12 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   InitMountedItem(CommandCategory.Garage, "init_mounted_item", CommandSide.Client),
   InitGarageMarket(CommandCategory.Garage, "init_market", CommandSide.Client),
   TryBuyItem(CommandCategory.Garage, "try_buy_item", CommandSide.Server),
+
+  /**
+   * Sent after successful garage purchase
+   * @argument {Json<BuyItemResponseData>} data - Purchased item information
+   * @note This command is not used on the client side
+   */
   BuyItem(CommandCategory.Garage, "buy_item", CommandSide.Client),
   TryBuyKit(CommandCategory.Garage, "kitBought", CommandSide.Server),
   TryMountItem(CommandCategory.Garage, "try_mount_item", CommandSide.Server),
