@@ -34,4 +34,29 @@ internal class PacketProcessorTest {
       assertNull(packet)
     }
   }
+
+  @Test
+  fun getManyPackets() {
+    fun getPacket(index: Int): String = "test;packet;${index}"
+
+    val times = 10
+    val content = buildString {
+      repeat(times) { index ->
+        append(getPacket(index))
+        append("end~")
+      }
+    }
+
+    packetProcessor.write(content.toByteArray())
+    repeat(times) { index ->
+      packetProcessor.tryGetPacket().let { packet ->
+        assertNotNull(packet)
+        assertEquals(getPacket(index), packet)
+      }
+    }
+
+    packetProcessor.tryGetPacket().let { packet ->
+      assertNull(packet)
+    }
+  }
 }
