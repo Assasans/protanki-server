@@ -17,6 +17,8 @@ import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.extensions.launchDelayed
+import jp.assasans.protanki.server.quests.JoinBattleMapQuest
+import jp.assasans.protanki.server.quests.questOf
 
 /*
 Battle exit:
@@ -168,6 +170,12 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       player.init()
       player.createTank()
+
+      player.user.questOf<JoinBattleMapQuest> { quest -> quest.map == battle.map.name }?.let { quest ->
+        quest.current++
+        socket.updateQuests()
+        quest.updateProgress()
+      }
     }
   }
 

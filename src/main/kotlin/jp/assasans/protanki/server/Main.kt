@@ -37,6 +37,8 @@ import jp.assasans.protanki.server.garage.IGarageItemConverter
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
 import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 import jp.assasans.protanki.server.lobby.chat.LobbyChatManager
+import jp.assasans.protanki.server.quests.IQuestConverter
+import jp.assasans.protanki.server.quests.QuestConverter
 import jp.assasans.protanki.server.resources.IResourceServer
 import jp.assasans.protanki.server.resources.ResourceServer
 import jp.assasans.protanki.server.serialization.*
@@ -114,6 +116,7 @@ suspend fun main(args: Array<String>) {
     single<ILobbyChatManager> { LobbyChatManager() }
     single<IChatCommandRegistry> { ChatCommandRegistry() }
     single<IDamageCalculator> { DamageCalculator() }
+    single<IQuestConverter> { QuestConverter() }
     single {
       Moshi.Builder()
         .add(

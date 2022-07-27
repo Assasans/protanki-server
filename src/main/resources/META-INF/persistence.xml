@@ -17,6 +17,13 @@
     <class>jp.assasans.protanki.server.garage.ServerGarageUserItemSupply</class>
     <class>jp.assasans.protanki.server.garage.ServerGarageUserItemSubscription</class>
 
+    <class>jp.assasans.protanki.server.quests.ServerDailyQuest</class>
+    <class>jp.assasans.protanki.server.quests.ServerDailyQuestReward</class>
+
+    <class>jp.assasans.protanki.server.quests.EarnScoreQuest</class>
+    <class>jp.assasans.protanki.server.quests.EarnScoreOnMapQuest</class>
+    <class>jp.assasans.protanki.server.quests.JoinBattleMapQuest</class>
+
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
       <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect" /> -->

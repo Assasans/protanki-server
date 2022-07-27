@@ -320,6 +320,16 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
    */
   StorePaymentSuccess(CommandCategory.Lobby, "payment_successful", CommandSide.Client),
 
+  OpenQuests(CommandCategory.Lobby, "openQuestWindow", CommandSide.Server),
+  ClientOpenQuests(CommandCategory.Lobby, "showQuestWindow", CommandSide.Client),
+  SkipQuestFree(CommandCategory.Lobby, "skipQuestForFree", CommandSide.Server),
+  SkipQuestPaid(CommandCategory.Lobby, "skipQuestForCrystals", CommandSide.Server),
+  ClientSkipQuest(CommandCategory.Lobby, "skipDailyQuest", CommandSide.Client),
+  NotifyQuestsNew(CommandCategory.Lobby, "notifyDailyQuestGenerated", CommandSide.Client),
+  NotifyQuestCompleted(CommandCategory.Lobby, "notifyDailyQuestCompleted", CommandSide.Client),
+  QuestTakePrize(CommandCategory.Lobby, "takePrize", CommandSide.Server),
+  ClientQuestTakePrize(CommandCategory.Lobby, "takeDailyQuestPrize", CommandSide.Client),
+
   ;
 
   companion object {

@@ -10,3 +10,5 @@ class LocalizedString(
 
   fun get(locale: SocketLocale): String = localized[locale] ?: default
 }
+
+fun Map<SocketLocale, String>.toLocalizedString() = LocalizedString(this)

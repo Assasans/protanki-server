@@ -370,6 +370,7 @@ class UserSocket(
     ).send(this)
 
     loadLobbyResources()
+    updateQuests()
 
     Command(CommandName.EndLayoutSwitch, "BATTLE_SELECT", "BATTLE_SELECT").send(this)
 
@@ -571,6 +572,35 @@ class UserSocket(
 
       loadGarageResources()
       initGarage()
+    }
+  }
+
+  suspend fun updateQuests() {
+    val user = user ?: throw Exception("No User")
+
+    var notifyNew = false
+    user.dailyQuests
+      .filter { quest -> quest.new }
+      .forEach { quest ->
+        quest.new = false
+        quest.updateProgress()
+        notifyNew = true
+      }
+
+    if(notifyNew) {
+      Command(CommandName.NotifyQuestsNew).send(this)
+    }
+
+    var notifyCompleted = false
+    user.dailyQuests
+      .filter { quest -> quest.current >= quest.required && !quest.completed }
+      .forEach { quest ->
+        quest.completed = true
+        notifyCompleted = true
+      }
+
+    if(notifyCompleted) {
+      Command(CommandName.NotifyQuestCompleted).send(this)
     }
   }
 

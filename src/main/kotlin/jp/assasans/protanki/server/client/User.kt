@@ -9,6 +9,7 @@ import jp.assasans.protanki.server.garage.ServerGarageUserItem
 import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
 import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
 import jp.assasans.protanki.server.garage.ServerGarageUserItemWeapon
+import jp.assasans.protanki.server.quests.ServerDailyQuest
 
 @Embeddable
 data class UserEquipment(
@@ -86,7 +87,10 @@ class User(
   @Column(nullable = false) var crystals: Int,
 
   @OneToMany(targetEntity = ServerGarageUserItem::class, mappedBy = "id.user")
-  val items: MutableList<ServerGarageUserItem>
+  val items: MutableList<ServerGarageUserItem>,
+
+  @OneToMany(targetEntity = ServerDailyQuest::class, mappedBy = "user")
+  val dailyQuests: MutableList<ServerDailyQuest>
 ) {
   @AttributeOverride(name = "hullId", column = Column(name = "equipment_hull_id"))
   @AttributeOverride(name = "weaponId", column = Column(name = "equipment_weapon_id"))
