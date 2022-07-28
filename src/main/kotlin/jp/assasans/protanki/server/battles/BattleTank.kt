@@ -20,6 +20,8 @@ import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 import jp.assasans.protanki.server.math.distanceTo
+import jp.assasans.protanki.server.quests.KillEnemyQuest
+import jp.assasans.protanki.server.quests.questOf
 import jp.assasans.protanki.server.toVector
 
 object TankConstants {
@@ -124,6 +126,12 @@ class BattleTank(
         .filter { player -> player.screen == Screen.BattleSelect }
         .filter { player -> player.active }
         .forEach { player -> command.send(player) }
+    }
+
+    player.user.questOf<KillEnemyQuest> { quest -> quest.mode == null || quest.mode == battle.modeHandler.mode }?.let { quest ->
+      quest.current++
+      socket.updateQuests()
+      quest.updateProgress()
     }
   }
 

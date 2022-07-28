@@ -6,6 +6,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
+import jp.assasans.protanki.server.BonusType
 import jp.assasans.protanki.server.HibernateUtils
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
@@ -91,8 +92,8 @@ class AuthHandler : ICommandHandler, KoinComponent {
         }
 
         addQuest(0, JoinBattleMapQuest::class, mapOf("map" to "map_island"))
-        addQuest(1, EarnScoreQuest::class)
-        addQuest(2, EarnScoreOnMapQuest::class, mapOf("map" to "map_kungur"))
+        addQuest(1, DeliverFlagQuest::class)
+        addQuest(2, TakeBonusQuest::class, mapOf("bonus" to BonusType.Gold))
 
         entityManager.transaction.commit()
         entityManager.close()

@@ -5,6 +5,8 @@ import jp.assasans.protanki.server.battles.BattleTank
 import jp.assasans.protanki.server.battles.sendTo
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
+import jp.assasans.protanki.server.quests.TakeBonusQuest
+import jp.assasans.protanki.server.quests.questOf
 
 interface IBonusProcessor {
   val battle: Battle
@@ -38,5 +40,11 @@ class BonusProcessor(
     Command(CommandName.ActivateBonus, bonus.key).sendTo(battle)
 
     bonuses.remove(bonus.id)
+
+    tank.player.user.questOf<TakeBonusQuest> { quest -> quest.bonus == bonus.type }?.let { quest ->
+      quest.current++
+      tank.socket.updateQuests()
+      quest.updateProgress()
+    }
   }
 }

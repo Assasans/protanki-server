@@ -5,6 +5,8 @@ import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.math.Vector3
+import jp.assasans.protanki.server.quests.DeliverFlagQuest
+import jp.assasans.protanki.server.quests.questOf
 import jp.assasans.protanki.server.toVector
 
 abstract class FlagState(val team: BattleTeam)
@@ -65,6 +67,12 @@ class CaptureTheFlagModeHandler(battle: Battle) : TeamModeHandler(battle) {
 
     Command(CommandName.FlagDelivered, flagTeam.key, carrier.id).sendTo(battle)
     updateScores()
+
+    carrier.player.user.questOf<DeliverFlagQuest>()?.let { quest ->
+      quest.current++
+      carrier.socket.updateQuests()
+      quest.updateProgress()
+    }
   }
 
   suspend fun returnFlag(flagTeam: BattleTeam, carrier: BattleTank?) {
