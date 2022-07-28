@@ -21,6 +21,7 @@ class JoinBattleMapQuest(
   completed: Boolean,
 
   rewards: MutableList<ServerDailyQuestReward>,
+
   val map: String
 ) : ServerDailyQuest(
   id, user, questIndex,

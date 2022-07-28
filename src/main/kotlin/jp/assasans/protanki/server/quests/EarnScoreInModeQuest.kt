@@ -1,15 +1,18 @@
 package jp.assasans.protanki.server.quests
 
+import jakarta.persistence.Convert
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
+import jp.assasans.protanki.server.battles.BattleMode
 import jp.assasans.protanki.server.client.SocketLocale
 import jp.assasans.protanki.server.client.User
+import jp.assasans.protanki.server.serialization.database.BattleModeConverter
 import jp.assasans.protanki.server.utils.LocalizedString
 import jp.assasans.protanki.server.utils.toLocalizedString
 
 @Entity
-@DiscriminatorValue("earn_score_map")
-class EarnScoreOnMapQuest(
+@DiscriminatorValue("earn_score_mode")
+class EarnScoreInModeQuest(
   id: Int,
   user: User,
   questIndex: Int,
@@ -22,7 +25,8 @@ class EarnScoreOnMapQuest(
 
   rewards: MutableList<ServerDailyQuestReward>,
 
-  val map: String
+  @Convert(converter = BattleModeConverter::class)
+  val mode: BattleMode
 ) : ServerDailyQuest(
   id, user, questIndex,
   current, required,
@@ -31,7 +35,7 @@ class EarnScoreOnMapQuest(
 ) {
   override val description: LocalizedString
     get() = mapOf(
-      SocketLocale.English to "Earn experience on $map map",
-      SocketLocale.Russian to "Набери опыт на карте $map"
+      SocketLocale.English to "Earn experience in $mode",
+      SocketLocale.Russian to "Набери опыт в режиме $mode"
     ).toLocalizedString()
 }

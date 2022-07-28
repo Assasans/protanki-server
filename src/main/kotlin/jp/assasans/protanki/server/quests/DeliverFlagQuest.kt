@@ -8,8 +8,8 @@ import jp.assasans.protanki.server.utils.LocalizedString
 import jp.assasans.protanki.server.utils.toLocalizedString
 
 @Entity
-@DiscriminatorValue("earn_score_map")
-class EarnScoreOnMapQuest(
+@DiscriminatorValue("deliver_flag")
+class DeliverFlagQuest(
   id: Int,
   user: User,
   questIndex: Int,
@@ -20,9 +20,7 @@ class EarnScoreOnMapQuest(
   new: Boolean,
   completed: Boolean,
 
-  rewards: MutableList<ServerDailyQuestReward>,
-
-  val map: String
+  rewards: MutableList<ServerDailyQuestReward>
 ) : ServerDailyQuest(
   id, user, questIndex,
   current, required,
@@ -31,7 +29,7 @@ class EarnScoreOnMapQuest(
 ) {
   override val description: LocalizedString
     get() = mapOf(
-      SocketLocale.English to "Earn experience on $map map",
-      SocketLocale.Russian to "Набери опыт на карте $map"
+      SocketLocale.English to "Deliver the flags",
+      SocketLocale.Russian to "Доставь флаги"
     ).toLocalizedString()
 }
