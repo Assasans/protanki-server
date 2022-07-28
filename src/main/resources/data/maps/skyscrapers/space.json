@@ -32,13 +32,13 @@
   "skybox": "Space",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "Promotion",
-      "Fence",
-      "Terrain",
-      "Passage",
       "Bush",
-      "Com Build"
+      "Com Build",
+      "Fence",
+      "Industrial Elements",
+      "Passage",
+      "Promotion",
+      "Terrain"
     ],
     "map": { "id": 25692, "version": 1 }
   },

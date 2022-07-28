@@ -32,13 +32,13 @@
   "skybox": "Urban",
   "resources": {
     "proplibs": [
-      "Fence",
-      "Exterior",
-      "Terrain",
-      "Passage",
+      "Com Build",
       "Defense",
+      "Exterior",
+      "Fence",
+      "Passage",
       "Plants",
-      "Com Build"
+      "Terrain"
     ],
     "map": { "id": 838099, "version": 1 }
   },

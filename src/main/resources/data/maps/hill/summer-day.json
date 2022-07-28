@@ -32,10 +32,10 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "Promotion",
-      "Land Tiles",
+      "Bush",
       "Land Rocks",
-      "Bush"
+      "Land Tiles",
+      "Promotion"
     ],
     "map": { "id": 45153, "version": 1 }
   },

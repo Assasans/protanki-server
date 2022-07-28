@@ -32,22 +32,22 @@
   "skybox": "Brazil Night",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "Grass Tiles",
-      "Terrain",
+      "Bush",
+      "Cliffs",
+      "Com Build",
       "Concrete Tiles",
-      "zamin",
-      "Slopes Rises",
-      "Promotion",
+      "Defense",
       "Exterior",
       "Fence",
+      "Grass Tiles",
+      "Industrial Elements",
       "Passage",
-      "Defense",
-      "Cliffs",
+      "Promotion",
+      "Slopes Rises",
+      "Stuffs",
+      "Terrain",
       "Waffle Fence",
-      "Com Build",
-      "Bush",
-      "Stuffs"
+      "zamin"
     ],
     "map": { "id": 609753, "version": 1 }
   },

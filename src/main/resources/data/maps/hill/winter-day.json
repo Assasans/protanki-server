@@ -32,10 +32,10 @@
   "skybox": "Winter",
   "resources": {
     "proplibs": [
-      "Land Rocks Winter",
       "Bush Winter",
-      "Promotion Winter",
-      "Land Tiles Winter"
+      "Land Rocks Winter",
+      "Land Tiles Winter",
+      "Promotion Winter"
     ],
     "map": { "id": 921875, "version": 1 }
   },

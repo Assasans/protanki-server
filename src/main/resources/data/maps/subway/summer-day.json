@@ -32,20 +32,20 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "Hangars",
-      "Desert Houses",
-      "Industrial Bridge",
-      "City Buildings",
-      "Promotion",
-      "Broken Roof",
       "Broken Bottom",
-      "Outer Walls",
-      "Land Tiles",
-      "Waffle Fence",
+      "Broken Roof",
       "Broken Walls",
       "Bush",
-      "Stuffs"
+      "City Buildings",
+      "Desert Houses",
+      "Hangars",
+      "Industrial Bridge",
+      "Industrial Elements",
+      "Land Tiles",
+      "Outer Walls",
+      "Promotion",
+      "Stuffs",
+      "Waffle Fence"
     ],
     "map": { "id": 511431, "version": 1 }
   },

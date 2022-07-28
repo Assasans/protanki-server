@@ -32,11 +32,11 @@
   "skybox": "Mountains Night",
   "resources": {
     "proplibs": [
-      "Promotion",
-      "Outer Walls",
       "Industrial Bridge",
-      "Waffle Fence",
-      "Land Tiles"
+      "Land Tiles",
+      "Outer Walls",
+      "Promotion",
+      "Waffle Fence"
     ],
     "map": { "id": 850881, "version": 1 }
   },

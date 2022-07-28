@@ -32,15 +32,15 @@
   "skybox": "Hills Night",
   "resources": {
     "proplibs": [
-      "Slopes Rises",
-      "Promotion",
-      "Grass Tiles",
-      "Village Builds",
-      "Concrete Walls",
+      "Bush",
       "City Builds",
       "Cliffs",
       "Concrete Tiles",
-      "Bush"
+      "Concrete Walls",
+      "Grass Tiles",
+      "Promotion",
+      "Slopes Rises",
+      "Village Builds"
     ],
     "map": { "id": 336728, "version": 1 }
   },

@@ -34,8 +34,8 @@
     "proplibs": [
       "Concrete Tiles Winter",
       "Concrete Walls Winter",
-      "Slopes Rises Winter",
-      "Promotion Winter"
+      "Promotion Winter",
+      "Slopes Rises Winter"
     ],
     "map": { "id": 626421, "version": 1 }
   },

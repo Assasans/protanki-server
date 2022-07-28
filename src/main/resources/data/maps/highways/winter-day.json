@@ -32,17 +32,17 @@
   "skybox": "Winter",
   "resources": {
     "proplibs": [
-      "Concrete Tiles Winter",
-      "NuBu 2 Winter",
-      "Concrete Walls Winter",
-      "Bush Winter",
-      "Grass Tiles Winter",
-      "Promotion Winter",
-      "Cliffs Winter",
       "Bridge Parts Winter",
+      "Bush Winter",
+      "City Builds Winter",
+      "Cliffs Winter",
+      "Concrete Tiles Winter",
+      "Concrete Walls Winter",
+      "Grass Tiles Winter",
+      "NuBu 2 Winter",
       "NuBu 3 Winter",
       "NuBu 9 Winter",
-      "City Builds Winter"
+      "Promotion Winter"
     ],
     "map": { "id": 901274, "version": 1 }
   },

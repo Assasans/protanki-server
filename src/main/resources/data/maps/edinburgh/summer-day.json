@@ -32,18 +32,18 @@
   "skybox": "Hills",
   "resources": {
     "proplibs": [
-      "Slopes Rises",
-      "Promotion",
-      "Grass Tiles",
-      "Village Builds",
-      "Fachwerk House 1",
-      "Fort",
+      "Bush",
       "City Builds",
       "Cliffs",
       "Concrete Tiles",
+      "Fachwerk House 1",
+      "Fachwerk House 2",
+      "Fort",
+      "Grass Tiles",
+      "Promotion",
+      "Slopes Rises",
       "Small Bridge",
-      "Bush",
-      "Fachwerk House 2"
+      "Village Builds"
     ],
     "map": { "id": 646610, "version": 1 }
   },

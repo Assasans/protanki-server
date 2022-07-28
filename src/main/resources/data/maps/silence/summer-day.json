@@ -32,19 +32,19 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "NuBu 6",
-      "Industrial Bridge",
-      "City Buildings",
-      "Promotion",
-      "Outer Walls",
-      "Land Tiles",
-      "Waffle Fence",
-      "Land Rocks",
       "Broken Walls",
       "Bush",
+      "City Buildings",
+      "Industrial Bridge",
+      "Industrial Elements",
+      "Land Rocks",
+      "Land Tiles",
+      "NuBu 6",
+      "NuBu 9",
+      "Outer Walls",
+      "Promotion",
       "Stuffs",
-      "NuBu 9"
+      "Waffle Fence"
     ],
     "map": { "id": 221358, "version": 1 }
   },

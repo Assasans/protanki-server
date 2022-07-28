@@ -32,17 +32,17 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "NuBu 3",
-      "Promotion",
-      "Grass Tiles",
-      "NuBu 2",
-      "Concrete Walls",
+      "Bridge Parts",
+      "Bush",
       "City Builds",
       "Cliffs",
       "Concrete Tiles",
-      "Bridge Parts",
-      "Bush",
-      "NuBu 9"
+      "Concrete Walls",
+      "Grass Tiles",
+      "NuBu 2",
+      "NuBu 3",
+      "NuBu 9",
+      "Promotion"
     ],
     "map": { "id": 260840, "version": 1 }
   },

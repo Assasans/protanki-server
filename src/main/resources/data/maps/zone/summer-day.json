@@ -32,14 +32,14 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "Promotion",
       "Industrial Bridge",
-      "Trees",
-      "Waffle Fence",
-      "Land Tiles",
+      "Industrial Elements",
       "Land Rocks",
-      "Stuffs"
+      "Land Tiles",
+      "Promotion",
+      "Stuffs",
+      "Trees",
+      "Waffle Fence"
     ],
     "map": { "id": 655320, "version": 1 }
   },

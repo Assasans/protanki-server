@@ -32,11 +32,11 @@
   "skybox": "Space",
   "resources": {
     "proplibs": [
-      "Promotion",
+      "Bush",
+      "Defense",
       "Exterior",
       "Passage",
-      "Defense",
-      "Bush"
+      "Promotion"
     ],
     "map": { "id": 518628, "version": 1 }
   },

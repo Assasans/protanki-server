@@ -32,8 +32,8 @@
   "skybox": "Space",
   "resources": {
     "proplibs": [
-      "Promotion",
-      "Industrial Bridge"
+      "Industrial Bridge",
+      "Promotion"
     ],
     "map": { "id": 15487, "version": 1 }
   },

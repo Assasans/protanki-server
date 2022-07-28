@@ -32,11 +32,11 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "Promotion",
-      "Outer Walls",
       "Industrial Bridge",
+      "Industrial Elements",
       "Land Tiles",
+      "Outer Walls",
+      "Promotion",
       "Stuffs"
     ],
     "map": { "id": 307699, "version": 1 }

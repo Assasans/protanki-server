@@ -32,18 +32,18 @@
   "skybox": "Desert",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "City Buildings",
-      "Promotion",
-      "Outer Walls",
-      "Desert Houses",
-      "NuBu 12",
-      "Waffle Fence",
-      "Land Tiles",
-      "Land Rocks",
       "Bush",
+      "City Buildings",
+      "Desert Houses",
+      "Industrial Elements",
+      "Land Rocks",
+      "Land Tiles",
+      "NuBu 12",
+      "NuBu 9",
+      "Outer Walls",
+      "Promotion",
       "Stuffs",
-      "NuBu 9"
+      "Waffle Fence"
     ],
     "map": { "id": 352046, "version": 1 }
   },

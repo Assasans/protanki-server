@@ -32,10 +32,10 @@
   "skybox": "Iran Winter",
   "resources": {
     "proplibs": [
-      "zamin Winter",
       "kahgel Winter",
+      "kariz Winter",
       "yonje Winter",
-      "kariz Winter"
+      "zamin Winter"
     ],
     "map": { "id": 826788, "version": 1 }
   },

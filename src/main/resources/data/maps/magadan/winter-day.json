@@ -32,13 +32,13 @@
   "skybox": "Winter",
   "resources": {
     "proplibs": [
+      "Bush Winter",
+      "Cliffs Winter",
       "Concrete Tiles Winter",
       "Concrete Walls Winter",
-      "Slopes Rises Winter",
-      "Bush Winter",
       "Grass Tiles Winter",
       "Promotion Winter",
-      "Cliffs Winter"
+      "Slopes Rises Winter"
     ],
     "map": { "id": 576191, "version": 1 }
   },

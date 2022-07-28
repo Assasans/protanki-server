@@ -32,18 +32,18 @@
   "skybox": "Mountains",
   "resources": {
     "proplibs": [
-      "Industrial Elements",
-      "Promotion",
-      "Hangars",
-      "Outer Walls",
-      "Desert Houses",
-      "Industrial Bridge",
-      "Trees",
-      "Waffle Fence",
-      "Land Tiles",
-      "Land Rocks",
       "Bush",
-      "Stuffs"
+      "Desert Houses",
+      "Hangars",
+      "Industrial Bridge",
+      "Industrial Elements",
+      "Land Rocks",
+      "Land Tiles",
+      "Outer Walls",
+      "Promotion",
+      "Stuffs",
+      "Trees",
+      "Waffle Fence"
     ],
     "map": { "id": 879594, "version": 1 }
   },

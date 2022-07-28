@@ -32,12 +32,12 @@
   "skybox": "Hills",
   "resources": {
     "proplibs": [
-      "Slopes Rises",
-      "Promotion",
-      "Concrete Walls",
+      "Bridge Parts",
       "Concrete Tiles",
-      "Small Bridge",
-      "Bridge Parts"
+      "Concrete Walls",
+      "Promotion",
+      "Slopes Rises",
+      "Small Bridge"
     ],
     "map": { "id": 448135, "version": 1 }
   },

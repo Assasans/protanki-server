@@ -32,12 +32,12 @@
   "skybox": "Winter",
   "resources": {
     "proplibs": [
-      "Land Rocks Winter",
+      "City Buildings Winter",
       "Desert Houses Winter",
-      "zamin Winter",
+      "Land Rocks Winter",
       "Land Tiles Winter",
       "NuBu 9 Winter",
-      "City Buildings Winter"
+      "zamin Winter"
     ],
     "map": { "id": 143116, "version": 1 }
   },

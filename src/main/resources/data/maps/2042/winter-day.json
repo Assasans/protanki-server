@@ -32,22 +32,22 @@
   "skybox": "Winter",
   "resources": {
     "proplibs": [
-      "Waffle Fence Winter",
       "Bush Winter",
+      "City Buildings Winter",
+      "Hangars Winter",
       "Industrial Bridge Winter",
       "Industrial Elements Winter",
-      "Land Tiles Winter",
-      "Trees Winter",
-      "NuBu 9 Winter",
       "Land Rise Winter",
-      "NuBu 10 Winter",
-      "Outer Walls Winter",
-      "Hangars Winter",
       "Land Rocks Winter",
-      "Promotion Winter",
+      "Land Tiles Winter",
+      "NuBu 10 Winter",
       "NuBu 3 Winter",
+      "NuBu 9 Winter",
+      "Outer Walls Winter",
+      "Promotion Winter",
       "Stuffs Winter",
-      "City Buildings Winter"
+      "Trees Winter",
+      "Waffle Fence Winter"
     ],
     "map": { "id": 423738, "version": 1 }
   },

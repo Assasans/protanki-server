@@ -32,19 +32,19 @@
   "skybox": "Hills",
   "resources": {
     "proplibs": [
-      "Grass Tiles",
-      "Village Builds",
+      "Bush",
       "City Builds",
+      "Cliffs",
       "Concrete Tiles",
-      "Small Bridge",
-      "Slopes Rises",
-      "Promotion",
-      "NuBu 4",
       "Concrete Walls",
       "Fort",
-      "Cliffs",
-      "Bush",
-      "NuBu 9"
+      "Grass Tiles",
+      "NuBu 4",
+      "NuBu 9",
+      "Promotion",
+      "Slopes Rises",
+      "Small Bridge",
+      "Village Builds"
     ],
     "map": { "id": 457123, "version": 1 }
   },

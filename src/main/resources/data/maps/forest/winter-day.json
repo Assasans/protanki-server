@@ -33,11 +33,11 @@
   "resources": {
     "proplibs": [
       "Bush Winter",
-      "Roadblock Winter",
+      "Cliffs Winter",
       "Grass Tiles Winter",
       "Promotion Winter",
-      "Village Builds Winter",
-      "Cliffs Winter"
+      "Roadblock Winter",
+      "Village Builds Winter"
     ],
     "map": { "id": 19561, "version": 1 }
   },
