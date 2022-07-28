@@ -7,8 +7,8 @@
     "ru": "Повышенный опыт"
   },
   "description": {
-    "en": "Increases XP that you receive by 30%.\n\nLasts 1 day.\n\nAttention, the subscription does not give an advantage in team battles!",
-    "ru": "Увеличивает получаемые очки на 30%.\n\nВремя действия — 1 день.\n\nВнимание, абонемент не даёт преимущества в командных битвах!"
+    "en": "Increases XP that you receive by 30%.\n\nLasts 1 week.\n\nAttention, the subscription does not give an advantage in team battles!",
+    "ru": "Увеличивает получаемые очки на 30%.\n\nВремя действия — 1 неделя.\n\nВнимание, абонемент не даёт преимущества в командных битвах!"
   },
 
   "baseItemId": 102099,
