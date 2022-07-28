@@ -57,16 +57,18 @@ val BattleTeam.opposite: BattleTeam
     }
   }
 
-enum class BattleMode(val key: String) {
-  Deathmatch("DM"),
-  TeamDeathmatch("TDM"),
-  CaptureTheFlag("CTF"),
-  ControlPoints("CP");
+enum class BattleMode(val key: String, val id: Int) {
+  Deathmatch("DM", 1),
+  TeamDeathmatch("TDM", 2),
+  CaptureTheFlag("CTF", 3),
+  ControlPoints("CP", 4);
 
   companion object {
     private val map = values().associateBy(BattleMode::key)
+    private val mapById = values().associateBy(BattleMode::id)
 
     fun get(key: String) = map[key]
+    fun getById(id: Int) = mapById[id]
   }
 }
 

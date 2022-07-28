@@ -48,20 +48,22 @@ data class ServerMapDominationPoint(
   @Json val position: Vector3Data
 )
 
-enum class BonusType(val mapKey: String, val bonusKey: String) {
-  Health("health", "health"),
-  DoubleArmor("double_armor", "armor"),
-  DoubleDamage("double_damage", "damage"),
-  Nitro("nitro", "nitro"),
-  Crystal("crystal", "crystall"),
-  Gold("gold", "gold");
+enum class BonusType(val mapKey: String, val bonusKey: String, val id: Int) {
+  Health("health", "health", 1),
+  DoubleArmor("double_armor", "armor", 2),
+  DoubleDamage("double_damage", "damage", 3),
+  Nitro("nitro", "nitro", 4),
+  Crystal("crystal", "crystall", 5),
+  Gold("gold", "gold", 6);
 
   companion object {
     private val map = values().associateBy(BonusType::mapKey)
     private val mapByBonus = values().associateBy(BonusType::bonusKey)
+    private val mapById = values().associateBy(BonusType::id)
 
     fun get(key: String) = map[key]
     fun getByBonus(key: String) = mapByBonus[key]
+    fun getById(id: Int) = mapById[id]
   }
 }
 
