@@ -17,7 +17,7 @@ class SystemHandler : ICommandHandler {
 
     socket.locale = SocketLocale.get(localeId)
 
-    // awaitDependency can deadlock execution if suspended
+    // ClientDependency.await() can deadlock execution if suspended
     socket.coroutineScope.launch { socket.initClient() }
   }
 
@@ -28,8 +28,7 @@ class SystemHandler : ICommandHandler {
 
   @CommandHandler(CommandName.DependenciesLoaded)
   suspend fun dependenciesLoaded(socket: UserSocket, id: Int) {
-    logger.debug { "Loaded dependency $id" }
-
-    socket.markDependencyLoaded(id)
+    val dependency = socket.dependencies[id] ?: throw IllegalStateException("Dependency $id not found")
+    dependency.loaded()
   }
 }

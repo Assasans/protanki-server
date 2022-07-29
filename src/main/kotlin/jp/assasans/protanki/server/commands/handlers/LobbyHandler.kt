@@ -142,38 +142,32 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       Command(CommandName.InitShotsData, resourceManager.get("shots-data.json").readText()).send(socket)
 
-      socket.awaitDependency(
         socket.loadDependency(
-          ClientResources(
-            battle.map.resources.proplibs
-              .map { proplib ->
-                try {
-                  mapRegistry.getProplib(proplib)
-                } catch(exception: NoSuchElementException) {
-                  throw NoSuchProplibException(proplib, "${battle.map.name}@${battle.map.theme.name}", exception)
-                }
+        ClientResources(
+          battle.map.resources.proplibs
+            .map { proplib ->
+              try {
+                mapRegistry.getProplib(proplib)
+              } catch(exception: NoSuchElementException) {
+                throw NoSuchProplibException(proplib, "${battle.map.name}@${battle.map.theme.name}", exception)
               }
-              .map(ServerProplib::toServerResource)
-              .map(resourceConverter::toClientResource)
-          ).toJson()
-        )
-      )
-      socket.awaitDependency(
-        socket.loadDependency(
-          ClientResources(
-            mapRegistry.getSkybox(battle.map.skybox)
-              .map { (_, resource) -> resource.toServerResource(ResourceType.Image) }
-              .map(resourceConverter::toClientResource)
-          ).toJson()
-        )
-      )
-      socket.awaitDependency(
-        socket.loadDependency(
-          ClientResources(
-            listOf(battle.map.resources.map.toServerResource(ResourceType.Map).toClientResource(resourceConverter))
-          ).toJson()
-        )
-      )
+            }
+            .map(ServerProplib::toServerResource)
+            .map(resourceConverter::toClientResource)
+        ).toJson()
+      ).await()
+      socket.loadDependency(
+        ClientResources(
+          mapRegistry.getSkybox(battle.map.skybox)
+            .map { (_, resource) -> resource.toServerResource(ResourceType.Image) }
+            .map(resourceConverter::toClientResource)
+        ).toJson()
+      ).await()
+      socket.loadDependency(
+        ClientResources(
+          listOf(battle.map.resources.map.toServerResource(ResourceType.Map).toClientResource(resourceConverter))
+        ).toJson()
+      ).await()
 
       player.init()
       player.createTank()
@@ -206,38 +200,32 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       socket.initBattleLoad()
 
-      socket.awaitDependency(
-        socket.loadDependency(
-          ClientResources(
-            battle.map.resources.proplibs
-              .map { proplib ->
-                try {
-                  mapRegistry.getProplib(proplib)
-                } catch(exception: NoSuchElementException) {
-                  throw NoSuchProplibException(proplib, "${battle.map.name}@${battle.map.theme.name}", exception)
-                }
+      socket.loadDependency(
+        ClientResources(
+          battle.map.resources.proplibs
+            .map { proplib ->
+              try {
+                mapRegistry.getProplib(proplib)
+              } catch(exception: NoSuchElementException) {
+                throw NoSuchProplibException(proplib, "${battle.map.name}@${battle.map.theme.name}", exception)
               }
-              .map(ServerProplib::toServerResource)
-              .map(resourceConverter::toClientResource)
-          ).toJson()
-        )
-      )
-      socket.awaitDependency(
-        socket.loadDependency(
-          ClientResources(
-            mapRegistry.getSkybox(battle.map.skybox)
-              .map { (_, resource) -> resource.toServerResource(ResourceType.Image) }
-              .map(resourceConverter::toClientResource)
-          ).toJson()
-        )
-      )
-      socket.awaitDependency(
-        socket.loadDependency(
-          ClientResources(
-            listOf(battle.map.resources.map.toServerResource(ResourceType.Map).toClientResource(resourceConverter))
-          ).toJson()
-        )
-      )
+            }
+            .map(ServerProplib::toServerResource)
+            .map(resourceConverter::toClientResource)
+        ).toJson()
+      ).await()
+      socket.loadDependency(
+        ClientResources(
+          mapRegistry.getSkybox(battle.map.skybox)
+            .map { (_, resource) -> resource.toServerResource(ResourceType.Image) }
+            .map(resourceConverter::toClientResource)
+        ).toJson()
+      ).await()
+      socket.loadDependency(
+        ClientResources(
+          listOf(battle.map.resources.map.toServerResource(ResourceType.Map).toClientResource(resourceConverter))
+        ).toJson()
+      ).await()
 
       player.init()
     }

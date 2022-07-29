@@ -15,7 +15,6 @@ import com.squareup.moshi.Types
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.datetime.Clock
@@ -172,33 +171,24 @@ class UserSocket(
     }
   }
 
-  private val dependenciesChannel: Channel<Int> = Channel(32) // TODO(Assasans)
-  private val loadedDependencies: MutableList<Int> = mutableListOf()
+  val dependencies: MutableMap<Int, ClientDependency> = mutableMapOf()
   private var lastDependencyId = 1
 
-  suspend fun loadDependency(resources: String): Int {
+  // TODO(Assasans): Rename
+  suspend fun loadDependency(resources: String): ClientDependency {
+    val dependency = ClientDependency(
+      id = lastDependencyId++,
+      deferred = CompletableDeferred()
+    )
+    dependencies[dependency.id] = dependency
+
     Command(
       CommandName.LoadResources,
       resources,
-      lastDependencyId.toString()
+      dependency.id.toString()
     ).send(this)
 
-    return lastDependencyId++
-  }
-
-  suspend fun markDependencyLoaded(id: Int) {
-    dependenciesChannel.send(id)
-  }
-
-  suspend fun awaitDependency(id: Int) {
-    if(loadedDependencies.contains(id)) return
-
-    while(true) {
-      val loaded = dependenciesChannel.receive()
-      loadedDependencies.add(loaded)
-
-      if(loaded == id) break
-    }
+    return dependency
   }
 
   private suspend fun processPacket(packet: String) {
@@ -303,14 +293,14 @@ class UserSocket(
         // val packets = String(buffer).split(Command.Delimiter)
 
         // for(packet in packets) {
-        // awaitDependency can deadlock execution if suspended
+        // ClientDependency.await() can deadlock execution if suspended
         //   coroutineScope.launch { processPacket(packet) }
         // }
 
         while(true) {
           val packet = packetProcessor.tryGetPacket() ?: break
 
-          // awaitDependency can deadlock execution if suspended
+          // ClientDependency.await() can deadlock execution if suspended
           coroutineScope.launch { processPacket(packet) }
         }
       }
@@ -328,11 +318,11 @@ class UserSocket(
   }
 
   suspend fun loadGarageResources() {
-    awaitDependency(loadDependency(resourceManager.get("resources/garage.json").readText()))
+    loadDependency(resourceManager.get("resources/garage.json").readText()).await()
   }
 
   suspend fun loadLobbyResources() {
-    awaitDependency(loadDependency(resourceManager.get("resources/lobby.json").readText()))
+    loadDependency(resourceManager.get("resources/lobby.json").readText()).await()
   }
 
   suspend fun loadLobby() {
@@ -397,7 +387,7 @@ class UserSocket(
 
     Command(CommandName.InitLocale, resourceManager.get("lang/${locale.key}.json").readText()).send(this)
 
-    awaitDependency(loadDependency(resourceManager.get("resources/auth.json").readText()))
+    loadDependency(resourceManager.get("resources/auth.json").readText()).await()
     Command(CommandName.MainResourcesLoaded).send(this)
   }
 
