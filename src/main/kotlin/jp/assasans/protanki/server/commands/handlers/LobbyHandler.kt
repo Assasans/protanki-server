@@ -16,6 +16,7 @@ import jp.assasans.protanki.server.battles.map.getSkybox
 import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
+import jp.assasans.protanki.server.exceptions.NoSuchProplibException
 import jp.assasans.protanki.server.extensions.launchDelayed
 import jp.assasans.protanki.server.quests.JoinBattleMapQuest
 import jp.assasans.protanki.server.quests.questOf
@@ -145,7 +146,13 @@ class LobbyHandler : ICommandHandler, KoinComponent {
         socket.loadDependency(
           ClientResources(
             battle.map.resources.proplibs
-              .map(mapRegistry::getProplib)
+              .map { proplib ->
+                try {
+                  mapRegistry.getProplib(proplib)
+                } catch(exception: NoSuchElementException) {
+                  throw NoSuchProplibException(proplib, "${battle.map.name}@${battle.map.theme.name}", exception)
+                }
+              }
               .map(ServerProplib::toServerResource)
               .map(resourceConverter::toClientResource)
           ).toJson()
@@ -203,7 +210,13 @@ class LobbyHandler : ICommandHandler, KoinComponent {
         socket.loadDependency(
           ClientResources(
             battle.map.resources.proplibs
-              .map(mapRegistry::getProplib)
+              .map { proplib ->
+                try {
+                  mapRegistry.getProplib(proplib)
+                } catch(exception: NoSuchElementException) {
+                  throw NoSuchProplibException(proplib, "${battle.map.name}@${battle.map.theme.name}", exception)
+                }
+              }
               .map(ServerProplib::toServerResource)
               .map(resourceConverter::toClientResource)
           ).toJson()

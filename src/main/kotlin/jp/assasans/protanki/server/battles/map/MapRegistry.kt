@@ -7,6 +7,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.*
+import jp.assasans.protanki.server.exceptions.NoSuchProplibException
 
 interface IMapRegistry {
   val skyboxes: MutableMap<String, Map<SkyboxSide, ServerIdResource>>
@@ -76,6 +77,14 @@ class MapRegistry : IMapRegistry, KoinComponent {
           .failOnUnknown()
           .fromJson(entry.readText())!!
 
+        map.resources.proplibs.forEach { proplib ->
+          try {
+            getProplib(proplib)
+          } catch(exception: NoSuchElementException) {
+            throw NoSuchProplibException(proplib, "${map.name}@${map.theme.name}", exception)
+          }
+        }
+
         maps.add(map)
 
         logger.debug { "  > Loaded map ${entry.name} -> ${map.name}@${map.theme.name} (ID: ${map.id}, preview: ${map.preview})" }
@@ -89,7 +98,7 @@ fun IMapRegistry.get(name: String, theme: ServerMapTheme): ServerMapInfo {
 }
 
 fun IMapRegistry.getProplib(name: String): ServerProplib {
-  return proplibs.single { map -> map.name == name }
+  return proplibs.single { proplib -> proplib.name == name }
 }
 
 fun IMapRegistry.getSkybox(name: String): Map<SkyboxSide, ServerIdResource> {
