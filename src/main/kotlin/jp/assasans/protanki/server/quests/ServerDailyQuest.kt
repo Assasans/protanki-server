@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import jp.assasans.protanki.server.HibernateUtils
 import jp.assasans.protanki.server.client.User
+import jp.assasans.protanki.server.extensions.singleOrNullOrThrow
 import jp.assasans.protanki.server.utils.LocalizedString
 
 @Entity
@@ -58,5 +59,5 @@ abstract class ServerDailyQuest(
 
 inline fun <reified T : ServerDailyQuest> User.questOf(predicate: (T) -> Boolean = { true }): T? {
   val quests = dailyQuests.filter { quest -> quest::class == T::class }
-  return quests.singleOrNull { quest -> predicate(quest as T) } as T?
+  return quests.singleOrNullOrThrow { quest -> predicate(quest as T) } as T?
 }
