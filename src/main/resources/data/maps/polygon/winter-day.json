@@ -43,13 +43,13 @@
       "NuBu 3 Winter",
       "NuBu 6 Winter",
       "NuBu 9 Winter",
-      "Outer Walls Winter",
+      "Outer Walls Lair Winter",
       "Promotion Winter",
       "Roadblock Winter",
       "Stuffs Winter",
       "Waffle Fence Winter"
     ],
-    "map": { "id": 547334, "version": 1 }
+    "map": { "id": 547334, "version": 3 }
   },
   "spawnPoints": [
     {

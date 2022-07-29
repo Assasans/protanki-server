@@ -43,13 +43,13 @@
       "NuBu 3",
       "NuBu 6",
       "NuBu 9",
-      "Outer Walls",
+      "Outer Walls Lair",
       "Promotion",
       "Roadblock",
       "Stuffs",
       "Waffle Fence"
     ],
-    "map": { "id": 870959, "version": 1 }
+    "map": { "id": 870959, "version": 3 }
   },
   "spawnPoints": [
     {
