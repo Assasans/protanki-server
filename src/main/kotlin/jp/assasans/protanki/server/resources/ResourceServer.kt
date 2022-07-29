@@ -10,6 +10,7 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
+import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -85,6 +86,11 @@ class ResourceServer : IResourceServer, KoinComponent {
             call.respondOutputStream(contentType) { resource.inputStream().copyTo(this) }
             logger.trace { "Sent resource ${resourceId.id}:${resourceId.version}/$file" }
           }
+        }
+
+        static("/assets") {
+          staticRootFolder = resourceManager.get("assets").toFile()
+          files(".")
         }
       }
     }.start()
