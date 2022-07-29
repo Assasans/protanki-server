@@ -94,7 +94,9 @@ class ResourceServer : IResourceServer, KoinComponent {
 
   private suspend fun downloadOriginal(resourceId: ServerIdResource, file: String): InputStream? {
     return withContext(Dispatchers.IO) {
-      val response = client.get("http://54.36.172.213:8080/resource/${ResourceUtils.encodeId(resourceId).joinToString("/")}/$file")
+      val response = client.get("http://54.36.172.213:8080/resource/${ResourceUtils.encodeId(resourceId).joinToString("/")}/$file") {
+        expectSuccess = false
+      }
 
       if(response.status == HttpStatusCode.OK) {
         logger.debug { "Downloaded original resource: ${resourceId.id}/${resourceId.version}/$file" }
