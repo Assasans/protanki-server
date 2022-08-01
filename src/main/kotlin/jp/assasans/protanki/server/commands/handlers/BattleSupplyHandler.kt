@@ -4,10 +4,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import jp.assasans.protanki.server.battles.BattleProperty
-import jp.assasans.protanki.server.battles.effect.DoubleArmorEffect
-import jp.assasans.protanki.server.battles.effect.DoubleDamageEffect
-import jp.assasans.protanki.server.battles.effect.MineEffect
-import jp.assasans.protanki.server.battles.effect.NitroEffect
+import jp.assasans.protanki.server.battles.effect.*
 import jp.assasans.protanki.server.client.UserSocket
 import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.commands.Command
@@ -25,7 +22,7 @@ class BattleSupplyHandler : ICommandHandler, KoinComponent {
     val tank = player.tank ?: throw Exception("No Tank")
 
     val effect = when(item) {
-      "health"        -> null
+      "health"        -> RepairKitEffect(tank)
       "armor"         -> DoubleArmorEffect(tank)
       "double_damage" -> DoubleDamageEffect(tank)
       "n2o"           -> NitroEffect(tank)
