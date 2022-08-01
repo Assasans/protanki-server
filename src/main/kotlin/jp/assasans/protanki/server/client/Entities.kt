@@ -259,7 +259,15 @@ data class UpdatePlayerStatisticsData(
 )
 
 data class InitEffectsData(
-  @Json val effects: List<Any> = listOf() // TODO(Assasans)
+  @Json val effects: List<TankEffectData>
+)
+
+data class TankEffectData(
+  @Json val userID: String,
+  @Json val itemIndex: Int,
+  @Json val durationTime: Long,
+  @Json val activeAfterDeath: Boolean = false,
+  @Json val effectLevel: Int = 0
 )
 
 data class SpawnTankData(

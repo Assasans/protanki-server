@@ -9,6 +9,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.ISocketServer
 import jp.assasans.protanki.server.battles.bonus.BattleBonus
+import jp.assasans.protanki.server.battles.effect.TankEffect
+import jp.assasans.protanki.server.battles.effect.toTankEffectData
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.getSkybox
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
@@ -298,7 +300,11 @@ class BattlePlayer(
 
     Command(
       CommandName.InitEffects,
-      InitEffectsData().toJson()
+      InitEffectsData(
+        effects = battle.players.users()
+          .mapNotNull { player -> player.tank }
+          .flatMap { tank -> tank.effects.map(TankEffect::toTankEffectData) }
+      ).toJson()
     ).send(socket)
 
     val tank = tank
