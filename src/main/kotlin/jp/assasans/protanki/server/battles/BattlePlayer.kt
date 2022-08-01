@@ -189,6 +189,7 @@ class BattlePlayer(
         timeLimit = 600,
         currTime = 212,
         team = team != BattleTeam.None,
+        parkourMode = battle.properties[BattleProperty.ParkourMode],
         battleType = battle.modeHandler.mode,
         users = battle.players.users().map { player ->
           GuiUserData(
@@ -296,6 +297,16 @@ class BattlePlayer(
       logger.info { "Load stage 2" }
 
       updateStats()
+
+      if(battle.properties[BattleProperty.ParkourMode]) {
+        socket.sendBattleChat(buildString {
+          appendLine("This battle was created in parkour mode.")
+          appendLine("The battle properties have been changed:")
+          appendLine("  - DamageEnabled: false")
+          appendLine("  - InstantSelfDestruct: true")
+          appendLine("  - SuppliesCooldownEnabled: false")
+        })
+      }
     }
 
     Command(

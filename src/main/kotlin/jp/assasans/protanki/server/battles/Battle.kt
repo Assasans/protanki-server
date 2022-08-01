@@ -122,7 +122,8 @@ class Battle(
         minRank = 1,
         maxRank = 30,
         preview = map.preview,
-        users = players.users().map { player -> player.user.username }
+        parkourMode = properties[BattleProperty.ParkourMode],
+        users = players.users().map { player -> player.user.username },
       )
       is TeamModeHandler       -> TeamBattleData(
         battleId = id,
@@ -133,6 +134,7 @@ class Battle(
         minRank = 1,
         maxRank = 30,
         preview = map.preview,
+        parkourMode = properties[BattleProperty.ParkourMode],
         usersRed = players
           .users()
           .filter { player -> player.team == BattleTeam.Red }
@@ -168,6 +170,7 @@ class Battle(
         withoutCrystals = false,
         withoutSupplies = false,
         reArmorEnabled = true,
+        parkourMode = properties[BattleProperty.ParkourMode],
         users = players.users().map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
       ).toJson()
       is TeamModeHandler       -> ShowTeamBattleInfoData(
@@ -186,6 +189,7 @@ class Battle(
         withoutCrystals = false,
         withoutSupplies = false,
         reArmorEnabled = true,
+        parkourMode = properties[BattleProperty.ParkourMode],
         usersRed = players
           .users()
           .filter { player -> player.team == BattleTeam.Red }

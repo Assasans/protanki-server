@@ -352,6 +352,12 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       map = mapRegistry.get(data.mapId, ServerMapTheme.getByClient(data.theme) ?: throw Exception("Unknown theme: ${data.theme}")),
       modeHandlerBuilder = handler
     )
+    if(data.parkourMode) {
+      battle.properties[BattleProperty.ParkourMode] = true
+      battle.properties[BattleProperty.DamageEnabled] = false
+      battle.properties[BattleProperty.InstantSelfDestruct] = true
+      battle.properties[BattleProperty.SuppliesCooldownEnabled] = false
+    }
 
     battleProcessor.battles.add(battle)
 

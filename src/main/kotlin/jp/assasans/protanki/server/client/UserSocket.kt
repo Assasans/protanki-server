@@ -734,7 +734,7 @@ abstract class ShowBattleInfoData(
   @Json val userPaidNoSuppliesBattle: Boolean = false,
   @Json val proBattleTimeLeftInSec: Int = -1,
   @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
-  @Json val parkourMode: Boolean = false
+  @Json val parkourMode: Boolean
 )
 
 class ShowTeamBattleInfoData(
@@ -759,7 +759,7 @@ class ShowTeamBattleInfoData(
   userPaidNoSuppliesBattle: Boolean = false,
   proBattleTimeLeftInSec: Int = -1,
   equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
-  parkourMode: Boolean = false,
+  parkourMode: Boolean,
 
   @Json val usersRed: List<BattleUser>,
   @Json val usersBlue: List<BattleUser>,
@@ -816,7 +816,7 @@ class ShowDmBattleInfoData(
   userPaidNoSuppliesBattle: Boolean = false,
   proBattleTimeLeftInSec: Int = -1,
   equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
-  parkourMode: Boolean = false,
+  parkourMode: Boolean,
 
   @Json val users: List<BattleUser>,
 ) : ShowBattleInfoData(
@@ -856,7 +856,7 @@ abstract class BattleData(
   @Json val maxRank: Int,
   @Json val preview: Int,
   @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
-  @Json val parkourMode: Boolean = false,
+  @Json val parkourMode: Boolean,
   @Json val suspicious: Boolean = false
 )
 
@@ -872,7 +872,7 @@ class DmBattleData(
   maxRank: Int,
   preview: Int,
   equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
-  parkourMode: Boolean = false,
+  parkourMode: Boolean,
   suspicious: Boolean = false,
 
   @Json val users: List<String>
@@ -904,7 +904,7 @@ class TeamBattleData(
   maxRank: Int,
   preview: Int,
   equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
-  parkourMode: Boolean = false,
+  parkourMode: Boolean,
   suspicious: Boolean = false,
 
   @Json val usersRed: List<String>,
