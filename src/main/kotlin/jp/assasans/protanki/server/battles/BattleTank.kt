@@ -6,6 +6,7 @@ import kotlinx.coroutines.cancel
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlin.math.floor
 import jp.assasans.protanki.server.ISocketServer
 import jp.assasans.protanki.server.battles.effect.TankEffect
 import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
@@ -38,7 +39,8 @@ class BattleTank(
   val hull: ServerGarageUserItemHull,
   val weapon: WeaponHandler,
   val coloring: ServerGarageUserItemPaint,
-  var health: Double = TankConstants.MAX_HEALTH
+  var maxHealth: Double = 4000.0, // TODO(Assasans): Load from config
+  var health: Double = 4000.0
 ) : ITickHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
@@ -55,6 +57,9 @@ class BattleTank(
   val effects: MutableList<TankEffect> = mutableListOf()
 
   var selfDestructing: Boolean = false
+
+  private val clientHealth: Int
+    get() = floor((health / maxHealth) * TankConstants.MAX_HEALTH).toInt()
 
   suspend fun activate() {
     if(state == TankState.Active) return
@@ -255,10 +260,12 @@ class BattleTank(
   }
 
   suspend fun updateHealth() {
+    logger.debug { "Updating health for tank $id (player: ${player.user.username}): $health HP / $maxHealth HP -> $clientHealth" }
+
     Command(
       CommandName.ChangeHealth,
       id,
-      health.toString()
+      clientHealth.toString()
     ).apply {
       send(this@BattleTank)
       sendTo(battle, SendTarget.Spectators)

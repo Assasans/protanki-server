@@ -73,9 +73,8 @@ class DamageProcessor(
 
   override suspend fun dealDamage(target: BattleTank, damage: Double, isCritical: Boolean): DamageType {
     var damageType = if(isCritical) DamageType.Critical else DamageType.Normal
-    val healthDamage = damage * 30 // TODO(Assasans)
 
-    target.health = (target.health - healthDamage).coerceAtLeast(0.0)
+    target.health = (target.health - damage).coerceIn(0.0, target.maxHealth)
     target.updateHealth()
     if(target.health <= 0.0) {
       damageType = DamageType.Kill
@@ -91,9 +90,7 @@ class DamageProcessor(
   }
 
   override suspend fun heal(target: BattleTank, heal: Double) {
-    val healthChange = heal * 30 // TODO(Assasans)
-
-    target.health = (target.health + healthChange).coerceAtMost(TankConstants.MAX_HEALTH)
+    target.health = (target.health + heal).coerceIn(0.0, target.maxHealth)
     target.updateHealth()
   }
 }
