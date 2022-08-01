@@ -25,6 +25,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.java.KoinJavaComponent
+import kotlinx.coroutines.CancellationException
 import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.bonus.BattleBonus
@@ -124,8 +125,6 @@ class UserSocket(
       player.battle.players.remove(player)
     }
 
-    coroutineScope.cancel()
-
     server.players.remove(this)
 
     withContext(Dispatchers.IO) {
@@ -137,6 +136,8 @@ class UserSocket(
         }
       }
     }
+
+    coroutineScope.cancel()
   }
 
   suspend fun send(command: Command) {
@@ -308,7 +309,9 @@ class UserSocket(
       logger.debug { "$remoteAddress end of data" }
 
       deactivate()
-    } catch(exception: Throwable) {
+    } catch(exception: CancellationException) {
+      logger.debug(exception) { "$remoteAddress coroutine cancelled" }
+    } catch(exception: Exception) {
       logger.error(exception) { "An exception occurred" }
 
       // withContext(Dispatchers.IO) {
