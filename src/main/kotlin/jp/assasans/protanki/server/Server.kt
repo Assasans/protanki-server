@@ -9,7 +9,9 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleProperty
@@ -45,13 +47,16 @@ class Server : KoinComponent {
   private val storeRegistry by inject<IStoreRegistry>()
 
   suspend fun run() {
-    logger.info { "Server started" }
+    logger.info { "Starting server..." }
 
     processNetworking.run()
     ServerStartingMessage().send()
-    mapRegistry.load()
-    marketRegistry.load()
-    storeRegistry.load()
+
+    coroutineScope {
+      launch { mapRegistry.load() }
+      launch { marketRegistry.load() }
+      launch { storeRegistry.load() }
+    }
 
     val reflections = Reflections("jp.assasans.protanki.server")
 
@@ -427,22 +432,33 @@ class Server : KoinComponent {
       }
     }
 
-    HibernateUtils.createEntityManager().close() // Initialize database
+    coroutineScope {
+      launch { HibernateUtils.createEntityManager().close() } // Initialize database
+      launch { resourceServer.run() }
 
-    resourceServer.run()
+      socketServer.run()
 
-    ServerStartedMessage().send()
-    processNetworking.events.onEach { event ->
-      // logger.debug { "[IPC] Received event: $event" }
-      when(event) {
-        // TODO(Assasans)
-        is ServerStopRequest -> logger.info { "[IPC] Stopping server..." }
+      processNetworking.events.onEach { event ->
+        // logger.debug { "[IPC] Received event: $event" }
+        when(event) {
+          // TODO(Assasans)
+          is ServerStopRequest -> {
+            logger.info { "[IPC] Stopping server..." }
 
-        else                 -> logger.info { "[IPC] Unknown event: ${event::class.simpleName}" }
-      }
+            // TODO(Assasans)
+            GlobalScope.launch { stop() }
+          }
+
+          else                 -> logger.info { "[IPC] Unknown event: ${event::class.simpleName}" }
+        }
+      }.launchIn(this)
     }
 
-    socketServer.run() // TODO(Assasans): ISocketServer.start() is blocking
-    ServerStopResponse().send()
+    ServerStartedMessage().send()
+    logger.info { "Server started" }
+  }
+
+  suspend fun stop() {
+    TODO("Not yet implemented")
   }
 }
