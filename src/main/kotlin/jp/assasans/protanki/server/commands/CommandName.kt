@@ -28,6 +28,8 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
 
   Error(CommandCategory.Lobby, "error", CommandSide.Server),
 
+  ShowServerStop(CommandCategory.Lobby, "server_halt", CommandSide.Client),
+
   InitPremium(CommandCategory.Lobby, "init_premium", CommandSide.Client),
   InitPanel(CommandCategory.Lobby, "init_panel", CommandSide.Client),
   ShowAchievements(CommandCategory.Lobby, "show_achievements", CommandSide.Client),

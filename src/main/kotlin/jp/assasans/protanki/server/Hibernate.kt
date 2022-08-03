@@ -7,4 +7,5 @@ object HibernateUtils {
   private val entityManagerFactory = Persistence.createEntityManagerFactory("jp.assasans.protanki.server")
 
   fun createEntityManager(): EntityManager = entityManagerFactory.createEntityManager()
+  fun close() = entityManagerFactory.close()
 }

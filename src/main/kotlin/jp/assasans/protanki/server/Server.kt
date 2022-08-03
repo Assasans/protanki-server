@@ -10,6 +10,7 @@ import org.koin.core.component.inject
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,6 +24,7 @@ import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
+import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
@@ -45,6 +47,8 @@ class Server : KoinComponent {
   private val mapRegistry by inject<IMapRegistry>()
   private val chatCommandRegistry by inject<IChatCommandRegistry>()
   private val storeRegistry by inject<IStoreRegistry>()
+
+  private var networkingEventsJob: Job? = null
 
   suspend fun run() {
     logger.info { "Starting server..." }
@@ -430,35 +434,58 @@ class Server : KoinComponent {
           reply("Added $amount crystals to ${user.username}")
         }
       }
+
+      command("stop") {
+        handler {
+          reply("Stopping server...")
+          jp.assasans.protanki.server.commands.Command(CommandName.ShowServerStop).let { command ->
+            socketServer.players.forEach { player -> player.send(command) }
+          }
+
+          // TODO(Assasans)
+          GlobalScope.launch { stop() }
+        }
+      }
     }
 
     coroutineScope {
       launch { HibernateUtils.createEntityManager().close() } // Initialize database
       launch { resourceServer.run() }
 
-      socketServer.run()
+      socketServer.run(this)
 
-      processNetworking.events.onEach { event ->
+      networkingEventsJob = processNetworking.events.onEach { event ->
         // logger.debug { "[IPC] Received event: $event" }
         when(event) {
           // TODO(Assasans)
           is ServerStopRequest -> {
             logger.info { "[IPC] Stopping server..." }
-
-            // TODO(Assasans)
-            GlobalScope.launch { stop() }
+            GlobalScope.launch { stop() } // TODO(Assasans)
           }
 
           else                 -> logger.info { "[IPC] Unknown event: ${event::class.simpleName}" }
         }
       }.launchIn(this)
-    }
 
-    ServerStartedMessage().send()
-    logger.info { "Server started" }
+      ServerStartedMessage().send()
+      logger.info { "Server started" }
+    }
   }
 
   suspend fun stop() {
-    TODO("Not yet implemented")
+    networkingEventsJob?.cancel()
+    coroutineScope {
+      launch { socketServer.stop() }
+      launch { resourceServer.stop() }
+      launch { HibernateUtils.close() }
+    }
+
+    // Prevent exit before sending IPC message
+    coroutineScope {
+      launch {
+        ServerStopResponse().send()
+        processNetworking.close()
+      }
+    }
   }
 }

@@ -61,5 +61,8 @@ class WebSocketNetworking(val url: String) : IProcessNetworking, KoinComponent {
 
   override suspend fun close() {
     socket?.close()
+    client.close()
+
+    logger.info { "Stopped IPC client" }
   }
 }

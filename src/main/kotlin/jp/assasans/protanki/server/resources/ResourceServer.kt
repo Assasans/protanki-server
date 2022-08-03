@@ -28,6 +28,7 @@ import jp.assasans.protanki.server.utils.ResourceUtils
 
 interface IResourceServer {
   suspend fun run()
+  suspend fun stop()
 }
 
 class ResourceServer : IResourceServer, KoinComponent {
@@ -36,6 +37,8 @@ class ResourceServer : IResourceServer, KoinComponent {
   private val resourceManager: IResourceManager by inject()
 
   private val originalPackName = "original"
+
+  private lateinit var engine: ApplicationEngine
 
   val client = HttpClient(CIO) {
     install(DefaultRequest) {
@@ -46,7 +49,7 @@ class ResourceServer : IResourceServer, KoinComponent {
   }
 
   override suspend fun run() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+    engine = embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
       routing {
         route("/resource") {
           get("{id1}/{id2}/{id3}/{id4}/{version}/{file}") {
@@ -138,4 +141,12 @@ class ResourceServer : IResourceServer, KoinComponent {
     |</body>
     |</html>
   """.trimMargin()
+
+  override suspend fun stop() {
+    logger.debug { "Stopping Ktor engine..." }
+    engine.stop(2000, 3000)
+    client.close()
+
+    logger.info { "Stopped resource server" }
+  }
 }

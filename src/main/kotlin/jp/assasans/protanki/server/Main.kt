@@ -4,7 +4,6 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.option
 import java.io.ByteArrayOutputStream
 import java.nio.file.Paths
-import kotlin.coroutines.coroutineContext
 import kotlin.io.path.absolute
 import kotlin.reflect.KClass
 import com.squareup.moshi.Moshi
@@ -21,6 +20,7 @@ import org.koin.dsl.module
 import org.koin.logger.SLF4JLogger
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
+import kotlinx.coroutines.CancellationException
 import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.DamageCalculator
 import jp.assasans.protanki.server.battles.IBattleProcessor
@@ -70,7 +70,8 @@ suspend fun ByteReadChannel.readAvailable(): ByteArray {
 interface ISocketServer {
   val players: MutableList<UserSocket>
 
-  suspend fun run()
+  suspend fun run(scope: CoroutineScope)
+  suspend fun stop()
 }
 
 class SocketServer : ISocketServer {
@@ -80,24 +81,43 @@ class SocketServer : ISocketServer {
 
   private lateinit var server: ServerSocket
 
-  override suspend fun run() {
+  private var acceptJob: Job? = null
+
+  override suspend fun run(scope: CoroutineScope) {
     server = aSocket(ActorSelectorManager(Dispatchers.IO))
       .tcp()
       .bind(InetSocketAddress("0.0.0.0", 1337))
 
     logger.info { "Started TCP server on ${server.localAddress}" }
 
-    val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
+    acceptJob = scope.launch {
+      try {
+        val coroutineScope = CoroutineScope(scope.coroutineContext + SupervisorJob())
 
-    while(true) {
-      val tcpSocket = server.accept()
-      val socket = UserSocket(coroutineContext, tcpSocket)
-      players.add(socket)
+        while(true) {
+          val tcpSocket = server.accept()
+          val socket = UserSocket(coroutineContext, tcpSocket)
+          players.add(socket)
 
-      println("Socket accepted: ${socket.remoteAddress}")
+          println("Socket accepted: ${socket.remoteAddress}")
 
-      coroutineScope.launch { socket.handle() }
+          coroutineScope.launch { socket.handle() }
+        }
+      } catch(exception: CancellationException) {
+        logger.debug { "Client accept job cancelled" }
+      } catch(exception: Exception) {
+        logger.error(exception) { "Exception in client accept loop" }
+      }
     }
+  }
+
+  override suspend fun stop() {
+    // TODO(Assasans): Hack to prevent ConcurrentModificationException
+    players.toList().forEach { player -> player.deactivate() }
+    acceptJob?.cancel()
+    withContext(Dispatchers.IO) { server.close() }
+
+    logger.info { "Stopped game server" }
   }
 }
 
