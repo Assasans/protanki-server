@@ -240,7 +240,7 @@ data class InitTankData(
   @Json val power: Double,
   @Json val dampingCoeff: Int,
   @Json val turret_turn_speed: Double,
-  @Json val health: Double,
+  @Json val health: Int,
   @Json val rank: Int = 4,
   @Json val kickback: Double,
   @Json val turretTurnAcceleration: Double,
@@ -272,7 +272,7 @@ data class TankEffectData(
 
 data class SpawnTankData(
   @Json val tank_id: String,
-  @Json val health: Double,
+  @Json val health: Int,
   @Json val speed: Double,
   @Json val turn_speed: Double,
   @Json val turret_rotation_speed: Double,

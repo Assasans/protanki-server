@@ -58,7 +58,7 @@ class BattleTank(
 
   var selfDestructing: Boolean = false
 
-  private val clientHealth: Int
+  val clientHealth: Int
     get() = floor((health / maxHealth) * TankConstants.MAX_HEALTH).toInt()
 
   suspend fun activate() {
@@ -192,7 +192,7 @@ class BattleTank(
           nickname = this.player.user.username,
           team_type = this.player.team,
           state = state.tankInitKey,
-          health = health,
+          health = clientHealth,
 
           // Hull physics
           maxSpeed = hull.modification.physics.speed,
@@ -235,7 +235,7 @@ class BattleTank(
       CommandName.SpawnTank,
       SpawnTankData(
         tank_id = id,
-        health = health,
+        health = clientHealth,
         incration_id = player.incarnation,
         team_type = player.team,
         x = position.x,
