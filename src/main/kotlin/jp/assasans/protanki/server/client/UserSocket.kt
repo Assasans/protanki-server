@@ -94,7 +94,7 @@ class UserSocket(
   val battleJoinLock: Semaphore = Semaphore(1)
   // private val sendQueue: Queue<Command> = LinkedList()
 
-  val coroutineScope = CoroutineScope(coroutineContext)
+  val coroutineScope = CoroutineScope(coroutineContext + SupervisorJob())
 
   val remoteAddress: SocketAddress = socket.remoteAddress
 

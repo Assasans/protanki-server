@@ -32,6 +32,7 @@ dependencies {
   implementation("io.ktor:ktor-server-netty:2.0.0-beta-1")
   implementation("io.ktor:ktor-client-core:2.0.0-beta-1")
   implementation("io.ktor:ktor-client-cio:2.0.0-beta-1")
+  implementation("io.ktor:ktor-client-websockets:2.0.0-beta-1")
 
   val koinVersion = "3.1.5"
 
@@ -59,6 +60,8 @@ dependencies {
 
   implementation("ch.qos.logback:logback-classic:1.2.11")
   implementation("io.github.microutils:kotlin-logging:2.1.21")
+
+  implementation("com.github.ajalt.clikt:clikt:3.5.0")
 
   testImplementation(kotlin("test"))
 }

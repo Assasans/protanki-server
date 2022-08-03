@@ -9,6 +9,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.BattleTeam
@@ -23,6 +25,7 @@ import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
+import jp.assasans.protanki.server.ipc.*
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
 import jp.assasans.protanki.server.resources.IResourceServer
@@ -31,6 +34,7 @@ import jp.assasans.protanki.server.store.IStoreRegistry
 class Server : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
+  private val processNetworking by inject<IProcessNetworking>()
   private val socketServer by inject<ISocketServer>()
   private val resourceServer by inject<IResourceServer>()
   private val commandRegistry by inject<ICommandRegistry>()
@@ -43,6 +47,8 @@ class Server : KoinComponent {
   suspend fun run() {
     logger.info { "Server started" }
 
+    processNetworking.run()
+    ServerStartingMessage().send()
     mapRegistry.load()
     marketRegistry.load()
     storeRegistry.load()
@@ -424,6 +430,19 @@ class Server : KoinComponent {
     HibernateUtils.createEntityManager().close() // Initialize database
 
     resourceServer.run()
-    socketServer.run()
+
+    ServerStartedMessage().send()
+    processNetworking.events.onEach { event ->
+      // logger.debug { "[IPC] Received event: $event" }
+      when(event) {
+        // TODO(Assasans)
+        is ServerStopRequest -> logger.info { "[IPC] Stopping server..." }
+
+        else                 -> logger.info { "[IPC] Unknown event: ${event::class.simpleName}" }
+      }
+    }
+
+    socketServer.run() // TODO(Assasans): ISocketServer.start() is blocking
+    ServerStopResponse().send()
   }
 }
