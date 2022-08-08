@@ -37,7 +37,7 @@ class BattlePlayer(
   var score: Int = 0,
   var kills: Int = 0,
   var deaths: Int = 0
-) : ITickHandler, KoinComponent {
+) : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val mapRegistry: IMapRegistry by inject()

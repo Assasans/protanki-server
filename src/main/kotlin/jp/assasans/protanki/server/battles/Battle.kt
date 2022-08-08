@@ -16,10 +16,6 @@ import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 
-interface ITickHandler {
-  suspend fun tick() {}
-}
-
 enum class TankState {
   Dead,
   Respawn,
@@ -93,7 +89,7 @@ class Battle(
   var map: ServerMapInfo,
   var fund: Int = 1337228,
   modeHandlerBuilder: BattleModeHandlerBuilder
-) : ITickHandler {
+) {
   companion object {
     fun generateId(): String = Random.nextULong().toString(16)
   }
@@ -240,16 +236,9 @@ class Battle(
 
     return count
   }
-
-  override suspend fun tick() {
-    players.forEach { player ->
-      logger.trace { "Running tick handler for player ${player.user.username}" }
-      player.tick()
-    }
-  }
 }
 
-interface IBattleProcessor : ITickHandler {
+interface IBattleProcessor {
   val battles: MutableList<Battle>
 
   fun getBattle(id: String): Battle?
@@ -261,11 +250,4 @@ class BattleProcessor : IBattleProcessor {
   override val battles: MutableList<Battle> = mutableListOf()
 
   override fun getBattle(id: String): Battle? = battles.singleOrNull { battle -> battle.id == id }
-
-  override suspend fun tick() {
-    battles.forEach { battle ->
-      logger.trace { "Running tick handler for battle ${battle.id}" }
-      battle.tick()
-    }
-  }
 }

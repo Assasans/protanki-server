@@ -41,7 +41,7 @@ class BattleTank(
   val coloring: ServerGarageUserItemPaint,
   var maxHealth: Double = 4000.0, // TODO(Assasans): Load from config
   var health: Double = 4000.0
-) : ITickHandler, KoinComponent {
+) : KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val server: ISocketServer by inject()
