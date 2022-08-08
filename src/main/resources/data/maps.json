@@ -200,6 +200,14 @@
     "minRank": 4, "supportedModes": [ "DM", "TDM", "CTF", "CP" ], "theme": "WINTER"
   },
   {
+    "enabled": true, "mapId": "map_trains", "mapName": "Вокзал", "maxPeople": 14, "preview": 323193, "maxRank": 30,
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
+  },
+  {
+    "enabled": true, "mapId": "map_trains", "mapName": "Вокзал", "maxPeople": 14, "preview": 224984, "maxRank": 30,
+    "minRank": 5, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "WINTER"
+  },
+  {
     "enabled": true, "mapId": "map_canyon", "mapName": "Каньон", "maxPeople": 12, "preview": 283991, "maxRank": 30,
     "minRank": 11, "supportedModes": [ "DM", "TDM", "CTF" ], "theme": "SUMMER"
   },
