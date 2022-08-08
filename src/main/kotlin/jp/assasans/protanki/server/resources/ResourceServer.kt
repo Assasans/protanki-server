@@ -51,44 +51,42 @@ class ResourceServer : IResourceServer, KoinComponent {
   override suspend fun run() {
     engine = embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
       routing {
-        route("/resource") {
-          get("{id1}/{id2}/{id3}/{id4}/{version}/{file}") {
-            val resourceId = ResourceUtils.decodeId(
-              listOf(
-                call.parameters["id1"]!!, call.parameters["id2"]!!, call.parameters["id3"]!!, call.parameters["id4"]!!,
-                call.parameters["version"]!!
-              )
+        get("/{id1}/{id2}/{id3}/{id4}/{version}/{file}") {
+          val resourceId = ResourceUtils.decodeId(
+            listOf(
+              call.parameters["id1"]!!, call.parameters["id2"]!!, call.parameters["id3"]!!, call.parameters["id4"]!!,
+              call.parameters["version"]!!
             )
-            val file = call.parameters["file"]!!
+          )
+          val file = call.parameters["file"]!!
 
-            val resource = resourceManager.get("static/$originalPackName/${resourceId.id}/${resourceId.version}/$file")
-            if(resource.notExists()) {
-              val stream = downloadOriginal(resourceId, file)
-              if(stream == null) {
-                call.response.status(HttpStatusCode.NotFound)
-                call.respondText(ContentType.Text.Html) { getNotFoundBody(resourceId, file) }
+          val resource = resourceManager.get("static/$originalPackName/${resourceId.id}/${resourceId.version}/$file")
+          if(resource.notExists()) {
+            val stream = downloadOriginal(resourceId, file)
+            if(stream == null) {
+              call.response.status(HttpStatusCode.NotFound)
+              call.respondText(ContentType.Text.Html) { getNotFoundBody(resourceId, file) }
 
-                logger.debug { "Resource ${resourceId.id}:${resourceId.version}/$file not found" }
-                return@get
-              }
-
-              if(resource.parent.notExists()) resource.parent.createDirectories()
-              withContext(Dispatchers.IO) {
-                resource.outputStream().use { output -> stream.copyTo(output) }
-              }
+              logger.debug { "Resource ${resourceId.id}:${resourceId.version}/$file not found" }
+              return@get
             }
 
-            val contentType = when(resource.extension) {
-              "jpg"  -> ContentType.Image.JPEG
-              "png"  -> ContentType.Image.PNG
-              "json" -> ContentType.Application.Json
-              "xml"  -> ContentType.Application.Xml
-              else   -> ContentType.Application.OctetStream
+            if(resource.parent.notExists()) resource.parent.createDirectories()
+            withContext(Dispatchers.IO) {
+              resource.outputStream().use { output -> stream.copyTo(output) }
             }
-
-            call.respondOutputStream(contentType) { resource.inputStream().copyTo(this) }
-            logger.trace { "Sent resource ${resourceId.id}:${resourceId.version}/$file" }
           }
+
+          val contentType = when(resource.extension) {
+            "jpg"  -> ContentType.Image.JPEG
+            "png"  -> ContentType.Image.PNG
+            "json" -> ContentType.Application.Json
+            "xml"  -> ContentType.Application.Xml
+            else   -> ContentType.Application.OctetStream
+          }
+
+          call.respondOutputStream(contentType) { resource.inputStream().copyTo(this) }
+          logger.trace { "Sent resource ${resourceId.id}:${resourceId.version}/$file" }
         }
 
         static("/assets") {
@@ -103,7 +101,7 @@ class ResourceServer : IResourceServer, KoinComponent {
 
   private suspend fun downloadOriginal(resourceId: ServerIdResource, file: String): InputStream? {
     return withContext(Dispatchers.IO) {
-      val response = client.get("http://54.36.172.213:8080/resource/${ResourceUtils.encodeId(resourceId).joinToString("/")}/$file") {
+      val response = client.get("http://54.36.175.134/${ResourceUtils.encodeId(resourceId).joinToString("/")}/$file") {
         expectSuccess = false
       }
 
