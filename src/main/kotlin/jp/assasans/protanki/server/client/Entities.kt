@@ -46,7 +46,7 @@ fun List<BattlePlayer>.toStatisticsUsers(): List<StatisticsUserData> {
   return map { player ->
     StatisticsUserData(
       uid = player.user.username,
-      rank = player.user.rank.value,
+      rank = player.user.rank.value.value,
       score = player.score,
       kills = player.kills,
       deaths = player.deaths
@@ -361,4 +361,24 @@ data class BuyItemResponseData(
   @Json val itemId: String,
   @Json val count: Int,
   @Json val addable: Boolean = true
+)
+
+data class NotifyUserOnlineData(
+  @Json(name = "userId") val username: String,
+  @Json val online: Boolean
+)
+
+data class NotifyUserRankData(
+  @Json(name = "userId") val username: String,
+  @Json val rank: Int
+)
+
+data class NotifyUserPremiumData(
+  @Json(name = "userId") val username: String,
+  @Json val premiumTimeLeftInSeconds: Int
+)
+
+data class NotifyUserUsernameData(
+  @Json(name = "userId") val username: String,
+  @Json(name = "newUserId") val newUsername: String
 )

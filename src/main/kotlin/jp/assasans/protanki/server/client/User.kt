@@ -4,6 +4,9 @@ import jakarta.persistence.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.hibernate.annotations.Parent
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import jp.assasans.protanki.server.HibernateUtils
 import jp.assasans.protanki.server.garage.ServerGarageUserItem
 import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
@@ -83,7 +86,7 @@ class User(
 
   @Column(nullable = false, unique = true, length = 64) var username: String,
   @Column(nullable = false) var password: String,
-  @Column(nullable = false) var score: Int,
+  score: Int,
   @Column(nullable = false) var crystals: Int,
 
   @OneToMany(targetEntity = ServerGarageUserItem::class, mappedBy = "id.user")
@@ -97,7 +100,22 @@ class User(
   @AttributeOverride(name = "paintId", column = Column(name = "equipment_paint_id"))
   @Embedded lateinit var equipment: UserEquipment
 
-  val rank: UserRank
+  @Column(nullable = false)
+  var score: Int = score
+    set(value) {
+      field = value
+      _rank.value = currentRank
+    }
+
+  @Transient private lateinit var _rank: MutableStateFlow<UserRank>
+  @Transient lateinit var rank: StateFlow<UserRank>
+
+  init {
+    // Initialize rank flows
+    postLoad()
+  }
+
+  @get:Transient private val currentRank: UserRank
     get() {
       var rank = UserRank.Recruit
       var nextRank: UserRank = rank.nextRank ?: return rank
@@ -108,9 +126,16 @@ class User(
       return rank
     }
 
-  val currentRankScore: Int
+  @get:Transient val currentRankScore: Int
     get() {
-      val nextRank = rank.nextRank ?: return score
+      val nextRank = rank.value.nextRank ?: return score
       return nextRank.score - score
     }
+
+  // JPA does not initialize transient fields
+  @PostLoad
+  final fun postLoad() {
+    _rank = MutableStateFlow(currentRank)
+    rank = _rank.asStateFlow()
+  }
 }

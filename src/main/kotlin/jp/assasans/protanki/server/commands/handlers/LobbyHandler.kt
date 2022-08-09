@@ -7,6 +7,7 @@ import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlinx.coroutines.launch
 import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
@@ -17,6 +18,7 @@ import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.NoSuchProplibException
+import jp.assasans.protanki.server.extensions.collectWithCurrent
 import jp.assasans.protanki.server.extensions.launchDelayed
 import jp.assasans.protanki.server.quests.JoinBattleMapQuest
 import jp.assasans.protanki.server.quests.questOf
@@ -142,7 +144,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
       Command(CommandName.InitShotsData, resourceManager.get("shots-data.json").readText()).send(socket)
 
-        socket.loadDependency(
+      socket.loadDependency(
         ClientResources(
           battle.map.resources.proplibs
             .map { proplib ->
@@ -378,5 +380,69 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   suspend fun checkBattleName(socket: UserSocket, name: String) {
     // Pass-through
     Command(CommandName.SetCreateBattleName, name).send(socket)
+  }
+
+  /**
+   * Notifications order:
+   * - NotifyUserOnline
+   * - NotifyUserRank
+   * - NotifyPlayerJoinBattle / NotifyPlayerLeaveBattle
+   * - NotifyUserPremium
+   */
+  @CommandHandler(CommandName.SubscribeUserUpdate)
+  suspend fun subscribeUserUpdate(socket: UserSocket, username: String) {
+    val target = server.players.singleOrNull { player -> player.user?.username == username }
+    var targetUser = target?.user
+    if(targetUser == null) {
+      // TODO(Assasans): Flow changes would not be emitted
+      targetUser = UserRepository().getUser(username) ?: throw Exception("User $username not found")
+      logger.debug { "Fetched user $username from database" }
+    }
+
+    // TODO(Assasans): Use StateFlow
+    Command(
+      CommandName.NotifyUserOnline,
+      NotifyUserOnlineData(username = targetUser.username, online = target != null).toJson()
+    ).send(socket)
+
+    // TODO(Assasans): Save Job
+    socket.coroutineScope.launch {
+      targetUser.rank.collectWithCurrent { rank ->
+        Command(
+          CommandName.NotifyUserRank,
+          NotifyUserRankData(username = targetUser.username, rank = rank.value).toJson()
+        ).send(socket)
+      }
+    }
+
+    // TODO(Assasans): Maybe use StateFlow
+    target?.battlePlayer?.let { player ->
+      val battle = player.battle
+
+      Command(
+        CommandName.NotifyPlayerJoinBattle,
+        NotifyPlayerJoinBattleData(
+          userId = player.user.username,
+          battleId = battle.id,
+          mapName = battle.title,
+          mode = battle.modeHandler.mode,
+          privateBattle = false,
+          proBattle = false,
+          minRank = 1,
+          maxRank = 30
+        ).toJson()
+      ).send(socket)
+    }
+
+    // TODO(Assasans): Use StateFlow
+    Command(
+      CommandName.NotifyUserPremium,
+      NotifyUserPremiumData(username = targetUser.username, premiumTimeLeftInSeconds = -1).toJson()
+    ).send(socket)
+  }
+
+  @CommandHandler(CommandName.UnsubscribeUserUpdate)
+  suspend fun unsubscribeUserUpdate(socket: UserSocket, username: String) {
+    // TODO(Assasans): Cancel saved jobs
   }
 }

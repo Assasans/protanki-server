@@ -337,16 +337,16 @@ class UserSocket(
 
     val user = user ?: throw Exception("No User")
 
-    clientRank = user.rank
+    clientRank = user.rank.value
     Command(
       CommandName.InitPanel,
       InitPanelData(
         name = user.username,
         crystall = user.crystals,
-        rang = user.rank.value,
+        rang = user.rank.value.value,
         score = user.score,
-        currentRankScore = user.rank.scoreOrZero,
-        next_score = user.rank.nextRank.scoreOrZero
+        currentRankScore = user.rank.value.scoreOrZero,
+        next_score = user.rank.value.nextRank.scoreOrZero
       ).toJson()
     ).send(this)
 
@@ -543,19 +543,19 @@ class UserSocket(
 
     Command(CommandName.SetScore, user.score.toString()).send(this)
 
-    if(user.rank == clientRank) return // No need to update rank
-    clientRank = user.rank
+    if(user.rank.value == clientRank) return // No need to update rank
+    clientRank = user.rank.value
 
     Command(
       CommandName.SetRank,
-      user.rank.value.toString(),
+      user.rank.value.value.toString(),
       user.score.toString(),
-      user.rank.score.toString(),
-      user.rank.nextRank.scoreOrZero.toString(),
-      user.rank.bonusCrystals.toString()
+      user.rank.value.score.toString(),
+      user.rank.value.nextRank.scoreOrZero.toString(),
+      user.rank.value.bonusCrystals.toString()
     ).send(this)
     battle?.let { battle ->
-      Command(CommandName.SetBattleRank, user.username, user.rank.value.toString()).sendTo(battle)
+      Command(CommandName.SetBattleRank, user.username, user.rank.value.value.toString()).sendTo(battle)
     }
 
     if(screen == Screen.Garage) {

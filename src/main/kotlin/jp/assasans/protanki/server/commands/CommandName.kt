@@ -97,6 +97,11 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   BattlePlayerLeaveTeam(CommandCategory.Battle, "user_disconnect_team", CommandSide.Client),
 
   SubscribeUserUpdate(CommandCategory.Lobby, "subscribe_user_update", CommandSide.Server),
+  UnsubscribeUserUpdate(CommandCategory.Lobby, "unsubscribe_user_update", CommandSide.Server),
+  NotifyUserOnline(CommandCategory.Lobby, "notify_user_online", CommandSide.Client),
+  NotifyUserRank(CommandCategory.Lobby, "notify_user_rank", CommandSide.Client),
+  NotifyUserPremium(CommandCategory.Lobby, "notify_user_premium", CommandSide.Client),
+  NotifyUserUsername(CommandCategory.Lobby, "notify_user_change_nickname", CommandSide.Client),
 
   ShowDamageEnabled(CommandCategory.Lobby, "showDamageEnabled", CommandSide.Server),
   UpdateRankProgress(CommandCategory.Lobby, "update_rang_progress", CommandSide.Client),

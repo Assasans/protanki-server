@@ -20,7 +20,7 @@ class LobbyChatHandler : ICommandHandler, KoinComponent {
 
     val message = ChatMessage(
       name = user.username,
-      rang = user.rank.value,
+      rang = user.rank.value.value,
       message = content,
       nameTo = nameTo,
       addressed = nameTo.isNotEmpty()
