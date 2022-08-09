@@ -1,5 +1,7 @@
 # ProTanki Server
 
+[![Discord](https://img.shields.io/discord/1001791048651120692?label=Discord)](https://discord.gg/Jk8TFZpeZE)
+
 The first working ProTanki private server, written in Kotlin.  
 Warning: this project is WIP.
 
