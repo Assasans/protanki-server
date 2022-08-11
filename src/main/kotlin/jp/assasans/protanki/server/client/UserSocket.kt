@@ -145,7 +145,7 @@ class UserSocket(
       try {
         output.writeFully(command.serialize().toByteArray())
       } catch(exception: IOException) {
-        logger.warn(exception) { "$remoteAddress thrown an exception" }
+        logger.warn(exception) { "$this thrown an exception" }
         deactivate()
         return
       }
@@ -164,9 +164,9 @@ class UserSocket(
           command.name == CommandName.InitGarageItems ||
           command.name == CommandName.InitGarageMarket
         ) { // Too long
-          logger.trace { "Sent command ${command.name} ${command.args.drop(1)}" }
+          logger.trace { "Sent command ${command.name} ${command.args.drop(1)} to $this" }
         } else {
-          logger.trace { "Sent command ${command.name} ${command.args}" }
+          logger.trace { "Sent command ${command.name} ${command.args} to $this" }
         }
       }
     }
@@ -285,7 +285,7 @@ class UserSocket(
           buffer = input.readAvailable()
           packetProcessor.write(buffer)
         } catch(exception: IOException) {
-          logger.warn(exception) { "$remoteAddress thrown an exception" }
+          logger.warn(exception) { "$this thrown an exception" }
           deactivate()
 
           break
@@ -306,11 +306,11 @@ class UserSocket(
         }
       }
 
-      logger.debug { "$remoteAddress end of data" }
+      logger.debug { "$this end of data" }
 
       deactivate()
     } catch(exception: CancellationException) {
-      logger.debug(exception) { "$remoteAddress coroutine cancelled" }
+      logger.debug(exception) { "$this coroutine cancelled" }
     } catch(exception: Exception) {
       logger.error(exception) { "An exception occurred" }
 
@@ -632,6 +632,15 @@ class UserSocket(
         selfName = user.username
       ).toJson()
     ).send(this)
+  }
+
+  override fun toString(): String = buildString {
+    when(remoteAddress) {
+      is InetSocketAddress -> append("${remoteAddress.hostname}:${remoteAddress.port}")
+      else                 -> append(remoteAddress)
+    }
+
+    user?.let { user -> append(" (${user.username})") }
   }
 }
 
