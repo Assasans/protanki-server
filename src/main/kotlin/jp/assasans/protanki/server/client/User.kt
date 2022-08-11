@@ -49,6 +49,7 @@ data class UserEquipment(
 interface IUserRepository {
   suspend fun getUser(id: Int): User?
   suspend fun getUser(username: String): User?
+  suspend fun getUserCount(): Long
 }
 
 class UserRepository : IUserRepository {
@@ -68,6 +69,18 @@ class UserRepository : IUserRepository {
       }
     } catch(exception: NoResultException) {
       null
+    }
+  }
+
+  override suspend fun getUserCount(): Long {
+    try {
+      return withContext(Dispatchers.IO) {
+        entityManager
+          .createQuery("SELECT COUNT(1) FROM User", Long::class.java)
+          .singleResult
+      }
+    } finally {
+      entityManager.close()
     }
   }
 }

@@ -603,16 +603,7 @@ class UserSocket(
     val time = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS", Locale.ROOT)
 
-    val registeredPlayers = withContext(Dispatchers.IO) {
-      val entityManager = HibernateUtils.createEntityManager()
-      try {
-        entityManager
-          .createQuery("SELECT COUNT(*) FROM User")
-          .singleResult as Long
-      } finally {
-        entityManager.close()
-      }
-    }
+    val registeredPlayers = UserRepository().getUserCount()
 
     Command(
       CommandName.InitMessages,
