@@ -382,3 +382,22 @@ data class NotifyUserUsernameData(
   @Json(name = "userId") val username: String,
   @Json(name = "newUserId") val newUsername: String
 )
+
+data class FinishBattleData(
+  @Json val time_to_restart: Long = 10000,
+  @Json val users: List<FinishBattleUserData>
+)
+
+data class FinishBattleUserData(
+  @Json(name = "id") val username: String,
+  @Json val rank: Int,
+  @Json(name = "team_type") val team: BattleTeam,
+
+  @Json val score: Int,
+
+  @Json val kills: Int,
+  @Json val deaths: Int,
+
+  @Json val prize: Int,
+  @Json val bonus_prize: Int = 0
+)

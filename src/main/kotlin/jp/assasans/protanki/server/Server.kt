@@ -215,6 +215,21 @@ class Server : KoinComponent {
         }
       }
 
+      command("restart") {
+        description("Finish and restart the current battle")
+
+        handler {
+          val battle = socket.battle
+          if(battle == null) {
+            reply("You are not in a battle")
+            return@handler
+          }
+
+          battle.restart()
+          reply("Battle finished")
+        }
+      }
+
       command("property") {
         subcommand("list") {
           handler {

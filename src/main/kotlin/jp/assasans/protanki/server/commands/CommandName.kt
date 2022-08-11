@@ -284,6 +284,13 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   FlagDelivered(CommandCategory.Battle, "deliver_flag", CommandSide.Client),
   FlagReturned(CommandCategory.Battle, "return_flag", CommandSide.Client),
 
+  FinishBattle(CommandCategory.Battle, "battle_finish", CommandSide.Client),
+
+  /**
+   * @argument {Int} #unknown#
+   */
+  RestartBattle(CommandCategory.Battle, "battle_restart", CommandSide.Client),
+
   SetCrystals(CommandCategory.Lobby, "add_crystall", CommandSide.Client),
   SetScore(CommandCategory.Lobby, "add_score", CommandSide.Client),
   SetRank(CommandCategory.Lobby, "update_rang", CommandSide.Client),

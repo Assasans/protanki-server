@@ -6,6 +6,8 @@ import kotlin.random.nextULong
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
+import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.delay
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.bonus.BonusProcessor
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
@@ -203,6 +205,37 @@ class Battle(
     }
 
     Command(CommandName.ShowBattleInfo, info).send(socket)
+  }
+
+  suspend fun restart() {
+    val restartTime = 10.seconds
+
+    Command(
+      CommandName.FinishBattle,
+      FinishBattleData(
+        time_to_restart = restartTime.inWholeMilliseconds,
+        users = players.users().map { player ->
+          FinishBattleUserData(
+            username = player.user.username,
+            rank = player.user.rank.value.value,
+            team = player.team,
+            score = player.score,
+            kills = player.kills,
+            deaths = player.deaths,
+            prize = 21,
+            bonus_prize = 12
+          )
+        }
+      ).toJson()
+    ).sendTo(this)
+    logger.debug { "Finished battle $id" }
+
+    delay(restartTime.inWholeMilliseconds)
+
+    players.users().forEach { player -> player.respawn() }
+    Command(CommandName.RestartBattle, 0.toString()).sendTo(this)
+
+    logger.debug { "Restarted battle $id" }
   }
 
   suspend fun sendTo(
