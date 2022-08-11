@@ -14,6 +14,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import jp.assasans.protanki.server.api.IApiServer
 import jp.assasans.protanki.server.battles.Battle
 import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.battles.BattleTeam
@@ -41,6 +42,7 @@ class Server : KoinComponent {
   private val processNetworking by inject<IProcessNetworking>()
   private val socketServer by inject<ISocketServer>()
   private val resourceServer by inject<IResourceServer>()
+  private val apiServer by inject<IApiServer>()
   private val commandRegistry by inject<ICommandRegistry>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val marketRegistry by inject<IGarageMarketRegistry>()
@@ -466,6 +468,7 @@ class Server : KoinComponent {
     coroutineScope {
       launch { HibernateUtils.createEntityManager().close() } // Initialize database
       launch { resourceServer.run() }
+      launch { apiServer.run() }
 
       socketServer.run(this)
 
@@ -492,6 +495,7 @@ class Server : KoinComponent {
     coroutineScope {
       launch { socketServer.stop() }
       launch { resourceServer.stop() }
+      launch { apiServer.stop() }
       launch { HibernateUtils.close() }
     }
 

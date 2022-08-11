@@ -21,6 +21,8 @@ import org.koin.logger.SLF4JLogger
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import kotlinx.coroutines.CancellationException
+import jp.assasans.protanki.server.api.IApiServer
+import jp.assasans.protanki.server.api.WebApiServer
 import jp.assasans.protanki.server.battles.BattleProcessor
 import jp.assasans.protanki.server.battles.DamageCalculator
 import jp.assasans.protanki.server.battles.IBattleProcessor
@@ -140,6 +142,7 @@ fun main(args: Array<String>) = object : CliktCommand() {
       }
       single<ISocketServer> { SocketServer() }
       single<IResourceServer> { ResourceServer() }
+      single<IApiServer> { WebApiServer() }
       single<ICommandRegistry> { CommandRegistry() }
       single<IBattleProcessor> { BattleProcessor() }
       single<IResourceManager> { ResourceManager() }
@@ -199,6 +202,7 @@ fun main(args: Array<String>) = object : CliktCommand() {
           .add(ChatModeratorLevelAdapter())
           .add(SocketLocaleAdapter())
           .add(StoreCurrencyAdapter())
+          .add(ScreenAdapter())
           .add(SerializeNull.JSON_ADAPTER_FACTORY)
           .build()
       }
