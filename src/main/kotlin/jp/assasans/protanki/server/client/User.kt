@@ -109,7 +109,7 @@ class User(
   var score: Int = score
     set(value) {
       field = value
-      userSubscriptionManager.get(id).rank.value = rank
+      userSubscriptionManager.getOrNull(id)?.let { it.rank.value = rank }
     }
 
   @get:Transient val rank: UserRank
