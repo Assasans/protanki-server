@@ -85,6 +85,7 @@ class UserSocket(
   private val garageItemConverter by inject<IGarageItemConverter>()
   private val battleProcessor by inject<IBattleProcessor>()
   private val lobbyChatManager by inject<ILobbyChatManager>()
+  private val userRepository by inject<IUserRepository>()
   private val json by inject<Moshi>()
 
   private val input: ByteReadChannel = socket.openReadChannel()
@@ -603,7 +604,7 @@ class UserSocket(
     val time = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS", Locale.ROOT)
 
-    val registeredPlayers = UserRepository().getUserCount()
+    val registeredPlayers = userRepository.getUserCount()
 
     Command(
       CommandName.InitMessages,

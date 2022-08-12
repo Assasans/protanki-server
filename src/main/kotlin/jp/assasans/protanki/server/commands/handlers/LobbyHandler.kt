@@ -47,6 +47,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   private val resourceConverter by inject<IResourceConverter>()
   private val mapRegistry by inject<IMapRegistry>()
   private val server by inject<ISocketServer>()
+  private val userRepository by inject<IUserRepository>()
 
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
@@ -395,7 +396,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     var targetUser = target?.user
     if(targetUser == null) {
       // TODO(Assasans): Flow changes would not be emitted
-      targetUser = UserRepository().getUser(username) ?: throw Exception("User $username not found")
+      targetUser = userRepository.getUser(username) ?: throw Exception("User $username not found")
       logger.debug { "Fetched user $username from database" }
     }
 

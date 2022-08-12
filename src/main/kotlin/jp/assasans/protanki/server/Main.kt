@@ -156,6 +156,7 @@ fun main(args: Array<String>) = object : CliktCommand() {
       single<IChatCommandRegistry> { ChatCommandRegistry() }
       single<IDamageCalculator> { DamageCalculator() }
       single<IQuestConverter> { QuestConverter() }
+      single<IUserRepository> { UserRepository() }
       single {
         Moshi.Builder()
           .add(

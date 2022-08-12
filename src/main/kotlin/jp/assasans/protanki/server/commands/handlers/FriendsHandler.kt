@@ -2,6 +2,7 @@ package jp.assasans.protanki.server.commands.handlers
 
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
@@ -10,6 +11,8 @@ import jp.assasans.protanki.server.commands.ICommandHandler
 
 class FriendsHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
+
+  private val userRepository: IUserRepository by inject()
 
   @CommandHandler(CommandName.ShowFriendsList)
   suspend fun showFriendsList(socket: UserSocket) {
@@ -21,7 +24,7 @@ class FriendsHandler : ICommandHandler, KoinComponent {
     val selfUser = socket.user ?: throw Exception("No User")
 
     logger.debug { "Check friend username: $username" }
-    if(username != selfUser.username && UserRepository().getUser(username) != null) {
+    if(username != selfUser.username && userRepository.getUser(username) != null) {
       Command(CommandName.FriendUsernameExists).send(socket)
     } else {
       Command(CommandName.FriendUsernameNotExists).send(socket)

@@ -4,6 +4,7 @@ import kotlin.time.Duration.Companion.days
 import kotlinx.datetime.Clock
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 import jp.assasans.protanki.server.BonusType
@@ -19,13 +20,15 @@ import jp.assasans.protanki.server.quests.*
 class AuthHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
+  private val userRepository: IUserRepository by inject()
+
   @CommandHandler(CommandName.Login)
   suspend fun login(socket: UserSocket, captcha: String, rememberMe: Boolean, username: String, password: String) {
     logger.debug { "User login: [ Username = '$username', Password = '$password', Captcha = ${if(captcha.isEmpty()) "*none*" else "'${captcha}'"}, Remember = $rememberMe ]" }
 
     val user = HibernateUtils.createEntityManager().let { entityManager ->
       // TODO(Assasans): Testing only
-      var user = UserRepository().getUser(username)
+      var user = userRepository.getUser(username)
       if(user == null) {
         entityManager.transaction.begin()
 

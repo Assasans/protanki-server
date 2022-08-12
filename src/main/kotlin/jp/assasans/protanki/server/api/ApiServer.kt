@@ -11,8 +11,8 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.ISocketServer
+import jp.assasans.protanki.server.client.IUserRepository
 import jp.assasans.protanki.server.client.Screen
-import jp.assasans.protanki.server.client.UserRepository
 
 interface IApiServer {
   suspend fun run()
@@ -24,6 +24,7 @@ class WebApiServer : IApiServer, KoinComponent {
 
   private val json: Moshi by inject()
   private val server: ISocketServer by inject()
+  private val userRepository: IUserRepository by inject()
 
   private lateinit var engine: ApplicationEngine
 
@@ -39,7 +40,7 @@ class WebApiServer : IApiServer, KoinComponent {
             val players = server.players.filter { player -> player.active }
             call.respond(
               PlayerStats(
-                registered = UserRepository().getUserCount(),
+                registered = userRepository.getUserCount(),
                 online = players.size,
                 screens = Screen.values()
                   .associateWith { screen -> players.count { player -> player.screen == screen } }

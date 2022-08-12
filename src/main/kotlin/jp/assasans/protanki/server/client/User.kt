@@ -59,29 +59,18 @@ class UserRepository : IUserRepository {
     entityManager.find(User::class.java, id)
   }
 
-  override suspend fun getUser(username: String): User? {
-    return try {
-      withContext(Dispatchers.IO) {
-        entityManager
-          .createQuery("FROM User WHERE username = :username", User::class.java)
-          .setParameter("username", username)
-          .singleResult
-      }
-    } catch(exception: NoResultException) {
-      null
-    }
+  override suspend fun getUser(username: String): User? = withContext(Dispatchers.IO) {
+    entityManager
+      .createQuery("FROM User WHERE username = :username", User::class.java)
+      .setParameter("username", username)
+      .resultList
+      .singleOrNull()
   }
 
-  override suspend fun getUserCount(): Long {
-    try {
-      return withContext(Dispatchers.IO) {
-        entityManager
-          .createQuery("SELECT COUNT(1) FROM User", Long::class.java)
-          .singleResult
-      }
-    } finally {
-      entityManager.close()
-    }
+  override suspend fun getUserCount(): Long = withContext(Dispatchers.IO) {
+    entityManager
+      .createQuery("SELECT COUNT(1) FROM User", Long::class.java)
+      .singleResult
   }
 }
 
