@@ -217,7 +217,7 @@ class Battle(
         users = players.users().map { player ->
           FinishBattleUserData(
             username = player.user.username,
-            rank = player.user.rank.value.value,
+            rank = player.user.rank.value,
             team = player.team,
             score = player.score,
             kills = player.kills,

@@ -4,9 +4,8 @@ import jakarta.persistence.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.hibernate.annotations.Parent
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 import jp.assasans.protanki.server.HibernateUtils
 import jp.assasans.protanki.server.garage.ServerGarageUserItem
 import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
@@ -96,7 +95,11 @@ class User(
 
   @OneToMany(targetEntity = ServerDailyQuest::class, mappedBy = "user")
   val dailyQuests: MutableList<ServerDailyQuest>
-) {
+) : KoinComponent {
+  @Transient
+  protected final var userSubscriptionManager: IUserSubscriptionManager = get()
+    private set
+
   @AttributeOverride(name = "hullId", column = Column(name = "equipment_hull_id"))
   @AttributeOverride(name = "weaponId", column = Column(name = "equipment_weapon_id"))
   @AttributeOverride(name = "paintId", column = Column(name = "equipment_paint_id"))
@@ -106,18 +109,10 @@ class User(
   var score: Int = score
     set(value) {
       field = value
-      _rank.value = currentRank
+      userSubscriptionManager.get(id).rank.value = rank
     }
 
-  @Transient private lateinit var _rank: MutableStateFlow<UserRank>
-  @Transient lateinit var rank: StateFlow<UserRank>
-
-  init {
-    // Initialize rank flows
-    postLoad()
-  }
-
-  @get:Transient private val currentRank: UserRank
+  @get:Transient val rank: UserRank
     get() {
       var rank = UserRank.Recruit
       var nextRank: UserRank = rank.nextRank ?: return rank
@@ -130,14 +125,13 @@ class User(
 
   @get:Transient val currentRankScore: Int
     get() {
-      val nextRank = rank.value.nextRank ?: return score
+      val nextRank = rank.nextRank ?: return score
       return nextRank.score - score
     }
 
   // JPA does not initialize transient fields
   @PostLoad
   final fun postLoad() {
-    _rank = MutableStateFlow(currentRank)
-    rank = _rank.asStateFlow()
+    userSubscriptionManager = get()
   }
 }

@@ -194,7 +194,7 @@ class BattlePlayer(
         users = battle.players.users().map { player ->
           GuiUserData(
             nickname = player.user.username,
-            rank = player.user.rank.value.value,
+            rank = player.user.rank.value,
             teamType = player.team
           )
         }
@@ -474,7 +474,7 @@ class BattlePlayer(
       CommandName.UpdatePlayerStatistics,
       UpdatePlayerStatisticsData(
         id = tank.id,
-        rank = user.rank.value.value,
+        rank = user.rank.value,
         team_type = team,
         score = score,
         kills = kills,

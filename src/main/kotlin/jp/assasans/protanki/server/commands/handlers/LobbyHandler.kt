@@ -48,6 +48,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
   private val mapRegistry by inject<IMapRegistry>()
   private val server by inject<ISocketServer>()
   private val userRepository by inject<IUserRepository>()
+  private val userSubscriptionManager by inject<IUserSubscriptionManager>()
 
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
@@ -408,7 +409,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
     // TODO(Assasans): Save Job
     socket.coroutineScope.launch {
-      targetUser.rank.collectWithCurrent { rank ->
+      userSubscriptionManager.get(targetUser.id).rank.collectWithCurrent { rank ->
         Command(
           CommandName.NotifyUserRank,
           NotifyUserRankData(username = targetUser.username, rank = rank.value).toJson()

@@ -84,7 +84,7 @@ class BattleChatHandler : ICommandHandler, KoinComponent {
 
     val message = BattleChatMessage(
       nickname = user.username,
-      rank = user.rank.value.value,
+      rank = user.rank.value,
       message = content,
       team = isTeam,
       team_type = player.team

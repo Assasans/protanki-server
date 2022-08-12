@@ -21,6 +21,7 @@ class AuthHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val userRepository: IUserRepository by inject()
+  private val userSubscriptionManager: IUserSubscriptionManager by inject()
 
   @CommandHandler(CommandName.Login)
   suspend fun login(socket: UserSocket, captcha: String, rememberMe: Boolean, username: String, password: String) {
@@ -112,6 +113,7 @@ class AuthHandler : ICommandHandler, KoinComponent {
     // if(user.password == password) {
     logger.debug { "User login allowed" }
 
+    userSubscriptionManager.add(user)
     socket.user = user
     Command(CommandName.AuthAccept).send(socket)
     socket.loadLobby()

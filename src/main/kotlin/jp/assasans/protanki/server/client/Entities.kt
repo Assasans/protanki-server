@@ -46,7 +46,7 @@ fun List<BattlePlayer>.toStatisticsUsers(): List<StatisticsUserData> {
   return map { player ->
     StatisticsUserData(
       uid = player.user.username,
-      rank = player.user.rank.value.value,
+      rank = player.user.rank.value,
       score = player.score,
       kills = player.kills,
       deaths = player.deaths
