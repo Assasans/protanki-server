@@ -11,8 +11,7 @@ fun ByteArray.indexOfSequence(sequence: ByteArray, startFrom: Int = 0): Int {
   var offset = start
   while(offset < size) {
     if(this[offset] == sequence[matchOffset]) {
-      matchOffset++
-      if(matchOffset == 0) start = offset
+      if(matchOffset++ == 0) start = offset
       if(matchOffset == sequence.size) return start
     } else {
       matchOffset = 0
