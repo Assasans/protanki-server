@@ -59,4 +59,28 @@ internal class PacketProcessorTest {
       assertNull(packet)
     }
   }
+
+  @Test
+  fun getMultipleWrites() {
+    val part1 = "system;"
+    val part2 = "get_aes_data;"
+    val part3 = "RU"
+
+    packetProcessor.write(part1.toByteArray())
+    assertNull(packetProcessor.tryGetPacket())
+
+    packetProcessor.write(part2.toByteArray())
+    assertNull(packetProcessor.tryGetPacket())
+
+    packetProcessor.write(part3.toByteArray())
+    assertNull(packetProcessor.tryGetPacket())
+
+    packetProcessor.write("end~".toByteArray())
+    packetProcessor.tryGetPacket().let { packet ->
+      assertNotNull(packet)
+      assertEquals("$part1$part2$part3", packet)
+    }
+
+    assertNull(packetProcessor.tryGetPacket())
+  }
 }

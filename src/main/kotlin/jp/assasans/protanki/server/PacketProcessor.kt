@@ -1,15 +1,14 @@
 package jp.assasans.protanki.server
 
-import java.io.PipedInputStream
-import java.io.PipedOutputStream
 import mu.KotlinLogging
+import java.io.ByteArrayOutputStream
 import jp.assasans.protanki.server.commands.Command
+import jp.assasans.protanki.server.extensions.indexOfSequence
 
 class PacketProcessor {
   private val logger = KotlinLogging.logger {}
 
-  private val output = PipedOutputStream()
-  private val input = PipedInputStream(output)
+  private val output = ByteArrayOutputStream()
 
   fun write(data: ByteArray) {
     output.write(data)
@@ -18,34 +17,19 @@ class PacketProcessor {
   }
 
   fun tryGetPacket(): String? {
-    var endIndex = 0
+    val buffer = output.toByteArray()
 
-    val packetOutput = PipedOutputStream()
-    val packetInput = PipedInputStream(packetOutput)
+    val position = buffer.indexOfSequence(Command.Delimiter)
+    if(position == -1) return null
 
-    var read: Int
-    while(true) {
-      if(input.available() < 1) return null
+    val packet = buffer.decodeToString(0, position)
 
-      read = input.read()
-      if(read == -1) break
+    val offset = position + Command.Delimiter.size
+    output.reset()
+    output.write(buffer, offset, buffer.size - offset)
 
-      val value: Byte = read.toByte()
+    // logger.trace { "End of packet: $packet" }
 
-      packetOutput.write(read)
-
-      if(value == Command.Delimiter[endIndex]) endIndex++
-      else endIndex = 0
-
-      if(endIndex == Command.Delimiter.size) {
-        packetOutput.close()
-        val packet = String(packetInput.readAllBytes().dropLast(Command.Delimiter.size).toByteArray())
-
-        // logger.trace { "End of packet: $packet" }
-
-        return packet
-      }
-    }
-    return null
+    return packet
   }
 }
