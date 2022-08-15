@@ -194,6 +194,7 @@ class UserSocket(
   }
 
   private suspend fun processPacket(packet: String) {
+    var decrypted: String? = null
     try {
       // val end = packet.takeLast(Command.Delimiter.length)
       // if(end != Command.Delimiter) throw Exception("Invalid packet end: $end")
@@ -202,7 +203,7 @@ class UserSocket(
       if(packet.isEmpty()) return
 
       // logger.debug { "PKT: $packet" }
-      val decrypted = encryption.decrypt(packet)
+      decrypted = encryption.decrypt(packet)
 
       // logger.debug { "Decrypt: $packet -> $decrypted" }
 
@@ -262,6 +263,13 @@ class UserSocket(
       }
     } catch(exception: UnknownCommandCategoryException) {
       logger.warn { "Unknown command category: ${exception.category}" }
+
+      if(!Command.CategoryRegex.matches(exception.category)) {
+        logger.warn { "The command category does not seem to be valid, most likely a decryption error." }
+        logger.warn { "Please report this issue to the GitHub repository along with the following information:" }
+        logger.warn { "- Raw packet: $packet" }
+        logger.warn { "- Decrypted packet: $decrypted" }
+      }
     } catch(exception: UnknownCommandException) {
       logger.warn { "Unknown command: ${exception.category}::${exception.command}" }
     } catch(exception: Exception) {

@@ -9,6 +9,7 @@ class Command {
 
   companion object {
     val Delimiter = "end~".toByteArray()
+    val CategoryRegex = Regex("^([A-Za-z_]+)$")
   }
 
   lateinit var name: CommandName
