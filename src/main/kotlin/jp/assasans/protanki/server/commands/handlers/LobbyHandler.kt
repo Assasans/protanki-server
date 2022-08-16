@@ -396,10 +396,11 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     val target = server.players.singleOrNull { player -> player.user?.username == username }
     var targetUser = target?.user
     if(targetUser == null) {
-      // TODO(Assasans): Flow changes would not be emitted
       targetUser = userRepository.getUser(username) ?: throw Exception("User $username not found")
       logger.debug { "Fetched user $username from database" }
     }
+
+    val subscription = userSubscriptionManager.getOrAdd(targetUser)
 
     // TODO(Assasans): Use StateFlow
     Command(
@@ -409,7 +410,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
     // TODO(Assasans): Save Job
     socket.coroutineScope.launch {
-      userSubscriptionManager.get(targetUser.id).rank.collectWithCurrent { rank ->
+      subscription.rank.collectWithCurrent { rank ->
         Command(
           CommandName.NotifyUserRank,
           NotifyUserRankData(username = targetUser.username, rank = rank.value).toJson()

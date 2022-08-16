@@ -7,22 +7,22 @@ class UserSubscription(user: User) {
 }
 
 interface IUserSubscriptionManager {
-  fun add(user: User)
+  fun add(user: User): UserSubscription
 
   fun getOrNull(id: Int): UserSubscription?
   fun get(id: Int): UserSubscription
+  fun getOrAdd(user: User): UserSubscription
 }
 
 class UserSubscriptionManager : IUserSubscriptionManager {
   private val subscriptions = mutableMapOf<Int, UserSubscription>()
 
-  override fun add(user: User) {
-    if(subscriptions.containsKey(user.id)) return
-    subscriptions[user.id] = UserSubscription(user)
+  override fun add(user: User): UserSubscription {
+    subscriptions[user.id]?.let { return it }
+    return UserSubscription(user).also { subscriptions[user.id] = it }
   }
 
   override fun getOrNull(id: Int): UserSubscription? = subscriptions[id]
-
-  override fun get(id: Int): UserSubscription =
-    getOrNull(id) ?: throw IllegalStateException("User $id not found")
+  override fun get(id: Int): UserSubscription = getOrNull(id) ?: throw IllegalStateException("User $id not found")
+  override fun getOrAdd(user: User): UserSubscription = getOrNull(user.id) ?: add(user)
 }
