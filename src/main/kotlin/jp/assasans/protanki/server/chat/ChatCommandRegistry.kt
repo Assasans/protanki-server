@@ -97,8 +97,11 @@ class ChatCommandRegistry : IChatCommandRegistry, KoinComponent {
   override fun parseCommand(parsedArguments: ParsedArguments): CommandParseResult {
     val commandName = parsedArguments.arguments[0].value
     if(parsedArguments.arguments[0].isQuoted) return CommandParseResult.CommandQuoted(parsedArguments, commandName)
-    var command = commands.find { it.name.equals(commandName, ignoreCase = true) }
-                  ?: return CommandParseResult.UnknownCommand(parsedArguments, commandName)
+    var command = commands.find { command ->
+      if(command.name.equals(commandName, ignoreCase = true)) return@find true
+      if(command.aliases.any { alias -> alias.equals(commandName, ignoreCase = true) }) return@find true
+      return@find false
+    } ?: return CommandParseResult.UnknownCommand(parsedArguments, commandName)
 
     val arguments = mutableMapOf<CommandArgument<*>, Any?>()
     var argumentsAsCommands = 1
@@ -107,7 +110,11 @@ class ChatCommandRegistry : IChatCommandRegistry, KoinComponent {
       val argument = parsedArguments.arguments[i]
       if(canParseSubcommands && !argument.isQuoted) {
         if(command.subcommands.isNotEmpty()) {
-          val subcommand = command.subcommands.find { it.name.equals(argument.value, ignoreCase = true) }
+          val subcommand = command.subcommands.find { subcommand ->
+            if(subcommand.name.equals(argument.value, ignoreCase = true)) return@find true
+            if(subcommand.aliases.any { alias -> alias.equals(argument.value, ignoreCase = true) }) return@find true
+            return@find false
+          }
           if(subcommand != null) {
             command = subcommand
             argumentsAsCommands++
@@ -212,6 +219,7 @@ class CommandContext(
 class Command(val name: String) {
   var description: String? = null
 
+  val aliases: MutableList<String> = mutableListOf()
   val subcommands: MutableList<Command> = mutableListOf()
   val arguments: MutableList<CommandArgument<*>> = mutableListOf()
 
@@ -220,6 +228,10 @@ class Command(val name: String) {
 
 fun Command.description(description: String) {
   this.description = description
+}
+
+fun Command.alias(name: String) {
+  this.aliases += name
 }
 
 fun Command.subcommand(name: String, builder: Command.() -> Unit) {

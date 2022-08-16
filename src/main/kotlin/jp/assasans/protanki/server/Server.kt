@@ -392,6 +392,7 @@ class Server : KoinComponent {
 
       command("addxp") {
         description("Add experience points to a user")
+        alias("addscore")
 
         argument("amount", Int::class) {
           description("The amount of experience points to add")
