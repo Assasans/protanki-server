@@ -41,15 +41,10 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
 suspend fun Command.send(tank: BattleTank) = tank.socket.send(this)
 
-suspend fun UserSocket.sendChat(message: String) = Command(
-  CommandName.SendChatMessageClient,
-  ChatMessage(
-    name = "",
-    rang = 0,
-    message = message,
-    system = true,
-    yellow = true
-  ).toJson()
+suspend fun UserSocket.sendChat(message: String, warning: Boolean = false) = Command(
+  CommandName.SendSystemChatMessageClient,
+  message,
+  warning.toString()
 ).send(this)
 
 suspend fun UserSocket.sendBattleChat(message: String) {

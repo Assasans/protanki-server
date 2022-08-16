@@ -208,9 +208,9 @@ class CommandContext(
   val arguments: ParsedCommandArguments,
   val source: CommandInvocationSource
 ) {
-  suspend fun reply(message: String) {
+  suspend fun reply(message: String, warning: Boolean = false) {
     when(source) {
-      CommandInvocationSource.LobbyChat  -> socket.sendChat(message)
+      CommandInvocationSource.LobbyChat  -> socket.sendChat(message, warning)
       CommandInvocationSource.BattleChat -> socket.sendBattleChat(message)
     }
   }

@@ -73,6 +73,12 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   SendChatMessageServer(CommandCategory.Lobby, "chat_message", CommandSide.Server),
   SendChatMessageClient(CommandCategory.LobbyChat, "__SYNTHETIC__", CommandSide.Client),
 
+  /**
+   * @argument {String} content - Message content
+   * @argument {Boolean} isWarning - Is this message a warning? (yellow color)
+   */
+  SendSystemChatMessageClient(CommandCategory.LobbyChat, "system", CommandSide.Client),
+
   SendBattleChatMessageServer(CommandCategory.Battle, "chat", CommandSide.Server),
   SendBattleChatMessageClient(CommandCategory.Battle, "chat", CommandSide.Client),
   SendBattleChatSpectatorMessageClient(CommandCategory.Battle, "spectator_message", CommandSide.Client),
