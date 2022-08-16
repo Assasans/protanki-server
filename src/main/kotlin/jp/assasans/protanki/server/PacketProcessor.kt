@@ -10,13 +10,13 @@ class PacketProcessor {
 
   private val output = ByteArrayOutputStream()
 
-  fun write(data: ByteArray) {
+  fun write(data: ByteArray) = synchronized(output) {
     output.write(data)
 
     // logger.trace { "Written: ${String(data)}" }
   }
 
-  fun tryGetPacket(): String? {
+  fun tryGetPacket(): String? = synchronized(output) {
     val buffer = output.toByteArray()
 
     val position = buffer.indexOfSequence(Command.Delimiter)
