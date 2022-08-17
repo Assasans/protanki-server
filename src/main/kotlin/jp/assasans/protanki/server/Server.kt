@@ -3,15 +3,12 @@ package jp.assasans.protanki.server
 import kotlin.coroutines.coroutineContext
 import kotlin.random.Random
 import kotlin.reflect.KClass
-import kotlinx.coroutines.launch
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import jp.assasans.protanki.server.api.IApiServer
@@ -25,11 +22,13 @@ import jp.assasans.protanki.server.battles.map.get
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
+import jp.assasans.protanki.server.client.*
+import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
-import jp.assasans.protanki.server.garage.IGarageMarketRegistry
+import jp.assasans.protanki.server.garage.*
 import jp.assasans.protanki.server.ipc.*
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
@@ -49,6 +48,7 @@ class Server : KoinComponent {
   private val mapRegistry by inject<IMapRegistry>()
   private val chatCommandRegistry by inject<IChatCommandRegistry>()
   private val storeRegistry by inject<IStoreRegistry>()
+  private val userRepository by inject<IUserRepository>()
 
   private var networkingEventsJob: Job? = null
 
@@ -462,6 +462,74 @@ class Server : KoinComponent {
 
           // TODO(Assasans)
           GlobalScope.launch { stop() }
+        }
+      }
+
+      command("reset-items") {
+        description("Reset all garage items")
+
+        argument("user", String::class) {
+          description("The user to reset items")
+          optional()
+        }
+
+        handler {
+          val username = arguments.getOrNull<String>("user")
+          val user: User? = if(username != null) {
+            userRepository.getUser(username)
+          } else {
+            socket.user ?: throw Exception("User is null")
+          }
+          if(user == null) {
+            reply("User '$username' not found")
+            return@handler
+          }
+
+          HibernateUtils.createEntityManager().let { entityManager ->
+            entityManager.transaction.begin()
+
+            user.items.clear()
+            user.items += listOf(
+              ServerGarageUserItemWeapon(user, "smoky", modificationIndex = 0),
+              ServerGarageUserItemHull(user, "hunter", modificationIndex = 0),
+              ServerGarageUserItemPaint(user, "green")
+            )
+            user.equipment.hullId = "hunter"
+            user.equipment.weaponId = "smoky"
+            user.equipment.paintId = "green"
+
+            withContext(Dispatchers.IO) {
+              entityManager
+                .createQuery("DELETE FROM ServerGarageUserItem WHERE id.user = :user")
+                .setParameter("user", user)
+                .executeUpdate()
+            }
+
+            withContext(Dispatchers.IO) {
+              entityManager
+                .createQuery("UPDATE User SET equipment = :equipment WHERE id = :id")
+                .setParameter("equipment", user.equipment)
+                .setParameter("id", user.id)
+                .executeUpdate()
+            }
+
+            user.items.forEach { item -> entityManager.persist(item) }
+
+            entityManager.transaction.commit()
+            entityManager.close()
+          }
+
+          socketServer.players.singleOrNull { player -> player.user?.id == user.id }?.let { target ->
+            if(target.screen == Screen.Garage) {
+              // Refresh garage to update items
+              Command(CommandName.UnloadGarage).send(target)
+
+              target.loadGarageResources()
+              target.initGarage()
+            }
+          }
+
+          reply("Reset garage items for user '${user.username}'")
         }
       }
     }
