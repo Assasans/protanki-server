@@ -14,6 +14,7 @@ To build artifacts, execute Gradle `shadowJar` task.
 ## Using command line
 
 ### Windows (PowerShell)
+[Video guide](https://youtu.be/U7vZMEbxYh8)  
 
 ```powershell
 # If you need to use custom JDK:
@@ -21,6 +22,7 @@ To build artifacts, execute Gradle `shadowJar` task.
 
 ./gradlew.bat shadowJar
 ```
+
 
 ### Unix:
 ```bash
