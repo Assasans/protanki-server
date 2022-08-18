@@ -9,3 +9,5 @@ If you make stupid Issues you're dead.
 
 Build instructions available in [building.md](docs/building.md).  
 Database configuration instructions available in [database.md](docs/database.md).
+
+Video tutorials available on [YouTube](https://youtube.com/playlist?list=PLrBg1TAUeOuudpVnmogEp-5-0aIh6oMfb).

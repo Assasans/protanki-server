@@ -22,6 +22,8 @@ To build artifacts, execute Gradle `shadowJar` task.
 ./gradlew.bat shadowJar
 ```
 
+[Video tutorial](https://youtu.be/U7vZMEbxYh8) is available.
+
 ### Unix:
 ```bash
 # If you need to use custom JDK:
