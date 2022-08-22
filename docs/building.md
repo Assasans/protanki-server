@@ -32,3 +32,5 @@ To build artifacts, execute Gradle `shadowJar` task.
 chmod +x gradlew
 ./gradlew shadowJar
 ```
+
+Video tutorial will be available soon.
