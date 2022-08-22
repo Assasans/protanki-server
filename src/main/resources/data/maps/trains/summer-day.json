@@ -1,0 +1,59 @@
+{
+  "name": "map_trains",
+  "theme": "summer_day",
+
+  "id": 577904,
+  "preview": 323193,
+
+  "visual": {
+    "angleX": -1,
+    "angleZ": -0.5,
+
+    "lightColor": 13090219,
+    "shadowColor": 5530735,
+
+    "fogAlpha": 0.25,
+    "fogColor": 14545407,
+
+    "farLimit": 10000,
+    "nearLimit": 5000,
+
+    "gravity": 1000,
+    "skyboxRevolutionSpeed": 0,
+    "ssaoColor": 3025184,
+
+    "dustAlpha": 0.75,
+    "dustDensity": 0.15000000596046448,
+    "dustFarDistance": 7000,
+    "dustNearDistance": 5000,
+    "dustParticle": "summer",
+    "dustSize": 200
+  },
+  "skybox": "Hills",
+  "resources": {
+    "proplibs": [
+      "Bush",
+      "City Builds",
+      "Cliffs",
+      "Concrete Tiles",
+      "Concrete Walls",
+      "Grass Tiles",
+      "NuBu 3",
+      "NuBu 5",
+      "NuBu 9",
+      "Promotion",
+      "Slopes Rises",
+      "Small Bridge",
+      "Village Builds"
+    ],
+    "map": { "id": 577904, "version": 1 }
+  },
+  "spawnPoints": [
+    {
+      "position": { "x": 0, "y": 0, "z": 0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 }
+    }
+  ],
+  "bonuses": [
+  ]
+}
