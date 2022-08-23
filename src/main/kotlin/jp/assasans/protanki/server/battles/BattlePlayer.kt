@@ -184,7 +184,7 @@ class BattlePlayer(
       CommandName.InitGuiModel,
       InitGuiModelData(
         name = battle.title,
-        fund = battle.fund,
+        fund = battle.fundProcessor.fund,
         scoreLimit = 300,
         timeLimit = 600,
         currTime = 212,

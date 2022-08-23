@@ -89,7 +89,6 @@ class Battle(
   val id: String,
   val title: String,
   var map: ServerMapInfo,
-  var fund: Int = 1337228,
   modeHandlerBuilder: BattleModeHandlerBuilder
 ) {
   companion object {
@@ -107,6 +106,7 @@ class Battle(
   val damageProcessor = DamageProcessor(this)
   val bonusProcessor = BonusProcessor(this)
   val mineProcessor = MineProcessor(this)
+  val fundProcessor = FundProcessor(this)
 
   fun toBattleData(): BattleData {
     // TODO(Assasans)

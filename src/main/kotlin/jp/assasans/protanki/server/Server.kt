@@ -532,6 +532,37 @@ class Server : KoinComponent {
           reply("Reset garage items for user '${user.username}'")
         }
       }
+
+      command("addfund") {
+        description("Add fund to battle")
+
+        argument("amount", Int::class) {
+          description("The amount of fund crystals to add")
+        }
+
+        argument("battle", String::class) {
+          description("The battle ID to add crystals")
+          optional()
+        }
+
+        handler {
+          val amount: Int = arguments.get<String>("amount").toInt() // TODO(Assasans)
+          val battleId: String? = arguments.getOrNull("battle")
+
+          val battle = if(battleId != null) battleProcessor.battles.singleOrNull { it.id == battleId } else socket.battle
+          if(battle == null) {
+            if(battleId != null) reply("Battle '$battleId' not found")
+            else reply("You are not in a battle")
+
+            return@handler
+          }
+
+          battle.fundProcessor.fund = (battle.fundProcessor.fund + amount).coerceAtLeast(0)
+          battle.fundProcessor.updateFund()
+
+          reply("Added $amount fund crystals to battle ${battle.id}")
+        }
+      }
     }
 
     coroutineScope {
