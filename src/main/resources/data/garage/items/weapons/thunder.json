@@ -45,6 +45,13 @@
         }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 68, "to": 99 },
+        "weakening": { "from": 56.93, "to": 113.85, "minimum": 0.5 },
+        "splash": { "from": 0, "to": 0.25, "radius": 12 }
+      },
+
       "visual": {
         "$type": "thunder",
 

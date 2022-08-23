@@ -224,7 +224,9 @@ data class WeaponDamage(
   @Json val fixed: Fixed? = null,
   @Json val range: Range? = null,
 
-  @Json val weakening: Weakening? = null
+  @Json val weakening: Weakening? = null,
+
+  @Json val splash: Splash? = null
 ) {
   class Discrete
 
@@ -245,6 +247,12 @@ data class WeaponDamage(
     @Json val from: Double,
     @Json val to: Double,
     @Json val minimum: Double
+  )
+
+  data class Splash(
+    @Json val from: Double,
+    @Json val to: Double,
+    @Json val radius: Double
   )
 }
 
