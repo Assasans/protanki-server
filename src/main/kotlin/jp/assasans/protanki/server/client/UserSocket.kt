@@ -41,6 +41,10 @@ suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
 suspend fun Command.send(tank: BattleTank) = tank.socket.send(this)
 
+@JvmName("sendSockets") suspend fun Command.send(sockets: Iterable<UserSocket>) = sockets.forEach { socket -> socket.send(this) }
+@JvmName("sendPlayers") suspend fun Command.send(players: Iterable<BattlePlayer>) = players.forEach { player -> player.socket.send(this) }
+@JvmName("sendTanks") suspend fun Command.send(tanks: Iterable<BattleTank>) = tanks.forEach { tank -> tank.socket.send(this) }
+
 suspend fun UserSocket.sendChat(message: String, warning: Boolean = false) = Command(
   CommandName.SendSystemChatMessageClient,
   message,

@@ -21,22 +21,23 @@ class DeathmatchModeHandler(battle: Battle) : BattleModeHandler(battle) {
     ).send(player)
 
     if(player.isSpectator) return
-    battle.players.forEach { battlePlayer ->
-      if(battlePlayer == player) return@forEach
 
-      Command(
-        CommandName.BattlePlayerJoinDm,
-        BattlePlayerJoinDmData(
-          id = player.user.username,
-          players = players
-        ).toJson()
-      ).send(battlePlayer)
-    }
+    Command(
+      CommandName.BattlePlayerJoinDm,
+      BattlePlayerJoinDmData(
+        id = player.user.username,
+        players = players
+      ).toJson()
+    ).send(battle.players.exclude(player).ready())
   }
 
   override suspend fun playerLeave(player: BattlePlayer) {
     if(player.isSpectator) return
-    Command(CommandName.BattlePlayerLeaveDm, player.user.username).sendTo(battle, exclude = player)
+
+    Command(
+      CommandName.BattlePlayerLeaveDm,
+      player.user.username
+    ).send(battle.players.exclude(player).ready())
   }
 
   override suspend fun initModeModel(player: BattlePlayer) {

@@ -28,7 +28,7 @@ class BattleHandler : ICommandHandler, KoinComponent {
     val initBattle = if(player.isSpectator) player.sequence == BattlePlayerConstants.SPECTATOR_INIT_SEQUENCE
     else player.sequence == BattlePlayerConstants.USER_INIT_SEQUENCE
     if(initBattle) {
-      logger.info { "Init battle..." }
+      logger.debug { "Init battle for ${player.user.username}..." }
       player.initBattle()
     }
 
@@ -171,7 +171,6 @@ class BattleHandler : ICommandHandler, KoinComponent {
     newTank.orientation = tank.orientation
 
     newTank.spawn()
-    player.spawnTankForAnother()
 
     delay(1500)
     newTank.activate()

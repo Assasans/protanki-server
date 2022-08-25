@@ -83,6 +83,8 @@ suspend fun Command.sendTo(
 
 fun List<BattlePlayer>.users() = filter { player -> !player.isSpectator }
 fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
+fun List<BattlePlayer>.ready() = filter { player -> player.ready }
+fun List<BattlePlayer>.exclude(player: BattlePlayer) = filter { it != player }
 
 class Battle(
   coroutineContext: CoroutineContext,
