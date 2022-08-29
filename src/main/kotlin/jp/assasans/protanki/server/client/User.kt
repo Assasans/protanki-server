@@ -7,6 +7,7 @@ import org.hibernate.annotations.Parent
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import jp.assasans.protanki.server.HibernateUtils
+import jp.assasans.protanki.server.extensions.putIfAbsent
 import jp.assasans.protanki.server.garage.ServerGarageUserItem
 import jp.assasans.protanki.server.garage.ServerGarageUserItemHull
 import jp.assasans.protanki.server.garage.ServerGarageUserItemPaint
@@ -52,7 +53,10 @@ interface IUserRepository {
 }
 
 class UserRepository : IUserRepository {
-  private val entityManager = HibernateUtils.createEntityManager()
+  private val _entityManagers = ThreadLocal<EntityManager>()
+
+  private val entityManager: EntityManager
+    get() = _entityManagers.putIfAbsent { HibernateUtils.createEntityManager() }
 
   override suspend fun getUser(id: Int): User? = withContext(Dispatchers.IO) {
     entityManager.find(User::class.java, id)
