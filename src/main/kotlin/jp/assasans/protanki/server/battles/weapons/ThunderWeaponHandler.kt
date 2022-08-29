@@ -1,8 +1,7 @@
 package jp.assasans.protanki.server.battles.weapons
 
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.TankState
-import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.battles.*
+import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.client.weapons.thunder.Fire
 import jp.assasans.protanki.server.client.weapons.thunder.FireStatic
 import jp.assasans.protanki.server.client.weapons.thunder.FireTarget
@@ -21,16 +20,18 @@ class ThunderWeaponHandler(
 ) : WeaponHandler(player, weapon) {
   suspend fun fire(fire: Fire) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.Shot, tank.id, fire.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.Shot, tank.id, fire.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireStatic(static: FireStatic) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
     processSplashTargets(static.hitPoint.toVector(), static.splashTargetIds, static.splashTargetDistances)
 
-    Command(CommandName.ShotStatic, tank.id, static.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.ShotStatic, tank.id, static.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -46,7 +47,7 @@ class ThunderWeaponHandler(
 
     processSplashTargets(target.hitPointWorld.toVector(), target.splashTargetIds, target.splashTargetDistances)
 
-    Command(CommandName.ShotTarget, sourceTank.id, target.toJson()).sendTo(sourceTank.player.battle)
+    Command(CommandName.ShotTarget, sourceTank.id, target.toJson()).send(battle.players.exclude(player).ready())
   }
 
   private suspend fun processSplashTargets(hitPoint: Vector3, ids: List<String>, distances: List<String>) {

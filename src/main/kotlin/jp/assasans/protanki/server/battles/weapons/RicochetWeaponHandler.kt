@@ -1,8 +1,7 @@
 package jp.assasans.protanki.server.battles.weapons
 
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.TankState
-import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.battles.*
+import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.client.weapons.ricochet.Fire
 import jp.assasans.protanki.server.client.weapons.ricochet.FireTarget
 import jp.assasans.protanki.server.client.toJson
@@ -31,6 +30,6 @@ class RicochetWeaponHandler(
 
     battle.damageProcessor.dealDamage(sourceTank, targetTank, 40.0, false)
 
-    Command(CommandName.ShotTarget, sourceTank.id, target.toJson()).sendTo(battle)
+    Command(CommandName.ShotTarget, sourceTank.id, target.toJson()).send(battle.players.exclude(player).ready())
   }
 }
