@@ -15,8 +15,9 @@ class RicochetWeaponHandler(
 ) : WeaponHandler(player, weapon) {
   suspend fun fire(fire: Fire) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.Shot, tank.id, fire.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.Shot, tank.id, fire.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireTarget(target: FireTarget) {
