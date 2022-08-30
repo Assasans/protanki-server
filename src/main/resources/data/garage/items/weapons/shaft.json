@@ -45,6 +45,12 @@
         { "property": "TURRET_TURN_SPEED", "value": 71.5 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 41, "to": 47 },
+        "weakening": { "from": 100, "to": 100, "minimum": 1 }
+      },
+
       "visual": {
         "$type": "shaft",
 
@@ -106,7 +112,13 @@
           ]
         },
         { "property": "TURRET_TURN_SPEED", "value": 86.8 }
-      ]
+      ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 51, "to": 59 },
+        "weakening": { "from": 100, "to": 100, "minimum": 1 }
+      }
     },
     "2": {
       "previewResourceId": 810956,
@@ -137,7 +149,13 @@
           ]
         },
         { "property": "TURRET_TURN_SPEED", "value": 102.1 }
-      ]
+      ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 62, "to": 71 },
+        "weakening": { "from": 100, "to": 100, "minimum": 1 }
+      }
     },
     "3": {
       "previewResourceId": 772221,
@@ -168,7 +186,13 @@
           ]
         },
         { "property": "TURRET_TURN_SPEED", "value": 108.7 }
-      ]
+      ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 66, "to": 76 },
+        "weakening": { "from": 100, "to": 100, "minimum": 1 }
+      }
     }
   }
 }

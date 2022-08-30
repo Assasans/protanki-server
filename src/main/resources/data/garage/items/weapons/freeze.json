@@ -43,6 +43,12 @@
         }
       ],
 
+      "damage": {
+        "stream": { "capacity": 1000, "charge": 82, "discharge": 111, "interval": 500 },
+        "fixed": { "value": 48 },
+        "weakening": { "from": 5, "to": 24.75, "minimum": 0.5 }
+      },
+
       "visual": {
         "$type": "freeze",
 
@@ -116,7 +122,13 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 26.7 }
           ]
         }
-      ]
+      ],
+
+      "damage": {
+        "stream": { "capacity": 100000, "charge": 8749, "discharge": 11100, "interval": 500 },
+        "fixed": { "value": 60 },
+        "weakening": { "from": 5, "to": 26.68, "minimum": 0.5 }
+      }
     },
     "2": {
       "previewResourceId": 926940,
@@ -145,7 +157,13 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 28.6 }
           ]
         }
-      ]
+      ],
+
+      "damage": {
+        "stream": { "capacity": 100000, "charge": 9434, "discharge": 11100, "interval": 500 },
+        "fixed": { "value": 72 },
+        "weakening": { "from": 5, "to": 28.62, "minimum": 0.5 }
+      }
     },
     "3": {
       "previewResourceId": 918917,
@@ -174,7 +192,13 @@
             { "property": "WEAPON_MIN_DAMAGE_RADIUS", "value": 30 }
           ]
         }
-      ]
+      ],
+
+      "damage": {
+        "stream": { "capacity": 1000, "charge": 100, "discharge": 111, "interval": 500 },
+        "fixed": { "value": 80 },
+        "weakening": { "from": 5, "to": 30, "minimum": 0.5 }
+      }
     }
   }
 }

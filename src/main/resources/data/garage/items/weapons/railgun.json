@@ -40,6 +40,11 @@
         { "property": "WEAPON_WEAKENING_COEFF", "value": 35.36 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 68, "to": 106 }
+      },
+
       "physics": {
         "turretRotationSpeed": 0.9815731713216109,
         "turretTurnAcceleration": 1.214225560612455,
@@ -121,6 +126,11 @@
         { "property": "TURRET_TURN_SPEED", "value": 70 },
         { "property": "WEAPON_WEAKENING_COEFF", "value": 56.90 }
       ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 90, "to": 137 }
+      },
 
       "physics": {
         "turretRotationSpeed": 1.2217304763960306,
@@ -204,6 +214,11 @@
         { "property": "WEAPON_WEAKENING_COEFF", "value": 78.45 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 111, "to": 168 }
+      },
+
       "physics": {
         "turretRotationSpeed": 1.3692107981895516,
         "turretTurnAcceleration": 1.5781267096532727,
@@ -285,6 +300,11 @@
         { "property": "TURRET_TURN_SPEED", "value": 97.4 },
         { "property": "WEAPON_WEAKENING_COEFF", "value": 100.00 }
       ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 133, "to": 199 }
+      },
 
       "physics": {
         "turretRotationSpeed": 1.6999506914424771,

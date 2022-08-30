@@ -44,6 +44,14 @@
         { "property": "TURRET_TURN_SPEED", "value": 91.7 }
       ],
 
+      "damage": {
+        "stream": { "capacity": 10000, "charge": 900, "discharge": 1420, "interval": 500 },
+        "fixed": { "value": 36 },
+        "heal": {
+          "fixed": { "value": 36 }
+        }
+      },
+
       "visual": {
         "$type": "isida",
 
@@ -154,6 +162,14 @@
         },
         { "property": "TURRET_TURN_SPEED", "value": 106.7 }
       ],
+
+      "damage": {
+        "stream": { "capacity": 10000, "charge": 964, "discharge": 1420, "interval": 500 },
+        "fixed": { "value": 47 },
+        "heal": {
+          "fixed": { "value": 47 }
+        }
+      },
 
       "physics": {
         "turretRotationSpeed": 1.8622663118779497,
@@ -273,6 +289,14 @@
         { "property": "TURRET_TURN_SPEED", "value": 121.8 }
       ],
 
+      "damage": {
+        "stream": { "capacity": 10000, "charge": 1038, "discharge": 1420, "interval": 500 },
+        "fixed": { "value": 57 },
+        "heal": {
+          "fixed": { "value": 57 }
+        }
+      },
+
       "physics": {
         "turretRotationSpeed": 2.1249383643030963,
         "turretTurnAcceleration": 3.5533158241352556,
@@ -390,6 +414,14 @@
         },
         { "property": "TURRET_TURN_SPEED", "value": 134.7 }
       ],
+
+      "damage": {
+        "stream": { "capacity": 10000, "charge": 1111, "discharge": 1420, "interval": 500 },
+        "fixed": { "value": 66 },
+        "heal": {
+          "fixed": { "value": 66 }
+        }
+      },
 
       "physics": {
         "turretRotationSpeed": 2.3500858378103646,

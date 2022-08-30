@@ -75,6 +75,7 @@ class DamageCalculator : IDamageCalculator {
     }
   }
 
+  // TODO(Assasans): Incorrect implementation
   override fun getSplashMultiplier(splash: WeaponDamage.Splash, distance: Double): Double {
     val minimumDamage = splash.from
     val maximumDamage = splash.to

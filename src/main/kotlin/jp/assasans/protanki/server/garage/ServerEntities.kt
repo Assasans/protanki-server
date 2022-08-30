@@ -224,6 +224,8 @@ data class WeaponDamage(
   @Json val fixed: Fixed? = null,
   @Json val range: Range? = null,
 
+  @Json val heal: Heal? = null,
+
   @Json val weakening: Weakening? = null,
 
   @Json val splash: Splash? = null
@@ -231,6 +233,9 @@ data class WeaponDamage(
   class Discrete
 
   data class Stream(
+    @Json val capacity: Int,
+    @Json val charge: Int,
+    @Json val discharge: Int,
     @Json val interval: Int
   )
 
@@ -253,6 +258,12 @@ data class WeaponDamage(
     @Json val from: Double,
     @Json val to: Double,
     @Json val radius: Double
+  )
+
+  data class Heal(
+    // One of the following
+    @Json val fixed: Fixed? = null,
+    @Json val range: Range? = null
   )
 }
 

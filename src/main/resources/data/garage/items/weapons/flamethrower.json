@@ -50,7 +50,7 @@
       ],
 
       "damage": {
-        "stream": { "interval": 500 },
+        "stream": { "capacity": 100000, "charge": 7491, "discharge": 20000, "interval": 500 },
         "fixed": { "value": 41 },
         "weakening": { "from": 5, "to": 23.74, "minimum": 0.5 }
       },
@@ -163,7 +163,7 @@
       ],
 
       "damage": {
-        "stream": { "interval": 500 },
+        "stream": { "capacity": 100000, "charge": 7918, "discharge": 20000, "interval": 500 },
         "fixed": { "value": 50 },
         "weakening": { "from": 5, "to": 25.65, "minimum": 0.5 }
       },
@@ -281,7 +281,7 @@
       ],
 
       "damage": {
-        "stream": { "interval": 500 },
+        "stream": { "capacity": 100000, "charge": 8389, "discharge": 20000, "interval": 500 },
         "fixed": { "value": 60 },
         "weakening": { "from": 5, "to": 27.55, "minimum": 0.5 }
       }
@@ -322,7 +322,7 @@
       ],
 
       "damage": {
-        "stream": { "interval": 500 },
+        "stream": { "capacity": 10000, "charge": 909, "discharge": 2000, "interval": 500 },
         "fixed": { "value": 72 },
         "weakening": { "from": 5, "to": 30, "minimum": 0.5 }
       }
