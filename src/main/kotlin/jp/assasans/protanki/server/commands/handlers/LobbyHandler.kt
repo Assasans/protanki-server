@@ -7,6 +7,7 @@ import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
@@ -18,7 +19,6 @@ import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.NoSuchProplibException
-import jp.assasans.protanki.server.extensions.collectWithCurrent
 import jp.assasans.protanki.server.extensions.launchDelayed
 import jp.assasans.protanki.server.quests.JoinBattleMapQuest
 import jp.assasans.protanki.server.quests.questOf
@@ -410,7 +410,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
     // TODO(Assasans): Save Job
     socket.coroutineScope.launch {
-      subscription.rank.collectWithCurrent { rank ->
+      subscription.rank.collect { rank ->
         Command(
           CommandName.NotifyUserRank,
           NotifyUserRankData(username = targetUser.username, rank = rank.value).toJson()
