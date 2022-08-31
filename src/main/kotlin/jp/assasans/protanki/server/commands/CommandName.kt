@@ -40,6 +40,9 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),
 
   SwitchToRegistration(CommandCategory.Registration, "set_state", CommandSide.Server),
+  RegisterUser(CommandCategory.Registration, "registration", CommandSide.Server),
+  CheckUsernameRegistration(CommandCategory.Registration, "check_name", CommandSide.Server),
+  CheckUsernameRegistrationClient(CommandCategory.Registration, "check_name_result", CommandSide.Client),
 
   RefreshLobbyCaptcha(CommandCategory.Lobby, "refresh_captcha", CommandSide.Server),
   RefreshRegistrationCaptcha(CommandCategory.Registration, "refresh_captcha", CommandSide.Server),

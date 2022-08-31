@@ -82,4 +82,34 @@ class AuthHandler : ICommandHandler, KoinComponent {
 
     socket.invite = invite
   }
+
+  @CommandHandler(CommandName.CheckUsernameRegistration)
+  suspend fun checkUsernameRegistration(socket: UserSocket, username: String) {
+    if(userRepository.getUser(username) != null) {
+      // TODO(Assasans): Use "nickname_exist"
+      Command(CommandName.CheckUsernameRegistrationClient, "incorrect").send(socket)
+      return
+    }
+
+    // Pass-through
+    Command(CommandName.CheckUsernameRegistrationClient, "not_exist").send(socket)
+  }
+
+  @CommandHandler(CommandName.RegisterUser)
+  suspend fun registerUser(socket: UserSocket, username: String, password: String, captcha: String) {
+    if(inviteService.enabled && socket.invite == null) {
+      Command(CommandName.ShowAlert, AuthHandlerConstants.InviteRequired).send(socket)
+      return
+    }
+
+    logger.debug { "Register user: [ Invite = '${socket.invite?.code}', Username = '$username', Password = '$password', Captcha = ${if(captcha.isEmpty()) "*none*" else "'${captcha}'"} ]" }
+
+    val user = userRepository.createUser(username, password)
+               ?: TODO("User exists")
+
+    userSubscriptionManager.add(user)
+    socket.user = user
+    Command(CommandName.AuthAccept).send(socket)
+    socket.loadLobby()
+  }
 }
