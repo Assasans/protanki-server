@@ -35,6 +35,8 @@ import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
 import jp.assasans.protanki.server.extensions.gitVersion
 import jp.assasans.protanki.server.garage.*
+import jp.assasans.protanki.server.invite.IInviteService
+import jp.assasans.protanki.server.invite.Invite
 import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
@@ -85,6 +87,7 @@ class UserSocket(
   private val battleProcessor by inject<IBattleProcessor>()
   private val lobbyChatManager by inject<ILobbyChatManager>()
   private val userRepository by inject<IUserRepository>()
+  private val inviteService by inject<IInviteService>()
   private val json by inject<Moshi>()
 
   private val input: ByteReadChannel = socket.openReadChannel()
@@ -105,6 +108,8 @@ class UserSocket(
   var user: User? = null
   var selectedBattle: Battle? = null
   var screen: Screen? = null
+
+  var invite: Invite? = null
 
   val battle: Battle?
     get() = battlePlayer?.battle
@@ -399,6 +404,8 @@ class UserSocket(
     Command(CommandName.InitLocale, resourceManager.get("lang/${locale.key}.json").readText()).send(this)
 
     loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+
+    Command(CommandName.InitInviteModel, inviteService.enabled.toString()).send(this)
     Command(CommandName.MainResourcesLoaded).send(this)
   }
 

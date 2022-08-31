@@ -15,17 +15,28 @@ import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
 import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.garage.*
+import jp.assasans.protanki.server.invite.IInviteService
 import jp.assasans.protanki.server.quests.*
+
+object AuthHandlerConstants {
+  const val InviteRequired = "Invite code is required to log in"
+}
 
 class AuthHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val userRepository: IUserRepository by inject()
   private val userSubscriptionManager: IUserSubscriptionManager by inject()
+  private val inviteService: IInviteService by inject()
 
   @CommandHandler(CommandName.Login)
   suspend fun login(socket: UserSocket, captcha: String, rememberMe: Boolean, username: String, password: String) {
-    logger.debug { "User login: [ Username = '$username', Password = '$password', Captcha = ${if(captcha.isEmpty()) "*none*" else "'${captcha}'"}, Remember = $rememberMe ]" }
+    if(inviteService.enabled && socket.invite == null) {
+      Command(CommandName.ShowAlert, AuthHandlerConstants.InviteRequired).send(socket)
+      return
+    }
+
+    logger.debug { "User login: [ Invite = '${socket.invite?.code}', Username = '$username', Password = '$password', Captcha = ${if(captcha.isEmpty()) "*none*" else "'${captcha}'"}, Remember = $rememberMe ]" }
 
     val user = HibernateUtils.createEntityManager().let { entityManager ->
       // TODO(Assasans): Testing only
@@ -126,8 +137,27 @@ class AuthHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.LoginByHash)
   suspend fun loginByHash(socket: UserSocket, hash: String) {
+    if(inviteService.enabled && socket.invite == null) {
+      Command(CommandName.ShowAlert, AuthHandlerConstants.InviteRequired).send(socket)
+      return
+    }
+
     logger.debug { "User login by hash: $hash" }
 
     Command(CommandName.LoginByHashFailed).send(socket)
+  }
+
+  @CommandHandler(CommandName.ActivateInvite)
+  suspend fun activateInvite(socket: UserSocket, code: String) {
+    logger.debug { "Fetching invite: $code" }
+
+    val invite = inviteService.getInvite(code)
+    if(invite != null) {
+      Command(CommandName.InviteValid).send(socket)
+    } else {
+      Command(CommandName.InviteInvalid).send(socket)
+    }
+
+    socket.invite = invite
   }
 }

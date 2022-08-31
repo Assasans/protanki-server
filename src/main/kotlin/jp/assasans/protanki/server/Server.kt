@@ -29,6 +29,9 @@ import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.*
+import jp.assasans.protanki.server.invite.IInviteRepository
+import jp.assasans.protanki.server.invite.IInviteService
+import jp.assasans.protanki.server.invite.Invite
 import jp.assasans.protanki.server.ipc.*
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
@@ -49,6 +52,8 @@ class Server : KoinComponent {
   private val chatCommandRegistry by inject<IChatCommandRegistry>()
   private val storeRegistry by inject<IStoreRegistry>()
   private val userRepository by inject<IUserRepository>()
+  private val inviteService by inject<IInviteService>()
+  private val inviteRepository by inject<IInviteRepository>()
 
   private var networkingEventsJob: Job? = null
 
@@ -72,6 +77,8 @@ class Server : KoinComponent {
       commandRegistry.registerHandlers(handlerType)
       logger.debug { "Registered command handler: ${handlerType.simpleName}" }
     }
+
+    createInvite("2112")
 
     battleProcessor.battles.add(
       Battle(
@@ -563,6 +570,109 @@ class Server : KoinComponent {
           reply("Added $amount fund crystals to battle ${battle.id}")
         }
       }
+
+      command("invite") {
+        description("Manage invites")
+
+        subcommand("toggle") {
+          description("Toggle invite-only mode")
+
+          argument("enabled", Boolean::class) {
+            description("Invite-only mode enabled")
+          }
+
+          handler {
+            val enabled = arguments.get<String>("enabled").toBooleanStrict()
+
+            inviteService.enabled = enabled
+
+            reply("Invite codes are now ${if(enabled) "required" else "not required"} to log in")
+          }
+        }
+
+        subcommand("add") {
+          description("Add new invite")
+
+          argument("code", String::class) {
+            description("Invite code to add")
+          }
+
+          handler {
+            val code = arguments.get<String>("code")
+
+            inviteService.getInvite(code)?.let { invite ->
+              reply("Invite '${invite.code}' (ID: ${invite.id}) already exists")
+              return@handler
+            }
+
+            val invite = HibernateUtils.createEntityManager().let { entityManager ->
+              entityManager.transaction.begin()
+
+              val invite = Invite(
+                id = 0,
+                code = code
+              )
+
+              entityManager.persist(invite)
+
+              entityManager.transaction.commit()
+              entityManager.close()
+
+              invite
+            }
+
+            reply("Added invite '${invite.code}' (ID: ${invite.id})")
+          }
+        }
+
+        subcommand("delete") {
+          description("Delete invite")
+
+          argument("code", String::class) {
+            description("Invite code to delete")
+          }
+
+          handler {
+            val code = arguments.get<String>("code")
+
+            val invite = inviteService.getInvite(code)
+            if(invite == null) {
+              reply("Invite '$code' does not exist")
+              return@handler
+            }
+
+            HibernateUtils.createEntityManager().let { entityManager ->
+              entityManager.transaction.begin()
+
+              withContext(Dispatchers.IO) {
+                entityManager
+                  .createQuery("DELETE FROM Invite WHERE code = :code")
+                  .setParameter("code", code)
+                  .executeUpdate()
+              }
+
+              entityManager.transaction.commit()
+              entityManager.close()
+            }
+
+            reply("Deleted invite '${invite.code}' (ID: ${invite.id})")
+          }
+        }
+
+        subcommand("list") {
+          description("List existing invites")
+
+          handler {
+            val invites = inviteRepository.getInvites()
+            if(invites.isEmpty()) {
+              reply("No invites are available")
+              return@handler
+            }
+
+            reply("Invites:\n${invites.joinToString("\n") { invite -> "  - ${invite.code} (ID: ${invite.id})" }}")
+          }
+        }
+      }
     }
 
     coroutineScope {
@@ -605,6 +715,27 @@ class Server : KoinComponent {
         ServerStopResponse().send()
         processNetworking.close()
       }
+    }
+  }
+
+  private suspend fun createInvite(code: String): Invite {
+    return HibernateUtils.createEntityManager().let { entityManager ->
+      var invite = inviteService.getInvite(code)
+      if(invite == null) {
+        entityManager.transaction.begin()
+
+        invite = Invite(
+          id = 0,
+          code = code
+        )
+
+        entityManager.persist(invite)
+
+        entityManager.transaction.commit()
+        entityManager.close()
+      }
+
+      invite
     }
   }
 }

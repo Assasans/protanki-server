@@ -11,10 +11,30 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   MainResourcesLoaded(CommandCategory.System, "main_resources_loaded", CommandSide.Client),
   DependenciesLoaded(CommandCategory.System, "dependencies_loaded", CommandSide.Server),
 
+  /**
+   * @argument {String} message - Alert message
+   */
+  ShowAlert(CommandCategory.System, "showAlert", CommandSide.Client),
+
   Login(CommandCategory.Auth, "login", CommandSide.Server),
   AuthAccept(CommandCategory.Auth, "accept", CommandSide.Client),
   AuthDenied(CommandCategory.Auth, "denied", CommandSide.Client),
   InitExternalModel(CommandCategory.Auth, "init_external_model", CommandSide.Client),
+
+  /**
+   * @argument {Boolean} enabled - Is invite code required to log in
+   */
+  InitInviteModel(CommandCategory.System, "initInviteModel", CommandSide.Client),
+  ActivateInvite(CommandCategory.System, "activateInvite", CommandSide.Server),
+  InviteInvalid(CommandCategory.System, "inviteNotFound", CommandSide.Client),
+  InviteValid(CommandCategory.System, "inviteFree", CommandSide.Client),
+
+  /**
+   * Same as [InviteValid], but fills in the username and
+   * hides the registration button (appears again after changing the screen)
+   * @argument {String} username - Prefilled username
+   */
+  InviteValidWithUsername(CommandCategory.System, "inviteAlreadyActivated", CommandSide.Client),
 
   LoginByHash(CommandCategory.Auth, "loginByHash", CommandSide.Server),
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),

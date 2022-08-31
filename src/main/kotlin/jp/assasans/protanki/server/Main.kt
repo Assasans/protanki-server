@@ -40,6 +40,10 @@ import jp.assasans.protanki.server.garage.GarageItemConverter
 import jp.assasans.protanki.server.garage.GarageMarketRegistry
 import jp.assasans.protanki.server.garage.IGarageItemConverter
 import jp.assasans.protanki.server.garage.IGarageMarketRegistry
+import jp.assasans.protanki.server.invite.IInviteRepository
+import jp.assasans.protanki.server.invite.IInviteService
+import jp.assasans.protanki.server.invite.InviteRepository
+import jp.assasans.protanki.server.invite.InviteService
 import jp.assasans.protanki.server.ipc.IProcessNetworking
 import jp.assasans.protanki.server.ipc.NullNetworking
 import jp.assasans.protanki.server.ipc.ProcessMessage
@@ -158,6 +162,8 @@ fun main(args: Array<String>) = object : CliktCommand() {
       single<IQuestConverter> { QuestConverter() }
       single<IUserRepository> { UserRepository() }
       single<IUserSubscriptionManager> { UserSubscriptionManager() }
+      single<IInviteService> { InviteService(enabled = false) }
+      single<IInviteRepository> { InviteRepository() }
       single {
         Moshi.Builder()
           .add(
