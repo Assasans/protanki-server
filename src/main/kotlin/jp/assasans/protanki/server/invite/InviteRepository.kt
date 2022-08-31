@@ -11,6 +11,9 @@ interface IInviteRepository {
   suspend fun getInvite(code: String): Invite?
   suspend fun getInvites(): List<Invite>
   suspend fun getInviteCount(): Long
+
+  suspend fun createInvite(code: String): Invite?
+  suspend fun deleteInvite(code: String): Boolean
 }
 
 class InviteRepository : IInviteRepository {
@@ -42,5 +45,31 @@ class InviteRepository : IInviteRepository {
     entityManager
       .createQuery("SELECT COUNT(1) FROM Invite", Long::class.java)
       .singleResult
+  }
+
+  override suspend fun createInvite(code: String): Invite? = withContext(Dispatchers.IO) {
+    getInvite(code)?.let { return@withContext null }
+
+    val invite = Invite(
+      id = 0,
+      code = code
+    )
+
+    entityManager.transaction.begin()
+    entityManager.persist(invite)
+    entityManager.transaction.commit()
+
+    invite
+  }
+
+  override suspend fun deleteInvite(code: String): Boolean = withContext(Dispatchers.IO) {
+    entityManager.transaction.begin()
+    val updates = entityManager
+      .createQuery("DELETE FROM Invite WHERE code = :code")
+      .setParameter("code", code)
+      .executeUpdate()
+    entityManager.transaction.commit()
+
+    updates > 0
   }
 }

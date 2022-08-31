@@ -31,7 +31,6 @@ import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.*
 import jp.assasans.protanki.server.invite.IInviteRepository
 import jp.assasans.protanki.server.invite.IInviteService
-import jp.assasans.protanki.server.invite.Invite
 import jp.assasans.protanki.server.ipc.*
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
@@ -77,8 +76,6 @@ class Server : KoinComponent {
       commandRegistry.registerHandlers(handlerType)
       logger.debug { "Registered command handler: ${handlerType.simpleName}" }
     }
-
-    createInvite("2112")
 
     battleProcessor.battles.add(
       Battle(
@@ -600,25 +597,10 @@ class Server : KoinComponent {
           handler {
             val code = arguments.get<String>("code")
 
-            inviteService.getInvite(code)?.let { invite ->
-              reply("Invite '${invite.code}' (ID: ${invite.id}) already exists")
+            val invite = inviteRepository.createInvite(code)
+            if(invite == null) {
+              reply("Invite '$code' already exists")
               return@handler
-            }
-
-            val invite = HibernateUtils.createEntityManager().let { entityManager ->
-              entityManager.transaction.begin()
-
-              val invite = Invite(
-                id = 0,
-                code = code
-              )
-
-              entityManager.persist(invite)
-
-              entityManager.transaction.commit()
-              entityManager.close()
-
-              invite
             }
 
             reply("Added invite '${invite.code}' (ID: ${invite.id})")
@@ -635,27 +617,11 @@ class Server : KoinComponent {
           handler {
             val code = arguments.get<String>("code")
 
-            val invite = inviteService.getInvite(code)
-            if(invite == null) {
+            if(!inviteRepository.deleteInvite(code)) {
               reply("Invite '$code' does not exist")
-              return@handler
             }
 
-            HibernateUtils.createEntityManager().let { entityManager ->
-              entityManager.transaction.begin()
-
-              withContext(Dispatchers.IO) {
-                entityManager
-                  .createQuery("DELETE FROM Invite WHERE code = :code")
-                  .setParameter("code", code)
-                  .executeUpdate()
-              }
-
-              entityManager.transaction.commit()
-              entityManager.close()
-            }
-
-            reply("Deleted invite '${invite.code}' (ID: ${invite.id})")
+            reply("Deleted invite '$code'")
           }
         }
 
@@ -675,8 +641,12 @@ class Server : KoinComponent {
       }
     }
 
+    // Initialize database
+    HibernateUtils.createEntityManager().close()
+
+    inviteRepository.createInvite("2112")
+
     coroutineScope {
-      launch { HibernateUtils.createEntityManager().close() } // Initialize database
       launch { resourceServer.run() }
       launch { apiServer.run() }
 
@@ -715,27 +685,6 @@ class Server : KoinComponent {
         ServerStopResponse().send()
         processNetworking.close()
       }
-    }
-  }
-
-  private suspend fun createInvite(code: String): Invite {
-    return HibernateUtils.createEntityManager().let { entityManager ->
-      var invite = inviteService.getInvite(code)
-      if(invite == null) {
-        entityManager.transaction.begin()
-
-        invite = Invite(
-          id = 0,
-          code = code
-        )
-
-        entityManager.persist(invite)
-
-        entityManager.transaction.commit()
-        entityManager.close()
-      }
-
-      invite
     }
   }
 }
