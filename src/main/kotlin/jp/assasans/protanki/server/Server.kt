@@ -656,12 +656,53 @@ class Server : KoinComponent {
         // logger.debug { "[IPC] Received event: $event" }
         when(event) {
           // TODO(Assasans)
-          is ServerStopRequest -> {
+          is ServerStopRequest   -> {
             logger.info { "[IPC] Stopping server..." }
             GlobalScope.launch { stop() } // TODO(Assasans)
           }
 
-          else                 -> logger.info { "[IPC] Unknown event: ${event::class.simpleName}" }
+          is InviteToggleRequest -> {
+            val enabled = event.enabled
+
+            inviteService.enabled = enabled
+            logger.info { "[IPC] Invite system has been ${if(enabled) "enabled" else "disabled"}" }
+
+            InviteToggleResponse().send()
+          }
+
+          is InviteAddRequest    -> {
+            val code = event.code
+
+            val invite = inviteRepository.createInvite(code)?.also { invite ->
+              logger.info { "[IPC] Added invite code: ${invite.code} (ID: ${invite.id})" }
+            }
+
+            InviteAddResponse(success = invite != null).send()
+          }
+
+          is InviteDeleteRequest -> {
+            val code = event.code
+
+            val success = inviteRepository.deleteInvite(code)
+            if(success) {
+              logger.info { "[IPC] Deleted invite code: $code" }
+            }
+
+            InviteDeleteResponse(success).send()
+          }
+
+          is InviteListRequest   -> {
+            val invites = inviteRepository.getInvites()
+
+            InviteListResponse(invites.map { invite ->
+              InviteListResponse.Invite(
+                id = invite.id,
+                code = invite.code
+              )
+            }).send()
+          }
+
+          else                   -> logger.info { "[IPC] Unknown event: ${event::class.simpleName}" }
         }
       }.launchIn(this)
 
