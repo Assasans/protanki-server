@@ -208,12 +208,24 @@ class UserSocket(
       if(packet.isEmpty()) return
 
       // logger.debug { "PKT: $packet" }
-      decrypted = encryption.decrypt(packet)
+      try {
+        decrypted = encryption.decrypt(packet)
+      } catch(exception: Exception) {
+        logger.warn { "Failed to decrypt packet: $packet" }
+        return
+      }
 
       // logger.debug { "Decrypt: $packet -> $decrypted" }
 
       val command = Command()
-      command.readFrom(decrypted.toByteArray())
+      try {
+        command.readFrom(decrypted.toByteArray())
+      } catch(exception: Exception) {
+        logger.warn { "Failed to decode command" }
+        logger.warn { "- Raw packet: $packet" }
+        logger.warn { "- Decrypted packet: $decrypted" }
+        return
+      }
 
       if(
         command.name != CommandName.Ping &&
