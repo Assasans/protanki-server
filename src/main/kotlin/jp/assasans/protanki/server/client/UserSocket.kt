@@ -110,6 +110,7 @@ class UserSocket(
   var screen: Screen? = null
 
   var invite: Invite? = null
+  var sentAuthResources: Boolean = false
 
   val battle: Battle?
     get() = battlePlayer?.battle
@@ -346,6 +347,11 @@ class UserSocket(
 
     screen = Screen.BattleSelect
 
+    if(inviteService.enabled && !sentAuthResources) {
+      sentAuthResources = true
+      loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+    }
+
     Command(CommandName.InitPremium, InitPremiumData().toJson()).send(this)
 
     val user = user ?: throw Exception("No User")
@@ -403,7 +409,11 @@ class UserSocket(
 
     Command(CommandName.InitLocale, resourceManager.get("lang/${locale.key}.json").readText()).send(this)
 
-    loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+    loadDependency(resourceManager.get("resources/auth-untrusted.json").readText()).await()
+    if(!inviteService.enabled && !sentAuthResources) {
+      sentAuthResources = true
+      loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+    }
 
     Command(CommandName.InitInviteModel, inviteService.enabled.toString()).send(this)
     Command(CommandName.MainResourcesLoaded).send(this)
