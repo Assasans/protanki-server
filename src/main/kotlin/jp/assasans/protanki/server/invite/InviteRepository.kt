@@ -52,7 +52,8 @@ class InviteRepository : IInviteRepository {
 
     val invite = Invite(
       id = 0,
-      code = code
+      code = code,
+      username = null
     )
 
     entityManager.transaction.begin()
