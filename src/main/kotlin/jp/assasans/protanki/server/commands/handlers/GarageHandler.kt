@@ -241,13 +241,6 @@ class GarageHandler : ICommandHandler, KoinComponent {
       }
     }
 
-    withContext(Dispatchers.IO) {
-      entityManager
-        .createQuery("UPDATE User SET crystals = :crystals WHERE id = :id")
-        .setParameter("crystals", user.crystals)
-        .setParameter("id", user.id)
-        .executeUpdate()
-    }
     entityManager.transaction.commit()
     entityManager.close()
 

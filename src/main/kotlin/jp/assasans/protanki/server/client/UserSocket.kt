@@ -573,12 +573,42 @@ class UserSocket(
     val user = user ?: throw Exception("User data is not loaded")
 
     Command(CommandName.SetCrystals, user.crystals.toString()).send(this)
+
+    HibernateUtils.createEntityManager().let { entityManager ->
+      entityManager.transaction.begin()
+      withContext(Dispatchers.IO) {
+        entityManager
+          .createQuery("UPDATE User SET crystals = :crystals WHERE id = :id")
+          .setParameter("crystals", user.crystals)
+          .setParameter("id", user.id)
+          .executeUpdate()
+      }
+      entityManager.transaction.commit()
+      entityManager.close()
+    }
+
+    logger.debug { "Update crystals for $user: (amount: ${user.crystals})" }
   }
 
   suspend fun updateScore() {
     val user = user ?: throw Exception("User data is not loaded")
 
     Command(CommandName.SetScore, user.score.toString()).send(this)
+
+    HibernateUtils.createEntityManager().let { entityManager ->
+      entityManager.transaction.begin()
+      withContext(Dispatchers.IO) {
+        entityManager
+          .createQuery("UPDATE User SET score = :score WHERE id = :id")
+          .setParameter("score", user.score)
+          .setParameter("id", user.id)
+          .executeUpdate()
+      }
+      entityManager.transaction.commit()
+      entityManager.close()
+    }
+
+    logger.debug { "Update score for $user: (amount: ${user.score})" }
 
     if(user.rank == clientRank) return // No need to update rank
     clientRank = user.rank
