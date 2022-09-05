@@ -362,6 +362,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       battle.properties[BattleProperty.InstantSelfDestruct] = true
       battle.properties[BattleProperty.SuppliesCooldownEnabled] = false
     }
+    battle.properties[BattleProperty.RearmingEnabled] = data.rearmingEnabled
 
     battleProcessor.battles.add(battle)
 

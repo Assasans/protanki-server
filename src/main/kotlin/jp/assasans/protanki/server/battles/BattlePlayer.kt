@@ -158,7 +158,7 @@ class BattlePlayer(
         map_id = battle.map.name,
         mapId = battle.map.id,
         spectator = isSpectator,
-        reArmorEnabled = true,
+        reArmorEnabled = battle.properties[BattleProperty.RearmingEnabled],
         skybox = mapRegistry.getSkybox(battle.map.skybox)
           .mapValues { (_, resource) -> resource.id }
           .toJson(),

@@ -18,6 +18,8 @@ class BattleProperty<T : Any> private constructor(val key: String, val type: KCl
 
     val ParkourMode = BattleProperty("parkour_mode", Boolean::class, false)
 
+    val RearmingEnabled = BattleProperty("rearming_enabled", Boolean::class, true)
+
     fun values() = properties.values.toList()
 
     fun get(key: String) = getOrNull(key) ?: throw IllegalArgumentException("No such property: $key")

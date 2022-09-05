@@ -169,7 +169,7 @@ class Battle(
         withoutBonuses = false,
         withoutCrystals = false,
         withoutSupplies = false,
-        reArmorEnabled = true,
+        reArmorEnabled = properties[BattleProperty.RearmingEnabled],
         parkourMode = properties[BattleProperty.ParkourMode],
         users = players.users().map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
       ).toJson()
@@ -188,7 +188,7 @@ class Battle(
         withoutBonuses = false,
         withoutCrystals = false,
         withoutSupplies = false,
-        reArmorEnabled = true,
+        reArmorEnabled = properties[BattleProperty.RearmingEnabled],
         parkourMode = properties[BattleProperty.ParkourMode],
         usersRed = players
           .users()

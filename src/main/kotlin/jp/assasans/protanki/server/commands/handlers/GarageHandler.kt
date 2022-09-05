@@ -6,6 +6,7 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.HibernateUtils
+import jp.assasans.protanki.server.battles.BattleProperty
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
@@ -82,6 +83,11 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
     val player = socket.battlePlayer
     if(player != null) {
+      if(!player.battle.properties[BattleProperty.RearmingEnabled]) {
+        logger.warn { "Player ${player.user.username} attempted to change equipment in battle with disabled rearming" }
+        return
+      }
+
       player.equipmentChanged = true
     }
 

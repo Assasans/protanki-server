@@ -1129,7 +1129,7 @@ data class BattleCreateData(
   @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
   @Json val parkourMode: Boolean = false,
   @Json val minRank: Int,
-  @Json val reArmorEnabled: Boolean,
+  @Json(name = "reArmorEnabled") val rearmingEnabled: Boolean,
   @Json val maxPeopleCount: Int,
   @Json val autoBalance: Boolean,
   @Json val maxRank: Int,
