@@ -421,6 +421,7 @@ class Server : KoinComponent {
 
           user.score = (user.score + amount).coerceAtLeast(0)
           player.updateScore()
+          userRepository.updateUser(user)
 
           reply("Added $amount experience points to ${user.username}")
         }
@@ -452,6 +453,7 @@ class Server : KoinComponent {
 
           user.crystals = (user.crystals + amount).coerceAtLeast(0)
           player.updateCrystals()
+          userRepository.updateUser(user)
 
           reply("Added $amount crystals to ${user.username}")
         }

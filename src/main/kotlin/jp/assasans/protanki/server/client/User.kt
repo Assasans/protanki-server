@@ -56,6 +56,7 @@ interface IUserRepository {
   suspend fun getUserCount(): Long
 
   suspend fun createUser(username: String, password: String): User?
+  suspend fun updateUser(user: User)
 }
 
 class UserRepository : IUserRepository {
@@ -160,6 +161,14 @@ class UserRepository : IUserRepository {
     logger.debug { "Created user: ${user.username}" }
 
     user
+  }
+
+  override suspend fun updateUser(user: User): Unit = withContext(Dispatchers.IO) {
+    logger.debug { "Updating user \"${user.username}\" (${user.id})..." }
+
+    entityManager.transaction.begin()
+    entityManager.merge(user)
+    entityManager.transaction.commit()
   }
 }
 
