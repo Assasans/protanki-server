@@ -375,6 +375,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     battle.properties[BattleProperty.RearmingEnabled] = data.rearmingEnabled
     battle.properties[BattleProperty.MinRank] = data.minRank
     battle.properties[BattleProperty.MaxRank] = data.maxRank
+    battle.properties[BattleProperty.TimeLimit] = data.timeLimitInSec
 
     battleProcessor.battles.add(battle)
 
