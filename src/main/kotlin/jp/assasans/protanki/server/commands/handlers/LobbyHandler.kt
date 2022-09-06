@@ -52,6 +52,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
+    if(id == "null") return // Client side error, consequences of which (empty window) cannot be fixed by the server
+
     val battle = battleProcessor.getBattle(id) ?: throw Exception("Battle $id not found")
 
     logger.debug { "Select battle $id -> ${battle.title}" }
