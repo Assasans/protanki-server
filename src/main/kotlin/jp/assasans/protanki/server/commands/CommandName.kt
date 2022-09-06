@@ -203,6 +203,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ChangeTankSpecification(CommandCategory.Battle, "change_spec_tank", CommandSide.Client),
 
   InitInventory(CommandCategory.Battle, "init_inventory", CommandSide.Client),
+  SetItemCount(CommandCategory.Battle, "updateCount", CommandSide.Client),
   ActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Server),
   ClientActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Client),
 

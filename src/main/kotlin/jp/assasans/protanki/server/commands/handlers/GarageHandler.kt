@@ -207,6 +207,10 @@ class GarageHandler : ICommandHandler, KoinComponent {
             }
             user.crystals -= price
 
+            socket.battlePlayer?.let { battlePlayer ->
+              Command(CommandName.SetItemCount, marketItem.id, currentItem.count.toString()).send(battlePlayer)
+            }
+
             logger.debug { "Bought supply ${marketItem.id} (count: $count, $price crystals)" }
           }
         }
