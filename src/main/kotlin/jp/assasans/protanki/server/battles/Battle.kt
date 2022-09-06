@@ -6,8 +6,11 @@ import kotlin.random.nextULong
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.bonus.BonusProcessor
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
@@ -110,6 +113,16 @@ class Battle(
   val mineProcessor = MineProcessor(this)
   val fundProcessor = FundProcessor(this)
 
+  var startTime: Instant? = Clock.System.now()
+
+  // Remark: Original server sends negative value if battle has no time limit
+  val timeLeft: Duration?
+    get() {
+      val startTime = startTime ?: return null
+      if(properties[BattleProperty.TimeLimit] == 0) return null
+      return Clock.System.now() - (startTime + properties[BattleProperty.TimeLimit].seconds)
+    }
+
   fun toBattleData(): BattleData {
     // TODO(Assasans)
     return when(modeHandler) {
@@ -158,8 +171,8 @@ class Battle(
         itemId = id,
         battleMode = modeHandler.mode,
         scoreLimit = 300,
-        timeLimitInSec = 600,
-        timeLeftInSec = 212,
+        timeLimitInSec = properties[BattleProperty.TimeLimit],
+        timeLeftInSec = timeLeft?.inWholeSeconds?.toInt() ?: 0,
         preview = map.preview,
         maxPeopleCount = 8,
         name = title,
@@ -177,8 +190,8 @@ class Battle(
         itemId = id,
         battleMode = modeHandler.mode,
         scoreLimit = 300,
-        timeLimitInSec = 600,
-        timeLeftInSec = 212,
+        timeLimitInSec = properties[BattleProperty.TimeLimit],
+        timeLeftInSec = timeLeft?.inWholeSeconds?.toInt() ?: 0,
         preview = map.preview,
         maxPeopleCount = 8,
         name = title,
@@ -234,6 +247,7 @@ class Battle(
 
     delay(restartTime.inWholeMilliseconds)
 
+    startTime = Clock.System.now()
     players.users().forEach { player -> player.respawn() }
     Command(CommandName.RestartBattle, 0.toString()).sendTo(this)
 

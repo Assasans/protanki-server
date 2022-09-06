@@ -24,6 +24,9 @@ class BattleProperty<T : Any> private constructor(val key: String, val type: KCl
     val MinRank = BattleProperty("min_rank", Int::class, 1)
     val MaxRank = BattleProperty("min_rank", Int::class, 30)
 
+    // TODO(Assasans): BattleProperty does not allow null values
+    val TimeLimit = BattleProperty("time_limit", Int::class, 0)
+
     fun values() = properties.values.toList()
 
     fun get(key: String) = getOrNull(key) ?: throw IllegalArgumentException("No such property: $key")
