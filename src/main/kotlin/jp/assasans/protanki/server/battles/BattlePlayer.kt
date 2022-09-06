@@ -19,6 +19,9 @@ import jp.assasans.protanki.server.battles.weapons.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
+import jp.assasans.protanki.server.extensions.singleOrNullOf
+import jp.assasans.protanki.server.garage.ServerGarageUserItem
+import jp.assasans.protanki.server.garage.ServerGarageUserItemSupply
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 
@@ -229,35 +232,35 @@ class BattlePlayer(
           items = listOf(
             InventoryItemData(
               id = "health",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "health" }?.count ?: 0,
               slotId = 1,
               itemEffectTime = 20,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "armor",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "armor" }?.count ?: 0,
               slotId = 2,
               itemEffectTime = 55,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "double_damage",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "double_damage" }?.count ?: 0,
               slotId = 3,
               itemEffectTime = 55,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "n2o",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "n2o" }?.count ?: 0,
               slotId = 4,
               itemEffectTime = 55,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "mine",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "mine" }?.count ?: 0,
               slotId = 5,
               itemEffectTime = 20,
               itemRestSec = 20
