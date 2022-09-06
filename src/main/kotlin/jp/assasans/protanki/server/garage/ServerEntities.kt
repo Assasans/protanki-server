@@ -7,7 +7,7 @@ import jakarta.persistence.*
 import kotlinx.datetime.Instant
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import jp.assasans.protanki.server.client.SocketLocale
+import kotlinx.datetime.Clock
 import jp.assasans.protanki.server.client.User
 import jp.assasans.protanki.server.client.WeaponVisual
 import jp.assasans.protanki.server.utils.LocalizedString
@@ -439,12 +439,14 @@ class ServerGarageUserItemSubscription(
   user: User,
   id: String,
   @Convert(converter = InstantToLongConverter::class)
-  var startTime: Instant,
-  var duration: Duration
+  var endTime: Instant
 ) : ServerGarageUserItem(user, id) {
   @get:Transient
   override val marketItem: ServerGarageItemSubscription
     get() = marketRegistry.get(id.itemName).cast()
+
+  val timeLeft: Duration
+    get() = endTime - Clock.System.now()
 }
 
 @Converter

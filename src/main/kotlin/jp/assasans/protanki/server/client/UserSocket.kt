@@ -479,8 +479,8 @@ class UserSocket(
         is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem, locale)
         is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem, locale)
         is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem, locale))
-        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem, locale))
-        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem, locale))
+        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem, userItem as ServerGarageUserItemSupply?, locale))
+        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem, userItem as ServerGarageUserItemSubscription?, locale))
         is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem, locale))
         is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem, locale))
 
@@ -492,11 +492,6 @@ class UserSocket(
       // if(marketItem is ServerGarageItemKit) return@forEach
 
       if(userItem != null) {
-        // Add user item
-        if(userItem is ServerGarageUserItemSupply) {
-          clientMarketItems.single().count = userItem.count
-        }
-
         if(userItem is ServerGarageUserItemWithModification) {
           clientMarketItems.forEach clientMarketItems@{ clientItem ->
             // Add current and previous modifications as user items

@@ -116,7 +116,7 @@ class UserRepository : IUserRepository {
       ServerGarageUserItemSupply(user, "armor", count = 100),
       ServerGarageUserItemSupply(user, "double_damage", count = 100),
       ServerGarageUserItemSupply(user, "n2o", count = 100),
-      ServerGarageUserItemSubscription(user, "premium_effect", startTime = Clock.System.now(), duration = 10.days)
+      ServerGarageUserItemSubscription(user, "premium_effect", endTime = Clock.System.now() + 10.days)
     )
     user.equipment = UserEquipment(
       hullId = "wasp",

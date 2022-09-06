@@ -36,9 +36,9 @@ open class GarageItem(
   @Json val previewResourceId: Int,
 
   /**
-   * Remaining time for time-limited items (premium account, PRO battle, etc.)
+   * Remaining time in seconds for time-limited items (premium account, PRO battle, etc.)
    */
-  @Json val remainingTimeInSec: Int,
+  @Json(name = "remainingTimeInSec") val timeLeft: Long,
 
   @Json(name = "properts") val properties: List<GarageItemProperty>,
 
@@ -49,8 +49,8 @@ open class GarageItem(
   // Paint
   @Json val coloring: Int?,
 
-  // Supply (user item)
-  @Json var count: Int?,
+  // Supply
+  @Json val count: Int?,
 
   // Kit
   @Json val kit: GarageItemKit?
