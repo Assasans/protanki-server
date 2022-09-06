@@ -19,6 +19,7 @@ import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.bonus.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
@@ -95,6 +96,19 @@ class Server : KoinComponent {
         map = mapRegistry.get("map_island", ServerMapTheme.SummerDay),
         modeHandlerBuilder = TeamDeathmatchModeHandler.builder()
       )
+    )
+
+    battleProcessor.battles.add(
+      Battle(
+        coroutineContext,
+        id = "493202bf695cc88c",
+        title = "Rank limited",
+        map = mapRegistry.get("map_highland", ServerMapTheme.SummerDay),
+        modeHandlerBuilder = CaptureTheFlagModeHandler.builder()
+      ).also { battle ->
+        battle.properties[BattleProperty.MinRank] = 1
+        battle.properties[BattleProperty.MaxRank] = 3
+      }
     )
 
     chatCommandRegistry.apply {

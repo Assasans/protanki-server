@@ -72,12 +72,20 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     socket.battleJoinLock.withPermit {
       if(socket.screen == Screen.Battle) return@withPermit // Client-side bug
 
+      val user = socket.user ?: throw Exception("No User")
       val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
 
       val team = if(args.size == 1) {
         val rawTeam = args.get(0)
         BattleTeam.get(rawTeam) ?: throw Exception("Unknown team: $rawTeam")
       } else BattleTeam.None
+
+      val minRank = battle.properties[BattleProperty.MinRank]
+      val maxRank = battle.properties[BattleProperty.MaxRank]
+      if(user.rank.value !in minRank..maxRank) {
+        logger.warn { "Player ${user.username} attempted to join battle with incorrect rank: (user=${user.rank.value}, min=$minRank, max=$maxRank)" }
+        return
+      }
 
       socket.screen = Screen.Battle
 
@@ -110,8 +118,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
             mode = battle.modeHandler.mode,
             privateBattle = false,
             proBattle = false,
-            minRank = 1,
-            maxRank = 30
+            minRank = battle.properties[BattleProperty.MinRank],
+            maxRank = battle.properties[BattleProperty.MaxRank]
           ).toJson()
         ).let { command ->
           server.players
@@ -363,6 +371,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       battle.properties[BattleProperty.SuppliesCooldownEnabled] = false
     }
     battle.properties[BattleProperty.RearmingEnabled] = data.rearmingEnabled
+    battle.properties[BattleProperty.MinRank] = data.minRank
+    battle.properties[BattleProperty.MaxRank] = data.maxRank
 
     battleProcessor.battles.add(battle)
 
@@ -432,8 +442,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
           mode = battle.modeHandler.mode,
           privateBattle = false,
           proBattle = false,
-          minRank = 1,
-          maxRank = 30
+          minRank = battle.properties[BattleProperty.MinRank],
+          maxRank = battle.properties[BattleProperty.MaxRank]
         ).toJson()
       ).send(socket)
     }

@@ -92,8 +92,8 @@ class BattlePlayer(
           mode = battle.modeHandler.mode,
           privateBattle = false,
           proBattle = false,
-          minRank = 1,
-          maxRank = 30
+          minRank = battle.properties[BattleProperty.MinRank],
+          maxRank = battle.properties[BattleProperty.MaxRank]
         ).toJson()
       ).let { command ->
         server.players
@@ -162,6 +162,8 @@ class BattlePlayer(
         mapId = battle.map.id,
         spectator = isSpectator,
         reArmorEnabled = battle.properties[BattleProperty.RearmingEnabled],
+        minRank = battle.properties[BattleProperty.MinRank],
+        maxRank = battle.properties[BattleProperty.MaxRank],
         skybox = mapRegistry.getSkybox(battle.map.skybox)
           .mapValues { (_, resource) -> resource.id }
           .toJson(),

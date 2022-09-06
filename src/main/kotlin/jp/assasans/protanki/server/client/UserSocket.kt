@@ -705,8 +705,8 @@ data class InitBattleModelData(
   @Json val reArmorEnabled: Boolean,
   @Json val active: Boolean = true,
   @Json val dustParticle: Int = 110001,
-  @Json val minRank: Int = 3,
-  @Json val maxRank: Int = 30,
+  @Json val minRank: Int,
+  @Json val maxRank: Int,
   @Json val skybox: String,
   @Json val sound_id: Int = 584396,
   @Json val map_graphic_data: String
