@@ -120,7 +120,7 @@ class Battle(
     get() {
       val startTime = startTime ?: return null
       if(properties[BattleProperty.TimeLimit] == 0) return null
-      return Clock.System.now() - (startTime + properties[BattleProperty.TimeLimit].seconds)
+      return (startTime + properties[BattleProperty.TimeLimit].seconds) - Clock.System.now()
     }
 
   fun toBattleData(): BattleData {
