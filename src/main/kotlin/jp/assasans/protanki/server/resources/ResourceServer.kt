@@ -101,7 +101,7 @@ class ResourceServer : IResourceServer, KoinComponent {
 
   private suspend fun downloadOriginal(resourceId: ServerIdResource, file: String): InputStream? {
     return withContext(Dispatchers.IO) {
-      val response = client.get("http://54.36.175.134/${ResourceUtils.encodeId(resourceId).joinToString("/")}/$file") {
+      val response = client.get("https://s2.protanki.online/${ResourceUtils.encodeId(resourceId).joinToString("/")}/$file") {
         expectSuccess = false
       }
 
