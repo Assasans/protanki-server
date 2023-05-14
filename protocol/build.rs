@@ -8,16 +8,19 @@ use std::{
 };
 use convert_case::{Casing, Case};
 use serde::{Deserialize, Serialize};
+use serde_with::serde_as;
 use indoc::formatdoc;
 
+#[serde_as]
 #[derive(Serialize, Deserialize, Clone, Debug)]
 struct PacketDefinition {
   name: Option<String>,
   model: i32,
-  fields: BTreeMap<String, String>
+  #[serde_as(as = "BTreeMap<_, _>")]
+  fields: Vec<(String, String)>
 }
 
-fn generate_struct(name: &str, fields: &BTreeMap<String, String>) -> String {
+fn generate_struct(name: &str, fields: &Vec<(String, String)>) -> String {
   formatdoc!(
     r#"
     #[derive(Default, Clone, Debug)]
@@ -33,7 +36,7 @@ fn generate_struct(name: &str, fields: &BTreeMap<String, String>) -> String {
   )
 }
 
-fn generate_codec(name: &str, fields: &BTreeMap<String, String>) -> String {
+fn generate_codec(name: &str, fields: &Vec<(String, String)>) -> String {
   formatdoc!(
     r#"
     #[allow(unused_variables)]
@@ -187,6 +190,10 @@ fn main() {
   println!("cargo:rerun-if-changed=definitions/codecs.yaml");
   println!("cargo:rerun-if-changed=definitions/packets.yaml");
 
+  if env::var("SKIP_PROTOCOL_GEN").unwrap_or("0".to_string()) == "1" {
+    return;
+  }
+
   let out_dir = env::var("OUT_DIR").unwrap();
 
   let codecs: BTreeMap<String, String> = read_file!("definitions/codecs.yaml");
@@ -195,11 +202,11 @@ fn main() {
 
   // Convert field names to snake_case and codecs to types
   for (id, definition) in definitions.iter_mut() {
-    let mut fields = BTreeMap::new();
+    let mut fields = Vec::new();
     for (name, codec) in definition.fields.iter() {
       let key = name.from_case(Case::Camel).to_case(Case::Snake);
       if let Some(value) = codecs.get(codec) {
-        fields.insert(key, value.clone());
+        fields.push((key, value.clone()));
       } else {
         println!("cargo:warning=no type for codec {} (from packet {})", codec, id);
         skipped.insert(*id);

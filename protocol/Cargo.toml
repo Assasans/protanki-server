@@ -18,3 +18,4 @@ serde = { version = "1.0.162", features = ["derive"] }
 serde_yaml = "0.9.21"
 convert_case = "0.6.0"
 indoc = "2.0.1"
+serde_with = "3.0.0"
