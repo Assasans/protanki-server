@@ -1,0 +1,2244 @@
+11992250:
+  name: null
+  model: 50
+  fields:
+    shooterId: scpacker.networking.protocol.codec.primitive.StringCodec
+    targetTank: scpacker.networking.protocol.codec.primitive.StringCodec
+    localSpotPosition: scpacker.networking.protocol.codec.custom.CodecVector3d
+29211250:
+  name: s2c.lobby.BeginnerPassActivate
+  model: 72
+  fields:
+    lifeTimeInSecondsFromCurrentDateTime: scpacker.networking.protocol.codec.primitive.IntCodec
+    crystalBonusInPercent: scpacker.networking.protocol.codec.primitive.IntCodec
+    scoreBonusInPercent: scpacker.networking.protocol.codec.primitive.IntCodec
+34068208:
+  name: s2c.session.ServerSessionSync
+  model: 46
+  fields:
+    serverSessionTime: scpacker.networking.protocol.codec.primitive.IntCodec
+    clientPing: scpacker.networking.protocol.codec.primitive.IntCodec
+84050355:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+103812952:
+  name: null
+  model: 0
+  fields: {}
+118447426:
+  name: s2c.battle.BattleInfoAddUserToTeam
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    user: scpacker.networking.protocol.codec.custom.CodecBattleInfoUser
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+120401338:
+  name: null
+  model: 30
+  fields:
+    name: scpacker.networking.protocol.codec.primitive.StringCodec
+126880779:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+133238100:
+  name: null
+  model: 24
+  fields: {}
+142177784:
+  name: null
+  model: 71
+  fields:
+    flagId: scpacker.networking.protocol.codec.primitive.IntCodec
+    tank: scpacker.networking.protocol.codec.primitive.StringCodec
+147737736:
+  name: null
+  model: 24
+  fields:
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+    email: scpacker.networking.protocol.codec.primitive.StringCodec
+150222118:
+  name: null
+  model: 10
+  fields:
+    enabled: scpacker.networking.protocol.codec.primitive.BooleanCodec
+162656882:
+  name: null
+  model: 40
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    respawnDelay: scpacker.networking.protocol.codec.primitive.IntCodec
+178154988:
+  name: s2c.lobby.ChatInitParameters
+  model: 28
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecChatCC
+183561709:
+  name: null
+  model: 64
+  fields: {}
+184934482:
+  name: null
+  model: 5
+  fields: {}
+201628290:
+  name: null
+  model: 36
+  fields:
+    errorType: scpacker.networking.protocol.codec.primitive.ByteCodec
+228171466:
+  name: null
+  model: 36
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+229267683:
+  name: null
+  model: 49
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_356: scpacker.networking.protocol.codec.primitive.ShortCodec
+    var_253: scpacker.networking.protocol.codec.custom.CodecVector3d
+    hitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    var_2967: scpacker.networking.protocol.codec.custom.CodecVector3d
+244072998:
+  name: null
+  model: 55
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    var_356: scpacker.networking.protocol.codec.primitive.ShortCodec
+    var_253: scpacker.networking.protocol.codec.custom.CodecVector3d
+    name_21: scpacker.networking.protocol.codec.custom.CodecVector3d
+259979915:
+  name: null
+  model: 52
+  fields:
+    var_2072: scpacker.networking.protocol.codec.primitive.IntCodec
+    relativeHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_356: scpacker.networking.protocol.codec.primitive.ShortCodec
+    var_253: scpacker.networking.protocol.codec.custom.CodecVector3d
+    var_2967: scpacker.networking.protocol.codec.custom.CodecVector3d
+268832557:
+  name: null
+  model: 39
+  fields: {}
+272183855:
+  name: null
+  model: 62
+  fields:
+    mineId: scpacker.networking.protocol.codec.primitive.StringCodec
+    x: scpacker.networking.protocol.codec.primitive.FloatCodec
+    y: scpacker.networking.protocol.codec.primitive.FloatCodec
+    z: scpacker.networking.protocol.codec.primitive.FloatCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+312571157:
+  name: null
+  model: 5
+  fields: {}
+321971701:
+  name: s2c.captcha.CaptchaParameters
+  model: 6
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.VectorCodecCaptchaLocation
+326032325:
+  name: null
+  model: 19
+  fields:
+    questId: scpacker.networking.protocol.codec.primitive.IntCodec
+329279865:
+  name: c2s.battle.TankMoveCommand
+  model: 39
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    specificationId: scpacker.networking.protocol.codec.primitive.ShortCodec
+    moveCommand: scpacker.networking.protocol.codec.custom.CodecMoveCommand
+346830254:
+  name: null
+  model: 54
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+377959142:
+  name: c2s.layout.LayoutSwitchExitBattle
+  model: 17
+  fields:
+    var_727: scpacker.networking.protocol.codec.custom.CodecLayoutState
+381067984:
+  name: null
+  model: 55
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_356: scpacker.networking.protocol.codec.primitive.ShortCodec
+    name_21: scpacker.networking.protocol.codec.custom.CodecVector3d
+415207851:
+  name: null
+  model: 15
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+417965410:
+  name: null
+  model: 36
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+427083290:
+  name: c2s.auth.AccountRegisterSubmit
+  model: 8
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+    rememberMe: scpacker.networking.protocol.codec.primitive.BooleanCodec
+442888643:
+  name: s2c.auth.AccountRegisterUidBusy
+  model: 8
+  fields:
+    advicedUids: scpacker.networking.protocol.codec.complex.VectorCodecString
+444933603:
+  name: null
+  model: 5
+  fields:
+    inviteEnabled: scpacker.networking.protocol.codec.primitive.BooleanCodec
+446781737:
+  name: null
+  model: 37
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    suspicious: scpacker.networking.protocol.codec.primitive.BooleanCodec
+463494974:
+  name: null
+  model: 65
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+471157826:
+  name: null
+  model: 70
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    direction: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.custom.VectorCodecTargetHit
+504016996:
+  name: null
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+509394385:
+  name: null
+  model: 5
+  fields:
+    code: scpacker.networking.protocol.codec.primitive.StringCodec
+522993449:
+  name: null
+  model: 37
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecStatisticsModelCC
+546722394:
+  name: s2c.lobby.BattleRoundFinish
+  model: 33
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+546849203:
+  name: null
+  model: 49
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    hitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+552006706:
+  name: S2CBattleListListCreate
+  model: 31
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+553380510:
+  name: null
+  model: 13
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+560336625:
+  name: null
+  model: 37
+  fields:
+    reward: scpacker.networking.protocol.codec.custom.VectorCodecUserReward
+    timeToRestart: scpacker.networking.protocol.codec.primitive.IntCodec
+561771020:
+  name: null
+  model: 44
+  fields:
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+    score: scpacker.networking.protocol.codec.primitive.IntCodec
+566338297:
+  name: null
+  model: 30
+  fields: {}
+566652736:
+  name: null
+  model: 30
+  fields:
+    battleName: scpacker.networking.protocol.codec.primitive.StringCodec
+579696867:
+  name: null
+  model: 67
+  fields:
+    achievement: scpacker.networking.protocol.codec.custom.CodecAchievement
+581377054:
+  name: s2c.battle.UpdateTankTemperature
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    temperature: scpacker.networking.protocol.codec.primitive.FloatCodec
+600420685:
+  name: null
+  model: 24
+  fields: {}
+602656160:
+  name: null
+  model: 67
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecAchievementCC
+606668848:
+  name: null
+  model: 61
+  fields:
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+613462801:
+  name: null
+  model: 24
+  fields:
+    email: scpacker.networking.protocol.codec.primitive.StringCodec
+    emailConfirmed: scpacker.networking.protocol.codec.primitive.BooleanCodec
+614714702:
+  name: null
+  model: 13
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+641950429:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+650923390:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+652872053:
+  name: null
+  model: 24
+  fields: {}
+655372891:
+  name: s2c.auth.HashLoginFailed
+  model: 1
+  fields: {}
+668890771:
+  name: null
+  model: 24
+  fields:
+    var_501: scpacker.networking.protocol.codec.primitive.StringCodec
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+696140460:
+  name: null
+  model: 48
+  fields:
+    usersStat: scpacker.networking.protocol.codec.custom.CodecUserStat
+705454610:
+  name: null
+  model: 28
+  fields:
+    var_396: scpacker.networking.protocol.codec.primitive.StringCodec
+    text: scpacker.networking.protocol.codec.primitive.StringCodec
+714838911:
+  name: null
+  model: 5
+  fields:
+    nickname: scpacker.networking.protocol.codec.primitive.StringCodec
+732434644:
+  name: null
+  model: 37
+  fields:
+    timeLimitInSec: scpacker.networking.protocol.codec.primitive.IntCodec
+744948472:
+  name: s2c.lobby.ChatAntifloodParameters
+  model: 28
+  fields:
+    symbolCost: scpacker.networking.protocol.codec.primitive.IntCodec
+    enterCost: scpacker.networking.protocol.codec.primitive.IntCodec
+762959326:
+  name: null
+  model: 9
+  fields:
+    var_2570: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_2699: scpacker.networking.protocol.codec.primitive.StringCodec
+789790814:
+  name: null
+  model: 42
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecCaptureTheFlagCC
+802300608:
+  name: s2c.lobby.BattleCreate
+  model: 31
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+809822533:
+  name: null
+  model: 19
+  fields:
+    quests: scpacker.networking.protocol.codec.custom.VectorCodecDailyQuestInfo
+    weeklyQuestDescription: scpacker.networking.protocol.codec.custom.CodecWeeklyQuestDescription
+810713262:
+  name: null
+  model: 15
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+    data: scpacker.networking.protocol.codec.custom.CodecBattleInviteMessage
+814687528:
+  name: null
+  model: 15
+  fields:
+    senderId: scpacker.networking.protocol.codec.primitive.StringCodec
+834877801:
+  name: null
+  model: 15
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecBattleInviteCC
+837875576:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+843751647:
+  name: null
+  model: 50
+  fields: {}
+850220815:
+  name: null
+  model: 23
+  fields: {}
+855420488:
+  name: null
+  model: 21
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+    bonusInfo: scpacker.networking.protocol.codec.custom.CodecBonusInfoCC
+862913394:
+  name: null
+  model: 48
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    usersInfo: scpacker.networking.protocol.codec.custom.VectorCodecUserInfo
+870278784:
+  name: null
+  model: 36
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+875259457:
+  name: s2c.battle.SpawnTank
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+    position: scpacker.networking.protocol.codec.custom.CodecVector3d
+    orientation: scpacker.networking.protocol.codec.custom.CodecVector3d
+    health: scpacker.networking.protocol.codec.primitive.ShortCodec
+    incarnationId: scpacker.networking.protocol.codec.primitive.ShortCodec
+880756819:
+  name: null
+  model: 16
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_1471: scpacker.networking.protocol.codec.primitive.StringCodec
+885055495:
+  name: null
+  model: 19
+  fields:
+    weeklyQuestDescription: scpacker.networking.protocol.codec.custom.CodecWeeklyQuestDescription
+903498755:
+  name: null
+  model: 9
+  fields:
+    var_281: scpacker.networking.protocol.codec.primitive.StringCodec
+907073245:
+  name: null
+  model: 10
+  fields:
+    userPropertyCC: scpacker.networking.protocol.codec.custom.CodecUserPropertyCC
+930618015:
+  name: null
+  model: 63
+  fields: {}
+932564569:
+  name: s2c.auth.UpdateLoginHash
+  model: 1
+  fields:
+    hash: scpacker.networking.protocol.codec.primitive.StringCodec
+945463181:
+  name: null
+  model: 61
+  fields:
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+    name_73: scpacker.networking.protocol.codec.primitive.BooleanCodec
+947161947:
+  name: null
+  model: 30
+  fields: {}
+956252237:
+  name: null
+  model: 19
+  fields: {}
+958509220:
+  name: null
+  model: 52
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+979099084:
+  name: null
+  model: 56
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+981035905:
+  name: null
+  model: 55
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+988664577:
+  name: null
+  model: 40
+  fields: {}
+1003297349:
+  name: s2c.auth.RegisterCaptchaRequired
+  model: 8
+  fields: {}
+1015650019:
+  name: null
+  model: 15
+  fields:
+    senderId: scpacker.networking.protocol.codec.primitive.StringCodec
+1044854075:
+  name: null
+  model: 41
+  fields:
+    bonusId: scpacker.networking.protocol.codec.primitive.StringCodec
+1061006142:
+  name: null
+  model: 48
+  fields:
+    usersStat: scpacker.networking.protocol.codec.custom.VectorCodecUserStat
+1083705823:
+  name: c2s.auth.AccountRegisterValidateUid
+  model: 8
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+1091756732:
+  name: s2c.garage.FitItem
+  model: 34
+  fields:
+    item: scpacker.networking.protocol.codec.primitive.StringCodec
+1118835050:
+  name: s2c.layout.LobbyLayoutSwitchStart
+  model: 12
+  fields:
+    state: scpacker.networking.protocol.codec.custom.CodecLayoutState
+1132011721:
+  name: c2s.LinkResultDead
+  model: 14
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+1147113344:
+  name: null
+  model: 53
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+1149131596:
+  name: null
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+1149211509:
+  name: null
+  model: 37
+  fields:
+    fund: scpacker.networking.protocol.codec.primitive.IntCodec
+1152865919:
+  name: null
+  model: 15
+  fields:
+    senderId: scpacker.networking.protocol.codec.primitive.StringCodec
+1152930968:
+  name: c2s.LinkResultAlive
+  model: 14
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+1153801756:
+  name: c2s.layout.LayoutSwitchPayment
+  model: 17
+  fields: {}
+1156768699:
+  name: null
+  model: 38
+  fields: {}
+1178028365:
+  name: c2s.battle.TankReadyToActivate
+  model: 39
+  fields: {}
+1184835319:
+  name: null
+  model: 50
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    staticHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    targetHitPoints: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    impactForce: scpacker.networking.protocol.codec.primitive.FloatCodec
+1200280053:
+  name: s2c.session.BanTemporary
+  model: 7
+  fields:
+    reasonForUser: scpacker.networking.protocol.codec.primitive.StringCodec
+    minutes: scpacker.networking.protocol.codec.primitive.IntCodec
+    hours: scpacker.networking.protocol.codec.primitive.IntCodec
+    days: scpacker.networking.protocol.codec.primitive.IntCodec
+1211186637:
+  name: null
+  model: 34
+  fields: {}
+1212381771:
+  name: null
+  model: 57
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+1224288585:
+  name: null
+  model: 50
+  fields:
+    projectionOnVerticalAxis: scpacker.networking.protocol.codec.primitive.FloatCodec
+1227293080:
+  name: null
+  model: 19
+  fields: {}
+1229594925:
+  name: null
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+1229701582:
+  name: null
+  model: 53
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    var_253: scpacker.networking.protocol.codec.custom.CodecVector3d
+    var_252: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+1243673979:
+  name: null
+  model: 3
+  fields: {}
+1249639251:
+  name: null
+  model: 37
+  fields: {}
+1259981343:
+  name: null
+  model: 61
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+1262947513:
+  name: null
+  model: 37
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    newRank: scpacker.networking.protocol.codec.primitive.IntCodec
+1271163230:
+  name: c2s.captcha.ValidateCaptcha
+  model: 6
+  fields:
+    captchaLocation: scpacker.networking.protocol.codec.custom.CaptchaLocationCodec
+    var_1950: scpacker.networking.protocol.codec.primitive.StringCodec
+1286861380:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+1312986424:
+  name: null
+  model: 24
+  fields:
+    var_113: scpacker.networking.protocol.codec.primitive.BooleanCodec
+1318061480:
+  name: s2c.garage.ShowCategory
+  model: 34
+  fields:
+    category: scpacker.networking.protocol.codec.primitive.StringCodec
+1333088437:
+  name: null
+  model: 57
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+1382076950:
+  name: null
+  model: 65
+  fields:
+    text: scpacker.networking.protocol.codec.primitive.StringCodec
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+1383159023:
+  name: null
+  model: 15
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+1387974401:
+  name: null
+  model: 62
+  fields:
+    mineId: scpacker.networking.protocol.codec.primitive.StringCodec
+    targetId: scpacker.networking.protocol.codec.primitive.StringCodec
+1391146385:
+  name: null
+  model: 11
+  fields:
+    leftTimeInSeconds: scpacker.networking.protocol.codec.primitive.IntCodec
+1395251766:
+  name: null
+  model: 57
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    var_1019: scpacker.networking.protocol.codec.custom.VectorCodecShort
+    var_2638: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    var_782: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+1405859779:
+  name: null
+  model: 11
+  fields:
+    premiumAccountAlertCC: scpacker.networking.protocol.codec.custom.CodecPremiumAccountAlertCC
+    premiumNotifierCC: scpacker.networking.protocol.codec.custom.CodecPremiumNotifierCC
+1411656080:
+  name: null
+  model: 44
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+1417347634:
+  name: null
+  model: 19
+  fields: {}
+1422563374:
+  name: null
+  model: 13
+  fields:
+    friendsAccepted: scpacker.networking.protocol.codec.custom.CodecUserContainerCC
+    friendsAcceptedNew: scpacker.networking.protocol.codec.custom.CodecUserContainerCC
+    friendsIncoming: scpacker.networking.protocol.codec.custom.CodecUserContainerCC
+    friendsIncomingNew: scpacker.networking.protocol.codec.custom.CodecUserContainerCC
+    friendsOutgoing: scpacker.networking.protocol.codec.custom.CodecUserContainerCC
+1428217189:
+  name: S2CBattleInfoUpdateTeamScore
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    teamType: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+    score: scpacker.networking.protocol.codec.primitive.IntCodec
+1433937811:
+  name: null
+  model: 41
+  fields:
+    bonusId: scpacker.networking.protocol.codec.primitive.StringCodec
+1441234714:
+  name: null
+  model: 13
+  fields: {}
+1447082276:
+  name: null
+  model: 23
+  fields:
+    notificationEnabled: scpacker.networking.protocol.codec.primitive.BooleanCodec
+1447204641:
+  name: S2CBattleUserListUserJoinBattleWithTeam
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+1452181070:
+  name: c2s.layout.LayoutSwitchServerSelect
+  model: 17
+  fields: {}
+1459211021:
+  name: null
+  model: 54
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+1470597926:
+  name: null
+  model: 49
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    hitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+1478921140:
+  name: null
+  model: 49
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+1480924803:
+  name: s2c.auth.AccountRegisterUidIncorrect
+  model: 8
+  fields: {}
+1484572481:
+  name: c2s.session.MeasurePong
+  model: 45
+  fields: {}
+1501310158:
+  name: null
+  model: 52
+  fields:
+    var_2072: scpacker.networking.protocol.codec.primitive.IntCodec
+    hitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+1516578027:
+  name: s2c.battle.TankMoveTurretCommand
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    moveCommand: scpacker.networking.protocol.codec.custom.CodecMoveCommand
+    turretDirection: scpacker.networking.protocol.codec.primitive.FloatCodec
+1532749363:
+  name: null
+  model: 61
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+1534651002:
+  name: null
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+1544223090:
+  name: null
+  model: 24
+  fields: {}
+1561014187:
+  name: S2CBattleInfoUpdateName
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    name: scpacker.networking.protocol.codec.primitive.StringCodec
+1566424318:
+  name: s2c.payment.PaymentCompleted
+  model: 69
+  fields:
+    donation: scpacker.networking.protocol.codec.primitive.IntCodec
+    packageBonusCrystals: scpacker.networking.protocol.codec.primitive.IntCodec
+    bonusCrystals: scpacker.networking.protocol.codec.primitive.IntCodec
+    image: scpacker.networking.protocol.codec.custom.ResourceGetterCodec
+1570555748:
+  name: null
+  model: 9
+  fields:
+    success: scpacker.networking.protocol.codec.primitive.BooleanCodec
+    error: scpacker.networking.protocol.codec.primitive.StringCodec
+1579425801:
+  name: null
+  model: 19
+  fields: {}
+1632423559:
+  name: null
+  model: 50
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    staticHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    targetHitPoints: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    name_48: scpacker.networking.protocol.codec.custom.VectorCodecShort
+    var_2638: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    var_782: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+1642608662:
+  name: null
+  model: 19
+  fields:
+    questId: scpacker.networking.protocol.codec.primitive.IntCodec
+1690491826:
+  name: null
+  model: 52
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    hitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+1711371907:
+  name: null
+  model: 20
+  fields:
+    weeklyQuestReward: scpacker.networking.protocol.codec.custom.VectorCodecWeeklyQuestRewardItem
+1716773193:
+  name: null
+  model: 13
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+1719707347:
+  name: s2c.battle.DestroyTank
+  model: 39
+  fields:
+    tank: scpacker.networking.protocol.codec.primitive.StringCodec
+1744584433:
+  name: null
+  model: 9
+  fields:
+    email: scpacker.networking.protocol.codec.primitive.StringCodec
+1746762585:
+  name: null
+  model: 71
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecAssaultCC
+1768449810:
+  name: null
+  model: 19
+  fields:
+    questId: scpacker.networking.protocol.codec.primitive.IntCodec
+1771456254:
+  name: null
+  model: 24
+  fields:
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+1774907609:
+  name: c2s.UserNotifySubscribeUser
+  model: 18
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+1817559787:
+  name: null
+  model: 71
+  fields:
+    flagId: scpacker.networking.protocol.codec.primitive.IntCodec
+    position: scpacker.networking.protocol.codec.custom.CodecVector3d
+1831462385:
+  name: s2c.battle.SpawnBonus
+  model: 36
+  fields:
+    bonusId: scpacker.networking.protocol.codec.primitive.StringCodec
+    position: scpacker.networking.protocol.codec.custom.CodecVector3d
+    var_2317: scpacker.networking.protocol.codec.primitive.IntCodec
+1863710730:
+  name: null
+  model: 16
+  fields:
+    data: scpacker.networking.protocol.codec.primitive.StringCodec
+1868573511:
+  name: s2c.battle.TankDead
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+1924874982:
+  name: S2CBattleInfoRemoveUser
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+1925237062:
+  name: null
+  model: 42
+  fields:
+    position: scpacker.networking.protocol.codec.custom.CodecVector3d
+    flagTeam: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+1927704181:
+  name: s2c.battle.UpdateTankTurret
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    rotateTurretCommand: scpacker.networking.protocol.codec.custom.CodecRotateTurretCommand
+1928355480:
+  name: null
+  model: 24
+  fields:
+    email: scpacker.networking.protocol.codec.primitive.StringCodec
+1941352088:
+  name: null
+  model: 71
+  fields:
+    flagId: scpacker.networking.protocol.codec.primitive.IntCodec
+    baseId: scpacker.networking.protocol.codec.primitive.IntCodec
+    delivererTankId: scpacker.networking.protocol.codec.primitive.StringCodec
+1941694508:
+  name: S2CUserNotifyNotifyUserBattleLeave
+  model: 18
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+1953272681:
+  name: null
+  model: 37
+  fields: {}
+1989173907:
+  name: null
+  model: 29
+  fields:
+    rank: scpacker.networking.protocol.codec.primitive.IntCodec
+    score: scpacker.networking.protocol.codec.primitive.IntCodec
+    currentRankScore: scpacker.networking.protocol.codec.primitive.IntCodec
+    nextRankScore: scpacker.networking.protocol.codec.primitive.IntCodec
+    bonusCrystals: scpacker.networking.protocol.codec.primitive.IntCodec
+1993050216:
+  name: s2c.lobby.ChatRemoveUserMessages
+  model: 28
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+2001632000:
+  name: null
+  model: 55
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    state: scpacker.networking.protocol.codec.custom.CodecIsisState
+    hit: scpacker.networking.protocol.codec.custom.CodecTargetHit
+2001736388:
+  name: s2c.session.InitializeEncryption
+  model: 4
+  fields:
+    protectionData: scpacker.networking.protocol.codec.custom.VectorCodecByte
+2011860838:
+  name: null
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    newName: scpacker.networking.protocol.codec.primitive.StringCodec
+2029312880:
+  name: null
+  model: 24
+  fields: {}
+2032104949:
+  name: null
+  model: 43
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    decrease: scpacker.networking.protocol.codec.primitive.BooleanCodec
+2040021062:
+  name: null
+  model: 44
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    usersInfo: scpacker.networking.protocol.codec.custom.VectorCodecUserInfo
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+2041598093:
+  name: S2CUserNotifyUpdateUserOnlineStatus
+  model: 18
+  fields:
+    user: scpacker.networking.protocol.codec.custom.CodecOnlineNotifierData
+2062201643:
+  name: s2c.garage.InitMounted
+  model: 34
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+    mounted: scpacker.networking.protocol.codec.primitive.BooleanCodec
+2064692768:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+2074243318:
+  name: c2s.session.ServerSessionSyncResponse
+  model: 46
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    serverSessionTime: scpacker.networking.protocol.codec.primitive.IntCodec
+2092412133:
+  name: c2s.lobby.SelectBattle
+  model: 31
+  fields:
+    item: scpacker.networking.protocol.codec.primitive.StringCodec
+2098576423:
+  name: null
+  model: 22
+  fields:
+    socialNetworkId: scpacker.networking.protocol.codec.primitive.StringCodec
+2116086491:
+  name: null
+  model: 29
+  fields:
+    score: scpacker.networking.protocol.codec.primitive.IntCodec
+2128281231:
+  name: null
+  model: 70
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    direction: scpacker.networking.protocol.codec.custom.CodecVector3d
+2145091885:
+  name: null
+  model: 24
+  fields:
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+-739684591:
+  name: c2s.auth.UsernameLogin
+  model: 0
+  fields:
+    login: scpacker.networking.protocol.codec.primitive.StringCodec
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+    remember: scpacker.networking.protocol.codec.primitive.BooleanCodec
+-1923286328:
+  name: null
+  model: 0
+  fields: {}
+-845588810:
+  name: c2s.auth.HashLogin
+  model: 1
+  fields:
+    hash: scpacker.networking.protocol.codec.primitive.StringCodec
+-1317889894:
+  name: null
+  model: 2
+  fields: {}
+-1179390022:
+  name: null
+  model: 3
+  fields: {}
+-570114058:
+  name: null
+  model: 3
+  fields: {}
+-1967950183:
+  name: null
+  model: 3
+  fields:
+    rememberMe: scpacker.networking.protocol.codec.primitive.BooleanCodec
+-87665118:
+  name: null
+  model: 3
+  fields:
+    login: scpacker.networking.protocol.codec.primitive.StringCodec
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+-1715719586:
+  name: null
+  model: 3
+  fields:
+    snId: scpacker.networking.protocol.codec.primitive.StringCodec
+    authorizationUrl: scpacker.networking.protocol.codec.primitive.StringCodec
+-1807685988:
+  name: null
+  model: 4
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-82304134:
+  name: c2s.session.resources.DependenciesLoaded
+  model: 4
+  fields:
+    callbackId: scpacker.networking.protocol.codec.primitive.IntCodec
+-1864333717:
+  name: c2s.session.EncryptionInitialized
+  model: 4
+  fields:
+    lang: scpacker.networking.protocol.codec.primitive.StringCodec
+-1797047325:
+  name: s2c.session.resources.LoadDependencies
+  model: 4
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+    callbackId: scpacker.networking.protocol.codec.primitive.IntCodec
+-1282173466:
+  name: s2c.session.resources.ResourcesLoaded
+  model: 4
+  fields: {}
+-819536476:
+  name: c2s.captcha.CaptchaValidated
+  model: 6
+  fields:
+    captchaLocation: scpacker.networking.protocol.codec.custom.CaptchaLocationCodec
+-1670408519:
+  name: s2c.captcha.CaptchaShow
+  model: 6
+  fields:
+    captchaLocation: scpacker.networking.protocol.codec.custom.CaptchaLocationCodec
+    captchaData: scpacker.networking.protocol.codec.custom.VectorCodecByte
+-373510957:
+  name: s2c.captcha.CaptchaFailed
+  model: 6
+  fields:
+    captchaLocation: scpacker.networking.protocol.codec.custom.CaptchaLocationCodec
+    newCaptcha: scpacker.networking.protocol.codec.custom.VectorCodecByte
+-349828108:
+  name: c2s.captcha.RequestLocation
+  model: 6
+  fields:
+    location: scpacker.networking.protocol.codec.custom.CaptchaLocationCodec
+-600078553:
+  name: s2c.session.BanPermanent
+  model: 7
+  fields:
+    reasonForUser: scpacker.networking.protocol.codec.primitive.StringCodec
+-706679202:
+  name: S2CAccountRegisterUidFree
+  model: 8
+  fields: {}
+-653665247:
+  name: null
+  model: 8
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+-1277343167:
+  name: S2CAccountRegisterParameters
+  model: 8
+  fields:
+    bgResource: scpacker.networking.protocol.codec.custom.ResourceGetterCodec
+    enableRequiredEmail: scpacker.networking.protocol.codec.primitive.BooleanCodec
+    maxPasswordLength: scpacker.networking.protocol.codec.primitive.IntCodec
+    minPasswordLength: scpacker.networking.protocol.codec.primitive.IntCodec
+-262455387:
+  name: null
+  model: 9
+  fields: {}
+-16447159:
+  name: null
+  model: 9
+  fields: {}
+-1607756600:
+  name: null
+  model: 9
+  fields: {}
+-2118900410:
+  name: null
+  model: 9
+  fields:
+    currentEmail: scpacker.networking.protocol.codec.primitive.StringCodec
+-478572181:
+  name: null
+  model: 11
+  fields:
+    wasShowAlertForFirstPurchasePremium: scpacker.networking.protocol.codec.primitive.BooleanCodec
+-593368100:
+  name: s2c.layout.LobbyLayoutSwitchEnd
+  model: 12
+  fields:
+    origin: scpacker.networking.protocol.codec.custom.CodecLayoutState
+    state: scpacker.networking.protocol.codec.custom.CodecLayoutState
+-1241704092:
+  name: null
+  model: 13
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+-1926185291:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1258754138:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1588006900:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1041660861:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-139645601:
+  name: null
+  model: 13
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+-1457773660:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1490761936:
+  name: null
+  model: 13
+  fields: {}
+-2089008699:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-707501253:
+  name: null
+  model: 13
+  fields: {}
+-1590185083:
+  name: null
+  model: 13
+  fields: {}
+-437587751:
+  name: null
+  model: 13
+  fields: {}
+-221757454:
+  name: null
+  model: 13
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1885167992:
+  name: null
+  model: 13
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+-604091695:
+  name: c2s.LinkActivateLink
+  model: 14
+  fields:
+    link: scpacker.networking.protocol.codec.primitive.StringCodec
+-983139626:
+  name: c2s.LinkQuery
+  model: 14
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1851236532:
+  name: null
+  model: 15
+  fields:
+    senderId: scpacker.networking.protocol.codec.primitive.StringCodec
+-864265623:
+  name: null
+  model: 15
+  fields:
+    var_2558: scpacker.networking.protocol.codec.primitive.StringCodec
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1859441081:
+  name: null
+  model: 16
+  fields: {}
+-1455955413:
+  name: null
+  model: 16
+  fields:
+    url: scpacker.networking.protocol.codec.primitive.StringCodec
+-1850050333:
+  name: null
+  model: 16
+  fields: {}
+-511004908:
+  name: null
+  model: 16
+  fields:
+    var_544: scpacker.networking.protocol.codec.primitive.StringCodec
+-479046431:
+  name: c2s.layout.LayoutSwitchGarage
+  model: 17
+  fields: {}
+-1895446889:
+  name: S2CUserNotifyNotifyUserInBattle
+  model: 18
+  fields:
+    user: scpacker.networking.protocol.codec.custom.CodecBattleNotifierData
+-962759489:
+  name: S2CUserNotifyNotifyUpdateUserRank
+  model: 18
+  fields:
+    user: scpacker.networking.protocol.codec.custom.CodecRankNotifierData
+-1353047954:
+  name: S2CUserNotifySetUserId
+  model: 18
+  fields:
+    user: scpacker.networking.protocol.codec.primitive.StringCodec
+-2069508071:
+  name: S2CUserNotifyPremiumTimeLeft
+  model: 18
+  fields:
+    user: scpacker.networking.protocol.codec.custom.CodecPremiumNotifierData
+-2040152224:
+  name: c2s.session.UserNotifyUnsubscribeUsers
+  model: 18
+  fields:
+    var_1832: scpacker.networking.protocol.codec.complex.VectorCodecString
+-1266665816:
+  name: null
+  model: 19
+  fields:
+    questId: scpacker.networking.protocol.codec.primitive.IntCodec
+    newQuest: scpacker.networking.protocol.codec.custom.CodecDailyQuestInfo
+-867767128:
+  name: null
+  model: 19
+  fields:
+    questId: scpacker.networking.protocol.codec.primitive.IntCodec
+-875418096:
+  name: null
+  model: 21
+  fields:
+    image: scpacker.networking.protocol.codec.custom.ResourceGetterCodec
+    bottomText: scpacker.networking.protocol.codec.primitive.StringCodec
+    topText: scpacker.networking.protocol.codec.primitive.StringCodec
+-541741971:
+  name: null
+  model: 22
+  fields: {}
+-20513325:
+  name: null
+  model: 22
+  fields:
+    socialNetworkId: scpacker.networking.protocol.codec.primitive.StringCodec
+-583564465:
+  name: null
+  model: 22
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecSocialNetworkPanelCC
+-1897104567:
+  name: null
+  model: 22
+  fields:
+    socialNetworkId: scpacker.networking.protocol.codec.primitive.StringCodec
+-324894035:
+  name: null
+  model: 22
+  fields:
+    socialNetworkId: scpacker.networking.protocol.codec.primitive.StringCodec
+-731115522:
+  name: null
+  model: 23
+  fields:
+    name_76: scpacker.networking.protocol.codec.primitive.BooleanCodec
+-1302674105:
+  name: null
+  model: 23
+  fields: {}
+-20486732:
+  name: null
+  model: 24
+  fields:
+    email: scpacker.networking.protocol.codec.primitive.StringCodec
+-1533422832:
+  name: null
+  model: 24
+  fields: {}
+-1507635228:
+  name: null
+  model: 24
+  fields: {}
+-822403331:
+  name: null
+  model: 24
+  fields: {}
+-1515366171:
+  name: null
+  model: 24
+  fields:
+    password: scpacker.networking.protocol.codec.primitive.StringCodec
+-714487273:
+  name: null
+  model: 24
+  fields: {}
+-322235316:
+  name: s2c.session.ShowAlert
+  model: 25
+  fields:
+    text: scpacker.networking.protocol.codec.primitive.StringCodec
+-1712113407:
+  name: S2CAlertServerHaltScheduled
+  model: 26
+  fields:
+    timeLeftInSec: scpacker.networking.protocol.codec.primitive.IntCodec
+-1176568376:
+  name: null
+  model: 27
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+-47424608:
+  name: null
+  model: 27
+  fields:
+    items: scpacker.networking.protocol.codec.custom.VectorCodecGarageItemInfo
+-920985123:
+  name: null
+  model: 28
+  fields: {}
+-1062190024:
+  name: null
+  model: 28
+  fields: {}
+-1263520410:
+  name: S2CGlobalChatShowMessages
+  model: 28
+  fields:
+    messages: scpacker.networking.protocol.codec.custom.VectorCodecChatMessage
+-1128606444:
+  name: null
+  model: 29
+  fields:
+    rating: scpacker.networking.protocol.codec.primitive.FloatCodec
+    place: scpacker.networking.protocol.codec.primitive.IntCodec
+-593513288:
+  name: null
+  model: 29
+  fields:
+    changeBy: scpacker.networking.protocol.codec.primitive.IntCodec
+-838186985:
+  name: S2CBattleCreateParameters
+  model: 30
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-614313838:
+  name: null
+  model: 30
+  fields: {}
+-2135234426:
+  name: null
+  model: 30
+  fields:
+    params: scpacker.networking.protocol.codec.custom.CodecBattleCreateParameters
+-1491503394:
+  name: null
+  model: 30
+  fields: {}
+-324155151:
+  name: S2CBattleListListDestroy
+  model: 31
+  fields: {}
+-1848001147:
+  name: S2CBattleListBattleRemove
+  model: 31
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-2133657895:
+  name: null
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-994817471:
+  name: null
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-169305322:
+  name: S2CBattleUserListUserJoinBattle
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-751613832:
+  name: null
+  model: 32
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    suspicionLevel: scpacker.networking.protocol.codec.custom.CodecBattleSuspicionLevel
+-698399183:
+  name: S2CBattleInfoUpdateSuspiciousState
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    suspicious: scpacker.networking.protocol.codec.primitive.BooleanCodec
+-1263036614:
+  name: S2CBattleInfoUpdateUserKills
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    kills: scpacker.networking.protocol.codec.primitive.IntCodec
+-879771375:
+  name: S2CBattleInfoBattleStop
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1702097572:
+  name: S2CBattleInfoSwapTeams
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-10847382:
+  name: null
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1315002220:
+  name: null
+  model: 33
+  fields: {}
+-344514517:
+  name: S2CBattleInfoRoundStart
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-602527073:
+  name: S2CBattleInfoInfoDestroy
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-375282889:
+  name: S2CBattleInfoUpdateUserScore
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    score: scpacker.networking.protocol.codec.primitive.IntCodec
+-831998018:
+  name: null
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1284211503:
+  name: null
+  model: 33
+  fields:
+    var_625: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-911626491:
+  name: null
+  model: 33
+  fields:
+    battleId: scpacker.networking.protocol.codec.primitive.StringCodec
+    user: scpacker.networking.protocol.codec.custom.CodecBattleInfoUser
+-1961983005:
+  name: c2s.garage.BuyItem
+  model: 34
+  fields:
+    item: scpacker.networking.protocol.codec.primitive.StringCodec
+    count: scpacker.networking.protocol.codec.primitive.IntCodec
+    var_204: scpacker.networking.protocol.codec.primitive.IntCodec
+-1505530736:
+  name: c2s.garage.MountItem
+  model: 34
+  fields:
+    item: scpacker.networking.protocol.codec.primitive.StringCodec
+-255516505:
+  name: s2c.garage.InitDepot
+  model: 34
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-1518850075:
+  name: c2s.garage.ConfirmPresentPurchase
+  model: 34
+  fields:
+    var_814: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_1790: scpacker.networking.protocol.codec.primitive.StringCodec
+    text: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_204: scpacker.networking.protocol.codec.primitive.IntCodec
+-803365239:
+  name: c2s.garage.SelectItem
+  model: 34
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+-471022967:
+  name: s2c.garage.RenameFailed
+  model: 34
+  fields: {}
+-523392052:
+  name: c2s.garage.BuyKit
+  model: 34
+  fields:
+    item: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_204: scpacker.networking.protocol.codec.primitive.IntCodec
+-300370823:
+  name: s2c.garage.InitMarket
+  model: 34
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-2001666558:
+  name: S2CGaragePresentsRemove
+  model: 34
+  fields:
+    var_1790: scpacker.networking.protocol.codec.primitive.IntCodec
+-1763914667:
+  name: S2CGarageSelectFirstItem
+  model: 34
+  fields: {}
+-1638767166:
+  name: S2CGarageShowAlert
+  model: 34
+  fields: {}
+-1154479430:
+  name: c2s.garage.PresentsAccept
+  model: 34
+  fields: {}
+-1968445033:
+  name: s2c.garage.RenameSuccess
+  model: 34
+  fields:
+    oldName: scpacker.networking.protocol.codec.primitive.StringCodec
+    newName: scpacker.networking.protocol.codec.primitive.StringCodec
+-161726525:
+  name: c2s.garage.Rename
+  model: 34
+  fields:
+    var_1736: scpacker.networking.protocol.codec.primitive.StringCodec
+-635715470:
+  name: c2s.UidCheckRequest
+  model: 35
+  fields:
+    uid: scpacker.networking.protocol.codec.primitive.StringCodec
+-1565553333:
+  name: c2s.UidCheckResponse
+  model: 35
+  fields:
+    status: scpacker.networking.protocol.codec.custom.CodecValidationStatus
+-1643824092:
+  name: null
+  model: 36
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-745598420:
+  name: null
+  model: 36
+  fields:
+    var_304: scpacker.networking.protocol.codec.complex.VectorCodecInt
+-152638117:
+  name: null
+  model: 36
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-1047185003:
+  name: null
+  model: 36
+  fields:
+    bonusId: scpacker.networking.protocol.codec.primitive.StringCodec
+-2026749922:
+  name: null
+  model: 36
+  fields:
+    bonusId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1291499147:
+  name: null
+  model: 36
+  fields:
+    bonusId: scpacker.networking.protocol.codec.primitive.StringCodec
+-985579124:
+  name: null
+  model: 36
+  fields: {}
+-64696933:
+  name: s2c.battle.MoveTank
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    moveCommand: scpacker.networking.protocol.codec.custom.CodecMoveCommand
+-42520728:
+  name: s2c.battle.KillTank
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    killerTankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    respawnDelay: scpacker.networking.protocol.codec.primitive.IntCodec
+-301298508:
+  name: s2c.battle.UpdateTankControl
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    control: scpacker.networking.protocol.codec.primitive.ByteCodec
+-114968993:
+  name: c2s.battle.TankTurretCommand
+  model: 39
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    rotateTurretCommand: scpacker.networking.protocol.codec.custom.CodecRotateTurretCommand
+    incarnationId: scpacker.networking.protocol.codec.primitive.ShortCodec
+-1378839846:
+  name: c2s.battle.TankReadyToPlace
+  model: 39
+  fields: {}
+-611961116:
+  name: s2c.battle.UpdateTankHealth
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    health: scpacker.networking.protocol.codec.primitive.FloatCodec
+-157204477:
+  name: s2c.battle.UpdateTankPosition
+  model: 39
+  fields:
+    position: scpacker.networking.protocol.codec.custom.CodecVector3d
+    orientation: scpacker.networking.protocol.codec.custom.CodecVector3d
+-1749108178:
+  name: c2s.battle.UpdateTankControl
+  model: 39
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    specificationId: scpacker.networking.protocol.codec.primitive.ShortCodec
+    control: scpacker.networking.protocol.codec.primitive.ByteCodec
+-1683279062:
+  name: c2s.battle.UpdateTankTurret
+  model: 39
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    specificationId: scpacker.networking.protocol.codec.primitive.ShortCodec
+    moveCommand: scpacker.networking.protocol.codec.custom.CodecMoveCommand
+    turretDirection: scpacker.networking.protocol.codec.primitive.FloatCodec
+-1672577397:
+  name: s2c.battle.UpdateTankSpeed
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    maxSpeed: scpacker.networking.protocol.codec.primitive.FloatCodec
+    maxTurnSpeed: scpacker.networking.protocol.codec.primitive.FloatCodec
+    maxTurretRotationSpeed: scpacker.networking.protocol.codec.primitive.FloatCodec
+    acceleration: scpacker.networking.protocol.codec.primitive.FloatCodec
+    specificationId: scpacker.networking.protocol.codec.primitive.ShortCodec
+-1639713644:
+  name: s2c.battle.AddTankEffect
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    effectId: scpacker.networking.protocol.codec.primitive.IntCodec
+    duration: scpacker.networking.protocol.codec.primitive.IntCodec
+    activeAfterDeath: scpacker.networking.protocol.codec.primitive.BooleanCodec
+    effectLevel: scpacker.networking.protocol.codec.primitive.ByteCodec
+-1994318624:
+  name: s2c.battle.RemoveTankEffect
+  model: 39
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    effectId: scpacker.networking.protocol.codec.primitive.IntCodec
+-1205151619:
+  name: null
+  model: 41
+  fields:
+    var_1018: scpacker.networking.protocol.codec.custom.VectorCodecBonusSpawnData
+-1832611824:
+  name: null
+  model: 42
+  fields: {}
+-1026428589:
+  name: null
+  model: 42
+  fields:
+    flagTeam: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+    tank: scpacker.networking.protocol.codec.primitive.StringCodec
+-1870108387:
+  name: null
+  model: 42
+  fields:
+    winnerTeam: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+    delivererTankId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1282406496:
+  name: null
+  model: 42
+  fields:
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+    flagTeam: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-1142938284:
+  name: null
+  model: 42
+  fields:
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-2102525054:
+  name: null
+  model: 43
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+-137249251:
+  name: null
+  model: 43
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-1981777467:
+  name: null
+  model: 43
+  fields:
+    mineId: scpacker.networking.protocol.codec.primitive.StringCodec
+-502907094:
+  name: null
+  model: 43
+  fields:
+    itemId: scpacker.networking.protocol.codec.primitive.StringCodec
+    count: scpacker.networking.protocol.codec.primitive.IntCodec
+-1668779175:
+  name: null
+  model: 44
+  fields:
+    redUsers: scpacker.networking.protocol.codec.custom.VectorCodecUserStat
+    blueUsers: scpacker.networking.protocol.codec.custom.VectorCodecUserStat
+-497293992:
+  name: null
+  model: 44
+  fields:
+    usersStat: scpacker.networking.protocol.codec.custom.CodecUserStat
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-1233891872:
+  name: null
+  model: 44
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecStatisticsTeamCC
+-555602629:
+  name: s2c.session.MeasurePing
+  model: 45
+  fields: {}
+-1165230470:
+  name: s2c.battle.ShowDamage
+  model: 47
+  fields:
+    damages: scpacker.networking.protocol.codec.custom.VectorCodecTargetTankDamage
+-1959138292:
+  name: null
+  model: 48
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecStatisticsDMCC
+-1689876764:
+  name: null
+  model: 48
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1032328347:
+  name: null
+  model: 49
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+-671618989:
+  name: null
+  model: 49
+  fields:
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+-1334002026:
+  name: null
+  model: 49
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    hitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    weakeningCoeff: scpacker.networking.protocol.codec.primitive.FloatCodec
+    isCritical: scpacker.networking.protocol.codec.primitive.BooleanCodec
+-2030760866:
+  name: null
+  model: 50
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    staticHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    targetHitPoints: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    name_48: scpacker.networking.protocol.codec.custom.VectorCodecShort
+    var_2638: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    var_782: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+-1527013252:
+  name: null
+  model: 50
+  fields: {}
+-367760678:
+  name: null
+  model: 50
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-380595194:
+  name: null
+  model: 50
+  fields:
+    shooterId: scpacker.networking.protocol.codec.primitive.StringCodec
+-1487306515:
+  name: null
+  model: 50
+  fields: {}
+-1517837003:
+  name: null
+  model: 50
+  fields:
+    targetTank: scpacker.networking.protocol.codec.primitive.StringCodec
+    localSpotPosition: scpacker.networking.protocol.codec.custom.CodecVector3d
+-1380283560:
+  name: null
+  model: 50
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+-1222085753:
+  name: null
+  model: 50
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+-534192254:
+  name: null
+  model: 50
+  fields:
+    shooterId: scpacker.networking.protocol.codec.primitive.StringCodec
+    projectionOnVerticalAxis: scpacker.networking.protocol.codec.primitive.FloatCodec
+-159686980:
+  name: null
+  model: 51
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    barrel: scpacker.networking.protocol.codec.primitive.ByteCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotDirection: scpacker.networking.protocol.codec.custom.CodecVector3d
+-482023661:
+  name: null
+  model: 51
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    var_2967: scpacker.networking.protocol.codec.custom.CodecVector3d
+-1805942142:
+  name: null
+  model: 51
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    barrel: scpacker.networking.protocol.codec.primitive.ByteCodec
+-44282936:
+  name: null
+  model: 51
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    barrel: scpacker.networking.protocol.codec.primitive.ByteCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotDirection: scpacker.networking.protocol.codec.custom.CodecVector3d
+-1723353904:
+  name: null
+  model: 51
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    var_253: scpacker.networking.protocol.codec.custom.CodecVector3d
+    var_2967: scpacker.networking.protocol.codec.custom.CodecVector3d
+-328554480:
+  name: null
+  model: 51
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    barrel: scpacker.networking.protocol.codec.primitive.ByteCodec
+-136344740:
+  name: null
+  model: 52
+  fields:
+    var_2072: scpacker.networking.protocol.codec.primitive.IntCodec
+-190359403:
+  name: null
+  model: 52
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    target: scpacker.networking.protocol.codec.primitive.StringCodec
+    relativeHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+-1670466290:
+  name: null
+  model: 53
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+-1907971330:
+  name: null
+  model: 53
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotDirectionX: scpacker.networking.protocol.codec.primitive.ShortCodec
+    shotDirectionY: scpacker.networking.protocol.codec.primitive.ShortCodec
+    shotDirectionZ: scpacker.networking.protocol.codec.primitive.ShortCodec
+-118119523:
+  name: null
+  model: 53
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    shotDirectionX: scpacker.networking.protocol.codec.primitive.ShortCodec
+    shotDirectionY: scpacker.networking.protocol.codec.primitive.ShortCodec
+    shotDirectionZ: scpacker.networking.protocol.codec.primitive.ShortCodec
+-1823935471:
+  name: null
+  model: 53
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    shotId: scpacker.networking.protocol.codec.primitive.IntCodec
+    var_252: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+-18176641:
+  name: null
+  model: 54
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+-484994657:
+  name: null
+  model: 54
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    staticHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    targetHitPoints: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    name_48: scpacker.networking.protocol.codec.custom.VectorCodecShort
+    var_2638: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    var_782: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+-1759063234:
+  name: null
+  model: 54
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-369590613:
+  name: null
+  model: 54
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+    staticHitPoint: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    targetHitPoints: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+-1271729363:
+  name: null
+  model: 55
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+-1051248475:
+  name: null
+  model: 55
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-248693565:
+  name: null
+  model: 55
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-75406982:
+  name: null
+  model: 56
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-2123941185:
+  name: null
+  model: 56
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+    targets: scpacker.networking.protocol.codec.complex.VectorCodecString
+    var_1019: scpacker.networking.protocol.codec.custom.VectorCodecShort
+    var_1229: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+    var_782: scpacker.networking.protocol.codec.custom.VectorCodecVector3d
+-1654947652:
+  name: null
+  model: 56
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-1171353580:
+  name: null
+  model: 56
+  fields:
+    shooter: scpacker.networking.protocol.codec.primitive.StringCodec
+-1300958299:
+  name: null
+  model: 57
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-1986638927:
+  name: null
+  model: 57
+  fields:
+    time: scpacker.networking.protocol.codec.primitive.IntCodec
+-2124388778:
+  name: null
+  model: 58
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-911983090:
+  name: null
+  model: 59
+  fields:
+    suicideDelayMS: scpacker.networking.protocol.codec.primitive.IntCodec
+-1767633906:
+  name: null
+  model: 59
+  fields:
+    tank: scpacker.networking.protocol.codec.primitive.StringCodec
+-173682854:
+  name: null
+  model: 59
+  fields:
+    tank: scpacker.networking.protocol.codec.primitive.StringCodec
+    respawnDelay: scpacker.networking.protocol.codec.primitive.IntCodec
+-1346883037:
+  name: null
+  model: 60
+  fields:
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-1701488017:
+  name: null
+  model: 60
+  fields:
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-1548609916:
+  name: null
+  model: 60
+  fields:
+    pointId: scpacker.networking.protocol.codec.primitive.IntCodec
+-2141998253:
+  name: null
+  model: 60
+  fields:
+    pointId: scpacker.networking.protocol.codec.primitive.IntCodec
+    progress: scpacker.networking.protocol.codec.primitive.FloatCodec
+    progressSpeed: scpacker.networking.protocol.codec.primitive.FloatCodec
+-1073178885:
+  name: null
+  model: 60
+  fields:
+    pointId: scpacker.networking.protocol.codec.primitive.IntCodec
+    state: scpacker.networking.protocol.codec.custom.CodecControlPointState
+-456245145:
+  name: null
+  model: 60
+  fields:
+    pointId: scpacker.networking.protocol.codec.primitive.IntCodec
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+-773473371:
+  name: null
+  model: 60
+  fields:
+    pointId: scpacker.networking.protocol.codec.primitive.IntCodec
+-1337059439:
+  name: null
+  model: 60
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecControlPointsCC
+-1410197917:
+  name: null
+  model: 60
+  fields:
+    pointId: scpacker.networking.protocol.codec.primitive.IntCodec
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec
+-643105296:
+  name: null
+  model: 61
+  fields: {}
+-449356094:
+  name: null
+  model: 61
+  fields:
+    userId: scpacker.networking.protocol.codec.primitive.StringCodec
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+    team: scpacker.networking.protocol.codec.custom.CodecBattleTeam
+-1331361684:
+  name: null
+  model: 61
+  fields:
+    header: scpacker.networking.protocol.codec.primitive.StringCodec
+-226978906:
+  name: null
+  model: 62
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecBattleMineCC
+-1200619383:
+  name: null
+  model: 62
+  fields:
+    ownerId: scpacker.networking.protocol.codec.primitive.StringCodec
+-718866741:
+  name: null
+  model: 62
+  fields:
+    mineId: scpacker.networking.protocol.codec.primitive.StringCodec
+-624217047:
+  name: null
+  model: 62
+  fields:
+    mineId: scpacker.networking.protocol.codec.primitive.StringCodec
+-666893269:
+  name: null
+  model: 65
+  fields:
+    text: scpacker.networking.protocol.codec.primitive.StringCodec
+    sound: scpacker.networking.protocol.codec.custom.ResourceGetterCodec
+-1709511848:
+  name: null
+  model: 66
+  fields:
+    json: scpacker.networking.protocol.codec.primitive.StringCodec
+-1042583203:
+  name: null
+  model: 67
+  fields:
+    achievement: scpacker.networking.protocol.codec.custom.CodecAchievement
+    message: scpacker.networking.protocol.codec.primitive.StringCodec
+-260270890:
+  name: null
+  model: 68
+  fields:
+    initParams: scpacker.networking.protocol.codec.custom.CodecNewsShowingCC
+-541655881:
+  name: null
+  model: 70
+  fields:
+    name_43: scpacker.networking.protocol.codec.primitive.IntCodec
+    direction: scpacker.networking.protocol.codec.custom.CodecVector3d
+    targets: scpacker.networking.protocol.codec.custom.VectorCodecTargetPosition
+-1940289099:
+  name: null
+  model: 71
+  fields: {}
+-325434725:
+  name: null
+  model: 71
+  fields:
+    flagId: scpacker.networking.protocol.codec.primitive.IntCodec
+    tankId: scpacker.networking.protocol.codec.primitive.StringCodec

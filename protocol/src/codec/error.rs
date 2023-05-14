@@ -13,6 +13,8 @@ impl From<io::Error> for CodecError {
 pub enum CodecError {
   #[error("no codec registered for `{0}`")]
   NoCodec(String),
+  #[error("downcast to `{0}` failed")]
+  DowncastError(String),
 
   #[error("an IO error occurred `{0}`")]
   IoError(io::Error),
@@ -21,7 +23,7 @@ pub enum CodecError {
 
   /* Generic errors */
   #[error("encode error: {0}")]
-  EncodeError(Box<dyn error::Error>),
+  EncodeError(Box<dyn error::Error + Send + Sync>),
   #[error("decode error: {0}")]
-  DecodeError(Box<dyn error::Error>)
+  DecodeError(Box<dyn error::Error + Send + Sync>)
 }
