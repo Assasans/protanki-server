@@ -10,7 +10,7 @@ use super::{Codec, CodecRef, CodecRefInternal, CodecResult, CodecError};
 #[derive(Default)]
 pub struct CodecRegistry {
   // Have to use [Any] because there are no Java-like type perameter wildcards
-  codecs: BTreeMap<TypeId, Box<dyn Any + Send>>
+  codecs: BTreeMap<TypeId, Box<dyn Any + Send + Sync>>
 }
 
 impl CodecRegistry {

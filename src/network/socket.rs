@@ -1,10 +1,14 @@
+use std::net::SocketAddr;
 use std::task::{Context, Poll};
 use tokio::io;
 use tokio::net::TcpStream;
 
-pub trait Socket {
+pub trait Socket: Send + Sync {
   fn poll_recv(&mut self, cx: &mut Context, buffer: &mut [u8]) -> Poll<io::Result<usize>>;
   fn poll_send(&mut self, cx: &mut Context, buffer: &[u8]) -> Poll<io::Result<usize>>;
+
+  fn peer_addr(&self) -> io::Result<SocketAddr>;
+  fn local_addr(&self) -> io::Result<SocketAddr>;
 }
 
 macro_rules! poll_ready_passthrough {
@@ -40,5 +44,13 @@ impl Socket for TcpStream {
       poll_ready_passthrough!(self.poll_write_ready(cx));
       poll_io_passthrough!(self.try_write(buffer));
     }
+  }
+
+  fn local_addr(&self) -> io::Result<SocketAddr> {
+    TcpStream::local_addr(self)
+  }
+
+  fn peer_addr(&self) -> io::Result<SocketAddr> {
+    TcpStream::peer_addr(self)
   }
 }

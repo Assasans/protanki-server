@@ -1,5 +1,6 @@
 use std::{
   io::{Cursor, Read, Write},
+  fmt::{Debug, Formatter},
   pin::Pin,
   task::{Context, Poll, Waker}
 };
@@ -33,6 +34,20 @@ pub struct Connection {
   send_waker: Option<Waker>,
 
   packet_registry: PacketRegistry
+}
+
+impl Debug for Connection {
+  fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+    formatter.debug_struct("Connection")
+             .field("socket", &format!(
+               "Socket {{ peer_addr: {:?}, local_addr: {:?} }}",
+               self.socket.peer_addr(),
+               self.socket.local_addr()
+             ))
+             .field("crypto_context", &self.crypto_context)
+             .field("state", &self.state)
+             .finish()
+  }
 }
 
 const RECV_BUFFER: usize = 16 * 1024;

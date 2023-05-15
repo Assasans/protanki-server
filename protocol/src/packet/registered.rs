@@ -3,7 +3,7 @@ use std::{io::{Write, Read}, sync::Arc, any::type_name};
 use crate::codec::{CodecRegistry, CodecResult, Codec, CodecError};
 use super::Packet;
 
-pub trait RegisteredPacket: Send {
+pub trait RegisteredPacket: Send + Sync {
   fn packet_name(&self) -> &str;
 
   fn encode(&self, registry: &CodecRegistry, writer: &mut dyn Write, packet: &dyn Packet) -> CodecResult<()>;

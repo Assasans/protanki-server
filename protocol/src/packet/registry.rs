@@ -1,4 +1,8 @@
-use std::{collections::BTreeMap, io::{Write, Read}};
+use std::{
+  collections::BTreeMap,
+  io::{Write, Read},
+  fmt::{Debug, Formatter}
+};
 
 use crate::codec::{CodecRegistry, Codec, CodecResult, CodecError, CodecRegistryExt};
 use super::{RegisteredPacket, Packet, RegisteredPacketImpl, internal::register_packets};
@@ -40,5 +44,14 @@ impl PacketRegistry {
       Some(registered_packet) => Some(registered_packet.decode(&self.codec_registry, reader)?),
       None => None
     })
+  }
+}
+
+impl Debug for PacketRegistry {
+  fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+    formatter.debug_struct("PacketRegistry")
+      .field("codec_registry", &"CodecRegistry { .. }")
+      .field("packet_codecs", &self.packet_codecs.len())
+      .finish()
   }
 }
