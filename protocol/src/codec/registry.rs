@@ -47,6 +47,7 @@ impl CodecRegistryExt for CodecRegistry {
     use super::codecs::*;
 
     self.register_codec(ByteCodec::default());
+    self.register_codec(UByteCodec::default());
     self.register_codec(ShortCodec::default());
     self.register_codec(IntCodec::default());
     self.register_codec(LongCodec::default());
@@ -57,6 +58,7 @@ impl CodecRegistryExt for CodecRegistry {
     self.register_codec(StringCodec::default());
 
     self.register_codec(VectorCodec::<i8>::default());
+    self.register_codec(VectorCodec::<u8>::default());
     self.register_codec(VectorCodec::<i16>::default());
     self.register_codec(VectorCodec::<i32>::default());
     self.register_codec(VectorCodec::<i64>::default());

@@ -42,6 +42,7 @@ macro_rules! impl_multibyte_codec {
 }
 
 impl_singlebyte_codec!(i8, ByteCodec, write_i8, read_i8);
+impl_singlebyte_codec!(u8, UByteCodec, write_u8, read_u8);
 impl_multibyte_codec!(i16, ShortCodec, write_i16, read_i16);
 impl_multibyte_codec!(i32, IntCodec, write_i32, read_i32);
 impl_multibyte_codec!(i64, LongCodec, write_i64, read_i64);
