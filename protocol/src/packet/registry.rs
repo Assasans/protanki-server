@@ -5,7 +5,12 @@ use std::{
 };
 
 use crate::codec::{CodecRegistry, Codec, CodecResult, CodecError, CodecRegistryExt};
-use super::{RegisteredPacket, Packet, RegisteredPacketImpl, internal::register_packets};
+use super::{
+  RegisteredPacket, Packet, RegisteredPacketImpl,
+  internal::register_packets,
+  enums::register_enums,
+  structs::register_structs
+};
 
 #[derive(Default)]
 pub struct PacketRegistry {
@@ -18,6 +23,8 @@ impl PacketRegistry {
     let mut registry = PacketRegistry::default();
 
     registry.codec_registry.register_primitives();
+    register_enums(&mut registry.codec_registry);
+    register_structs(&mut registry.codec_registry);
     register_packets(&mut registry);
 
     registry
