@@ -3,10 +3,9 @@ use std::{
   path::Path,
   fs::File,
   io::{BufReader, Write},
-  collections::{BTreeMap, BTreeSet},
+  collections::BTreeMap,
   fmt::{self, Write as FmtWrite}
 };
-use convert_case::{Casing, Case};
 use serde::{Deserialize, Serialize};
 use serde_with::serde_as;
 use indoc::formatdoc;
@@ -141,10 +140,13 @@ fn fmt<'a>(
   depth: usize,
   path: &mut Vec<&'a Module>
 ) -> fmt::Result {
-  formatter.push_str(&indent(&format!("pub mod {} {{", module.name), depth));
+  if module.name == "unknown" {
+    formatter.push_str(&indent("#[allow(non_camel_case_types)]\n", depth));
+  }
+  formatter.push_str(&indent(&format!("pub mod {} {{\n", module.name), depth));
 
   formatter.push_str(&indent("use std::{any::{Any, type_name}, io::{Write, Read}};\n", depth + 1));
-  formatter.push_str(&indent("use crate::{packet::*, codec::*};\n", depth + 1));
+  formatter.push_str(&indent("use crate::{packet::{*, enums::*, structs::*}, codec::*};\n", depth + 1));
   formatter.push('\n');
 
   for child in module.children.values() {
@@ -196,28 +198,14 @@ fn main() {
 
   let out_dir = env::var("OUT_DIR").unwrap();
 
-  let codecs: BTreeMap<String, String> = read_file!("definitions/codecs.yaml");
   let mut definitions: BTreeMap<i32, PacketDefinition> = read_file!("definitions/packets.yaml");
-  let mut skipped = BTreeSet::new();
 
-  // Convert field names to snake_case and codecs to types
+  // Generate dummy name for packets without name
   for (id, definition) in definitions.iter_mut() {
-    let mut fields = Vec::new();
-    for (name, codec) in definition.fields.iter() {
-      let key = name.from_case(Case::Camel).to_case(Case::Snake);
-      if let Some(value) = codecs.get(codec) {
-        fields.push((key, value.clone()));
-      } else {
-        println!("cargo:warning=no type for codec {} (from packet {})", codec, id);
-        skipped.insert(*id);
-      }
+    if definition.name.is_none() {
+      definition.name = Some(format!("unknown.Packet_{id}").replace("-", "neg"));
     }
-
-    definition.fields = fields;
   }
-
-  // Remove packets with missing type
-  definitions.retain(|it, _| !skipped.contains(it));
 
   let root_module = Module::group_identifiers("packets".to_owned(), definitions.values()
     .filter_map(|it| it.name.as_ref())
