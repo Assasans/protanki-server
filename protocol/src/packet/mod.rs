@@ -9,7 +9,6 @@ pub use unknown::*;
 
 pub mod enums;
 pub mod structs;
-
 include!(concat!(env!("OUT_DIR"), "/packets.rs"));
 
 use std::{any::Any, fmt::Debug};

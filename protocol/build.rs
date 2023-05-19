@@ -41,26 +41,23 @@ fn generate_codec(name: &str, fields: &Vec<(String, String)>) -> String {
     #[allow(unused_variables)]
     #[allow(unused_mut)]
     impl Codec for {name} {{
-      type Target = Self;
-
-      fn encode(&self, registry: &CodecRegistry, writer: &mut dyn Write, value: &Self::Target) -> CodecResult<()> {{
+      fn encode<W: Write + ?Sized>(&self, writer: &mut W) -> CodecResult<()> {{
     {encode}
         Ok(())
       }}
 
-      fn decode(&self, registry: &CodecRegistry, reader: &mut dyn Read) -> CodecResult<Self::Target> {{
-        let mut value = Self::Target::default();
+      fn decode<R: Read + ?Sized>(&mut self, reader: &mut R) -> CodecResult<()> {{
     {decode}
-        Ok(value)
+        Ok(())
       }}
     }}
     "#,
     encode = fields.iter()
-      .map(|(name, _)| format!("    registry.encode(writer, &value.{name})?;"))
+      .map(|(name, _)| format!("    self.{name}.encode(writer)?;"))
       .collect::<Vec<_>>()
       .join("\n"),
     decode = fields.iter()
-      .map(|(name, _)| format!("    value.{name} = registry.decode(reader)?;"))
+      .map(|(name, _)| format!("    self.{name}.decode(reader)?;"))
       .collect::<Vec<_>>()
       .join("\n")
   )

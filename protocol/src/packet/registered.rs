@@ -1,35 +1,50 @@
-use std::{io::{Write, Read}, sync::Arc, any::type_name};
+use std::{
+  io::{Write, Read},
+  sync::Arc,
+  any::type_name,
+  marker::PhantomData
+};
 
-use crate::codec::{CodecRegistry, CodecResult, Codec, CodecError};
+use crate::codec::{Codec, CodecResult, CodecError};
 use super::Packet;
 
 pub trait RegisteredPacket: Send + Sync {
   fn packet_name(&self) -> &str;
 
-  fn encode(&self, registry: &CodecRegistry, writer: &mut dyn Write, packet: &dyn Packet) -> CodecResult<()>;
-  fn decode(&self, registry: &CodecRegistry, reader: &mut dyn Read) -> CodecResult<Box<dyn Packet>>;
+  fn encode(&self, writer: &mut dyn Write, packet: &dyn Packet) -> CodecResult<()>;
+  fn decode(&self, reader: &mut dyn Read) -> CodecResult<Box<dyn Packet>>;
 }
 
-pub struct RegisteredPacketImpl<T: Packet + Codec<Target = T> + Send + 'static> {
-  pub codec: Arc<dyn Codec<Target = T>>
+pub struct RegisteredPacketImpl<T> {
+  _marker: PhantomData<T>
 }
 
-impl<T: Packet + Codec<Target = T> + Send + 'static> RegisteredPacket for RegisteredPacketImpl<T> {
+impl<T> RegisteredPacketImpl<T> {
+  pub fn new() -> Self {
+    Self {
+      _marker: PhantomData
+    }
+  }
+}
+
+impl<T: Packet + Codec + Default + Sync + 'static> RegisteredPacket for RegisteredPacketImpl<T> {
   fn packet_name(&self) -> &str {
     type_name::<T>()
   }
 
-  fn encode(&self, registry: &CodecRegistry, writer: &mut dyn Write, packet: &dyn Packet) -> CodecResult<()> {
+  fn encode(&self, writer: &mut dyn Write, packet: &dyn Packet) -> CodecResult<()> {
     let packet = match packet.as_any().downcast_ref::<T>() {
       Some(packet) => packet,
       None => return Err(CodecError::DowncastError(packet.packet_name().to_owned()))
     };
 
-    self.codec.encode(registry, writer, packet)
+    packet.encode(writer)
   }
 
-  fn decode(&self, registry: &CodecRegistry, reader: &mut dyn Read) -> CodecResult<Box<dyn Packet>> {
-    let packet = self.codec.decode(registry, reader)?;
+  fn decode(&self, reader: &mut dyn Read) -> CodecResult<Box<dyn Packet>> {
+    let mut packet = T::default();
+    packet.decode(reader)?;
+
     Ok(Box::new(packet))
   }
 }

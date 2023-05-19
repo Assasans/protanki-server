@@ -2,9 +2,9 @@
   name: null
   model: 50
   fields:
-    shooter_id: String
-    target_tank: String
-    local_spot_position: Vector3d
+    shooter_id: Option<String>
+    target_tank: Option<String>
+    local_spot_position: Option<Vector3d>
 29211250:
   name: s2c.lobby.BeginnerPassActivate
   model: 72
@@ -22,28 +22,28 @@
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 103812952:
-  name: null
+  name: s2c.auth.IncorrectPassword
   model: 0
   fields: {}
 118447426:
   name: s2c.battle.BattleInfoAddUserToTeam
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
     user: BattleInfoUser
     team: BattleTeam
 120401338:
   name: null
   model: 30
   fields:
-    name: String
+    name: Option<String>
 126880779:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 133238100:
   name: null
   model: 24
@@ -53,13 +53,13 @@
   model: 71
   fields:
     flag_id: i32
-    tank: String
+    tank: Option<String>
 147737736:
   name: null
   model: 24
   fields:
-    password: String
-    email: String
+    password: Option<String>
+    email: Option<String>
 150222118:
   name: null
   model: 10
@@ -69,7 +69,7 @@
   name: null
   model: 40
   fields:
-    tank_id: String
+    tank_id: Option<String>
     respawn_delay: i32
 178154988:
   name: s2c.lobby.ChatInitParameters
@@ -93,35 +93,35 @@
   name: null
   model: 36
   fields:
-    json: String
+    json: Option<String>
 229267683:
   name: null
   model: 49
   fields:
     name_43: i32
-    target: String
+    target: Option<String>
     var_356: i16
-    var_253: Vector3d
-    hit_point: Vector3d
-    var_2967: Vector3d
+    var_253: Option<Vector3d>
+    hit_point: Option<Vector3d>
+    var_2967: Option<Vector3d>
 244072998:
   name: null
   model: 55
   fields:
     time: i32
     var_356: i16
-    var_253: Vector3d
-    name_21: Vector3d
+    var_253: Option<Vector3d>
+    name_21: Option<Vector3d>
 259979915:
   name: null
   model: 52
   fields:
     var_2072: i32
-    relative_hit_point: Vector3d
-    target: String
+    relative_hit_point: Option<Vector3d>
+    target: Option<String>
     var_356: i16
-    var_253: Vector3d
-    var_2967: Vector3d
+    var_253: Option<Vector3d>
+    var_2967: Option<Vector3d>
 268832557:
   name: null
   model: 39
@@ -130,11 +130,11 @@
   name: null
   model: 62
   fields:
-    mine_id: String
+    mine_id: Option<String>
     x: f32
     y: f32
     z: f32
-    user_id: String
+    user_id: Option<String>
 312571157:
   name: null
   model: 5
@@ -160,7 +160,7 @@
   name: null
   model: 54
   fields:
-    shooter: String
+    shooter: Option<String>
 377959142:
   name: c2s.layout.LayoutSwitchExitBattle
   model: 17
@@ -171,33 +171,33 @@
   model: 55
   fields:
     time: i32
-    target: String
+    target: Option<String>
     var_356: i16
-    name_21: Vector3d
+    name_21: Option<Vector3d>
 415207851:
   name: null
   model: 15
   fields:
-    user: String
+    user: Option<String>
 417965410:
   name: null
   model: 36
   fields:
-    json: String
+    json: Option<String>
 427083290:
   name: c2s.auth.AccountRegisterSubmit
   model: 8
   fields:
-    uid: String
-    password: String
+    uid: Option<String>
+    password: Option<String>
     remember_me: bool
 442888643:
   name: s2c.auth.AccountRegisterUidBusy
   model: 8
   fields:
-    adviced_uids: Vec<String>
+    adviced_uids: Option<Vec<Option<String>>>
 444933603:
-  name: null
+  name: s2c.auth.InitializeInvite
   model: 5
   fields:
     invite_enabled: bool
@@ -205,31 +205,31 @@
   name: null
   model: 37
   fields:
-    user_id: String
+    user_id: Option<String>
     suspicious: bool
 463494974:
   name: null
   model: 65
   fields:
-    uid: String
+    uid: Option<String>
 471157826:
   name: null
   model: 70
   fields:
-    shooter: String
-    direction: Vector3d
+    shooter: Option<String>
+    direction: Option<Vector3d>
     targets: Vec<TargetHit>
 504016996:
   name: null
   model: 32
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
 509394385:
   name: null
   model: 5
   fields:
-    code: String
+    code: Option<String>
 522993449:
   name: null
   model: 37
@@ -239,23 +239,23 @@
   name: s2c.lobby.BattleRoundFinish
   model: 33
   fields:
-    json: String
+    json: Option<String>
 546849203:
   name: null
   model: 49
   fields:
-    shooter: String
-    hit_point: Vector3d
+    shooter: Option<String>
+    hit_point: Option<Vector3d>
 552006706:
   name: S2CBattleListListCreate
   model: 31
   fields:
-    json: String
+    json: Option<String>
 553380510:
   name: null
   model: 13
   fields:
-    user: String
+    user: Option<String>
 560336625:
   name: null
   model: 37
@@ -276,7 +276,7 @@
   name: null
   model: 30
   fields:
-    battle_name: String
+    battle_name: Option<String>
 579696867:
   name: null
   model: 67
@@ -286,7 +286,7 @@
   name: s2c.battle.UpdateTankTemperature
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     temperature: f32
 600420685:
   name: null
@@ -301,28 +301,28 @@
   name: null
   model: 61
   fields:
-    message: String
+    message: Option<String>
 613462801:
-  name: null
+  name: s2c.settings.InitializeEmailStatus
   model: 24
   fields:
-    email: String
+    email: Option<Option<String>>
     email_confirmed: bool
 614714702:
   name: null
   model: 13
   fields:
-    user: String
+    user: Option<String>
 641950429:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 650923390:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 652872053:
   name: null
   model: 24
@@ -335,8 +335,8 @@
   name: null
   model: 24
   fields:
-    var_501: String
-    password: String
+    var_501: Option<String>
+    password: Option<String>
 696140460:
   name: null
   model: 48
@@ -346,13 +346,13 @@
   name: null
   model: 28
   fields:
-    var_396: String
-    text: String
+    var_396: Option<String>
+    text: Option<String>
 714838911:
   name: null
   model: 5
   fields:
-    nickname: String
+    nickname: Option<String>
 732434644:
   name: null
   model: 37
@@ -368,8 +368,8 @@
   name: null
   model: 9
   fields:
-    var_2570: String
-    var_2699: String
+    var_2570: Option<String>
+    var_2699: Option<String>
 789790814:
   name: null
   model: 42
@@ -379,7 +379,7 @@
   name: s2c.lobby.BattleCreate
   model: 31
   fields:
-    json: String
+    json: Option<String>
 809822533:
   name: null
   model: 19
@@ -390,15 +390,15 @@
   name: null
   model: 15
   fields:
-    user: String
+    user: Option<String>
     data: BattleInviteMessage
 814687528:
   name: null
   model: 15
   fields:
-    sender_id: String
+    sender_id: Option<String>
 834877801:
-  name: null
+  name: s2c.lobby.InitializeBattleInvite
   model: 15
   fields:
     init_params: BattleInviteCC
@@ -406,7 +406,7 @@
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 843751647:
   name: null
   model: 50
@@ -419,35 +419,35 @@
   name: null
   model: 21
   fields:
-    json: String
+    json: Option<String>
     bonus_info: BonusInfoCC
 862913394:
   name: null
   model: 48
   fields:
-    user_id: String
+    user_id: Option<String>
     users_info: Vec<UserInfo>
 870278784:
   name: null
   model: 36
   fields:
-    json: String
+    json: Option<String>
 875259457:
   name: s2c.battle.SpawnTank
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     team: BattleTeam
-    position: Vector3d
-    orientation: Vector3d
+    position: Option<Vector3d>
+    orientation: Option<Vector3d>
     health: i16
     incarnation_id: i16
 880756819:
   name: null
   model: 16
   fields:
-    item_id: String
-    var_1471: String
+    item_id: Option<String>
+    var_1471: Option<String>
 885055495:
   name: null
   model: 19
@@ -457,9 +457,9 @@
   name: null
   model: 9
   fields:
-    var_281: String
+    var_281: Option<String>
 907073245:
-  name: null
+  name: s2c.lobby.InitializeUser
   model: 10
   fields:
     user_property_cc: UserPropertyCC
@@ -471,12 +471,12 @@
   name: s2c.auth.UpdateLoginHash
   model: 1
   fields:
-    hash: String
+    hash: Option<String>
 945463181:
   name: null
   model: 61
   fields:
-    message: String
+    message: Option<String>
     name_73: bool
 947161947:
   name: null
@@ -490,17 +490,17 @@
   name: null
   model: 52
   fields:
-    shooter: String
+    shooter: Option<String>
 979099084:
   name: null
   model: 56
   fields:
-    shooter: String
+    shooter: Option<String>
 981035905:
   name: null
   model: 55
   fields:
-    shooter: String
+    shooter: Option<String>
 988664577:
   name: null
   model: 40
@@ -513,12 +513,12 @@
   name: null
   model: 15
   fields:
-    sender_id: String
+    sender_id: Option<String>
 1044854075:
   name: null
   model: 41
   fields:
-    bonus_id: String
+    bonus_id: Option<String>
 1061006142:
   name: null
   model: 48
@@ -528,12 +528,12 @@
   name: c2s.auth.AccountRegisterValidateUid
   model: 8
   fields:
-    uid: String
+    uid: Option<String>
 1091756732:
   name: s2c.garage.FitItem
   model: 34
   fields:
-    item: String
+    item: Option<String>
 1118835050:
   name: s2c.layout.LobbyLayoutSwitchStart
   model: 12
@@ -543,7 +543,7 @@
   name: c2s.LinkResultDead
   model: 14
   fields:
-    battle_id: String
+    battle_id: Option<String>
 1147113344:
   name: null
   model: 53
@@ -553,7 +553,7 @@
   name: null
   model: 32
   fields:
-    battle_id: String
+    battle_id: Option<String>
 1149211509:
   name: null
   model: 37
@@ -563,12 +563,12 @@
   name: null
   model: 15
   fields:
-    sender_id: String
+    sender_id: Option<String>
 1152930968:
   name: c2s.LinkResultAlive
   model: 14
   fields:
-    battle_id: String
+    battle_id: Option<String>
 1153801756:
   name: c2s.layout.LayoutSwitchPayment
   model: 17
@@ -585,16 +585,16 @@
   name: null
   model: 50
   fields:
-    shooter: String
-    static_hit_point: Vector3d
-    targets: Vec<String>
-    target_hit_points: Vec<Vector3d>
+    shooter: Option<String>
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
     impact_force: f32
 1200280053:
   name: s2c.session.BanTemporary
   model: 7
   fields:
-    reason_for_user: String
+    reason_for_user: Option<String>
     minutes: i32
     hours: i32
     days: i32
@@ -606,7 +606,7 @@
   name: null
   model: 57
   fields:
-    shooter: String
+    shooter: Option<String>
 1224288585:
   name: null
   model: 50
@@ -620,16 +620,16 @@
   name: null
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 1229701582:
   name: null
   model: 53
   fields:
     name_43: i32
-    target: String
+    target: Option<String>
     shot_id: i32
-    var_253: Vector3d
-    var_252: Vec<Vector3d>
+    var_253: Option<Vector3d>
+    var_252: Option<Vec<Option<Vector3d>>>
 1243673979:
   name: null
   model: 3
@@ -642,26 +642,26 @@
   name: null
   model: 61
   fields:
-    user_id: String
-    message: String
+    user_id: Option<String>
+    message: Option<String>
     team: BattleTeam
 1262947513:
   name: null
   model: 37
   fields:
-    user_id: String
+    user_id: Option<String>
     new_rank: i32
 1271163230:
   name: c2s.captcha.ValidateCaptcha
   model: 6
   fields:
     captcha_location: CaptchaLocation
-    var_1950: String
+    var_1950: Option<String>
 1286861380:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 1312986424:
   name: null
   model: 24
@@ -671,29 +671,29 @@
   name: s2c.garage.ShowCategory
   model: 34
   fields:
-    category: String
+    category: Option<String>
 1333088437:
   name: null
   model: 57
   fields:
-    shooter: String
+    shooter: Option<String>
 1382076950:
   name: null
   model: 65
   fields:
-    text: String
-    uid: String
+    text: Option<String>
+    uid: Option<String>
 1383159023:
   name: null
   model: 15
   fields:
-    user: String
+    user: Option<String>
 1387974401:
   name: null
   model: 62
   fields:
-    mine_id: String
-    target_id: String
+    mine_id: Option<String>
+    target_id: Option<String>
 1391146385:
   name: null
   model: 11
@@ -704,12 +704,12 @@
   model: 57
   fields:
     time: i32
-    targets: Vec<String>
-    var_1019: Vec<i16>
-    var_2638: Vec<Vector3d>
-    var_782: Vec<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    var_1019: Option<Vec<i16>>
+    var_2638: Option<Vec<Option<Vector3d>>>
+    var_782: Option<Vec<Option<Vector3d>>>
 1405859779:
-  name: null
+  name: s2c.lobby.InitializeUserPremium
   model: 11
   fields:
     premium_account_alert_cc: PremiumAccountAlertCC
@@ -718,7 +718,7 @@
   name: null
   model: 44
   fields:
-    user_id: String
+    user_id: Option<String>
 1417347634:
   name: null
   model: 19
@@ -736,14 +736,14 @@
   name: S2CBattleInfoUpdateTeamScore
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
     team_type: BattleTeam
     score: i32
 1433937811:
   name: null
   model: 41
   fields:
-    bonus_id: String
+    bonus_id: Option<String>
 1441234714:
   name: null
   model: 13
@@ -757,8 +757,8 @@
   name: S2CBattleUserListUserJoinBattleWithTeam
   model: 32
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
 1452181070:
   name: c2s.layout.LayoutSwitchServerSelect
   model: 17
@@ -767,13 +767,13 @@
   name: null
   model: 54
   fields:
-    shooter: String
+    shooter: Option<String>
 1470597926:
   name: null
   model: 49
   fields:
     name_43: i32
-    hit_point: Vector3d
+    hit_point: Option<Vector3d>
 1478921140:
   name: null
   model: 49
@@ -792,25 +792,25 @@
   model: 52
   fields:
     var_2072: i32
-    hit_point: Vector3d
+    hit_point: Option<Vector3d>
 1516578027:
   name: s2c.battle.TankMoveTurretCommand
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     move_command: MoveCommand
     turret_direction: f32
 1532749363:
   name: null
   model: 61
   fields:
-    uid: String
-    message: String
+    uid: Option<String>
+    message: Option<String>
 1534651002:
   name: null
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 1544223090:
   name: null
   model: 24
@@ -819,8 +819,8 @@
   name: S2CBattleInfoUpdateName
   model: 33
   fields:
-    battle_id: String
-    name: String
+    battle_id: Option<String>
+    name: Option<String>
 1566424318:
   name: s2c.payment.PaymentCompleted
   model: 69
@@ -834,7 +834,7 @@
   model: 9
   fields:
     success: bool
-    error: String
+    error: Option<String>
 1579425801:
   name: null
   model: 19
@@ -844,12 +844,12 @@
   model: 50
   fields:
     time: i32
-    static_hit_point: Vector3d
-    targets: Vec<String>
-    target_hit_points: Vec<Vector3d>
-    name_48: Vec<i16>
-    var_2638: Vec<Vector3d>
-    var_782: Vec<Vector3d>
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
+    name_48: Option<Vec<i16>>
+    var_2638: Option<Vec<Option<Vector3d>>>
+    var_782: Option<Vec<Option<Vector3d>>>
 1642608662:
   name: null
   model: 19
@@ -859,8 +859,8 @@
   name: null
   model: 52
   fields:
-    shooter: String
-    hit_point: Vector3d
+    shooter: Option<String>
+    hit_point: Option<Vector3d>
 1711371907:
   name: null
   model: 20
@@ -870,17 +870,17 @@
   name: null
   model: 13
   fields:
-    user: String
+    user: Option<String>
 1719707347:
   name: s2c.battle.DestroyTank
   model: 39
   fields:
-    tank: String
+    tank: Option<String>
 1744584433:
   name: null
   model: 9
   fields:
-    email: String
+    email: Option<String>
 1746762585:
   name: null
   model: 71
@@ -895,70 +895,70 @@
   name: null
   model: 24
   fields:
-    password: String
+    password: Option<String>
 1774907609:
   name: c2s.UserNotifySubscribeUser
   model: 18
   fields:
-    user_id: String
+    user_id: Option<String>
 1817559787:
   name: null
   model: 71
   fields:
     flag_id: i32
-    position: Vector3d
+    position: Option<Vector3d>
 1831462385:
   name: s2c.battle.SpawnBonus
   model: 36
   fields:
-    bonus_id: String
-    position: Vector3d
+    bonus_id: Option<String>
+    position: Option<Vector3d>
     var_2317: i32
 1863710730:
   name: null
   model: 16
   fields:
-    data: String
+    data: Option<String>
 1868573511:
   name: s2c.battle.TankDead
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
 1924874982:
   name: S2CBattleInfoRemoveUser
   model: 33
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
 1925237062:
   name: null
   model: 42
   fields:
-    position: Vector3d
+    position: Option<Vector3d>
     flag_team: BattleTeam
 1927704181:
   name: s2c.battle.UpdateTankTurret
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     rotate_turret_command: RotateTurretCommand
 1928355480:
   name: null
   model: 24
   fields:
-    email: String
+    email: Option<String>
 1941352088:
   name: null
   model: 71
   fields:
     flag_id: i32
     base_id: i32
-    deliverer_tank_id: String
+    deliverer_tank_id: Option<String>
 1941694508:
   name: S2CUserNotifyNotifyUserBattleLeave
   model: 18
   fields:
-    user_id: String
+    user_id: Option<String>
 1953272681:
   name: null
   model: 37
@@ -976,12 +976,12 @@
   name: s2c.lobby.ChatRemoveUserMessages
   model: 28
   fields:
-    uid: String
+    uid: Option<String>
 2001632000:
   name: null
   model: 55
   fields:
-    shooter: String
+    shooter: Option<String>
     state: IsisState
     hit: TargetHit
 2001736388:
@@ -993,8 +993,8 @@
   name: null
   model: 32
   fields:
-    battle_id: String
-    new_name: String
+    battle_id: Option<String>
+    new_name: Option<String>
 2029312880:
   name: null
   model: 24
@@ -1003,14 +1003,14 @@
   name: null
   model: 43
   fields:
-    item_id: String
+    item_id: Option<String>
     time: i32
     decrease: bool
 2040021062:
   name: null
   model: 44
   fields:
-    user_id: String
+    user_id: Option<String>
     users_info: Vec<UserInfo>
     team: BattleTeam
 2041598093:
@@ -1022,13 +1022,13 @@
   name: s2c.garage.InitMounted
   model: 34
   fields:
-    item_id: String
+    item_id: Option<String>
     mounted: bool
 2064692768:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 2074243318:
   name: c2s.session.ServerSessionSyncResponse
   model: 46
@@ -1039,7 +1039,7 @@
   name: c2s.lobby.SelectBattle
   model: 31
   fields:
-    item: String
+    item: Option<String>
 2094741924:
   name: s2c.layout.UpdateLoadingTip
   model: 73
@@ -1049,7 +1049,7 @@
   name: null
   model: 22
   fields:
-    social_network_id: String
+    social_network_id: Option<String>
 2116086491:
   name: null
   model: 29
@@ -1060,28 +1060,28 @@
   model: 70
   fields:
     name_43: i32
-    direction: Vector3d
+    direction: Option<Vector3d>
 2145091885:
   name: null
   model: 24
   fields:
-    message: String
+    message: Option<String>
 -739684591:
   name: c2s.auth.UsernameLogin
   model: 0
   fields:
-    login: String
-    password: String
+    login: Option<String>
+    password: Option<String>
     remember: bool
 -1923286328:
-  name: null
+  name: s2c.auth.LoginSuccess
   model: 0
   fields: {}
 -845588810:
   name: c2s.auth.HashLogin
   model: 1
   fields:
-    hash: String
+    hash: Option<String>
 -1317889894:
   name: null
   model: 2
@@ -1103,19 +1103,19 @@
   name: null
   model: 3
   fields:
-    login: String
-    password: String
+    login: Option<String>
+    password: Option<String>
 -1715719586:
-  name: null
+  name: s2c.session.InitializeExternalEntrance
   model: 3
   fields:
-    sn_id: String
-    authorization_url: String
+    sn_id: Option<String>
+    authorization_url: Option<String>
 -1807685988:
   name: null
   model: 4
   fields:
-    json: String
+    json: Option<String>
 -82304134:
   name: c2s.session.resources.DependenciesLoaded
   model: 4
@@ -1125,12 +1125,12 @@
   name: c2s.session.EncryptionInitialized
   model: 4
   fields:
-    lang: String
+    lang: Option<String>
 -1797047325:
   name: s2c.session.resources.LoadDependencies
   model: 4
   fields:
-    json: String
+    json: Option<String>
     callback_id: i32
 -1282173466:
   name: s2c.session.resources.ResourcesLoaded
@@ -1162,7 +1162,7 @@
   name: s2c.session.BanPermanent
   model: 7
   fields:
-    reason_for_user: String
+    reason_for_user: Option<String>
 -706679202:
   name: S2CAccountRegisterUidFree
   model: 8
@@ -1171,7 +1171,7 @@
   name: null
   model: 8
   fields:
-    uid: String
+    uid: Option<String>
 -1277343167:
   name: S2CAccountRegisterParameters
   model: 8
@@ -1196,7 +1196,7 @@
   name: null
   model: 9
   fields:
-    current_email: String
+    current_email: Option<String>
 -478572181:
   name: null
   model: 11
@@ -1212,37 +1212,37 @@
   name: null
   model: 13
   fields:
-    user: String
+    user: Option<String>
 -1926185291:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -1258754138:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -1588006900:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -1041660861:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -139645601:
   name: null
   model: 13
   fields:
-    user: String
+    user: Option<String>
 -1457773660:
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -1490761936:
   name: null
   model: 13
@@ -1251,7 +1251,7 @@
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -707501253:
   name: null
   model: 13
@@ -1268,33 +1268,33 @@
   name: null
   model: 13
   fields:
-    user_id: String
+    user_id: Option<String>
 -1885167992:
   name: null
   model: 13
   fields:
-    user: String
+    user: Option<String>
 -604091695:
   name: c2s.LinkActivateLink
   model: 14
   fields:
-    link: String
+    link: Option<String>
 -983139626:
   name: c2s.LinkQuery
   model: 14
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -1851236532:
   name: null
   model: 15
   fields:
-    sender_id: String
+    sender_id: Option<String>
 -864265623:
   name: null
   model: 15
   fields:
-    var_2558: String
-    battle_id: String
+    var_2558: Option<String>
+    battle_id: Option<String>
 -1859441081:
   name: null
   model: 16
@@ -1303,7 +1303,7 @@
   name: null
   model: 16
   fields:
-    url: String
+    url: Option<String>
 -1850050333:
   name: null
   model: 16
@@ -1312,7 +1312,7 @@
   name: null
   model: 16
   fields:
-    var_544: String
+    var_544: Option<String>
 -479046431:
   name: c2s.layout.LayoutSwitchGarage
   model: 17
@@ -1331,7 +1331,7 @@
   name: S2CUserNotifySetUserId
   model: 18
   fields:
-    user: String
+    user: Option<String>
 -2069508071:
   name: S2CUserNotifyPremiumTimeLeft
   model: 18
@@ -1341,7 +1341,7 @@
   name: c2s.session.UserNotifyUnsubscribeUsers
   model: 18
   fields:
-    var_1832: Vec<String>
+    var_1832: Option<Vec<Option<String>>>
 -1266665816:
   name: null
   model: 19
@@ -1358,8 +1358,8 @@
   model: 21
   fields:
     image: ResourceId
-    bottom_text: String
-    top_text: String
+    bottom_text: Option<String>
+    top_text: Option<String>
 -541741971:
   name: null
   model: 22
@@ -1368,7 +1368,7 @@
   name: null
   model: 22
   fields:
-    social_network_id: String
+    social_network_id: Option<String>
 -583564465:
   name: null
   model: 22
@@ -1378,12 +1378,12 @@
   name: null
   model: 22
   fields:
-    social_network_id: String
+    social_network_id: Option<String>
 -324894035:
   name: null
   model: 22
   fields:
-    social_network_id: String
+    social_network_id: Option<String>
 -731115522:
   name: null
   model: 23
@@ -1397,7 +1397,7 @@
   name: null
   model: 24
   fields:
-    email: String
+    email: Option<String>
 -1533422832:
   name: null
   model: 24
@@ -1414,7 +1414,7 @@
   name: null
   model: 24
   fields:
-    password: String
+    password: Option<String>
 -714487273:
   name: null
   model: 24
@@ -1423,7 +1423,7 @@
   name: s2c.session.ShowAlert
   model: 25
   fields:
-    text: String
+    text: Option<String>
 -1712113407:
   name: S2CAlertServerHaltScheduled
   model: 26
@@ -1433,7 +1433,7 @@
   name: null
   model: 27
   fields:
-    item_id: String
+    item_id: Option<String>
 -47424608:
   name: null
   model: 27
@@ -1467,7 +1467,7 @@
   name: S2CBattleCreateParameters
   model: 30
   fields:
-    json: String
+    json: Option<String>
 -614313838:
   name: null
   model: 30
@@ -1489,60 +1489,60 @@
   name: S2CBattleListBattleRemove
   model: 31
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -2133657895:
   name: null
   model: 32
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
 -994817471:
   name: null
   model: 32
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -169305322:
   name: S2CBattleUserListUserJoinBattle
   model: 32
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
     team: BattleTeam
 -751613832:
   name: null
   model: 32
   fields:
-    battle_id: String
+    battle_id: Option<String>
     suspicion_level: BattleSuspicionLevel
 -698399183:
   name: S2CBattleInfoUpdateSuspiciousState
   model: 33
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
     suspicious: bool
 -1263036614:
   name: S2CBattleInfoUpdateUserKills
   model: 33
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
     kills: i32
 -879771375:
   name: S2CBattleInfoBattleStop
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -1702097572:
   name: S2CBattleInfoSwapTeams
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -10847382:
   name: null
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -1315002220:
   name: null
   model: 33
@@ -1551,24 +1551,24 @@
   name: S2CBattleInfoRoundStart
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -602527073:
   name: S2CBattleInfoInfoDestroy
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -375282889:
   name: S2CBattleInfoUpdateUserScore
   model: 33
   fields:
-    battle_id: String
-    user_id: String
+    battle_id: Option<String>
+    user_id: Option<String>
     score: i32
 -831998018:
   name: null
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
 -1284211503:
   name: null
   model: 33
@@ -1578,38 +1578,38 @@
   name: null
   model: 33
   fields:
-    battle_id: String
+    battle_id: Option<String>
     user: BattleInfoUser
 -1961983005:
   name: c2s.garage.BuyItem
   model: 34
   fields:
-    item: String
+    item: Option<String>
     count: i32
     var_204: i32
 -1505530736:
   name: c2s.garage.MountItem
   model: 34
   fields:
-    item: String
+    item: Option<String>
 -255516505:
   name: s2c.garage.InitDepot
   model: 34
   fields:
-    json: String
+    json: Option<String>
 -1518850075:
   name: c2s.garage.ConfirmPresentPurchase
   model: 34
   fields:
-    var_814: String
-    var_1790: String
-    text: String
+    var_814: Option<String>
+    var_1790: Option<String>
+    text: Option<String>
     var_204: i32
 -803365239:
   name: c2s.garage.SelectItem
   model: 34
   fields:
-    item_id: String
+    item_id: Option<String>
 -471022967:
   name: s2c.garage.RenameFailed
   model: 34
@@ -1618,13 +1618,13 @@
   name: c2s.garage.BuyKit
   model: 34
   fields:
-    item: String
+    item: Option<String>
     var_204: i32
 -300370823:
   name: s2c.garage.InitMarket
   model: 34
   fields:
-    json: String
+    json: Option<String>
 -2001666558:
   name: S2CGaragePresentsRemove
   model: 34
@@ -1646,18 +1646,18 @@
   name: s2c.garage.RenameSuccess
   model: 34
   fields:
-    old_name: String
-    new_name: String
+    old_name: Option<String>
+    new_name: Option<String>
 -161726525:
   name: c2s.garage.Rename
   model: 34
   fields:
-    var_1736: String
+    var_1736: Option<String>
 -635715470:
   name: c2s.UidCheckRequest
   model: 35
   fields:
-    uid: String
+    uid: Option<String>
 -1565553333:
   name: c2s.UidCheckResponse
   model: 35
@@ -1667,7 +1667,7 @@
   name: null
   model: 36
   fields:
-    json: String
+    json: Option<String>
 -745598420:
   name: null
   model: 36
@@ -1677,22 +1677,22 @@
   name: null
   model: 36
   fields:
-    json: String
+    json: Option<String>
 -1047185003:
   name: null
   model: 36
   fields:
-    bonus_id: String
+    bonus_id: Option<String>
 -2026749922:
   name: null
   model: 36
   fields:
-    bonus_id: String
+    bonus_id: Option<String>
 -1291499147:
   name: null
   model: 36
   fields:
-    bonus_id: String
+    bonus_id: Option<String>
 -985579124:
   name: null
   model: 36
@@ -1701,20 +1701,20 @@
   name: s2c.battle.MoveTank
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     move_command: MoveCommand
 -42520728:
   name: s2c.battle.KillTank
   model: 39
   fields:
-    tank_id: String
-    killer_tank_id: String
+    tank_id: Option<String>
+    killer_tank_id: Option<String>
     respawn_delay: i32
 -301298508:
   name: s2c.battle.UpdateTankControl
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     control: i8
 -114968993:
   name: c2s.battle.TankTurretCommand
@@ -1731,14 +1731,14 @@
   name: s2c.battle.UpdateTankHealth
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     health: f32
 -157204477:
   name: s2c.battle.UpdateTankPosition
   model: 39
   fields:
-    position: Vector3d
-    orientation: Vector3d
+    position: Option<Vector3d>
+    orientation: Option<Vector3d>
 -1749108178:
   name: c2s.battle.UpdateTankControl
   model: 39
@@ -1758,7 +1758,7 @@
   name: s2c.battle.UpdateTankSpeed
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     max_speed: f32
     max_turn_speed: f32
     max_turret_rotation_speed: f32
@@ -1768,7 +1768,7 @@
   name: s2c.battle.AddTankEffect
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     effect_id: i32
     duration: i32
     active_after_death: bool
@@ -1777,7 +1777,7 @@
   name: s2c.battle.RemoveTankEffect
   model: 39
   fields:
-    tank_id: String
+    tank_id: Option<String>
     effect_id: i32
 -1205151619:
   name: null
@@ -1793,18 +1793,18 @@
   model: 42
   fields:
     flag_team: BattleTeam
-    tank: String
+    tank: Option<String>
 -1870108387:
   name: null
   model: 42
   fields:
     winner_team: BattleTeam
-    deliverer_tank_id: String
+    deliverer_tank_id: Option<String>
 -1282406496:
   name: null
   model: 42
   fields:
-    tank_id: String
+    tank_id: Option<String>
     flag_team: BattleTeam
 -1142938284:
   name: null
@@ -1815,22 +1815,22 @@
   name: null
   model: 43
   fields:
-    item_id: String
+    item_id: Option<String>
 -137249251:
   name: null
   model: 43
   fields:
-    json: String
+    json: Option<String>
 -1981777467:
   name: null
   model: 43
   fields:
-    mine_id: String
+    mine_id: Option<String>
 -502907094:
   name: null
   model: 43
   fields:
-    item_id: String
+    item_id: Option<String>
     count: i32
 -1668779175:
   name: null
@@ -1867,24 +1867,24 @@
   name: null
   model: 48
   fields:
-    user_id: String
+    user_id: Option<String>
 -1032328347:
   name: null
   model: 49
   fields:
-    shooter: String
+    shooter: Option<String>
 -671618989:
   name: null
   model: 49
   fields:
-    target: String
+    target: Option<String>
 -1334002026:
   name: null
   model: 49
   fields:
-    shooter: String
-    target: String
-    hit_point: Vector3d
+    shooter: Option<String>
+    target: Option<String>
+    hit_point: Option<Vector3d>
     weakening_coeff: f32
     is_critical: bool
 -2030760866:
@@ -1892,12 +1892,12 @@
   model: 50
   fields:
     time: i32
-    static_hit_point: Vector3d
-    targets: Vec<String>
-    target_hit_points: Vec<Vector3d>
-    name_48: Vec<i16>
-    var_2638: Vec<Vector3d>
-    var_782: Vec<Vector3d>
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
+    name_48: Option<Vec<i16>>
+    var_2638: Option<Vec<Option<Vector3d>>>
+    var_782: Option<Vec<Option<Vector3d>>>
 -1527013252:
   name: null
   model: 50
@@ -1911,7 +1911,7 @@
   name: null
   model: 50
   fields:
-    shooter_id: String
+    shooter_id: Option<String>
 -1487306515:
   name: null
   model: 50
@@ -1920,23 +1920,23 @@
   name: null
   model: 50
   fields:
-    target_tank: String
-    local_spot_position: Vector3d
+    target_tank: Option<String>
+    local_spot_position: Option<Vector3d>
 -1380283560:
   name: null
   model: 50
   fields:
-    shooter: String
+    shooter: Option<String>
 -1222085753:
   name: null
   model: 50
   fields:
-    shooter: String
+    shooter: Option<String>
 -534192254:
   name: null
   model: 50
   fields:
-    shooter_id: String
+    shooter_id: Option<String>
     projection_on_vertical_axis: f32
 -159686980:
   name: null
@@ -1945,14 +1945,14 @@
     name_43: i32
     barrel: i8
     shot_id: i32
-    shot_direction: Vector3d
+    shot_direction: Option<Vector3d>
 -482023661:
   name: null
   model: 51
   fields:
     name_43: i32
     shot_id: i32
-    var_2967: Vector3d
+    var_2967: Option<Vector3d>
 -1805942142:
   name: null
   model: 51
@@ -1963,24 +1963,24 @@
   name: null
   model: 51
   fields:
-    shooter: String
+    shooter: Option<String>
     barrel: i8
     shot_id: i32
-    shot_direction: Vector3d
+    shot_direction: Option<Vector3d>
 -1723353904:
   name: null
   model: 51
   fields:
     name_43: i32
     shot_id: i32
-    target: String
-    var_253: Vector3d
-    var_2967: Vector3d
+    target: Option<String>
+    var_253: Option<Vector3d>
+    var_2967: Option<Vector3d>
 -328554480:
   name: null
   model: 51
   fields:
-    shooter: String
+    shooter: Option<String>
     barrel: i8
 -136344740:
   name: null
@@ -1991,14 +1991,14 @@
   name: null
   model: 52
   fields:
-    shooter: String
-    target: String
-    relative_hit_point: Vector3d
+    shooter: Option<String>
+    target: Option<String>
+    relative_hit_point: Option<Vector3d>
 -1670466290:
   name: null
   model: 53
   fields:
-    shooter: String
+    shooter: Option<String>
 -1907971330:
   name: null
   model: 53
@@ -2012,7 +2012,7 @@
   name: null
   model: 53
   fields:
-    shooter: String
+    shooter: Option<String>
     shot_direction_x: i16
     shot_direction_y: i16
     shot_direction_z: i16
@@ -2022,7 +2022,7 @@
   fields:
     name_43: i32
     shot_id: i32
-    var_252: Vec<Vector3d>
+    var_252: Option<Vec<Option<Vector3d>>>
 -18176641:
   name: null
   model: 54
@@ -2033,12 +2033,12 @@
   model: 54
   fields:
     name_43: i32
-    static_hit_point: Vector3d
-    targets: Vec<String>
-    target_hit_points: Vec<Vector3d>
-    name_48: Vec<i16>
-    var_2638: Vec<Vector3d>
-    var_782: Vec<Vector3d>
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
+    name_48: Option<Vec<i16>>
+    var_2638: Option<Vec<Option<Vector3d>>>
+    var_782: Option<Vec<Option<Vector3d>>>
 -1759063234:
   name: null
   model: 54
@@ -2048,15 +2048,15 @@
   name: null
   model: 54
   fields:
-    shooter: String
-    static_hit_point: Vector3d
-    targets: Vec<String>
-    target_hit_points: Vec<Vector3d>
+    shooter: Option<String>
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
 -1271729363:
   name: null
   model: 55
   fields:
-    shooter: String
+    shooter: Option<String>
 -1051248475:
   name: null
   model: 55
@@ -2077,10 +2077,10 @@
   model: 56
   fields:
     time: i32
-    targets: Vec<String>
-    var_1019: Vec<i16>
-    var_1229: Vec<Vector3d>
-    var_782: Vec<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    var_1019: Option<Vec<i16>>
+    var_1229: Option<Vec<Option<Vector3d>>>
+    var_782: Option<Vec<Option<Vector3d>>>
 -1654947652:
   name: null
   model: 56
@@ -2090,7 +2090,7 @@
   name: null
   model: 56
   fields:
-    shooter: String
+    shooter: Option<String>
 -1300958299:
   name: null
   model: 57
@@ -2105,7 +2105,7 @@
   name: null
   model: 58
   fields:
-    json: String
+    json: Option<String>
 -911983090:
   name: null
   model: 59
@@ -2115,12 +2115,12 @@
   name: null
   model: 59
   fields:
-    tank: String
+    tank: Option<String>
 -173682854:
   name: null
   model: 59
   fields:
-    tank: String
+    tank: Option<String>
     respawn_delay: i32
 -1346883037:
   name: null
@@ -2155,7 +2155,7 @@
   model: 60
   fields:
     point_id: i32
-    tank_id: String
+    tank_id: Option<String>
 -773473371:
   name: null
   model: 60
@@ -2171,7 +2171,7 @@
   model: 60
   fields:
     point_id: i32
-    tank_id: String
+    tank_id: Option<String>
 -643105296:
   name: null
   model: 61
@@ -2180,14 +2180,14 @@
   name: null
   model: 61
   fields:
-    user_id: String
-    message: String
+    user_id: Option<String>
+    message: Option<String>
     team: BattleTeam
 -1331361684:
   name: null
   model: 61
   fields:
-    header: String
+    header: Option<String>
 -226978906:
   name: null
   model: 62
@@ -2197,34 +2197,34 @@
   name: null
   model: 62
   fields:
-    owner_id: String
+    owner_id: Option<String>
 -718866741:
   name: null
   model: 62
   fields:
-    mine_id: String
+    mine_id: Option<String>
 -624217047:
   name: null
   model: 62
   fields:
-    mine_id: String
+    mine_id: Option<String>
 -666893269:
   name: null
   model: 65
   fields:
-    text: String
+    text: Option<String>
     sound: ResourceId
 -1709511848:
   name: null
   model: 66
   fields:
-    json: String
+    json: Option<String>
 -1042583203:
   name: null
   model: 67
   fields:
     achievement: Achievement
-    message: String
+    message: Option<String>
 -260270890:
   name: null
   model: 68
@@ -2235,7 +2235,7 @@
   model: 70
   fields:
     name_43: i32
-    direction: Vector3d
+    direction: Option<Vector3d>
     targets: Vec<TargetPosition>
 -1940289099:
   name: null
@@ -2246,7 +2246,7 @@
   model: 71
   fields:
     flag_id: i32
-    tank_id: String
+    tank_id: Option<String>
 -1376947245:
   name: c2s.layout.GetLoadingTip
   model: 73

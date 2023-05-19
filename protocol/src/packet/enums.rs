@@ -1,7 +1,7 @@
 use std::io::{Write, Read};
 use byteorder::{BigEndian, WriteBytesExt, ReadBytesExt};
 
-use crate::codec::{Codec, CodecRegistry, CodecResult};
+use crate::codec::{Codec, CodecResult};
 
 macro_rules! enum_impl {
   ($name:ident { $($variant:ident: $value:expr)* }) => {
@@ -36,35 +36,16 @@ macro_rules! enum_impl {
     }
 
     impl Codec for $name {
-      type Target = Self;
-
-      fn encode(&self, _registry: &CodecRegistry, writer: &mut dyn Write, value: &Self::Target) -> CodecResult<()> {
-        Ok(writer.write_i32::<BigEndian>((*value).into())?)
+      fn encode<W: Write + ?Sized>(&self, writer: &mut W) -> CodecResult<()> {
+        Ok(writer.write_i32::<BigEndian>((*self).into())?)
       }
 
-      fn decode(&self, _registry: &CodecRegistry, reader: &mut dyn Read) -> CodecResult<Self::Target> {
-        Ok(reader.read_i32::<BigEndian>()?.into())
+      fn decode<R: Read + ?Sized>(&mut self, reader: &mut R) -> CodecResult<()> {
+        *self = reader.read_i32::<BigEndian>()?.into();
+        Ok(())
       }
     }
   };
-}
-
-pub(crate) fn register_enums(registry: &mut CodecRegistry) {
-  registry.register_codec(ValidationStatus::default());
-  registry.register_codec(MapTheme::default());
-  registry.register_codec(LayoutState::default());
-  registry.register_codec(ItemViewCategory::default());
-  registry.register_codec(ItemCategory::default());
-  registry.register_codec(IsisState::default());
-  registry.register_codec(EquipmentConstraintsMode::default());
-  registry.register_codec(DamageIndicatorType::default());
-  registry.register_codec(ControlPointState::default());
-  registry.register_codec(ChatModeratorLevel::default());
-  registry.register_codec(BattleTeam::default());
-  registry.register_codec(BattleSuspicionLevel::default());
-  registry.register_codec(BattleMode::default());
-  registry.register_codec(Achievement::default());
-  registry.register_codec(CaptchaLocation::default());
 }
 
 enum_impl!(ValidationStatus {

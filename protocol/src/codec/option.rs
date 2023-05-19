@@ -2,10 +2,10 @@ use std::io::{Write, Read};
 
 use super::{Codec, CodecResult};
 
-impl<T: Codec + Default> Codec for Vec<T> {
+impl<T: Codec + Default> Codec for Option<T> {
   fn encode<W: Write + ?Sized>(&self, writer: &mut W) -> CodecResult<()> {
-    (self.len() as i32).encode(writer)?;
-    for value in self.iter() {
+    self.is_none().encode(writer)?;
+    if let Some(value) = self.as_ref() {
       value.encode(writer)?;
     }
 
@@ -13,17 +13,17 @@ impl<T: Codec + Default> Codec for Vec<T> {
   }
 
   fn decode<R: Read + ?Sized>(&mut self, reader: &mut R) -> CodecResult<()> {
-    let mut length = i32::default();
-    length.decode(reader)?;
+    let mut is_null = bool::default();
+    is_null.decode(reader)?;
 
-    self.reserve_exact(length as usize);
-
-    for _ in 0..length {
+    *self = if is_null {
+      None
+    } else {
       let mut value = T::default();
       value.decode(reader)?;
 
-      self.push(value);
-    }
+      Some(value)
+    };
 
     Ok(())
   }

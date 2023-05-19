@@ -1,37 +1,31 @@
-use std::io::{Write, Read};
+use std::{
+  io::{Write, Read},
+  str
+};
 
-use super::{Codec, CodecResult, CodecError, CodecRegistry, CodecRegistryExt};
+use super::{Codec, CodecResult, CodecError};
 
-#[derive(Default)]
-pub struct StringCodec;
+impl Codec for String {
+  fn encode<W: Write + ?Sized>(&self, writer: &mut W) -> CodecResult<()> {
+    let bytes = self.as_bytes();
 
-impl Codec for StringCodec {
-  type Target = String;
-
-  fn encode(&self, registry: &CodecRegistry, writer: &mut dyn Write, value: &Self::Target) -> CodecResult<()> {
-    if value.is_empty() {
-      registry.encode(writer, &true)?;
-      return Ok(());
-    }
-
-    let bytes = value.as_bytes();
-    registry.encode(writer, &false)?;
-    registry.encode(writer, &(bytes.len() as i32))?;
+    (bytes.len() as i32).encode(writer)?;
     writer.write_all(bytes)?;
 
     Ok(())
   }
 
-  fn decode(&self, registry: &CodecRegistry, reader: &mut dyn Read) -> CodecResult<Self::Target> {
-    if registry.decode::<bool>(reader)? {
-      return Ok(String::new());
-    }
+  fn decode<R: Read + ?Sized>(&mut self, reader: &mut R) -> CodecResult<()> {
+    let mut length = i32::default();
+    length.decode(reader)?;
 
-    let length = registry.decode::<i32>(reader)? as usize;
-    let mut buffer = Vec::with_capacity(length);
-    buffer.resize(length, 0);
+    // TODO(Assasans/perf): It is possible to get rid of Vec allocation by using String#as_bytes_mut
+    let mut buffer = vec![0; length as usize];
     reader.read_exact(&mut buffer)?;
 
-    Ok(String::from_utf8(buffer).map_err(|error| CodecError::DecodeError(Box::new(error)))?)
+    self.reserve_exact(length as usize);
+    self.push_str(str::from_utf8(&buffer).map_err(|error| CodecError::DecodeError(Box::new(error)))?);
+
+    Ok(())
   }
 }

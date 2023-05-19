@@ -138,6 +138,7 @@ impl Connection {
         Box::new(UnknownPacket::new(packet_id, buffer))
       },
       Err(error) => {
+        error!("failed to decode packet {packet_id}");
         return Poll::Ready(Err(ConnectionError::DecodeError(Box::new(error))))
       }
     };
