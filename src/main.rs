@@ -1,5 +1,7 @@
 pub mod network;
 
+use std::io::stdout;
+use std::sync::Arc;
 use tokio::net::TcpSocket;
 use anyhow::Result;
 use futures_util::StreamExt;
@@ -7,7 +9,9 @@ use protocol::crypto::{XorCryptoContext, XorCryptoMode};
 use protocol::packet::{PacketDowncast, packets};
 use tokio::sync::RwLock;
 use tracing::{debug, info};
-use tracing_subscriber::EnvFilter;
+use tracing_subscriber::{EnvFilter, Layer};
+use tracing_subscriber::layer::SubscriberExt;
+use tracing_subscriber::util::SubscriberInitExt;
 
 use crate::network::Connection;
 use crate::network::server::GameServer;
@@ -40,9 +44,18 @@ async fn handle_connection(connection: Connection) -> Result<()> {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-  tracing_subscriber::fmt()
-    .with_max_level(tracing::Level::DEBUG)
-    .with_env_filter(EnvFilter::from_default_env())
+  let console = tracing_subscriber::fmt::layer()
+    .with_writer(Arc::new(stdout()))
+    .and_then(EnvFilter::from_default_env());
+
+  let file = tracing_subscriber::fmt::layer()
+    .with_writer(tracing_appender::rolling::hourly("logs", "protanki-server"))
+    .with_ansi(false)
+    .and_then(EnvFilter::from_default_env());
+
+  tracing_subscriber::registry()
+    .with(console)
+    .with(file)
     .init();
 
   info!("Hello, 世界!");
