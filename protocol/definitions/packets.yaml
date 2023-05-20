@@ -6,14 +6,14 @@
     target_tank: Option<String>
     local_spot_position: Option<Vector3d>
 29211250:
-  name: s2c.lobby.BeginnerPassActivate
+  name: null
   model: 72
   fields:
     life_time_in_seconds_from_current_date_time: i32
     crystal_bonus_in_percent: i32
     score_bonus_in_percent: i32
 34068208:
-  name: s2c.session.ServerSessionSync
+  name: null
   model: 46
   fields:
     server_session_time: i32
@@ -24,11 +24,11 @@
   fields:
     user_id: Option<String>
 103812952:
-  name: s2c.auth.IncorrectPassword
+  name: null
   model: 0
   fields: {}
 118447426:
-  name: s2c.battle.BattleInfoAddUserToTeam
+  name: null
   model: 33
   fields:
     battle_id: Option<String>
@@ -72,7 +72,7 @@
     tank_id: Option<String>
     respawn_delay: i32
 178154988:
-  name: s2c.lobby.ChatInitParameters
+  name: null
   model: 28
   fields:
     init_params: ChatCC
@@ -98,30 +98,30 @@
   name: null
   model: 49
   fields:
-    name_43: i32
+    name_51: i32
     target: Option<String>
-    var_356: i16
-    var_253: Option<Vector3d>
+    var_374: i16
+    var_269: Option<Vector3d>
     hit_point: Option<Vector3d>
-    var_2967: Option<Vector3d>
+    var_2964: Option<Vector3d>
 244072998:
   name: null
   model: 55
   fields:
     time: i32
-    var_356: i16
-    var_253: Option<Vector3d>
-    name_21: Option<Vector3d>
+    var_374: i16
+    var_269: Option<Vector3d>
+    name_22: Option<Vector3d>
 259979915:
   name: null
   model: 52
   fields:
-    var_2072: i32
+    var_2067: i32
     relative_hit_point: Option<Vector3d>
     target: Option<String>
-    var_356: i16
-    var_253: Option<Vector3d>
-    var_2967: Option<Vector3d>
+    var_374: i16
+    var_269: Option<Vector3d>
+    var_2964: Option<Vector3d>
 268832557:
   name: null
   model: 39
@@ -140,7 +140,7 @@
   model: 5
   fields: {}
 321971701:
-  name: s2c.captcha.CaptchaParameters
+  name: null
   model: 6
   fields:
     init_params: Vec<CaptchaLocation>
@@ -150,10 +150,10 @@
   fields:
     quest_id: i32
 329279865:
-  name: c2s.battle.TankMoveCommand
+  name: null
   model: 39
   fields:
-    name_43: i32
+    name_51: i32
     specification_id: i16
     move_command: MoveCommand
 346830254:
@@ -162,18 +162,18 @@
   fields:
     shooter: Option<String>
 377959142:
-  name: c2s.layout.LayoutSwitchExitBattle
+  name: null
   model: 17
   fields:
-    var_727: LayoutState
+    var_735: LayoutState
 381067984:
   name: null
   model: 55
   fields:
     time: i32
     target: Option<String>
-    var_356: i16
-    name_21: Option<Vector3d>
+    var_374: i16
+    name_22: Option<Vector3d>
 415207851:
   name: null
   model: 15
@@ -185,19 +185,19 @@
   fields:
     json: Option<String>
 427083290:
-  name: c2s.auth.AccountRegisterSubmit
+  name: null
   model: 8
   fields:
     uid: Option<String>
     password: Option<String>
     remember_me: bool
 442888643:
-  name: s2c.auth.AccountRegisterUidBusy
+  name: null
   model: 8
   fields:
     adviced_uids: Option<Vec<Option<String>>>
 444933603:
-  name: s2c.auth.InitializeInvite
+  name: null
   model: 5
   fields:
     invite_enabled: bool
@@ -236,7 +236,7 @@
   fields:
     init_params: StatisticsModelCC
 546722394:
-  name: s2c.lobby.BattleRoundFinish
+  name: null
   model: 33
   fields:
     json: Option<String>
@@ -247,7 +247,7 @@
     shooter: Option<String>
     hit_point: Option<Vector3d>
 552006706:
-  name: S2CBattleListListCreate
+  name: null
   model: 31
   fields:
     json: Option<String>
@@ -283,7 +283,7 @@
   fields:
     achievement: Achievement
 581377054:
-  name: s2c.battle.UpdateTankTemperature
+  name: null
   model: 39
   fields:
     tank_id: Option<String>
@@ -303,10 +303,10 @@
   fields:
     message: Option<String>
 613462801:
-  name: s2c.settings.InitializeEmailStatus
+  name: null
   model: 24
   fields:
-    email: Option<Option<String>>
+    email: Option<String>
     email_confirmed: bool
 614714702:
   name: null
@@ -328,14 +328,14 @@
   model: 24
   fields: {}
 655372891:
-  name: s2c.auth.HashLoginFailed
+  name: null
   model: 1
   fields: {}
 668890771:
   name: null
   model: 24
   fields:
-    var_501: Option<String>
+    var_511: Option<String>
     password: Option<String>
 696140460:
   name: null
@@ -346,7 +346,7 @@
   name: null
   model: 28
   fields:
-    var_396: Option<String>
+    var_418: Option<String>
     text: Option<String>
 714838911:
   name: null
@@ -359,7 +359,7 @@
   fields:
     time_limit_in_sec: i32
 744948472:
-  name: s2c.lobby.ChatAntifloodParameters
+  name: null
   model: 28
   fields:
     symbol_cost: i32
@@ -368,15 +368,15 @@
   name: null
   model: 9
   fields:
-    var_2570: Option<String>
-    var_2699: Option<String>
+    var_2569: Option<String>
+    var_2691: Option<String>
 789790814:
   name: null
   model: 42
   fields:
     init_params: CaptureTheFlagCC
 802300608:
-  name: s2c.lobby.BattleCreate
+  name: null
   model: 31
   fields:
     json: Option<String>
@@ -398,7 +398,7 @@
   fields:
     sender_id: Option<String>
 834877801:
-  name: s2c.lobby.InitializeBattleInvite
+  name: null
   model: 15
   fields:
     init_params: BattleInviteCC
@@ -433,7 +433,7 @@
   fields:
     json: Option<String>
 875259457:
-  name: s2c.battle.SpawnTank
+  name: null
   model: 39
   fields:
     tank_id: Option<String>
@@ -447,7 +447,7 @@
   model: 16
   fields:
     item_id: Option<String>
-    var_1471: Option<String>
+    var_1436: Option<String>
 885055495:
   name: null
   model: 19
@@ -457,9 +457,9 @@
   name: null
   model: 9
   fields:
-    var_281: Option<String>
+    var_300: Option<String>
 907073245:
-  name: s2c.lobby.InitializeUser
+  name: null
   model: 10
   fields:
     user_property_cc: UserPropertyCC
@@ -468,7 +468,7 @@
   model: 63
   fields: {}
 932564569:
-  name: s2c.auth.UpdateLoginHash
+  name: null
   model: 1
   fields:
     hash: Option<String>
@@ -477,7 +477,7 @@
   model: 61
   fields:
     message: Option<String>
-    name_73: bool
+    name_75: bool
 947161947:
   name: null
   model: 30
@@ -506,7 +506,7 @@
   model: 40
   fields: {}
 1003297349:
-  name: s2c.auth.RegisterCaptchaRequired
+  name: null
   model: 8
   fields: {}
 1015650019:
@@ -525,22 +525,22 @@
   fields:
     users_stat: Vec<UserStat>
 1083705823:
-  name: c2s.auth.AccountRegisterValidateUid
+  name: null
   model: 8
   fields:
     uid: Option<String>
 1091756732:
-  name: s2c.garage.FitItem
+  name: null
   model: 34
   fields:
     item: Option<String>
 1118835050:
-  name: s2c.layout.LobbyLayoutSwitchStart
+  name: null
   model: 12
   fields:
     state: LayoutState
 1132011721:
-  name: c2s.LinkResultDead
+  name: null
   model: 14
   fields:
     battle_id: Option<String>
@@ -548,7 +548,7 @@
   name: null
   model: 53
   fields:
-    name_43: i32
+    name_51: i32
 1149131596:
   name: null
   model: 32
@@ -565,12 +565,12 @@
   fields:
     sender_id: Option<String>
 1152930968:
-  name: c2s.LinkResultAlive
+  name: null
   model: 14
   fields:
     battle_id: Option<String>
 1153801756:
-  name: c2s.layout.LayoutSwitchPayment
+  name: null
   model: 17
   fields: {}
 1156768699:
@@ -578,7 +578,7 @@
   model: 38
   fields: {}
 1178028365:
-  name: c2s.battle.TankReadyToActivate
+  name: null
   model: 39
   fields: {}
 1184835319:
@@ -591,7 +591,7 @@
     target_hit_points: Option<Vec<Option<Vector3d>>>
     impact_force: f32
 1200280053:
-  name: s2c.session.BanTemporary
+  name: null
   model: 7
   fields:
     reason_for_user: Option<String>
@@ -625,11 +625,11 @@
   name: null
   model: 53
   fields:
-    name_43: i32
+    name_51: i32
     target: Option<String>
     shot_id: i32
-    var_253: Option<Vector3d>
-    var_252: Option<Vec<Option<Vector3d>>>
+    var_269: Option<Vector3d>
+    var_1512: Option<Vec<Option<Vector3d>>>
 1243673979:
   name: null
   model: 3
@@ -652,11 +652,11 @@
     user_id: Option<String>
     new_rank: i32
 1271163230:
-  name: c2s.captcha.ValidateCaptcha
+  name: null
   model: 6
   fields:
     captcha_location: CaptchaLocation
-    var_1950: Option<String>
+    var_1927: Option<String>
 1286861380:
   name: null
   model: 13
@@ -666,9 +666,9 @@
   name: null
   model: 24
   fields:
-    var_113: bool
+    var_116: bool
 1318061480:
-  name: s2c.garage.ShowCategory
+  name: null
   model: 34
   fields:
     category: Option<String>
@@ -705,11 +705,11 @@
   fields:
     time: i32
     targets: Option<Vec<Option<String>>>
-    var_1019: Option<Vec<i16>>
-    var_2638: Option<Vec<Option<Vector3d>>>
-    var_782: Option<Vec<Option<Vector3d>>>
+    var_1021: Option<Vec<i16>>
+    var_2637: Option<Vec<Option<Vector3d>>>
+    var_794: Option<Vec<Option<Vector3d>>>
 1405859779:
-  name: s2c.lobby.InitializeUserPremium
+  name: null
   model: 11
   fields:
     premium_account_alert_cc: PremiumAccountAlertCC
@@ -733,7 +733,7 @@
     friends_incoming_new: UserContainerCC
     friends_outgoing: UserContainerCC
 1428217189:
-  name: S2CBattleInfoUpdateTeamScore
+  name: null
   model: 33
   fields:
     battle_id: Option<String>
@@ -754,13 +754,13 @@
   fields:
     notification_enabled: bool
 1447204641:
-  name: S2CBattleUserListUserJoinBattleWithTeam
+  name: null
   model: 32
   fields:
     battle_id: Option<String>
     user_id: Option<String>
 1452181070:
-  name: c2s.layout.LayoutSwitchServerSelect
+  name: null
   model: 17
   fields: {}
 1459211021:
@@ -772,29 +772,29 @@
   name: null
   model: 49
   fields:
-    name_43: i32
+    name_51: i32
     hit_point: Option<Vector3d>
 1478921140:
   name: null
   model: 49
   fields:
-    name_43: i32
+    name_51: i32
 1480924803:
-  name: s2c.auth.AccountRegisterUidIncorrect
+  name: null
   model: 8
   fields: {}
 1484572481:
-  name: c2s.session.MeasurePong
+  name: null
   model: 45
   fields: {}
 1501310158:
   name: null
   model: 52
   fields:
-    var_2072: i32
+    var_2067: i32
     hit_point: Option<Vector3d>
 1516578027:
-  name: s2c.battle.TankMoveTurretCommand
+  name: null
   model: 39
   fields:
     tank_id: Option<String>
@@ -816,13 +816,13 @@
   model: 24
   fields: {}
 1561014187:
-  name: S2CBattleInfoUpdateName
+  name: null
   model: 33
   fields:
     battle_id: Option<String>
     name: Option<String>
 1566424318:
-  name: s2c.payment.PaymentCompleted
+  name: null
   model: 69
   fields:
     donation: i32
@@ -847,9 +847,9 @@
     static_hit_point: Option<Vector3d>
     targets: Option<Vec<Option<String>>>
     target_hit_points: Option<Vec<Option<Vector3d>>>
-    name_48: Option<Vec<i16>>
-    var_2638: Option<Vec<Option<Vector3d>>>
-    var_782: Option<Vec<Option<Vector3d>>>
+    name_54: Option<Vec<i16>>
+    var_2637: Option<Vec<Option<Vector3d>>>
+    var_794: Option<Vec<Option<Vector3d>>>
 1642608662:
   name: null
   model: 19
@@ -872,7 +872,7 @@
   fields:
     user: Option<String>
 1719707347:
-  name: s2c.battle.DestroyTank
+  name: null
   model: 39
   fields:
     tank: Option<String>
@@ -897,7 +897,7 @@
   fields:
     password: Option<String>
 1774907609:
-  name: c2s.UserNotifySubscribeUser
+  name: null
   model: 18
   fields:
     user_id: Option<String>
@@ -908,24 +908,24 @@
     flag_id: i32
     position: Option<Vector3d>
 1831462385:
-  name: s2c.battle.SpawnBonus
+  name: null
   model: 36
   fields:
     bonus_id: Option<String>
     position: Option<Vector3d>
-    var_2317: i32
+    var_2331: i32
 1863710730:
   name: null
   model: 16
   fields:
     data: Option<String>
 1868573511:
-  name: s2c.battle.TankDead
+  name: null
   model: 39
   fields:
     tank_id: Option<String>
 1924874982:
-  name: S2CBattleInfoRemoveUser
+  name: null
   model: 33
   fields:
     battle_id: Option<String>
@@ -937,7 +937,7 @@
     position: Option<Vector3d>
     flag_team: BattleTeam
 1927704181:
-  name: s2c.battle.UpdateTankTurret
+  name: null
   model: 39
   fields:
     tank_id: Option<String>
@@ -955,7 +955,7 @@
     base_id: i32
     deliverer_tank_id: Option<String>
 1941694508:
-  name: S2CUserNotifyNotifyUserBattleLeave
+  name: null
   model: 18
   fields:
     user_id: Option<String>
@@ -973,7 +973,7 @@
     next_rank_score: i32
     bonus_crystals: i32
 1993050216:
-  name: s2c.lobby.ChatRemoveUserMessages
+  name: null
   model: 28
   fields:
     uid: Option<String>
@@ -985,7 +985,7 @@
     state: IsisState
     hit: TargetHit
 2001736388:
-  name: s2c.session.InitializeEncryption
+  name: s2c.session.InitializeCrypto
   model: 4
   fields:
     protection_data: Vec<i8>
@@ -1014,12 +1014,12 @@
     users_info: Vec<UserInfo>
     team: BattleTeam
 2041598093:
-  name: S2CUserNotifyUpdateUserOnlineStatus
+  name: null
   model: 18
   fields:
     user: OnlineNotifierData
 2062201643:
-  name: s2c.garage.InitMounted
+  name: null
   model: 34
   fields:
     item_id: Option<String>
@@ -1030,21 +1030,21 @@
   fields:
     user_id: Option<String>
 2074243318:
-  name: c2s.session.ServerSessionSyncResponse
+  name: null
   model: 46
   fields:
-    name_43: i32
+    name_51: i32
     server_session_time: i32
 2092412133:
-  name: c2s.lobby.SelectBattle
+  name: null
   model: 31
   fields:
     item: Option<String>
 2094741924:
-  name: s2c.layout.UpdateLoadingTip
+  name: null
   model: 73
   fields:
-    tip: TipItemCC
+    init_params: TipItemCC
 2098576423:
   name: null
   model: 22
@@ -1059,33 +1059,92 @@
   name: null
   model: 70
   fields:
-    name_43: i32
+    name_51: i32
     direction: Option<Vector3d>
 2145091885:
   name: null
   model: 24
   fields:
     message: Option<String>
--739684591:
-  name: c2s.auth.UsernameLogin
-  model: 0
-  fields:
-    login: Option<String>
-    password: Option<String>
-    remember: bool
--1923286328:
-  name: s2c.auth.LoginSuccess
-  model: 0
+-1282173466:
+  name: s2c.resources.GameResourcesLoaded
+  model: 4
   fields: {}
--845588810:
-  name: c2s.auth.HashLogin
-  model: 1
+-82304134:
+  name: c2s.resources.ResourcesLoaded
+  model: 4
   fields:
-    hash: Option<String>
--1317889894:
+    callback_id: i32
+-1797047325:
+  name: s2c.resources.LoadResources
+  model: 4
+  fields:
+    json: Option<String>
+    callback_id: i32
+-1864333717:
+  name: c2s.session.CryptoInitialized
+  model: 4
+  fields:
+    lang: Option<String>
+-1807685988:
   name: null
-  model: 2
-  fields: {}
+  model: 4
+  fields:
+    json: Option<String>
+-2124388778:
+  name: null
+  model: 58
+  fields:
+    json: Option<String>
+-173682854:
+  name: null
+  model: 59
+  fields:
+    tank: Option<String>
+    respawn_delay: i32
+-1767633906:
+  name: null
+  model: 59
+  fields:
+    tank: Option<String>
+-911983090:
+  name: null
+  model: 59
+  fields:
+    suicide_delay_ms: i32
+-593368100:
+  name: null
+  model: 12
+  fields:
+    origin: LayoutState
+    state: LayoutState
+-260270890:
+  name: null
+  model: 68
+  fields:
+    init_params: NewsShowingCC
+-875418096:
+  name: null
+  model: 21
+  fields:
+    image: ResourceId
+    bottom_text: Option<String>
+    top_text: Option<String>
+-1271729363:
+  name: null
+  model: 55
+  fields:
+    shooter: Option<String>
+-1051248475:
+  name: null
+  model: 55
+  fields:
+    time: i32
+-248693565:
+  name: null
+  model: 55
+  fields:
+    time: i32
 -1179390022:
   name: null
   model: 3
@@ -1094,196 +1153,261 @@
   name: null
   model: 3
   fields: {}
--1967950183:
+-1715719586:
   name: null
   model: 3
   fields:
-    remember_me: bool
+    sn_id: Option<String>
+    authorization_url: Option<String>
 -87665118:
   name: null
   model: 3
   fields:
     login: Option<String>
     password: Option<String>
--1715719586:
-  name: s2c.session.InitializeExternalEntrance
+-1967950183:
+  name: null
   model: 3
   fields:
-    sn_id: Option<String>
-    authorization_url: Option<String>
--1807685988:
+    remember_me: bool
+-600078553:
   name: null
-  model: 4
+  model: 7
   fields:
-    json: Option<String>
--82304134:
-  name: c2s.session.resources.DependenciesLoaded
-  model: 4
-  fields:
-    callback_id: i32
--1864333717:
-  name: c2s.session.EncryptionInitialized
-  model: 4
-  fields:
-    lang: Option<String>
--1797047325:
-  name: s2c.session.resources.LoadDependencies
-  model: 4
-  fields:
-    json: Option<String>
-    callback_id: i32
--1282173466:
-  name: s2c.session.resources.ResourcesLoaded
-  model: 4
+    reason_for_user: Option<String>
+-1062190024:
+  name: null
+  model: 28
   fields: {}
--819536476:
-  name: c2s.captcha.CaptchaValidated
-  model: 6
+-920985123:
+  name: null
+  model: 28
+  fields: {}
+-1263520410:
+  name: null
+  model: 28
   fields:
-    captcha_location: CaptchaLocation
--1670408519:
-  name: s2c.captcha.CaptchaShow
-  model: 6
+    messages: Vec<ChatMessage>
+-985579124:
+  name: null
+  model: 36
+  fields: {}
+-1047185003:
+  name: null
+  model: 36
   fields:
-    captcha_location: CaptchaLocation
-    captcha_data: Vec<i8>
+    bonus_id: Option<String>
+-152638117:
+  name: null
+  model: 36
+  fields:
+    json: Option<String>
+-2026749922:
+  name: null
+  model: 36
+  fields:
+    bonus_id: Option<String>
+-1291499147:
+  name: null
+  model: 36
+  fields:
+    bonus_id: Option<String>
+-745598420:
+  name: null
+  model: 36
+  fields:
+    var_322: Vec<i32>
+-1643824092:
+  name: null
+  model: 36
+  fields:
+    json: Option<String>
+-47424608:
+  name: null
+  model: 27
+  fields:
+    items: Vec<GarageItemInfo>
+-1176568376:
+  name: null
+  model: 27
+  fields:
+    item_id: Option<String>
 -373510957:
-  name: s2c.captcha.CaptchaFailed
+  name: null
   model: 6
   fields:
     captcha_location: CaptchaLocation
     new_captcha: Vec<i8>
+-819536476:
+  name: null
+  model: 6
+  fields:
+    captcha_location: CaptchaLocation
 -349828108:
-  name: c2s.captcha.RequestLocation
+  name: null
   model: 6
   fields:
     location: CaptchaLocation
--600078553:
-  name: s2c.session.BanPermanent
-  model: 7
-  fields:
-    reason_for_user: Option<String>
--706679202:
-  name: S2CAccountRegisterUidFree
-  model: 8
-  fields: {}
--653665247:
+-1670408519:
   name: null
-  model: 8
+  model: 6
   fields:
-    uid: Option<String>
+    captcha_location: CaptchaLocation
+    captcha_data: Vec<i8>
 -1277343167:
-  name: S2CAccountRegisterParameters
+  name: null
   model: 8
   fields:
     bg_resource: ResourceId
     enable_required_email: bool
     max_password_length: i32
     min_password_length: i32
--262455387:
+-653665247:
   name: null
-  model: 9
-  fields: {}
--16447159:
-  name: null
-  model: 9
-  fields: {}
--1607756600:
-  name: null
-  model: 9
-  fields: {}
--2118900410:
-  name: null
-  model: 9
+  model: 8
   fields:
-    current_email: Option<String>
+    uid: Option<String>
+-706679202:
+  name: null
+  model: 8
+  fields: {}
+-1042583203:
+  name: null
+  model: 67
+  fields:
+    achievement: Achievement
+    message: Option<String>
+-1981777467:
+  name: null
+  model: 43
+  fields:
+    mine_id: Option<String>
+-137249251:
+  name: null
+  model: 43
+  fields:
+    json: Option<String>
+-502907094:
+  name: null
+  model: 43
+  fields:
+    item_id: Option<String>
+    count: i32
+-2102525054:
+  name: null
+  model: 43
+  fields:
+    item_id: Option<String>
+-169305322:
+  name: null
+  model: 32
+  fields:
+    battle_id: Option<String>
+    user_id: Option<String>
+    team: BattleTeam
+-994817471:
+  name: null
+  model: 32
+  fields:
+    battle_id: Option<String>
+-751613832:
+  name: null
+  model: 32
+  fields:
+    battle_id: Option<String>
+    suspicion_level: BattleSuspicionLevel
+-2133657895:
+  name: null
+  model: 32
+  fields:
+    battle_id: Option<String>
+    user_id: Option<String>
+-1165230470:
+  name: null
+  model: 47
+  fields:
+    damages: Vec<TargetTankDamage>
 -478572181:
   name: null
   model: 11
   fields:
     was_show_alert_for_first_purchase_premium: bool
--593368100:
-  name: s2c.layout.LobbyLayoutSwitchEnd
-  model: 12
-  fields:
-    origin: LayoutState
-    state: LayoutState
--1241704092:
+-962759489:
   name: null
-  model: 13
+  model: 18
   fields:
-    user: Option<String>
--1926185291:
+    user: RankNotifierData
+-2069508071:
   name: null
-  model: 13
+  model: 18
   fields:
-    user_id: Option<String>
--1258754138:
+    user: PremiumNotifierData
+-2040152224:
   name: null
-  model: 13
+  model: 18
   fields:
-    user_id: Option<String>
--1588006900:
+    var_1811: Option<Vec<Option<String>>>
+-1895446889:
   name: null
-  model: 13
+  model: 18
   fields:
-    user_id: Option<String>
--1041660861:
+    user: BattleNotifierData
+-1353047954:
   name: null
-  model: 13
-  fields:
-    user_id: Option<String>
--139645601:
-  name: null
-  model: 13
+  model: 18
   fields:
     user: Option<String>
--1457773660:
+-1565553333:
   name: null
-  model: 13
+  model: 35
   fields:
-    user_id: Option<String>
--1490761936:
+    status: ValidationStatus
+-635715470:
   name: null
-  model: 13
+  model: 35
+  fields:
+    uid: Option<String>
+-845588810:
+  name: null
+  model: 1
+  fields:
+    hash: Option<String>
+-671618989:
+  name: null
+  model: 49
+  fields:
+    target: Option<String>
+-1032328347:
+  name: null
+  model: 49
+  fields:
+    shooter: Option<String>
+-1334002026:
+  name: null
+  model: 49
+  fields:
+    shooter: Option<String>
+    target: Option<String>
+    hit_point: Option<Vector3d>
+    weakening_coeff: f32
+    is_critical: bool
+-1940289099:
+  name: null
+  model: 71
   fields: {}
--2089008699:
+-325434725:
   name: null
-  model: 13
+  model: 71
   fields:
-    user_id: Option<String>
--707501253:
+    flag_id: i32
+    tank_id: Option<String>
+-541655881:
   name: null
-  model: 13
-  fields: {}
--1590185083:
-  name: null
-  model: 13
-  fields: {}
--437587751:
-  name: null
-  model: 13
-  fields: {}
--221757454:
-  name: null
-  model: 13
+  model: 70
   fields:
-    user_id: Option<String>
--1885167992:
-  name: null
-  model: 13
-  fields:
-    user: Option<String>
--604091695:
-  name: c2s.LinkActivateLink
-  model: 14
-  fields:
-    link: Option<String>
--983139626:
-  name: c2s.LinkQuery
-  model: 14
-  fields:
-    battle_id: Option<String>
+    name_51: i32
+    direction: Option<Vector3d>
+    targets: Vec<TargetPosition>
 -1851236532:
   name: null
   model: 15
@@ -1295,53 +1419,97 @@
   fields:
     var_2558: Option<String>
     battle_id: Option<String>
--1859441081:
+-136344740:
   name: null
-  model: 16
+  model: 52
+  fields:
+    var_2067: i32
+-190359403:
+  name: null
+  model: 52
+  fields:
+    shooter: Option<String>
+    target: Option<String>
+    relative_hit_point: Option<Vector3d>
+-604091695:
+  name: null
+  model: 14
+  fields:
+    link: Option<String>
+-983139626:
+  name: null
+  model: 14
+  fields:
+    battle_id: Option<String>
+-1959138292:
+  name: null
+  model: 48
+  fields:
+    init_params: StatisticsDMCC
+-1689876764:
+  name: null
+  model: 48
+  fields:
+    user_id: Option<String>
+-449356094:
+  name: null
+  model: 61
+  fields:
+    user_id: Option<String>
+    message: Option<String>
+    team: BattleTeam
+-643105296:
+  name: null
+  model: 61
   fields: {}
--1455955413:
+-1331361684:
   name: null
-  model: 16
+  model: 61
   fields:
-    url: Option<String>
--1850050333:
+    header: Option<String>
+-666893269:
   name: null
-  model: 16
+  model: 65
+  fields:
+    text: Option<String>
+    sound: ResourceId
+-718866741:
+  name: null
+  model: 62
+  fields:
+    mine_id: Option<String>
+-226978906:
+  name: null
+  model: 62
+  fields:
+    init_params: BattleMineCC
+-624217047:
+  name: null
+  model: 62
+  fields:
+    mine_id: Option<String>
+-1200619383:
+  name: null
+  model: 62
+  fields:
+    owner_id: Option<String>
+-2118900410:
+  name: null
+  model: 9
+  fields:
+    current_email: Option<String>
+-262455387:
+  name: null
+  model: 9
   fields: {}
--511004908:
+-1607756600:
   name: null
-  model: 16
-  fields:
-    var_544: Option<String>
--479046431:
-  name: c2s.layout.LayoutSwitchGarage
-  model: 17
+  model: 9
   fields: {}
--1895446889:
-  name: S2CUserNotifyNotifyUserInBattle
-  model: 18
-  fields:
-    user: BattleNotifierData
--962759489:
-  name: S2CUserNotifyNotifyUpdateUserRank
-  model: 18
-  fields:
-    user: RankNotifierData
--1353047954:
-  name: S2CUserNotifySetUserId
-  model: 18
-  fields:
-    user: Option<String>
--2069508071:
-  name: S2CUserNotifyPremiumTimeLeft
-  model: 18
-  fields:
-    user: PremiumNotifierData
--2040152224:
-  name: c2s.session.UserNotifyUnsubscribeUsers
-  model: 18
-  fields:
-    var_1832: Option<Vec<Option<String>>>
+-16447159:
+  name: null
+  model: 9
+  fields: {}
 -1266665816:
   name: null
   model: 19
@@ -1353,441 +1521,110 @@
   model: 19
   fields:
     quest_id: i32
--875418096:
+-1222085753:
   name: null
-  model: 21
+  model: 50
   fields:
-    image: ResourceId
-    bottom_text: Option<String>
-    top_text: Option<String>
--541741971:
+    shooter: Option<String>
+-534192254:
   name: null
-  model: 22
+  model: 50
+  fields:
+    shooter_id: Option<String>
+    projection_on_vertical_axis: f32
+-2030760866:
+  name: null
+  model: 50
+  fields:
+    time: i32
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
+    name_54: Option<Vec<i16>>
+    var_2637: Option<Vec<Option<Vector3d>>>
+    var_794: Option<Vec<Option<Vector3d>>>
+-380595194:
+  name: null
+  model: 50
+  fields:
+    shooter_id: Option<String>
+-1380283560:
+  name: null
+  model: 50
+  fields:
+    shooter: Option<String>
+-1527013252:
+  name: null
+  model: 50
+  fields:
+    time: i32
+-1487306515:
+  name: null
+  model: 50
   fields: {}
--20513325:
+-367760678:
   name: null
-  model: 22
+  model: 50
   fields:
-    social_network_id: Option<String>
--583564465:
+    time: i32
+-1517837003:
   name: null
-  model: 22
+  model: 50
   fields:
-    init_params: SocialNetworkPanelCC
--1897104567:
+    target_tank: Option<String>
+    local_spot_position: Option<Vector3d>
+-479046431:
   name: null
-  model: 22
-  fields:
-    social_network_id: Option<String>
--324894035:
-  name: null
-  model: 22
-  fields:
-    social_network_id: Option<String>
--731115522:
-  name: null
-  model: 23
-  fields:
-    name_76: bool
+  model: 17
+  fields: {}
 -1302674105:
   name: null
   model: 23
   fields: {}
--20486732:
+-731115522:
   name: null
-  model: 24
+  model: 23
   fields:
-    email: Option<String>
--1533422832:
+    name_77: bool
+-1171353580:
   name: null
-  model: 24
-  fields: {}
--1507635228:
+  model: 56
+  fields:
+    shooter: Option<String>
+-2123941185:
   name: null
-  model: 24
-  fields: {}
--822403331:
+  model: 56
+  fields:
+    time: i32
+    targets: Option<Vec<Option<String>>>
+    var_1021: Option<Vec<i16>>
+    var_1210: Option<Vec<Option<Vector3d>>>
+    var_794: Option<Vec<Option<Vector3d>>>
+-1654947652:
   name: null
-  model: 24
-  fields: {}
--1515366171:
+  model: 56
+  fields:
+    time: i32
+-75406982:
   name: null
-  model: 24
+  model: 56
   fields:
-    password: Option<String>
--714487273:
-  name: null
-  model: 24
-  fields: {}
--322235316:
-  name: s2c.session.ShowAlert
-  model: 25
-  fields:
-    text: Option<String>
--1712113407:
-  name: S2CAlertServerHaltScheduled
-  model: 26
-  fields:
-    time_left_in_sec: i32
--1176568376:
-  name: null
-  model: 27
-  fields:
-    item_id: Option<String>
--47424608:
-  name: null
-  model: 27
-  fields:
-    items: Vec<GarageItemInfo>
--920985123:
-  name: null
-  model: 28
-  fields: {}
--1062190024:
-  name: null
-  model: 28
-  fields: {}
--1263520410:
-  name: S2CGlobalChatShowMessages
-  model: 28
-  fields:
-    messages: Vec<ChatMessage>
--1128606444:
-  name: null
-  model: 29
-  fields:
-    rating: f32
-    place: i32
--593513288:
-  name: null
-  model: 29
-  fields:
-    change_by: i32
--838186985:
-  name: S2CBattleCreateParameters
-  model: 30
-  fields:
-    json: Option<String>
--614313838:
-  name: null
-  model: 30
-  fields: {}
--2135234426:
-  name: null
-  model: 30
-  fields:
-    params: BattleCreateParameters
--1491503394:
-  name: null
-  model: 30
-  fields: {}
--324155151:
-  name: S2CBattleListListDestroy
-  model: 31
-  fields: {}
--1848001147:
-  name: S2CBattleListBattleRemove
-  model: 31
-  fields:
-    battle_id: Option<String>
--2133657895:
-  name: null
-  model: 32
-  fields:
-    battle_id: Option<String>
-    user_id: Option<String>
--994817471:
-  name: null
-  model: 32
-  fields:
-    battle_id: Option<String>
--169305322:
-  name: S2CBattleUserListUserJoinBattle
-  model: 32
-  fields:
-    battle_id: Option<String>
-    user_id: Option<String>
-    team: BattleTeam
--751613832:
-  name: null
-  model: 32
-  fields:
-    battle_id: Option<String>
-    suspicion_level: BattleSuspicionLevel
--698399183:
-  name: S2CBattleInfoUpdateSuspiciousState
-  model: 33
-  fields:
-    battle_id: Option<String>
-    user_id: Option<String>
-    suspicious: bool
--1263036614:
-  name: S2CBattleInfoUpdateUserKills
-  model: 33
-  fields:
-    battle_id: Option<String>
-    user_id: Option<String>
-    kills: i32
--879771375:
-  name: S2CBattleInfoBattleStop
-  model: 33
-  fields:
-    battle_id: Option<String>
--1702097572:
-  name: S2CBattleInfoSwapTeams
-  model: 33
-  fields:
-    battle_id: Option<String>
--10847382:
-  name: null
-  model: 33
-  fields:
-    battle_id: Option<String>
--1315002220:
-  name: null
-  model: 33
-  fields: {}
--344514517:
-  name: S2CBattleInfoRoundStart
-  model: 33
-  fields:
-    battle_id: Option<String>
--602527073:
-  name: S2CBattleInfoInfoDestroy
-  model: 33
-  fields:
-    battle_id: Option<String>
--375282889:
-  name: S2CBattleInfoUpdateUserScore
-  model: 33
-  fields:
-    battle_id: Option<String>
-    user_id: Option<String>
-    score: i32
--831998018:
-  name: null
-  model: 33
-  fields:
-    battle_id: Option<String>
--1284211503:
-  name: null
-  model: 33
-  fields:
-    var_625: BattleTeam
--911626491:
-  name: null
-  model: 33
-  fields:
-    battle_id: Option<String>
-    user: BattleInfoUser
--1961983005:
-  name: c2s.garage.BuyItem
-  model: 34
-  fields:
-    item: Option<String>
-    count: i32
-    var_204: i32
--1505530736:
-  name: c2s.garage.MountItem
-  model: 34
-  fields:
-    item: Option<String>
--255516505:
-  name: s2c.garage.InitDepot
-  model: 34
-  fields:
-    json: Option<String>
--1518850075:
-  name: c2s.garage.ConfirmPresentPurchase
-  model: 34
-  fields:
-    var_814: Option<String>
-    var_1790: Option<String>
-    text: Option<String>
-    var_204: i32
--803365239:
-  name: c2s.garage.SelectItem
-  model: 34
-  fields:
-    item_id: Option<String>
--471022967:
-  name: s2c.garage.RenameFailed
-  model: 34
-  fields: {}
--523392052:
-  name: c2s.garage.BuyKit
-  model: 34
-  fields:
-    item: Option<String>
-    var_204: i32
--300370823:
-  name: s2c.garage.InitMarket
-  model: 34
-  fields:
-    json: Option<String>
--2001666558:
-  name: S2CGaragePresentsRemove
-  model: 34
-  fields:
-    var_1790: i32
--1763914667:
-  name: S2CGarageSelectFirstItem
-  model: 34
-  fields: {}
--1638767166:
-  name: S2CGarageShowAlert
-  model: 34
-  fields: {}
--1154479430:
-  name: c2s.garage.PresentsAccept
-  model: 34
-  fields: {}
--1968445033:
-  name: s2c.garage.RenameSuccess
-  model: 34
-  fields:
-    old_name: Option<String>
-    new_name: Option<String>
--161726525:
-  name: c2s.garage.Rename
-  model: 34
-  fields:
-    var_1736: Option<String>
--635715470:
-  name: c2s.UidCheckRequest
-  model: 35
-  fields:
-    uid: Option<String>
--1565553333:
-  name: c2s.UidCheckResponse
-  model: 35
-  fields:
-    status: ValidationStatus
--1643824092:
-  name: null
-  model: 36
-  fields:
-    json: Option<String>
--745598420:
-  name: null
-  model: 36
-  fields:
-    var_304: Vec<i32>
--152638117:
-  name: null
-  model: 36
-  fields:
-    json: Option<String>
--1047185003:
-  name: null
-  model: 36
-  fields:
-    bonus_id: Option<String>
--2026749922:
-  name: null
-  model: 36
-  fields:
-    bonus_id: Option<String>
--1291499147:
-  name: null
-  model: 36
-  fields:
-    bonus_id: Option<String>
--985579124:
-  name: null
-  model: 36
-  fields: {}
--64696933:
-  name: s2c.battle.MoveTank
-  model: 39
-  fields:
-    tank_id: Option<String>
-    move_command: MoveCommand
--42520728:
-  name: s2c.battle.KillTank
-  model: 39
-  fields:
-    tank_id: Option<String>
-    killer_tank_id: Option<String>
-    respawn_delay: i32
--301298508:
-  name: s2c.battle.UpdateTankControl
-  model: 39
-  fields:
-    tank_id: Option<String>
-    control: i8
--114968993:
-  name: c2s.battle.TankTurretCommand
-  model: 39
-  fields:
-    name_43: i32
-    rotate_turret_command: RotateTurretCommand
-    incarnation_id: i16
--1378839846:
-  name: c2s.battle.TankReadyToPlace
-  model: 39
-  fields: {}
--611961116:
-  name: s2c.battle.UpdateTankHealth
-  model: 39
-  fields:
-    tank_id: Option<String>
-    health: f32
--157204477:
-  name: s2c.battle.UpdateTankPosition
-  model: 39
-  fields:
-    position: Option<Vector3d>
-    orientation: Option<Vector3d>
--1749108178:
-  name: c2s.battle.UpdateTankControl
-  model: 39
-  fields:
-    name_43: i32
-    specification_id: i16
-    control: i8
--1683279062:
-  name: c2s.battle.UpdateTankTurret
-  model: 39
-  fields:
-    name_43: i32
-    specification_id: i16
-    move_command: MoveCommand
-    turret_direction: f32
--1672577397:
-  name: s2c.battle.UpdateTankSpeed
-  model: 39
-  fields:
-    tank_id: Option<String>
-    max_speed: f32
-    max_turn_speed: f32
-    max_turret_rotation_speed: f32
-    acceleration: f32
-    specification_id: i16
--1639713644:
-  name: s2c.battle.AddTankEffect
-  model: 39
-  fields:
-    tank_id: Option<String>
-    effect_id: i32
-    duration: i32
-    active_after_death: bool
-    effect_level: i8
--1994318624:
-  name: s2c.battle.RemoveTankEffect
-  model: 39
-  fields:
-    tank_id: Option<String>
-    effect_id: i32
--1205151619:
-  name: null
-  model: 41
-  fields:
-    var_1018: Vec<BonusSpawnData>
+    time: i32
 -1832611824:
   name: null
   model: 42
   fields: {}
+-1142938284:
+  name: null
+  model: 42
+  fields:
+    team: BattleTeam
+-1282406496:
+  name: null
+  model: 42
+  fields:
+    tank_id: Option<String>
+    flag_team: BattleTeam
 -1026428589:
   name: null
   model: 42
@@ -1800,38 +1637,216 @@
   fields:
     winner_team: BattleTeam
     deliverer_tank_id: Option<String>
--1282406496:
+-1376947245:
   name: null
-  model: 42
+  model: 73
+  fields: {}
+-324894035:
+  name: null
+  model: 22
   fields:
-    tank_id: Option<String>
-    flag_team: BattleTeam
--1142938284:
+    social_network_id: Option<String>
+-20513325:
   name: null
-  model: 42
+  model: 22
   fields:
-    team: BattleTeam
--2102525054:
+    social_network_id: Option<String>
+-541741971:
   name: null
-  model: 43
+  model: 22
+  fields: {}
+-583564465:
+  name: null
+  model: 22
   fields:
-    item_id: Option<String>
--137249251:
+    init_params: SocialNetworkPanelCC
+-1897104567:
   name: null
-  model: 43
+  model: 22
+  fields:
+    social_network_id: Option<String>
+-118119523:
+  name: null
+  model: 53
+  fields:
+    shooter: Option<String>
+    shot_direction_x: i16
+    shot_direction_y: i16
+    shot_direction_z: i16
+-1907971330:
+  name: null
+  model: 53
+  fields:
+    name_51: i32
+    shot_id: i32
+    shot_direction_x: i16
+    shot_direction_y: i16
+    shot_direction_z: i16
+-1670466290:
+  name: null
+  model: 53
+  fields:
+    shooter: Option<String>
+-1823935471:
+  name: null
+  model: 53
+  fields:
+    name_51: i32
+    shot_id: i32
+    var_1512: Option<Vec<Option<Vector3d>>>
+-44282936:
+  name: null
+  model: 51
+  fields:
+    shooter: Option<String>
+    barrel: i8
+    shot_id: i32
+    shot_direction: Option<Vector3d>
+-1805942142:
+  name: null
+  model: 51
+  fields:
+    name_51: i32
+    barrel: i8
+-159686980:
+  name: null
+  model: 51
+  fields:
+    name_51: i32
+    barrel: i8
+    shot_id: i32
+    shot_direction: Option<Vector3d>
+-328554480:
+  name: null
+  model: 51
+  fields:
+    shooter: Option<String>
+    barrel: i8
+-482023661:
+  name: null
+  model: 51
+  fields:
+    name_51: i32
+    shot_id: i32
+    var_2964: Option<Vector3d>
+-1723353904:
+  name: null
+  model: 51
+  fields:
+    name_51: i32
+    shot_id: i32
+    target: Option<String>
+    var_269: Option<Vector3d>
+    var_2964: Option<Vector3d>
+-324155151:
+  name: null
+  model: 31
+  fields: {}
+-1848001147:
+  name: null
+  model: 31
+  fields:
+    battle_id: Option<String>
+-593513288:
+  name: null
+  model: 29
+  fields:
+    change_by: i32
+-1128606444:
+  name: null
+  model: 29
+  fields:
+    rating: f32
+    place: i32
+-322235316:
+  name: null
+  model: 25
+  fields:
+    text: Option<String>
+-2135234426:
+  name: null
+  model: 30
+  fields:
+    params: BattleCreateParameters
+-1491503394:
+  name: null
+  model: 30
+  fields: {}
+-614313838:
+  name: null
+  model: 30
+  fields: {}
+-838186985:
+  name: null
+  model: 30
   fields:
     json: Option<String>
--1981777467:
+-1258754138:
   name: null
-  model: 43
+  model: 13
   fields:
-    mine_id: Option<String>
--502907094:
+    user_id: Option<String>
+-1590185083:
   name: null
-  model: 43
+  model: 13
+  fields: {}
+-1041660861:
+  name: null
+  model: 13
   fields:
-    item_id: Option<String>
-    count: i32
+    user_id: Option<String>
+-1241704092:
+  name: null
+  model: 13
+  fields:
+    user: Option<String>
+-1926185291:
+  name: null
+  model: 13
+  fields:
+    user_id: Option<String>
+-221757454:
+  name: null
+  model: 13
+  fields:
+    user_id: Option<String>
+-437587751:
+  name: null
+  model: 13
+  fields: {}
+-707501253:
+  name: null
+  model: 13
+  fields: {}
+-1588006900:
+  name: null
+  model: 13
+  fields:
+    user_id: Option<String>
+-1490761936:
+  name: null
+  model: 13
+  fields: {}
+-1457773660:
+  name: null
+  model: 13
+  fields:
+    user_id: Option<String>
+-1885167992:
+  name: null
+  model: 13
+  fields:
+    user: Option<String>
+-2089008699:
+  name: null
+  model: 13
+  fields:
+    user_id: Option<String>
+-139645601:
+  name: null
+  model: 13
+  fields:
+    user: Option<String>
 -1668779175:
   name: null
   model: 44
@@ -1849,294 +1864,77 @@
   model: 44
   fields:
     init_params: StatisticsTeamCC
--555602629:
-  name: s2c.session.MeasurePing
-  model: 45
-  fields: {}
--1165230470:
-  name: s2c.battle.ShowDamage
-  model: 47
-  fields:
-    damages: Vec<TargetTankDamage>
--1959138292:
+-1709511848:
   name: null
-  model: 48
-  fields:
-    init_params: StatisticsDMCC
--1689876764:
-  name: null
-  model: 48
-  fields:
-    user_id: Option<String>
--1032328347:
-  name: null
-  model: 49
-  fields:
-    shooter: Option<String>
--671618989:
-  name: null
-  model: 49
-  fields:
-    target: Option<String>
--1334002026:
-  name: null
-  model: 49
-  fields:
-    shooter: Option<String>
-    target: Option<String>
-    hit_point: Option<Vector3d>
-    weakening_coeff: f32
-    is_critical: bool
--2030760866:
-  name: null
-  model: 50
-  fields:
-    time: i32
-    static_hit_point: Option<Vector3d>
-    targets: Option<Vec<Option<String>>>
-    target_hit_points: Option<Vec<Option<Vector3d>>>
-    name_48: Option<Vec<i16>>
-    var_2638: Option<Vec<Option<Vector3d>>>
-    var_782: Option<Vec<Option<Vector3d>>>
--1527013252:
-  name: null
-  model: 50
-  fields: {}
--367760678:
-  name: null
-  model: 50
-  fields:
-    time: i32
--380595194:
-  name: null
-  model: 50
-  fields:
-    shooter_id: Option<String>
--1487306515:
-  name: null
-  model: 50
-  fields: {}
--1517837003:
-  name: null
-  model: 50
-  fields:
-    target_tank: Option<String>
-    local_spot_position: Option<Vector3d>
--1380283560:
-  name: null
-  model: 50
-  fields:
-    shooter: Option<String>
--1222085753:
-  name: null
-  model: 50
-  fields:
-    shooter: Option<String>
--534192254:
-  name: null
-  model: 50
-  fields:
-    shooter_id: Option<String>
-    projection_on_vertical_axis: f32
--159686980:
-  name: null
-  model: 51
-  fields:
-    name_43: i32
-    barrel: i8
-    shot_id: i32
-    shot_direction: Option<Vector3d>
--482023661:
-  name: null
-  model: 51
-  fields:
-    name_43: i32
-    shot_id: i32
-    var_2967: Option<Vector3d>
--1805942142:
-  name: null
-  model: 51
-  fields:
-    name_43: i32
-    barrel: i8
--44282936:
-  name: null
-  model: 51
-  fields:
-    shooter: Option<String>
-    barrel: i8
-    shot_id: i32
-    shot_direction: Option<Vector3d>
--1723353904:
-  name: null
-  model: 51
-  fields:
-    name_43: i32
-    shot_id: i32
-    target: Option<String>
-    var_253: Option<Vector3d>
-    var_2967: Option<Vector3d>
--328554480:
-  name: null
-  model: 51
-  fields:
-    shooter: Option<String>
-    barrel: i8
--136344740:
-  name: null
-  model: 52
-  fields:
-    var_2072: i32
--190359403:
-  name: null
-  model: 52
-  fields:
-    shooter: Option<String>
-    target: Option<String>
-    relative_hit_point: Option<Vector3d>
--1670466290:
-  name: null
-  model: 53
-  fields:
-    shooter: Option<String>
--1907971330:
-  name: null
-  model: 53
-  fields:
-    name_43: i32
-    shot_id: i32
-    shot_direction_x: i16
-    shot_direction_y: i16
-    shot_direction_z: i16
--118119523:
-  name: null
-  model: 53
-  fields:
-    shooter: Option<String>
-    shot_direction_x: i16
-    shot_direction_y: i16
-    shot_direction_z: i16
--1823935471:
-  name: null
-  model: 53
-  fields:
-    name_43: i32
-    shot_id: i32
-    var_252: Option<Vec<Option<Vector3d>>>
--18176641:
-  name: null
-  model: 54
-  fields:
-    name_43: i32
--484994657:
-  name: null
-  model: 54
-  fields:
-    name_43: i32
-    static_hit_point: Option<Vector3d>
-    targets: Option<Vec<Option<String>>>
-    target_hit_points: Option<Vec<Option<Vector3d>>>
-    name_48: Option<Vec<i16>>
-    var_2638: Option<Vec<Option<Vector3d>>>
-    var_782: Option<Vec<Option<Vector3d>>>
--1759063234:
-  name: null
-  model: 54
-  fields:
-    time: i32
--369590613:
-  name: null
-  model: 54
-  fields:
-    shooter: Option<String>
-    static_hit_point: Option<Vector3d>
-    targets: Option<Vec<Option<String>>>
-    target_hit_points: Option<Vec<Option<Vector3d>>>
--1271729363:
-  name: null
-  model: 55
-  fields:
-    shooter: Option<String>
--1051248475:
-  name: null
-  model: 55
-  fields:
-    time: i32
--248693565:
-  name: null
-  model: 55
-  fields:
-    time: i32
--75406982:
-  name: null
-  model: 56
-  fields:
-    time: i32
--2123941185:
-  name: null
-  model: 56
-  fields:
-    time: i32
-    targets: Option<Vec<Option<String>>>
-    var_1019: Option<Vec<i16>>
-    var_1229: Option<Vec<Option<Vector3d>>>
-    var_782: Option<Vec<Option<Vector3d>>>
--1654947652:
-  name: null
-  model: 56
-  fields:
-    time: i32
--1171353580:
-  name: null
-  model: 56
-  fields:
-    shooter: Option<String>
--1300958299:
-  name: null
-  model: 57
-  fields:
-    time: i32
--1986638927:
-  name: null
-  model: 57
-  fields:
-    time: i32
--2124388778:
-  name: null
-  model: 58
+  model: 66
   fields:
     json: Option<String>
--911983090:
+-1284211503:
   name: null
-  model: 59
+  model: 33
   fields:
-    suicide_delay_ms: i32
--1767633906:
+    var_629: BattleTeam
+-1263036614:
   name: null
-  model: 59
+  model: 33
   fields:
-    tank: Option<String>
--173682854:
+    battle_id: Option<String>
+    user_id: Option<String>
+    kills: i32
+-10847382:
   name: null
-  model: 59
+  model: 33
   fields:
-    tank: Option<String>
-    respawn_delay: i32
--1346883037:
+    battle_id: Option<String>
+-911626491:
   name: null
-  model: 60
+  model: 33
   fields:
-    team: BattleTeam
--1701488017:
+    battle_id: Option<String>
+    user: BattleInfoUser
+-602527073:
   name: null
-  model: 60
+  model: 33
   fields:
-    team: BattleTeam
--1548609916:
+    battle_id: Option<String>
+-344514517:
   name: null
-  model: 60
+  model: 33
   fields:
-    point_id: i32
+    battle_id: Option<String>
+-1702097572:
+  name: null
+  model: 33
+  fields:
+    battle_id: Option<String>
+-831998018:
+  name: null
+  model: 33
+  fields:
+    battle_id: Option<String>
+-698399183:
+  name: null
+  model: 33
+  fields:
+    battle_id: Option<String>
+    user_id: Option<String>
+    suspicious: bool
+-1315002220:
+  name: null
+  model: 33
+  fields: {}
+-879771375:
+  name: null
+  model: 33
+  fields:
+    battle_id: Option<String>
+-375282889:
+  name: null
+  model: 33
+  fields:
+    battle_id: Option<String>
+    user_id: Option<String>
+    score: i32
 -2141998253:
   name: null
   model: 60
@@ -2144,6 +1942,11 @@
     point_id: i32
     progress: f32
     progress_speed: f32
+-1346883037:
+  name: null
+  model: 60
+  fields:
+    team: BattleTeam
 -1073178885:
   name: null
   model: 60
@@ -2156,11 +1959,6 @@
   fields:
     point_id: i32
     tank_id: Option<String>
--773473371:
-  name: null
-  model: 60
-  fields:
-    point_id: i32
 -1337059439:
   name: null
   model: 60
@@ -2172,82 +1970,285 @@
   fields:
     point_id: i32
     tank_id: Option<String>
--643105296:
+-773473371:
   name: null
-  model: 61
-  fields: {}
--449356094:
-  name: null
-  model: 61
+  model: 60
   fields:
-    user_id: Option<String>
-    message: Option<String>
+    point_id: i32
+-1548609916:
+  name: null
+  model: 60
+  fields:
+    point_id: i32
+-1701488017:
+  name: null
+  model: 60
+  fields:
     team: BattleTeam
--1331361684:
+-1317889894:
   name: null
-  model: 61
+  model: 2
+  fields: {}
+-1749108178:
+  name: null
+  model: 39
   fields:
-    header: Option<String>
--226978906:
+    name_51: i32
+    specification_id: i16
+    control: i8
+-42520728:
   name: null
-  model: 62
+  model: 39
   fields:
-    init_params: BattleMineCC
--1200619383:
+    tank_id: Option<String>
+    killer_tank_id: Option<String>
+    respawn_delay: i32
+-611961116:
   name: null
-  model: 62
+  model: 39
   fields:
-    owner_id: Option<String>
--718866741:
+    tank_id: Option<String>
+    health: f32
+-301298508:
   name: null
-  model: 62
+  model: 39
   fields:
-    mine_id: Option<String>
--624217047:
+    tank_id: Option<String>
+    control: i8
+-1683279062:
   name: null
-  model: 62
+  model: 39
   fields:
-    mine_id: Option<String>
--666893269:
+    name_51: i32
+    specification_id: i16
+    move_command: MoveCommand
+    turret_direction: f32
+-1994318624:
   name: null
-  model: 65
+  model: 39
   fields:
-    text: Option<String>
-    sound: ResourceId
--1709511848:
+    tank_id: Option<String>
+    effect_id: i32
+-64696933:
   name: null
-  model: 66
+  model: 39
+  fields:
+    tank_id: Option<String>
+    move_command: MoveCommand
+-114968993:
+  name: null
+  model: 39
+  fields:
+    name_51: i32
+    rotate_turret_command: RotateTurretCommand
+    incarnation_id: i16
+-1672577397:
+  name: null
+  model: 39
+  fields:
+    tank_id: Option<String>
+    max_speed: f32
+    max_turn_speed: f32
+    max_turret_rotation_speed: f32
+    acceleration: f32
+    specification_id: i16
+-157204477:
+  name: null
+  model: 39
+  fields:
+    position: Option<Vector3d>
+    orientation: Option<Vector3d>
+-1378839846:
+  name: null
+  model: 39
+  fields: {}
+-1639713644:
+  name: null
+  model: 39
+  fields:
+    tank_id: Option<String>
+    effect_id: i32
+    duration: i32
+    active_after_death: bool
+    effect_level: i8
+-1300958299:
+  name: null
+  model: 57
+  fields:
+    time: i32
+-1986638927:
+  name: null
+  model: 57
+  fields:
+    time: i32
+-1712113407:
+  name: null
+  model: 26
+  fields:
+    time_left_in_sec: i32
+-369590613:
+  name: null
+  model: 54
+  fields:
+    shooter: Option<String>
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
+-18176641:
+  name: null
+  model: 54
+  fields:
+    name_51: i32
+-484994657:
+  name: null
+  model: 54
+  fields:
+    name_51: i32
+    static_hit_point: Option<Vector3d>
+    targets: Option<Vec<Option<String>>>
+    target_hit_points: Option<Vec<Option<Vector3d>>>
+    name_54: Option<Vec<i16>>
+    var_2637: Option<Vec<Option<Vector3d>>>
+    var_794: Option<Vec<Option<Vector3d>>>
+-1759063234:
+  name: null
+  model: 54
+  fields:
+    time: i32
+-739684591:
+  name: c2s.auth.UsernameLogin
+  model: 0
+  fields:
+    login: Option<String>
+    password: Option<String>
+    remember: bool
+-1923286328:
+  name: null
+  model: 0
+  fields: {}
+-1205151619:
+  name: null
+  model: 41
+  fields:
+    var_1020: Vec<BonusSpawnData>
+-1455955413:
+  name: null
+  model: 16
+  fields:
+    url: Option<String>
+-1850050333:
+  name: null
+  model: 16
+  fields: {}
+-1859441081:
+  name: null
+  model: 16
+  fields: {}
+-511004908:
+  name: null
+  model: 16
+  fields:
+    var_749: Option<String>
+-1961983005:
+  name: null
+  model: 34
+  fields:
+    item: Option<String>
+    count: i32
+    var_216: i32
+-1638767166:
+  name: null
+  model: 34
+  fields: {}
+-2001666558:
+  name: null
+  model: 34
+  fields:
+    var_1779: i32
+-255516505:
+  name: null
+  model: 34
   fields:
     json: Option<String>
--1042583203:
+-1505530736:
   name: null
-  model: 67
+  model: 34
   fields:
-    achievement: Achievement
-    message: Option<String>
--260270890:
+    item: Option<String>
+-523392052:
   name: null
-  model: 68
+  model: 34
   fields:
-    init_params: NewsShowingCC
--541655881:
+    item: Option<String>
+    var_216: i32
+-1518850075:
   name: null
-  model: 70
+  model: 34
   fields:
-    name_43: i32
-    direction: Option<Vector3d>
-    targets: Vec<TargetPosition>
--1940289099:
+    var_819: Option<String>
+    var_1779: Option<String>
+    text: Option<String>
+    var_216: i32
+-1968445033:
   name: null
-  model: 71
+  model: 34
+  fields:
+    old_name: Option<String>
+    new_name: Option<String>
+-1763914667:
+  name: null
+  model: 34
   fields: {}
--325434725:
+-161726525:
   name: null
-  model: 71
+  model: 34
   fields:
-    flag_id: i32
-    tank_id: Option<String>
--1376947245:
-  name: c2s.layout.GetLoadingTip
-  model: 73
+    var_1728: Option<String>
+-803365239:
+  name: null
+  model: 34
+  fields:
+    item_id: Option<String>
+-471022967:
+  name: null
+  model: 34
+  fields: {}
+-300370823:
+  name: null
+  model: 34
+  fields:
+    json: Option<String>
+-1154479430:
+  name: null
+  model: 34
+  fields: {}
+-555602629:
+  name: null
+  model: 45
+  fields: {}
+-20486732:
+  name: null
+  model: 24
+  fields:
+    email: Option<String>
+-714487273:
+  name: null
+  model: 24
+  fields: {}
+-1507635228:
+  name: null
+  model: 24
+  fields: {}
+-1533422832:
+  name: null
+  model: 24
+  fields: {}
+-1515366171:
+  name: null
+  model: 24
+  fields:
+    password: Option<String>
+-822403331:
+  name: null
+  model: 24
   fields: {}

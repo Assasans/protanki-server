@@ -25,7 +25,7 @@ async fn handle_connection(connection: Connection) -> Result<()> {
   {
     let key = XorCryptoContext::generate_key();
     let mut lock = connection.write().await;
-    lock.send(&packets::s2c::session::InitializeEncryption {
+    lock.send(&packets::s2c::session::InitializeCrypto {
       protection_data: key.clone()
     })?;
     lock.crypto_context = Box::new(XorCryptoContext::new(XorCryptoMode::Server, &key));
@@ -74,18 +74,18 @@ async fn main() -> Result<()> {
     let packet = packet?;
     debug!("packet: {:?}", packet);
 
-    if let Some(packets::s2c::session::InitializeEncryption { protection_data }) = packet.downcast_ref() {
+    if let Some(packets::s2c::session::InitializeCrypto { protection_data }) = packet.downcast_ref() {
       debug!("key: {:?}", protection_data);
 
       connection.crypto_context = Box::new(XorCryptoContext::new(XorCryptoMode::Client, &protection_data));
-      connection.send(&packets::c2s::session::EncryptionInitialized {
+      connection.send(&packets::c2s::session::CryptoInitialized {
         lang: Some("ru".to_owned())
       })?;
-    } else if let Some(packets::s2c::session::resources::LoadDependencies { callback_id, .. }) = packet.downcast_ref() {
-      connection.send(&packets::c2s::session::resources::DependenciesLoaded {
+    } else if let Some(packets::s2c::resources::LoadResources { callback_id, .. }) = packet.downcast_ref() {
+      connection.send(&packets::c2s::resources::ResourcesLoaded {
         callback_id: *callback_id
       })?;
-    } else if let Some(packets::s2c::session::resources::ResourcesLoaded {}) = packet.downcast_ref() {
+    } else if let Some(packets::s2c::resources::GameResourcesLoaded {}) = packet.downcast_ref() {
       let username = env::var("PT_USERNAME").unwrap();
       let password = env::var("PT_PASSWORD").unwrap();
 
