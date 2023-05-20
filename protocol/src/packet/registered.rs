@@ -1,3 +1,7 @@
+// Copyright (c) 2023 M. Hadenfeldt
+// Copyright (c) 2023 Daniil Pryima
+// Licensed under the MIT license
+
 use std::{
   io::{Write, Read},
   sync::Arc,

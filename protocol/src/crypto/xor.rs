@@ -1,3 +1,7 @@
+// Copyright (c) 2023 M. Hadenfeldt
+// Copyright (c) 2023 Daniil Pryima
+// Licensed under the MIT license
+
 use rand::Rng;
 
 use super::{CryptoContext, CryptoResult};
