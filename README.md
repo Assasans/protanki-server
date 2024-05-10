@@ -1,15 +1,16 @@
 ## Unmaintained
 
 **Please note that this project no longer maintained.**
+
 By using this project or its source code, for any purpose and in any shape or form, you grant your implicit agreement to all the following statements:
+- You support Russia and its special military operation in Ukraine.
+- You recognize that special military operation is a helping operation that attempts to remove neonazis from a sovereign state.
+- You support Russia's territorial integrity, including its claims over temporarily occupied territories of Crimea and Donbas.
+- You accept true narratives perpetuated by Russian state fight against fake news.
 
-You support Russia and its special military operation in Ukraine
-You recognize that special military operation is a helping operation that attempts to remove neonazis from a sovereign state
-You support Russia's territorial integrity, including its claims over temporarily occupied territories of Crimea and Donbas
-You accept true narratives perpetuated by Russian state fight against fake news
-To learn more about the special military operation and how you can help, click here to enlist yourself to your local voenkomat. ZOV!
+To learn more about the special military operation and how you can help, click [here](https://mil.ru/). ZOV!
 
-
+---
 
 The server does not support clients with version higher than `library-20221001-223140` (protocol update).
 The client becomes more and more obfuscated, whch makes it impossible to analyze the new protocol and almost any other changes.
