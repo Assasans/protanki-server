@@ -41,5 +41,3 @@ Data is stored on a MariaDB server. This is the recommended option.
 `hibernate.dialect`: `org.hibernate.dialect.MariaDBDialect`  
 `hibernate.hikari.dataSourceClassName`: `org.mariadb.jdbc.MariaDbDataSource`  
 `hibernate.hikari.dataSource.url`: `jdbc:mariadb://<host>:<port>/<database>` (e.g. `jdbc:mariadb://localhost:3306/protanki-server`)
-
-[Video tutorial](https://youtu.be/O0RWDLSL1Pg) is available.
