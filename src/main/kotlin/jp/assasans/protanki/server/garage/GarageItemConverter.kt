@@ -6,8 +6,8 @@ interface IGarageItemConverter {
   fun toClientWeapon(item: ServerGarageItemWeapon, locale: SocketLocale): List<GarageItem>
   fun toClientHull(item: ServerGarageItemHull, locale: SocketLocale): List<GarageItem>
   fun toClientPaint(item: ServerGarageItemPaint, locale: SocketLocale): GarageItem
-  fun toClientSupply(item: ServerGarageItemSupply, locale: SocketLocale): GarageItem
-  fun toClientSubscription(item: ServerGarageItemSubscription, locale: SocketLocale): GarageItem
+  fun toClientSupply(item: ServerGarageItemSupply, userItem: ServerGarageUserItemSupply?, locale: SocketLocale): GarageItem
+  fun toClientSubscription(item: ServerGarageItemSubscription, userItem: ServerGarageUserItemSubscription?, locale: SocketLocale): GarageItem
   fun toClientKit(item: ServerGarageItemKit, locale: SocketLocale): GarageItem
   fun toClientPresent(item: ServerGarageItemPresent, locale: SocketLocale): GarageItem
 }
@@ -51,7 +51,7 @@ class GarageItemConverter : IGarageItemConverter {
           timeToStartInSeconds = -1
         ),
 
-        remainingTimeInSec = -1,
+        timeLeft = -1,
 
         properties = toClientProperties(modification.properties),
 
@@ -95,7 +95,7 @@ class GarageItemConverter : IGarageItemConverter {
           timeToStartInSeconds = -1
         ),
 
-        remainingTimeInSec = -1,
+        timeLeft = -1,
 
         properties = toClientProperties(modification.properties),
 
@@ -136,7 +136,7 @@ class GarageItemConverter : IGarageItemConverter {
         timeToStartInSeconds = -1
       ),
 
-      remainingTimeInSec = -1,
+      timeLeft = -1,
 
       properties = toClientProperties(item.properties),
 
@@ -151,7 +151,7 @@ class GarageItemConverter : IGarageItemConverter {
     )
   }
 
-  override fun toClientSupply(item: ServerGarageItemSupply, locale: SocketLocale): GarageItem {
+  override fun toClientSupply(item: ServerGarageItemSupply, userItem: ServerGarageUserItemSupply?, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -176,7 +176,7 @@ class GarageItemConverter : IGarageItemConverter {
         timeToStartInSeconds = -1
       ),
 
-      remainingTimeInSec = -1,
+      timeLeft = -1,
 
       properties = toClientProperties(item.properties),
 
@@ -185,13 +185,13 @@ class GarageItemConverter : IGarageItemConverter {
 
       coloring = null,
 
-      count = null, // TODO(Assasans): Set later
+      count = userItem?.count,
 
       kit = null
     )
   }
 
-  override fun toClientSubscription(item: ServerGarageItemSubscription, locale: SocketLocale): GarageItem {
+  override fun toClientSubscription(item: ServerGarageItemSubscription, userItem: ServerGarageUserItemSubscription?, locale: SocketLocale): GarageItem {
     return GarageItem(
       id = item.id,
       index = item.index,
@@ -216,7 +216,7 @@ class GarageItemConverter : IGarageItemConverter {
         timeToStartInSeconds = -1
       ),
 
-      remainingTimeInSec = 1000000000, // TODO(Assasans)
+      timeLeft = userItem?.timeLeft?.inWholeSeconds ?: -1,
 
       properties = toClientProperties(item.properties),
 
@@ -256,7 +256,7 @@ class GarageItemConverter : IGarageItemConverter {
         timeToStartInSeconds = -1
       ),
 
-      remainingTimeInSec = -1,
+      timeLeft = -1,
 
       properties = toClientProperties(item.properties),
 
@@ -302,7 +302,7 @@ class GarageItemConverter : IGarageItemConverter {
         timeToStartInSeconds = -1
       ),
 
-      remainingTimeInSec = -1,
+      timeLeft = -1,
 
       properties = toClientProperties(item.properties),
 

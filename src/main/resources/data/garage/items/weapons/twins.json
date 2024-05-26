@@ -40,6 +40,12 @@
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 5.8 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 8.8, "to": 10.5 },
+        "weakening": { "from": 15, "to": 65.03, "minimum": 0.0578 }
+      },
+
       "visual": {
         "$type": "twins",
 
@@ -102,6 +108,12 @@
         },
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 10.3 }
       ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 11.4, "to": 13.9 },
+        "weakening": { "from": 15, "to": 69.79, "minimum": 0.103 }
+      },
 
       "physics": {
         "turretRotationSpeed": 1.814095224522906,
@@ -173,6 +185,12 @@
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 14.8 }
       ],
 
+      "damage": {
+        "discrete": { },
+        "range": { "from": 14, "to": 17.2 },
+        "weakening": { "from": 15, "to": 74.56, "minimum": 0.1483 }
+      },
+
       "physics": {
         "turretRotationSpeed": 2.0642009063336935,
         "turretTurnAcceleration": 3.482629989429485,
@@ -242,6 +260,12 @@
         },
         { "property": "WEAPON_MIN_DAMAGE_PERCENT", "value": 20 }
       ],
+
+      "damage": {
+        "discrete": { },
+        "range": { "from": 17, "to": 21 },
+        "weakening": { "from": 15, "to": 80, "minimum": 0.2 }
+      },
 
       "physics": {
         "turretRotationSpeed": 2.3500858378103646,

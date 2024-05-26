@@ -1,0 +1,56 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:17.0.4
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      # Checkout source code
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle.kts" }}
+            # Fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle.kts" }}
+
+      # Run tests
+      - run:
+          name: Running tests
+          command: ./gradlew test
+      
+      # Build artifacts
+      - run:
+          name: Building artifacts
+          command: ./gradlew distZip
+
+      - run:
+          name: Copying artifacts
+          command: |
+            mkdir /tmp/artifacts;
+            cp build/distributions/ProTankiServer-*.zip /tmp/artifacts/protanki-server.zip;
+
+      - store_artifacts:
+          path: /tmp/artifacts/protanki-server.zip
+          destination: protanki-server.zip
+
+workflows:
+  build:
+    jobs:
+      - build

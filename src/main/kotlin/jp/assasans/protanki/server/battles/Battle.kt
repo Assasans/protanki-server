@@ -6,8 +6,11 @@ import kotlin.random.nextULong
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import mu.KotlinLogging
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import jp.assasans.protanki.server.ServerMapInfo
 import jp.assasans.protanki.server.battles.bonus.BonusProcessor
 import jp.assasans.protanki.server.battles.mode.BattleModeHandler
@@ -83,13 +86,14 @@ suspend fun Command.sendTo(
 
 fun List<BattlePlayer>.users() = filter { player -> !player.isSpectator }
 fun List<BattlePlayer>.spectators() = filter { player -> player.isSpectator }
+fun List<BattlePlayer>.ready() = filter { player -> player.ready }
+fun List<BattlePlayer>.exclude(player: BattlePlayer) = filter { it != player }
 
 class Battle(
   coroutineContext: CoroutineContext,
   val id: String,
   val title: String,
   var map: ServerMapInfo,
-  var fund: Int = 1337228,
   modeHandlerBuilder: BattleModeHandlerBuilder
 ) {
   companion object {
@@ -107,6 +111,17 @@ class Battle(
   val damageProcessor = DamageProcessor(this)
   val bonusProcessor = BonusProcessor(this)
   val mineProcessor = MineProcessor(this)
+  val fundProcessor = FundProcessor(this)
+
+  var startTime: Instant? = Clock.System.now()
+
+  // Remark: Original server sends negative value if battle has no time limit
+  val timeLeft: Duration?
+    get() {
+      val startTime = startTime ?: return null
+      if(properties[BattleProperty.TimeLimit] == 0) return null
+      return (startTime + properties[BattleProperty.TimeLimit].seconds) - Clock.System.now()
+    }
 
   fun toBattleData(): BattleData {
     // TODO(Assasans)
@@ -117,8 +132,8 @@ class Battle(
         map = map.name,
         name = title,
         maxPeople = 8,
-        minRank = 1,
-        maxRank = 30,
+        minRank = properties[BattleProperty.MinRank],
+        maxRank = properties[BattleProperty.MaxRank],
         preview = map.preview,
         parkourMode = properties[BattleProperty.ParkourMode],
         users = players.users().map { player -> player.user.username },
@@ -129,8 +144,8 @@ class Battle(
         map = map.name,
         name = title,
         maxPeople = 8,
-        minRank = 1,
-        maxRank = 30,
+        minRank = properties[BattleProperty.MinRank],
+        maxRank = properties[BattleProperty.MaxRank],
         preview = map.preview,
         parkourMode = properties[BattleProperty.ParkourMode],
         usersRed = players
@@ -156,18 +171,18 @@ class Battle(
         itemId = id,
         battleMode = modeHandler.mode,
         scoreLimit = 300,
-        timeLimitInSec = 600,
-        timeLeftInSec = 212,
+        timeLimitInSec = properties[BattleProperty.TimeLimit],
+        timeLeftInSec = timeLeft?.inWholeSeconds?.toInt() ?: 0,
         preview = map.preview,
         maxPeopleCount = 8,
         name = title,
-        minRank = 1,
-        maxRank = 30,
+        minRank = properties[BattleProperty.MinRank],
+        maxRank = properties[BattleProperty.MaxRank],
         spectator = true,
         withoutBonuses = false,
         withoutCrystals = false,
         withoutSupplies = false,
-        reArmorEnabled = true,
+        reArmorEnabled = properties[BattleProperty.RearmingEnabled],
         parkourMode = properties[BattleProperty.ParkourMode],
         users = players.users().map { player -> BattleUser(user = player.user.username, kills = player.kills, score = player.score) },
       ).toJson()
@@ -175,18 +190,18 @@ class Battle(
         itemId = id,
         battleMode = modeHandler.mode,
         scoreLimit = 300,
-        timeLimitInSec = 600,
-        timeLeftInSec = 212,
+        timeLimitInSec = properties[BattleProperty.TimeLimit],
+        timeLeftInSec = timeLeft?.inWholeSeconds?.toInt() ?: 0,
         preview = map.preview,
         maxPeopleCount = 8,
         name = title,
-        minRank = 1,
-        maxRank = 30,
+        minRank = properties[BattleProperty.MinRank],
+        maxRank = properties[BattleProperty.MaxRank],
         spectator = true,
         withoutBonuses = false,
         withoutCrystals = false,
         withoutSupplies = false,
-        reArmorEnabled = true,
+        reArmorEnabled = properties[BattleProperty.RearmingEnabled],
         parkourMode = properties[BattleProperty.ParkourMode],
         usersRed = players
           .users()
@@ -232,6 +247,7 @@ class Battle(
 
     delay(restartTime.inWholeMilliseconds)
 
+    startTime = Clock.System.now()
     players.users().forEach { player -> player.respawn() }
     Command(CommandName.RestartBattle, 0.toString()).sendTo(this)
 

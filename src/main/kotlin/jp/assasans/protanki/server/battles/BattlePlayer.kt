@@ -19,6 +19,9 @@ import jp.assasans.protanki.server.battles.weapons.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandName
+import jp.assasans.protanki.server.extensions.singleOrNullOf
+import jp.assasans.protanki.server.garage.ServerGarageUserItem
+import jp.assasans.protanki.server.garage.ServerGarageUserItemSupply
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.Vector3
 
@@ -89,8 +92,8 @@ class BattlePlayer(
           mode = battle.modeHandler.mode,
           privateBattle = false,
           proBattle = false,
-          minRank = 1,
-          maxRank = 30
+          minRank = battle.properties[BattleProperty.MinRank],
+          maxRank = battle.properties[BattleProperty.MaxRank]
         ).toJson()
       ).let { command ->
         server.players
@@ -158,7 +161,9 @@ class BattlePlayer(
         map_id = battle.map.name,
         mapId = battle.map.id,
         spectator = isSpectator,
-        reArmorEnabled = true,
+        reArmorEnabled = battle.properties[BattleProperty.RearmingEnabled],
+        minRank = battle.properties[BattleProperty.MinRank],
+        maxRank = battle.properties[BattleProperty.MaxRank],
         skybox = mapRegistry.getSkybox(battle.map.skybox)
           .mapValues { (_, resource) -> resource.id }
           .toJson(),
@@ -184,10 +189,10 @@ class BattlePlayer(
       CommandName.InitGuiModel,
       InitGuiModelData(
         name = battle.title,
-        fund = battle.fund,
+        fund = battle.fundProcessor.fund,
         scoreLimit = 300,
-        timeLimit = 600,
-        currTime = 212,
+        timeLimit = battle.properties[BattleProperty.TimeLimit],
+        timeLeft = battle.timeLeft?.inWholeSeconds?.toInt() ?: 0,
         team = team != BattleTeam.None,
         parkourMode = battle.properties[BattleProperty.ParkourMode],
         battleType = battle.modeHandler.mode,
@@ -229,35 +234,35 @@ class BattlePlayer(
           items = listOf(
             InventoryItemData(
               id = "health",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "health" }?.count ?: 0,
               slotId = 1,
               itemEffectTime = 20,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "armor",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "armor" }?.count ?: 0,
               slotId = 2,
               itemEffectTime = 55,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "double_damage",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "double_damage" }?.count ?: 0,
               slotId = 3,
               itemEffectTime = 55,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "n2o",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "n2o" }?.count ?: 0,
               slotId = 4,
               itemEffectTime = 55,
               itemRestSec = 20
             ),
             InventoryItemData(
               id = "mine",
-              count = 1000,
+              count = user.items.singleOrNullOf<ServerGarageUserItem, ServerGarageUserItemSupply> { it.id.itemName == "mine" }?.count ?: 0,
               slotId = 5,
               itemEffectTime = 20,
               itemRestSec = 20
@@ -275,7 +280,13 @@ class BattlePlayer(
       ).toJson()
     ).send(socket)
 
-    initTanks()
+    // Init self tank to another players
+    if(!isSpectator) {
+      val tank = tank ?: throw Exception("No Tank")
+      tank.initSelf()
+    }
+
+    initAnotherTanks()
 
     if(!isSpectator) {
       // Command(
@@ -294,7 +305,7 @@ class BattlePlayer(
       //   ).toJson()
       // ).send(socket)
 
-      logger.info { "Load stage 2" }
+      logger.info { "Load stage 2 for ${user.username}" }
 
       updateStats()
 
@@ -327,90 +338,32 @@ class BattlePlayer(
     spawnAnotherTanks()
   }
 
-  suspend fun initTanks() {
-    // Init other players to self
-    battle.players.users().forEach { player ->
-      if(player == this) return@forEach
-      val tank = player.tank ?: return@forEach
-
-      Command(
-        CommandName.InitTank,
-        InitTankData(
-          battleId = battle.id,
-          hull_id = tank.hull.mountName,
-          turret_id = tank.weapon.item.mountName,
-          colormap_id = tank.coloring.marketItem.coloring,
-          hullResource = tank.hull.modification.object3ds,
-          turretResource = tank.weapon.item.modification.object3ds,
-          partsObject = TankSoundsData().toJson(),
-          tank_id = tank.id,
-          nickname = player.user.username,
-          team_type = player.team,
-          state = tank.state.tankInitKey,
-          health = tank.clientHealth,
-
-          // Hull physics
-          maxSpeed = tank.hull.modification.physics.speed,
-          maxTurnSpeed = tank.hull.modification.physics.turnSpeed,
-          acceleration = tank.hull.modification.physics.acceleration,
-          reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
-          sideAcceleration = tank.hull.modification.physics.sideAcceleration,
-          turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-          reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
-          dampingCoeff = tank.hull.modification.physics.damping,
-          mass = tank.hull.modification.physics.mass,
-          power = tank.hull.modification.physics.power,
-
-          // Weapon physics
-          turret_turn_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
-          turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration,
-          kickback = tank.weapon.item.modification.physics.kickback,
-          impact_force = tank.weapon.item.modification.physics.impactForce,
-
-          // Weapon visual
-          sfxData = (tank.weapon.item.modification.visual
-                     ?: tank.weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
-        ).toJson()
-      ).send(socket)
-    }
-
-    // Init self to others
-    if(!isSpectator) {
-      val tank = tank ?: throw Exception("No Tank")
-      tank.initSelf()
-    }
+  suspend fun initAnotherTanks() {
+    // Init another tanks to self
+    battle.players
+      .exclude(this)
+      .ready()
+      .users()
+      .mapNotNull { player -> player.tank }
+      .forEach { tank ->
+        Command(
+          CommandName.InitTank,
+          tank.getInitTank().toJson()
+        ).send(socket)
+      }
   }
 
   suspend fun spawnAnotherTanks() {
-    battle.players.forEach { player ->
-      // Spawn other players for self
-      val tank = player.tank
-      if(player != this && tank != null && !player.isSpectator) {
+    // Spawn another tanks for self
+    battle.players
+      .exclude(this)
+      .ready()
+      .users()
+      .mapNotNull { player -> player.tank }
+      .forEach { tank ->
         Command(
           CommandName.SpawnTank,
-          SpawnTankData(
-            tank_id = tank.id,
-            health = tank.clientHealth,
-            incration_id = player.incarnation,
-            team_type = player.team,
-            x = tank.position.x,
-            y = tank.position.y,
-            z = tank.position.z,
-            rot = tank.orientation.toEulerAngles().z,
-
-            // Hull physics
-            speed = tank.hull.modification.physics.speed,
-            turn_speed = tank.hull.modification.physics.turnSpeed,
-            acceleration = tank.hull.modification.physics.acceleration,
-            reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
-            sideAcceleration = tank.hull.modification.physics.sideAcceleration,
-            turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-            reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
-
-            // Weapon physics
-            turret_rotation_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
-            turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration
-          ).toJson()
+          tank.getSpawnTank().toJson()
         ).send(socket)
 
         if(isSpectator) {
@@ -426,45 +379,6 @@ class BattlePlayer(
           }
         }
       }
-    }
-  }
-
-  suspend fun spawnTankForAnother() {
-    battle.players.forEach { player ->
-      if(player == this) return@forEach
-
-      val tank = tank ?: throw Exception("No Tank")
-
-      // Spawn self for other players
-      if(!isSpectator) {
-        Command(
-          CommandName.SpawnTank,
-          SpawnTankData(
-            tank_id = tank.id,
-            health = tank.clientHealth,
-            incration_id = incarnation,
-            team_type = team,
-            x = tank.position.x,
-            y = tank.position.y,
-            z = tank.position.z,
-            rot = tank.orientation.toEulerAngles().z,
-
-            // Hull physics
-            speed = tank.hull.modification.physics.speed,
-            turn_speed = tank.hull.modification.physics.turnSpeed,
-            acceleration = tank.hull.modification.physics.acceleration,
-            reverseAcceleration = tank.hull.modification.physics.reverseAcceleration,
-            sideAcceleration = tank.hull.modification.physics.sideAcceleration,
-            turnAcceleration = tank.hull.modification.physics.turnAcceleration,
-            reverseTurnAcceleration = tank.hull.modification.physics.reverseTurnAcceleration,
-
-            // Weapon physics
-            turret_rotation_speed = tank.weapon.item.modification.physics.turretRotationSpeed,
-            turretTurnAcceleration = tank.weapon.item.modification.physics.turretTurnAcceleration
-          ).toJson()
-        ).send(player)
-      }
-    }
   }
 
   suspend fun updateStats() {

@@ -45,6 +45,12 @@
         }
       ],
 
+      "damage": {
+        "stream": { "capacity": 100000, "charge": 10000, "discharge": 14378, "interval": 565 },
+        "range": { "from": 19, "to": 23 },
+        "weakening": { "from": 67.38, "to": 81.06, "minimum": 0 }
+      },
+
       "physics": {
         "turretRotationSpeed": 1.5940092058464213,
         "turretTurnAcceleration": 1.3535028349216025,
@@ -129,6 +135,12 @@
           ]
         }
       ],
+
+      "damage": {
+        "stream": { "capacity": 100000, "charge": 10000, "discharge": 13764, "interval": 528 },
+        "range": { "from": 24, "to": 29 },
+        "weakening": { "from": 72.29, "to": 88.43, "minimum": 0 }
+      },
 
       "physics": {
         "turretRotationSpeed": 1.9230037698473523,
@@ -215,6 +227,12 @@
         }
       ],
 
+      "damage": {
+        "stream": { "capacity": 100000, "charge": 10000, "discharge": 13151, "interval": 491 },
+        "range": { "from": 29, "to": 35 },
+        "weakening": { "from": 77.19, "to": 95.79, "minimum": 0 }
+      },
+
       "physics": {
         "turretRotationSpeed": 2.2519983338482836,
         "turretTurnAcceleration": 2.144311519000233,
@@ -299,6 +317,12 @@
           ]
         }
       ],
+
+      "damage": {
+        "stream": { "capacity": 1000, "charge": 100, "discharge": 128, "interval": 470 },
+        "range": { "from": 32, "to": 38 },
+        "weakening": { "from": 80, "to": 100, "minimum": 0 }
+      },
 
       "physics": {
         "turretRotationSpeed": 2.4399702942880728,

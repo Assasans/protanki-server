@@ -1,8 +1,7 @@
 package jp.assasans.protanki.server.battles.weapons
 
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.TankState
-import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.battles.*
+import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.client.weapons.flamethrower.FireTarget
 import jp.assasans.protanki.server.client.weapons.flamethrower.StartFire
 import jp.assasans.protanki.server.client.weapons.flamethrower.StopFire
@@ -18,10 +17,11 @@ class FreezeWeaponHandler(
 
   suspend fun fireStart(startFire: StartFire) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
     fireStarted = true
 
-    Command(CommandName.ClientStartFire, tank.id).sendTo(tank.player.battle)
+    Command(CommandName.ClientStartFire, tank.id).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -39,13 +39,16 @@ class FreezeWeaponHandler(
     targetTanks.forEach { targetTank ->
       battle.damageProcessor.dealDamage(sourceTank, targetTank, 20.0, isCritical = false)
     }
+
+    // TODO(Assasans): No response command?
   }
 
   suspend fun fireStop(stopFire: StopFire) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
     fireStarted = false
 
-    Command(CommandName.ClientStopFire, tank.id).sendTo(tank.player.battle)
+    Command(CommandName.ClientStopFire, tank.id).send(battle.players.exclude(player).ready())
   }
 }

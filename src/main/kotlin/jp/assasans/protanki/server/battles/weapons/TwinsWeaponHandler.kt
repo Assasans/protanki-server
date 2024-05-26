@@ -1,8 +1,7 @@
 package jp.assasans.protanki.server.battles.weapons
 
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.TankState
-import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.battles.*
+import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.client.weapons.twins.Fire
 import jp.assasans.protanki.server.client.weapons.twins.FireStatic
 import jp.assasans.protanki.server.client.weapons.twins.FireTarget
@@ -17,14 +16,16 @@ class TwinsWeaponHandler(
 ) : WeaponHandler(player, weapon) {
   suspend fun fire(fire: Fire) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.Shot, tank.id, fire.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.Shot, tank.id, fire.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireStatic(static: FireStatic) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.ShotStatic, tank.id, static.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.ShotStatic, tank.id, static.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireTarget(target: FireTarget) {
@@ -38,6 +39,6 @@ class TwinsWeaponHandler(
 
     battle.damageProcessor.dealDamage(sourceTank, targetTank, 25.0, false)
 
-    Command(CommandName.FireTarget, sourceTank.id, target.toJson()).sendTo(sourceTank.player.battle)
+    Command(CommandName.FireTarget, sourceTank.id, target.toJson()).send(battle.players.exclude(player).ready())
   }
 }

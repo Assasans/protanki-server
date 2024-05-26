@@ -7,6 +7,7 @@ import kotlinx.coroutines.sync.withPermit
 import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import jp.assasans.protanki.server.*
 import jp.assasans.protanki.server.battles.*
@@ -18,7 +19,6 @@ import jp.assasans.protanki.server.battles.mode.*
 import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.*
 import jp.assasans.protanki.server.exceptions.NoSuchProplibException
-import jp.assasans.protanki.server.extensions.collectWithCurrent
 import jp.assasans.protanki.server.extensions.launchDelayed
 import jp.assasans.protanki.server.quests.JoinBattleMapQuest
 import jp.assasans.protanki.server.quests.questOf
@@ -52,6 +52,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
   @CommandHandler(CommandName.SelectBattle)
   suspend fun selectBattle(socket: UserSocket, id: String) {
+    if(id == "null") return // Client side error, consequences of which (empty window) cannot be fixed by the server
+
     val battle = battleProcessor.getBattle(id) ?: throw Exception("Battle $id not found")
 
     logger.debug { "Select battle $id -> ${battle.title}" }
@@ -72,12 +74,20 @@ class LobbyHandler : ICommandHandler, KoinComponent {
     socket.battleJoinLock.withPermit {
       if(socket.screen == Screen.Battle) return@withPermit // Client-side bug
 
+      val user = socket.user ?: throw Exception("No User")
       val battle = socket.selectedBattle ?: throw Exception("Battle is not selected")
 
       val team = if(args.size == 1) {
         val rawTeam = args.get(0)
         BattleTeam.get(rawTeam) ?: throw Exception("Unknown team: $rawTeam")
       } else BattleTeam.None
+
+      val minRank = battle.properties[BattleProperty.MinRank]
+      val maxRank = battle.properties[BattleProperty.MaxRank]
+      if(user.rank.value !in minRank..maxRank) {
+        logger.warn { "Player ${user.username} attempted to join battle with incorrect rank: (user=${user.rank.value}, min=$minRank, max=$maxRank)" }
+        return
+      }
 
       socket.screen = Screen.Battle
 
@@ -110,8 +120,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
             mode = battle.modeHandler.mode,
             privateBattle = false,
             proBattle = false,
-            minRank = 1,
-            maxRank = 30
+            minRank = battle.properties[BattleProperty.MinRank],
+            maxRank = battle.properties[BattleProperty.MaxRank]
           ).toJson()
         ).let { command ->
           server.players
@@ -362,6 +372,12 @@ class LobbyHandler : ICommandHandler, KoinComponent {
       battle.properties[BattleProperty.InstantSelfDestruct] = true
       battle.properties[BattleProperty.SuppliesCooldownEnabled] = false
     }
+    if(data.proBattle) { // PRO-battle options have undefined value if proBattle is false
+      battle.properties[BattleProperty.RearmingEnabled] = data.rearmingEnabled
+    }
+    battle.properties[BattleProperty.MinRank] = data.minRank
+    battle.properties[BattleProperty.MaxRank] = data.maxRank
+    battle.properties[BattleProperty.TimeLimit] = data.timeLimitInSec
 
     battleProcessor.battles.add(battle)
 
@@ -410,7 +426,7 @@ class LobbyHandler : ICommandHandler, KoinComponent {
 
     // TODO(Assasans): Save Job
     socket.coroutineScope.launch {
-      subscription.rank.collectWithCurrent { rank ->
+      subscription.rank.collect { rank ->
         Command(
           CommandName.NotifyUserRank,
           NotifyUserRankData(username = targetUser.username, rank = rank.value).toJson()
@@ -431,8 +447,8 @@ class LobbyHandler : ICommandHandler, KoinComponent {
           mode = battle.modeHandler.mode,
           privateBattle = false,
           proBattle = false,
-          minRank = 1,
-          maxRank = 30
+          minRank = battle.properties[BattleProperty.MinRank],
+          maxRank = battle.properties[BattleProperty.MaxRank]
         ).toJson()
       ).send(socket)
     }

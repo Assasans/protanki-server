@@ -148,6 +148,12 @@ tasks {
   test {
     useJUnitPlatform()
   }
+
+  startScripts {
+    doLast {
+      windowsScript.writeText(windowsScript.readText().replace(Regex("set CLASSPATH=.*"), "set CLASSPATH=%APP_HOME%/lib/*"))
+    }
+  }
 }
 
 noArg {

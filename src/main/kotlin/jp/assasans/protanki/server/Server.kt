@@ -19,6 +19,7 @@ import jp.assasans.protanki.server.battles.IBattleProcessor
 import jp.assasans.protanki.server.battles.bonus.*
 import jp.assasans.protanki.server.battles.map.IMapRegistry
 import jp.assasans.protanki.server.battles.map.get
+import jp.assasans.protanki.server.battles.mode.CaptureTheFlagModeHandler
 import jp.assasans.protanki.server.battles.mode.DeathmatchModeHandler
 import jp.assasans.protanki.server.battles.mode.TeamDeathmatchModeHandler
 import jp.assasans.protanki.server.chat.*
@@ -29,6 +30,8 @@ import jp.assasans.protanki.server.commands.ICommandHandler
 import jp.assasans.protanki.server.commands.ICommandRegistry
 import jp.assasans.protanki.server.extensions.cast
 import jp.assasans.protanki.server.garage.*
+import jp.assasans.protanki.server.invite.IInviteRepository
+import jp.assasans.protanki.server.invite.IInviteService
 import jp.assasans.protanki.server.ipc.*
 import jp.assasans.protanki.server.math.Quaternion
 import jp.assasans.protanki.server.math.nextVector3
@@ -49,6 +52,8 @@ class Server : KoinComponent {
   private val chatCommandRegistry by inject<IChatCommandRegistry>()
   private val storeRegistry by inject<IStoreRegistry>()
   private val userRepository by inject<IUserRepository>()
+  private val inviteService by inject<IInviteService>()
+  private val inviteRepository by inject<IInviteRepository>()
 
   private var networkingEventsJob: Job? = null
 
@@ -91,6 +96,19 @@ class Server : KoinComponent {
         map = mapRegistry.get("map_island", ServerMapTheme.SummerDay),
         modeHandlerBuilder = TeamDeathmatchModeHandler.builder()
       )
+    )
+
+    battleProcessor.battles.add(
+      Battle(
+        coroutineContext,
+        id = "493202bf695cc88c",
+        title = "Rank limited",
+        map = mapRegistry.get("map_highland", ServerMapTheme.SummerDay),
+        modeHandlerBuilder = CaptureTheFlagModeHandler.builder()
+      ).also { battle ->
+        battle.properties[BattleProperty.MinRank] = 1
+        battle.properties[BattleProperty.MaxRank] = 3
+      }
     )
 
     chatCommandRegistry.apply {
@@ -417,6 +435,7 @@ class Server : KoinComponent {
 
           user.score = (user.score + amount).coerceAtLeast(0)
           player.updateScore()
+          userRepository.updateUser(user)
 
           reply("Added $amount experience points to ${user.username}")
         }
@@ -448,6 +467,7 @@ class Server : KoinComponent {
 
           user.crystals = (user.crystals + amount).coerceAtLeast(0)
           player.updateCrystals()
+          userRepository.updateUser(user)
 
           reply("Added $amount crystals to ${user.username}")
         }
@@ -532,10 +552,117 @@ class Server : KoinComponent {
           reply("Reset garage items for user '${user.username}'")
         }
       }
+
+      command("addfund") {
+        description("Add fund to battle")
+
+        argument("amount", Int::class) {
+          description("The amount of fund crystals to add")
+        }
+
+        argument("battle", String::class) {
+          description("The battle ID to add crystals")
+          optional()
+        }
+
+        handler {
+          val amount: Int = arguments.get<String>("amount").toInt() // TODO(Assasans)
+          val battleId: String? = arguments.getOrNull("battle")
+
+          val battle = if(battleId != null) battleProcessor.battles.singleOrNull { it.id == battleId } else socket.battle
+          if(battle == null) {
+            if(battleId != null) reply("Battle '$battleId' not found")
+            else reply("You are not in a battle")
+
+            return@handler
+          }
+
+          battle.fundProcessor.fund = (battle.fundProcessor.fund + amount).coerceAtLeast(0)
+          battle.fundProcessor.updateFund()
+
+          reply("Added $amount fund crystals to battle ${battle.id}")
+        }
+      }
+
+      command("invite") {
+        description("Manage invites")
+
+        subcommand("toggle") {
+          description("Toggle invite-only mode")
+
+          argument("enabled", Boolean::class) {
+            description("Invite-only mode enabled")
+          }
+
+          handler {
+            val enabled = arguments.get<String>("enabled").toBooleanStrict()
+
+            inviteService.enabled = enabled
+
+            reply("Invite codes are now ${if(enabled) "required" else "not required"} to log in")
+          }
+        }
+
+        subcommand("add") {
+          description("Add new invite")
+
+          argument("code", String::class) {
+            description("Invite code to add")
+          }
+
+          handler {
+            val code = arguments.get<String>("code")
+
+            val invite = inviteRepository.createInvite(code)
+            if(invite == null) {
+              reply("Invite '$code' already exists")
+              return@handler
+            }
+
+            reply("Added invite '${invite.code}' (ID: ${invite.id})")
+          }
+        }
+
+        subcommand("delete") {
+          description("Delete invite")
+
+          argument("code", String::class) {
+            description("Invite code to delete")
+          }
+
+          handler {
+            val code = arguments.get<String>("code")
+
+            if(!inviteRepository.deleteInvite(code)) {
+              reply("Invite '$code' does not exist")
+            }
+
+            reply("Deleted invite '$code'")
+          }
+        }
+
+        subcommand("list") {
+          description("List existing invites")
+
+          handler {
+            val invites = inviteRepository.getInvites()
+            if(invites.isEmpty()) {
+              reply("No invites are available")
+              return@handler
+            }
+
+            reply("Invites:\n${invites.joinToString("\n") { invite -> "  - ${invite.code} (ID: ${invite.id})" }}")
+          }
+        }
+      }
     }
 
+    // Initialize database
+    HibernateUtils.createEntityManager().close()
+
+    inviteRepository.createInvite("2112")
+
     coroutineScope {
-      launch { HibernateUtils.createEntityManager().close() } // Initialize database
       launch { resourceServer.run() }
       launch { apiServer.run() }
 

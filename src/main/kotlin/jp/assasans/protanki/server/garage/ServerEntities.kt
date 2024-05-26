@@ -7,7 +7,7 @@ import jakarta.persistence.*
 import kotlinx.datetime.Instant
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import jp.assasans.protanki.server.client.SocketLocale
+import kotlinx.datetime.Clock
 import jp.assasans.protanki.server.client.User
 import jp.assasans.protanki.server.client.WeaponVisual
 import jp.assasans.protanki.server.utils.LocalizedString
@@ -224,11 +224,18 @@ data class WeaponDamage(
   @Json val fixed: Fixed? = null,
   @Json val range: Range? = null,
 
-  @Json val weakening: Weakening? = null
+  @Json val heal: Heal? = null,
+
+  @Json val weakening: Weakening? = null,
+
+  @Json val splash: Splash? = null
 ) {
   class Discrete
 
   data class Stream(
+    @Json val capacity: Int,
+    @Json val charge: Int,
+    @Json val discharge: Int,
     @Json val interval: Int
   )
 
@@ -245,6 +252,18 @@ data class WeaponDamage(
     @Json val from: Double,
     @Json val to: Double,
     @Json val minimum: Double
+  )
+
+  data class Splash(
+    @Json val from: Double,
+    @Json val to: Double,
+    @Json val radius: Double
+  )
+
+  data class Heal(
+    // One of the following
+    @Json val fixed: Fixed? = null,
+    @Json val range: Range? = null
   )
 }
 
@@ -420,12 +439,14 @@ class ServerGarageUserItemSubscription(
   user: User,
   id: String,
   @Convert(converter = InstantToLongConverter::class)
-  var startTime: Instant,
-  var duration: Duration
+  var endTime: Instant
 ) : ServerGarageUserItem(user, id) {
   @get:Transient
   override val marketItem: ServerGarageItemSubscription
     get() = marketRegistry.get(id.itemName).cast()
+
+  val timeLeft: Duration
+    get() = endTime - Clock.System.now()
 }
 
 @Converter

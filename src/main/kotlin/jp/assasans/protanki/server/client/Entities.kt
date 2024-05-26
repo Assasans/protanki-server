@@ -32,7 +32,7 @@ data class InitGuiModelData(
   @Json val fund: Int,
   @Json val scoreLimit: Int,
   @Json val timeLimit: Int,
-  @Json val currTime: Int,
+  @Json(name = "currTime") val timeLeft: Int,
   @Json val score_red: Int = 0,
   @Json val score_blue: Int = 0,
   @Json val team: Boolean, // Is team battle

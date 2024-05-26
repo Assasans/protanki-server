@@ -177,47 +177,10 @@ class BattleTank(
   }
 
   suspend fun initSelf() {
-    battle.players.forEach { player ->
-      Command(
-        CommandName.InitTank,
-        InitTankData(
-          battleId = battle.id,
-          hull_id = hull.mountName,
-          turret_id = weapon.item.mountName,
-          colormap_id = coloring.marketItem.coloring,
-          hullResource = hull.modification.object3ds,
-          turretResource = weapon.item.modification.object3ds,
-          partsObject = TankSoundsData().toJson(),
-          tank_id = id,
-          nickname = this.player.user.username,
-          team_type = this.player.team,
-          state = state.tankInitKey,
-          health = clientHealth,
-
-          // Hull physics
-          maxSpeed = hull.modification.physics.speed,
-          maxTurnSpeed = hull.modification.physics.turnSpeed,
-          acceleration = hull.modification.physics.acceleration,
-          reverseAcceleration = hull.modification.physics.reverseAcceleration,
-          sideAcceleration = hull.modification.physics.sideAcceleration,
-          turnAcceleration = hull.modification.physics.turnAcceleration,
-          reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
-          dampingCoeff = hull.modification.physics.damping,
-          mass = hull.modification.physics.mass,
-          power = hull.modification.physics.power,
-
-          // Weapon physics
-          turret_turn_speed = weapon.item.modification.physics.turretRotationSpeed,
-          turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration,
-          kickback = weapon.item.modification.physics.kickback,
-          impact_force = weapon.item.modification.physics.impactForce,
-
-          // Weapon visual
-          sfxData = (weapon.item.modification.visual
-                     ?: weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
-        ).toJson()
-      ).send(player)
-    }
+    Command(
+      CommandName.InitTank,
+      getInitTank().toJson()
+    ).send(battle.players.ready())
   }
 
   suspend fun spawn() {
@@ -233,30 +196,8 @@ class BattleTank(
 
     Command(
       CommandName.SpawnTank,
-      SpawnTankData(
-        tank_id = id,
-        health = clientHealth,
-        incration_id = player.incarnation,
-        team_type = player.team,
-        x = position.x,
-        y = position.y,
-        z = position.z,
-        rot = orientation.toEulerAngles().z,
-
-        // Hull physics
-        speed = hull.modification.physics.speed,
-        turn_speed = hull.modification.physics.turnSpeed,
-        acceleration = hull.modification.physics.acceleration,
-        reverseAcceleration = hull.modification.physics.reverseAcceleration,
-        sideAcceleration = hull.modification.physics.sideAcceleration,
-        turnAcceleration = hull.modification.physics.turnAcceleration,
-        reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
-
-        // Weapon physics
-        turret_rotation_speed = weapon.item.modification.physics.turretRotationSpeed,
-        turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration
-      ).toJson()
-    ).send(this)
+      getSpawnTank().toJson()
+    ).send(battle.players.ready())
   }
 
   suspend fun updateHealth() {
@@ -282,3 +223,63 @@ class BattleTank(
 fun BattleTank.distanceTo(another: BattleTank): Double {
   return position.distanceTo(another.position)
 }
+
+fun BattleTank.getInitTank() = InitTankData(
+  battleId = battle.id,
+  hull_id = hull.mountName,
+  turret_id = weapon.item.mountName,
+  colormap_id = coloring.marketItem.coloring,
+  hullResource = hull.modification.object3ds,
+  turretResource = weapon.item.modification.object3ds,
+  partsObject = TankSoundsData().toJson(),
+  tank_id = id,
+  nickname = player.user.username,
+  team_type = player.team,
+  state = state.tankInitKey,
+  health = clientHealth,
+
+  // Hull physics
+  maxSpeed = hull.modification.physics.speed,
+  maxTurnSpeed = hull.modification.physics.turnSpeed,
+  acceleration = hull.modification.physics.acceleration,
+  reverseAcceleration = hull.modification.physics.reverseAcceleration,
+  sideAcceleration = hull.modification.physics.sideAcceleration,
+  turnAcceleration = hull.modification.physics.turnAcceleration,
+  reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
+  dampingCoeff = hull.modification.physics.damping,
+  mass = hull.modification.physics.mass,
+  power = hull.modification.physics.power,
+
+  // Weapon physics
+  turret_turn_speed = weapon.item.modification.physics.turretRotationSpeed,
+  turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration,
+  kickback = weapon.item.modification.physics.kickback,
+  impact_force = weapon.item.modification.physics.impactForce,
+
+  // Weapon visual
+  sfxData = (weapon.item.modification.visual ?: weapon.item.marketItem.modifications[0]!!.visual)!!.toJson() // TODO(Assasans)
+)
+
+fun BattleTank.getSpawnTank() = SpawnTankData(
+  tank_id = id,
+  health = clientHealth,
+  incration_id = player.incarnation,
+  team_type = player.team,
+  x = position.x,
+  y = position.y,
+  z = position.z,
+  rot = orientation.toEulerAngles().z,
+
+  // Hull physics
+  speed = hull.modification.physics.speed,
+  turn_speed = hull.modification.physics.turnSpeed,
+  acceleration = hull.modification.physics.acceleration,
+  reverseAcceleration = hull.modification.physics.reverseAcceleration,
+  sideAcceleration = hull.modification.physics.sideAcceleration,
+  turnAcceleration = hull.modification.physics.turnAcceleration,
+  reverseTurnAcceleration = hull.modification.physics.reverseTurnAcceleration,
+
+  // Weapon physics
+  turret_rotation_speed = weapon.item.modification.physics.turretRotationSpeed,
+  turretTurnAcceleration = weapon.item.modification.physics.turretTurnAcceleration
+)

@@ -6,10 +6,8 @@ import mu.KotlinLogging
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import jp.assasans.protanki.server.HibernateUtils
-import jp.assasans.protanki.server.client.BuyItemResponseData
-import jp.assasans.protanki.server.client.UserSocket
-import jp.assasans.protanki.server.client.send
-import jp.assasans.protanki.server.client.toJson
+import jp.assasans.protanki.server.battles.BattleProperty
+import jp.assasans.protanki.server.client.*
 import jp.assasans.protanki.server.commands.Command
 import jp.assasans.protanki.server.commands.CommandHandler
 import jp.assasans.protanki.server.commands.CommandName
@@ -37,6 +35,7 @@ class GarageHandler : ICommandHandler, KoinComponent {
   private val logger = KotlinLogging.logger { }
 
   private val marketRegistry by inject<IGarageMarketRegistry>()
+  private val userRepository by inject<IUserRepository>()
 
   @CommandHandler(CommandName.TryMountPreviewItem)
   suspend fun tryMountPreviewItem(socket: UserSocket, item: String) {
@@ -84,6 +83,11 @@ class GarageHandler : ICommandHandler, KoinComponent {
 
     val player = socket.battlePlayer
     if(player != null) {
+      if(!player.battle.properties[BattleProperty.RearmingEnabled]) {
+        logger.warn { "Player ${player.user.username} attempted to change equipment in battle with disabled rearming" }
+        return
+      }
+
       player.equipmentChanged = true
     }
 
@@ -203,6 +207,10 @@ class GarageHandler : ICommandHandler, KoinComponent {
             }
             user.crystals -= price
 
+            socket.battlePlayer?.let { battlePlayer ->
+              Command(CommandName.SetItemCount, marketItem.id, currentItem.count.toString()).send(battlePlayer)
+            }
+
             logger.debug { "Bought supply ${marketItem.id} (count: $count, $price crystals)" }
           }
         }
@@ -241,15 +249,10 @@ class GarageHandler : ICommandHandler, KoinComponent {
       }
     }
 
-    withContext(Dispatchers.IO) {
-      entityManager
-        .createQuery("UPDATE User SET crystals = :crystals WHERE id = :id")
-        .setParameter("crystals", user.crystals)
-        .setParameter("id", user.id)
-        .executeUpdate()
-    }
     entityManager.transaction.commit()
     entityManager.close()
+
+    userRepository.updateUser(user)
 
     Command(
       CommandName.BuyItem,

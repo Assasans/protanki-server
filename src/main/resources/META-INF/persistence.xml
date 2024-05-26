@@ -29,6 +29,8 @@
     <class>jp.assasans.protanki.server.quests.CapturePointQuest</class>
     <class>jp.assasans.protanki.server.quests.TakeBonusQuest</class>
 
+    <class>jp.assasans.protanki.server.invite.Invite</class>
+
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
       <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect" /> -->

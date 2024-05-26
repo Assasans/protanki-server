@@ -35,11 +35,17 @@ import jp.assasans.protanki.server.exceptions.UnknownCommandCategoryException
 import jp.assasans.protanki.server.exceptions.UnknownCommandException
 import jp.assasans.protanki.server.extensions.gitVersion
 import jp.assasans.protanki.server.garage.*
+import jp.assasans.protanki.server.invite.IInviteService
+import jp.assasans.protanki.server.invite.Invite
 import jp.assasans.protanki.server.lobby.chat.ILobbyChatManager
 
 suspend fun Command.send(socket: UserSocket) = socket.send(this)
 suspend fun Command.send(player: BattlePlayer) = player.socket.send(this)
 suspend fun Command.send(tank: BattleTank) = tank.socket.send(this)
+
+@JvmName("sendSockets") suspend fun Command.send(sockets: Iterable<UserSocket>) = sockets.forEach { socket -> socket.send(this) }
+@JvmName("sendPlayers") suspend fun Command.send(players: Iterable<BattlePlayer>) = players.forEach { player -> player.socket.send(this) }
+@JvmName("sendTanks") suspend fun Command.send(tanks: Iterable<BattleTank>) = tanks.forEach { tank -> tank.socket.send(this) }
 
 suspend fun UserSocket.sendChat(message: String, warning: Boolean = false) = Command(
   CommandName.SendSystemChatMessageClient,
@@ -81,6 +87,7 @@ class UserSocket(
   private val battleProcessor by inject<IBattleProcessor>()
   private val lobbyChatManager by inject<ILobbyChatManager>()
   private val userRepository by inject<IUserRepository>()
+  private val inviteService by inject<IInviteService>()
   private val json by inject<Moshi>()
 
   private val input: ByteReadChannel = socket.openReadChannel()
@@ -101,6 +108,9 @@ class UserSocket(
   var user: User? = null
   var selectedBattle: Battle? = null
   var screen: Screen? = null
+
+  var invite: Invite? = null
+  var sentAuthResources: Boolean = false
 
   val battle: Battle?
     get() = battlePlayer?.battle
@@ -198,12 +208,24 @@ class UserSocket(
       if(packet.isEmpty()) return
 
       // logger.debug { "PKT: $packet" }
-      decrypted = encryption.decrypt(packet)
+      try {
+        decrypted = encryption.decrypt(packet)
+      } catch(exception: Exception) {
+        logger.warn { "Failed to decrypt packet: $packet" }
+        return
+      }
 
       // logger.debug { "Decrypt: $packet -> $decrypted" }
 
       val command = Command()
-      command.readFrom(decrypted.toByteArray())
+      try {
+        command.readFrom(decrypted.toByteArray())
+      } catch(exception: Exception) {
+        logger.warn { "Failed to decode command" }
+        logger.warn { "- Raw packet: $packet" }
+        logger.warn { "- Decrypted packet: $decrypted" }
+        return
+      }
 
       if(
         command.name != CommandName.Ping &&
@@ -337,6 +359,11 @@ class UserSocket(
 
     screen = Screen.BattleSelect
 
+    if(inviteService.enabled && !sentAuthResources) {
+      sentAuthResources = true
+      loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+    }
+
     Command(CommandName.InitPremium, InitPremiumData().toJson()).send(this)
 
     val user = user ?: throw Exception("No User")
@@ -394,7 +421,13 @@ class UserSocket(
 
     Command(CommandName.InitLocale, resourceManager.get("lang/${locale.key}.json").readText()).send(this)
 
-    loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+    loadDependency(resourceManager.get("resources/auth-untrusted.json").readText()).await()
+    if(!inviteService.enabled && !sentAuthResources) {
+      sentAuthResources = true
+      loadDependency(resourceManager.get("resources/auth.json").readText()).await()
+    }
+
+    Command(CommandName.InitInviteModel, inviteService.enabled.toString()).send(this)
     Command(CommandName.MainResourcesLoaded).send(this)
   }
 
@@ -446,8 +479,8 @@ class UserSocket(
         is ServerGarageItemWeapon       -> garageItemConverter.toClientWeapon(marketItem, locale)
         is ServerGarageItemHull         -> garageItemConverter.toClientHull(marketItem, locale)
         is ServerGarageItemPaint        -> listOf(garageItemConverter.toClientPaint(marketItem, locale))
-        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem, locale))
-        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem, locale))
+        is ServerGarageItemSupply       -> listOf(garageItemConverter.toClientSupply(marketItem, userItem as ServerGarageUserItemSupply?, locale))
+        is ServerGarageItemSubscription -> listOf(garageItemConverter.toClientSubscription(marketItem, userItem as ServerGarageUserItemSubscription?, locale))
         is ServerGarageItemKit          -> listOf(garageItemConverter.toClientKit(marketItem, locale))
         is ServerGarageItemPresent      -> listOf(garageItemConverter.toClientPresent(marketItem, locale))
 
@@ -459,11 +492,6 @@ class UserSocket(
       // if(marketItem is ServerGarageItemKit) return@forEach
 
       if(userItem != null) {
-        // Add user item
-        if(userItem is ServerGarageUserItemSupply) {
-          clientMarketItems.single().count = userItem.count
-        }
-
         if(userItem is ServerGarageUserItemWithModification) {
           clientMarketItems.forEach clientMarketItems@{ clientItem ->
             // Add current and previous modifications as user items
@@ -677,8 +705,8 @@ data class InitBattleModelData(
   @Json val reArmorEnabled: Boolean,
   @Json val active: Boolean = true,
   @Json val dustParticle: Int = 110001,
-  @Json val minRank: Int = 3,
-  @Json val maxRank: Int = 30,
+  @Json val minRank: Int,
+  @Json val maxRank: Int,
   @Json val skybox: String,
   @Json val sound_id: Int = 584396,
   @Json val map_graphic_data: String
@@ -1096,7 +1124,7 @@ data class BattleCreateData(
   @Json val equipmentConstraintsMode: EquipmentConstraintsMode = EquipmentConstraintsMode.None,
   @Json val parkourMode: Boolean = false,
   @Json val minRank: Int,
-  @Json val reArmorEnabled: Boolean,
+  @Json(name = "reArmorEnabled") val rearmingEnabled: Boolean,
   @Json val maxPeopleCount: Int,
   @Json val autoBalance: Boolean,
   @Json val maxRank: Int,

@@ -11,15 +11,38 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   MainResourcesLoaded(CommandCategory.System, "main_resources_loaded", CommandSide.Client),
   DependenciesLoaded(CommandCategory.System, "dependencies_loaded", CommandSide.Server),
 
+  /**
+   * @argument {String} message - Alert message
+   */
+  ShowAlert(CommandCategory.System, "showAlert", CommandSide.Client),
+
   Login(CommandCategory.Auth, "login", CommandSide.Server),
   AuthAccept(CommandCategory.Auth, "accept", CommandSide.Client),
   AuthDenied(CommandCategory.Auth, "denied", CommandSide.Client),
   InitExternalModel(CommandCategory.Auth, "init_external_model", CommandSide.Client),
 
+  /**
+   * @argument {Boolean} enabled - Is invite code required to log in
+   */
+  InitInviteModel(CommandCategory.System, "initInviteModel", CommandSide.Client),
+  ActivateInvite(CommandCategory.System, "activateInvite", CommandSide.Server),
+  InviteInvalid(CommandCategory.System, "inviteNotFound", CommandSide.Client),
+  InviteValid(CommandCategory.System, "inviteFree", CommandSide.Client),
+
+  /**
+   * Same as [InviteValid], but fills in the username and
+   * hides the registration button (appears again after changing the screen)
+   * @argument {String} username - Prefilled username
+   */
+  InviteValidWithUsername(CommandCategory.System, "inviteAlreadyActivated", CommandSide.Client),
+
   LoginByHash(CommandCategory.Auth, "loginByHash", CommandSide.Server),
   LoginByHashFailed(CommandCategory.Auth, "login_by_hash_failed", CommandSide.Client),
 
   SwitchToRegistration(CommandCategory.Registration, "set_state", CommandSide.Server),
+  RegisterUser(CommandCategory.Registration, "registration", CommandSide.Server),
+  CheckUsernameRegistration(CommandCategory.Registration, "check_name", CommandSide.Server),
+  CheckUsernameRegistrationClient(CommandCategory.Registration, "check_name_result", CommandSide.Client),
 
   RefreshLobbyCaptcha(CommandCategory.Lobby, "refresh_captcha", CommandSide.Server),
   RefreshRegistrationCaptcha(CommandCategory.Registration, "refresh_captcha", CommandSide.Server),
@@ -180,6 +203,7 @@ enum class CommandName(val category: CommandCategory, val key: String, val side:
   ChangeTankSpecification(CommandCategory.Battle, "change_spec_tank", CommandSide.Client),
 
   InitInventory(CommandCategory.Battle, "init_inventory", CommandSide.Client),
+  SetItemCount(CommandCategory.Battle, "updateCount", CommandSide.Client),
   ActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Server),
   ClientActivateItem(CommandCategory.Battle, "activate_item", CommandSide.Client),
 

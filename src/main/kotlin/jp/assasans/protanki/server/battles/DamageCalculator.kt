@@ -9,10 +9,11 @@ import jp.assasans.protanki.server.garage.WeaponDamage
 import jp.assasans.protanki.server.math.Vector3Constants
 
 interface IDamageCalculator {
-  fun calculate(weapon: WeaponHandler, distance: Double): DamageCalculateResult
+  fun calculate(weapon: WeaponHandler, distance: Double, splash: Boolean = false): DamageCalculateResult
 
   fun getRandomDamage(range: WeaponDamage.Range): Double
   fun getWeakeningMultiplier(weakening: WeaponDamage.Weakening, distance: Double): Double
+  fun getSplashMultiplier(splash: WeaponDamage.Splash, distance: Double): Double
 }
 
 fun IDamageCalculator.calculate(source: BattleTank, target: BattleTank): DamageCalculateResult {
@@ -29,16 +30,18 @@ class DamageCalculateResult(
 class DamageCalculator : IDamageCalculator {
   private val logger = KotlinLogging.logger { }
 
-  override fun calculate(weapon: WeaponHandler, distance: Double): DamageCalculateResult {
+  override fun calculate(weapon: WeaponHandler, distance: Double, splash: Boolean): DamageCalculateResult {
     val config = weapon.item.modification.damage
 
     val baseDamage = config.range?.let { range -> getRandomDamage(range) }
                      ?: config.fixed?.value
                      ?: throw IllegalStateException("No base damage component found for ${weapon.item.mountName}")
-    val weakening = config.weakening?.let { weakening -> getWeakeningMultiplier(weakening, distance) } ?: 1.0
+    val weakening = config.weakening?.let { getWeakeningMultiplier(it, distance) } ?: 1.0
+    val splashDamage = if(splash) config.splash?.let { getSplashMultiplier(it, distance) } ?: 1.0 else 1.0
 
     var damage = baseDamage
     damage *= weakening
+    damage *= splashDamage
 
     logger.debug {
       buildString {
@@ -69,6 +72,20 @@ class DamageCalculator : IDamageCalculator {
       distance <= maximumDamageRadius -> 1.0
       distance >= minimumDamageRadius -> minimumDamageMultiplier
       else                            -> minimumDamageMultiplier + (minimumDamageRadius - distance) * (1.0 - minimumDamageMultiplier) / (minimumDamageRadius - maximumDamageRadius)
+    }
+  }
+
+  // TODO(Assasans): Incorrect implementation
+  override fun getSplashMultiplier(splash: WeaponDamage.Splash, distance: Double): Double {
+    val minimumDamage = splash.from
+    val maximumDamage = splash.to
+    val radius = splash.radius
+
+    if(minimumDamage > maximumDamage) throw IllegalArgumentException("maximumDamage must be more than minimumDamage")
+
+    return when {
+      distance >= radius -> minimumDamage
+      else               -> (1.0 - distance / radius) * (maximumDamage - minimumDamage)
     }
   }
 }

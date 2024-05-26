@@ -1,9 +1,8 @@
 package jp.assasans.protanki.server.battles.weapons
 
-import jp.assasans.protanki.server.battles.BattlePlayer
-import jp.assasans.protanki.server.battles.TankState
+import jp.assasans.protanki.server.battles.*
 import jp.assasans.protanki.server.battles.mode.TeamModeHandler
-import jp.assasans.protanki.server.battles.sendTo
+import jp.assasans.protanki.server.client.send
 import jp.assasans.protanki.server.client.weapons.isida.IsidaFireMode
 import jp.assasans.protanki.server.client.weapons.isida.ResetTarget
 import jp.assasans.protanki.server.client.weapons.isida.SetTarget
@@ -21,14 +20,16 @@ class IsidaWeaponHandler(
 
   suspend fun setTarget(setTarget: SetTarget) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.ClientSetTarget, tank.id, setTarget.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.ClientSetTarget, tank.id, setTarget.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun resetTarget(resetTarget: ResetTarget) {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
-    Command(CommandName.ClientResetTarget, tank.id, resetTarget.toJson()).sendTo(tank.player.battle)
+    Command(CommandName.ClientResetTarget, tank.id, resetTarget.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireStart(startFire: StartFire) {
@@ -68,14 +69,15 @@ class IsidaWeaponHandler(
       actionType = fireMode
     )
 
-    Command(CommandName.ClientSetTarget, sourceTank.id, setTarget.toJson()).sendTo(battle)
+    Command(CommandName.ClientSetTarget, sourceTank.id, setTarget.toJson()).send(battle.players.exclude(player).ready())
   }
 
   suspend fun fireStop() {
     val tank = player.tank ?: throw Exception("No Tank")
+    val battle = player.battle
 
     fireStarted = false
 
-    Command(CommandName.ClientStopFire, tank.id).sendTo(tank.player.battle)
+    Command(CommandName.ClientStopFire, tank.id).send(battle.players.exclude(player).ready())
   }
 }
